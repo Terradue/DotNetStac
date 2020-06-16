@@ -34,7 +34,7 @@ namespace Stac.Converters
                     List<string> extensionPrefixes = token.ToObject<List<string>>();
                     foreach (var extensionPrefix in extensionPrefixes)
                     {
-                        var stacExtension = stacExtensionFactory.CreateStacExtension(extensionPrefix);
+                        var stacExtension = stacExtensionFactory.CreateStacExtension(extensionPrefix, null);
                         if (stacExtension != null)
                             stacExtensions.Add(stacExtension);
                     }

@@ -34,9 +34,13 @@ namespace Stac.Extensions
             return new StacExtensionsFactory();
         }
 
-        public IStacExtension CreateStacExtension(string prefix)
+        public IStacExtension CreateStacExtension(string prefix, IStacObject stacObject)
         {
-            throw new NotImplementedException();
+            if ( stacExtensionsDictionary.ContainsKey(prefix) )
+                return stacExtensionsDictionary[prefix].CopyForStacObject(stacObject);
+
+            return GenericStacExtension.CreateForStacObject(prefix, stacObject);
         }
+
     }
 }

@@ -91,5 +91,15 @@ namespace Stac.Test.Item
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
+
+        [Fact]
+        public void CanManageDates()
+        {
+            var json = GetExpectedJson("Item");
+
+            var item = JsonConvert.DeserializeObject<StacItem>(json);
+
+            Assert.Equal(item.DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
+        }
     }
 }

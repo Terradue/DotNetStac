@@ -4,5 +4,6 @@ namespace Stac.Extensions
     {
         string Id { get; }
 
+        IStacExtension CopyForStacObject(IStacObject stacObject);
     }
 }

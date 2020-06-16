@@ -1,4 +1,5 @@
 using System;
+using Stac;
 using Stac.Extensions;
 
 namespace DotNetStac.Extensions.Sat
@@ -10,5 +11,10 @@ namespace DotNetStac.Extensions.Sat
         }
 
         public string Id => "sat";
+
+        public IStacExtension CopyForStacObject(IStacObject stacObject)
+        {
+            return new SatStacExtension();
+        }
     }
 }
