@@ -1,13 +1,40 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace Stac.Collection
 {
-    public abstract class StacSummaryItem<T> : IStacSummaryItem
+    public abstract class StacSummaryItem : IStacSummaryItem
     {
-        public abstract SummaryItemType SummaryType { get; }
-        public abstract Type ValueType { get; }
+        protected readonly JToken summary;
 
-        public abstract IEnumerator GetEnumerator();
+        protected StacSummaryItem(JToken summary)
+        {
+            this.summary = summary;
+        }
+
+        public JToken this[object key]
+        {
+            get
+            {
+                return summary[key];
+            }
+        }
+
+        public abstract SummaryItemType SummaryType { get; }
+
+        public JToken AsJToken => summary;
+
+        public IEnumerator GetEnumerator()
+        {
+            return summary.Children().GetEnumerator();
+        }
+
+        IEnumerator<JToken> IEnumerable<JToken>.GetEnumerator()
+        {
+            return summary.Children().GetEnumerator();
+        }
+
     }
 }

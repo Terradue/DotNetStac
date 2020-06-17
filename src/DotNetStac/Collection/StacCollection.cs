@@ -27,13 +27,16 @@ namespace Stac.Collection
         private Dictionary<string, IStacSummaryItem> summaries;
 
         [JsonConstructor]
-        public StacCollection(string id, string description, StacExtent extent, IEnumerable<StacLink> links, string license = "proprietary")
+        public StacCollection(string id, string description, StacExtent extent, IEnumerable<StacLink> links = null, string license = "proprietary")
         {
             this.id = id;
             this.description = description;
             this.license = license;
             this.extent = extent;
-            this.links = new Collection<StacLink>(links.ToList());
+            if ( links == null )
+                this.links = new Collection<StacLink>();
+            else
+                this.links = new Collection<StacLink>(links.ToList());
         }
 
         [JsonProperty("stac_extensions")]

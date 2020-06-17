@@ -1,13 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace Stac.Collection
 {
-    public interface IStacSummaryItem : IEnumerable
+    public interface IStacSummaryItem : IEnumerable<JToken>
     {
         SummaryItemType SummaryType { get; }
 
-        Type ValueType { get; }
+        JToken this[object key] { get; }
+
+        JToken AsJToken { get; }
+
     }
 }

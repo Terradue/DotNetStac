@@ -6,28 +6,26 @@ using Newtonsoft.Json.Linq;
 
 namespace Stac.Collection
 {
-    [JsonObject]
-    public class StacSummaryStatsObject<T> : StacSummaryItem<T>
+    public class StacSummaryStatsObject<T> : StacSummaryItem
     {
-        [JsonProperty("min")]
+        public StacSummaryStatsObject(JObject summary) : base(summary)
+        {
+            Min = summary["min"].Value<T>();
+            Max = summary["max"].Value<T>();
+        }
+
+        public StacSummaryStatsObject(T min, T max) : base(null)
+        {
+            Min = min;
+            Max = max;
+        }
+
         public T Min { get; set; }
 
-        [JsonProperty("max")]
         public T Max { get; set; }
-
-        [JsonExtensionData]
-        public IDictionary<string, JToken> Extensions { get; set; }
 
         public override SummaryItemType SummaryType => SummaryItemType.StatsObject;
 
-        public override Type ValueType => typeof(T);
 
-        public override IEnumerator GetEnumerator()
-        {
-            foreach (T value in new T[2] { Min, Max })
-            {
-                yield return value;
-            }
-        }
     }
 }

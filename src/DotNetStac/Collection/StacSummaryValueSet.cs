@@ -3,27 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Stac.Collection;
 
 namespace Stac.Collection
 {
-    public class StacSummaryValueSet<T> : StacSummaryItem<T>
+    public class StacSummaryValueSet<T> : StacSummaryItem, IEnumerable<T>
     {
-        private IEnumerable<T> enumerable;
+        private readonly List<T> summarySet;
 
-        [JsonConstructor]
-        public StacSummaryValueSet(IEnumerable<T> enumerable)
+        public StacSummaryValueSet(JArray summarySet) : base(summarySet)
         {
-            this.enumerable = new List<T>(enumerable);
+            this.summarySet = summarySet.ToObject<List<T>>();
         }
-
-        public override Type ValueType => typeof(T);
 
         public override SummaryItemType SummaryType => SummaryItemType.Set;
 
-        public override IEnumerator GetEnumerator()
+        public int Count => summary.Count();
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            return enumerable.GetEnumerator();
+            return summarySet.GetEnumerator();
         }
+
     }
 }
