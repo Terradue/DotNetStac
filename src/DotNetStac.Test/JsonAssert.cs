@@ -52,10 +52,40 @@ namespace Stac.Test
                 {
                     value = value.SortProperties();
                     result.Add(property.Name, value);
+                    continue;
+                }
+
+                var avalues = property.Value as JArray;
+
+                if (avalues != null)
+                {
+                    avalues = avalues.SortProperties();
+                    result.Add(property.Name, avalues);
+                    continue;
+                }
+
+                result.Add(property.Name, property.Value);
+            }
+
+            return result;
+        }
+
+        private static JArray SortProperties(this JArray jArray)
+        {
+            var result = new JArray();
+
+            foreach (var item in jArray)
+            {
+                var value = item as JObject;
+
+                if (value != null)
+                {
+                    value = value.SortProperties();
+                    result.Add(value);
                 }
                 else
                 {
-                    result.Add(property.Name, property.Value);
+                    result.Add(item);
                 }
             }
 

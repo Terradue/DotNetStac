@@ -22,6 +22,9 @@ namespace Stac.Catalog
         private Collection<IStacExtension> extensions;
 
         private string description;
+        private Collection<string> keywords;
+
+        private string title;
 
         [JsonConstructor]
         public StacCatalog(string id, string description, IEnumerable<StacLink> links = null)
@@ -80,6 +83,21 @@ namespace Stac.Catalog
             }
         }
 
+        [JsonProperty("keywords", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Collection<string> Keywords
+        {
+            get
+            {
+                if (keywords == null)
+                    keywords = new Collection<string>();
+                return keywords;
+            }
+            set
+            {
+                keywords = value;
+            }
+        }
+
         [JsonProperty("description")]
         public string Description
         {
@@ -95,5 +113,7 @@ namespace Stac.Catalog
 
         [JsonProperty("id")]
         public string Id => id;
+
+        public string Title { get => title; set => title = value; }
     }
 }

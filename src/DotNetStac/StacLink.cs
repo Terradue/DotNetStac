@@ -41,7 +41,7 @@ namespace Stac
 
         #endregion
 
-        Uri base_uri, href;
+        Uri href;
         string rel, title, type;
 
         public StacLink()
@@ -65,23 +65,10 @@ namespace Stac
         {
             if (source == null)
                 throw new ArgumentNullException("source");
-            base_uri = source.base_uri;
             href = source.href;
             rel = source.rel;
             title = source.title;
             type = source.type;
-        }
-
-        [JsonIgnore]
-        public Uri BaseUri
-        {
-            get { return base_uri; }
-            set
-            {
-                if (value != null && !value.IsAbsoluteUri)
-                    throw new ArgumentException("Base URI must not be relative");
-                base_uri = value;
-            }
         }
 
         [JsonProperty("type")]

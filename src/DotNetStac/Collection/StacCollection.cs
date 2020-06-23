@@ -15,12 +15,14 @@ namespace Stac.Collection
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class StacCollection : StacCatalog, IStacObject
     {
-        private readonly string license;
+        private string license;
         private StacExtent extent;
         private Dictionary<string, IStacSummaryItem> summaries;
 
+        private Collection<StacProvider> providers;
+
         [JsonConstructor]
-        public StacCollection(string id, string description, StacExtent extent, IEnumerable<StacLink> links = null, string license = "proprietary"):
+        public StacCollection(string id, string description, StacExtent extent, IEnumerable<StacLink> links = null, string license = "proprietary") :
         base(id, description, links)
         {
             this.license = license;
@@ -44,5 +46,17 @@ namespace Stac.Collection
             }
         }
 
+        [JsonProperty("license")]
+        public string License { get => license; set => license = value; }
+
+        [JsonProperty("providers")]
+        public Collection<StacProvider> Providers
+        {
+            get { return providers; }
+            set
+            {
+                providers = value;
+            }
+        }
     }
 }
