@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Stac.Collection;
 using Xunit;
 
-namespace Stac.Test.Item
+namespace Stac.Test.Collection
 {
     public class CollectionTests : TestBase
     {

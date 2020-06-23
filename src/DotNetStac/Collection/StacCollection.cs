@@ -6,96 +6,25 @@ using DotNetStac;
 using DotNetStac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
+using Stac.Catalog;
 using Stac.Converters;
 using Stac.Extensions;
 
 namespace Stac.Collection
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacCollection : IStacObject
+    public class StacCollection : StacCatalog, IStacObject
     {
-        private readonly string id;
-        private Collection<StacLink> links;
-
-        private string stacVersion = StacVersionList.Current;
-
-        private Collection<IStacExtension> extensions;
-
-        private string description;
         private readonly string license;
         private StacExtent extent;
         private Dictionary<string, IStacSummaryItem> summaries;
 
         [JsonConstructor]
-        public StacCollection(string id, string description, StacExtent extent, IEnumerable<StacLink> links = null, string license = "proprietary")
+        public StacCollection(string id, string description, StacExtent extent, IEnumerable<StacLink> links = null, string license = "proprietary"):
+        base(id, description, links)
         {
-            this.id = id;
-            this.description = description;
             this.license = license;
             this.extent = extent;
-            if ( links == null )
-                this.links = new Collection<StacLink>();
-            else
-                this.links = new Collection<StacLink>(links.ToList());
-        }
-
-        [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionConverter))]
-        public Collection<IStacExtension> StacExtensions
-        {
-            get
-            {
-                if (extensions == null)
-                    extensions = new Collection<IStacExtension>();
-                return extensions;
-            }
-            set
-            {
-                extensions = value;
-            }
-        }
-
-        [JsonProperty("stac_version")]
-        public string StacVersion
-        {
-            get
-            {
-                return stacVersion;
-            }
-
-            set
-            {
-                stacVersion = value;
-            }
-        }
-
-        [JsonConverter(typeof(CollectionConverter<StacLink>))]
-        [JsonProperty("links")]
-        public Collection<StacLink> Links
-        {
-            get
-            {
-                if (links == null)
-                    links = new Collection<StacLink>();
-                return links;
-            }
-            set
-            {
-                links = value;
-            }
-        }
-
-        [JsonProperty("description")]
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
-            set
-            {
-                description = value;
-            }
         }
 
         [JsonProperty("extent")]
@@ -115,6 +44,5 @@ namespace Stac.Collection
             }
         }
 
-        public string Id => id;
     }
 }
