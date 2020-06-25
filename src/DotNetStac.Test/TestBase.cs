@@ -37,5 +37,18 @@ namespace Stac.Test
 
             return File.ReadAllText(path);
         }
+
+        protected Uri GetUseCaseFileUri(string name)
+        {
+            var type = GetType().Name;
+            var path = Path.Combine(AssemblyDirectory, @"../../..", "Resources/UseCases", type, name);
+
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException("file not found at " + path);
+            }
+
+            return new Uri(path);
+        }
     }
 }

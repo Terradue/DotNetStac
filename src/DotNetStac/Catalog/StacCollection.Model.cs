@@ -12,7 +12,7 @@ using Stac.Extensions;
 namespace Stac.Catalog
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacCatalog : IStacObject
+    public partial class StacCatalog : IStacObject
     {
         private readonly string id;
         private Collection<StacLink> links;
