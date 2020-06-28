@@ -9,17 +9,18 @@ using Newtonsoft.Json;
 using Stac.Catalog;
 using Stac.Converters;
 using Stac.Extensions;
+using Stac.Model;
 
 namespace Stac.Collection
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacCollection : StacCatalog, IStacObject
+    public partial class StacCollection : StacCatalog, IStacObject, Model.IStacCollectionModelVersion
     {
         private string license;
         private StacExtent extent;
         private Dictionary<string, IStacSummaryItem> summaries;
-
         private Collection<StacProvider> providers;
+        private Collection<string> keywords;
 
         [JsonConstructor]
         public StacCollection(string id, string description, StacExtent extent, IEnumerable<StacLink> links = null, string license = "proprietary") :
@@ -57,6 +58,27 @@ namespace Stac.Collection
             {
                 providers = value;
             }
+        }
+
+        [JsonProperty("keywords", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Collection<string> Keywords
+        {
+            get
+            {
+                if (keywords == null)
+                    keywords = new Collection<string>();
+                return keywords;
+            }
+            set
+            {
+                keywords = value;
+            }
+        }
+
+
+        IStacCollectionModelVersion IStacCollectionModelVersion.Upgrade()
+        {
+            return this;
         }
     }
 }

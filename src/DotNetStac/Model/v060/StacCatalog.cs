@@ -9,10 +9,10 @@ using Newtonsoft.Json;
 using Stac.Converters;
 using Stac.Extensions;
 
-namespace Stac.Catalog
+namespace Stac.Model.v060
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class StacCatalog : IStacObject
+    internal class StacCatalog060 : IStacObject, IStacCatalogModelVersion
     {
         private readonly string id;
         private Collection<StacLink> links;
@@ -22,12 +22,12 @@ namespace Stac.Catalog
         private Collection<IStacExtension> extensions;
 
         private string description;
-        private Collection<string> keywords;
+        
 
         private string title;
 
         [JsonConstructor]
-        public StacCatalog(string id, string description, IEnumerable<StacLink> links = null)
+        public StacCatalog060(string id, string description, IEnumerable<StacLink> links = null)
         {
             this.id = id;
             this.description = description;
@@ -83,21 +83,6 @@ namespace Stac.Catalog
             }
         }
 
-        [JsonProperty("keywords", DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public Collection<string> Keywords
-        {
-            get
-            {
-                if (keywords == null)
-                    keywords = new Collection<string>();
-                return keywords;
-            }
-            set
-            {
-                keywords = value;
-            }
-        }
-
         [JsonProperty("description")]
         public string Description
         {
@@ -115,5 +100,15 @@ namespace Stac.Catalog
         public string Id => id;
 
         public string Title { get => title; set => title = value; }
+
+        public IStacCatalogModelVersion Upgrade()
+        {
+            var catalog = new v070.StacCatalog070(this.Id,
+                                            this.Description,
+                                            this.Links);
+            catalog.StacExtensions = this.StacExtensions;
+            catalog.Title = this.Title;
+            return catalog;
+        }
     }
 }
