@@ -43,6 +43,7 @@ namespace Stac
 
         Uri href;
         string rel, title, type;
+        private IStacObject hostObject;
 
         public StacLink()
         {
@@ -51,6 +52,12 @@ namespace Stac
         public StacLink(Uri uri)
         {
             Uri = uri;
+        }
+
+        public StacLink(Uri uri, IStacObject hostObject)
+        {
+            Uri = uri;
+            this.hostObject = hostObject;
         }
 
         public StacLink(Uri uri, string relationshipType, string title, string mediaType)
@@ -69,6 +76,7 @@ namespace Stac
             rel = source.rel;
             title = source.title;
             type = source.type;
+            hostObject = source.hostObject;
         }
 
         [JsonProperty("type")]
@@ -97,6 +105,30 @@ namespace Stac
         {
             get { return href; }
             set { href = value; }
+        }
+
+        [JsonIgnore]
+        public Uri AbsoluteUri
+        {
+            get
+            {
+                if (Uri.IsAbsoluteUri)
+                    return Uri;
+
+                if (hostObject != null)
+                    return new Uri(new Uri(hostObject.Uri.AbsoluteUri.Substring(0, hostObject.Uri.AbsoluteUri.LastIndexOf('/') + 1)), Uri);
+
+                return null;
+            }
+        }
+
+        public IStacObject Parent
+        {
+            get => hostObject;
+            internal set
+            {
+                hostObject = value;
+            }
         }
 
         public virtual StacLink Clone()

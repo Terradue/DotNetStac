@@ -37,7 +37,7 @@ namespace Stac.Collection
                 throw new NotSupportedException(string.Format("The document has a non supprted version: '{0}'.", jsonRoot["stac_version"].Value<string>()));
             }
 
-            IStacCollectionModelVersion catalog = (IStacCollectionModelVersion)jsonRoot.ToObject(collectionType);
+            IStacCollectionVersion catalog = (IStacCollectionVersion)jsonRoot.ToObject(collectionType);
 
             while (catalog.GetType() != typeof(StacCollection))
             {

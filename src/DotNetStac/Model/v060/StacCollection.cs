@@ -14,11 +14,10 @@ using Stac.Extensions;
 namespace Stac.Model.v060
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    internal class StacCollection060 : StacCatalog060, IStacObject, IStacCollectionModelVersion
+    internal class StacCollection060 : StacCatalog060, IStacObject, IStacCollectionVersion, IStacCollection
     {
         private string license;
         private StacExtent060 extent;
-        private Dictionary<string, Stac.Collection.IStacSummaryItem> summaries;
         private Collection<Stac.Collection.StacProvider> providers;
         private Collection<string> keywords;
 
@@ -64,7 +63,7 @@ namespace Stac.Model.v060
         [JsonExtensionData]
         public Dictionary<string, JToken> Properties { get; set; }
 
-        IStacCollectionModelVersion IStacCollectionModelVersion.Upgrade()
+        IStacCollectionVersion IStacCollectionVersion.Upgrade()
         {
             var collection = new v070.StacCollection070(this.Id,
                                            this.Description,

@@ -11,7 +11,7 @@ using Stac.Extensions;
 namespace Stac.Model.v060
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    internal class StacItem060 : GeoJSON.Net.Feature.Feature, IStacObject
+    internal class StacItem060 : GeoJSON.Net.Feature.Feature, IStacItemVersion, IStacObject, IStacItem
     {
         private Collection<StacLink> links;
 
@@ -19,7 +19,6 @@ namespace Stac.Model.v060
 
         private string stacVersion = StacVersionList.Current;
 
-        private Collection<IStacExtension> extensions;
         private string collection;
 
         [JsonConstructor]
@@ -28,36 +27,6 @@ namespace Stac.Model.v060
 
         public StacItem060(IGeometryObject geometry, object properties, string id = null) : base(geometry, properties, id)
         { }
-
-        [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionConverter))]
-        public Collection<IStacExtension> StacExtensions
-        {
-            get
-            {
-                if (extensions == null)
-                    extensions = new Collection<IStacExtension>();
-                return extensions;
-            }
-            set
-            {
-                extensions = value;
-            }
-        }
-
-        [JsonProperty("stac_version")]
-        public string StacVersion
-        {
-            get
-            {
-                return stacVersion;
-            }
-
-            set
-            {
-                stacVersion = value;
-            }
-        }
 
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
@@ -76,7 +45,7 @@ namespace Stac.Model.v060
         }
 
         [JsonProperty("assets")]
-        public Dictionary<string, StacAsset> Assets
+        public IDictionary<string, StacAsset> Assets
         {
             get
             {
@@ -142,5 +111,29 @@ namespace Stac.Model.v060
                 return null;
             }
         }
+
+        [JsonIgnore]
+        public Uri Uri => throw new NotImplementedException();
+
+        [JsonIgnore]
+        public string StacVersion => StacVersionList.V060;
+
+        [JsonIgnore]
+        public Collection<IStacExtension> StacExtensions => null;
+
+        public IStacItemVersion Upgrade()
+        {
+            var item = new v070.StacItem070(this.Geometry,
+                                            this.Properties,
+                                            this.Id);
+            item.Links = this.links;
+            foreach (var asset in this.Assets)
+                item.Assets.Add(asset.Key, asset.Value);
+            item.Collection = this.Collection;
+            item.BoundingBoxes = this.BoundingBoxes;
+            return item;
+        }
+
+    
     }
 }

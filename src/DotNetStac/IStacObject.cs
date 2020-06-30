@@ -10,6 +10,8 @@ namespace Stac
 
         string StacVersion { get; }
 
+        Uri Uri { get; }
+
         Collection<IStacExtension> StacExtensions { get; }
 
         Collection<StacLink> Links { get; }

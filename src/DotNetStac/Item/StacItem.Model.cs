@@ -1,17 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using DotNetStac;
 using DotNetStac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Stac.Converters;
 using Stac.Extensions;
+using Stac.Model;
 
 namespace Stac.Item
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
+    public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, IStacItemVersion, IInternalStacObject
     {
         private Collection<StacLink> links;
 
@@ -21,6 +23,8 @@ namespace Stac.Item
 
         private Collection<IStacExtension> extensions;
         private string collection;
+        
+        private Uri sourceUri;
 
         [JsonConstructor]
         public StacItem(IGeometryObject geometry, IDictionary<string, object> properties = null, string id = null) : base(geometry, properties, id)
@@ -76,7 +80,7 @@ namespace Stac.Item
         }
 
         [JsonProperty("assets")]
-        public Dictionary<string, StacAsset> Assets
+        public IDictionary<string, StacAsset> Assets
         {
             get
             {
@@ -140,6 +144,26 @@ namespace Stac.Item
                 }
 
                 return null;
+            }
+        }
+
+        public Uri Uri { get => sourceUri; set => sourceUri = value; }
+
+        IStacItemVersion IStacItemVersion.Upgrade()
+        {
+            return this;
+        }
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in Links)
+            {
+                link.Parent = this;
+            }
+            foreach (StacAsset asset in Assets.Values)
+            {
+                asset.Parent = this;
             }
         }
     }

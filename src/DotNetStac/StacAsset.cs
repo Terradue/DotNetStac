@@ -40,14 +40,16 @@ namespace Stac
         string title, type, description;
 
         Collection<string> semanticRoles;
+        private IStacObject hostObject;
 
         public StacAsset()
         {
         }
 
-        public StacAsset(Uri uri)
+        public StacAsset(Uri uri, IStacObject hostObject)
         {
             Uri = uri;
+            this.hostObject = hostObject;
         }
 
         public StacAsset(Uri uri, IEnumerable<string> semanticRoles, string title, string mediaType)
@@ -68,18 +70,6 @@ namespace Stac
             title = source.title;
             type = source.type;
             description = source.description;
-        }
-
-        [JsonIgnore]
-        public Uri BaseUri
-        {
-            get { return base_uri; }
-            set
-            {
-                if (value != null && !value.IsAbsoluteUri)
-                    throw new ArgumentException("Base URI must not be relative");
-                base_uri = value;
-            }
         }
 
         [JsonProperty("type")]
@@ -142,6 +132,30 @@ namespace Stac
         public virtual StacAsset Clone()
         {
             return new StacAsset(this);
+        }
+
+        [JsonIgnore]
+        public Uri AbsoluteUri
+        {
+            get
+            {
+                if (Uri.IsAbsoluteUri)
+                    return Uri;
+
+                if (hostObject != null)
+                    return new Uri(new Uri(hostObject.Uri.AbsoluteUri.Substring(0, hostObject.Uri.AbsoluteUri.LastIndexOf('/') + 1)), Uri);
+
+                return null;
+            }
+        }
+
+           public IStacObject Parent
+        {
+            get => hostObject;
+            internal set
+            {
+                hostObject = value;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using DotNetStac;
 using DotNetStac.Converters;
 using GeoJSON.Net.Geometry;
@@ -13,7 +14,7 @@ using Stac.Model;
 namespace Stac.Catalog
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class StacCatalog : IStacObject, Model.IStacCatalogModelVersion
+    public partial class StacCatalog : IStacObject, IStacCatalogVersion, IStacCatalog, IInternalStacObject
     {
         private readonly string id;
         private Collection<StacLink> links;
@@ -23,11 +24,14 @@ namespace Stac.Catalog
         private Collection<IStacExtension> extensions;
 
         private string description;
-       
+
 
         private string title;
 
-        
+        private Uri sourceUri;
+
+        public Uri Uri { get => sourceUri; set => sourceUri = value; }
+
 
         [JsonConstructor]
         public StacCatalog(string id, string description, IEnumerable<StacLink> links = null)
@@ -100,14 +104,32 @@ namespace Stac.Catalog
         }
 
         [JsonProperty("id")]
-        public string Id => id;
+        public string Id { get => id; }
 
         public string Title { get => title; set => title = value; }
 
-        public IStacCatalogModelVersion Upgrade()
+        string IStacObject.Id => throw new NotImplementedException();
+
+        string IStacObject.StacVersion => throw new NotImplementedException();
+
+        Uri IStacObject.Uri => throw new NotImplementedException();
+
+        Collection<IStacExtension> IStacObject.StacExtensions => throw new NotImplementedException();
+
+        Collection<StacLink> IStacObject.Links => throw new NotImplementedException();
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in Links)
+            {
+                link.Parent = this;
+            }
+        }
+
+        IStacCatalogVersion IStacCatalogVersion.Upgrade()
         {
             return this;
         }
-
     }
 }

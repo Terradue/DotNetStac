@@ -11,7 +11,7 @@ namespace Stac.Test.UseCases
     [TestCaseOrderer("Stac.Test.PriorityOrderer", "DotNetStac.Test")]
     public class Sentinel2 : TestBase
     {
-        private static StacCatalog catalog;
+        private static IStacCatalog catalog;
 
         [Fact, TestPriority(1)]
         public void LoadRootCatalog()
@@ -19,7 +19,7 @@ namespace Stac.Test.UseCases
             catalog = StacCatalog.LoadUri(GetUseCaseFileUri("catalog.json")).Result;
 
             Assert.NotNull(catalog);
-            Assert.IsType<StacCatalog>(catalog);
+            Assert.IsAssignableFrom<IStacCatalog>(catalog);
             Assert.Equal("sentinel-stac", catalog.Id);
 
         }
@@ -27,7 +27,7 @@ namespace Stac.Test.UseCases
         [Fact, TestPriority(2)]
         public void LoadRootChildren()
         {
-            IDictionary<Uri, StacCatalog> children = catalog.GetChildren();
+            IDictionary<Uri, IStacCatalog> children = catalog.GetChildren();
 
             Assert.Equal(1, children.Count);
 

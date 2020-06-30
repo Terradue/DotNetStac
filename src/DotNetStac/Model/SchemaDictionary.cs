@@ -37,5 +37,10 @@ namespace Stac.Model
         {
             return collectionVersionDictionary[version];
         }
+
+        internal static Type GetItemTypeFromVersion(string version)
+        {
+            return itemVersionDictionary[version];
+        }
     }
 }

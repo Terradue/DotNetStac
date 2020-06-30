@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using DotNetStac;
 using DotNetStac.Converters;
 using GeoJSON.Net.Geometry;
@@ -12,7 +13,7 @@ using Stac.Extensions;
 namespace Stac.Model.v060
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    internal class StacCatalog060 : IStacObject, IStacCatalogModelVersion
+    internal class StacCatalog060 : IStacObject, IStacCatalogVersion, IStacCatalog, IInternalStacObject
     {
         private readonly string id;
         private Collection<StacLink> links;
@@ -22,16 +23,17 @@ namespace Stac.Model.v060
         private Collection<IStacExtension> extensions;
 
         private string description;
-        
+
 
         private string title;
+        private Uri sourceUri;
 
         [JsonConstructor]
         public StacCatalog060(string id, string description, IEnumerable<StacLink> links = null)
         {
             this.id = id;
             this.description = description;
-            if ( links == null )
+            if (links == null)
                 this.links = new Collection<StacLink>();
             else
                 this.links = new Collection<StacLink>(links.ToList());
@@ -101,7 +103,9 @@ namespace Stac.Model.v060
 
         public string Title { get => title; set => title = value; }
 
-        public IStacCatalogModelVersion Upgrade()
+        public Uri Uri { get => sourceUri; set => sourceUri = value; }
+
+        public IStacCatalogVersion Upgrade()
         {
             var catalog = new v070.StacCatalog070(this.Id,
                                             this.Description,
@@ -109,6 +113,15 @@ namespace Stac.Model.v060
             catalog.StacExtensions = this.StacExtensions;
             catalog.Title = this.Title;
             return catalog;
+        }
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in Links)
+            {
+                link.Parent = this;
+            }
         }
     }
 }
