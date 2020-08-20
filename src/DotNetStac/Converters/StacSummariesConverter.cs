@@ -77,7 +77,9 @@ namespace Stac.Converters
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            Dictionary<string, IStacSummaryItem> summaries = (Dictionary<string, IStacSummaryItem>)value;
+
+            serializer.Serialize(writer, summaries.ToDictionary(k => k.Key, k => k.Value.AsJToken));
         }
     }
 }

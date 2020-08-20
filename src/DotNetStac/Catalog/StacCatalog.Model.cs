@@ -106,17 +106,8 @@ namespace Stac.Catalog
         [JsonProperty("id")]
         public string Id { get => id; }
 
+        [JsonProperty("title")]
         public string Title { get => title; set => title = value; }
-
-        string IStacObject.Id => throw new NotImplementedException();
-
-        string IStacObject.StacVersion => throw new NotImplementedException();
-
-        Uri IStacObject.Uri => throw new NotImplementedException();
-
-        Collection<IStacExtension> IStacObject.StacExtensions => throw new NotImplementedException();
-
-        Collection<StacLink> IStacObject.Links => throw new NotImplementedException();
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)

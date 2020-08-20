@@ -54,7 +54,7 @@
       "instruments": ["msi"],
       "view:off_nadir": {
         "min": 0.0,
-        "max": 100
+        "max": 100.0
       },
       "view:sun_elevation": {
         "min": 6.78,

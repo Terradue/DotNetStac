@@ -39,6 +39,8 @@ namespace Stac.Collection
         {
             get
             {
+                if (summaries == null)
+                    summaries = new Dictionary<string, IStacSummaryItem>();
                 return summaries;
             }
             set
