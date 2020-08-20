@@ -4,7 +4,7 @@
 
 
 <h2 align="center">
-.Net library for working with any Spatio Temporal Asset Catalog (STAC)
+.Net library for working with any Spatio Temporal Asset Catalog (<a href="https://stacspec.org">STAC</a>)
 
   ![](docs/logo/logo-wide.png)
 
@@ -14,7 +14,7 @@
 
   [![Build Status](https://travis-ci.com/Terradue/DotNetStac.svg?branch=develop)](https://travis-ci.com/Terradue/DotNetStac)
   [![NuGet](https://img.shields.io/nuget/v/:DotNetStac)](https://www.nuget.org/packages/DotNetStac/)
-  [![Gitter](https://img.shields.io/gitter/room/dotnet/BenchmarkDotNet?color=yellow)](https://gitter.im/dotnet/BenchmarkDotNet)
+  [![Gitter](https://img.shields.io/gitter/room/SpatioTemporal-Asset-Catalog/Lobby?color=yellow)](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby)
   [![License](https://img.shields.io/badge/license-AGPL3-blue.svg)](LICENSE)
 
 </h3>
@@ -29,7 +29,7 @@
   <a href="#Developing">Developing</a>
 </h3>
 
-**DotNetStac** helps you to work with STAC ([catalog](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec), [collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec), [item](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec))
+**DotNetStac** helps you to work with [STAC](https://stacspec.org) ([catalog](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec), [collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec), [item](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec))
 
 In a nutshell, the library allows manipulating STAC JSON documents (Serialization/Deserialization using [Newtonsoft.JSON](https://www.newtonsoft.com/json)) with properties represented in enhanced objects such as geometries, time stamp/period/span, numerical values and many more via STAC extension plugins engine.
 
