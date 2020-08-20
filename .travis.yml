@@ -1,0 +1,10 @@
+language: csharp
+dist: xenial
+mono: none
+dotnet: 3.0
+solution: "./src/DotNetStac.sln"
+install:
+- dotnet restore src/
+script:
+- dotnet build src/
+- dotnet test src/DotNetStac.Test
