@@ -14,7 +14,7 @@ using Stac.Model;
 namespace Stac.Catalog
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class StacCatalog : IStacObject, IStacCatalogVersion, IStacCatalog, IInternalStacObject
+    public partial class StacCatalog : IStacObject, IStacCatalog, IInternalStacObject
     {
         private readonly string id;
         private Collection<StacLink> links;
@@ -118,7 +118,7 @@ namespace Stac.Catalog
             }
         }
 
-        IStacCatalogVersion IStacCatalogVersion.Upgrade()
+        public IStacObject Upgrade()
         {
             return this;
         }

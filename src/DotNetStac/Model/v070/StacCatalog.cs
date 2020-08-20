@@ -14,7 +14,7 @@ using Stac.Model.v060;
 namespace Stac.Model.v070
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    internal class StacCatalog070 : IStacObject, IStacCatalogVersion, IStacCatalog, IInternalStacObject
+    internal class StacCatalog070 : IStacObject, IStacCatalog, IInternalStacObject
     {
         private readonly string id;
         private Collection<StacLink> links;
@@ -108,7 +108,7 @@ namespace Stac.Model.v070
 
         public Uri Uri { get => sourceUri; set => sourceUri = value; }
 
-        public IStacCatalogVersion Upgrade()
+        public virtual IStacObject Upgrade()
         {
             var catalog = new Catalog.StacCatalog(this.Id,
                                 this.Description,

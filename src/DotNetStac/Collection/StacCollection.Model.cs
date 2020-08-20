@@ -14,7 +14,7 @@ using Stac.Model;
 namespace Stac.Collection
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class StacCollection : StacCatalog, IStacObject, Model.IStacCollectionVersion, IStacCollection
+    public partial class StacCollection : StacCatalog, IStacObject, IStacCollection
     {
         private string license;
         private StacExtent extent;
@@ -77,10 +77,5 @@ namespace Stac.Collection
             }
         }
 
-
-        IStacCollectionVersion IStacCollectionVersion.Upgrade()
-        {
-            return this;
-        }
     }
 }

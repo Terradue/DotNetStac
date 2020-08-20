@@ -11,7 +11,7 @@ namespace Stac
 {
     public class StacFactory
     {
-        public static async Task<IStacObject> LoadUri(Uri uri)
+        public static async Task<IStacObject> LoadUriAsync(Uri uri)
         {
             WebClient client = new WebClient();
             return await client.DownloadStringTaskAsync(uri).ContinueWith<IStacObject>(json =>
@@ -23,6 +23,11 @@ namespace Stac
                 return StacCollection.LoadJToken(jsonToken, uri);
 
             });
+        }
+
+        public static IStacObject Load(string uri)
+        {
+            return LoadUriAsync(new Uri(uri)).Result;
         }
 
         public static async Task<IStacObject> LoadStacLink(StacLink link)

@@ -15,5 +15,7 @@ namespace Stac
         Collection<IStacExtension> StacExtensions { get; }
 
         Collection<StacLink> Links { get; }
+
+        IStacObject Upgrade();
     }
 }

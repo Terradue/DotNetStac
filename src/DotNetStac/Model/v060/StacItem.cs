@@ -11,7 +11,7 @@ using Stac.Extensions;
 namespace Stac.Model.v060
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    internal class StacItem060 : GeoJSON.Net.Feature.Feature, IStacItemVersion, IStacObject, IStacItem
+    internal class StacItem060 : GeoJSON.Net.Feature.Feature, IStacObject, IStacItem
     {
         private Collection<StacLink> links;
 
@@ -121,7 +121,7 @@ namespace Stac.Model.v060
         [JsonIgnore]
         public Collection<IStacExtension> StacExtensions => null;
 
-        public IStacItemVersion Upgrade()
+        public IStacObject Upgrade()
         {
             var item = new v070.StacItem070(this.Geometry,
                                             this.Properties,

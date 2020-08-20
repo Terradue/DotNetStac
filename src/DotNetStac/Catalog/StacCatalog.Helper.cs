@@ -18,7 +18,7 @@ namespace Stac.Catalog
 
         public static async Task<IStacCatalog> LoadUri(Uri uri)
         {
-            var catalog = await StacFactory.LoadUri(uri);
+            var catalog = await StacFactory.LoadUriAsync(uri);
             if (catalog is IStacCatalog)
                 return (IStacCatalog)catalog;
             throw new InvalidOperationException(string.Format("This is not a STAC catalog {0}", catalog.Uri));

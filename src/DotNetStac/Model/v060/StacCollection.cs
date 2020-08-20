@@ -14,7 +14,7 @@ using Stac.Extensions;
 namespace Stac.Model.v060
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    internal class StacCollection060 : StacCatalog060, IStacObject, IStacCollectionVersion, IStacCollection
+    internal class StacCollection060 : StacCatalog060, IStacObject, IStacCollection
     {
         private string license;
         private StacExtent060 extent;
@@ -63,7 +63,7 @@ namespace Stac.Model.v060
         [JsonExtensionData]
         public Dictionary<string, JToken> Properties { get; set; }
 
-        IStacCollectionVersion IStacCollectionVersion.Upgrade()
+        public override IStacObject Upgrade()
         {
             var collection = new v070.StacCollection070(this.Id,
                                            this.Description,

@@ -48,7 +48,7 @@ namespace Stac.Catalog
 
          public static StacItem UpgradeToCurrentVersion(this IStacItem item1)
         {
-            IStacItemVersion item = (IStacItemVersion)item1;
+            IStacObject item = (IStacObject)item1;
             while (!(item is Item.StacItem))
             {
                 item = item.Upgrade();
@@ -58,7 +58,7 @@ namespace Stac.Catalog
 
          public static StacCatalog UpgradeToCurrentVersion(this IStacCatalog catalog1)
         {
-            IStacCatalogVersion catalog = (IStacCatalogVersion)catalog1;
+            IStacObject catalog = (IStacObject)catalog1;
             while (!(catalog is StacCatalog))
             {
                 catalog = catalog.Upgrade();

@@ -6,7 +6,7 @@ using Stac.Converters;
 namespace Stac.Model.v070
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    internal class StacCollection070 : StacCatalog070, IStacObject, IStacCollectionVersion, IStacCollection, IInternalStacObject
+    internal class StacCollection070 : StacCatalog070, IStacObject, IStacCollection, IInternalStacObject
     {
         private string license;
         private v060.StacExtent060 extent;
@@ -67,7 +67,7 @@ namespace Stac.Model.v070
             }
         }
 
-        IStacCollectionVersion IStacCollectionVersion.Upgrade()
+        public override IStacObject Upgrade()
         {
             var collection = new Collection.StacCollection(this.Id,
                       this.Description, this.extent.Upgrade(), this.Links);
