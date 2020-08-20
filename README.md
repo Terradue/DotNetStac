@@ -4,7 +4,7 @@
 
 
 <h2 align="center">
-.Net library for working with any Spatio Temporal Asset Catalog (<a href="https://stacspec.org">STAC</a>)
+.Net library for working with Spatio Temporal Asset Catalogs (<a href="https://stacspec.org">STAC</a>)
 
   ![](docs/logo/logo-wide.png)
 
