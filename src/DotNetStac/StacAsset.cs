@@ -41,6 +41,7 @@ namespace Stac
 
         Collection<string> semanticRoles;
         private IStacObject hostObject;
+        private ulong contentLength;
 
         public StacAsset()
         {
@@ -52,12 +53,13 @@ namespace Stac
             this.hostObject = hostObject;
         }
 
-        public StacAsset(Uri uri, IEnumerable<string> semanticRoles, string title, string mediaType)
+        public StacAsset(Uri uri, IEnumerable<string> semanticRoles, string title, string mediaType, ulong contentLength = 0)
         {
             Uri = uri;
             this.semanticRoles = semanticRoles == null ? new Collection<string>() : new Collection<string>(semanticRoles.ToList());
             Title = title;
             MediaType = mediaType;
+            ContentLength = contentLength;
         }
 
         public StacAsset(StacAsset source)
@@ -70,6 +72,7 @@ namespace Stac
             title = source.title;
             type = source.type;
             description = source.description;
+            contentLength = source.contentLength;
         }
 
         [JsonProperty("type")]
@@ -149,7 +152,7 @@ namespace Stac
             }
         }
 
-           public IStacObject Parent
+        public IStacObject Parent
         {
             get => hostObject;
             internal set
@@ -157,5 +160,8 @@ namespace Stac
                 hostObject = value;
             }
         }
+
+        [JsonIgnore]
+        public ulong ContentLength { get => contentLength; set => contentLength = value; }
     }
 }

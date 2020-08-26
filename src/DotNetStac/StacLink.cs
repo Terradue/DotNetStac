@@ -44,6 +44,7 @@ namespace Stac
         Uri href;
         string rel, title, type;
         private IStacObject hostObject;
+        private readonly ulong contentLength;
 
         public StacLink()
         {
@@ -60,12 +61,13 @@ namespace Stac
             this.hostObject = hostObject;
         }
 
-        public StacLink(Uri uri, string relationshipType, string title, string mediaType)
+        public StacLink(Uri uri, string relationshipType, string title, string mediaType, ulong contentLength = 0)
         {
             Uri = uri;
             RelationshipType = relationshipType;
             Title = title;
             MediaType = mediaType;
+            this.contentLength = contentLength;
         }
 
         public StacLink(StacLink source)
@@ -77,6 +79,7 @@ namespace Stac
             title = source.title;
             type = source.type;
             hostObject = source.hostObject;
+            contentLength = source.Length;
         }
 
         [JsonProperty("type")]
@@ -130,6 +133,8 @@ namespace Stac
                 hostObject = value;
             }
         }
+
+        public ulong Length => contentLength;
 
         public virtual StacLink Clone()
         {
