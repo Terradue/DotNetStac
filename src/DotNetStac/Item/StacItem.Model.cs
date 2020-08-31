@@ -13,7 +13,7 @@ using Stac.Model;
 namespace Stac.Item
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, IInternalStacObject
+    public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, IInternalStacObject, IStacItem
     {
         private Collection<StacLink> links;
 

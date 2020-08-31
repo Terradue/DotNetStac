@@ -4,6 +4,7 @@ using System.Linq;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Stac.Item;
 using Xunit;
 
@@ -100,6 +101,21 @@ namespace Stac.Test.Item
             var item = JsonConvert.DeserializeObject<StacItem>(json);
 
             Assert.Equal(item.DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
+        }
+
+        [Fact]
+        public void CanDeserializeS2CogSample()
+        {
+            var json = GetExpectedJson("Item");
+
+            var item = StacItem.LoadJToken(JsonConvert.DeserializeObject<JToken>(json), null);
+
+            Assert.NotNull(item);
+
+            Assert.NotNull(item.Properties);
+
+            Assert.Equal("1.0.0-beta.2", item.StacVersion);
+
         }
     }
 }

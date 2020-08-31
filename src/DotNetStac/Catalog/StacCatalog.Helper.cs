@@ -51,6 +51,10 @@ namespace Stac.Catalog
             {
                 throw new InvalidDataException("The document is not a STAC document. No 'stac_version' property found");
             }
+            if (jsonRoot["type"] != null)
+            {
+                throw new InvalidDataException("The document is not a STAC catalog document. 'type' root property found");
+            }
 
             try
             {

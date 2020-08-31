@@ -125,6 +125,7 @@ namespace Stac
             }
         }
 
+        [JsonIgnore]
         public IStacObject Parent
         {
             get => hostObject;
@@ -134,6 +135,7 @@ namespace Stac
             }
         }
 
+        [JsonIgnore]
         public ulong Length => contentLength;
 
         public virtual StacLink Clone()
