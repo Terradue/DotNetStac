@@ -17,7 +17,7 @@ using Stac.Model;
 
 namespace Stac.Item
 {
-    public partial class StacItem
+    public partial class StacItem : IStacItem, IStacObject
     {
      
         public static async Task<IStacItem> LoadUri(Uri uri)
