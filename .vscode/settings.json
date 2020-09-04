@@ -1,3 +1,5 @@
 {
-    "dotnet-test-explorer.testProjectPath": "**/*Test.@(csproj|vbproj|fsproj)"
+    "dotnet-test-explorer.testProjectPath": "**/*Test.@(csproj|vbproj|fsproj)",
+    "python.dataScience.jupyterServerURI": "local",
+    "python.pythonPath": "/bin/python3"
 }
