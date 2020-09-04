@@ -6,7 +6,7 @@
     <Title>DotNetStac</Title>
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>0.2.0-beta</Version>
+    <Version>0.2.0</Version>
     <Authors>Emmanuel Mathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetStac</RepositoryUrl>
