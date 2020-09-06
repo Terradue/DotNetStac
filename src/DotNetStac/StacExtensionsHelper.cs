@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Catalog;
 using Stac.Collection;
+using Stac.Extensions;
 using Stac.Item;
 using Stac.Model;
 
@@ -47,7 +48,7 @@ namespace Stac
             return stacObject.Links.Where(l => l.RelationshipType == "item");
         }
 
-         public static StacItem UpgradeToCurrentVersion(this IStacItem item1)
+        public static StacItem UpgradeToCurrentVersion(this IStacItem item1)
         {
             IStacObject item = (IStacObject)item1;
             while (!(item is Item.StacItem))
@@ -57,7 +58,7 @@ namespace Stac
             return (Item.StacItem)item;
         }
 
-         public static StacCatalog UpgradeToCurrentVersion(this IStacCatalog catalog1)
+        public static StacCatalog UpgradeToCurrentVersion(this IStacCatalog catalog1)
         {
             IStacObject catalog = (IStacObject)catalog1;
             while (!(catalog is StacCatalog))
@@ -65,6 +66,21 @@ namespace Stac
                 catalog = catalog.Upgrade();
             }
             return (StacCatalog)catalog;
+        }
+
+        public static IStacExtension GetExtension(this IStacObject stacObject, string identifier)
+        {
+            return stacObject.StacExtensions.FirstOrDefault(ext => ext.Id == identifier);
+        }
+
+        public static IStacExtension GetExtension(this IStacItem stacItem, string identifier)
+        {
+            return GetExtension(stacItem, identifier);
+        }
+
+        public static TExtension GetExtension<TExtension>(this IStacObject stacObject) where TExtension :IStacExtension
+        {
+            return (TExtension)stacObject.StacExtensions.FirstOrDefault(ext => ext is TExtension);
         }
     }
 }

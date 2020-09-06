@@ -2,25 +2,28 @@ using System;
 
 namespace Stac.Extensions
 {
-    internal class GenericStacExtension : IStacExtension
+    public class GenericStacExtension : IStacExtension
     {
         private string prefix;
+        private readonly IStacObject stacObject;
 
-        public GenericStacExtension(string prefix)
+        public GenericStacExtension(string prefix, IStacObject stacObject)
         {
             this.prefix = prefix;
+            this.stacObject = stacObject;
         }
 
-        public string Id => prefix;
+        public virtual string Id => prefix;
 
         internal static IStacExtension CreateForStacObject(string prefix, IStacObject stacObject)
         {
-            return new GenericStacExtension(prefix);
+            return new GenericStacExtension(prefix, stacObject);
         }
 
-        public IStacExtension CopyForStacObject(IStacObject stacObject)
+        public virtual IStacExtension CopyForStacObject(IStacObject stacObject)
         {
             throw new NotImplementedException();
         }
+
     }
 }

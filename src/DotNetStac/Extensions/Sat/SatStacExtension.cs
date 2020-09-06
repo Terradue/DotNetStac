@@ -1,20 +1,35 @@
 using System;
+using System.Collections.Generic;
 using Stac;
 using Stac.Extensions;
 
-namespace DotNetStac.Extensions.Sat
+namespace Stac.Extensions.Sat
 {
-    public class SatStacExtension : IStacExtension
+    public class SatStacExtension : GenericStacExtension, IStacExtension
     {
-        public SatStacExtension()
+        public static string OrbitStateVectorField => "orbit_state_vectors";
+
+        // TODO remove
+        public SatStacExtension() : base("sat", null)
         {
         }
 
-        public string Id => "sat";
-
-        public IStacExtension CopyForStacObject(IStacObject stacObject)
+        public SatStacExtension(IStacObject stacObject) : base("sat", stacObject)
         {
-            return new SatStacExtension();
         }
+
+        public override IStacExtension CopyForStacObject(IStacObject stacObject)
+        {
+            return new SatStacExtension(stacObject);
+        }
+
+        public SortedDictionary<DateTime, SatOrbitSateVector> OrbitStateVectors
+        {
+            get
+            {
+                return null;
+            }
+        }
+
     }
 }

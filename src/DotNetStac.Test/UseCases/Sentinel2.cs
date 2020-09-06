@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Stac.Test.UseCases
 {
-    [TestCaseOrderer("Stac.Test.PriorityOrderer", "DotNetStac.Test")]
+    [TestCaseOrderer("Stac.Test.PriorityOrderer", "Stac.Test")]
     public class Sentinel2 : TestBase
     {
         private static IStacCatalog catalog;

@@ -17,7 +17,7 @@ namespace Stac.Extensions
         internal StacExtensionsFactory()
         {
             this.stacExtensionsDictionary = new IStacExtension[] {
-                    new DotNetStac.Extensions.Sat.SatStacExtension()
+                    new Sat.SatStacExtension()
                 }.ToDictionary(se => se.Id, se => se);
         }
 

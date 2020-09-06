@@ -11,19 +11,37 @@ namespace Stac.Test.Example
 {
     public class Example1Test
     {
-        // [Fact]
+        [Fact]
         public void Deserialize()
         {
-            IStacCatalog catalog = (IStacCatalog)StacFactory.Load("https://cbers-stac-0-7.s3.amazonaws.com/CBERS4/MUX/027/069/catalog.json");
+            IStacCatalog catalog = (IStacCatalog)StacFactory.Load("https://cbers-stac-0-7.s3.amazonaws.com/CBERS4/MUX/027/catalog.json");
 
             Console.Out.WriteLine(catalog.Id);
             Console.Out.WriteLine(catalog.StacVersion);
 
-            foreach (var item in catalog.GetItems().Values)
+            ListChildrensItemsAndAssets(catalog);
+
+        }
+
+        public static void ListChildrensItemsAndAssets(IStacCatalog catalog, string prefix = "")
+        {
+            foreach (var child in catalog.GetChildren().Values)
             {
-                Console.Out.WriteLine(item.Id);
+                Console.Out.WriteLine(prefix + child.Id);
+
+                foreach (var item in child.GetItems().Values)
+                {
+                    Console.Out.WriteLine(prefix + " " + item.Id);
+                    foreach (var asset in item.Assets.Values)
+                    {
+                        Console.Out.WriteLine(prefix + " *" + asset.Uri);
+                    }
+                }
+
+                ListChildrensItemsAndAssets(child, prefix + " ");
             }
         }
+
 
         [Fact]
         public void CanSerializeSentinel2Sample()
@@ -177,6 +195,7 @@ namespace Stac.Test.Example
             Console.WriteLine(json);
 
         }
+
 
     }
 }
