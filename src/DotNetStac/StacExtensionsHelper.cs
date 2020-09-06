@@ -7,11 +7,12 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Stac.Catalog;
 using Stac.Collection;
 using Stac.Item;
 using Stac.Model;
 
-namespace Stac.Catalog
+namespace Stac
 {
     public static class StacExtensionsHelper
     {
