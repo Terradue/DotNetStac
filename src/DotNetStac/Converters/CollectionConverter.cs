@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace DotNetStac.Converters
+namespace Stac.Converters
 {
     public class CollectionConverter<T> : JsonConverter
     {

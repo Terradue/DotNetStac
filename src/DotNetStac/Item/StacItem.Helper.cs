@@ -6,12 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using DotNetStac;
-using DotNetStac.Converters;
+using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Catalog;
-using Stac.Converters;
 using Stac.Extensions;
 using Stac.Model;
 

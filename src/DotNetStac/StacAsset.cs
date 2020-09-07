@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DotNetStac.Converters;
+using Stac.Converters;
 using Newtonsoft.Json;
 
 namespace Stac

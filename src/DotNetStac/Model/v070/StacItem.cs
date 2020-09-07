@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using DotNetStac;
-using DotNetStac.Converters;
+using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Stac.Converters;
@@ -19,6 +19,7 @@ namespace Stac.Model.v070
 
         private string collection;
         private Uri sourceUri;
+        private StacExtensions extensions;
 
         [JsonConstructor]
         public StacItem070(IGeometryObject geometry, IDictionary<string, object> properties = null, string id = null) : base(geometry, properties, id)
@@ -115,8 +116,24 @@ namespace Stac.Model.v070
 
         public string StacVersion { get => StacVersionList.V070; set { } }
 
-        public Collection<IStacExtension> StacExtensions { get => null; set { } }
+        [JsonProperty("stac_extensions")]
+        [JsonConverter(typeof(StacExtensionConverter))]
+        public StacExtensions StacExtensions
+        {
+            get
+            {
+                if (extensions == null)
+                    extensions = new StacExtensions();
+                return extensions;
+            }
+            set
+            {
+                extensions = value;
+                extensions.InitStacObject(this);
+            }
+        }
 
+        public bool IsCatalog => true;
 
         public IStacObject Upgrade()
         {

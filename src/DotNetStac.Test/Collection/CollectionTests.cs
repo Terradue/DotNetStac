@@ -15,7 +15,7 @@ namespace Stac.Test.Collection
         [Fact]
         public void CanDeserializeSentinel2Sample()
         {
-            var json = GetExpectedJson("Collection");
+            var json = GetJson("Collection");
 
             var item = JsonConvert.DeserializeObject<StacCollection>(json);
 
@@ -201,7 +201,7 @@ namespace Stac.Test.Collection
 
             Console.WriteLine(actualJson);
 
-            var expectedJson = GetExpectedJson("Collection");
+            var expectedJson = GetJson("Collection");
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }

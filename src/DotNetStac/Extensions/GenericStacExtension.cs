@@ -1,26 +1,13 @@
 using System;
+using Stac.Item;
 
 namespace Stac.Extensions
 {
-    internal class GenericStacExtension : IStacExtension
+    public class GenericStacExtension : AssignableStacExtension
     {
-        private string prefix;
-
-        public GenericStacExtension(string prefix)
+        public GenericStacExtension(string prefix) : base(prefix)
         {
-            this.prefix = prefix;
         }
 
-        public string Id => prefix;
-
-        internal static IStacExtension CreateForStacObject(string prefix, IStacObject stacObject)
-        {
-            return new GenericStacExtension(prefix);
-        }
-
-        public IStacExtension CopyForStacObject(IStacObject stacObject)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -12,8 +12,6 @@ namespace Stac
 
         Uri Uri { get; set; }
 
-        Collection<IStacExtension> StacExtensions { get; set; }
-
         Collection<StacLink> Links { get; set;  }
     }
 }

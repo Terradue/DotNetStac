@@ -25,7 +25,7 @@ namespace Stac.Test
             }
         }
 
-        protected string GetExpectedJson(string folder, [CallerMemberName] string name = null)
+        protected string GetJson(string folder, [CallerMemberName] string name = null)
         {
             var type = GetType().Name;
             var path = Path.Combine(AssemblyDirectory, @"../../..", "Resources", folder, type + "_" + name + ".json");

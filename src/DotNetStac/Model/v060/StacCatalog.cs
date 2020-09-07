@@ -4,10 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using DotNetStac;
-using DotNetStac.Converters;
+using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Stac.Converters;
 using Stac.Extensions;
 
 namespace Stac.Model.v060
@@ -20,7 +19,7 @@ namespace Stac.Model.v060
 
         private string stacVersion = StacVersionList.Current;
 
-        private Collection<IStacExtension> extensions;
+        private StacExtensions extensions;
 
         private string description;
 
@@ -41,17 +40,18 @@ namespace Stac.Model.v060
 
         [JsonProperty("stac_extensions")]
         [JsonConverter(typeof(StacExtensionConverter))]
-        public Collection<IStacExtension> StacExtensions
+        public StacExtensions StacExtensions
         {
             get
             {
                 if (extensions == null)
-                    extensions = new Collection<IStacExtension>();
+                    extensions = new StacExtensions();
                 return extensions;
             }
             set
             {
                 extensions = value;
+                extensions.InitStacObject(this);
             }
         }
 
@@ -104,6 +104,12 @@ namespace Stac.Model.v060
         public string Title { get => title; set => title = value; }
 
         public Uri Uri { get => sourceUri; set => sourceUri = value; }
+
+        [JsonIgnore]
+        public IDictionary<string, object> Properties => new Dictionary<string, object>();
+
+        [JsonIgnore]
+        public bool IsCatalog => true;
 
         public virtual IStacObject Upgrade()
         {

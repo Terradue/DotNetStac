@@ -11,7 +11,7 @@ namespace Stac.Test.Catalog
         [Fact]
         public void CanDeserializeMinimalSample()
         {
-            var json = GetExpectedJson("Catalog");
+            var json = GetJson("Catalog");
 
             var catalog = JsonConvert.DeserializeObject<StacCatalog>(json);
 
@@ -46,7 +46,7 @@ namespace Stac.Test.Catalog
 
             Console.WriteLine(actualJson);
 
-            var expectedJson = GetExpectedJson("Catalog");
+            var expectedJson = GetJson("Catalog");
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
