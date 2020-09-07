@@ -7,7 +7,6 @@ namespace Stac
     {
         IDictionary<string, StacAsset> Assets { get; }
 
-        IDictionary<string, object> Properties { get; }
-
+        Itenso.TimePeriod.ITimePeriod DateTime { get; }
     }
 }

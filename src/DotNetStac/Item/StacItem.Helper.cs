@@ -11,7 +11,6 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Catalog;
-using Stac.Converters;
 using Stac.Extensions;
 using Stac.Model;
 

@@ -71,6 +71,12 @@
     "sar:frequency_band": "C",
     "sar:center_frequency": 5.405,
     "sar:product_type": "SLC",
+    "sat:ascending_node_datetime": "2015-03-17T04:41:47.0331910Z",
+    "sat:scene_center_coordinates": [
+      11.475516,
+      41.499651,
+      415.4360102666667
+    ],
     "sat:orbit_state_vectors": [
       {
         "time": "2015-03-17T05:19:40.546Z",

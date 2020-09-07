@@ -6,9 +6,9 @@ using DotNetStac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Stac.Converters;
 using Stac.Extensions;
 using Stac.Model;
+using System.Linq;
 
 namespace Stac.Item
 {
@@ -21,9 +21,9 @@ namespace Stac.Item
 
         private string stacVersion = StacVersionList.Current;
 
-        private Collection<IStacExtension> extensions;
+        private StacExtensions extensions;
         private string collection;
-        
+
         private Uri sourceUri;
 
         [JsonConstructor]
@@ -35,17 +35,18 @@ namespace Stac.Item
 
         [JsonProperty("stac_extensions")]
         [JsonConverter(typeof(StacExtensionConverter))]
-        public Collection<IStacExtension> StacExtensions
+        public StacExtensions StacExtensions
         {
             get
             {
                 if (extensions == null)
-                    extensions = new Collection<IStacExtension>();
+                    extensions = new StacExtensions();
                 return extensions;
             }
             set
             {
                 extensions = value;
+                extensions.InitStacObject(this);
             }
         }
 
@@ -120,28 +121,29 @@ namespace Stac.Item
                         }
                         catch (Exception e)
                         {
-                            throw new FormatException(string.Format("{0} is not a valid"), e);
+                            if (Properties.ContainsKey("start_datetime") && Properties.ContainsKey("end_datetime"))
+                            {
+                                if (Properties["start_datetime"] is DateTime && Properties["end_datetime"] is DateTime)
+                                    return new Itenso.TimePeriod.TimeInterval((DateTime)Properties["start_datetime"],
+                                                                                (DateTime)Properties["end_datetime"]);
+                                else
+                                {
+                                    try
+                                    {
+                                        return new Itenso.TimePeriod.TimeInterval(System.DateTime.Parse(Properties["start_datetime"].ToString()),
+                                                                                    System.DateTime.Parse(Properties["end_datetime"].ToString()));
+                                    }
+                                    catch (Exception e1)
+                                    {
+                                        throw new FormatException(string.Format("start_datetime or end_datetime {0} is not a valid"), e1);
+                                    }
+                                }
+                            }
+                            throw new FormatException(string.Format("datetime {0} is not a valid"), e);
                         }
                     }
                 }
-                if (Properties.ContainsKey("start_datetime") && Properties.ContainsKey("end_datetime"))
-                {
-                    if (Properties["start_datetime"] is DateTime && Properties["end_datetime"] is DateTime)
-                        return new Itenso.TimePeriod.TimeInterval((DateTime)Properties["start_datetime"],
-                                                                    (DateTime)Properties["end_datetime"]);
-                    else
-                    {
-                        try
-                        {
-                            return new Itenso.TimePeriod.TimeInterval(System.DateTime.Parse(Properties["start_datetime"].ToString()),
-                                                                        System.DateTime.Parse(Properties["end_datetime"].ToString()));
-                        }
-                        catch (Exception e)
-                        {
-                            throw new FormatException(string.Format("{0} is not a valid"), e);
-                        }
-                    }
-                }
+
 
                 return null;
             }
@@ -166,5 +168,8 @@ namespace Stac.Item
                 asset.Parent = this;
             }
         }
+
+        [JsonIgnore]
+        public bool IsCatalog => false;
     }
 }

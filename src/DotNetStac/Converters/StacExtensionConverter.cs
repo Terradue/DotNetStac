@@ -20,12 +20,12 @@ namespace Stac.Converters
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType.IsAssignableFrom(typeof(IStacExtension));
+            return objectType == typeof(StacExtensions);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            Collection<IStacExtension> stacExtensions = new Collection<IStacExtension>();
+            StacExtensions stacExtensions = new StacExtensions();
             if (reader.TokenType != JsonToken.Null)
             {
                 if (reader.TokenType == JsonToken.StartArray)
@@ -34,7 +34,7 @@ namespace Stac.Converters
                     List<string> extensionPrefixes = token.ToObject<List<string>>();
                     foreach (var extensionPrefix in extensionPrefixes)
                     {
-                        var stacExtension = stacExtensionFactory.CreateStacExtension(extensionPrefix, null);
+                        var stacExtension = stacExtensionFactory.InitStacExtension(extensionPrefix);
                         if (stacExtension != null)
                             stacExtensions.Add(stacExtension);
                     }
@@ -45,7 +45,7 @@ namespace Stac.Converters
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            Collection<IStacExtension> stacExtensions = (Collection<IStacExtension>)value;
+            StacExtensions stacExtensions = (StacExtensions)value;
             writer.WriteStartArray();
             foreach (var stacExtension in stacExtensions)
             {

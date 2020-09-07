@@ -15,7 +15,7 @@ namespace Stac.Test.Item
         [Fact]
         public void CanDeserializeMinimalSample()
         {
-            var json = GetExpectedJson("Item");
+            var json = GetJson("Item");
 
             var item = JsonConvert.DeserializeObject<StacItem>(json);
 
@@ -88,7 +88,7 @@ namespace Stac.Test.Item
 
             Console.WriteLine(actualJson);
 
-            var expectedJson = GetExpectedJson("Item");
+            var expectedJson = GetJson("Item");
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
@@ -96,7 +96,7 @@ namespace Stac.Test.Item
         [Fact]
         public void CanManageDates()
         {
-            var json = GetExpectedJson("Item");
+            var json = GetJson("Item");
 
             var item = JsonConvert.DeserializeObject<StacItem>(json);
 
@@ -106,7 +106,7 @@ namespace Stac.Test.Item
         [Fact]
         public void CanDeserializeS2CogSample()
         {
-            var json = GetExpectedJson("Item");
+            var json = GetJson("Item");
 
             var item = StacItem.LoadJToken(JsonConvert.DeserializeObject<JToken>(json), null);
 

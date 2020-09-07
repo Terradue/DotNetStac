@@ -32,7 +32,7 @@
 
 **DotNetStac** helps you to work with [STAC](https://stacspec.org) ([catalog](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec), [collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec), [item](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec))
 
-In a nutshell, the library allows manipulating STAC JSON documents (Serialization/Deserialization using [Newtonsoft.JSON](https://www.newtonsoft.com/json)) with properties represented in enhanced objects such as geometries, time stamp/period/span, numerical values and many more via STAC extension plugins engine.
+In a nutshell, the library allows import/export of STAC JSON documents (Serialization/Deserialization using [Newtonsoft.JSON](https://www.newtonsoft.com/json)) to typed object with properties represented in enhanced objects such as geometries, time stamp/period/span, numerical values and many more via STAC extension plugins engine.
 
 ## Features
 

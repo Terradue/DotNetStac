@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json.Linq;
 using Stac.Extensions;
 
 namespace Stac
@@ -12,9 +14,13 @@ namespace Stac
 
         Uri Uri { get; }
 
-        Collection<IStacExtension> StacExtensions { get; }
+        StacExtensions StacExtensions { get; }
 
         Collection<StacLink> Links { get; }
+
+        IDictionary<string, object> Properties { get; }
+
+        bool IsCatalog { get; }
 
         IStacObject Upgrade();
     }

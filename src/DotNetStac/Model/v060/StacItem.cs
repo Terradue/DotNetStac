@@ -5,7 +5,6 @@ using DotNetStac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Stac.Converters;
 using Stac.Extensions;
 
 namespace Stac.Model.v060
@@ -119,7 +118,9 @@ namespace Stac.Model.v060
         public string StacVersion => StacVersionList.V060;
 
         [JsonIgnore]
-        public Collection<IStacExtension> StacExtensions => null;
+        public StacExtensions StacExtensions => null;
+
+        public bool IsCatalog => true;
 
         public IStacObject Upgrade()
         {

@@ -21,7 +21,7 @@ namespace Stac.Catalog
 
         private string stacVersion = StacVersionList.Current;
 
-        private Collection<IStacExtension> extensions;
+        private StacExtensions extensions;
 
         private string description;
 
@@ -46,17 +46,18 @@ namespace Stac.Catalog
 
         [JsonProperty("stac_extensions")]
         [JsonConverter(typeof(StacExtensionConverter))]
-        public Collection<IStacExtension> StacExtensions
+        public StacExtensions StacExtensions
         {
             get
             {
                 if (extensions == null)
-                    extensions = new Collection<IStacExtension>();
+                    extensions = new StacExtensions();
                 return extensions;
             }
             set
             {
                 extensions = value;
+                extensions.InitStacObject(this);
             }
         }
 
@@ -108,6 +109,12 @@ namespace Stac.Catalog
 
         [JsonProperty("title")]
         public string Title { get => title; set => title = value; }
+
+        [JsonIgnore]
+        public IDictionary<string, object> Properties => new Dictionary<string, object>();
+
+        [JsonIgnore]
+        public bool IsCatalog => true;
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
