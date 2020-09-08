@@ -15,7 +15,7 @@ using Stac.Model;
 
 namespace Stac
 {
-    public static class StacExtensionsHelper
+    public static class StacNavigationHelpers
     {
 
         public static IDictionary<Uri, IStacCatalog> GetChildren(this IStacObject stacObject)

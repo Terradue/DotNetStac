@@ -11,8 +11,10 @@ namespace Stac.Extensions.Sat
     {
         public static string OrbitStateVectorField => "orbit_state_vectors";
         public static string AscendingNodeDateTimeField => "ascending_node_datetime";
-
         public static string SceneCenterCoordinatesField => "scene_center_coordinates";
+        public static string RelativeOrbitField => "relative_orbit";
+        public static string OrbitStateField => "orbit_state";
+        
 
         public SortedDictionary<DateTime, SatOrbitStateVector> OrbitStateVectors
         {
@@ -35,7 +37,10 @@ namespace Stac.Extensions.Sat
         }
 
         public double[] SceneCenterCoordinates => base.GetField<double[]>(SceneCenterCoordinatesField);
-        
+
+        public long RelativeOrbit => base.GetField<long>(RelativeOrbitField);
+        public string OrbitState => base.GetField<string>(OrbitStateField);
+
         private SortedDictionary<DateTime, SatOrbitStateVector> SortOrbitStateVectors(JToken osvarray)
         {
             if (!(osvarray is JArray))
