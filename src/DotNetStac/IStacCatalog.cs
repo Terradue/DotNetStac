@@ -4,5 +4,6 @@ namespace Stac
 {
     public interface IStacCatalog: IStacObject
     {
+        string Description { get; }
     }
 }

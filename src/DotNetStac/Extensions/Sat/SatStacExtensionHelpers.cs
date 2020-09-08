@@ -9,7 +9,7 @@ namespace Stac.Extensions.Sat
 {
     public static class SatStacExtensionHelpers
     {
-        public static double CalculateBaseline(this SatStacExtension sat1, SatStacExtension sat2)
+        public static BaselineVector CalculateBaseline(this SatStacExtension sat1, SatStacExtension sat2)
         {
             if (sat1.StacObject.IsCatalog)
                 throw new OperationCanceledException(string.Format("{0} must be an item to calculate baseline", sat1.StacObject.Id));
@@ -35,7 +35,7 @@ namespace Stac.Extensions.Sat
 
             var baseline = BaselineCalculation.CalculateBaseline(times, masterOrbits.ToArray(), slaveOrbits.ToArray(), p0);
 
-            return baseline.Perpendicular;
+            return baseline;
 
         }
     }
