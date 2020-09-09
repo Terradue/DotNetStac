@@ -14,8 +14,8 @@ jobs:
         - dotnet restore src/
         - nuget install docfx.console -Version 2.51.0
       script:
-        - ./docfx.console.2.51.0/tools/docfx.exe metadata docfx_project/docfx.json
-        - ./docfx.console.2.51.0/tools/docfx.exe build docfx_project/docfx.json
+        - ./docfx.console.2.51.0/tools/docfx.exe metadata docs/docfx.json
+        - ./docfx.console.2.51.0/tools/docfx.exe build docs/docfx.json
       deploy:
         provider: pages
         skip_cleanup: true
