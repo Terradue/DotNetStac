@@ -32,7 +32,7 @@ jobs:
       script: dotnet test src/DotNetStac.Test/DotNetStac.Test.csproj --verbosity detailed
     - stage: "Publish to NuGet"
       if: branch = master
-      install: dotnet restore
+      install: dotnet restore src/
       script: 
         - dotnet build src/
         - dotnet publish src/ -c release -f netstandard2.0
