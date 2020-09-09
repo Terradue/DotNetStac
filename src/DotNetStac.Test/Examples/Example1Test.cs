@@ -24,6 +24,7 @@ namespace Stac.Test.Example
 
         }
 
+        [Theory]
         public static void ListChildrensItemsAndAssets(IStacCatalog catalog, string prefix = "", int limit = 2)
         {
             // Get children first (sub catalogs and collections)
