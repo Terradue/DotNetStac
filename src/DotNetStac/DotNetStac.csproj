@@ -1,8 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <_ExtraTargetFrameworks Condition="'$(OS)' == 'Windows_NT' or '$(MSBuildRuntimeType)' == 'Mono'">net472</_ExtraTargetFrameworks>
-    <TargetFrameworks>netstandard2.0;$(RoslynPortableTargetFrameworks);$(_ExtraTargetFrameworks)</TargetFrameworks>
-    <RuntimeIdentifiers>win;linux</RuntimeIdentifiers>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Title>DotNetStac</Title>
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -10,6 +8,7 @@
     <Authors>Emmanuel Mathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetStac</RepositoryUrl>
+    <DebugSymbols>True</DebugSymbols>
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
   </PropertyGroup>
   <ItemGroup>
