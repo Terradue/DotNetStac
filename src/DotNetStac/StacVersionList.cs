@@ -1,6 +1,6 @@
 using System;
 
-namespace DotNetStac
+namespace Stac
 {
     public static class StacVersionList
     {

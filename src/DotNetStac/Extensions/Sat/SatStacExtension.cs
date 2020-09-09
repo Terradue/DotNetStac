@@ -10,10 +10,12 @@ namespace Stac.Extensions.Sat
     public class SatStacExtension : AssignableStacExtension, IStacExtension
     {
         public static string OrbitStateVectorField => "orbit_state_vectors";
-        public static string AscendingNodeDateTimeField => "ascending_node_datetime";
+        public static string AscendingNodeCrossingDateTimeField => "anx_date_time";
         public static string SceneCenterCoordinatesField => "scene_center_coordinates";
         public static string RelativeOrbitField => "relative_orbit";
+        public static string AbsoluteOrbitField => "absolute_orbit";
         public static string OrbitStateField => "orbit_state";
+        public static string PlatformInternationalDesignatorField => "platform_international_designator";
         
 
         public SortedDictionary<DateTime, SatOrbitStateVector> OrbitStateVectors
@@ -29,7 +31,9 @@ namespace Stac.Extensions.Sat
             }
         }
 
-        public DateTime AscendingNodeDateTime => base.GetField<DateTime>(AscendingNodeDateTimeField);
+        public DateTime AscendingNodeCrossingDateTime => base.GetField<DateTime>(AscendingNodeCrossingDateTimeField);
+
+        public string PlatformInternationalDesignator => base.GetField<string>(PlatformInternationalDesignatorField);
 
         public void LoadOrbitStateVectors()
         {
@@ -39,6 +43,7 @@ namespace Stac.Extensions.Sat
         public double[] SceneCenterCoordinates => base.GetField<double[]>(SceneCenterCoordinatesField);
 
         public long RelativeOrbit => base.GetField<long>(RelativeOrbitField);
+        public long AbsoluteOrbit => base.GetField<long>(AbsoluteOrbitField);
         public string OrbitState => base.GetField<string>(OrbitStateField);
 
         private SortedDictionary<DateTime, SatOrbitStateVector> SortOrbitStateVectors(JToken osvarray)

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using DotNetStac;
+using Stac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;

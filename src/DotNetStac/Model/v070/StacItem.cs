@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using DotNetStac;
+using Stac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Stac.Converters;
 using Stac.Extensions;
 
 namespace Stac.Model.v070

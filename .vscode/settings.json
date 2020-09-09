@@ -1,5 +1,27 @@
 {
     "dotnet-test-explorer.testProjectPath": "**/*Test.@(csproj|vbproj|fsproj)",
     "python.dataScience.jupyterServerURI": "local",
-    "python.pythonPath": "/bin/python3"
-}
+    "python.pythonPath": "/bin/python3",
+    "psi-header.variables": [
+		["projectCreationYear", "2020"]
+    ],
+    "psi-header.config": {
+        "license": "AGPL-3.0-or-later"
+    },
+	"psi-header.templates": [
+		{
+			"language": "*",
+			"template": [
+				"File: <<filename>>",
+				"Project: <<projectname>>",
+				"File Created: <<filecreated('dddd, Do MMMM YYYY h:mm:ss a')>>",
+				"Author: <<author>>",
+				"-----",
+				"Last Modified: <<dateformat('dddd, Do MMMM YYYY h:mm:ss a')>>",
+				"Modified By: <<author>>",
+				"-----",
+                "Copyright <<projectCreationYear>> - <<year>> <<copyrightholder>>, <<company>>",
+                "License <<licenseurl>>"
+			]
+		}
+	]

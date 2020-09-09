@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization;
-using DotNetStac;
+using Stac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
@@ -105,7 +105,7 @@ namespace Stac.Model.v060
 
         public Uri Uri { get => sourceUri; set => sourceUri = value; }
 
-        [JsonIgnore]
+        [JsonExtensionData]
         public IDictionary<string, object> Properties => new Dictionary<string, object>();
 
         [JsonIgnore]

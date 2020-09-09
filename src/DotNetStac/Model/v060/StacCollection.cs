@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DotNetStac;
+using Stac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Catalog;
-using Stac.Converters;
 using Stac.Extensions;
 
 namespace Stac.Model.v060
@@ -59,9 +58,6 @@ namespace Stac.Model.v060
                 keywords = value;
             }
         }
-
-        [JsonExtensionData]
-        public Dictionary<string, JToken> Properties { get; set; }
 
         public override IStacObject Upgrade()
         {

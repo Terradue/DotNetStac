@@ -1,10 +1,40 @@
 language: csharp
-dist: xenial
-mono: none
-dotnet: 3.0
-solution: "./src/DotNetStac.sln"
-install:
-- dotnet restore src/
-script:
-- dotnet build src/
-- dotnet test src/DotNetStac.Test
+mono: latest
+dotnet: 3.1
+jobs:
+  include:
+    - stage: "Build"
+      if: branch != master AND branch != docs
+      solution: "./src/DotNetStac.sln"
+      install: dotnet restore src/
+      script: dotnet build src/
+    - stage: "Generate Documentation"
+      if: branch = master OR branch = docs
+      install:
+        - dotnet restore src/
+        - nuget install docfx.console -Version 2.51.0
+      script:
+        - ./docfx.console.2.51.0/tools/docfx.exe metadata docs/docfx.json
+        - ./docfx.console.2.51.0/tools/docfx.exe build docs/docfx.json
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        keep_history: true
+        local_dir: docs/_site
+        on:
+          branch: 
+            - master
+            - docs
+    - stage: "Run Tests"
+      if: branch != master AND branch != docs
+      install: dotnet restore src/
+      script: dotnet test src/DotNetStac.Test/DotNetStac.Test.csproj --verbosity detailed
+    - stage: "Publish to NuGet"
+      if: branch = master
+      install: dotnet restore
+      script: 
+        - dotnet build src/
+        - dotnet publish src/ -c release -f netstandard2.0
+        - dotnet pack src/ -c release --include-symbols -o publish
+        - dotnet nuget push publish/*.nupkg --skip-duplicate -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
