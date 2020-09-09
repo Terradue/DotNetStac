@@ -5,6 +5,7 @@ using Stac.Catalog;
 using Stac.Collection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Stac.Test.Example
