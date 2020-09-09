@@ -8,6 +8,7 @@
     <Authors>Emmanuel Mathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetStac</RepositoryUrl>
+    <DebugSymbols>True</DebugSymbols>
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
   </PropertyGroup>
   <ItemGroup>
