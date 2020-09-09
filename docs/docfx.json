@@ -7,7 +7,7 @@
             "**/**.csproj"
           ],
           "exclude": [
-            "*Test*/**.csproj"
+            "**Test/**.csproj"
           ],
           "src": ".."
         }

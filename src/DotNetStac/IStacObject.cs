@@ -6,6 +6,9 @@ using Stac.Extensions;
 
 namespace Stac
 {
+    /// <summary>
+    /// Common interface for all Stac objects
+    /// </summary>
     public interface IStacObject
     {
         string Id { get; }
