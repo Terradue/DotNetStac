@@ -23,7 +23,9 @@ jobs:
         keep_history: true
         local_dir: docs/_site
         on:
-          branch: master
+          branch: 
+            - master
+            - docs
     - stage: "Run Tests"
       if: branch != master AND branch != docs
       install: dotnet restore src/
