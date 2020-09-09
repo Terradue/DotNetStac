@@ -23,18 +23,19 @@ namespace Stac.Test.Example
 
         }
 
-        public static void ListChildrensItemsAndAssets(IStacCatalog catalog, string prefix = "")
+        public static void ListChildrensItemsAndAssets(IStacCatalog catalog, string prefix = "", int limit = 2)
         {
-            foreach (var child in catalog.GetChildren().Values)
+            // Get children first (sub catalogs and collections)
+            foreach (var child in catalog.GetChildren().Values.Take(limit))
             {
-                Console.Out.WriteLine(prefix + child.Id);
+                Console.Out.WriteLine(prefix + child.Id + ": " + child.Description);
 
-                foreach (var item in child.GetItems().Values)
+                foreach (var item in child.GetItems().Values.Take(limit))
                 {
                     Console.Out.WriteLine(prefix + " " + item.Id);
                     foreach (var asset in item.Assets.Values)
                     {
-                        Console.Out.WriteLine(prefix + " *" + asset.Uri);
+                        Console.Out.WriteLine(prefix + " *[" + asset.MediaType + "] " + asset.Uri);
                     }
                 }
 
