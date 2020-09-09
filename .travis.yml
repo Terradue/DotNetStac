@@ -12,7 +12,7 @@ jobs:
     - stage: "Generate Documentation"
       if: branch = master OR branch = docs
       install:
-        - dotnet restore
+        - dotnet restore src/
         - nuget install docfx.console -Version 2.51.0
       script:
         - ./docfx.console.2.51.0/tools/docfx.exe metadata docfx_project/docfx.json
@@ -27,13 +27,13 @@ jobs:
           branch: master
     - stage: "Run Tests"
       if: branch != master AND branch != docs
-      install: dotnet restore
+      install: dotnet restore src/
       script: dotnet test src/DotNetStac.Test/DotNetStac.Test.csproj --verbosity detailed
     - stage: "Publish to NuGet"
       if: branch = master
       install: dotnet restore
       script: 
-        - dotnet build
-        - dotnet publish -c release
-        - dotnet pack -c release --include-symbols -o publish
+        - dotnet build src/
+        - dotnet publish src/ -c release -f netstandard2.0
+        - dotnet pack src/ -c release --include-symbols -o publish
         - dotnet nuget push publish/*.nupkg --skip-duplicate -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json
