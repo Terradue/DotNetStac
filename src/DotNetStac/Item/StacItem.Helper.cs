@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using DotNetStac;
+using Stac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
