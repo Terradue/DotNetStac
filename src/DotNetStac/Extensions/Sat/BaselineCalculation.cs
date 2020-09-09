@@ -121,8 +121,8 @@ namespace Stac.Extensions.Sat {
             double y = groundPoint.Latitude;
             double z = groundPoint.Altitude.Value;
 
-            bool converged;
-            double maxError;
+            // bool converged;
+            // double maxError;
             double t = time[2].Subtract(time[0]).TotalSeconds;
             //double tm = SynchronizeVector(t, groundPoint, interpolMaster, out converged, out maxError);
             //double ts = SynchronizeVector(t, groundPoint, interpolSlave, out converged, out maxError);

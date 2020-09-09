@@ -7,7 +7,6 @@ using Stac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Stac.Converters;
 using Stac.Extensions;
 using Stac.Model;
 
@@ -110,7 +109,7 @@ namespace Stac.Catalog
         [JsonProperty("title")]
         public string Title { get => title; set => title = value; }
 
-        [JsonIgnore]
+        [JsonExtensionData]
         public IDictionary<string, object> Properties => new Dictionary<string, object>();
 
         [JsonIgnore]

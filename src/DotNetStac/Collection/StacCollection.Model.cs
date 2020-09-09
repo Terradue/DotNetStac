@@ -7,7 +7,6 @@ using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Stac.Catalog;
-using Stac.Converters;
 using Stac.Extensions;
 using Stac.Model;
 
