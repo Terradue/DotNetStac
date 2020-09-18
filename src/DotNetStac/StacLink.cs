@@ -39,6 +39,16 @@ namespace Stac
             return new StacLink(uri, "alternate", null, mediaType);
         }
 
+        public static StacLink CreateChildLink(Uri uri, string mediaType = null)
+        {
+            return new StacLink(uri, "child", null, mediaType);
+        }
+
+        public static StacLink CreateItemLink(Uri uri, string mediaType = null)
+        {
+            return new StacLink(uri, "item", null, mediaType);
+        }
+
         #endregion
 
         Uri href;
@@ -134,6 +144,8 @@ namespace Stac
                 hostObject = value;
             }
         }
+
+       
 
         [JsonIgnore]
         public ulong Length => contentLength;
