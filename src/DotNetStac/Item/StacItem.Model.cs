@@ -39,8 +39,10 @@ namespace Stac.Item
         {
             get
             {
-                if (extensions == null)
+                if (extensions == null){
                     extensions = new StacExtensions();
+                    extensions.InitStacObject(this);
+                }
                 return extensions;
             }
             set
