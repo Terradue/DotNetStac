@@ -25,8 +25,8 @@ namespace Stac.Extensions
 
         internal void SetField(string key, object value)
         {
-            stacObject.Properties.Remove(key);
-            stacObject.Properties.Add(key, value);
+            stacObject.Properties.Remove(prefix + ":" + key);
+            stacObject.Properties.Add(prefix + ":" + key, value);
         }
 
         protected object GetField(string fieldName)

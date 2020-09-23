@@ -27,16 +27,8 @@ namespace Stac.Extensions.Eo
             set { base.SetField(Wkt2Field, value); }
         }
 
-        private ProjectionStacExtension() : base("proj")
+        public ProjectionStacExtension() : base("proj")
         {
-        }
-
-        public static ProjectionStacExtension CreateFor(StacItem stacItem)
-        {
-            ProjectionStacExtension proj = new ProjectionStacExtension();
-            proj.InitStacObject(stacItem);
-            stacItem.StacExtensions.Add(proj);
-            return proj;
         }
 
         public void SetCoordinateSystem(ProjectedCoordinateSystem projectedCoordinateSystem)

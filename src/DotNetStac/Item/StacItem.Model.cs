@@ -165,10 +165,6 @@ namespace Stac.Item
             {
                 link.Parent = this;
             }
-            foreach (StacAsset asset in Assets.Values)
-            {
-                asset.Parent = this;
-            }
         }
 
         [JsonIgnore]

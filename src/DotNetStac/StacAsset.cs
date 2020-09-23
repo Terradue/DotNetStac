@@ -43,22 +43,21 @@ namespace Stac
         ContentType type;
 
         Collection<string> semanticRoles;
-        private IStacObject hostObject;
         private ulong contentLength;
+        private IDictionary<string, object> properties;
 
         public StacAsset()
         {
+            properties = new Dictionary<string, object>();
         }
 
-        public StacAsset(Uri uri, IStacObject hostObject)
+        public StacAsset(Uri uri) : this()
         {
             Uri = uri;
-            this.hostObject = hostObject;
         }
 
-        public StacAsset(Uri uri, IEnumerable<string> semanticRoles, string title, ContentType mediaType, ulong contentLength = 0)
+        public StacAsset(Uri uri, IEnumerable<string> semanticRoles, string title, ContentType mediaType, ulong contentLength = 0) : this (uri)
         {
-            Uri = uri;
             this.semanticRoles = semanticRoles == null ? new Collection<string>() : new Collection<string>(semanticRoles.ToList());
             Title = title;
             MediaType = mediaType;
@@ -76,6 +75,7 @@ namespace Stac
             type = source.type;
             description = source.description;
             contentLength = source.contentLength;
+            properties = source.properties;
         }
 
         [JsonProperty("type")]
@@ -136,34 +136,24 @@ namespace Stac
             set { description = value; }
         }
 
-        public virtual StacAsset Clone()
-        {
-            return new StacAsset(this);
-        }
-
-        [JsonIgnore]
-        public Uri AbsoluteUri
+        [JsonExtensionData]
+        public IDictionary<string, object> Properties
         {
             get
             {
-                if (Uri.IsAbsoluteUri)
-                    return Uri;
+                return properties;
+            }
 
-                if (hostObject != null)
-                    return new Uri(new Uri(hostObject.Uri.AbsoluteUri.Substring(0, hostObject.Uri.AbsoluteUri.LastIndexOf('/') + 1)), Uri);
-
-                return null;
+            set
+            {
+                properties = value;
             }
         }
 
-        [JsonIgnore]
-        public IStacObject Parent
+
+        public virtual StacAsset Clone()
         {
-            get => hostObject;
-            internal set
-            {
-                hostObject = value;
-            }
+            return new StacAsset(this);
         }
 
         [JsonIgnore]

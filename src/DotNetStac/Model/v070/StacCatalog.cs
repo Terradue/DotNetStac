@@ -108,6 +108,7 @@ namespace Stac.Model.v070
 
         public Uri Uri { get => sourceUri; set => sourceUri = value; }
 
+        [JsonProperty("properties")]
         [JsonExtensionData]
         public IDictionary<string, object> Properties => new Dictionary<string, object>();
 
