@@ -24,6 +24,8 @@ namespace Stac.Catalog
 
         private string description;
 
+        private IDictionary<string, object> properties;
+
 
         private string title;
 
@@ -41,6 +43,7 @@ namespace Stac.Catalog
                 this.links = new Collection<StacLink>();
             else
                 this.links = new Collection<StacLink>(links.ToList());
+            properties = new Dictionary<string, object>();
         }
 
         [JsonProperty("stac_extensions")]
@@ -110,7 +113,18 @@ namespace Stac.Catalog
         public string Title { get => title; set => title = value; }
 
         [JsonExtensionData]
-        public IDictionary<string, object> Properties => new Dictionary<string, object>();
+        public IDictionary<string, object> Properties
+        {
+            get
+            {
+                return properties;
+            }
+
+            set
+            {
+                properties = value;
+            }
+        }
 
         [JsonIgnore]
         public bool IsCatalog => true;

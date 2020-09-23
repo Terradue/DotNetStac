@@ -31,11 +31,11 @@ namespace Stac.Extensions
             }
         }
 
-        public void Add(IStacExtension item)
+        public void Add(IStacExtension extension)
         {
-            stacExtensions.Add(item);
-            if (item is AssignableStacExtension)
-                (item as AssignableStacExtension).InitStacObject(stacObject);
+            stacExtensions.Add(extension);
+            if (extension is AssignableStacExtension)
+                (extension as AssignableStacExtension).InitStacObject(stacObject);
         }
 
         public IEnumerator<IStacExtension> GetEnumerator()
@@ -66,6 +66,16 @@ namespace Stac.Extensions
         public bool Remove(IStacExtension stacExtension)
         {
             return stacExtensions.Remove(stacExtension);
+        }
+
+        public IStacExtension this[string key]
+        {
+            get => stacExtensions.FirstOrDefault(e => e.Id == key);
+        }
+
+        public IStacExtension GetExtension<T>() where T : IStacExtension
+        {
+            return stacExtensions.FirstOrDefault(e => e is T);
         }
     }
 }

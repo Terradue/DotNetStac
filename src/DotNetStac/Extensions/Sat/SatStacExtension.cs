@@ -4,6 +4,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using Stac;
 using Stac.Extensions;
+using Stac.Item;
 
 namespace Stac.Extensions.Sat
 {
@@ -16,7 +17,7 @@ namespace Stac.Extensions.Sat
         public static string AbsoluteOrbitField => "absolute_orbit";
         public static string OrbitStateField => "orbit_state";
         public static string PlatformInternationalDesignatorField => "platform_international_designator";
-        
+
 
         public SortedDictionary<DateTime, SatOrbitStateVector> OrbitStateVectors
         {
@@ -37,14 +38,23 @@ namespace Stac.Extensions.Sat
 
         public void LoadOrbitStateVectors()
         {
-            
+
         }
 
         public double[] SceneCenterCoordinates => base.GetField<double[]>(SceneCenterCoordinatesField);
 
         public long RelativeOrbit => base.GetField<long>(RelativeOrbitField);
-        public long AbsoluteOrbit => base.GetField<long>(AbsoluteOrbitField);
-        public string OrbitState => base.GetField<string>(OrbitStateField);
+        public long AbsoluteOrbit
+        {
+            get { return base.GetField<long>(AbsoluteOrbitField); }
+            set { base.SetField(AbsoluteOrbitField, value); }
+        }
+
+        public string OrbitState
+        {
+            get { return base.GetField<string>(OrbitStateField); }
+            set { base.SetField(OrbitStateField, value); }
+        }
 
         private SortedDictionary<DateTime, SatOrbitStateVector> SortOrbitStateVectors(JToken osvarray)
         {
@@ -59,7 +69,6 @@ namespace Stac.Extensions.Sat
         public SatStacExtension() : base("sat")
         {
         }
-
 
     }
 }

@@ -4,7 +4,7 @@ using Stac.Item;
 
 namespace Stac.Extensions
 {
-    public abstract class AssignableStacExtension : IStacExtension, IStacExtensionInternal
+    public abstract class AssignableStacExtension : IStacExtension
     {
         private string prefix;
         private IStacObject stacObject;
@@ -18,9 +18,15 @@ namespace Stac.Extensions
 
         public IStacObject StacObject { get => stacObject; }
 
-        public void InitStacObject(IStacObject stacObject)
+        internal void InitStacObject(IStacObject stacObject)
         {
             this.stacObject = stacObject;
+        }
+
+        internal void SetField(string key, object value)
+        {
+            stacObject.Properties.Remove(prefix + ":" + key);
+            stacObject.Properties.Add(prefix + ":" + key, value);
         }
 
         protected object GetField(string fieldName)
@@ -39,5 +45,6 @@ namespace Stac.Extensions
                 return (@object as JToken).ToObject<T>();
             return (T)@object;
         }
+
     }
 }

@@ -4,7 +4,7 @@
     <Title>DotNetStac</Title>
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>0.3.2</Version>
+    <Version>0.4.0</Version>
     <Authors>Emmanuel Mathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetStac</RepositoryUrl>
@@ -19,6 +19,7 @@
     <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1"/>
     <PackageReference Include="System.Net.Http" Version="4.3.4"/>
     <PackageReference Include="MathNet.Numerics" Version="4.12.0"/>
+    <PackageReference Include="ProjNet" Version="2.0.0"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
