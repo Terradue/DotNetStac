@@ -8,8 +8,12 @@
     <Authors>Emmanuel Mathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetStac</RepositoryUrl>
-    <DebugSymbols>True</DebugSymbols>
+    <IncludeSymbols>true</IncludeSymbols>
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
+    <Authors>emmanuelmathot</Authors>
+    <PackageIcon>stac_logo.png</PackageIcon>
+    <Copyright>Copyright (c) 2010-2020 by Terradue</Copyright>
+    <Company>Terradue</Company>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0"/>
@@ -23,5 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\docs\logo\stac_logo.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 </Project>
