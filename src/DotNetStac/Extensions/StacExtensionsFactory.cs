@@ -17,6 +17,9 @@ namespace Stac.Extensions
         internal StacExtensionsFactory()
         {
             this.stacExtensionsDictionary.Add("sat", typeof(Sat.SatStacExtension));
+            this.stacExtensionsDictionary.Add("eo", typeof(Eo.EoStacExtension));
+            this.stacExtensionsDictionary.Add("view", typeof(View.ViewStacExtension));
+            this.stacExtensionsDictionary.Add("proj", typeof(Projection.ProjectionStacExtension));
         }
 
         public static StacExtensionsFactory Default

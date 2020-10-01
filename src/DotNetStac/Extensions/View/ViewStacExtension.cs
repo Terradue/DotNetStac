@@ -6,7 +6,7 @@ using Stac;
 using Stac.Extensions;
 using Stac.Item;
 
-namespace Stac.Extensions.Sat
+namespace Stac.Extensions.View
 {
     public class ViewStacExtension : AssignableStacExtension, IStacExtension
     {

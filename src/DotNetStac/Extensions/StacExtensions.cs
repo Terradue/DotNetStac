@@ -73,9 +73,9 @@ namespace Stac.Extensions
             get => stacExtensions.FirstOrDefault(e => e.Id == key);
         }
 
-        public IStacExtension GetExtension<T>() where T : IStacExtension
+        public T GetExtension<T>() where T : IStacExtension
         {
-            return stacExtensions.FirstOrDefault(e => e is T);
+            return (T)stacExtensions.FirstOrDefault(e => e is T);
         }
     }
 }

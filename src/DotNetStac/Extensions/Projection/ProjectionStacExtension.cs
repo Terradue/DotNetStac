@@ -7,7 +7,7 @@ using Stac;
 using Stac.Extensions;
 using Stac.Item;
 
-namespace Stac.Extensions.Eo
+namespace Stac.Extensions.Projection
 {
     public class ProjectionStacExtension : AssignableStacExtension, IStacExtension
     {
