@@ -17,7 +17,7 @@ namespace Stac.Test.Catalog
 
             Assert.NotNull(catalog);
 
-            Assert.Equal("1.0.0-beta.1", catalog.StacVersion);
+            Assert.Equal("1.0.0-beta.2", catalog.StacVersion);
 
             Assert.Empty(catalog.StacExtensions);
 

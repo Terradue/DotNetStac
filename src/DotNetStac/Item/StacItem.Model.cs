@@ -28,10 +28,12 @@ namespace Stac.Item
 
         [JsonConstructor]
         public StacItem(IGeometryObject geometry, IDictionary<string, object> properties = null, string id = null) : base(geometry, properties, id)
-        { }
+        { 
+        }
 
         public StacItem(IGeometryObject geometry, object properties, string id = null) : base(geometry, properties, id)
-        { }
+        { 
+        }
 
         [JsonProperty("stac_extensions")]
         [JsonConverter(typeof(StacExtensionConverter))]
@@ -165,6 +167,13 @@ namespace Stac.Item
             {
                 link.Parent = this;
             }
+        }
+
+        [OnSerializing]
+        internal void OnSerializingMethod(StreamingContext context)
+        {
+            if ( BoundingBoxes == null )
+                SetBoundingBoxOnGeometryExtent();
         }
 
         [JsonIgnore]
