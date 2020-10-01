@@ -23,7 +23,7 @@ namespace Stac.Test.Item
 
             Assert.NotNull(item.Properties);
 
-            Assert.Equal("1.0.0-beta.1", item.StacVersion);
+            Assert.Equal("1.0.0-beta.2", item.StacVersion);
 
             Assert.Empty(item.StacExtensions);
 
@@ -82,7 +82,8 @@ namespace Stac.Test.Item
             item.Assets.Add("analytic", new StacAsset(new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
             item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
 
-            item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
+            // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
+            item.SetBoundingBoxOnGeometryExtent();
 
             var actualJson = JsonConvert.SerializeObject(item);
 

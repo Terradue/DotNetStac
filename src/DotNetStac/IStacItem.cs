@@ -11,5 +11,7 @@ namespace Stac
         Itenso.TimePeriod.ITimePeriod DateTime { get; }
 
         IGeometryObject Geometry { get; }
+
+        double[] BoundingBoxes { get; }
     }
 }
