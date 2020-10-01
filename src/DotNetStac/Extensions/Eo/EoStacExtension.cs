@@ -25,18 +25,18 @@ namespace Stac.Extensions.Eo
         {
         }
 
-        public void AddBandObject(StacAsset stacAsset, EoBandObject eoBandObject)
+        public void AddBandObject(StacAsset stacAsset, EoBandObject[] eoBandObject)
         {
             string key = Id + ":" + BandsField;
             stacAsset.Properties.Remove(key);
             stacAsset.Properties.Add(key, eoBandObject);
         }
 
-        public EoBandObject GetBandObject(StacAsset stacAsset)
+        public EoBandObject[] GetBandObject(StacAsset stacAsset)
         {
             string key = Id + ":" + BandsField;
             if (stacAsset.Properties.ContainsKey(key))
-                return (EoBandObject)stacAsset.Properties[key];
+                return (EoBandObject[])stacAsset.Properties[key];
             return null;
         }
     }
