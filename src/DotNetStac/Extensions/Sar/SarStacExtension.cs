@@ -27,8 +27,12 @@ namespace Stac.Extensions.Sar
         public const string ObservationDirectionField = "observation_direction";
 
 
-        public SarStacExtension() : base(Prefix)
+        public SarStacExtension(string instrumentMode, string frequencyBand, string[] polarizations, string productType) : base(Prefix)
         {
+            InstrumentMode = instrumentMode;
+            FrequencyBand = frequencyBand;
+            Polarizations = polarizations;
+            ProductType = productType;
         }
 
         public string InstrumentMode
