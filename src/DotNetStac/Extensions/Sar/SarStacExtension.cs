@@ -27,10 +27,10 @@ namespace Stac.Extensions.Sar
         public const string ObservationDirectionField = "observation_direction";
 
 
-        public SarStacExtension(string instrumentMode, string frequencyBand, string[] polarizations, string productType) : base(Prefix)
+        public SarStacExtension(string instrumentMode, SarCommonFrequencyBandName frequencyBandName, string[] polarizations, string productType) : base(Prefix)
         {
             InstrumentMode = instrumentMode;
-            FrequencyBand = frequencyBand;
+            FrequencyBand = frequencyBandName;
             Polarizations = polarizations;
             ProductType = productType;
         }
@@ -41,9 +41,9 @@ namespace Stac.Extensions.Sar
             set { base.SetField(InstrumentModeField, value); }
         }
 
-        public string FrequencyBand
+        public SarCommonFrequencyBandName FrequencyBand
         {
-            get { return base.GetField<string>(FrequencyBandField); }
+            get { return base.GetField<SarCommonFrequencyBandName>(FrequencyBandField); }
             set { base.SetField(FrequencyBandField, value); }
         }
 
