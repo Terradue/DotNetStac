@@ -11,7 +11,7 @@ namespace Stac.Extensions.Sat
     public class SatStacExtension : AssignableStacExtension, IStacExtension
     {
         public static string OrbitStateVectorField => "orbit_state_vectors";
-        public static string AscendingNodeCrossingDateTimeField => "anx_date_time";
+        public static string AscendingNodeCrossingDateTimeField => "anx_datetime";
         public static string SceneCenterCoordinatesField => "scene_center_coordinates";
         public static string RelativeOrbitField => "relative_orbit";
         public static string AbsoluteOrbitField => "absolute_orbit";
@@ -32,9 +32,17 @@ namespace Stac.Extensions.Sat
             }
         }
 
-        public DateTime AscendingNodeCrossingDateTime => base.GetField<DateTime>(AscendingNodeCrossingDateTimeField);
+        public DateTime AscendingNodeCrossingDateTime
+        {
+            get { return base.GetField<DateTime>(AscendingNodeCrossingDateTimeField); }
+            set { base.SetField(AscendingNodeCrossingDateTimeField, value); }
+        }
 
-        public string PlatformInternationalDesignator => base.GetField<string>(PlatformInternationalDesignatorField);
+        public string PlatformInternationalDesignator
+        {
+            get { return base.GetField<string>(PlatformInternationalDesignatorField); }
+            set { base.SetField(PlatformInternationalDesignatorField, value); }
+        }
 
         public void LoadOrbitStateVectors()
         {
@@ -43,7 +51,12 @@ namespace Stac.Extensions.Sat
 
         public double[] SceneCenterCoordinates => base.GetField<double[]>(SceneCenterCoordinatesField);
 
-        public long RelativeOrbit => base.GetField<long>(RelativeOrbitField);
+        public long RelativeOrbit
+        {
+            get { return base.GetField<long>(RelativeOrbitField); }
+            set { base.SetField(RelativeOrbitField, value); }
+        }
+
         public long AbsoluteOrbit
         {
             get { return base.GetField<long>(AbsoluteOrbitField); }

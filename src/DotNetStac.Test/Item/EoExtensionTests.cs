@@ -35,11 +35,20 @@ namespace Stac.Test.Item
 
             Assert.NotNull(k3MissingBands.Assets["MS1"]);
 
-            k3MissingBandsEO.AddBandObject(k3MissingBands.Assets["MS1"], new EoBandObject[] { eoBandObject });
+            k3MissingBandsEO.SetAssetBandObjects(k3MissingBands.Assets["MS1"], new EoBandObject[] { eoBandObject });
 
             k3MissingBandsJson = JsonConvert.SerializeObject(k3MissingBands);
 
             JsonAssert.AreEqual(k3CompleteJson, k3MissingBandsJson);
+
+            k3MissingBands = JsonConvert.DeserializeObject<StacItem>(k3MissingBandsJson);
+
+            k3MissingBands.Assets["MS1"].SetEoBandObjects(new EoBandObject[] { eoBandObject });
+
+            k3MissingBandsJson = JsonConvert.SerializeObject(k3MissingBands);
+
+            JsonAssert.AreEqual(k3CompleteJson, k3MissingBandsJson);
+
 
         }
 
