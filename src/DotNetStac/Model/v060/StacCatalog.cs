@@ -136,7 +136,7 @@ namespace Stac.Model.v060
         [OnSerializing]
         internal void OnSerializingMethod(StreamingContext context)
         {
-            StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensionsFactory.Default.GetExtensionsPrefixes(this)).Distinct().ToArray();
+            StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensions.Keys).Distinct().ToArray();
         }
     }
 }

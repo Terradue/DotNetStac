@@ -13,5 +13,7 @@ namespace Stac
         IGeometryObject Geometry { get; }
 
         double[] BoundingBoxes { get; }
+
+        
     }
 }

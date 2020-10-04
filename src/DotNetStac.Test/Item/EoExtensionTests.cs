@@ -23,7 +23,7 @@ namespace Stac.Test.Item
 
             IStacItem k3MissingBands = JsonConvert.DeserializeObject<StacItem>(k3MissingBandsJson);
 
-            EoStacExtension k3MissingBandsEO = k3MissingBands.StacExtensions.GetExtension<EoStacExtension>();
+            EoStacExtension k3MissingBandsEO = k3MissingBands.GetExtension<EoStacExtension>();
 
             EoBandObject eoBandObject = new EoBandObject("MS1", EoBandCommonName.blue)
             {

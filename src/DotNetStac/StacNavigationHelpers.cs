@@ -68,19 +68,9 @@ namespace Stac
             return (StacCatalog)catalog;
         }
 
-        public static IStacExtension GetExtension(this IStacObject stacObject, string identifier)
+        public static T GetExtension<T>(this IStacObject stacObject) where T : IStacExtension
         {
-            return stacObject.StacExtensions.FirstOrDefault(ext => ext.Id == identifier);
-        }
-
-        public static IStacExtension GetExtension(this IStacItem stacItem, string identifier)
-        {
-            return GetExtension(stacItem, identifier);
-        }
-
-        public static TExtension GetExtension<TExtension>(this IStacObject stacObject) where TExtension :IStacExtension
-        {
-            return (TExtension)stacObject.StacExtensions.FirstOrDefault(ext => ext is TExtension);
+            return (T)stacObject.StacExtensions.Values.FirstOrDefault(e => e is T);
         }
     }
 }
