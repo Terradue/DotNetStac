@@ -3,7 +3,7 @@ namespace Stac.Extensions
     public interface IStacExtensionsFactory
     {
 
-        IStacExtension InitStacExtension(string prefix);
+        IStacExtension InitStacExtension(string prefix, IStacObject stacObject);
 
     }
 }

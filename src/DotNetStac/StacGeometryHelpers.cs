@@ -2,11 +2,27 @@ using System.Collections;
 using System.Linq;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
+using Stac.Item;
 
 namespace Stac
 {
     public static class StacGeometryHelpers
     {
+
+        public static double[] GetBoundingBoxFromGeometryExtent(this IStacItem stacItem)
+        {
+            var boundingBoxes = stacItem.Geometry.GetBoundingBox();
+            if (boundingBoxes[0].Altitude.HasValue)
+                return new double[] {
+                    boundingBoxes[0].Longitude, boundingBoxes[0].Latitude, boundingBoxes[0].Altitude.Value,
+                    boundingBoxes[1].Longitude, boundingBoxes[1].Latitude, boundingBoxes[1].Altitude.Value,
+                };
+            else
+                return new double[] {
+                    boundingBoxes[0].Longitude, boundingBoxes[0].Latitude,
+                    boundingBoxes[1].Longitude, boundingBoxes[1].Latitude,
+                };
+        }
 
         public static IPosition[] GetBoundingBox(this IGeometryObject geometry)
         {
@@ -59,7 +75,7 @@ namespace Stac
             if (positions == null || positions.Length == 0) return null;
             if (positions[0].Altitude.HasValue)
                 return new GeoJSON.Net.Geometry.Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude), positions.Min(p => p.Altitude));
-            else 
+            else
                 return new GeoJSON.Net.Geometry.Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude));
         }
 
@@ -68,7 +84,7 @@ namespace Stac
             if (positions == null || positions.Length == 0) return null;
             if (positions[0].Altitude.HasValue)
                 return new GeoJSON.Net.Geometry.Position(positions.Max(p => p.Latitude), positions.Max(p => p.Longitude), positions.Max(p => p.Altitude));
-            else 
+            else
                 return new GeoJSON.Net.Geometry.Position(positions.Max(p => p.Latitude), positions.Max(p => p.Longitude));
         }
     }

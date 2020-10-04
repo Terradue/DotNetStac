@@ -39,7 +39,9 @@ namespace Stac.Model.v060
         }
 
         [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionConverter))]
+        public string[] StacExtensionsStrings { get; set; }
+
+        [JsonIgnore]
         public StacExtensions StacExtensions
         {
             get
@@ -128,6 +130,13 @@ namespace Stac.Model.v060
             {
                 link.Parent = this;
             }
+            StacExtensions = StacExtensionsFactory.Default.LoadStacExtensions(StacExtensionsStrings, this);
+        }
+
+        [OnSerializing]
+        internal void OnSerializingMethod(StreamingContext context)
+        {
+            StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensionsFactory.Default.GetExtensionsPrefixes(this)).Distinct().ToArray();
         }
     }
 }

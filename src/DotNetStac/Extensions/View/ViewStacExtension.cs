@@ -10,6 +10,7 @@ namespace Stac.Extensions.View
 {
     public class ViewStacExtension : AssignableStacExtension, IStacExtension
     {
+
         public static string OffNadirField => "off_nadir";
         public static string IncidenceAngleField => "incidence_angle";
         public static string AzimuthField => "azimuth";
@@ -17,7 +18,7 @@ namespace Stac.Extensions.View
         public static string SunElevationField => "sun_elevation";
 
 
-        public ViewStacExtension() : base("view")
+        public ViewStacExtension(IStacObject stacObject) : base("view", stacObject)
         {
         }
 

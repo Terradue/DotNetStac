@@ -40,7 +40,9 @@ namespace Stac.Model.v070
         }
 
         [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionConverter))]
+        public string[] StacExtensionsStrings { get; set; }
+
+        [JsonIgnore]
         public StacExtensions StacExtensions
         {
             get

@@ -21,7 +21,7 @@ namespace Stac.Extensions.Eo
             set { base.SetField(CloudCoverField, value); }
         }
 
-        public EoStacExtension() : base(Prefix)
+        public EoStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
         {
         }
 
