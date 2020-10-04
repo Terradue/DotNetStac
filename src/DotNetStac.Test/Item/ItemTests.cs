@@ -87,8 +87,6 @@ namespace Stac.Test.Item
 
             var actualJson = JsonConvert.SerializeObject(item);
 
-            Console.WriteLine(actualJson);
-
             var expectedJson = GetJson("Item");
 
             JsonAssert.AreEqual(expectedJson, actualJson);

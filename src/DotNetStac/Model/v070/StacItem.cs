@@ -7,6 +7,7 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Stac.Extensions;
 using System.Runtime.Serialization;
+using System.Linq;
 
 namespace Stac.Model.v070
 {
@@ -152,7 +153,7 @@ namespace Stac.Model.v070
         {
             if (BoundingBoxes == null)
                 BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
-            StacExtensionsStrings = StacExtensionsFactory.Default.GetExtensionsPrefixes(this);
+            StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensions.Keys).Distinct().ToArray();
         }
 
         public IStacObject Upgrade()

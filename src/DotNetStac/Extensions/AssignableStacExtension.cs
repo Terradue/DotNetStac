@@ -13,6 +13,8 @@ namespace Stac.Extensions
         {
             this.prefix = prefix;
             this.stacObject = stacObject;
+            StacObject.StacExtensions.Remove(prefix);
+            StacObject.StacExtensions.Add(prefix, this);
         }
 
         public virtual string Id => prefix;

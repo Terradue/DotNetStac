@@ -30,6 +30,7 @@ namespace Stac.Catalog
         private string title;
 
         private Uri sourceUri;
+        private string[] stacExtensionsStrings = new string[0];
 
         public Uri Uri { get => sourceUri; set => sourceUri = value; }
 
@@ -47,7 +48,7 @@ namespace Stac.Catalog
         }
 
         [JsonProperty("stac_extensions")]
-        public string[] StacExtensionsStrings { get; set; }
+        public string[] StacExtensionsStrings { get => stacExtensionsStrings; set => stacExtensionsStrings = value; }
 
         [JsonIgnore]
         public StacExtensions StacExtensions
@@ -144,12 +145,14 @@ namespace Stac.Catalog
         [OnSerializing]
         internal void OnSerializingMethod(StreamingContext context)
         {
-            StacExtensionsStrings = StacExtensionsFactory.Default.GetExtensionsPrefixes(this);
+            StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensions.Keys).Distinct().ToArray();
         }
 
         public IStacObject Upgrade()
         {
             return this;
         }
+
+
     }
 }

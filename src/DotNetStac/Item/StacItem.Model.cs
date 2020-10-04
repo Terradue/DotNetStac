@@ -25,6 +25,7 @@ namespace Stac.Item
         private string collection;
 
         private Uri sourceUri;
+        private string[] stacExtensionsStrings = new string[0];
 
         [JsonConstructor]
         public StacItem(IGeometryObject geometry, IDictionary<string, object> properties = null, string id = null) : base(geometry, properties, id)
@@ -36,7 +37,7 @@ namespace Stac.Item
         }
 
         [JsonProperty("stac_extensions")]
-        public string[] StacExtensionsStrings { get; set; }
+        public string[] StacExtensionsStrings { get => stacExtensionsStrings; set => stacExtensionsStrings = value; }
 
 
         [JsonIgnore]
@@ -185,7 +186,7 @@ namespace Stac.Item
         {
             if (BoundingBoxes == null)
                 BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
-            StacExtensionsStrings = StacExtensionsFactory.Default.GetExtensionsPrefixes(this);
+            StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensions.Keys).Distinct().ToArray();
         }
 
         [JsonIgnore]

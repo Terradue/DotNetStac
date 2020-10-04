@@ -67,13 +67,5 @@ namespace Stac.Extensions
             return stacExtensions;
         }
 
-        public string[] GetExtensionsPrefixes(IStacObject stacObject)
-        {
-            if (stacObject.StacExtensions == null)
-                return new string[0];
-
-            return stacObject.StacExtensions.Select(ext => ext.Id).ToArray();
-        }
-
     }
 }
