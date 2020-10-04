@@ -19,20 +19,7 @@ namespace Stac.Item
     public partial class StacItem : IStacItem, IStacObject
     {
 
-        public void SetBoundingBoxOnGeometryExtent()
-        {
-            var boundingBoxes = Geometry.GetBoundingBox();
-            if (boundingBoxes[0].Altitude.HasValue)
-                this.BoundingBoxes = new double[] {
-                    boundingBoxes[0].Longitude, boundingBoxes[0].Latitude, boundingBoxes[0].Altitude.Value,
-                    boundingBoxes[1].Longitude, boundingBoxes[1].Latitude, boundingBoxes[1].Altitude.Value,
-                };
-            else
-                this.BoundingBoxes = new double[] {
-                    boundingBoxes[0].Longitude, boundingBoxes[0].Latitude,
-                    boundingBoxes[1].Longitude, boundingBoxes[1].Latitude,
-                };
-        }
+        
 
         public static async Task<IStacItem> LoadUri(Uri uri)
         {

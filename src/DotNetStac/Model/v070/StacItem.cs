@@ -6,6 +6,7 @@ using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Stac.Extensions;
+using System.Runtime.Serialization;
 
 namespace Stac.Model.v070
 {
@@ -116,7 +117,9 @@ namespace Stac.Model.v070
         public string StacVersion { get => StacVersionList.V070; set { } }
 
         [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionConverter))]
+        public string[] StacExtensionsStrings { get; set; }
+
+        [JsonIgnore]
         public StacExtensions StacExtensions
         {
             get
@@ -133,6 +136,24 @@ namespace Stac.Model.v070
         }
 
         public bool IsCatalog => true;
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in Links)
+            {
+                link.Parent = this;
+            }
+            StacExtensions = StacExtensionsFactory.Default.LoadStacExtensions(StacExtensionsStrings, this);
+        }
+
+        [OnSerializing]
+        internal void OnSerializingMethod(StreamingContext context)
+        {
+            if (BoundingBoxes == null)
+                BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
+            StacExtensionsStrings = StacExtensionsFactory.Default.GetExtensionsPrefixes(this);
+        }
 
         public IStacObject Upgrade()
         {

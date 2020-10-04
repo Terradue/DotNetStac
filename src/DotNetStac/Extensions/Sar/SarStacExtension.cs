@@ -26,8 +26,11 @@ namespace Stac.Extensions.Sar
         public const string LooksEquivalentNumberField = "looks_equivalent_number";
         public const string ObservationDirectionField = "observation_direction";
 
+        internal SarStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
+        {
+        }
 
-        public SarStacExtension(string instrumentMode, SarCommonFrequencyBandName frequencyBandName, string[] polarizations, string productType) : base(Prefix)
+        public SarStacExtension(IStacObject stacObject, string instrumentMode, SarCommonFrequencyBandName frequencyBandName, string[] polarizations, string productType) : base(Prefix, stacObject)
         {
             InstrumentMode = instrumentMode;
             FrequencyBand = frequencyBandName;
@@ -124,7 +127,7 @@ namespace Stac.Extensions.Sar
         public StacAsset GetAsset(string polarization)
         {
             StacItem item = StacObject as StacItem;
-            if ( item == null ) return null;
+            if (item == null) return null;
             return item.Assets.Values.FirstOrDefault(a => GetAssetPolarization(a).Contains(polarization));
         }
 

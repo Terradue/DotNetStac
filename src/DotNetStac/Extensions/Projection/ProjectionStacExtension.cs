@@ -11,8 +11,10 @@ namespace Stac.Extensions.Projection
 {
     public class ProjectionStacExtension : AssignableStacExtension, IStacExtension
     {
-        public static string EpsgField => "epsg";
-        public static string Wkt2Field => "wkt2";
+
+        public const string Prefix = "proj";
+        public const string EpsgField = "epsg";
+        public const string Wkt2Field = "wkt2";
 
         public long Epsg
         {
@@ -27,7 +29,7 @@ namespace Stac.Extensions.Projection
             set { base.SetField(Wkt2Field, value); }
         }
 
-        public ProjectionStacExtension() : base("proj")
+        public ProjectionStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
         {
         }
 

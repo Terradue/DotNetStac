@@ -9,14 +9,23 @@ namespace Stac.Extensions
         private string prefix;
         private IStacObject stacObject;
 
-        public AssignableStacExtension(string prefix)
+        public AssignableStacExtension(string prefix, IStacObject stacObject)
         {
             this.prefix = prefix;
+            this.stacObject = stacObject;
         }
 
         public virtual string Id => prefix;
 
-        public IStacObject StacObject { get => stacObject; }
+        public IStacObject StacObject
+        {
+            get
+            {
+                if (stacObject == null)
+                    throw new ExtensionNotAssignedException("Extension {0} is not assigned to a Stac object", Id);
+                return stacObject;
+            }
+        }
 
         internal void InitStacObject(IStacObject stacObject)
         {
@@ -25,16 +34,16 @@ namespace Stac.Extensions
 
         internal void SetField(string key, object value)
         {
-            stacObject.Properties.Remove(prefix + ":" + key);
-            stacObject.Properties.Add(prefix + ":" + key, value);
+            StacObject.Properties.Remove(prefix + ":" + key);
+            StacObject.Properties.Add(prefix + ":" + key, value);
         }
 
         protected object GetField(string fieldName)
         {
             string key = prefix + ":" + fieldName;
-            if (!stacObject.Properties.ContainsKey(key))
+            if (!StacObject.Properties.ContainsKey(key))
                 return null;
-            return stacObject.Properties[key];
+            return StacObject.Properties[key];
         }
 
         internal T GetField<T>(string fieldName)

@@ -28,20 +28,24 @@ namespace Stac.Item
 
         [JsonConstructor]
         public StacItem(IGeometryObject geometry, IDictionary<string, object> properties = null, string id = null) : base(geometry, properties, id)
-        { 
+        {
         }
 
         public StacItem(IGeometryObject geometry, object properties, string id = null) : base(geometry, properties, id)
-        { 
+        {
         }
 
         [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionConverter))]
+        public string[] StacExtensionsStrings { get; set; }
+
+
+        [JsonIgnore]
         public StacExtensions StacExtensions
         {
             get
             {
-                if (extensions == null){
+                if (extensions == null)
+                {
                     extensions = new StacExtensions();
                     extensions.InitStacObject(this);
                 }
@@ -52,6 +56,11 @@ namespace Stac.Item
                 extensions = value;
                 extensions.InitStacObject(this);
             }
+        }
+
+        private object[] GetStactExtensionConverterParameters()
+        {
+            return new object[1] { this };
         }
 
         [JsonProperty("stac_version")]
@@ -153,6 +162,7 @@ namespace Stac.Item
             }
         }
 
+        [JsonIgnore]
         public Uri Uri { get => sourceUri; set => sourceUri = value; }
 
         public IStacObject Upgrade()
@@ -167,13 +177,15 @@ namespace Stac.Item
             {
                 link.Parent = this;
             }
+            StacExtensions = StacExtensionsFactory.Default.LoadStacExtensions(StacExtensionsStrings, this);
         }
 
         [OnSerializing]
         internal void OnSerializingMethod(StreamingContext context)
         {
-            if ( BoundingBoxes == null )
-                SetBoundingBoxOnGeometryExtent();
+            if (BoundingBoxes == null)
+                BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
+            StacExtensionsStrings = StacExtensionsFactory.Default.GetExtensionsPrefixes(this);
         }
 
         [JsonIgnore]

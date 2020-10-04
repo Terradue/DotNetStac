@@ -10,13 +10,14 @@ namespace Stac.Extensions.Sat
 {
     public class SatStacExtension : AssignableStacExtension, IStacExtension
     {
-        public static string OrbitStateVectorField => "orbit_state_vectors";
-        public static string AscendingNodeCrossingDateTimeField => "anx_datetime";
-        public static string SceneCenterCoordinatesField => "scene_center_coordinates";
-        public static string RelativeOrbitField => "relative_orbit";
-        public static string AbsoluteOrbitField => "absolute_orbit";
-        public static string OrbitStateField => "orbit_state";
-        public static string PlatformInternationalDesignatorField => "platform_international_designator";
+        public const string Prefix = "sat";
+        public const string OrbitStateVectorField = "orbit_state_vectors";
+        public const string AscendingNodeCrossingDateTimeField = "anx_datetime";
+        public const string SceneCenterCoordinatesField = "scene_center_coordinates";
+        public const string RelativeOrbitField = "relative_orbit";
+        public const string AbsoluteOrbitField = "absolute_orbit";
+        public const string OrbitStateField = "orbit_state";
+        public const string PlatformInternationalDesignatorField = "platform_international_designator";
 
 
         public SortedDictionary<DateTime, SatOrbitStateVector> OrbitStateVectors
@@ -79,7 +80,7 @@ namespace Stac.Extensions.Sat
             return new SortedDictionary<DateTime, SatOrbitStateVector>(osvlist.ToDictionary(osv => osv.Time, osv => osv));
         }
 
-        public SatStacExtension() : base("sat")
+        public SatStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
         {
         }
 
