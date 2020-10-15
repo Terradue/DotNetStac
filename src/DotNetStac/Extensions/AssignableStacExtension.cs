@@ -29,12 +29,12 @@ namespace Stac.Extensions
             }
         }
 
-        internal void InitStacObject(IStacObject stacObject)
+        public void InitStacObject(IStacObject stacObject)
         {
             this.stacObject = stacObject;
         }
 
-        internal void SetField(string key, object value)
+        protected void SetField(string key, object value)
         {
             StacObject.Properties.Remove(prefix + ":" + key);
             StacObject.Properties.Add(prefix + ":" + key, value);
@@ -48,7 +48,7 @@ namespace Stac.Extensions
             return StacObject.Properties[key];
         }
 
-        internal T GetField<T>(string fieldName)
+        protected T GetField<T>(string fieldName)
         {
             var @object = GetField(fieldName);
             if (@object == null) return default(T);
