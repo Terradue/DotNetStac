@@ -20,7 +20,7 @@ namespace Stac.Extensions
             }
         }
 
-        internal void InitStacObject(IStacObject stacObject)
+        public void InitStacObject(IStacObject stacObject)
         {
             foreach (var stacExtension in Values.OfType<AssignableStacExtension>())
             {
