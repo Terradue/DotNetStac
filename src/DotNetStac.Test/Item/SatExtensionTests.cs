@@ -23,8 +23,6 @@ namespace Stac.Test.Item
             IStacItem sentinel1Item_1 = JsonConvert.DeserializeObject<StacItem>(sentinel1Json_1);
             IStacItem sentinel1Item_2 = JsonConvert.DeserializeObject<StacItem>(sentinel1Json_2);
 
-            sentinel1Item_2.GetTitle();
-
             SatStacExtension satExtension_1 = sentinel1Item_1.GetExtension<SatStacExtension>();
             SatStacExtension satExtension_2 = sentinel1Item_2.GetExtension<SatStacExtension>();
 
