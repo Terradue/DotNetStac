@@ -36,6 +36,16 @@ namespace Stac.Item
         {
         }
 
+        public StacItem(StacItem stacItem) : this(stacItem.Geometry, stacItem.Properties, stacItem.Id)
+        {
+            this.stacExtensionsStrings = stacItem.stacExtensionsStrings;
+            this.stacVersion = stacItem.stacVersion;
+            this.links = stacItem.links;
+            this.assets = stacItem.assets;
+            this.collection = stacItem.collection;
+            this.sourceUri = stacItem.sourceUri;
+        }
+
         [JsonProperty("stac_extensions")]
         public string[] StacExtensionsStrings { get => stacExtensionsStrings; set => stacExtensionsStrings = value; }
 
