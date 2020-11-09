@@ -44,6 +44,7 @@ namespace Stac.Item
             this.assets = stacItem.assets;
             this.collection = stacItem.collection;
             this.sourceUri = stacItem.sourceUri;
+            this.extensions = stacItem.extensions;
         }
 
         [JsonProperty("stac_extensions")]
