@@ -35,6 +35,8 @@ namespace Stac.Extensions
             }
         }
 
+        public Dictionary<string, Type> StacExtensionsDictionary => stacExtensionsDictionary;
+
         public static StacExtensionsFactory CreateDefaultFactory()
         {
             return new StacExtensionsFactory();

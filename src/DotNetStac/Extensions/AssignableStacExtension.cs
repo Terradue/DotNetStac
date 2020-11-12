@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using Newtonsoft.Json.Linq;
 using Stac.Item;
 
@@ -54,7 +55,9 @@ namespace Stac.Extensions
             if (@object == null) return default(T);
             if (@object is JToken)
                 return (@object as JToken).ToObject<T>();
-            return (T)@object;
+            if (typeof(T).GetTypeInfo().IsEnum)
+                return (T)Enum.Parse(typeof(T), @object.ToString());
+            return (T)Convert.ChangeType(@object, typeof(T));
         }
 
     }

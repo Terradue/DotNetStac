@@ -117,7 +117,7 @@ namespace Stac.Item
                         }
                     }
                 }
-                return null;
+                return Itenso.TimePeriod.TimeInterval.Anytime;
             }
             set
             {

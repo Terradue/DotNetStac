@@ -20,22 +20,32 @@ namespace Stac
 
         public static IDictionary<Uri, IStacCatalog> GetChildren(this IStacObject stacObject)
         {
-            return GetChildrenAsync(stacObject).ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Result);
+            return GetChildrenAsync(stacObject).GetAwaiter().GetResult();
         }
 
-        public static IDictionary<Uri, Task<IStacCatalog>> GetChildrenAsync(this IStacObject stacObject)
+        public static async Task<IDictionary<Uri, IStacCatalog>> GetChildrenAsync(this IStacObject stacObject)
         {
-            return stacObject.Links.Where(l => l.RelationshipType == "child").ToDictionary(link => link.Uri, link => StacCatalog.LoadStacLink(link));
+            Dictionary<Uri, IStacCatalog> children = new Dictionary<Uri, IStacCatalog>();
+            foreach (var link in stacObject.Links.Where(l => l.RelationshipType == "child"))
+            {
+                children.Add(link.Uri, await StacCatalog.LoadStacLink(link));
+            }
+            return children;
         }
 
         public static IDictionary<Uri, IStacItem> GetItems(this IStacObject stacObject)
         {
-            return GetItemsAsync(stacObject).ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Result);
+            return GetItemsAsync(stacObject).GetAwaiter().GetResult();
         }
 
-        public static IDictionary<Uri, Task<IStacItem>> GetItemsAsync(this IStacObject stacObject)
+        public static async Task<IDictionary<Uri, IStacItem>> GetItemsAsync(this IStacObject stacObject)
         {
-            return stacObject.Links.Where(l => l.RelationshipType == "item").ToDictionary(link => link.Uri, link => StacItem.LoadStacLink(link));
+            Dictionary<Uri, IStacItem> items = new Dictionary<Uri, IStacItem>();
+            foreach (var link in stacObject.Links.Where(l => l.RelationshipType == "item"))
+            {
+                items.Add(link.Uri, await StacItem.LoadStacLink(link));
+            }
+            return items;
         }
 
         public static IEnumerable<StacLink> GetChildrenLinks(this IStacObject stacObject, bool absolute = true)
