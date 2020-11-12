@@ -15,7 +15,7 @@ namespace Stac
         [JsonProperty("temporal")]
         public StacTemporalExtent Temporal { get; set; }
 
-        public static StacExtent Create(IEnumerable<StacItem> items)
+        public static StacExtent Create(IEnumerable<IStacItem> items)
         {
             return new StacExtent()
             {

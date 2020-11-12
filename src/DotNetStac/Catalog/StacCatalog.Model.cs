@@ -29,9 +29,10 @@ namespace Stac.Catalog
 
         private string title;
 
-        private Uri sourceUri;
+                private Uri sourceUri;
         private string[] stacExtensionsStrings = new string[0];
 
+        [JsonIgnore]
         public Uri Uri { get => sourceUri; set => sourceUri = value; }
 
 
