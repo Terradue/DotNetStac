@@ -116,5 +116,12 @@ namespace Stac.Test.Item
             Assert.Equal("1.0.0-beta.2", item.StacVersion);
 
         }
+
+        [Fact]
+        public void CannotMakeEmptyGeometryItem()
+        {
+            Assert.Throws(typeof(ArgumentNullException), () =>
+                                                        new StacItem(null));
+        }
     }
 }
