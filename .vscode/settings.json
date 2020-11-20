@@ -1,6 +1,5 @@
 {
     "dotnet-test-explorer.testProjectPath": "**/*Test.@(csproj|vbproj|fsproj)",
-    "python.dataScience.jupyterServerURI": "local",
     "python.pythonPath": "/bin/python3",
     "psi-header.variables": [
 		["projectCreationYear", "2020"]
@@ -24,4 +23,5 @@
                 "License <<licenseurl>>"
 			]
 		}
-	]
+    ],
+    "jupyter.jupyterServerType": "local"
