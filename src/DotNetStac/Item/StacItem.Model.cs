@@ -24,19 +24,24 @@ namespace Stac.Item
         private string collection;
 
         private Uri sourceUri;
-        
+
         private string[] stacExtensionsStrings = new string[0];
 
         [JsonConstructor]
-        public StacItem(IGeometryObject geometry, IDictionary<string, object> properties = null, string id = null) : base(geometry, properties, id)
+        public StacItem(IGeometryObject geometry, IDictionary<string, object> properties = null, string id = null) : base(Preconditions.CheckNotNull(geometry), properties, id)
         {
+            if (geometry == null) throw new ArgumentNullException("geometry");
         }
 
-        public StacItem(IGeometryObject geometry, object properties, string id = null) : base(geometry, properties, id)
+        public StacItem(IGeometryObject geometry, object properties, string id = null) : base(Preconditions.CheckNotNull(geometry), properties, id)
         {
+            if (geometry == null) throw new ArgumentNullException("geometry");
+            if (properties == null) throw new ArgumentNullException("properties");
         }
 
-        public StacItem(StacItem stacItem) : this(stacItem.Geometry, stacItem.Properties, stacItem.Id)
+        public StacItem(StacItem stacItem) : this(Preconditions.CheckNotNull(stacItem).Geometry, 
+                                                  Preconditions.CheckNotNull(stacItem).Properties, 
+                                                  Preconditions.CheckNotNull(stacItem).Id)
         {
             this.stacExtensionsStrings = stacItem.stacExtensionsStrings;
             this.stacVersion = stacItem.stacVersion;
@@ -125,6 +130,6 @@ namespace Stac.Item
             StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensions.Keys).Distinct().ToArray();
         }
 
-        
+
     }
 }
