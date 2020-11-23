@@ -123,5 +123,38 @@ namespace Stac.Test.Item
             Assert.Throws(typeof(ArgumentNullException), () =>
                                                         new StacItem(null));
         }
+
+        [Fact]
+        public void GetProperty()
+        {
+            var coordinates = new[]
+            {
+                new List<IPosition>
+                {
+                    new Position(37.488035566,-122.308150179),
+                    new Position(37.538869539,-122.597502109),
+                    new Position(37.613537207,-122.576687533),
+                    new Position(37.562818007,-122.288048600),
+                    new Position(37.488035566,-122.308150179)
+                }
+            };
+
+            var geometry = new Polygon(new LineString[] { new LineString(coordinates[0]) });
+
+            var properties = new Dictionary<string, object>();
+
+            properties.Add("datetime", DateTime.Parse("2016-05-03T13:21:30.040Z").ToUniversalTime());
+            properties.Add("collection", "CS3");
+
+            StacItem item = new StacItem(geometry, properties, "CS3-20160503_132130_04");
+
+            item.SetProperty("test", new string[] {"test1", "test2", "test3"});
+
+            string json = JsonConvert.SerializeObject(item);
+
+            item = JsonConvert.DeserializeObject<StacItem>(json);
+
+            var array = item.GetProperty<string[]>("test");
+        }
     }
 }
