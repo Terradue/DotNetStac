@@ -43,8 +43,7 @@ namespace Stac
         ContentType type;
 
         Collection<string> semanticRoles;
-        private ulong contentLength;
-        private IDictionary<string, object> properties;
+        private Dictionary<string, object> properties;
 
         public StacAsset()
         {
@@ -56,12 +55,13 @@ namespace Stac
             Uri = uri;
         }
 
-        public StacAsset(Uri uri, IEnumerable<string> semanticRoles, string title, ContentType mediaType, ulong contentLength = 0) : this (uri)
+        public StacAsset(Uri uri, IEnumerable<string> semanticRoles, string title, ContentType mediaType, ulong contentLength = 0) : this(uri)
         {
             this.semanticRoles = semanticRoles == null ? new Collection<string>() : new Collection<string>(semanticRoles.ToList());
             Title = title;
             MediaType = mediaType;
-            ContentLength = contentLength;
+            if (contentLength > 0)
+                ContentLength = contentLength;
         }
 
         public StacAsset(StacAsset source)
@@ -70,12 +70,11 @@ namespace Stac
                 throw new ArgumentNullException("source");
             base_uri = source.base_uri;
             href = source.href;
-            semanticRoles = source.semanticRoles;
+            semanticRoles = new Collection<string>(source.semanticRoles);
             title = source.title;
             type = source.type;
             description = source.description;
-            contentLength = source.contentLength;
-            properties = source.properties;
+            properties = new Dictionary<string, object>(source.properties);
         }
 
         [JsonProperty("type")]
@@ -146,7 +145,7 @@ namespace Stac
 
             set
             {
-                properties = value;
+                properties = new Dictionary<string, object>(value);
             }
         }
 
@@ -157,6 +156,6 @@ namespace Stac
         }
 
         [JsonIgnore]
-        public ulong ContentLength { get => contentLength; set => contentLength = value; }
+        public ulong ContentLength { get => this.GetProperty<ulong>("size"); set => this.SetProperty("size", value); }
     }
 }
