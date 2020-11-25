@@ -7,7 +7,7 @@ using Stac.Item;
 
 namespace Stac.Extensions
 {
-    public class StacExtensions : Dictionary<string, IStacExtension>
+    public class StacExtensions : Dictionary<string, IStacExtension>, IEnumerable<IStacExtension>
     {
         public StacExtensions(IEnumerable<IStacExtension> stacExtensions = null)
         {
@@ -33,7 +33,9 @@ namespace Stac.Extensions
             Add(extension.Id, extension);
         }
 
-      
-
+        IEnumerator<IStacExtension> IEnumerable<IStacExtension>.GetEnumerator()
+        {
+            return this.Values.GetEnumerator();
+        }
     }
 }
