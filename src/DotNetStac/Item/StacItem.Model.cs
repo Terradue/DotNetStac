@@ -40,16 +40,16 @@ namespace Stac.Item
         }
 
         public StacItem(StacItem stacItem) : this(Preconditions.CheckNotNull(stacItem).Geometry, 
-                                                  Preconditions.CheckNotNull(stacItem).Properties, 
+                                                  new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties), 
                                                   Preconditions.CheckNotNull(stacItem).Id)
         {
             this.stacExtensionsStrings = stacItem.stacExtensionsStrings;
             this.stacVersion = stacItem.stacVersion;
-            this.links = stacItem.links;
-            this.assets = stacItem.assets;
+            this.links = new Collection<StacLink>(stacItem.links);
+            this.assets = new Dictionary<string, StacAsset>(stacItem.assets);
             this.collection = stacItem.collection;
             this.sourceUri = stacItem.sourceUri;
-            this.extensions = stacItem.extensions;
+            this.extensions = new StacExtensions(stacItem.extensions);
         }
 
         [JsonProperty("stac_extensions")]
