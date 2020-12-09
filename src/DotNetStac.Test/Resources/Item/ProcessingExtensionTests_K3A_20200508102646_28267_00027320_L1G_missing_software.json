@@ -1,0 +1,184 @@
+{
+    "stac_extensions": [
+        "eo",
+        "sat",
+        "proj",
+        "view"
+    ],
+    "stac_version": "1.0.0-beta.2",
+    "links": [
+        {
+            "rel": "self",
+            "href": "K3A_20200508102646_28267_00027320_L1G.json"
+        }
+    ],
+    "assets": {
+        "metadata": {
+            "type": "text/xml",
+            "roles": [
+                "metadata"
+            ],
+            "href": "750-KARI-KOMPSAT3A-urn_ogc_def_EOP_KARI_KOMPSAT3_K3A_20200508102646_28267_00027320_L1G_Aux_xml.enclosure/K3A_20200508102646_28267_00027320_L1G_Aux.xml"
+        },
+        "MS1": {
+            "type": "image/tiff",
+            "roles": [
+                "data"
+            ],
+            "href": "750-KARI-KOMPSAT3A-urn_ogc_def_EOP_KARI_KOMPSAT3_K3A_20200508102646_28267_00027320_L1G_Aux_xml.enclosure/K3A_20200508102646_28267_00027320_L1G_B.tif",
+            "gsd": 2.2
+        },
+        "overview": {
+            "type": "image/jpeg",
+            "roles": [
+                "overview"
+            ],
+            "href": "750-KARI-KOMPSAT3A-urn_ogc_def_EOP_KARI_KOMPSAT3_K3A_20200508102646_28267_00027320_L1G_Aux_xml.enclosure/K3A_20200508102646_28267_00027320_L1G_br.jpg"
+        },
+        "MS2": {
+            "type": "image/tiff",
+            "roles": [
+                "data"
+            ],
+            "href": "750-KARI-KOMPSAT3A-urn_ogc_def_EOP_KARI_KOMPSAT3_K3A_20200508102646_28267_00027320_L1G_Aux_xml.enclosure/K3A_20200508102646_28267_00027320_L1G_G.tif",
+            "gsd": 2.2,
+            "eo:bands": [
+                {
+                    "name": "MS2",
+                    "common_name": "green",
+                    "center_wavelength": 0.56,
+                    "scale": 40.16064257028113,
+                    "offset": -14.021,
+                    "eai": 1875.0
+                }
+            ]
+        },
+        "MS4": {
+            "type": "image/tiff",
+            "roles": [
+                "data"
+            ],
+            "href": "750-KARI-KOMPSAT3A-urn_ogc_def_EOP_KARI_KOMPSAT3_K3A_20200508102646_28267_00027320_L1G_Aux_xml.enclosure/K3A_20200508102646_28267_00027320_L1G_N.tif",
+            "gsd": 2.2,
+            "eo:bands": [
+                {
+                    "name": "MS4",
+                    "common_name": "nir",
+                    "center_wavelength": 0.83,
+                    "scale": 76.92307692307692,
+                    "offset": -10.2834,
+                    "eai": 1027.0
+                }
+            ]
+        },
+        "PAN": {
+            "type": "image/tiff",
+            "roles": [
+                "data"
+            ],
+            "href": "750-KARI-KOMPSAT3A-urn_ogc_def_EOP_KARI_KOMPSAT3_K3A_20200508102646_28267_00027320_L1G_Aux_xml.enclosure/K3A_20200508102646_28267_00027320_L1G_P.tif",
+            "gsd": 0.55,
+            "eo:bands": [
+                {
+                    "name": "PAN",
+                    "common_name": "pan",
+                    "center_wavelength": 0.675
+                }
+            ]
+        },
+        "MS3": {
+            "type": "image/tiff",
+            "roles": [
+                "data"
+            ],
+            "href": "750-KARI-KOMPSAT3A-urn_ogc_def_EOP_KARI_KOMPSAT3_K3A_20200508102646_28267_00027320_L1G_Aux_xml.enclosure/K3A_20200508102646_28267_00027320_L1G_R.tif",
+            "gsd": 2.2,
+            "eo:bands": [
+                {
+                    "name": "MS3",
+                    "common_name": "red",
+                    "center_wavelength": 0.66,
+                    "scale": 43.66812227074236,
+                    "offset": -13.0457,
+                    "eai": 1525.0
+                }
+            ]
+        },
+        "thumbnail": {
+            "type": "image/jpeg",
+            "roles": [
+                "thumbnail"
+            ],
+            "href": "750-KARI-KOMPSAT3A-urn_ogc_def_EOP_KARI_KOMPSAT3_K3A_20200508102646_28267_00027320_L1G_Aux_xml.enclosure/K3A_20200508102646_28267_00027320_L1G_th.jpg"
+        }
+    },
+    "type": "Feature",
+    "id": "K3A_20200508102646_28267_00027320_L1G",
+    "bbox": [
+        45.1496484,
+        4.622519631,
+        45.289144731,
+        4.763075752
+    ],
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    45.1496484,
+                    4.622562804
+                ],
+                [
+                    45.219367822,
+                    4.622544648
+                ],
+                [
+                    45.289086915,
+                    4.622519631
+                ],
+                [
+                    45.289144731,
+                    4.763031261
+                ],
+                [
+                    45.219411695,
+                    4.763057041
+                ],
+                [
+                    45.149678329,
+                    4.763075752
+                ],
+                [
+                    45.1496484,
+                    4.622562804
+                ]
+            ]
+        ]
+    },
+    "properties": {
+        "datetime": "2020-05-08T10:26:49.1019005+00:00",
+        "start_datetime": "2020-05-08T10:26:49.1019005+00:00",
+        "end_datetime": "2020-05-08T10:26:50.9661028+00:00",
+        "updated": "2020-09-30T06:17:41.7436478Z",
+        "platform": "kompsat-3a",
+        "constellation": "kompsat-3",
+        "mission": "kompsat-3",
+        "instruments": [
+            "aeiss-a"
+        ],
+        "gsd": 0.55,
+        "title": "dummy",
+        "description": "dummy",
+        "eo:cloud_cover": 0.0,
+        "sat:absolute_orbit": 28267,
+        "proj:epsg": 32638,
+        "proj:wkt2": "PROJCS[\"WGS 84 / UTM zone 38N\", GEOGCS[\"WGS 84\", DATUM[\"World Geodetic System 1984\", SPHEROID[\"WGS 84\", 6378137, 298.257223563, AUTHORITY[\"EPSG\", \"7030\"]], AUTHORITY[\"EPSG\", \"6326\"]], PRIMEM[\"Greenwich\", 0, AUTHORITY[\"EPSG\", \"8901\"]], UNIT[\"degree\", 0.017453292519943295, AUTHORITY[\"EPSG\", \"9102\"]], AUTHORITY[\"EPSG\", \"4326\"]], UNIT[\"metre\", 1, AUTHORITY[\"EPSG\", \"9001\"]], PROJECTION[\"UTM38N\", AUTHORITY[\"EPSG\", \"32638\"]], PARAMETER[\"latitude_of_origin\", 0], PARAMETER[\"central_meridian\", 45], PARAMETER[\"scale_factor\", 0.9996], PARAMETER[\"false_easting\", 500000], PARAMETER[\"false_northing\", 0], AUTHORITY[\"EPSG\", \"32638\"], AXIS[\"East\", EAST], AXIS[\"North\", NORTH]]",
+        "view:off_nadir": 0.0,
+        "view:incidence_angle": 2.140217373,
+        "view:azimuth": 82.308110583,
+        "view:sun_azimuth": 300.8770745318308,
+        "view:sun_elevation": 64.28026701447693,
+        "proc:level": "Level1G",
+        "product_type": "PAN_MS_L1G"
+    }
+}
