@@ -35,7 +35,7 @@ namespace Stac.Extensions.Eo
         {
             string key = Id + ":" + BandsField;
             if (stacAsset.Properties.ContainsKey(key))
-                return (EoBandObject[])stacAsset.Properties[key];
+                return stacAsset.GetProperty<EoBandObject[]>(key);
             return null;
         }
 
