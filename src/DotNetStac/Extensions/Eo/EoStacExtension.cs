@@ -25,6 +25,10 @@ namespace Stac.Extensions.Eo
         {
         }
 
+        public EoStacExtension(StacAsset stacAsset) : base(Prefix, stacAsset)
+        {
+        }
+
         public EoBandObject[] Bands
         {
             get { return base.GetField<EoBandObject[]>(BandsField); }
@@ -41,9 +45,12 @@ namespace Stac.Extensions.Eo
 
         public StacAsset GetAsset(EoBandCommonName commonName)
         {
-            StacItem item = StacObject as StacItem;
-            if ( item == null ) return null;
-            return item.Assets.Values.FirstOrDefault(a => GetAssetBandObjects(a).Any(b => b.CommonName == commonName));
+            StacItem item = null;
+            try { item = StacObject as StacItem; }
+            catch { }
+            if (item != null)
+                return item.Assets.Values.FirstOrDefault(a => GetAssetBandObjects(a).Any(b => b.CommonName == commonName));
+            return null;
         }
 
         public void SetAssetBandObjects(StacAsset stacAsset, EoBandObject[] eoBandObjects)
