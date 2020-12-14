@@ -53,6 +53,32 @@ namespace Stac.Test.Item
         }
 
         [Fact]
+        public void GetAssetsBands()
+        {
+            var k3CompleteJson = GetJson("Item", "GetAssetsBands_K3_20201112193439_45302_18521139_L1G");
+
+            StacItem k3complete = JsonConvert.DeserializeObject<StacItem>(k3CompleteJson);
+
+            EoStacExtension k3EOext = k3complete.GetExtension<EoStacExtension>();
+
+            Assert.NotNull(k3EOext);
+
+            var overviewAssets = k3complete.Assets.Where(a =>
+            {
+                var bands = k3EOext.GetAssetBandObjects(a.Value);
+                if (a.Value.Properties.ContainsKey("eo:bands"))
+                {
+                    Assert.NotNull(bands);
+                    Assert.NotEmpty(bands);
+                    return bands.Any(band => !string.IsNullOrEmpty(band.Name));
+                }
+                return false;
+            });
+
+            Assert.Equal(5, overviewAssets.Count());
+        }
+
+        [Fact]
         public void CreateEoExtension()
         {
             var coordinates = new[]

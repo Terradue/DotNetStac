@@ -8,14 +8,19 @@ namespace Stac.Extensions
     public abstract class AssignableStacExtension : IStacExtension
     {
         private string prefix;
-        private IStacObject stacObject;
+        private IStacPropertiesContainer stacPropertiesContainer;
 
-        public AssignableStacExtension(string prefix, IStacObject stacObject)
+        public AssignableStacExtension(string prefix, IStacObject stacObject) : this(prefix, stacObject as IStacPropertiesContainer)
+        {
+        }
+
+        public AssignableStacExtension(string prefix, IStacPropertiesContainer stacPropertiesContainer)
         {
             this.prefix = prefix;
-            this.stacObject = stacObject;
-            StacObject.StacExtensions.Remove(prefix);
-            StacObject.StacExtensions.Add(prefix, this);
+            this.stacPropertiesContainer = stacPropertiesContainer;
+            if (stacPropertiesContainer is IStacObject)
+                InitStacObject(stacPropertiesContainer as IStacObject);
+
         }
 
         public virtual string Id => prefix;
@@ -24,29 +29,40 @@ namespace Stac.Extensions
         {
             get
             {
-                if (stacObject == null)
+                if (!(StacPropertiesContainer is IStacObject))
                     throw new ExtensionNotAssignedException("Extension {0} is not assigned to a Stac object", Id);
-                return stacObject;
+                return stacPropertiesContainer as IStacObject;
+            }
+        }
+
+        public IStacPropertiesContainer StacPropertiesContainer
+        {
+            get
+            {
+                if (stacPropertiesContainer == null)
+                    throw new ExtensionNotAssignedException("Extension {0} is not assigned to a Stac properties container", Id);
+                return stacPropertiesContainer;
             }
         }
 
         public void InitStacObject(IStacObject stacObject)
         {
-            this.stacObject = stacObject;
+            stacObject.StacExtensions.Remove(prefix);
+            stacObject.StacExtensions.Add(prefix, this);
         }
 
         protected void SetField(string key, object value)
         {
-            StacObject.Properties.Remove(prefix + ":" + key);
-            StacObject.Properties.Add(prefix + ":" + key, value);
+            StacPropertiesContainer.Properties.Remove(prefix + ":" + key);
+            StacPropertiesContainer.Properties.Add(prefix + ":" + key, value);
         }
 
         protected object GetField(string fieldName)
         {
             string key = prefix + ":" + fieldName;
-            if (!StacObject.Properties.ContainsKey(key))
+            if (!StacPropertiesContainer.Properties.ContainsKey(key))
                 return null;
-            return StacObject.Properties[key];
+            return StacPropertiesContainer.Properties[key];
         }
 
         protected T GetField<T>(string fieldName)

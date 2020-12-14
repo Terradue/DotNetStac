@@ -10,7 +10,7 @@ using System.Net.Mime;
 namespace Stac
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacAsset
+    public class StacAsset : IStacPropertiesContainer
     {
 
         #region Static members

@@ -119,7 +119,7 @@ namespace Stac.Item
             {
                 link.Parent = this;
             }
-            StacExtensions = StacExtensionsFactory.Default.LoadStacExtensions(StacExtensionsStrings, this);
+            StacExtensions = StacExtensionsFactory.Default.LoadStacExtensions(StacExtensionsStrings.ToList(), this);
         }
 
         [OnSerializing]

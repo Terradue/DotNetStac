@@ -9,22 +9,9 @@ namespace Stac
     /// <summary>
     /// Common interface for all Stac objects
     /// </summary>
-    public interface IStacObject : IStacPropertiesContainer
+    public interface IStacPropertiesContainer
     {
-        string Id { get; }
-
-        string StacVersion { get; }
-
-        Uri Uri { get; }
-
-        StacExtensions StacExtensions { get; }
-
-        Collection<StacLink> Links { get; }
-
         IDictionary<string, object> Properties { get; }
 
-        bool IsCatalog { get; }
-
-        IStacObject Upgrade();
     }
 }

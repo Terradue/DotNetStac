@@ -22,7 +22,7 @@ namespace Stac.Extensions
 
         public void InitStacObject(IStacObject stacObject)
         {
-            foreach (var stacExtension in Values.OfType<AssignableStacExtension>())
+            foreach (var stacExtension in Values.OfType<AssignableStacExtension>().ToList())
             {
                 stacExtension.InitStacObject(stacObject);
             }
