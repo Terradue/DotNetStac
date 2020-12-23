@@ -21,8 +21,6 @@ namespace Stac
 
         Collection<StacLink> Links { get; }
 
-        IDictionary<string, object> Properties { get; }
-
         bool IsCatalog { get; }
 
         IStacObject Upgrade();

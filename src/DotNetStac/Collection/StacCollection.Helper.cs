@@ -15,7 +15,7 @@ namespace Stac.Collection
 {
     public partial class StacCollection : IStacObject
     {
-        internal static StacCollection LoadStacCollection(JToken jsonRoot)
+        internal static IStacCollection LoadStacCollection(JToken jsonRoot)
         {
             Type collectionType = null;
             if (jsonRoot["stac_version"] == null)
@@ -37,14 +37,7 @@ namespace Stac.Collection
                 throw new NotSupportedException(string.Format("The document has a non supprted version: '{0}'.", jsonRoot["stac_version"].Value<string>()));
             }
 
-            IStacObject catalog = (IStacObject)jsonRoot.ToObject(collectionType);
-
-            while (catalog.GetType() != typeof(StacCollection))
-            {
-                catalog = catalog.Upgrade();
-            }
-
-            return (StacCollection)catalog;
+            return (IStacCollection)jsonRoot.ToObject(collectionType);
         }
 
     }
