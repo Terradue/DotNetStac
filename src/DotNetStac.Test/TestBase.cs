@@ -38,6 +38,19 @@ namespace Stac.Test
             return File.ReadAllText(path);
         }
 
+        protected Uri GetUri(string folder, [CallerMemberName] string name = null)
+        {
+            var type = GetType().Name;
+            var path = Path.Combine(AssemblyDirectory, @"../../..", "Resources", folder, type + "_" + name + ".json");
+
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException("file not found at " + path);
+            }
+
+            return new Uri(path);
+        }
+
         protected Uri GetUseCaseFileUri(string name)
         {
             var type = GetType().Name;

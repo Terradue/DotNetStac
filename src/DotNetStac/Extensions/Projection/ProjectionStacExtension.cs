@@ -33,13 +33,11 @@ namespace Stac.Extensions.Projection
         {
         }
 
-        public void SetCoordinateSystem(ProjectedCoordinateSystem projectedCoordinateSystem)
+        public void SetCoordinateSystem(CoordinateSystem coordinateSystem)
         {
-            if ( projectedCoordinateSystem.Projection.Authority != "EPSG" )
-                throw new NotSupportedException("Supporting only EPSG Authority projection");
-
-            Epsg = projectedCoordinateSystem.AuthorityCode;
-            Wkt2 = projectedCoordinateSystem.WKT;
+            if (coordinateSystem.AuthorityCode > 0)
+                Epsg = coordinateSystem.AuthorityCode;
+            Wkt2 = coordinateSystem.WKT;
         }
     }
 }

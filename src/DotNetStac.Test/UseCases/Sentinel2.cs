@@ -31,7 +31,7 @@ namespace Stac.Test.UseCases
 
             Assert.Equal(1, children.Count);
 
-            Assert.IsType<StacCollection>(children.First().Value);
+            Assert.IsAssignableFrom<IStacCollection>(children.First().Value);
         }
 
 

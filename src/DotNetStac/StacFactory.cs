@@ -32,15 +32,7 @@ namespace Stac
 
         public static async Task<IStacObject> LoadStacLink(StacLink link)
         {
-            WebClient client = new WebClient();
-            var jsonToken = JsonConvert.DeserializeObject<JToken>(await client.DownloadStringTaskAsync(link.AbsoluteUri));
-            if (jsonToken["stac_version"] == null && link.Parent != null && Version.Parse(link.Parent.StacVersion).CompareTo(Version.Parse("0.8.0")) < 0)
-                jsonToken["stac_version"] = link.Parent.StacVersion;
-
-            if (jsonToken["geometry"] != null)
-                return StacItem.LoadJToken(jsonToken, link.AbsoluteUri);
-
-            return StacCollection.LoadJToken(jsonToken, link.AbsoluteUri);
+            return await LoadUriAsync(link.AbsoluteUri);
         }
 
     }
