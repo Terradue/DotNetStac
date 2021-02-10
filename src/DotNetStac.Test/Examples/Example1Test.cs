@@ -12,7 +12,7 @@ namespace Stac.Test.Example
 {
     public class Example1Test
     {
-        [Fact]
+        //[Fact]
         public void Deserialize()
         {
             IStacCatalog catalog = (IStacCatalog)StacFactory.Load("https://landsat-stac.s3.amazonaws.com/catalog.json");
