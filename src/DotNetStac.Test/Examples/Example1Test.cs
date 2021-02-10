@@ -12,10 +12,10 @@ namespace Stac.Test.Example
 {
     public class Example1Test
     {
-        // [Fact]
+        [Fact]
         public void Deserialize()
         {
-            IStacCatalog catalog = (IStacCatalog)StacFactory.Load("https://cbers-stac-0-7.s3.amazonaws.com/CBERS4/MUX/027/catalog.json");
+            IStacCatalog catalog = (IStacCatalog)StacFactory.Load("https://landsat-stac.s3.amazonaws.com/catalog.json");
 
             Console.Out.WriteLine(catalog.Id);
             Console.Out.WriteLine(catalog.StacVersion);
