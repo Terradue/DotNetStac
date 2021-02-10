@@ -23,7 +23,7 @@ namespace Stac.Extensions.Processing
 
         public ProcessingStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
         {
-            var existingSoftware = GetField<Dictionary<string, string>>(LineageField);
+            var existingSoftware = GetField<Dictionary<string, string>>(SoftwareField);
             if (existingSoftware != null)
                 software = new ObservableDictionary<string, string>(existingSoftware);
             software.CollectionChanged += UpdateSoftwareField;

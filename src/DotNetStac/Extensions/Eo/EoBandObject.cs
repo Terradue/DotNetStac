@@ -28,7 +28,7 @@ namespace Stac.Extensions.Eo
         public EoBandCommonName CommonName { get => commonName; set => commonName = value; }
 
         [JsonProperty("center_wavelength")]
-        public double CenterWavelength { get; set; }
+        public double? CenterWavelength { get; set; }
 
          [JsonExtensionData]
         public IDictionary<string, object> Properties { get => properties; set => properties = value; }
