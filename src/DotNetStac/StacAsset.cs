@@ -70,11 +70,13 @@ namespace Stac
                 throw new ArgumentNullException("source");
             base_uri = source.base_uri;
             href = source.href;
-            semanticRoles = new Collection<string>(source.semanticRoles);
+            if (source.semanticRoles != null)
+                semanticRoles = new Collection<string>(source.semanticRoles);
             title = source.title;
             type = source.type;
             description = source.description;
-            properties = new Dictionary<string, object>(source.properties);
+            if (source.properties != null)
+                properties = new Dictionary<string, object>(source.properties);
         }
 
         [JsonProperty("type")]
