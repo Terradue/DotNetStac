@@ -8,14 +8,9 @@ namespace Stac
 {
     public class StacObjectLink : StacLink
     {
-        public static StacLink CreateItemLink(IStacObject stacObject)
-        {
-            return new StacObjectLink(stacObject);
-        }
-
         private readonly IStacObject stacObject;
 
-        public StacObjectLink(IStacObject stacObject, IStacObject hostObject = null)
+        internal StacObjectLink(IStacObject stacObject, IStacObject hostObject = null)
         {
             this.stacObject = stacObject;
             this.hostObject = hostObject;

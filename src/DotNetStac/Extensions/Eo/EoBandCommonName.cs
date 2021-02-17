@@ -2,6 +2,7 @@ namespace Stac.Extensions.Eo
 {
     public enum EoBandCommonName
     {
+        unknow,
         coastal,
         blue,
         green, 
@@ -30,6 +31,7 @@ namespace Stac.Extensions.Eo
         swir37,
         lwir,
         lwir11,
-        lwir12
+        lwir12,
+        alpha
     }
 }
