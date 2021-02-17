@@ -17,6 +17,10 @@ namespace Stac
 {
     public static class StacNavigationHelpers
     {
+        public static void AddChild(this IStacObject stacObject, IStacItem stacItem)
+        {
+            stacObject.Links.Add(new StacObjectLink(stacItem, stacObject));
+        }
 
         public static IDictionary<Uri, IStacCatalog> GetChildren(this IStacObject stacObject)
         {
@@ -28,7 +32,7 @@ namespace Stac
             Dictionary<Uri, IStacCatalog> children = new Dictionary<Uri, IStacCatalog>();
             foreach (var link in stacObject.Links.Where(l => l.RelationshipType == "child"))
             {
-                children.Add(link.Uri, await StacCatalog.LoadStacLink(link));
+                children.Add(link.Uri, (await link.LoadAsync()) as IStacCatalog);
             }
             return children;
         }

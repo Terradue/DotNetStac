@@ -9,12 +9,15 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Stac.Extensions;
 using Stac.Model;
+using System.Net.Mime;
 
 namespace Stac.Catalog
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public partial class StacCatalog : IStacObject, IStacCatalog, IInternalStacObject
     {
+        public readonly static ContentType CATALOG_MEDIATYPE = new ContentType("application/json; profile=stac-catalog");
+
         private readonly string id;
         private Collection<StacLink> links;
 
@@ -29,7 +32,7 @@ namespace Stac.Catalog
 
         private string title;
 
-                private Uri sourceUri;
+        private Uri sourceUri;
         private string[] stacExtensionsStrings = new string[0];
 
         [JsonIgnore]
@@ -132,6 +135,9 @@ namespace Stac.Catalog
 
         [JsonIgnore]
         public bool IsCatalog => true;
+
+        [JsonIgnore]
+        public virtual ContentType MediaType => CATALOG_MEDIATYPE;
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)

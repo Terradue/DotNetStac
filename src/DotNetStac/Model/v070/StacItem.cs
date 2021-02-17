@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Stac.Extensions;
 using System.Runtime.Serialization;
 using System.Linq;
+using System.Net.Mime;
 
 namespace Stac.Model.v070
 {
@@ -137,6 +138,8 @@ namespace Stac.Model.v070
         }
 
         public bool IsCatalog => true;
+
+        public ContentType MediaType => Stac.Item.StacItem.ITEM_MEDIATYPE;
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)

@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Mime;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Stac.Converters;
 
 namespace Stac
 {
@@ -52,9 +56,10 @@ namespace Stac
         #endregion
 
         Uri href;
-        string rel, title, type;
-        private IStacObject hostObject;
-        private readonly ulong contentLength;
+        protected string rel, title;
+        ContentType type;
+        protected IStacObject hostObject;
+        protected readonly ulong contentLength;
 
         public StacLink()
         {
@@ -76,7 +81,7 @@ namespace Stac
             Uri = uri;
             RelationshipType = relationshipType;
             Title = title;
-            MediaType = mediaType;
+            MediaType = mediaType == null ? null : new ContentType(mediaType);
             this.contentLength = contentLength;
         }
 
@@ -93,35 +98,36 @@ namespace Stac
         }
 
         [JsonProperty("type")]
-        public string MediaType
+        [JsonConverter(typeof(ContentTypeConverter))]
+        public virtual ContentType MediaType
         {
             get { return type; }
             set { type = value; }
         }
 
         [JsonProperty("rel")]
-        public string RelationshipType
+        public virtual string RelationshipType
         {
             get { return rel; }
             set { rel = value; }
         }
 
         [JsonProperty("title")]
-        public string Title
+        public virtual string Title
         {
             get { return title; }
             set { title = value; }
         }
 
         [JsonProperty("href")]
-        public Uri Uri
+        public virtual Uri Uri
         {
             get { return href; }
             set { href = value; }
         }
 
         [JsonIgnore]
-        public Uri AbsoluteUri
+        private Uri AbsoluteUri
         {
             get
             {
@@ -145,14 +151,19 @@ namespace Stac
             }
         }
 
-       
-
         [JsonIgnore]
         public ulong Length => contentLength;
 
         public virtual StacLink Clone()
         {
             return new StacLink(this);
+        }
+
+        public virtual async Task<IStacObject> LoadAsync()
+        {
+            if (AbsoluteUri == null)
+                throw new FileNotFoundException(string.Format("Cannot load STAC object from link ({0}) : No absolute entry point", Uri));
+            return await StacFactory.LoadUriAsync(AbsoluteUri);
         }
 
     }

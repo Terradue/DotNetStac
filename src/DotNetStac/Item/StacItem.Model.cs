@@ -9,12 +9,15 @@ using Newtonsoft.Json;
 using Stac.Extensions;
 using Stac.Model;
 using System.Linq;
+using System.Net.Mime;
 
 namespace Stac.Item
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, IInternalStacObject, IStacItem
     {
+        public readonly static ContentType ITEM_MEDIATYPE = new ContentType("application/json; profile=stac-collection");
+
         private Collection<StacLink> links;
 
         private Dictionary<string, StacAsset> assets;
@@ -130,6 +133,8 @@ namespace Stac.Item
             StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensions.Keys).Distinct().ToArray();
         }
 
+        [JsonIgnore]
+        public ContentType MediaType => ITEM_MEDIATYPE;
 
     }
 }
