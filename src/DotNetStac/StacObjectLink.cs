@@ -19,6 +19,10 @@ namespace Stac
         {
             this.stacObject = stacObject;
             this.hostObject = hostObject;
+            if ( stacObject is IStacItem )
+                this.RelationshipType = "item";
+            if ( stacObject is IStacCatalog )
+                this.RelationshipType = "child";
         }
 
         [JsonProperty("type")]
