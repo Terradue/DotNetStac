@@ -24,13 +24,7 @@ namespace Stac.Catalog
             throw new InvalidOperationException(string.Format("This is not a STAC catalog {0}", catalog.Uri));
         }
 
-        public static async Task<IStacCatalog> LoadStacLink(StacLink link)
-        {
-            var catalog = await StacFactory.LoadStacLink(link);
-            if (catalog is IStacCatalog)
-                return (IStacCatalog)catalog;
-            throw new InvalidOperationException(string.Format("This is not a STAC catalog {0}", catalog.Uri));
-        }
+
 
         public static IStacCatalog LoadJToken(JToken jsonRoot, Uri uri)
         {

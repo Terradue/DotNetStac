@@ -30,10 +30,5 @@ namespace Stac
             return LoadUriAsync(new Uri(uri)).Result;
         }
 
-        public static async Task<IStacObject> LoadStacLink(StacLink link)
-        {
-            return await LoadUriAsync(link.AbsoluteUri);
-        }
-
     }
 }

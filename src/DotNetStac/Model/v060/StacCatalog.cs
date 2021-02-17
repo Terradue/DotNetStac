@@ -8,6 +8,7 @@ using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Stac.Extensions;
+using System.Net.Mime;
 
 namespace Stac.Model.v060
 {
@@ -112,6 +113,8 @@ namespace Stac.Model.v060
 
         [JsonIgnore]
         public bool IsCatalog => true;
+
+        public ContentType MediaType => Catalog.StacCatalog.CATALOG_MEDIATYPE;
 
         public virtual IStacObject Upgrade()
         {

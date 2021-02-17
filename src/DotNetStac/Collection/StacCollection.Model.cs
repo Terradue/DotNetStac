@@ -9,12 +9,14 @@ using Newtonsoft.Json;
 using Stac.Catalog;
 using Stac.Extensions;
 using Stac.Model;
+using System.Net.Mime;
 
 namespace Stac.Collection
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public partial class StacCollection : StacCatalog, IStacObject, IStacCollection
     {
+        public readonly static ContentType COLLECTION_MEDIATYPE = new ContentType("application/json; profile=stac-collection");
         private string license;
         private StacExtent extent;
         private Dictionary<string, IStacSummaryItem> summaries;
@@ -75,6 +77,9 @@ namespace Stac.Collection
                 keywords = value;
             }
         }
+
+        [JsonIgnore]
+        public override ContentType MediaType => CATALOG_MEDIATYPE;
 
     }
 }

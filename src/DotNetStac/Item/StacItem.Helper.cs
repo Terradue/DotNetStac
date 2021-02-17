@@ -22,7 +22,7 @@ namespace Stac.Item
 
         public static async Task<IStacItem> LoadStacLink(StacLink link)
         {
-            var catalog = await StacFactory.LoadStacLink(link);
+            var catalog = await link.LoadAsync();
             if (catalog is IStacItem)
                 return (IStacItem)catalog;
             throw new InvalidOperationException(string.Format("This is not a STAC item {0}", catalog.Uri));

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Mime;
 using Newtonsoft.Json.Linq;
 using Stac.Extensions;
 
@@ -22,6 +23,8 @@ namespace Stac
         Collection<StacLink> Links { get; }
 
         bool IsCatalog { get; }
+        
+        ContentType MediaType { get; }
 
         IStacObject Upgrade();
     }
