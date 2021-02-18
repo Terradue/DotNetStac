@@ -48,11 +48,11 @@ namespace Stac.Item
         {
             this.stacExtensionsStrings = stacItem.stacExtensionsStrings;
             this.stacVersion = stacItem.stacVersion;
-            this.links = new Collection<StacLink>(stacItem.links);
-            this.assets = new Dictionary<string, StacAsset>(stacItem.assets);
+            this.links = new Collection<StacLink>(stacItem.Links);
+            this.assets = new Dictionary<string, StacAsset>(stacItem.Assets);
             this.collection = stacItem.collection;
             this.sourceUri = stacItem.sourceUri;
-            this.extensions = new StacExtensions(stacItem.extensions);
+            this.extensions = new StacExtensions(stacItem.StacExtensions);
         }
 
         [JsonProperty("stac_extensions")]
