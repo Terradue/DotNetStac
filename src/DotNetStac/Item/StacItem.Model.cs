@@ -16,7 +16,7 @@ namespace Stac.Item
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, IInternalStacObject, IStacItem
     {
-        public readonly static ContentType ITEM_MEDIATYPE = new ContentType("application/json; profile=stac-collection");
+        public readonly static ContentType ITEM_MEDIATYPE = new ContentType("application/json; profile=stac-item");
 
         private Collection<StacLink> links;
 

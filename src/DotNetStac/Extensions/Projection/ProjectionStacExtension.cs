@@ -39,5 +39,13 @@ namespace Stac.Extensions.Projection
                 Epsg = coordinateSystem.AuthorityCode;
             Wkt2 = coordinateSystem.WKT;
         }
+
+        public void SetCoordinateSystem(int srid)
+        {
+            var cs = SRIDReader.GetCSbyID(srid);
+            if (cs == null) return;
+            Wkt2 = cs.WKT;
+            Epsg = srid;
+        }
     }
 }
