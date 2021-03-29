@@ -36,6 +36,8 @@ namespace Stac.Test.Item
 
             k3MissingSoftwareJson = JsonConvert.SerializeObject(k3MissingSoftware);
 
+            Assert.True(ValidateJson(k3MissingSoftwareJson));
+
             JsonAssert.AreEqual(k3CompleteJson, k3MissingSoftwareJson);
 
         }
