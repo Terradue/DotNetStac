@@ -15,7 +15,7 @@ namespace Stac.Test.Example
         //[Fact]
         public void Deserialize()
         {
-            IStacCatalog catalog = (IStacCatalog)StacFactory.Load("https://landsat-stac.s3.amazonaws.com/catalog.json");
+            IStacCatalog catalog = (IStacCatalog)StacFactory.LoadUri("https://landsat-stac.s3.amazonaws.com/catalog.json");
 
             Console.Out.WriteLine(catalog.Id);
             Console.Out.WriteLine(catalog.StacVersion);
