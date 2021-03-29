@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-namespace Stac
+namespace Stac.Model
 {
     /// <summary>
     /// Provides a thread-safe dictionary for use with data binding.

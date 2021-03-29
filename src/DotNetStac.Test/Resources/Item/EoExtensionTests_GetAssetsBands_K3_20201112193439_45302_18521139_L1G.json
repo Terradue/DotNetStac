@@ -6,7 +6,7 @@
         "proj",
         "view"
     ],
-    "stac_version": "1.0.0-beta.2",
+    "stac_version": "1.0.0-rc.1",
     "links": [
         {
             "type": "application/json; profile=stac-item",

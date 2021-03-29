@@ -22,7 +22,7 @@ namespace Stac.Test.Version
             Assert.Equal("0.6.0", cat06.StacVersion);
 
             StacCatalog cat = cat06.UpgradeToCurrentVersion();
-            Assert.Equal("1.0.0-beta.2", cat.StacVersion);
+            Assert.Equal("1.0.0-rc.1", cat.StacVersion);
 
             Assert.NotEmpty(cat.GetChildren());
 

@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace Stac
+namespace Stac.Collection
 {
     [JsonObject]
     public class StacTemporalExtent

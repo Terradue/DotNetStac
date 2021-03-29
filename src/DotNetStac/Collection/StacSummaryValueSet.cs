@@ -23,7 +23,7 @@ namespace Stac.Collection
             ((JArray)summary).Add(item);
         }
 
-        public override SummaryItemType SummaryType => SummaryItemType.Set;
+        public override SummaryItemType SummaryType => SummaryItemType.ValueSet;
 
         public int Count => summary.Count();
 
