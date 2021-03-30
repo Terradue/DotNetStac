@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json.Linq;
-using Stac;
-using Stac.Extensions;
-using Stac.Item;
-
 namespace Stac.Extensions.Eo
 {
     public static class EoStacExtensionExtensions

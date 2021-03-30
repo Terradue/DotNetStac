@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json.Linq;
 using ProjNet.CoordinateSystems;
-using Stac;
-using Stac.Extensions;
-using Stac.Item;
 
 namespace Stac.Extensions.Projection
 {
-    public class ProjectionStacExtension : AssignableStacExtension, IStacExtension
+    public class ProjectionStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
 
-        public const string Prefix = "proj";
+        public const string JsonSchemaUrl = "https://stac-extensions.github.io/projection/v1.0.0/schema.json";
+
         public const string EpsgField = "epsg";
         public const string Wkt2Field = "wkt2";
 
@@ -29,7 +23,7 @@ namespace Stac.Extensions.Projection
             set { base.SetField(Wkt2Field, value); }
         }
 
-        public ProjectionStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
+        public ProjectionStacExtension(IStacObject stacObject) : base()
         {
         }
 

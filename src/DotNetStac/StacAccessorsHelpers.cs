@@ -13,9 +13,9 @@ namespace Stac
             stacObject.Properties.SetProperty(key, value);
         }
 
-        public static void SetProperty(this StacAsset stacAsset, string key, object value)
+        public static void SetProperty(this IStacPropertiesContainer stacPropertiesContainer, string key, object value)
         {
-            stacAsset.Properties.SetProperty(key, value);
+            stacPropertiesContainer.Properties.SetProperty(key, value);
         }
 
         public static void SetProperty(this IDictionary<string, object> properties, string key, object value)
@@ -24,24 +24,14 @@ namespace Stac
             properties.Add(key, value);
         }
 
-        public static object GetProperty(this IStacObject stacObject, string key)
+        public static object GetProperty(this IStacPropertiesContainer propertiesContainer, string key)
         {
-            return stacObject.Properties.GetProperty(key);
+            return propertiesContainer.Properties.GetProperty(key);
         }
 
-        public static T GetProperty<T>(this IStacObject stacObject, string key)
+        public static T GetProperty<T>(this IStacPropertiesContainer propertiesContainer, string key)
         {
-            return stacObject.Properties.GetProperty<T>(key);
-        }
-
-        public static object GetProperty(this StacAsset stacAsset, string key)
-        {
-            return stacAsset.Properties.GetProperty(key);
-        }
-
-        public static T GetProperty<T>(this StacAsset stacAsset, string key)
-        {
-            return stacAsset.Properties.GetProperty<T>(key);
+            return propertiesContainer.Properties.GetProperty<T>(key);
         }
 
         public static object GetProperty(this IDictionary<string, object> properties, string key)

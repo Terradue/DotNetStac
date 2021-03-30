@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Stac.Extensions;
 using System.Net.Mime;
 using Semver;
+using System.Runtime.Serialization;
 
 namespace Stac
 {
@@ -44,7 +45,7 @@ namespace Stac
                 this.Links = new Collection<StacLink>(links.ToList());
             this.Properties = new Dictionary<string, object>();
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
-            this.StacExtensions = new StacExtensions();
+            this.StacExtensions = new StacExtensions(this);
         }
 
         # region IStacObject
@@ -82,6 +83,9 @@ namespace Stac
             get; internal set;
         }
 
+        [JsonIgnore]
+        public ContentType MediaType => CATALOG_MEDIATYPE;
+
         # endregion IStacObject
 
         /// <summary>
@@ -117,6 +121,16 @@ namespace Stac
         /// <value></value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in Links)
+            {
+                link.Parent = this;
+            }
+            StacExtensions.stacObject = this;
+        }
 
     }
 }

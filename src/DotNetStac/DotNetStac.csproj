@@ -21,10 +21,12 @@
     <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="2.0.2"/>
     <PackageReference Include="GeoJSON.Net" Version="1.2.19"/>
     <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1"/>
-    <PackageReference Include="System.Net.Http" Version="4.3.4"/>
     <PackageReference Include="MathNet.Numerics" Version="4.12.0"/>
     <PackageReference Include="ProjNet" Version="2.0.0"/>
     <PackageReference Include="semver" Version="2.0.6"/>
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14"/>
+    <PackageReference Include="System.Reflection" Version="4.3.0"/>
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>

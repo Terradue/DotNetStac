@@ -2,15 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using Stac;
-using Stac.Extensions;
-using Stac.Item;
 
 namespace Stac.Extensions.Sat
 {
-    public class SatStacExtension : AssignableStacExtension, IStacExtension
+    public class SatStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        public const string Prefix = "sat";
+        public const string JsonSchemaUrl = "https://stac-extensions.github.io/sat/v1.0.0/schema.json";
         public const string OrbitStateVectorField = "orbit_state_vectors";
         public const string AscendingNodeCrossingDateTimeField = "anx_datetime";
         public const string SceneCenterCoordinatesField = "scene_center_coordinates";
@@ -19,6 +16,10 @@ namespace Stac.Extensions.Sat
         public const string OrbitStateField = "orbit_state";
         public const string PlatformInternationalDesignatorField = "platform_international_designator";
 
+
+        public SatStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, "sat", stacObject)
+        {
+        }
 
         public SortedDictionary<DateTime, SatOrbitStateVector> OrbitStateVectors
         {
@@ -73,16 +74,14 @@ namespace Stac.Extensions.Sat
         private SortedDictionary<DateTime, SatOrbitStateVector> SortOrbitStateVectors(JToken osvarray)
         {
             if (!(osvarray is JArray))
-                throw new FormatException(string.Format("[{0}] field {1}: not an array", Id, OrbitStateVectorField));
+                throw new FormatException(string.Format("[{0}] field {1}: not an array", FieldNamePrefix, OrbitStateVectorField));
 
             var osvlist = osvarray.ToObject<List<SatOrbitStateVector>>();
 
             return new SortedDictionary<DateTime, SatOrbitStateVector>(osvlist.ToDictionary(osv => osv.Time, osv => osv));
         }
 
-        public SatStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
-        {
-        }
+        
 
     }
 }

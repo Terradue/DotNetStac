@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Stac
+namespace Stac.Exceptions
 {
     [Serializable]
     internal class InvalidStacDataException : Exception

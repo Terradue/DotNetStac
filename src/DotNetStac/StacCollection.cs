@@ -6,8 +6,10 @@ using System.Net.Mime;
 using Stac.Extensions;
 using Semver;
 using System.Linq;
+using System.Runtime.Serialization;
+using Stac.Collection;
 
-namespace Stac.Collection
+namespace Stac
 {
     /// <summary>
     /// STAC Collection Object implementing STAC Collection spec (https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md)
@@ -40,7 +42,7 @@ namespace Stac.Collection
             else
                 this.Assets = new Dictionary<string, StacAsset>(assets);
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
-            this.StacExtensions = new StacExtensions();
+            this.StacExtensions = new StacExtensions(this);
             this.License = license;
             this.Keywords = new Collection<string>();
             this.Extent = extent;
@@ -80,6 +82,9 @@ namespace Stac.Collection
         {
             get; internal set;
         }
+
+        [JsonIgnore]
+        public ContentType MediaType => COLLECTION_MEDIATYPE;
 
         # endregion IStacObject
 
@@ -149,5 +154,14 @@ namespace Stac.Collection
         [JsonProperty("assets")]
         public IDictionary<string, StacAsset> Assets { get; internal set; }
 
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in Links)
+            {
+                link.Parent = this;
+            }
+            StacExtensions.stacObject = this;
+        }
     }
 }

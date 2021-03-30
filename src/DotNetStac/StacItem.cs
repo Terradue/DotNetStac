@@ -10,131 +10,78 @@ using Stac.Extensions;
 using System.Linq;
 using System.Net.Mime;
 using Newtonsoft.Json.Linq;
+using Semver;
 
 namespace Stac
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, IInternalStacObject, IStacItem
+    public class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
     {
         public const string MEDIATYPE = "application/json; profile=stac-item";
         public readonly static ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
 
-        private Collection<StacLink> links;
-
-        private Dictionary<string, StacAsset> assets;
-
-        private string stacVersion = StacVersionList.Current;
-
-        private string collection;
-
-        private Uri sourceUri;
-
-        private string[] stacExtensionsStrings = new string[0];
-
         [JsonConstructor]
-        public StacItem(IGeometryObject geometry, IDictionary<string, object> properties = null, string id = null) : base(Preconditions.CheckNotNull(geometry), properties, id)
+        public StacItem(string id,
+                        IGeometryObject geometry,
+                        IDictionary<string, object> properties = null) :
+                        base(Preconditions.CheckNotNull(geometry, "geometry"), properties, id)
         {
-            if (geometry == null) throw new ArgumentNullException("geometry");
+            Preconditions.CheckNotNull(id, "id");
+            StacExtensions = new Collection<string>();
+            StacVersion = Versions.StacVersionList.Current;
+            Links = new Collection<StacLink>();
+            Assets = new Dictionary<string, StacAsset>();
         }
 
-        public StacItem(IGeometryObject geometry, object properties, string id = null) : base(Preconditions.CheckNotNull(geometry), properties, id)
+        public StacItem(StacItem stacItem) : base(Preconditions.CheckNotNull(stacItem, "geometry").Geometry,
+                                                  new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties),
+                                                  Preconditions.CheckNotNull(stacItem, "id").Id)
         {
-            if (geometry == null) throw new ArgumentNullException("geometry");
-            if (properties == null) throw new ArgumentNullException("properties");
+            this.StacExtensions = stacItem.StacExtensions;
+            this.StacVersion = stacItem.StacVersion;
+            this.Links = new Collection<StacLink>(stacItem.Links);
+            this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets);
+            this.Collection = stacItem.Collection;
         }
 
-        public StacItem(StacItem stacItem) : this(Preconditions.CheckNotNull(stacItem).Geometry, 
-                                                  new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties), 
-                                                  Preconditions.CheckNotNull(stacItem).Id)
-        {
-            this.stacExtensionsStrings = stacItem.stacExtensionsStrings;
-            this.stacVersion = stacItem.stacVersion;
-            this.links = new Collection<StacLink>(stacItem.Links);
-            this.assets = new Dictionary<string, StacAsset>(stacItem.Assets);
-            this.collection = stacItem.collection;
-            this.sourceUri = stacItem.sourceUri;
-            this.extensions = new StacExtensions(stacItem.StacExtensions);
-        }
+        # region IStacObject
 
-        private static IStacItem LoadStacItem(JToken jsonRoot)
-        {
-            Type itemType = null;
-            if (jsonRoot["stac_version"] == null)
-            {
-                throw new InvalidStacDataException("The document is not a valid STAC document. No 'stac_version' property found");
-            }
-
-            try
-            {
-                itemType = Stac.Model.SchemaDictionary.GetItemTypeFromVersion(jsonRoot["stac_version"].Value<string>());
-            }
-            catch (KeyNotFoundException)
-            {
-                throw new NotSupportedException(string.Format("The document has a non supprted version: '{0}'.", jsonRoot["stac_version"].Value<string>()));
-            }
-
-            return (IStacItem)jsonRoot.ToObject(itemType);
-        }
-
-        [JsonProperty("stac_extensions")]
-        public string[] StacExtensionsStrings { get => stacExtensionsStrings; set => stacExtensionsStrings = value; }
-
-
+        /// <summary>
+        /// The STAC version the Item implements
+        /// </summary>
+        /// <value></value>
         [JsonProperty("stac_version")]
-        public string StacVersion
-        {
-            get
-            {
-                return stacVersion;
-            }
+        public SemVersion StacVersion { get; set; }
 
-            set
-            {
-                stacVersion = value;
-            }
-        }
+        /// <summary>
+        /// A list of extension identifiers the Item implements
+        /// </summary>
+        /// <value></value>
+        [JsonProperty("stac_extensions")]
+        [JsonConverter(typeof(StacExtensionsConverter))]
+        public Collection<string> StacExtensions { get; private set; }
 
+        /// <summary>
+        /// A list of references to other documents.
+        /// </summary>
+        /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
         public Collection<StacLink> Links
         {
-            get
-            {
-                if (links == null)
-                    links = new Collection<StacLink>();
-                return links;
-            }
-            set
-            {
-                links = value;
-            }
+            get; private set;
         }
+
+        [JsonIgnore]
+        public ContentType MediaType => ITEM_MEDIATYPE;
+
+        # endregion IStacObject
 
         [JsonProperty("assets")]
-        public IDictionary<string, StacAsset> Assets
-        {
-            get
-            {
-                if (assets == null)
-                    assets = new Dictionary<string, StacAsset>();
-                return assets;
-            }
-        }
+        public IDictionary<string, StacAsset> Assets { get; private set; }
 
         [JsonProperty("collection")]
-        public string Collection
-        {
-            get
-            {
-                return collection;
-            }
-            set
-            {
-                collection = value;
-            }
-        }
-
-
+        public string Collection { get; internal set; }
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
@@ -143,7 +90,7 @@ namespace Stac
             {
                 link.Parent = this;
             }
-            StacExtensions = StacExtensionsFactory.Default.LoadStacExtensions(StacExtensionsStrings.ToList(), this);
+            StacExtensions.ResolveExtensions(this);
         }
 
         [OnSerializing]
@@ -151,29 +98,6 @@ namespace Stac
         {
             if (BoundingBoxes == null)
                 BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
-            StacExtensionsStrings = StacExtensionsStrings.Concat(StacExtensions.Keys).Distinct().ToArray();
-        }
-
-        [JsonIgnore]
-        public ContentType MediaType => ITEM_MEDIATYPE;
-
-        [JsonIgnore]
-        public Uri Uri
-        {
-            get
-            {
-                if (sourceUri == null)
-                {
-                    return new Uri(Id + ".json", UriKind.Relative);
-                }
-                return sourceUri;
-            }
-            set { sourceUri = value; }
-        }
-
-        public IStacObject Upgrade()
-        {
-            return this;
         }
 
         [JsonIgnore]
@@ -240,27 +164,6 @@ namespace Stac
                     Properties.Add("start_datetime", value.Start);
                     Properties.Add("end_datetime", value.Start);
                 }
-            }
-        }
-
-        private StacExtensions extensions;
-
-        [JsonIgnore]
-        public StacExtensions StacExtensions
-        {
-            get
-            {
-                if (extensions == null)
-                {
-                    extensions = new StacExtensions();
-                    extensions.InitStacObject(this);
-                }
-                return extensions;
-            }
-            set
-            {
-                extensions = value;
-                extensions.InitStacObject(this);
             }
         }
 

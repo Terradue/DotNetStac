@@ -1,18 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using Newtonsoft.Json.Linq;
-using ProjNet.CoordinateSystems;
-using Stac;
-using Stac.Extensions;
-using Stac.Item;
+using Stac.Model;
 
 namespace Stac.Extensions.Processing
 {
-    public class ProcessingStacExtension : AssignableStacExtension, IStacExtension
+    public class ProcessingStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
 
+        public const string JsonSchemaUrl = "https://stac-extensions.github.io/processing/v1.0.0/schema.json";
         public const string Prefix = "processing";
         public const string LineageField = "lineage";
         public const string LevelField = "level";

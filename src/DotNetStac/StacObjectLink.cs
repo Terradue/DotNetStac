@@ -14,15 +14,15 @@ namespace Stac
         {
             this.stacObject = stacObject;
             this.hostObject = hostObject;
-            if ( stacObject is IStacItem )
+            if ( stacObject is StacItem )
                 this.RelationshipType = "item";
-            if ( stacObject is IStacCatalog )
+            if ( stacObject is StacCatalog || stacObject is StacCollection )
                 this.RelationshipType = "child";
         }
 
         [JsonProperty("type")]
         [JsonConverter(typeof(ContentTypeConverter))]
-        public override ContentType MediaType
+        public override ContentType ContentType
         {
             get => stacObject.MediaType;
             set
@@ -56,11 +56,6 @@ namespace Stac
             {
                 throw new InvalidOperationException("Cannot set Uri on an STAC Object link");
             }
-        }
-
-        public override Task<IStacObject> LoadAsync()
-        {
-            return Task<IStacObject>.FromResult(stacObject);
         }
 
     }

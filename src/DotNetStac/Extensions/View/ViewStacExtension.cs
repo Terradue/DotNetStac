@@ -1,24 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json.Linq;
-using Stac;
-using Stac.Extensions;
-using Stac.Item;
-
 namespace Stac.Extensions.View
 {
-    public class ViewStacExtension : AssignableStacExtension, IStacExtension
+    public class ViewStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
 
+        public const string JsonSchemaUrl = "https://stac-extensions.github.io/sat/v1.0.0/schema.json";
         public static string OffNadirField => "off_nadir";
         public static string IncidenceAngleField => "incidence_angle";
         public static string AzimuthField => "azimuth";
         public static string SunAzimuthField => "sun_azimuth";
         public static string SunElevationField => "sun_elevation";
 
-
-        public ViewStacExtension(IStacObject stacObject) : base("view", stacObject)
+        public ViewStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, "view", stacObject)
         {
         }
 

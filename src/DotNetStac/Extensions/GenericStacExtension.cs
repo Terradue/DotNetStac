@@ -1,13 +1,13 @@
-using System;
-using Stac.Item;
+using Newtonsoft.Json.Schema;
 
 namespace Stac.Extensions
 {
-    public class GenericStacExtension : AssignableStacExtension
+    public class GenericStacExtension : StacPropertiesContainerExtension
     {
-        public GenericStacExtension(string prefix, IStacObject stacObject) : base(prefix, stacObject)
+        public GenericStacExtension(JSchema jsonSchema, string fieldNamePrefix) : base(jsonSchema, fieldNamePrefix)
         {
         }
 
+        // TODO helpers to dicover automatically the fields
     }
 }

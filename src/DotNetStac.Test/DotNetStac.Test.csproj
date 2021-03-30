@@ -14,7 +14,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="GeoJSON.Net" Version="1.2.19"/>
-    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetStac\DotNetStac.csproj"/>

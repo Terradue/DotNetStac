@@ -11,7 +11,7 @@ namespace Stac
     /// <summary>
     /// Common interface for all Stac objects
     /// </summary>
-    public interface IStacObject : IStacPropertiesContainer, IStacExtensionAssignable
+    public interface IStacObject : IStacPropertiesContainer
     {
         string Id { get; }
 
@@ -19,5 +19,8 @@ namespace Stac
 
         Collection<StacLink> Links { get; }
         
+        ContentType MediaType { get; }
+
+        Collection<string> StacExtensions { get; }
     }
 }

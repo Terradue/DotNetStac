@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Stac.Extensions
+namespace Stac.Exceptions
 {
     [Serializable]
     public class ExtensionNotAssignedException : Exception

@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Stac.Converters;
 
 namespace Stac
 {
@@ -60,11 +58,6 @@ namespace Stac
 
         #endregion
 
-        Uri href;
-        protected string rel, title;
-        ContentType type;
-        protected IStacObject hostObject;
-        protected readonly ulong contentLength;
 
         public StacLink()
         {
@@ -77,8 +70,8 @@ namespace Stac
 
         public StacLink(Uri uri, IStacObject hostObject)
         {
-            Uri = uri;
-            this.hostObject = hostObject;
+            this.Uri = uri;
+            this.Parent = hostObject;
         }
 
         public StacLink(Uri uri, string relationshipType, string title, string mediaType, ulong contentLength = 0)
@@ -86,89 +79,44 @@ namespace Stac
             Uri = uri;
             RelationshipType = relationshipType;
             Title = title;
-            MediaType = mediaType == null ? null : new ContentType(mediaType);
-            this.contentLength = contentLength;
+            ContentType = mediaType == null ? null : new ContentType(mediaType);
+            this.Length = contentLength;
         }
 
         public StacLink(StacLink source)
         {
             if (source == null)
                 throw new ArgumentNullException("source");
-            href = source.href;
-            rel = source.rel;
-            title = source.title;
-            type = source.type;
-            hostObject = source.hostObject;
-            contentLength = source.Length;
+            Uri = source.Uri;
+            RelationshipType = source.RelationshipType;
+            Title = source.Title;
+            ContentType = source.ContentType;
+            Parent = source.Parent;
+            Length = source.Length;
         }
 
         [JsonProperty("type")]
         [JsonConverter(typeof(ContentTypeConverter))]
-        public virtual ContentType MediaType
-        {
-            get { return type; }
-            set { type = value; }
-        }
+        public virtual ContentType ContentType { get; set; }
 
         [JsonProperty("rel")]
-        public virtual string RelationshipType
-        {
-            get { return rel; }
-            set { rel = value; }
-        }
+        public virtual string RelationshipType { get; set; }
 
         [JsonProperty("title")]
-        public virtual string Title
-        {
-            get { return title; }
-            set { title = value; }
-        }
+        public virtual string Title { get; set; }
 
         [JsonProperty("href")]
-        public virtual Uri Uri
-        {
-            get { return href; }
-            set { href = value; }
-        }
+        public virtual Uri Uri { get; set; }
 
         [JsonIgnore]
-        private Uri AbsoluteUri
-        {
-            get
-            {
-                if (Uri.IsAbsoluteUri)
-                    return Uri;
-
-                if (hostObject != null)
-                    return new Uri(new Uri(hostObject.Uri.AbsoluteUri.Substring(0, hostObject.Uri.AbsoluteUri.LastIndexOf('/') + 1)), Uri);
-
-                return null;
-            }
-        }
+        public IStacObject Parent { get; set; }
 
         [JsonIgnore]
-        public IStacObject Parent
-        {
-            get => hostObject;
-            internal set
-            {
-                hostObject = value;
-            }
-        }
-
-        [JsonIgnore]
-        public ulong Length => contentLength;
+        public ulong Length { get; set; }
 
         public virtual StacLink Clone()
         {
             return new StacLink(this);
-        }
-
-        public virtual async Task<IStacObject> LoadAsync()
-        {
-            if (AbsoluteUri == null)
-                throw new FileNotFoundException(string.Format("Cannot load STAC object from link ({0}) : No absolute entry point", Uri));
-            return await StacFactory.LoadUriAsync(AbsoluteUri);
         }
 
     }

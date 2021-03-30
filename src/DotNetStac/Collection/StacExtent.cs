@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using Stac.Item;
 
-namespace Stac
+namespace Stac.Collection
 {
     [JsonObject]
     public class StacExtent
@@ -15,7 +13,7 @@ namespace Stac
         [JsonProperty("temporal")]
         public StacTemporalExtent Temporal { get; set; }
 
-        public static StacExtent Create(IEnumerable<IStacItem> items)
+        public static StacExtent Create(IEnumerable<StacItem> items)
         {
             return new StacExtent()
             {
