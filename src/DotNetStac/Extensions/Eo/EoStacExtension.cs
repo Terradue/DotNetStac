@@ -15,20 +15,20 @@ namespace Stac.Extensions.Eo
         public EoStacExtension(IStacPropertiesContainer stacpropertiesContainer) : base(JsonSchemaUrl, stacpropertiesContainer)
         {
             itemFields = new Dictionary<string, Type>();
-            itemFields.Add(BandsField, typeof(EoBandObject[]) );
-            itemFields.Add(CloudCoverField, typeof(double) );
+            itemFields.Add(BandsField, typeof(EoBandObject[]));
+            itemFields.Add(CloudCoverField, typeof(double));
         }
 
         public double CloudCover
         {
             get { return StacPropertiesContainer.GetProperty<double>(CloudCoverField); }
-            set { StacPropertiesContainer.SetProperty(CloudCoverField, value); }
+            set { StacPropertiesContainer.SetProperty(CloudCoverField, value); DeclareStacExtension(); }
         }
 
         public EoBandObject[] Bands
         {
             get { return StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField); }
-            set { StacPropertiesContainer.SetProperty(BandsField, value); }
+            set { StacPropertiesContainer.SetProperty(BandsField, value); DeclareStacExtension(); }
         }
 
         public override IDictionary<string, Type> ItemFields => itemFields;

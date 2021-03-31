@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Stac.Catalog;
-using Stac.Collection;
-using Stac.Test;
 using Xunit;
 
 namespace Stac.Test.UseCases
@@ -11,15 +9,14 @@ namespace Stac.Test.UseCases
     [TestCaseOrderer("Stac.Test.PriorityOrderer", "DotNetStac.Test")]
     public class Sentinel2 : TestBase
     {
-        private static IStacCatalog catalog;
+        private static StacCatalog catalog;
 
         [Fact, TestPriority(1)]
         public void LoadRootCatalog()
         {
-            catalog = StacCatalog.LoadUri(GetUseCaseFileUri("catalog.json")).Result;
+            catalog = StacConvert.Deserialize<StacCatalog>(GetUseCaseJson("catalog.json"));
 
             Assert.NotNull(catalog);
-            Assert.IsAssignableFrom<IStacCatalog>(catalog);
             Assert.Equal("sentinel-stac", catalog.Id);
 
         }
@@ -27,11 +24,11 @@ namespace Stac.Test.UseCases
         [Fact, TestPriority(2)]
         public void LoadRootChildren()
         {
-            IDictionary<Uri, IStacCatalog> children = catalog.GetChildren();
+            IEnumerable<IStacObject> children = catalog.GetChildrenLinks().Select(l => StacConvert.Deserialize<IStacObject>(File.ReadAllText(l.Uri.ToString())));
 
-            Assert.Equal(1, children.Count);
+            Assert.Equal(1, children.Count());
 
-            Assert.IsAssignableFrom<IStacCollection>(children.First().Value);
+            Assert.IsAssignableFrom<StacCollection>(children.First());
         }
 
 

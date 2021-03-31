@@ -44,79 +44,79 @@ namespace Stac.Extensions.Sar
         public string InstrumentMode
         {
             get { return StacPropertiesContainer.GetProperty<string>(InstrumentModeField); }
-            set { StacPropertiesContainer.SetProperty(InstrumentModeField, value); }
+            set { StacPropertiesContainer.SetProperty(InstrumentModeField, value); DeclareStacExtension(); }
         }
 
         public SarCommonFrequencyBandName FrequencyBand
         {
             get { return StacPropertiesContainer.GetProperty<SarCommonFrequencyBandName>(FrequencyBandField); }
-            set { StacPropertiesContainer.SetProperty(FrequencyBandField, value); }
+            set { StacPropertiesContainer.SetProperty(FrequencyBandField, value); DeclareStacExtension(); }
         }
 
         public double CenterFrequency
         {
             get { return StacPropertiesContainer.GetProperty<double>(CenterFrequencyField); }
-            set { StacPropertiesContainer.SetProperty(CenterFrequencyField, value); }
+            set { StacPropertiesContainer.SetProperty(CenterFrequencyField, value); DeclareStacExtension(); }
         }
 
         public string[] Polarizations
         {
             get { return StacPropertiesContainer.GetProperty<string[]>(PolarizationsField); }
-            set { StacPropertiesContainer.SetProperty(PolarizationsField, value); }
+            set { StacPropertiesContainer.SetProperty(PolarizationsField, value); DeclareStacExtension(); }
         }
 
         public string ProductType
         {
             get { return StacPropertiesContainer.GetProperty<string>(ProductTypeField); }
-            set { StacPropertiesContainer.SetProperty(ProductTypeField, value); }
+            set { StacPropertiesContainer.SetProperty(ProductTypeField, value); DeclareStacExtension(); }
         }
 
         public double ResolutionRange
         {
             get { return StacPropertiesContainer.GetProperty<double>(ResolutionRangeField); }
-            set { StacPropertiesContainer.SetProperty(ResolutionRangeField, value); }
+            set { StacPropertiesContainer.SetProperty(ResolutionRangeField, value); DeclareStacExtension(); }
         }
 
         public double ResolutionAzimuth
         {
             get { return StacPropertiesContainer.GetProperty<double>(ResolutionAzimuthField); }
-            set { StacPropertiesContainer.SetProperty(ResolutionAzimuthField, value); }
+            set { StacPropertiesContainer.SetProperty(ResolutionAzimuthField, value); DeclareStacExtension(); }
         }
 
         public double PixelSpacingRange
         {
             get { return StacPropertiesContainer.GetProperty<double>(PixelSpacingRangeField); }
-            set { StacPropertiesContainer.SetProperty(PixelSpacingRangeField, value); }
+            set { StacPropertiesContainer.SetProperty(PixelSpacingRangeField, value); DeclareStacExtension(); }
         }
 
         public double PixelSpacingAzimuth
         {
             get { return StacPropertiesContainer.GetProperty<double>(PixelSpacingAzimuthField); }
-            set { StacPropertiesContainer.SetProperty(PixelSpacingAzimuthField, value); }
+            set { StacPropertiesContainer.SetProperty(PixelSpacingAzimuthField, value); DeclareStacExtension(); }
         }
 
         public double LooksRange
         {
             get { return StacPropertiesContainer.GetProperty<double>(LooksRangeField); }
-            set { StacPropertiesContainer.SetProperty(LooksRangeField, value); }
+            set { StacPropertiesContainer.SetProperty(LooksRangeField, value); DeclareStacExtension(); }
         }
 
         public double LooksAzimuth
         {
             get { return StacPropertiesContainer.GetProperty<double>(LooksAzimuthField); }
-            set { StacPropertiesContainer.SetProperty(LooksAzimuthField, value); }
+            set { StacPropertiesContainer.SetProperty(LooksAzimuthField, value); DeclareStacExtension(); }
         }
 
         public double LooksEquivalentNumber
         {
             get { return StacPropertiesContainer.GetProperty<double>(LooksEquivalentNumberField); }
-            set { StacPropertiesContainer.SetProperty(LooksEquivalentNumberField, value); }
+            set { StacPropertiesContainer.SetProperty(LooksEquivalentNumberField, value); DeclareStacExtension(); }
         }
 
         public string ObservationDirection
         {
             get { return StacPropertiesContainer.GetProperty<string>(ObservationDirectionField); }
-            set { StacPropertiesContainer.SetProperty(ObservationDirectionField, value); }
+            set { StacPropertiesContainer.SetProperty(ObservationDirectionField, value); DeclareStacExtension(); }
         }
 
         public override IDictionary<string, Type> ItemFields => itemFields;

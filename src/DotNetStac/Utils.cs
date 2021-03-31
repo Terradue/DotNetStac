@@ -35,11 +35,11 @@ namespace Stac
             {
                 throw new NotSupportedException($"{jObject.Value<string>("id")}. Skipping; STAC ItemCollections not supported yet");
             }
-            else if (jObject.Value<string>("type") == "Collection" || jObject["extent"] == null || jObject["license"] == null)
+            else if (jObject.Value<string>("type") == "Collection" || jObject["extent"] != null || jObject["license"] != null)
             {
                 return typeof(StacCollection);
             }
-            else if (jObject.Value<string>("type") == "Catalog" || jObject["description"] == null)
+            else if (jObject.Value<string>("type") == "Catalog" || jObject["description"] != null)
             {
                 return typeof(StacCatalog);
             }

@@ -51,6 +51,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_version")]
+        [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
 
         /// <summary>
@@ -89,6 +90,10 @@ namespace Stac
             {
                 link.Parent = this;
             }
+            foreach (StacAsset asset in Assets.Values)
+            {
+                asset.ParentStacItem = this;
+            }
         }
 
         [OnSerializing]
@@ -96,6 +101,12 @@ namespace Stac
         {
             if (BoundingBoxes == null)
                 BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
+        }
+
+        public bool ShouldSerializeStacExtensions()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return StacExtensions.Count > 0;
         }
 
         [JsonIgnore]
@@ -193,5 +204,7 @@ namespace Stac
             set => this.SetProperty("updated", value);
         }
 
+        [JsonIgnore]
+        public IStacObject StacObjectContainer => this;
     }
 }

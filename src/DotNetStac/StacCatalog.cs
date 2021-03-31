@@ -62,6 +62,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_version")]
+        [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
 
         /// <summary>
@@ -111,6 +112,7 @@ namespace Stac
         /// A map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
         /// <value></value>
+        [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
         public Dictionary<string, Stac.Collection.IStacSummaryItem> Summaries { get; internal set; }
 
@@ -121,6 +123,9 @@ namespace Stac
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
 
+        [JsonIgnore]
+        public IStacObject StacObjectContainer => this;
+
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
@@ -128,6 +133,18 @@ namespace Stac
             {
                 link.Parent = this;
             }
+        }
+
+        public bool ShouldSerializeSummaries()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return Summaries.Count > 0;
+        }
+
+        public bool ShouldSerializeStacExtensions()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return StacExtensions.Count > 0;
         }
 
     }

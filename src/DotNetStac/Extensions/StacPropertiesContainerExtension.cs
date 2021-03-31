@@ -22,5 +22,11 @@ namespace Stac.Extensions
         public IStacPropertiesContainer StacPropertiesContainer { get; private set; }
 
         public abstract IDictionary<string, Type> ItemFields { get; }
+
+        protected void DeclareStacExtension()
+        {
+            if (!StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(Identifier))
+                StacPropertiesContainer.StacObjectContainer.StacExtensions.Add(Identifier);
+        }
     }
 }

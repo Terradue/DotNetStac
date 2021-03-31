@@ -20,13 +20,13 @@ namespace Stac.Extensions.Sat
         public SatStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
         {
             itemFields = new Dictionary<string, Type>();
-            itemFields.Add(OrbitStateVectorField, typeof(SortedDictionary<DateTime, SatOrbitStateVector>) );
-            itemFields.Add(AscendingNodeCrossingDateTimeField, typeof(DateTime) );
-            itemFields.Add(SceneCenterCoordinatesField, typeof(double[]) );
-            itemFields.Add(RelativeOrbitField, typeof(int) );
-            itemFields.Add(AbsoluteOrbitField, typeof(int) );
-            itemFields.Add(OrbitStateField, typeof(string) );
-            itemFields.Add(PlatformInternationalDesignatorField, typeof(string) );
+            itemFields.Add(OrbitStateVectorField, typeof(SortedDictionary<DateTime, SatOrbitStateVector>));
+            itemFields.Add(AscendingNodeCrossingDateTimeField, typeof(DateTime));
+            itemFields.Add(SceneCenterCoordinatesField, typeof(double[]));
+            itemFields.Add(RelativeOrbitField, typeof(int));
+            itemFields.Add(AbsoluteOrbitField, typeof(int));
+            itemFields.Add(OrbitStateField, typeof(string));
+            itemFields.Add(PlatformInternationalDesignatorField, typeof(string));
         }
 
         public SortedDictionary<DateTime, SatOrbitStateVector> OrbitStateVectors
@@ -45,37 +45,37 @@ namespace Stac.Extensions.Sat
         public DateTime AscendingNodeCrossingDateTime
         {
             get { return StacPropertiesContainer.GetProperty<DateTime>(AscendingNodeCrossingDateTimeField); }
-            set { StacPropertiesContainer.SetProperty(AscendingNodeCrossingDateTimeField, value); }
+            set { StacPropertiesContainer.SetProperty(AscendingNodeCrossingDateTimeField, value); DeclareStacExtension(); }
         }
 
         public string PlatformInternationalDesignator
         {
             get { return StacPropertiesContainer.GetProperty<string>(PlatformInternationalDesignatorField); }
-            set { StacPropertiesContainer.SetProperty(PlatformInternationalDesignatorField, value); }
+            set { StacPropertiesContainer.SetProperty(PlatformInternationalDesignatorField, value); DeclareStacExtension(); }
         }
 
         public double[] SceneCenterCoordinates
         {
             get { return StacPropertiesContainer.GetProperty<double[]>(SceneCenterCoordinatesField); }
-            set { StacPropertiesContainer.SetProperty(SceneCenterCoordinatesField, value); }
+            set { StacPropertiesContainer.SetProperty(SceneCenterCoordinatesField, value); DeclareStacExtension(); }
         }
 
         public int RelativeOrbit
         {
             get { return StacPropertiesContainer.GetProperty<int>(RelativeOrbitField); }
-            set { StacPropertiesContainer.SetProperty(RelativeOrbitField, value); }
+            set { StacPropertiesContainer.SetProperty(RelativeOrbitField, value); DeclareStacExtension(); }
         }
 
         public int AbsoluteOrbit
         {
             get { return StacPropertiesContainer.GetProperty<int>(AbsoluteOrbitField); }
-            set { StacPropertiesContainer.SetProperty(AbsoluteOrbitField, value); }
+            set { StacPropertiesContainer.SetProperty(AbsoluteOrbitField, value); DeclareStacExtension(); }
         }
 
         public string OrbitState
         {
             get { return StacPropertiesContainer.GetProperty<string>(OrbitStateField); }
-            set { StacPropertiesContainer.SetProperty(OrbitStateField, value); }
+            set { StacPropertiesContainer.SetProperty(OrbitStateField, value); DeclareStacExtension(); }
         }
 
         public StacItem StacItem => StacPropertiesContainer as StacItem;

@@ -68,19 +68,17 @@ namespace Stac.Test.Collection
             collection.Links.Add(StacLink.CreateRootLink(new Uri("https://storage.cloud.google.com/earthengine-test/catalog/catalog.json")));
             collection.Links.Add(new StacLink(new Uri("https://scihub.copernicus.eu/twiki/pub/SciHubWebPortal/TermsConditions/Sentinel_Data_Terms_and_Conditions.pdf"), "license", "Legal notice on the use of Copernicus Sentinel Data and Service Information", null));
 
-            collection.Keywords = new System.Collections.ObjectModel.Collection<string>(new string[] {
-                "copernicus",
-                "esa",
-                "eu",
-                "msi",
-                "radiance",
-                "sentinel"});
+            collection.Keywords.Add("copernicus");
+            collection.Keywords.Add("esa");
+            collection.Keywords.Add("eu");
+            collection.Keywords.Add("msi");
+            collection.Keywords.Add("radiance");
+            collection.Keywords.Add("sentinel");
 
-            collection.Providers = new System.Collections.ObjectModel.Collection<StacProvider>(
-                new StacProvider[]{new StacProvider("European Union/ESA/Copernicus"){
+            collection.Providers.Add(new StacProvider("European Union/ESA/Copernicus"){
                     Roles = new List<StacProviderRole>() { StacProviderRole.producer, StacProviderRole.licensor},
                     Uri = new Uri("https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi")
-            }});
+            });
 
             collection.Summaries.Add("datetime",
                 new StacSummaryStatsObject<DateTime>(

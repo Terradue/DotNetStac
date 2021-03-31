@@ -27,19 +27,19 @@ namespace Stac.Extensions.Processing
         public string Lineage
         {
             get { return StacPropertiesContainer.GetProperty<string>(LineageField); }
-            set { StacPropertiesContainer.SetProperty(LineageField, value); }
+            set { StacPropertiesContainer.SetProperty(LineageField, value); DeclareStacExtension(); }
         }
 
         public string Level
         {
             get { return StacPropertiesContainer.GetProperty<string>(LevelField); }
-            set { StacPropertiesContainer.SetProperty(LevelField, value); }
+            set { StacPropertiesContainer.SetProperty(LevelField, value); DeclareStacExtension(); }
         }
 
         public string Facility
         {
             get { return StacPropertiesContainer.GetProperty<string>(FacilityField); }
-            set { StacPropertiesContainer.SetProperty(FacilityField, value); }
+            set { StacPropertiesContainer.SetProperty(FacilityField, value); DeclareStacExtension(); }
         }
 
         public IDictionary<string, string> Software

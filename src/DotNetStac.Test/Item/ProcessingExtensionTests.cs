@@ -1,15 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Stac.Extensions.Sat;
-using GeoJSON.Net;
-using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Stac.Item;
 using Xunit;
-using System.IO;
-using Stac.Extensions.Eo;
 using Stac.Extensions.Processing;
 
 namespace Stac.Test.Item
@@ -24,15 +14,10 @@ namespace Stac.Test.Item
 
             StacItem k3MissingSoftware = JsonConvert.DeserializeObject<StacItem>(k3MissingSoftwareJson);
 
-            ProcessingStacExtension k3MissingSoftwareProc = k3MissingSoftware.GetExtension<ProcessingStacExtension>();
+            Assert.NotNull(k3MissingSoftware.ProcessingExtension().Software);
+            Assert.Equal(1, k3MissingSoftware.ProcessingExtension().Software.Count);
 
-            Assert.Null(k3MissingSoftwareProc);
-
-            k3MissingSoftwareProc = new ProcessingStacExtension(k3MissingSoftware);
-
-            Assert.NotNull(k3MissingSoftwareProc.Software);
-
-            k3MissingSoftwareProc.Software.Add("proc_IPF", "2.0.1");
+            k3MissingSoftware.ProcessingExtension().Software.Add("proc_IPF", "2.0.1");
 
             k3MissingSoftwareJson = JsonConvert.SerializeObject(k3MissingSoftware);
 

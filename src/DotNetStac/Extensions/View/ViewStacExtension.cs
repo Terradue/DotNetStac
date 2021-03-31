@@ -28,31 +28,31 @@ namespace Stac.Extensions.View
         public double OffNadir
         {
             get { return StacPropertiesContainer.GetProperty<double>(OffNadirField); }
-            set { StacPropertiesContainer.SetProperty(OffNadirField, value); }
+            set { StacPropertiesContainer.SetProperty(OffNadirField, value); DeclareStacExtension(); }
         }
 
         public double IncidenceAngle
         {
             get { return StacPropertiesContainer.GetProperty<double>(IncidenceAngleField); }
-            set { StacPropertiesContainer.SetProperty(IncidenceAngleField, value); }
+            set { StacPropertiesContainer.SetProperty(IncidenceAngleField, value); DeclareStacExtension(); }
         }
 
         public double Azimuth
         {
             get { return StacPropertiesContainer.GetProperty<double>(AzimuthField); }
-            set { StacPropertiesContainer.SetProperty(AzimuthField, value); }
+            set { StacPropertiesContainer.SetProperty(AzimuthField, value); DeclareStacExtension(); }
         }
 
         public double SunAzimuth
         {
             get { return StacPropertiesContainer.GetProperty<double>(SunAzimuthField); }
-            set { StacPropertiesContainer.SetProperty(SunAzimuthField, value); }
+            set { StacPropertiesContainer.SetProperty(SunAzimuthField, value); DeclareStacExtension(); }
         }
 
         public double SunElevation
         {
             get { return StacPropertiesContainer.GetProperty<double>(SunElevationField); }
-            set { StacPropertiesContainer.SetProperty(SunElevationField, value); }
+            set { StacPropertiesContainer.SetProperty(SunElevationField, value); DeclareStacExtension(); }
         }
 
         public override IDictionary<string, Type> ItemFields => itemFields;

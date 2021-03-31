@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Stac.Item;
 using Xunit;
 
 namespace Stac.Test.Item
@@ -74,13 +72,13 @@ namespace Stac.Test.Item
             properties.Add("datetime", DateTime.Parse("2016-05-03T13:21:30.040Z").ToUniversalTime());
             properties.Add("collection", "CS3");
 
-            StacItem item = new StacItem(geometry, properties, "CS3-20160503_132130_04");
+            StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
 
             item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
             item.Links.Add(StacLink.CreateCollectionLink(new Uri("http://cool-sat.com/catalog.json")));
 
-            item.Assets.Add("analytic", new StacAsset(new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
-            item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
+            item.Assets.Add("analytic", new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
+            item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(item, new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
 
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
@@ -107,7 +105,7 @@ namespace Stac.Test.Item
         {
             var json = GetJson("Item");
 
-            var item = StacItem.LoadJToken(JsonConvert.DeserializeObject<JToken>(json), null);
+            var item = StacConvert.Deserialize<StacItem>(json);
 
             Assert.NotNull(item);
 
@@ -146,7 +144,7 @@ namespace Stac.Test.Item
             properties.Add("datetime", DateTime.Parse("2016-05-03T13:21:30.040Z").ToUniversalTime());
             properties.Add("collection", "CS3");
 
-            StacItem item = new StacItem(geometry, properties, "CS3-20160503_132130_04");
+            StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
 
             item.SetProperty("test", new string[] {"test1", "test2", "test3"});
 

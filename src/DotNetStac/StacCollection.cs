@@ -43,6 +43,7 @@ namespace Stac
                 this.Assets = new Dictionary<string, StacAsset>(assets);
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
             this.StacExtensions = new Collection<string>();
+            this.Providers = new Collection<StacProvider>();
             this.License = license;
             this.Keywords = new Collection<string>();
             this.Extent = extent;
@@ -62,6 +63,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_version")]
+        [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
 
         /// <summary>
@@ -111,6 +113,7 @@ namespace Stac
         /// A map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
         /// <value></value>
+        [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
         public Dictionary<string, Stac.Collection.IStacSummaryItem> Summaries { get; internal set; }
 
@@ -153,6 +156,9 @@ namespace Stac
         [JsonProperty("assets")]
         public IDictionary<string, StacAsset> Assets { get; internal set; }
 
+        [JsonIgnore]
+        public IStacObject StacObjectContainer => this;
+
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
@@ -160,6 +166,18 @@ namespace Stac
             {
                 link.Parent = this;
             }
+        }
+
+        public bool ShouldSerializeSummaries()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return Summaries.Count > 0;
+        }
+
+        public bool ShouldSerializeStacExtensions()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return StacExtensions.Count > 0;
         }
     }
 }

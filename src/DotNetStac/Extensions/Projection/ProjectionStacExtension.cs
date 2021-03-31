@@ -33,37 +33,37 @@ namespace Stac.Extensions.Projection
         public long Epsg
         {
             get { return StacPropertiesContainer.GetProperty<long>(EpsgField); }
-            set { StacPropertiesContainer.SetProperty(EpsgField, value); }
+            set { StacPropertiesContainer.SetProperty(EpsgField, value); DeclareStacExtension(); }
         }
 
         public string Wkt2
         {
             get { return StacPropertiesContainer.GetProperty<string>(Wkt2Field); }
-            set { StacPropertiesContainer.SetProperty(Wkt2Field, value); }
+            set { StacPropertiesContainer.SetProperty(Wkt2Field, value); DeclareStacExtension(); }
         }
 
         public string ProjJson
         {
             get { return StacPropertiesContainer.GetProperty<string>(ProjJsonField); }
-            set { StacPropertiesContainer.SetProperty(ProjJsonField, value); }
+            set { StacPropertiesContainer.SetProperty(ProjJsonField, value); DeclareStacExtension(); }
         }
 
         public IGeometryObject Geometry
         {
             get { return StacPropertiesContainer.GetProperty<IGeometryObject>(Wkt2Field); }
-            set { StacPropertiesContainer.SetProperty(Wkt2Field, value); }
+            set { StacPropertiesContainer.SetProperty(Wkt2Field, value); DeclareStacExtension(); }
         }
 
         public double[] Bbox
         {
             get { return StacPropertiesContainer.GetProperty<double[]>(ProjBboxField); }
-            set { StacPropertiesContainer.SetProperty(ProjBboxField, value); }
+            set { StacPropertiesContainer.SetProperty(ProjBboxField, value); DeclareStacExtension(); }
         }
 
         public CentroidObject Centroid
         {
             get { return StacPropertiesContainer.GetProperty<CentroidObject>(ProjCentroidField); }
-            set { StacPropertiesContainer.SetProperty(ProjCentroidField, value); }
+            set { StacPropertiesContainer.SetProperty(ProjCentroidField, value); DeclareStacExtension(); }
         }
 
         public override IDictionary<string, Type> ItemFields => itemFields;
