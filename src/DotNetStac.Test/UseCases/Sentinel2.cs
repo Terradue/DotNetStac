@@ -14,7 +14,10 @@ namespace Stac.Test.UseCases
         [Fact, TestPriority(1)]
         public void LoadRootCatalog()
         {
-            catalog = StacConvert.Deserialize<StacCatalog>(GetUseCaseJson("catalog.json"));
+            var json = GetUseCaseJson("catalog.json");
+            ValidateJson(json);
+
+            catalog = StacConvert.Deserialize<StacCatalog>(json);
 
             Assert.NotNull(catalog);
             Assert.Equal("sentinel-stac", catalog.Id);
@@ -24,7 +27,14 @@ namespace Stac.Test.UseCases
         [Fact, TestPriority(2)]
         public void LoadRootChildren()
         {
-            IEnumerable<IStacObject> children = catalog.GetChildrenLinks().Select(l => StacConvert.Deserialize<IStacObject>(File.ReadAllText(l.Uri.ToString())));
+            IEnumerable<IStacObject> children = catalog.GetChildrenLinks()
+                .Select(l =>
+                {
+                    Uri childUri = new Uri(GetUseCaseFileUri("catalog.json"), l.Uri.OriginalString);
+                    var childJson = File.ReadAllText(childUri.ToString().Replace("file://", ""));
+                    ValidateJson(childJson);
+                    return StacConvert.Deserialize<IStacObject>(childJson);
+                });
 
             Assert.Equal(1, children.Count());
 

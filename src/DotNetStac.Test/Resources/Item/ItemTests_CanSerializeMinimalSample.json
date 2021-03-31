@@ -1,6 +1,5 @@
 {
     "stac_version": "1.0.0-rc.1",
-    "stac_extensions": [],
     "type": "Feature",
     "id": "CS3-20160503_132130_04",
     "bbox": [

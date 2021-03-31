@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 
@@ -132,11 +134,17 @@ namespace Stac.Test
 
             foreach (var schema in schemas)
             {
-                IList<string> errorMessages = null;
-                if (jObject.IsValid(LoadSchema(shortcut: schema, version: jObject["stac_version"].Value<string>()), out errorMessages))
+                IList<ValidationError> errorMessages = null;
+                string shortcut = null, baseUrl = null;
+                if (Uri.IsWellFormedUriString(schema, UriKind.Absolute))
+                    baseUrl = schema;
+                else
+                    shortcut = schema;
+                if (jObject.IsValid(LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>()), out errorMessages))
                     continue;
 
-                throw new InvalidDataException(schema + ":" + string.Join("\n", errorMessages));
+                throw new InvalidDataException(schema + ":" + string.Join("\n", errorMessages.
+                        Select(e => FormatMessage(e, "", new StringBuilder(e.Message)))));
             }
             return true;
         }
@@ -156,7 +164,7 @@ namespace Stac.Test
                 baseUri = new Uri(baseUrl);
 
             Uri schemaUri = null;
-            bool isExtension = false;
+            // bool isExtension = false;
             if (shortcut == "item" || shortcut == "catalog" || shortcut == "collection")
                 schemaUri = new Uri(baseUri, $"{shortcut}-spec/json-schema/{shortcut}.json");
             else if (!string.IsNullOrEmpty(shortcut))
@@ -167,7 +175,7 @@ namespace Stac.Test
                     throw new Exception("'stac_extensions' must contain 'projection instead of 'proj'.");
                 }
                 schemaUri = new Uri(baseUri, $"extensions/{shortcut}/json-schema/schema.json`");
-                isExtension = true;
+                // isExtension = true;
             }
             else
             {
@@ -185,9 +193,42 @@ namespace Stac.Test
             }
             else
             {
-                schemaCompiled[schemaUri.ToString()] = JSchema.Parse(httpClient.GetStringAsync(schemaUri).GetAwaiter().GetResult(), new JSchemaUrlResolver());
-                return schemaCompiled[schemaUri.ToString()];
+                try
+                {
+                    schemaCompiled[schemaUri.ToString()] = JSchema.Parse(httpClient.GetStringAsync(schemaUri).GetAwaiter().GetResult(), new JSchemaUrlResolver());
+                    return schemaCompiled[schemaUri.ToString()];
+                }
+                catch (HttpRequestException hre)
+                {
+                    throw new Exception(schemaUri + ":" + hre.Message, hre);
+                }
             }
+        }
+
+        internal static string FormatMessage(ValidationError validationError, string prefix, StringBuilder message)
+        {
+            message.Append(validationError.Message);
+            if (message[message.Length - 1] != '.')
+            {
+                message.Append('.');
+            }
+            message.Append('\n' + prefix);
+
+            message.Append("Path '");
+            message.Append(validationError.Path);
+            message.Append('\'');
+
+            message.Append('.');
+
+            if (validationError.ChildErrors != null)
+            {
+                foreach (ValidationError childError in validationError.ChildErrors)
+                {
+                    FormatMessage(childError, prefix + "  ", message);
+                }
+            }
+
+            return message.ToString();
         }
     }
 }

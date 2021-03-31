@@ -15,7 +15,9 @@ namespace Stac.Test.Item
         {
             var json = GetJson("Item");
 
-            var item = JsonConvert.DeserializeObject<StacItem>(json);
+            ValidateJson(json);
+
+            var item = StacConvert.Deserialize<StacItem>(json);
 
             Assert.NotNull(item);
 
@@ -83,9 +85,13 @@ namespace Stac.Test.Item
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
 
-            var actualJson = JsonConvert.SerializeObject(item);
+            var actualJson = StacConvert.Serialize(item);
+
+            ValidateJson(actualJson);
 
             var expectedJson = GetJson("Item");
+
+            ValidateJson(expectedJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
@@ -95,7 +101,9 @@ namespace Stac.Test.Item
         {
             var json = GetJson("Item");
 
-            var item = JsonConvert.DeserializeObject<StacItem>(json);
+            ValidateJson(json);
+
+            var item = StacConvert.Deserialize<StacItem>(json);
 
             Assert.Equal(item.DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
         }
@@ -104,6 +112,8 @@ namespace Stac.Test.Item
         public void CanDeserializeS2CogSample()
         {
             var json = GetJson("Item");
+
+            ValidateJson(json);
 
             var item = StacConvert.Deserialize<StacItem>(json);
 
@@ -118,8 +128,7 @@ namespace Stac.Test.Item
         [Fact]
         public void CannotMakeEmptyGeometryItem()
         {
-            Assert.Throws(typeof(ArgumentNullException), () =>
-                                                        new StacItem(null));
+            Assert.Throws<ArgumentNullException>(() => new StacItem(null));
         }
 
         [Fact]
@@ -146,11 +155,13 @@ namespace Stac.Test.Item
 
             StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
 
-            item.SetProperty("test", new string[] {"test1", "test2", "test3"});
+            item.SetProperty("test", new string[] { "test1", "test2", "test3" });
 
-            string json = JsonConvert.SerializeObject(item);
+            string json = StacConvert.Serialize(item);
 
-            item = JsonConvert.DeserializeObject<StacItem>(json);
+            ValidateJson(json);
+
+            item = StacConvert.Deserialize<StacItem>(json);
 
             var array = item.GetProperty<string[]>("test");
         }

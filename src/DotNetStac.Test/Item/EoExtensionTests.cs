@@ -17,7 +17,10 @@ namespace Stac.Test.Item
             var k3CompleteJson = GetJson("Item", "K3A_20200508102646_28267_00027320_L1G");
             var k3MissingBandsJson = GetJson("Item", "K3A_20200508102646_28267_00027320_L1G_missing_bands");
 
-            StacItem k3MissingBands = JsonConvert.DeserializeObject<StacItem>(k3MissingBandsJson);
+            ValidateJson(k3CompleteJson);
+            ValidateJson(k3MissingBandsJson);
+
+            StacItem k3MissingBands = StacConvert.Deserialize<StacItem>(k3MissingBandsJson);
 
             EoBandObject eoBandObject = new EoBandObject("MS1", EoBandCommonName.blue)
             {
@@ -33,6 +36,8 @@ namespace Stac.Test.Item
 
             k3MissingBandsJson = JsonConvert.SerializeObject(k3MissingBands);
 
+            ValidateJson(k3MissingBandsJson);
+
             JsonAssert.AreEqual(k3CompleteJson, k3MissingBandsJson);
         }
 
@@ -41,7 +46,9 @@ namespace Stac.Test.Item
         {
             var k3CompleteJson = GetJson("Item", "GetAssetsBands_K3_20201112193439_45302_18521139_L1G");
 
-            StacItem k3complete = JsonConvert.DeserializeObject<StacItem>(k3CompleteJson);
+            ValidateJson(k3CompleteJson);
+
+            StacItem k3complete = StacConvert.Deserialize<StacItem>(k3CompleteJson);
 
             var overviewAssets = k3complete.Assets.Where(a =>
             {
@@ -93,9 +100,13 @@ namespace Stac.Test.Item
             EoStacExtension eo = new EoStacExtension(item);
             eo.CloudCover = 0;
 
-            var actualJson = JsonConvert.SerializeObject(item);
+            var actualJson = StacConvert.Serialize(item);
+
+            ValidateJson(actualJson);
 
             var expectedJson = GetJson("Item");
+
+            ValidateJson(expectedJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
@@ -105,9 +116,13 @@ namespace Stac.Test.Item
         {
             var json = GetJson("Item");
 
+            ValidateJson(json);
+
             var item = StacConvert.Deserialize<StacItem>(json);
 
-            var actualJson = JsonConvert.SerializeObject(item);
+            var actualJson = StacConvert.Serialize(item);
+
+            ValidateJson(actualJson);
 
             JsonAssert.AreEqual(json, actualJson);
 

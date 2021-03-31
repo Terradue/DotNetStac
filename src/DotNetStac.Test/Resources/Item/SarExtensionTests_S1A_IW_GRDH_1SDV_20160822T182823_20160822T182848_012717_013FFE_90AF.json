@@ -1,6 +1,6 @@
 {
   "stac_extensions": [
-    "sar"
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json"
   ],
   "stac_version": "1.0.0-rc.1",
   "assets": {},

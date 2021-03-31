@@ -46,12 +46,12 @@ namespace Stac.Extensions.Processing
         {
             get
             {
-                IDictionary<string, string> existingSoftware = StacPropertiesContainer.GetProperty<IDictionary<string, string>>(FacilityField);
+                Dictionary<string, string> existingSoftware = StacPropertiesContainer.GetProperty<Dictionary<string, string>>(SoftwareField);
                 ObservableDictionary<string, string> software = null;
-                if (software == null)
+                if (existingSoftware == null)
                     software = new ObservableDictionary<string, string>();
                 else
-                    software = new ObservableDictionary<string, string>(software);
+                    software = new ObservableDictionary<string, string>(existingSoftware);
                 software.CollectionChanged += UpdateSoftwareField;
                 return software;
             }
@@ -61,7 +61,8 @@ namespace Stac.Extensions.Processing
 
         private void UpdateSoftwareField(object sender, NotifyCollectionChangedEventArgs e)
         {
-            StacPropertiesContainer.SetProperty(SoftwareField, sender as IDictionary<string, string>);
+            StacPropertiesContainer.SetProperty(SoftwareField, new Dictionary<string, string>(sender as IDictionary<string, string>));
+            DeclareStacExtension();
         }
 
     }

@@ -59,6 +59,7 @@ namespace Stac.Test
 
                 if (avalues != null)
                 {
+                    if (avalues.Count == 0) continue;
                     avalues = avalues.SortProperties();
                     result.Add(property.Name, avalues);
                     continue;
@@ -91,5 +92,7 @@ namespace Stac.Test
 
             return result;
         }
+
+
     }
 }

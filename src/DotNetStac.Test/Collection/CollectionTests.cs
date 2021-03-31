@@ -17,6 +17,8 @@ namespace Stac.Test.Collection
         {
             var json = GetJson("Collection");
 
+            ValidateJson(json);
+
             var item = JsonConvert.DeserializeObject<StacCollection>(json);
 
             Assert.NotNull(item);
@@ -197,9 +199,13 @@ namespace Stac.Test.Collection
 
             var actualJson = JsonConvert.SerializeObject(collection);
 
+            ValidateJson(actualJson);
+
             Console.WriteLine(actualJson);
 
             var expectedJson = GetJson("Collection");
+
+            ValidateJson(expectedJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }

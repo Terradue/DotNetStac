@@ -168,16 +168,25 @@ namespace Stac
             }
         }
 
+        #pragma warning disable 1591
         public bool ShouldSerializeSummaries()
         {
             // don't serialize the Manager property if an employee is their own manager
             return Summaries.Count > 0;
         }
 
+        #pragma warning disable 1591
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager
             return StacExtensions.Count > 0;
+        }
+
+        #pragma warning disable 1591
+        public bool ShouldSerializeAssets()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return Assets.Count > 0;
         }
     }
 }

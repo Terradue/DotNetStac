@@ -36,9 +36,13 @@ namespace Stac.Test.Item
 
             stacItem.SarExtension().Required("IW", SarCommonFrequencyBandName.C, new string[2] { "VV", "VH" }, "GRD");
 
-            var actualJson = JsonConvert.SerializeObject(stacItem);
+            var actualJson = StacConvert.Serialize(stacItem);
+
+            ValidateJson(actualJson);
 
             var expectedJson = GetJson("Item", "S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF");
+
+            ValidateJson(expectedJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
 
