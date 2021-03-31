@@ -51,9 +51,9 @@ namespace Stac
             return new StacLink(uri, "item", null, mediaType);
         }
 
-        public static StacLink CreateItemLink(IStacObject stacObject, IStacObject hostObject = null)
+        public static StacLink CreateItemLink(IStacObject stacObject, Uri uri)
         {
-            return new StacObjectLink(stacObject, hostObject);
+            return new StacObjectLink(stacObject, uri);
         }
 
         #endregion

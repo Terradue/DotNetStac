@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
@@ -13,7 +14,6 @@ namespace Stac.Extensions
 
         public SchemaBasedStacExtension(JSchema jsonSchema,
                                         IStacObject stacObject) : base(jsonSchema.Id.ToString(),
-                                                                       null,
                                                                        stacObject)
         {
             Preconditions.CheckNotNull<JSchema>(jsonSchema, "jsonSchema");
@@ -24,7 +24,6 @@ namespace Stac.Extensions
         public SchemaBasedStacExtension(Uri schemaUri,
                                            StacSchemaResolver stacSchemaResolver,
                                            IStacObject stacObject) : base(schemaUri.ToString(),
-                                                                       null,
                                                                        stacObject)
         {
             Preconditions.CheckNotNull<Uri>(schemaUri, "schemaUri");
@@ -47,5 +46,6 @@ namespace Stac.Extensions
 
         public JSchema JsonSchema { get; }
 
+        public override IDictionary<string, Type> ItemFields => throw new NotImplementedException();
     }
 }

@@ -15,7 +15,7 @@ namespace Stac
     /// STAC Collection Object implementing STAC Collection spec (https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md)
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class StacCollection : IStacObject
+    public partial class StacCollection : IStacObject, IStacParent
     {
         public const string MEDIATYPE = "application/json; profile=stac-collection";
         public readonly static ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);
@@ -42,7 +42,7 @@ namespace Stac
             else
                 this.Assets = new Dictionary<string, StacAsset>(assets);
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
-            this.StacExtensions = new StacExtensions(this);
+            this.StacExtensions = new Collection<string>();
             this.License = license;
             this.Keywords = new Collection<string>();
             this.Extent = extent;
@@ -69,8 +69,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionsConverter))]
-        public StacExtensions StacExtensions { get; internal set; }
+        public Collection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// A list of references to other documents.
@@ -161,7 +160,6 @@ namespace Stac
             {
                 link.Parent = this;
             }
-            StacExtensions.stacObject = this;
         }
     }
 }

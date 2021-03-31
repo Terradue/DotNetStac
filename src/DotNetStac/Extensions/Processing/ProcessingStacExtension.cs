@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using Stac.Model;
@@ -8,51 +9,76 @@ namespace Stac.Extensions.Processing
     {
 
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/processing/v1.0.0/schema.json";
-        public const string Prefix = "processing";
-        public const string LineageField = "lineage";
-        public const string LevelField = "level";
-        public const string FacilityField = "facility";
-        public const string SoftwareField = "software";
+        public const string LineageField = "processing:lineage";
+        public const string LevelField = "processing:level";
+        public const string FacilityField = "processing:facility";
+        public const string SoftwareField = "processing:software";
+        private readonly Dictionary<string, Type> itemFields;
 
-        private readonly ObservableDictionary<string, string> software = new ObservableDictionary<string, string>();
-
-        public ProcessingStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
+        public ProcessingStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
         {
-            var existingSoftware = GetField<Dictionary<string, string>>(SoftwareField);
-            if (existingSoftware != null)
-                software = new ObservableDictionary<string, string>(existingSoftware);
-            software.CollectionChanged += UpdateSoftwareField;
-        }
-
-        public ProcessingStacExtension(IStacObject stacObject, string lineage, string level, string facility = null) : this(stacObject)
-        {
-
+            itemFields = new Dictionary<string, Type>();
+            itemFields.Add(LineageField, typeof(string));
+            itemFields.Add(LevelField, typeof(string));
+            itemFields.Add(FacilityField, typeof(string));
+            itemFields.Add(SoftwareField, typeof(IDictionary<string, string>));
         }
 
         public string Lineage
         {
-            get { return base.GetField<string>(LineageField); }
-            set { base.SetField(LineageField, value); }
+            get { return StacPropertiesContainer.GetProperty<string>(LineageField); }
+            set { StacPropertiesContainer.SetProperty(LineageField, value); }
         }
 
         public string Level
         {
-            get { return base.GetField<string>(LevelField); }
-            set { base.SetField(LevelField, value); }
+            get { return StacPropertiesContainer.GetProperty<string>(LevelField); }
+            set { StacPropertiesContainer.SetProperty(LevelField, value); }
         }
 
         public string Facility
         {
-            get { return base.GetField<string>(FacilityField); }
-            set { base.SetField(FacilityField, value); }
+            get { return StacPropertiesContainer.GetProperty<string>(FacilityField); }
+            set { StacPropertiesContainer.SetProperty(FacilityField, value); }
         }
 
-        public IDictionary<string, string> Software => software;
+        public IDictionary<string, string> Software
+        {
+            get
+            {
+                IDictionary<string, string> existingSoftware = StacPropertiesContainer.GetProperty<IDictionary<string, string>>(FacilityField);
+                ObservableDictionary<string, string> software = null;
+                if (software == null)
+                    software = new ObservableDictionary<string, string>();
+                else
+                    software = new ObservableDictionary<string, string>(software);
+                software.CollectionChanged += UpdateSoftwareField;
+                return software;
+            }
+        }
+
+        public override IDictionary<string, Type> ItemFields => itemFields;
 
         private void UpdateSoftwareField(object sender, NotifyCollectionChangedEventArgs e)
         {
-            base.SetField(SoftwareField, software);
+            StacPropertiesContainer.SetProperty(SoftwareField, sender as IDictionary<string, string>);
         }
 
+    }
+
+    public static class ProcessingStacExtensionExtensions
+    {
+        public static ProcessingStacExtension ProcessingExtension(this StacItem stacItem)
+        {
+            return new ProcessingStacExtension(stacItem);
+        }
+
+        public static void Init(this ProcessingStacExtension processingStacExtension,
+                                string lineage,
+                                string level,
+                                string facility = null)
+        {
+
+        }
     }
 }

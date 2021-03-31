@@ -58,7 +58,6 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionsConverter))]
         public Collection<string> StacExtensions { get; private set; }
 
         /// <summary>
@@ -90,7 +89,6 @@ namespace Stac
             {
                 link.Parent = this;
             }
-            StacExtensions.ResolveExtensions(this);
         }
 
         [OnSerializing]

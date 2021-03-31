@@ -23,7 +23,7 @@ namespace Stac.Test
 
     private IDictionary<string, JSchema> schemaCompiled;
 
-    private HttpClient httpClient = new HttpClient();
+    protected HttpClient httpClient = new HttpClient();
     private static string[] coreObjects = new string[] { "item", "catalog", "collection" };
 
     protected TestBase()

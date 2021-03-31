@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 
@@ -50,6 +51,16 @@ namespace Stac
             if (typeof(T).GetTypeInfo().IsEnum)
                 return (T)Enum.Parse(typeof(T), @object.ToString());
             return (T)Convert.ChangeType(@object, typeof(T));
+        }
+
+        public static IEnumerable<StacLink> GetChildrenLinks(this IStacParent stacCatalog)
+        {
+            return stacCatalog.Links.Where(l => l.RelationshipType == "child");
+        }
+
+        public static IEnumerable<StacLink> GetItemLinks(this IStacParent stacCatalog)
+        {
+            return stacCatalog.Links.Where(l => l.RelationshipType == "item");
         }
 
     }

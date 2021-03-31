@@ -14,7 +14,7 @@ namespace Stac
     /// STAC Catalog Object implementing STAC Catalog spec (https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md)
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacCatalog : IStacObject
+    public class StacCatalog : IStacObject, IStacParent
     {
         /// <summary>
         /// Catalog Media-Type string
@@ -45,7 +45,7 @@ namespace Stac
                 this.Links = new Collection<StacLink>(links.ToList());
             this.Properties = new Dictionary<string, object>();
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
-            this.StacExtensions = new StacExtensions(this);
+            this.StacExtensions = new Collection<string>();
         }
 
         # region IStacObject
@@ -69,8 +69,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
-        [JsonConverter(typeof(StacExtensionsConverter))]
-        public StacExtensions StacExtensions { get; internal set; }
+        public Collection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// A list of references to other documents.
@@ -129,7 +128,6 @@ namespace Stac
             {
                 link.Parent = this;
             }
-            StacExtensions.stacObject = this;
         }
 
     }

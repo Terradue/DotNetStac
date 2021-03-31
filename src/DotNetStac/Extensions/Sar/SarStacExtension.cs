@@ -118,6 +118,8 @@ namespace Stac.Extensions.Sar
             get { return StacPropertiesContainer.GetProperty<string>(ObservationDirectionField); }
             set { StacPropertiesContainer.SetProperty(ObservationDirectionField, value); }
         }
+
+        public override IDictionary<string, Type> ItemFields => itemFields;
     }
 
     public static class SarStacExtensionExtensions

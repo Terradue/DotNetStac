@@ -11,13 +11,8 @@ namespace Stac.Extensions.Sat
     {
         public static BaselineVector CalculateBaseline(this SatStacExtension sat1, SatStacExtension sat2)
         {
-            if (!(sat1.StacItem is StacItem))
-                throw new OperationCanceledException(string.Format("{0} must be an item to calculate baseline", sat1.StacItem.Id));
-            if (!(sat2.StacItem is StacItem))
-                throw new OperationCanceledException(string.Format("{0} must be an item to calculate baseline", sat1.StacItem.Id));
-
-            StacItem masterItem = sat1.StacItem as StacItem;
-            StacItem slaveItem = sat2.StacItem as StacItem;
+            StacItem masterItem = sat1.StacItem;
+            StacItem slaveItem = sat2.StacItem;
 
             if (sat1.OrbitStateVectors.Count() == 0)
                 throw new OperationCanceledException("sat1 has no orbit state vectors");

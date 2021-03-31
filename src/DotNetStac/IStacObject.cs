@@ -22,5 +22,7 @@ namespace Stac
         ContentType MediaType { get; }
 
         Collection<string> StacExtensions { get; }
+        
+        string Title { get; }
     }
 }
