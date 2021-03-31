@@ -12,7 +12,7 @@
 
 <h3 align="center">
 
-  [![Build Status](https://travis-ci.com/Terradue/DotNetStac.svg?branch=develop)](https://travis-ci.com/Terradue/DotNetStac)
+  ![Build Status](https://github.com/Terradue/DotNetStac/actions/workflows/build.yml/badge.svg)
   [![NuGet](https://img.shields.io/nuget/vpre/DotNetStac)](https://www.nuget.org/packages/DotNetStac/)
   [![Gitter](https://img.shields.io/gitter/room/SpatioTemporal-Asset-Catalog/Lobby?color=yellow)](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby)
   [![License](https://img.shields.io/badge/license-AGPL3-blue.svg)](LICENSE)
@@ -32,20 +32,18 @@
 
 **DotNetStac** helps you to work with [STAC](https://stacspec.org) ([catalog](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec), [collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec), [item](https://github.com/radiantearth/stac-spec/tree/master/catalog-spec))
 
-In a nutshell, the library allows import/export of STAC JSON documents (Serialization/Deserialization using [Newtonsoft.JSON](https://www.newtonsoft.com/json)) to typed object with properties represented in enhanced objects such as geometries, time stamp/period/span, numerical values and many more via STAC extension plugins engine.
+In a nutshell, the library allows serialization/desrialization of STAC JSON documents (using [Newtonsoft.JSON](https://www.newtonsoft.com/json)) to typed object modeling STAC objects with properties represented in enhanced objects such as geometries, time stamp/period/span, numerical values and many more via STAC extension plugins engine. Stac Item object is based on [GeoJSON.Net](https://github.com/GeoJSON-Net/GeoJSON.Net) feature.
 
 ## Features
 
 ### Current features
 
-* (De)Serialization engine supporting current and older versions of the specifications with an upgrade mechanism
-* Navigation methods to seamlessly traverse a STAC catalog through collections and items
-* Enhanced extensions support with plugin system for embedding extension related functions (e.g. sat: orbit file download, sar: interferometric search, eo: calibration parameters)
-
-### Other features to come
-
-* STAC API Client
-* Importers from other spatio temporal domains (e.g. OGC O&M, Earth Observation profile…)
+* (De)Serialization engine fully compliant with current version of [STAC specifications](https://stacspec.org)
+* Many helpers to support STAC objects manipulation:
+  * Field accessors using class properties (e.g. Title, DateTime, Geometry)
+  * Collection creation helper summarizing Items set
+* STAC extensions support with C# extension classes with direct accessors to the fields.
+* JSON Schema validation using [Json.NET Schema](https://github.com/JamesNK/Newtonsoft.Json.Schema)
 
 ## Getting Started
 
