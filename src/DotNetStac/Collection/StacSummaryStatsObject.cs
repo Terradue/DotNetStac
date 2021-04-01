@@ -11,7 +11,7 @@ namespace Stac.Collection
         public StacSummaryStatsObject(JObject summary) : base(summary)
         {
             if (!summary.ContainsKey("minimum") || !summary.ContainsKey("maximum"))
-                throw new ArgumentException("summary stats must contains min and max");
+                throw new ArgumentException("summary stats must contains minimum and maximum fields");
         }
 
         public StacSummaryStatsObject(T min, T max) : base(new JObject())
@@ -23,8 +23,6 @@ namespace Stac.Collection
         public T Min { get => summary["minimum"].Value<T>(); set => summary["minimum"] = new JValue(value); }
 
         public T Max { get => summary["maximum"].Value<T>(); set => summary["maximum"] = new JValue(value); }
-
-        public override SummaryItemType SummaryType => SummaryItemType.StatsObject;
 
 
     }
