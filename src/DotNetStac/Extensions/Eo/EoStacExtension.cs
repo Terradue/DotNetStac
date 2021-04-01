@@ -1,64 +1,54 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
-using Stac;
-using Stac.Extensions;
-using Stac.Item;
 
 namespace Stac.Extensions.Eo
 {
-    public class EoStacExtension : AssignableStacExtension, IStacExtension
+    public class EoStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
+        private static IDictionary<string, Type> itemFields;
 
-        public const string Prefix = "eo";
-        public const string BandsField = "bands";
-        public const string CloudCoverField = "cloud_cover";
+        public const string JsonSchemaUrl = "https://stac-extensions.github.io/eo/v1.0.0/schema.json";
+        public const string BandsField = "eo:bands";
+        public const string CloudCoverField = "eo:cloud_cover";
+
+        public EoStacExtension(IStacPropertiesContainer stacpropertiesContainer) : base(JsonSchemaUrl, stacpropertiesContainer)
+        {
+            itemFields = new Dictionary<string, Type>();
+            itemFields.Add(BandsField, typeof(EoBandObject[]));
+            itemFields.Add(CloudCoverField, typeof(double));
+        }
 
         public double CloudCover
         {
-            get { return base.GetField<double>(CloudCoverField); }
-            set { base.SetField(CloudCoverField, value); }
-        }
-
-        public EoStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
-        {
-        }
-
-        public EoStacExtension(StacAsset stacAsset) : base(Prefix, stacAsset)
-        {
+            get { return StacPropertiesContainer.GetProperty<double>(CloudCoverField); }
+            set { StacPropertiesContainer.SetProperty(CloudCoverField, value); DeclareStacExtension(); }
         }
 
         public EoBandObject[] Bands
         {
-            get { return base.GetField<EoBandObject[]>(BandsField); }
-            set { base.SetField(BandsField, value); }
+            get { return StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField); }
+            set { StacPropertiesContainer.SetProperty(BandsField, value); DeclareStacExtension(); }
         }
 
-        public EoBandObject[] GetAssetBandObjects(StacAsset stacAsset)
+        public override IDictionary<string, Type> ItemFields => itemFields;
+    }
+
+    public static class EoStacExtensionExtensions
+    {
+        public static EoStacExtension EoExtension(this StacItem stacItem)
         {
-            string key = Id + ":" + BandsField;
-            if (stacAsset.Properties.ContainsKey(key))
-                return stacAsset.GetProperty<EoBandObject[]>(key);
-            return null;
+            return new EoStacExtension(stacItem);
         }
 
-        public StacAsset GetAsset(EoBandCommonName commonName)
+        public static EoStacExtension EoExtension(this StacAsset stacAsset)
         {
-            StacItem item = null;
-            try { item = StacObject as StacItem; }
-            catch { }
-            if (item != null)
-                return item.Assets.Values.FirstOrDefault(a => GetAssetBandObjects(a).Any(b => b.CommonName == commonName));
-            return null;
+            return new EoStacExtension(stacAsset);
         }
 
-        public void SetAssetBandObjects(StacAsset stacAsset, EoBandObject[] eoBandObjects)
+        public static StacAsset GetAsset(this StacItem stacItem, EoBandCommonName commonName)
         {
-            string key = Id + ":" + BandsField;
-            if (stacAsset.Properties.ContainsKey(key))
-                stacAsset.Properties.Remove(key);
-            stacAsset.Properties.Add(key, eoBandObjects);
+            return stacItem.Assets.Values.FirstOrDefault(a => a.EoExtension().Bands.Any(b => b.CommonName == commonName));
         }
     }
 }

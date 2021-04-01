@@ -1,15 +1,13 @@
-using System.Collections;
 using System.Linq;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
-using Stac.Item;
 
 namespace Stac
 {
     public static class StacGeometryHelpers
     {
 
-        public static double[] GetBoundingBoxFromGeometryExtent(this IStacItem stacItem)
+        public static double[] GetBoundingBoxFromGeometryExtent(this StacItem stacItem)
         {
             var boundingBoxes = stacItem.Geometry.GetBoundingBox();
             if (boundingBoxes[0].Altitude.HasValue)

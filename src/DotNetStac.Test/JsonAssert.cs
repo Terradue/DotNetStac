@@ -1,4 +1,5 @@
 using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
@@ -21,8 +22,17 @@ namespace Stac.Test
         public static void AreEqual(string expectJson, string actualJson)
         {
             Assert.Equal(
-                JObject.Parse(expectJson).SortProperties().ToString(),
-                JObject.Parse(actualJson).SortProperties().ToString());
+                JsonConvert.SerializeObject(JObject.Parse(expectJson).SortProperties(),
+                    new JsonSerializerSettings
+                    {
+                        DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                    }),
+                JsonConvert.SerializeObject(JObject.Parse(actualJson).SortProperties(),
+                    new JsonSerializerSettings
+                    {
+                        DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                    })
+            );
         }
 
         /// <summary>
@@ -59,6 +69,7 @@ namespace Stac.Test
 
                 if (avalues != null)
                 {
+                    if (avalues.Count == 0) continue;
                     avalues = avalues.SortProperties();
                     result.Add(property.Name, avalues);
                     continue;
@@ -91,5 +102,7 @@ namespace Stac.Test
 
             return result;
         }
+
+
     }
 }

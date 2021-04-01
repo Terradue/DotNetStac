@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 
@@ -13,9 +14,9 @@ namespace Stac
             stacObject.Properties.SetProperty(key, value);
         }
 
-        public static void SetProperty(this StacAsset stacAsset, string key, object value)
+        public static void SetProperty(this IStacPropertiesContainer stacPropertiesContainer, string key, object value)
         {
-            stacAsset.Properties.SetProperty(key, value);
+            stacPropertiesContainer.Properties.SetProperty(key, value);
         }
 
         public static void SetProperty(this IDictionary<string, object> properties, string key, object value)
@@ -24,24 +25,14 @@ namespace Stac
             properties.Add(key, value);
         }
 
-        public static object GetProperty(this IStacObject stacObject, string key)
+        public static object GetProperty(this IStacPropertiesContainer propertiesContainer, string key)
         {
-            return stacObject.Properties.GetProperty(key);
+            return propertiesContainer.Properties.GetProperty(key);
         }
 
-        public static T GetProperty<T>(this IStacObject stacObject, string key)
+        public static T GetProperty<T>(this IStacPropertiesContainer propertiesContainer, string key)
         {
-            return stacObject.Properties.GetProperty<T>(key);
-        }
-
-        public static object GetProperty(this StacAsset stacAsset, string key)
-        {
-            return stacAsset.Properties.GetProperty(key);
-        }
-
-        public static T GetProperty<T>(this StacAsset stacAsset, string key)
-        {
-            return stacAsset.Properties.GetProperty<T>(key);
+            return propertiesContainer.Properties.GetProperty<T>(key);
         }
 
         public static object GetProperty(this IDictionary<string, object> properties, string key)
@@ -60,6 +51,16 @@ namespace Stac
             if (typeof(T).GetTypeInfo().IsEnum)
                 return (T)Enum.Parse(typeof(T), @object.ToString());
             return (T)Convert.ChangeType(@object, typeof(T));
+        }
+
+        public static IEnumerable<StacLink> GetChildrenLinks(this IStacParent stacCatalog)
+        {
+            return stacCatalog.Links.Where(l => l.RelationshipType == "child");
+        }
+
+        public static IEnumerable<StacLink> GetItemLinks(this IStacParent stacCatalog)
+        {
+            return stacCatalog.Links.Where(l => l.RelationshipType == "item");
         }
 
     }

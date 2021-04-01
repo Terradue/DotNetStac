@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Mime;
 using Newtonsoft.Json.Linq;
+using Semver;
 using Stac.Extensions;
 
 namespace Stac
@@ -14,18 +15,14 @@ namespace Stac
     {
         string Id { get; }
 
-        string StacVersion { get; }
-
-        Uri Uri { get; }
-
-        StacExtensions StacExtensions { get; }
+        SemVersion StacVersion { get; }
 
         Collection<StacLink> Links { get; }
-
-        bool IsCatalog { get; }
         
         ContentType MediaType { get; }
 
-        IStacObject Upgrade();
+        Collection<string> StacExtensions { get; }
+        
+        string Title { get; }
     }
 }

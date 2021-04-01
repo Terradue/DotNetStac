@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Stac.Extensions.Sat;
-using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Stac.Item;
 using Xunit;
-using System.IO;
 using Stac.Extensions.Eo;
 
 namespace Stac.Test.Item
@@ -21,9 +17,10 @@ namespace Stac.Test.Item
             var k3CompleteJson = GetJson("Item", "K3A_20200508102646_28267_00027320_L1G");
             var k3MissingBandsJson = GetJson("Item", "K3A_20200508102646_28267_00027320_L1G_missing_bands");
 
-            StacItem k3MissingBands = JsonConvert.DeserializeObject<StacItem>(k3MissingBandsJson);
+            ValidateJson(k3CompleteJson);
+            ValidateJson(k3MissingBandsJson);
 
-            EoStacExtension k3MissingBandsEO = k3MissingBands.GetExtension<EoStacExtension>();
+            StacItem k3MissingBands = StacConvert.Deserialize<StacItem>(k3MissingBandsJson);
 
             EoBandObject eoBandObject = new EoBandObject("MS1", EoBandCommonName.blue)
             {
@@ -35,21 +32,13 @@ namespace Stac.Test.Item
 
             Assert.NotNull(k3MissingBands.Assets["MS1"]);
 
-            k3MissingBandsEO.SetAssetBandObjects(k3MissingBands.Assets["MS1"], new EoBandObject[] { eoBandObject });
+            k3MissingBands.Assets["MS1"].EoExtension().Bands = new EoBandObject[] { eoBandObject };
 
             k3MissingBandsJson = JsonConvert.SerializeObject(k3MissingBands);
 
-            JsonAssert.AreEqual(k3CompleteJson, k3MissingBandsJson);
-
-            k3MissingBands = JsonConvert.DeserializeObject<StacItem>(k3MissingBandsJson);
-
-            k3MissingBands.Assets["MS1"].SetEoBandObjects(new EoBandObject[] { eoBandObject });
-
-            k3MissingBandsJson = JsonConvert.SerializeObject(k3MissingBands);
+            ValidateJson(k3MissingBandsJson);
 
             JsonAssert.AreEqual(k3CompleteJson, k3MissingBandsJson);
-
-
         }
 
         [Fact]
@@ -57,20 +46,17 @@ namespace Stac.Test.Item
         {
             var k3CompleteJson = GetJson("Item", "GetAssetsBands_K3_20201112193439_45302_18521139_L1G");
 
-            StacItem k3complete = JsonConvert.DeserializeObject<StacItem>(k3CompleteJson);
+            ValidateJson(k3CompleteJson);
 
-            EoStacExtension k3EOext = k3complete.GetExtension<EoStacExtension>();
-
-            Assert.NotNull(k3EOext);
+            StacItem k3complete = StacConvert.Deserialize<StacItem>(k3CompleteJson);
 
             var overviewAssets = k3complete.Assets.Where(a =>
             {
-                var bands = k3EOext.GetAssetBandObjects(a.Value);
                 if (a.Value.Properties.ContainsKey("eo:bands"))
                 {
-                    Assert.NotNull(bands);
-                    Assert.NotEmpty(bands);
-                    return bands.Any(band => !string.IsNullOrEmpty(band.Name));
+                    Assert.NotNull(k3complete.EoExtension().Bands);
+                    Assert.NotEmpty(k3complete.EoExtension().Bands);
+                    return k3complete.EoExtension().Bands.Any(band => !string.IsNullOrEmpty(band.Name));
                 }
                 return false;
             });
@@ -100,13 +86,13 @@ namespace Stac.Test.Item
             properties.Add("datetime", DateTime.Parse("2016-05-03T13:21:30.040Z").ToUniversalTime());
             properties.Add("collection", "CS3");
 
-            StacItem item = new StacItem(geometry, properties, "CS3-20160503_132130_04");
+            StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
 
             item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
             item.Links.Add(StacLink.CreateCollectionLink(new Uri("http://cool-sat.com/catalog.json")));
 
-            item.Assets.Add("analytic", new StacAsset(new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
-            item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
+            item.Assets.Add("analytic", new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
+            item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(item, new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
 
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
@@ -114,9 +100,13 @@ namespace Stac.Test.Item
             EoStacExtension eo = new EoStacExtension(item);
             eo.CloudCover = 0;
 
-            var actualJson = JsonConvert.SerializeObject(item);
+            var actualJson = StacConvert.Serialize(item);
+
+            ValidateJson(actualJson);
 
             var expectedJson = GetJson("Item");
+
+            ValidateJson(expectedJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
@@ -126,15 +116,17 @@ namespace Stac.Test.Item
         {
             var json = GetJson("Item");
 
-            var item = StacItem.LoadJToken(JsonConvert.DeserializeObject<JToken>(json), null);
+            ValidateJson(json);
 
-            item = new StacItem(item.UpgradeToCurrentVersion());
+            var item = StacConvert.Deserialize<StacItem>(json);
 
-            var actualJson = JsonConvert.SerializeObject(item);
+            var actualJson = StacConvert.Serialize(item);
+
+            ValidateJson(actualJson);
 
             JsonAssert.AreEqual(json, actualJson);
 
-            item = StacItem.LoadJToken(JsonConvert.DeserializeObject<JToken>(json), null);
+            item = item = StacConvert.Deserialize<StacItem>(json);
 
             item = new StacItem(item as StacItem);
 

@@ -10,19 +10,19 @@ namespace Stac
     {
         private readonly IStacObject stacObject;
 
-        internal StacObjectLink(IStacObject stacObject, IStacObject hostObject = null)
+        internal StacObjectLink(IStacObject stacObject, Uri uri)
         {
             this.stacObject = stacObject;
-            this.hostObject = hostObject;
-            if ( stacObject is IStacItem )
+            if ( stacObject is StacItem )
                 this.RelationshipType = "item";
-            if ( stacObject is IStacCatalog )
+            if ( stacObject is StacCatalog || stacObject is StacCollection )
                 this.RelationshipType = "child";
+            Uri = uri;
         }
 
         [JsonProperty("type")]
         [JsonConverter(typeof(ContentTypeConverter))]
-        public override ContentType MediaType
+        public override ContentType ContentType
         {
             get => stacObject.MediaType;
             set
@@ -34,14 +34,14 @@ namespace Stac
         [JsonProperty("rel")]
         public override string RelationshipType
         {
-            get { return rel; }
-            set { rel = value; }
+            get;
+            set;
         }
 
         [JsonProperty("title")]
         public override string Title
         {
-            get => stacObject.GetProperty<string>("title");
+            get => stacObject.Title;
             set
             {
                 throw new InvalidOperationException("Cannot set Title on an STAC Object link");
@@ -51,16 +51,8 @@ namespace Stac
         [JsonProperty("href")]
         public override Uri Uri
         {
-            get => stacObject.Uri;
-            set
-            {
-                throw new InvalidOperationException("Cannot set Uri on an STAC Object link");
-            }
-        }
-
-        public override Task<IStacObject> LoadAsync()
-        {
-            return Task<IStacObject>.FromResult(stacObject);
+            get;
+            set;
         }
 
     }

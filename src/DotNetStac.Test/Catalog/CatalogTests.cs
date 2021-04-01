@@ -1,7 +1,5 @@
 using System;
-using System.Linq;
 using Newtonsoft.Json;
-using Stac.Catalog;
 using Xunit;
 
 namespace Stac.Test.Catalog
@@ -13,11 +11,13 @@ namespace Stac.Test.Catalog
         {
             var json = GetJson("Catalog");
 
-            var catalog = JsonConvert.DeserializeObject<StacCatalog>(json);
+            ValidateJson(json);
+
+            var catalog = StacConvert.Deserialize<StacCatalog>(json);
 
             Assert.NotNull(catalog);
 
-            Assert.Equal("1.0.0-beta.2", catalog.StacVersion);
+            Assert.Equal(Versions.StacVersionList.Current, catalog.StacVersion);
 
             Assert.Empty(catalog.StacExtensions);
 
@@ -29,7 +29,11 @@ namespace Stac.Test.Catalog
             Assert.Contains(catalog.Links, link => link.RelationshipType == "child" && link.Uri == new Uri("https://www.fsa.usda.gov/naip/30087/catalog.json") );
             Assert.Contains(catalog.Links, link => link.RelationshipType == "root" && link.Uri == new Uri("https://www.fsa.usda.gov/catalog.json") );
 
+            var json2 = StacConvert.Serialize(catalog);
 
+            ValidateJson(json2);
+
+            JsonAssert.AreEqual(json, json2);
         }
 
         [Fact]
@@ -47,6 +51,9 @@ namespace Stac.Test.Catalog
             Console.WriteLine(actualJson);
 
             var expectedJson = GetJson("Catalog");
+
+            ValidateJson(expectedJson);
+            ValidateJson(actualJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }

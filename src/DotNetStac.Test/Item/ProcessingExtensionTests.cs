@@ -1,15 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Stac.Extensions.Sat;
-using GeoJSON.Net;
-using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Stac.Item;
 using Xunit;
-using System.IO;
-using Stac.Extensions.Eo;
 using Stac.Extensions.Processing;
 
 namespace Stac.Test.Item
@@ -22,21 +12,21 @@ namespace Stac.Test.Item
             var k3CompleteJson = GetJson("Item", "K3A_20200508102646_28267_00027320_L1G_software");
             var k3MissingSoftwareJson = GetJson("Item", "K3A_20200508102646_28267_00027320_L1G_missing_software");
 
-            StacItem k3MissingSoftware = JsonConvert.DeserializeObject<StacItem>(k3MissingSoftwareJson);
+            ValidateJson(k3CompleteJson);
+            ValidateJson(k3MissingSoftwareJson);
 
-            ProcessingStacExtension k3MissingSoftwareProc = k3MissingSoftware.GetExtension<ProcessingStacExtension>();
+            StacItem k3MissingSoftware = StacConvert.Deserialize<StacItem>(k3MissingSoftwareJson);
 
-            Assert.Null(k3MissingSoftwareProc);
+            Assert.NotNull(k3MissingSoftware.ProcessingExtension().Software);
+            Assert.Equal(0, k3MissingSoftware.ProcessingExtension().Software.Count);
 
-            k3MissingSoftwareProc = new ProcessingStacExtension(k3MissingSoftware);
+            k3MissingSoftware.ProcessingExtension().Software.Add("proc_IPF", "2.0.1");
 
-            Assert.NotNull(k3MissingSoftwareProc.Software);
+            Assert.Equal(1, k3MissingSoftware.ProcessingExtension().Software.Count);
 
-            k3MissingSoftwareProc.Software.Add("proc_IPF", "2.0.1");
+            k3MissingSoftwareJson = StacConvert.Serialize(k3MissingSoftware);
 
-            k3MissingSoftwareJson = JsonConvert.SerializeObject(k3MissingSoftware);
-
-            // Assert.True(ValidateJson(k3MissingSoftwareJson));
+            ValidateJson(k3MissingSoftwareJson);
 
             JsonAssert.AreEqual(k3CompleteJson, k3MissingSoftwareJson);
 

@@ -6,11 +6,11 @@ namespace Stac
 {
     public static class Preconditions
     {
-        public static T CheckNotNull<T>(T value) where T : class
+        public static T CheckNotNull<T>(T value, string argName = null) where T : class
         {
             if (value == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(argName);
             }
             return value;
         }

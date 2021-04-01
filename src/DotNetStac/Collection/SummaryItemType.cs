@@ -2,7 +2,7 @@ namespace Stac.Collection
 {
     public enum SummaryItemType
     {
-        Set,
+        ValueSet,
 
         StatsObject
     }
