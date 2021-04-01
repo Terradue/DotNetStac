@@ -8,6 +8,7 @@ From this release, the library has been completely resshufled to a simpler libra
 
 - Json Schema validation
 - All missing object implementation to target STAC specification 1.0.0
+- Collection creation helper with automatic summaries
 
 ### Changed
 
