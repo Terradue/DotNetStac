@@ -9,7 +9,7 @@ namespace Stac
     {
         public static T Deserialize<T>(string json) where T : IStacObject
         {
-            if ( typeof(T) == typeof(StacItem) || typeof(T) == typeof(StacCollection) || typeof(T) == typeof(StacCatalog) )
+            if (typeof(T) == typeof(StacItem) || typeof(T) == typeof(StacCollection) || typeof(T) == typeof(StacCatalog))
                 return JsonConvert.DeserializeObject<T>(json);
             JObject jobject = JsonConvert.DeserializeObject<JObject>(json);
             Type stacType = Utils.IdentifyStacType(jobject);
@@ -18,7 +18,11 @@ namespace Stac
 
         public static string Serialize(IStacObject stacObject)
         {
-            return JsonConvert.SerializeObject(stacObject);
+            return JsonConvert.SerializeObject(stacObject,
+            new JsonSerializerSettings
+            {
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            });
         }
     }
 }

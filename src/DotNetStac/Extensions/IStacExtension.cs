@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Stac.Collection;
 
 namespace Stac.Extensions
 {
@@ -7,5 +8,6 @@ namespace Stac.Extensions
     {
         string Identifier { get; }
 
+        IDictionary<string, Func<IEnumerable<object>, IStacSummaryItem>> GetSummaryFunctions();
     }
 }

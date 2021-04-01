@@ -4,16 +4,16 @@
     <Title>DotNetStac</Title>
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>0.6.2</Version>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix>rc.2</VersionSuffix>
     <Authors>Emmanuel Mathot</Authors>
     <Authors>emmanuelmathot</Authors>
-    <Company>Terradue</Company>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetStac</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
     <PackageIcon>stac_logo.png</PackageIcon>
-    <Copyright>Copyright (c) 2010-2020 by Terradue</Copyright>
+    <Copyright>Copyright (c) 2010-2021 by Terradue</Copyright>
     <CodeAnalysisRuleSet>$(SolutionDir)StyleCop.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DebugType>full</DebugType>
@@ -31,7 +31,6 @@
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
-    <PackageReference Include="OpenCover" Version="4.7.922" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />

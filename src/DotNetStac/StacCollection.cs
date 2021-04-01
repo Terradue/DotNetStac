@@ -8,6 +8,7 @@ using Semver;
 using System.Linq;
 using System.Runtime.Serialization;
 using Stac.Collection;
+using System;
 
 namespace Stac
 {
@@ -15,9 +16,9 @@ namespace Stac
     /// STAC Collection Object implementing STAC Collection spec (https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md)
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class StacCollection : IStacObject, IStacParent
+    public class StacCollection : IStacObject, IStacParent
     {
-        public const string MEDIATYPE = "application/json; profile=stac-collection";
+        public const string MEDIATYPE = "application/json";
         public readonly static ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);
 
 
@@ -168,25 +169,54 @@ namespace Stac
             }
         }
 
-        #pragma warning disable 1591
+#pragma warning disable 1591
         public bool ShouldSerializeSummaries()
         {
             // don't serialize the Manager property if an employee is their own manager
             return Summaries.Count > 0;
         }
 
-        #pragma warning disable 1591
+#pragma warning disable 1591
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager
             return StacExtensions.Count > 0;
         }
 
-        #pragma warning disable 1591
+#pragma warning disable 1591
         public bool ShouldSerializeAssets()
         {
             // don't serialize the Manager property if an employee is their own manager
             return Assets.Count > 0;
         }
+
+        #region Static Methods
+
+        public static StacCollection Create(Uri collectionUri, string id, string description, IDictionary<Uri, StacItem> items, IDictionary<string, StacAsset> assets = null, string license = null)
+        {
+            var collection = new StacCollection(
+                                      id,
+                                      description,
+                                      StacExtent.Create(items.Values),
+                                      assets,
+                                      items.Select(item =>
+                                      {
+                                          Uri itemUri = collectionUri.MakeRelativeUri(item.Key);
+                                          if (!itemUri.IsAbsoluteUri) { itemUri = new Uri("./" + itemUri.OriginalString, UriKind.Relative); }
+                                          return StacLink.CreateItemLink(item.Value, itemUri);
+                                      }),
+                                      license);
+
+            items.SelectMany(item => item.Value.GetDeclaredExtensions().Select(ext => ext.GetSummaryFunctions()));
+
+            collection.Summaries =
+                items.Values.SelectMany(item => item.Properties)
+                    .GroupBy(prop => prop.Key)
+                    .ToDictionary(key => key.Key, value => new StacSummaryValueSet<object>(value.Select(i => i.Value).Distinct()) as IStacSummaryItem);
+
+            return collection;
+        }
+
+        #endregion
     }
 }

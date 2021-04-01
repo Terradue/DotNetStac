@@ -77,9 +77,10 @@ namespace Stac.Test.Collection
             collection.Keywords.Add("radiance");
             collection.Keywords.Add("sentinel");
 
-            collection.Providers.Add(new StacProvider("European Union/ESA/Copernicus"){
-                    Roles = new List<StacProviderRole>() { StacProviderRole.producer, StacProviderRole.licensor},
-                    Uri = new Uri("https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi")
+            collection.Providers.Add(new StacProvider("European Union/ESA/Copernicus",
+                            new List<StacProviderRole>() { StacProviderRole.producer, StacProviderRole.licensor })
+            {
+                Uri = new Uri("https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi")
             });
 
             collection.Summaries.Add("datetime",

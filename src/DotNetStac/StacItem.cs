@@ -17,7 +17,7 @@ namespace Stac
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
     {
-        public const string MEDIATYPE = "application/json; profile=stac-item";
+        public const string MEDIATYPE = "application/geo+json";
         public readonly static ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
 
         [JsonConstructor]
