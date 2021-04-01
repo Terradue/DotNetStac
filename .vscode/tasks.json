@@ -22,6 +22,27 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "test with coverage",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "test",
+                // Ask dotnet build to generate full paths for file names.
+                "/property:GenerateFullPaths=true",
+                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                "/consoleloggerparameters:NoSummary",
+                "--collect:\"XPlat Code Coverage\"",
+                "--settings:src/DotNetStac.Test/coverlet.runsettings",
+                "--results-directory:TestResults",
+                "src/DotNetStac.sln"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "pack",
             "command": "dotnet",
             "type": "shell",
