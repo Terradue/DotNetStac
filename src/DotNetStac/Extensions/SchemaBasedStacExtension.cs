@@ -46,6 +46,6 @@ namespace Stac.Extensions
 
         public JSchema JsonSchema { get; }
 
-        public override IDictionary<string, Type> ItemFields => throw new NotImplementedException();
+        public override IDictionary<string, Type> ItemFields => new Dictionary<string, Type>();
     }
 }

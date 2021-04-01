@@ -207,12 +207,19 @@ namespace Stac
                                       }),
                                       license);
 
-            items.SelectMany(item => item.Value.GetDeclaredExtensions().Select(ext => ext.GetSummaryFunctions()));
+            var summaryFunctions = items.SelectMany(item => item.Value.GetDeclaredExtensions().SelectMany(ext => ext.GetSummaryFunctions()))
+                .GroupBy(prop => prop.Key)
+                .ToDictionary(key => key.Key, value => value.First().Value);
+
+            summaryFunctions.Add("gsd", StacPropertiesContainerExtension.CreateSummaryStatsObject);
+            summaryFunctions.Add("platform", StacPropertiesContainerExtension.CreateSummaryValueSet);
+            summaryFunctions.Add("constellation", StacPropertiesContainerExtension.CreateSummaryValueSet);
+            summaryFunctions.Add("instruments", StacPropertiesContainerExtension.CreateSummaryValueSetFromArrays);
 
             collection.Summaries =
-                items.Values.SelectMany(item => item.Properties)
+                items.Values.SelectMany(item => item.Properties.Where(k => summaryFunctions.Keys.Contains(k.Key)))
                     .GroupBy(prop => prop.Key)
-                    .ToDictionary(key => key.Key, value => new StacSummaryValueSet<object>(value.Select(i => i.Value).Distinct()) as IStacSummaryItem);
+                    .ToDictionary(key => key.Key, value => summaryFunctions[value.Key](value.Select(i => i.Value)));
 
             return collection;
         }

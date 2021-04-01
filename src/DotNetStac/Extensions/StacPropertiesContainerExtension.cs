@@ -7,6 +7,8 @@ using Newtonsoft.Json.Schema;
 using Stac.Collection;
 using Stac.Exceptions;
 
+public delegate IStacSummaryItem CreateSummary(IEnumerable<object> arg);
+
 namespace Stac.Extensions
 {
     public abstract class StacPropertiesContainerExtension : IStacExtension
@@ -25,18 +27,41 @@ namespace Stac.Extensions
 
         public abstract IDictionary<string, Type> ItemFields { get; }
 
-        public virtual IDictionary<string, Func<IEnumerable<object>, IStacSummaryItem>> GetSummaryFunctions(){
-            return ItemFields.ToDictionary(k => k.Key,
-                    k => {
-                        if ( k.Value == typeof(bool) || k.Value == typeof(short) || k.Value == typeof(int) || k.Value == typeof(long) ||
-                             k.Value == typeof(float) || k.Value == typeof(double) || k.Value == typeof(DateTime))
-                    });
+        public virtual IDictionary<string, CreateSummary> GetSummaryFunctions()
+        {
+
+            Dictionary<string, CreateSummary> summaryFunctions = new Dictionary<string, CreateSummary>();
+
+            foreach (var itemField in ItemFields)
+            {
+                CreateSummary summaryFunction = CreateSummaryValueSet;
+                if (itemField.Value == typeof(bool) || itemField.Value == typeof(short) || itemField.Value == typeof(int) || itemField.Value == typeof(long) ||
+                        itemField.Value == typeof(float) || itemField.Value == typeof(double) || itemField.Value == typeof(DateTime))
+                    summaryFunction = CreateSummaryStatsObject;
+                summaryFunctions.Add(itemField.Key, summaryFunction);
+            }
+            return summaryFunctions;
+        }
+
+        public static IStacSummaryItem CreateSummaryStatsObject(IEnumerable<object> arg)
+        {
+            return new StacSummaryStatsObject<object>(arg.Min(), arg.Max());
+        }
+
+        public static StacSummaryValueSet<object> CreateSummaryValueSet(IEnumerable<object> arg)
+        {
+            return new StacSummaryValueSet<object>(arg.Distinct());
         }
 
         protected void DeclareStacExtension()
         {
             if (!StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(Identifier))
                 StacPropertiesContainer.StacObjectContainer.StacExtensions.Add(Identifier);
+        }
+
+        internal static IStacSummaryItem CreateSummaryValueSetFromArrays(IEnumerable<object> arg)
+        {
+            return new StacSummaryValueSet<object>(arg.SelectMany(a => a as IEnumerable<object>).Distinct());
         }
     }
 }

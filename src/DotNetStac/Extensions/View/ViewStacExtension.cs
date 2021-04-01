@@ -6,7 +6,7 @@ namespace Stac.Extensions.View
     public class ViewStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
 
-        public const string JsonSchemaUrl = "https://stac-extensions.github.io/sat/v1.0.0/schema.json";
+        public const string JsonSchemaUrl = "https://stac-extensions.github.io/view/v1.0.0/schema.json";
         private readonly Dictionary<string, Type> itemFields;
 
         public static string OffNadirField => "view:off_nadir";

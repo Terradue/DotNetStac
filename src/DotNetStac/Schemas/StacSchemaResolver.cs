@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Stac.Extensions
 {
-    public class StacSchemaResolver 
+    public class StacSchemaResolver
     {
         private readonly JSchemaResolver jSchemaResolver;
         private IDictionary<string, JSchema> schemaCompiled;
@@ -28,10 +28,7 @@ namespace Stac.Extensions
             Uri baseUri = null;
             if (string.IsNullOrEmpty(baseUrl))
             {
-                if (CoreTypes.Contains(shortcut))
-                    baseUri = new Uri($"https://schemas.stacspec.org/{vversion}/");
-                else
-                    baseUri = new Uri($"https://schemas.stacspec.org/");
+                baseUri = new Uri($"https://schemas.stacspec.org/{vversion}/");
             }
             else
                 baseUri = new Uri(baseUrl);
@@ -47,7 +44,7 @@ namespace Stac.Extensions
                     // Capture a very common mistake and give a better explanation (see #4)
                     throw new Exception("'stac_extensions' must contain 'projection instead of 'proj'.");
                 }
-                schemaUri = new Uri(baseUri, $"extensions/{shortcut}/json-schema/schema.json`");
+                schemaUri = new Uri(baseUri, $"extensions/{shortcut}/json-schema/schema.json");
                 isExtension = true;
             }
             else
@@ -66,7 +63,7 @@ namespace Stac.Extensions
             }
             else
             {
-                var stream = jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri } );
+                var stream = jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
                 var sr = new StreamReader(stream);
                 schemaCompiled[schemaUri.ToString()] = JSchema.Parse(sr.ReadToEnd(), jSchemaResolver);
                 return schemaCompiled[schemaUri.ToString()];

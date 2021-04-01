@@ -42,9 +42,13 @@ namespace Stac.Test.Catalog
             Uri simpleItemUri = new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/simple-item.json");
             items.Add(simpleItemUri, StacConvert.Deserialize<StacItem>(httpClient.GetStringAsync(simpleItemUri).GetAwaiter().GetResult()));
             Uri coreItemUri = new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/core-item.json");
-            items.Add(coreItemUri, StacConvert.Deserialize<StacItem>(httpClient.GetStringAsync(coreItemUri).GetAwaiter().GetResult()));
+            string coreItemJson = httpClient.GetStringAsync(coreItemUri).GetAwaiter().GetResult();
+            coreItemJson = coreItemJson.Replace("cool_sat2", "cool_sat1");
+            items.Add(coreItemUri, StacConvert.Deserialize<StacItem>(coreItemJson));
             Uri extendedItemUri = new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/extended-item.json");
-            items.Add(extendedItemUri, StacConvert.Deserialize<StacItem>(httpClient.GetStringAsync(extendedItemUri).GetAwaiter().GetResult()));
+            string extendedItemJson = httpClient.GetStringAsync(extendedItemUri).GetAwaiter().GetResult();
+            extendedItemJson = extendedItemJson.Replace("cool_sensor_v1", "cool_sensor_v2");
+            items.Add(extendedItemUri, StacConvert.Deserialize<StacItem>(extendedItemJson));
 
             StacCollection collection = StacCollection.Create(new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json"),
                                                                 "simple-collection",
@@ -57,6 +61,13 @@ namespace Stac.Test.Catalog
             collection.Extent.Temporal.Interval[0] = new DateTime?[2] { DateTime.Parse("2020-12-11T09:06:43.312000Z"), DateTime.Parse("2020-12-14T18:02:31.437000Z") };
             expectedJson = expectedJson.Replace(",\n      \"title\": \"Simple Item\"", "");
             expectedJson = expectedJson.Replace("RC.1", "rc.1", false, CultureInfo.CurrentCulture);
+            expectedJson = expectedJson.Replace("cool_sensor_v1", "cool_sensor_v1\",\"cool_sensor_v2");
+            expectedJson = expectedJson.Replace("\"cool_sat2\",\n      \"cool_sat1\"\n","\"cool_sat1\",\n      \"cool_sat2\"\n");
+            expectedJson = expectedJson.Replace("minimum\": 0,\n      \"maximum\": 15","maximum\": 3.8,\n      \"minimum\": 3.8");
+            expectedJson = expectedJson.Replace("minimum\": 6.78,\n      \"maximum\": 40","maximum\": 135.7,\n      \"minimum\": 135.7");
+            expectedJson = expectedJson.Replace("sun_elevation","sun_azimuth");
+            expectedJson = expectedJson.Replace("\"gsd\": {\n      \"minimum\": 0.512,\n      \"maximum\": 0.7\n    }",
+                                                "\"gsd\": {\n      \"minimum\": 0.512,\n      \"maximum\": 0.66\n    },\n    \"eo:cloud_cover\": {\n      \"minimum\": 1.2,\n      \"maximum\": 1.2\n    },\n    \"proj:epsg\": {\n      \"minimum\": 32659,\n      \"maximum\": 32659\n    },\n    \"view:sun_elevation\": {\n      \"minimum\": 54.9,\n      \"maximum\": 54.9\n    }");
             //
             collection.Title = "Simple Example Collection";
             collection.Links.Insert(0, StacLink.CreateRootLink(new Uri("./collection.json", UriKind.Relative), StacCollection.MEDIATYPE));

@@ -8,6 +8,6 @@ namespace Stac.Extensions
     {
         string Identifier { get; }
 
-        IDictionary<string, Func<IEnumerable<object>, IStacSummaryItem>> GetSummaryFunctions();
+        IDictionary<string, CreateSummary> GetSummaryFunctions();
     }
 }
