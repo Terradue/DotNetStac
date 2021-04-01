@@ -60,7 +60,7 @@ namespace Stac.Test.Catalog
             collection.Extent.Spatial.BoundingBoxes[0] = new double[4] { 172.911, 1.343, 172.955, 1.3691 };
             collection.Extent.Temporal.Interval[0] = new DateTime?[2] { DateTime.Parse("2020-12-11T09:06:43.312000Z"), DateTime.Parse("2020-12-14T18:02:31.437000Z") };
             expectedJson = expectedJson.Replace(",\n      \"title\": \"Simple Item\"", "");
-            expectedJson = expectedJson.Replace("RC.1", "rc.1", false, CultureInfo.CurrentCulture);
+            expectedJson = expectedJson.Replace("rc.2", "rc.2", false, CultureInfo.CurrentCulture);
             expectedJson = expectedJson.Replace("cool_sensor_v1", "cool_sensor_v1\",\"cool_sensor_v2");
             expectedJson = expectedJson.Replace("\"cool_sat2\",\n      \"cool_sat1\"\n","\"cool_sat1\",\n      \"cool_sat2\"\n");
             expectedJson = expectedJson.Replace("minimum\": 0,\n      \"maximum\": 15","maximum\": 3.8,\n      \"minimum\": 3.8");

@@ -2,7 +2,7 @@
   "stac_extensions": [
     "https://stac-extensions.github.io/sar/v1.0.0/schema.json"
   ],
-  "stac_version": "1.0.0-rc.1",
+  "stac_version": "1.0.0-rc.2",
   "assets": {},
   "links": [],
   "type": "Feature",

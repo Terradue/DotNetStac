@@ -79,7 +79,9 @@ namespace Stac.Extensions.Processing
                                 string level,
                                 string facility = null)
         {
-
+            processingStacExtension.Lineage = lineage;
+            processingStacExtension.Level = level;
+            processingStacExtension.Facility = facility;
         }
     }
 }

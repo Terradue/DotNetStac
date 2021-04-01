@@ -6,7 +6,7 @@
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
         "https://stac-extensions.github.io/processing/v1.0.0/schema.json"
     ],
-    "stac_version": "1.0.0-rc.1",
+    "stac_version": "1.0.0-rc.2",
     "links": [
         {
             "rel": "self",
