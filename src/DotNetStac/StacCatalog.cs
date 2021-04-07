@@ -14,7 +14,7 @@ namespace Stac
     /// STAC Catalog Object implementing STAC Catalog spec (https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md)
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacCatalog : IStacObject, IStacParent
+    public class StacCatalog : IStacObject, IStacParent, IStacCatalog
     {
         /// <summary>
         /// Catalog Media-Type string

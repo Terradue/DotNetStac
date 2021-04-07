@@ -16,7 +16,7 @@ namespace Stac
     /// STAC Collection Object implementing STAC Collection spec (https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md)
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacCollection : IStacObject, IStacParent
+    public class StacCollection : IStacObject, IStacParent, IStacCatalog
     {
         public const string MEDIATYPE = "application/json";
         public readonly static ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);

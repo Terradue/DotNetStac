@@ -42,7 +42,7 @@
       <copyToOutput>true</copyToOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <AdditionalFiles Include="$(SolutionDir)stylecop.json" Link="stylecop.json" />
-    <AdditionalFiles Include="$(SolutionDir)StyleCop.ruleset" Link="StyleCop.ruleset" />
+    <AdditionalFiles Include="$(ProjectDir)stylecop.json" Link="stylecop.json" />
+    <AdditionalFiles Include="$(ProjectDir)StyleCop.ruleset" Link="StyleCop.ruleset" />
   </ItemGroup>
 </Project>
