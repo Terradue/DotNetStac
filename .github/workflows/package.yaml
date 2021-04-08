@@ -15,6 +15,15 @@ jobs:
         # source-url: https://nuget.pkg.github.com/<owner>/index.json
      
     - run: dotnet build src
+    - uses: nikeee/docfx-action@v1.0.0
+      name: Build Documentation
+      with:
+        args: docs/docfx.json
+    - uses: maxheld83/ghpages@master
+      name: Publish Documentation on GitHub Pages
+      env:
+        BUILD_DIR: docs/_site # docfx's default output directory is _site
+        GH_PAT: ${{ secrets.GITHUB_TOKEN }} # See https://github.com/maxheld83/ghpages
     - name: Create the package
       run: dotnet pack src/ -c release --include-symbols -o publish
     - name: Publish the package to Nuget

@@ -23,10 +23,16 @@ jobs:
           directory: TestResults
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
+      - uses: nikeee/docfx-action@v1.0.0
+        name: Build Documentation
+        with:
+          args: docs/docfx.json
       - name: Upload test results
         uses: actions/upload-artifact@v2
         with:
           name: dotnet-results #-${{ matrix.dotnet-version }}
           path: TestResults #-${{ matrix.dotnet-version }}
         # Use always() to always run this step to publish test results when there are test failures
-        if: ${{ always() }}        
+        if: ${{ always() }}
+        # Publish generated site using GitHub Pages
+    
