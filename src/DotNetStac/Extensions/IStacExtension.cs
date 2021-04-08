@@ -1,10 +1,13 @@
-using Stac.Item;
+using System;
+using System.Collections.Generic;
+using Stac.Collection;
 
 namespace Stac.Extensions
 {
     public interface IStacExtension
     {
-        string Id { get; }
+        string Identifier { get; }
 
+        IDictionary<string, CreateSummary> GetSummaryFunctions();
     }
 }

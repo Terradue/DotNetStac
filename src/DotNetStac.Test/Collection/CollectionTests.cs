@@ -17,13 +17,15 @@ namespace Stac.Test.Collection
         {
             var json = GetJson("Collection");
 
+            ValidateJson(json);
+
             var item = JsonConvert.DeserializeObject<StacCollection>(json);
 
             Assert.NotNull(item);
 
             Assert.NotNull(item.Summaries);
 
-            Assert.Equal("1.0.0-beta.2", item.StacVersion);
+            Assert.Equal("1.0.0-rc.2", item.StacVersion);
 
             Assert.Empty(item.StacExtensions);
 
@@ -68,19 +70,18 @@ namespace Stac.Test.Collection
             collection.Links.Add(StacLink.CreateRootLink(new Uri("https://storage.cloud.google.com/earthengine-test/catalog/catalog.json")));
             collection.Links.Add(new StacLink(new Uri("https://scihub.copernicus.eu/twiki/pub/SciHubWebPortal/TermsConditions/Sentinel_Data_Terms_and_Conditions.pdf"), "license", "Legal notice on the use of Copernicus Sentinel Data and Service Information", null));
 
-            collection.Keywords = new System.Collections.ObjectModel.Collection<string>(new string[] {
-                "copernicus",
-                "esa",
-                "eu",
-                "msi",
-                "radiance",
-                "sentinel"});
+            collection.Keywords.Add("copernicus");
+            collection.Keywords.Add("esa");
+            collection.Keywords.Add("eu");
+            collection.Keywords.Add("msi");
+            collection.Keywords.Add("radiance");
+            collection.Keywords.Add("sentinel");
 
-            collection.Providers = new System.Collections.ObjectModel.Collection<StacProvider>(
-                new StacProvider[]{new StacProvider("European Union/ESA/Copernicus"){
-                    Roles = new List<StacProviderRole>() { StacProviderRole.producer, StacProviderRole.licensor},
-                    Uri = new Uri("https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi")
-            }});
+            collection.Providers.Add(new StacProvider("European Union/ESA/Copernicus",
+                            new List<StacProviderRole>() { StacProviderRole.producer, StacProviderRole.licensor })
+            {
+                Uri = new Uri("https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi")
+            });
 
             collection.Summaries.Add("datetime",
                 new StacSummaryStatsObject<DateTime>(
@@ -199,9 +200,13 @@ namespace Stac.Test.Collection
 
             var actualJson = JsonConvert.SerializeObject(collection);
 
+            ValidateJson(actualJson);
+
             Console.WriteLine(actualJson);
 
             var expectedJson = GetJson("Collection");
+
+            ValidateJson(expectedJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }

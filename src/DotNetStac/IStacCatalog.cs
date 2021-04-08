@@ -1,9 +1,10 @@
-using Stac.Catalog;
-
 namespace Stac
 {
-    public interface IStacCatalog: IStacObject
+    /// <summary>
+    /// Common interface for all Stac catalogs (catalogs, collections)
+    /// </summary>
+    public interface IStacCatalog : IStacObject
     {
-        string Description { get; }
+        
     }
 }

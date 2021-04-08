@@ -15,24 +15,24 @@ namespace Stac
 
         #region Static members
 
-        public static StacAsset CreateThumbnailAsset(Uri uri, ContentType mediaType, string title = null)
+        public static StacAsset CreateThumbnailAsset(StacItem stacItem, Uri uri, ContentType mediaType, string title = null)
         {
-            return new StacAsset(uri, new string[] { "thumbnail" }, title, mediaType);
+            return new StacAsset(stacItem, uri, new string[] { "thumbnail" }, title, mediaType);
         }
 
-        public static StacAsset CreateOverviewAsset(Uri uri, ContentType mediaType, string title = null)
+        public static StacAsset CreateOverviewAsset(StacItem stacItem, Uri uri, ContentType mediaType, string title = null)
         {
-            return new StacAsset(uri, new string[] { "overview" }, title, mediaType);
+            return new StacAsset(stacItem, uri, new string[] { "overview" }, title, mediaType);
         }
 
-        public static StacAsset CreateDataAsset(Uri uri, ContentType mediaType, string title = null)
+        public static StacAsset CreateDataAsset(StacItem stacItem, Uri uri, ContentType mediaType, string title = null)
         {
-            return new StacAsset(uri, new string[] { "data" }, title, mediaType);
+            return new StacAsset(stacItem, uri, new string[] { "data" }, title, mediaType);
         }
 
-        public static StacAsset CreateMetadataAsset(Uri uri, ContentType mediaType, string title = null)
+        public static StacAsset CreateMetadataAsset(StacItem stacItem, Uri uri, ContentType mediaType, string title = null)
         {
-            return new StacAsset(uri, new string[] { "metadata" }, title, mediaType);
+            return new StacAsset(stacItem, uri, new string[] { "metadata" }, title, mediaType);
         }
 
         #endregion
@@ -44,18 +44,21 @@ namespace Stac
 
         Collection<string> semanticRoles;
         private Dictionary<string, object> properties;
+        private StacItem parentStacItem;
 
-        public StacAsset()
+        [JsonConstructor]
+        public StacAsset(StacItem stacItem)
         {
             properties = new Dictionary<string, object>();
+            parentStacItem = stacItem;
         }
 
-        public StacAsset(Uri uri) : this()
+        public StacAsset(StacItem stacItem, Uri uri) : this(stacItem)
         {
             Uri = uri;
         }
 
-        public StacAsset(Uri uri, IEnumerable<string> semanticRoles, string title, ContentType mediaType, ulong contentLength = 0) : this(uri)
+        public StacAsset(StacItem stacItem, Uri uri, IEnumerable<string> semanticRoles, string title, ContentType mediaType, ulong contentLength = 0) : this(stacItem, uri)
         {
             this.semanticRoles = semanticRoles == null ? new Collection<string>() : new Collection<string>(semanticRoles.ToList());
             Title = title;
@@ -64,7 +67,7 @@ namespace Stac
                 ContentLength = contentLength;
         }
 
-        public StacAsset(StacAsset source)
+        public StacAsset(StacAsset source, StacItem stacItem)
         {
             if (source == null)
                 throw new ArgumentNullException("source");
@@ -77,6 +80,7 @@ namespace Stac
             description = source.description;
             if (source.properties != null)
                 properties = new Dictionary<string, object>(source.properties);
+            parentStacItem = stacItem;
         }
 
         [JsonProperty("type")]
@@ -151,13 +155,13 @@ namespace Stac
             }
         }
 
-
-        public virtual StacAsset Clone()
-        {
-            return new StacAsset(this);
-        }
-
         [JsonIgnore]
         public ulong ContentLength { get => this.GetProperty<ulong>("size"); set => this.SetProperty("size", value); }
+
+        [JsonIgnore]
+        public IStacObject StacObjectContainer => ParentStacItem;
+
+        [JsonIgnore]
+        public StacItem ParentStacItem { get => parentStacItem; internal set => parentStacItem = value; }
     }
 }

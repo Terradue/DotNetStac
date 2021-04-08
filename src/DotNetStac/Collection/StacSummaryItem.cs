@@ -22,8 +22,6 @@ namespace Stac.Collection
             }
         }
 
-        public abstract SummaryItemType SummaryType { get; }
-
         public JToken AsJToken => summary;
 
         public IEnumerator GetEnumerator()

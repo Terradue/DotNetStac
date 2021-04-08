@@ -1,143 +1,156 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
-using Stac;
-using Stac.Extensions;
-using Stac.Item;
 
 namespace Stac.Extensions.Sar
 {
-    public class SarStacExtension : AssignableStacExtension, IStacExtension
+    public class SarStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        public const string Prefix = "sar";
+        public const string JsonSchemaUrl = "https://stac-extensions.github.io/sar/v1.0.0/schema.json";
 
-        public const string InstrumentModeField = "instrument_mode";
-        public const string FrequencyBandField = "frequency_band";
-        public const string CenterFrequencyField = "center_frequency";
-        public const string PolarizationsField = "polarizations";
-        public const string ProductTypeField = "product_type";
-        public const string ResolutionRangeField = "resolution_range";
-        public const string ResolutionAzimuthField = "resolution_azimuth";
-        public const string PixelSpacingRangeField = "pixel_spacing_range";
-        public const string PixelSpacingAzimuthField = "pixel_spacing_azimuth";
-        public const string LooksRangeField = "looks_range";
-        public const string LooksAzimuthField = "looks_azimuth";
-        public const string LooksEquivalentNumberField = "looks_equivalent_number";
-        public const string ObservationDirectionField = "observation_direction";
+        public const string InstrumentModeField = "sar:instrument_mode";
+        public const string FrequencyBandField = "sar:frequency_band";
+        public const string CenterFrequencyField = "sar:center_frequency";
+        public const string PolarizationsField = "sar:polarizations";
+        public const string ProductTypeField = "sar:product_type";
+        public const string ResolutionRangeField = "sar:resolution_range";
+        public const string ResolutionAzimuthField = "sar:resolution_azimuth";
+        public const string PixelSpacingRangeField = "sar:pixel_spacing_range";
+        public const string PixelSpacingAzimuthField = "sar:pixel_spacing_azimuth";
+        public const string LooksRangeField = "sar:looks_range";
+        public const string LooksAzimuthField = "sar:looks_azimuth";
+        public const string LooksEquivalentNumberField = "sar:looks_equivalent_number";
+        public const string ObservationDirectionField = "sar:observation_direction";
+        private readonly IDictionary<string, Type> itemFields;
 
-        internal SarStacExtension(IStacObject stacObject) : base(Prefix, stacObject)
+        internal SarStacExtension(IStacPropertiesContainer stacPropertiesContainer) : base(JsonSchemaUrl, stacPropertiesContainer)
         {
-        }
-
-        public SarStacExtension(IStacObject stacObject, string instrumentMode, SarCommonFrequencyBandName frequencyBandName, string[] polarizations, string productType) : base(Prefix, stacObject)
-        {
-            InstrumentMode = instrumentMode;
-            FrequencyBand = frequencyBandName;
-            Polarizations = polarizations;
-            ProductType = productType;
+            itemFields = new Dictionary<string, Type>();
+            itemFields.Add(InstrumentModeField, typeof(string[]));
+            itemFields.Add(FrequencyBandField, typeof(SarCommonFrequencyBandName));
+            itemFields.Add(CenterFrequencyField, typeof(double));
+            itemFields.Add(PolarizationsField, typeof(string[]));
+            itemFields.Add(ProductTypeField, typeof(string));
+            itemFields.Add(ResolutionRangeField, typeof(double));
+            itemFields.Add(ResolutionAzimuthField, typeof(double));
+            itemFields.Add(PixelSpacingRangeField, typeof(double));
+            itemFields.Add(PixelSpacingAzimuthField, typeof(double));
+            itemFields.Add(LooksRangeField, typeof(double));
+            itemFields.Add(LooksAzimuthField, typeof(double));
+            itemFields.Add(LooksEquivalentNumberField, typeof(double));
+            itemFields.Add(ObservationDirectionField, typeof(string));
         }
 
         public string InstrumentMode
         {
-            get { return base.GetField<string>(InstrumentModeField); }
-            set { base.SetField(InstrumentModeField, value); }
+            get { return StacPropertiesContainer.GetProperty<string>(InstrumentModeField); }
+            set { StacPropertiesContainer.SetProperty(InstrumentModeField, value); DeclareStacExtension(); }
         }
 
         public SarCommonFrequencyBandName FrequencyBand
         {
-            get { return base.GetField<SarCommonFrequencyBandName>(FrequencyBandField); }
-            set { base.SetField(FrequencyBandField, value); }
+            get { return StacPropertiesContainer.GetProperty<SarCommonFrequencyBandName>(FrequencyBandField); }
+            set { StacPropertiesContainer.SetProperty(FrequencyBandField, value); DeclareStacExtension(); }
         }
 
         public double CenterFrequency
         {
-            get { return base.GetField<double>(CenterFrequencyField); }
-            set { base.SetField(CenterFrequencyField, value); }
+            get { return StacPropertiesContainer.GetProperty<double>(CenterFrequencyField); }
+            set { StacPropertiesContainer.SetProperty(CenterFrequencyField, value); DeclareStacExtension(); }
         }
 
         public string[] Polarizations
         {
-            get { return base.GetField<string[]>(PolarizationsField); }
-            set { base.SetField(PolarizationsField, value); }
+            get { return StacPropertiesContainer.GetProperty<string[]>(PolarizationsField); }
+            set { StacPropertiesContainer.SetProperty(PolarizationsField, value); DeclareStacExtension(); }
         }
 
         public string ProductType
         {
-            get { return base.GetField<string>(ProductTypeField); }
-            set { base.SetField(ProductTypeField, value); }
+            get { return StacPropertiesContainer.GetProperty<string>(ProductTypeField); }
+            set { StacPropertiesContainer.SetProperty(ProductTypeField, value); DeclareStacExtension(); }
         }
 
         public double ResolutionRange
         {
-            get { return base.GetField<double>(ResolutionRangeField); }
-            set { base.SetField(ResolutionRangeField, value); }
+            get { return StacPropertiesContainer.GetProperty<double>(ResolutionRangeField); }
+            set { StacPropertiesContainer.SetProperty(ResolutionRangeField, value); DeclareStacExtension(); }
         }
 
         public double ResolutionAzimuth
         {
-            get { return base.GetField<double>(ResolutionAzimuthField); }
-            set { base.SetField(ResolutionAzimuthField, value); }
+            get { return StacPropertiesContainer.GetProperty<double>(ResolutionAzimuthField); }
+            set { StacPropertiesContainer.SetProperty(ResolutionAzimuthField, value); DeclareStacExtension(); }
         }
 
         public double PixelSpacingRange
         {
-            get { return base.GetField<double>(PixelSpacingRangeField); }
-            set { base.SetField(PixelSpacingRangeField, value); }
+            get { return StacPropertiesContainer.GetProperty<double>(PixelSpacingRangeField); }
+            set { StacPropertiesContainer.SetProperty(PixelSpacingRangeField, value); DeclareStacExtension(); }
         }
 
         public double PixelSpacingAzimuth
         {
-            get { return base.GetField<double>(PixelSpacingAzimuthField); }
-            set { base.SetField(PixelSpacingAzimuthField, value); }
+            get { return StacPropertiesContainer.GetProperty<double>(PixelSpacingAzimuthField); }
+            set { StacPropertiesContainer.SetProperty(PixelSpacingAzimuthField, value); DeclareStacExtension(); }
         }
 
         public double LooksRange
         {
-            get { return base.GetField<double>(LooksRangeField); }
-            set { base.SetField(LooksRangeField, value); }
+            get { return StacPropertiesContainer.GetProperty<double>(LooksRangeField); }
+            set { StacPropertiesContainer.SetProperty(LooksRangeField, value); DeclareStacExtension(); }
         }
 
         public double LooksAzimuth
         {
-            get { return base.GetField<double>(LooksAzimuthField); }
-            set { base.SetField(LooksAzimuthField, value); }
+            get { return StacPropertiesContainer.GetProperty<double>(LooksAzimuthField); }
+            set { StacPropertiesContainer.SetProperty(LooksAzimuthField, value); DeclareStacExtension(); }
         }
 
         public double LooksEquivalentNumber
         {
-            get { return base.GetField<double>(LooksEquivalentNumberField); }
-            set { base.SetField(LooksEquivalentNumberField, value); }
+            get { return StacPropertiesContainer.GetProperty<double>(LooksEquivalentNumberField); }
+            set { StacPropertiesContainer.SetProperty(LooksEquivalentNumberField, value); DeclareStacExtension(); }
         }
 
         public string ObservationDirection
         {
-            get { return base.GetField<string>(ObservationDirectionField); }
-            set { base.SetField(ObservationDirectionField, value); }
+            get { return StacPropertiesContainer.GetProperty<string>(ObservationDirectionField); }
+            set { StacPropertiesContainer.SetProperty(ObservationDirectionField, value); DeclareStacExtension(); }
         }
 
-        public static string[] GetAssetPolarization(StacAsset stacAsset)
-        {
-            string key = Prefix + ":" + PolarizationsField;
-            if (stacAsset.Properties.ContainsKey(key))
-                return (string[])stacAsset.Properties[key];
-            return null;
-        }
-
-        public StacAsset GetAsset(string polarization)
-        {
-            StacItem item = StacObject as StacItem;
-            if (item == null) return null;
-            return item.Assets.Values.FirstOrDefault(a => GetAssetPolarization(a).Contains(polarization));
-        }
-
-        public static void SetAssetBandObjects(StacAsset stacAsset, string[] polarizations)
-        {
-            string key = Prefix + ":" + PolarizationsField;
-            if (stacAsset.Properties.ContainsKey(key))
-                stacAsset.Properties.Remove(key);
-            stacAsset.Properties.Add(key, polarizations);
-        }
-
+        public override IDictionary<string, Type> ItemFields => itemFields;
     }
+
+    public static class SarStacExtensionExtensions
+    {
+        public static SarStacExtension SarExtension(this StacItem stacItem)
+        {
+            return new SarStacExtension(stacItem);
+        }
+
+        public static SarStacExtension SarExtension(this StacAsset stacAsset)
+        {
+            return new SarStacExtension(stacAsset);
+        }
+
+        public static StacAsset GetAsset(this StacItem stacItem, string polarization)
+        {
+            return stacItem.Assets.Values.FirstOrDefault(a => a.SarExtension().Polarizations.Contains(polarization));
+        }
+
+        public static void Required(this SarStacExtension sarStacExtension,
+                                string instrumentMode,
+                                SarCommonFrequencyBandName frequencyBandName,
+                                string[] polarizations,
+                                string productType)
+        {
+            sarStacExtension.InstrumentMode = instrumentMode;
+            sarStacExtension.FrequencyBand = frequencyBandName;
+            sarStacExtension.Polarizations = polarizations;
+            sarStacExtension.ProductType = productType;
+        }
+    }
+
+
 }

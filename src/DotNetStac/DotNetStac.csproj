@@ -4,16 +4,19 @@
     <Title>DotNetStac</Title>
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>0.6.2</Version>
+    <VersionPrefix>0.7.0</VersionPrefix>
+    <VersionSuffix>alpha</VersionSuffix>
     <Authors>Emmanuel Mathot</Authors>
+    <Authors>emmanuelmathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetStac</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
-    <Authors>emmanuelmathot</Authors>
     <PackageIcon>stac_logo.png</PackageIcon>
-    <Copyright>Copyright (c) 2010-2020 by Terradue</Copyright>
-    <Company>Terradue</Company>
+    <Copyright>Copyright (c) 2010-2021 by Terradue</Copyright>
+    <CodeAnalysisRuleSet>$(SolutionDir)StyleCop.ruleset</CodeAnalysisRuleSet>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
@@ -21,9 +24,13 @@
     <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="2.0.2" />
     <PackageReference Include="GeoJSON.Net" Version="1.2.19" />
     <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1" />
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="MathNet.Numerics" Version="4.12.0" />
     <PackageReference Include="ProjNet" Version="2.0.0" />
+    <PackageReference Include="semver" Version="2.0.6" />
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
@@ -35,5 +42,7 @@
       <copyToOutput>true</copyToOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <AdditionalFiles Include="$(ProjectDir)stylecop.json" Link="stylecop.json" />
+    <AdditionalFiles Include="$(ProjectDir)StyleCop.ruleset" Link="StyleCop.ruleset" />
   </ItemGroup>
 </Project>

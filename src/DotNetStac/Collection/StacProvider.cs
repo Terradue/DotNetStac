@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -8,28 +10,32 @@ namespace Stac.Collection
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class StacProvider
     {
-        private string name;
-
-        private string description;
-
-        private List<StacProviderRole> roles;
-        private Uri uri;
-
-        public StacProvider(string name)
+        public StacProvider(string name, IEnumerable<StacProviderRole> providerRoles = null)
         {
-            this.name = name;
+            this.Name = name;
+            if (providerRoles != null)
+                Roles = new Collection<StacProviderRole>(providerRoles.ToList());
+            else
+                Roles = new Collection<StacProviderRole>();
         }
 
         [JsonProperty("name")]
-        public string Name { get => name; set => name = value; }
+        public string Name { get; set; }
 
         [JsonProperty("description")]
-        public string Description { get => description; set => description = value; }
+        public string Description { get; set; }
 
         [JsonProperty("roles")]
-        public List<StacProviderRole> Roles { get => roles; set => roles = value; }
+        public Collection<StacProviderRole> Roles { get; private set; }
 
         [JsonProperty("url")]
-        public Uri Uri { get => uri; set => uri = value; }
+        public Uri Uri { get; set; }
+
+#pragma warning disable 1591
+        public bool ShouldSerializeRoles()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return Roles.Count > 0;
+        }
     }
 }

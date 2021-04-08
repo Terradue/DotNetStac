@@ -1,49 +1,52 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Stac;
-using Stac.Catalog;
 using Stac.Collection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Xunit;
 
 namespace Stac.Test.Example
 {
-    public class Example1Test
+    public class Example1Test : TestBase
     {
         //[Fact]
         public void Deserialize()
         {
-            IStacCatalog catalog = (IStacCatalog)StacFactory.Load("https://landsat-stac.s3.amazonaws.com/catalog.json");
+            Uri catalogUri = new Uri("https://landsat-stac.s3.amazonaws.com/catalog.json");
+            StacCatalog catalog = StacConvert.Deserialize<StacCatalog>(httpClient.GetStringAsync(catalogUri).GetAwaiter().GetResult());
 
             Console.Out.WriteLine(catalog.Id);
             Console.Out.WriteLine(catalog.StacVersion);
 
-            ListChildrensItemsAndAssets(catalog);
+            ListChildrensItemsAndAssets(catalog, catalogUri);
 
         }
 
-        void ListChildrensItemsAndAssets(IStacCatalog catalog, string prefix = "", int limit = 2)
+        void ListChildrensItemsAndAssets(IStacParent catalog, Uri baseUri, string prefix = "", int limit = 2)
         {
             // Get children first (sub catalogs and collections)
-            foreach (var child in catalog.GetChildren().Values.Take(limit))
+            foreach (var childLink in catalog.GetChildrenLinks().Concat(catalog.GetItemLinks()))
             {
-                Console.Out.WriteLine(prefix + child.Id + ": " + child.Description);
+                Uri childUri = childLink.Uri;
+                if (!childUri.IsAbsoluteUri)
+                    childUri = new Uri(baseUri, childUri.ToString());
+                IStacObject child = StacConvert.Deserialize<IStacObject>(httpClient.GetStringAsync(childUri).GetAwaiter().GetResult());
 
-                foreach (var item in child.GetItems().Values.Take(limit))
+                Console.Out.WriteLine(prefix + child.Id + ": " + child.Title);
+                if (child is StacCatalog || child is StacCollection)
+                    ListChildrensItemsAndAssets(child as IStacParent, childUri, prefix + " ");
+
+                if (child is StacItem)
                 {
-                    Console.Out.WriteLine(prefix + " " + item.Id);
-                    foreach (var asset in item.Assets.Values)
+                    foreach (var asset in (child as StacItem).Assets)
                     {
-                        Console.Out.WriteLine(prefix + " *[" + asset.MediaType + "] " + asset.Uri);
+                        Console.Out.WriteLine(prefix + asset.Key + ": *[" + asset.Value.MediaType + "] " + asset.Value.Uri);
                     }
                 }
-
-                ListChildrensItemsAndAssets(child, prefix + " ");
             }
         }
-
 
         [Fact]
         public void CanSerializeSentinel2Sample()
@@ -63,19 +66,18 @@ namespace Stac.Test.Example
             collection.Links.Add(StacLink.CreateRootLink(new Uri("https://storage.cloud.google.com/earthengine-test/catalog/catalog.json")));
             collection.Links.Add(new StacLink(new Uri("https://scihub.copernicus.eu/twiki/pub/SciHubWebPortal/TermsConditions/Sentinel_Data_Terms_and_Conditions.pdf"), "license", "Legal notice on the use of Copernicus Sentinel Data and Service Information", null));
 
-            collection.Keywords = new System.Collections.ObjectModel.Collection<string>(new string[] {
-                "copernicus",
-                "esa",
-                "eu",
-                "msi",
-                "radiance",
-                "sentinel"});
+            collection.Keywords.Add("copernicus");
+            collection.Keywords.Add("esa");
+            collection.Keywords.Add("eu");
+            collection.Keywords.Add("msi");
+            collection.Keywords.Add("radiance");
+            collection.Keywords.Add("sentinel");
 
-            collection.Providers = new System.Collections.ObjectModel.Collection<StacProvider>(
-                new StacProvider[]{new StacProvider("European Union/ESA/Copernicus"){
-                    Roles = new List<StacProviderRole>() { StacProviderRole.producer, StacProviderRole.licensor},
+            collection.Providers.Add(
+                new StacProvider("European Union/ESA/Copernicus", new List<StacProviderRole>() { StacProviderRole.producer, StacProviderRole.licensor}){
                     Uri = new Uri("https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi")
-            }});
+                }
+            );
 
             collection.Summaries.Add("datetime",
                 new StacSummaryStatsObject<DateTime>(

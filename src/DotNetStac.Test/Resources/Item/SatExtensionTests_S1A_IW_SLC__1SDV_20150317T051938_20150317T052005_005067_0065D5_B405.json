@@ -1,9 +1,8 @@
 {
-  "stac_version": "1.0.0-beta.2",
+  "stac_version": "1.0.0-rc.2",
   "stac_extensions": [
-    "checksum",
-    "sar",
-    "sat"
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json"
   ],
   "id": "S1A_IW_SLC__1SDV_20150317T051938_20150317T052005_005067_0065D5_B405",
   "type": "Feature",

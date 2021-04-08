@@ -1,6 +1,7 @@
 {
     "id": "sentinel-stac",
-    "stac_version": "0.6.0",
+    "stac_version": "1.0.0-rc.2",
+    "type": "Catalog",
     "description": "STAC for Sentinel data",
     "links": [
         {

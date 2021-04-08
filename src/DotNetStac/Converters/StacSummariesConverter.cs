@@ -51,9 +51,9 @@ namespace Stac.Converters
                 if (objDic[key] is JObject)
                 {
                     JObject obj = (objDic[key] as JObject);
-                    if (obj.ContainsKey("min") && obj.ContainsKey("max"))
+                    if (obj.ContainsKey("minimum") && obj.ContainsKey("maximum"))
                     {
-                        switch (obj["min"].Type)
+                        switch (obj["minimum"].Type)
                         {
                             case JTokenType.Date:
                                 summaries.Add(key, new StacSummaryStatsObject<DateTime>(obj));
