@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## unreleased (0.7.0)
 
 From this release, the library has been completely resshufled to a simpler library focusing on full compliance with STAC specifications
 
