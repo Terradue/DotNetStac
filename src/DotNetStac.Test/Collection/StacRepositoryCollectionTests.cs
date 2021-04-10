@@ -50,12 +50,12 @@ namespace Stac.Test.Catalog
             extendedItemJson = extendedItemJson.Replace("cool_sensor_v1", "cool_sensor_v2");
             items.Add(extendedItemUri, StacConvert.Deserialize<StacItem>(extendedItemJson));
 
-            StacCollection collection = StacCollection.Create(new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json"),
-                                                                "simple-collection",
+            StacCollection collection = StacCollection.Create("simple-collection",
                                                                 "A simple collection demonstrating core catalog fields with links to a couple of items",
                                                                 items,
-                                                                null,
-                                                                "CC-BY-4.0");
+                                                                "CC-BY-4.0",
+                                                                new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json"),
+                                                                null);
             // TEMPORARY overrides until #1080 is fixed
             collection.Extent.Spatial.BoundingBoxes[0] = new double[4] { 172.911, 1.343, 172.955, 1.3691 };
             collection.Extent.Temporal.Interval[0] = new DateTime?[2] { DateTime.Parse("2020-12-11T09:06:43.312000Z"), DateTime.Parse("2020-12-14T18:02:31.437000Z") };

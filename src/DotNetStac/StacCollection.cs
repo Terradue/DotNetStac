@@ -192,7 +192,24 @@ namespace Stac
 
         #region Static Methods
 
-        public static StacCollection Create(Uri collectionUri, string id, string description, IDictionary<Uri, StacItem> items, IDictionary<string, StacAsset> assets = null, string license = null)
+        /// <summary>
+        /// Generate a collection corresponding to the items' dictionary. Spatial and temporal extents
+        /// are computed. Fields values are summarized in stats object and value sets.
+        /// </summary>
+
+        /// <param name="id">Identifier of the collection</param>
+        /// <param name="description">Description of the collection</param>
+        /// <param name="items">Dictionary of Uri, StacItem. Uri points to the StacItem destination.</param>
+        /// <param name="license">License of the collection</param>
+        /// <param name="collectionUri">Uri of the collection. If provided, the items Uri and made relative to this one.</param>
+        /// <param name="assets">Assets of the collection</param>
+        /// <returns></returns>
+        public static StacCollection Create(string id,
+                                            string description,
+                                            IDictionary<Uri, StacItem> items,
+                                            string license = null,
+                                            Uri collectionUri = null,
+                                            IDictionary<string, StacAsset> assets = null)
         {
             var collection = new StacCollection(
                                       id,
@@ -201,7 +218,9 @@ namespace Stac
                                       assets,
                                       items.Select(item =>
                                       {
-                                          Uri itemUri = collectionUri.MakeRelativeUri(item.Key);
+                                          Uri itemUri = item.Key;
+                                          if (collectionUri != null)
+                                              itemUri = collectionUri.MakeRelativeUri(item.Key);
                                           if (!itemUri.IsAbsoluteUri) { itemUri = new Uri("./" + itemUri.OriginalString, UriKind.Relative); }
                                           return StacLink.CreateItemLink(item.Value, itemUri);
                                       }),
