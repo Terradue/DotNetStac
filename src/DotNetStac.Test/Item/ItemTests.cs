@@ -105,7 +105,7 @@ namespace Stac.Test.Item
 
             var item = StacConvert.Deserialize<StacItem>(json);
 
-            Assert.Equal(item.DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
+            Assert.Equal(item.CommonMetadata().DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
         }
 
         [Fact]

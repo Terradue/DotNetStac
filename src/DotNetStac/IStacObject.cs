@@ -23,6 +23,5 @@ namespace Stac
 
         Collection<string> StacExtensions { get; }
         
-        string Title { get; }
     }
 }

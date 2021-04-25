@@ -26,7 +26,7 @@ namespace Stac.Extensions.Sat
             var slaveOrbits = sat2.OrbitStateVectors.Values;
 
             IPosition p0 = new Position(sat1.SceneCenterCoordinates[0], sat1.SceneCenterCoordinates[1], sat1.SceneCenterCoordinates[2]);
-            DateTime[] times = new DateTime[3] { masterAnxDate, slaveAnxDate, masterItem.DateTime.Start.Add(TimeSpan.FromMilliseconds(masterItem.DateTime.End.Subtract(masterItem.DateTime.Start).TotalMilliseconds / 2)) };
+            DateTime[] times = new DateTime[3] { masterAnxDate, slaveAnxDate, masterItem.CommonMetadata().DateTime.Start.Add(TimeSpan.FromMilliseconds(masterItem.CommonMetadata().DateTime.End.Subtract(masterItem.CommonMetadata().DateTime.Start).TotalMilliseconds / 2)) };
 
             var baseline = BaselineCalculation.CalculateBaseline(times, masterOrbits.ToArray(), slaveOrbits.ToArray(), p0);
 
