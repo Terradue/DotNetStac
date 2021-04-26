@@ -4,6 +4,11 @@ using System.Linq;
 
 namespace Stac
 {
+    /// <summary>
+    /// This class allows accessing commonly used fields in STAC. 
+    /// They are often used in STAC Item properties, but can also be used in other places, e.g. an Item Asset or Collection Asset.
+    /// <seealso href="https://github.com/radiantearth/stac-spec/blob/dev/item-spec/common-metadata.md">STAC Common Metadata</seealso>
+    /// </summary>
     public class StacCommonMetadata
     {
         private IStacPropertiesContainer stacPropertiesContainer;

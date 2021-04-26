@@ -37,8 +37,6 @@ In a nutshell, the library allows serialization/desrialization of STAC JSON docu
 
 ## Features
 
-### Current features
-
 * (De)Serialization engine fully compliant with current version of [STAC specifications](https://stacspec.org)
 * Many helpers to support STAC objects manipulation:
   * Field accessors using class properties (e.g. Title, DateTime, Geometry)
