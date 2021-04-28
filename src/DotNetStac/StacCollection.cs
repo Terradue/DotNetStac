@@ -94,7 +94,7 @@ namespace Stac
         /// STAC type (Collection)
         /// </summary>
         [JsonProperty("type")]
-        public string Type => "Collection";
+        public virtual string Type => "Collection";
 
         /// <summary>
         /// Detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.

@@ -111,8 +111,7 @@ namespace Stac.Test
             }
             else if (jObject.Value<string>("type") == "FeatureCollection")
             {
-                // type = 'itemcollection';
-                throw new NotSupportedException($"{jObject.Value<string>("id")}. Skipping; STAC ItemCollections not supported yet");
+                type = "itemcollection";
             }
             else if (jObject.Value<string>("type") == "Collection" || jObject["extent"] != null || jObject["license"] != null)
             {

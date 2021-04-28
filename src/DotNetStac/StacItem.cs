@@ -24,7 +24,7 @@ namespace Stac
         public StacItem(string id,
                         IGeometryObject geometry,
                         IDictionary<string, object> properties = null) :
-                        base(Preconditions.CheckNotNull(geometry, "geometry"), properties, id)
+                        base(geometry, properties, id)
         {
             Preconditions.CheckNotNull(id, "id");
             StacExtensions = new Collection<string>();
@@ -33,7 +33,7 @@ namespace Stac
             Assets = new Dictionary<string, StacAsset>();
         }
 
-        public StacItem(StacItem stacItem) : base(Preconditions.CheckNotNull(stacItem, "geometry").Geometry,
+        public StacItem(StacItem stacItem) : base(Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
                                                   new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties),
                                                   Preconditions.CheckNotNull(stacItem, "id").Id)
         {
