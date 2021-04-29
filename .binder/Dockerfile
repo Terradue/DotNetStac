@@ -13,7 +13,7 @@ COPY ./.binder/NuGet.config ${HOME}/nuget.config
 RUN chown -R ${NB_UID} ${HOME}
 USER ${USER}
 
-RUN dotnet build ${HOME}/src/
+RUN dotnet publish ${HOME}/src/ -f netstandard2.0
 
 # Set root to notebooks
 WORKDIR ${HOME}/notebooks/
