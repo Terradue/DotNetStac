@@ -2,13 +2,13 @@ FROM terradue/dotnetinteractive:latest
 
 USER root
 
+# Copy package sources
+COPY ./.binder/NuGet.config ${HOME}/nuget.config
+
 # Copy project source
 COPY ./src/ ${HOME}/src/
 # Copy notebooks
 COPY ./notebooks/ ${HOME}/notebooks/
-
-# Copy package sources
-COPY ./.binder/NuGet.config ${HOME}/nuget.config
 
 RUN chown -R ${NB_UID} ${HOME}
 USER ${USER}
