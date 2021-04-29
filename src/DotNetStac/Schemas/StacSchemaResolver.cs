@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Stac.Extensions
+namespace Stac.Schemas
 {
     public class StacSchemaResolver
     {
@@ -63,7 +63,15 @@ namespace Stac.Extensions
             }
             else
             {
-                var stream = jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
+                Stream stream = null;
+                try
+                {
+                    stream = jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
+                }
+                catch (Exception e)
+                {
+                    throw new Stac.Exceptions.InvalidStacSchemaException(string.Format("Error getting schema at Uri '{0}'", schemaUri), e);
+                }
                 var sr = new StreamReader(stream);
                 schemaCompiled[schemaUri.ToString()] = JSchema.Parse(sr.ReadToEnd(), jSchemaResolver);
                 return schemaCompiled[schemaUri.ToString()];

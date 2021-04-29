@@ -11,7 +11,7 @@ namespace Stac.Test.ItemCollections
         {
             var json = GetJson("Extensions");
 
-            // ValidateJson(json);
+            ValidateJson(json);
 
             var stacObject = StacConvert.Deserialize<IStacObject>(json);
 
