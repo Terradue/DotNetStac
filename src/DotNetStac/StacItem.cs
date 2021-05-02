@@ -11,6 +11,8 @@ using System.Linq;
 using System.Net.Mime;
 using Newtonsoft.Json.Linq;
 using Semver;
+using System.Collections.Specialized;
+using System.IO;
 
 namespace Stac
 {
@@ -24,27 +26,53 @@ namespace Stac
         public StacItem(string id,
                         IGeometryObject geometry,
                         IDictionary<string, object> properties = null) :
-                        base(Preconditions.CheckNotNull(geometry, "geometry"), properties, id)
+                        base(geometry, properties, id)
         {
             Preconditions.CheckNotNull(id, "id");
             StacExtensions = new Collection<string>();
             StacVersion = Versions.StacVersionList.Current;
-            Links = new Collection<StacLink>();
+            Links = new ObservableCollection<StacLink>();
+            (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
             Assets = new Dictionary<string, StacAsset>();
         }
 
-        public StacItem(StacItem stacItem) : base(Preconditions.CheckNotNull(stacItem, "geometry").Geometry,
+        public StacItem(StacItem stacItem) : base(Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
                                                   new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties),
                                                   Preconditions.CheckNotNull(stacItem, "id").Id)
         {
             this.StacExtensions = stacItem.StacExtensions;
             this.StacVersion = stacItem.StacVersion;
-            this.Links = new Collection<StacLink>(stacItem.Links);
+            this.Links = new ObservableCollection<StacLink>(stacItem.Links);
+            (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
             this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets);
             this.Collection = stacItem.Collection;
         }
 
-        # region IStacObject
+        private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems != null)
+            {
+                foreach (var oldLink in e.NewItems.Cast<StacLink>())
+                {
+                    if (oldLink.RelationshipType == "collection")
+                    {
+                        Collection = null;
+                    }
+                }
+            }
+            if (e.NewItems != null)
+            {
+                foreach (var newLink in e.NewItems.Cast<StacLink>())
+                {
+                    if (newLink.RelationshipType == "collection" && string.IsNullOrEmpty(Collection))
+                    {
+                        Collection = Path.GetFileNameWithoutExtension(newLink.Uri.ToString());
+                    }
+                }
+            }
+        }
+
+        #region IStacObject
 
         /// <summary>
         /// The STAC version the Item implements
@@ -59,7 +87,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
-        public Collection<string> StacExtensions { get; private set; }
+        public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// A list of references to other documents.
@@ -67,7 +95,7 @@ namespace Stac
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
-        public Collection<StacLink> Links
+        public ICollection<StacLink> Links
         {
             get; private set;
         }
@@ -80,6 +108,10 @@ namespace Stac
         [JsonProperty("assets")]
         public IDictionary<string, StacAsset> Assets { get; private set; }
 
+        /// <summary>
+        /// The id of the STAC Collection this Item references to
+        /// </summary>
+        /// <value>gets the collection id</value>
         [JsonProperty("collection")]
         public string Collection { get; internal set; }
 
@@ -107,101 +139,6 @@ namespace Stac
         {
             // don't serialize the Manager property if an employee is their own manager
             return StacExtensions.Count > 0;
-        }
-
-        [JsonIgnore]
-        public Itenso.TimePeriod.ITimePeriod DateTime
-        {
-            get
-            {
-                if (Properties.ContainsKey("datetime"))
-                {
-                    if (Properties["datetime"] is DateTime)
-                        return new Itenso.TimePeriod.TimeInterval((DateTime)Properties["datetime"]);
-                    else
-                    {
-                        try
-                        {
-                            return new Itenso.TimePeriod.TimeInterval(System.DateTime.Parse(Properties["datetime"].ToString()));
-                        }
-                        catch (Exception e)
-                        {
-                            if (Properties.ContainsKey("start_datetime") && Properties.ContainsKey("end_datetime"))
-                            {
-                                if (Properties["start_datetime"] is DateTime && Properties["end_datetime"] is DateTime)
-                                    return new Itenso.TimePeriod.TimeInterval((DateTime)Properties["start_datetime"],
-                                                                                (DateTime)Properties["end_datetime"]);
-                                else
-                                {
-                                    try
-                                    {
-                                        return new Itenso.TimePeriod.TimeInterval(System.DateTime.Parse(Properties["start_datetime"].ToString()),
-                                                                                    System.DateTime.Parse(Properties["end_datetime"].ToString()));
-                                    }
-                                    catch (Exception e1)
-                                    {
-                                        throw new FormatException(string.Format("start_datetime or end_datetime {0} is not a valid"), e1);
-                                    }
-                                }
-                            }
-                            throw new FormatException(string.Format("datetime {0} is not a valid"), e);
-                        }
-                    }
-                }
-                return Itenso.TimePeriod.TimeInterval.Anytime;
-            }
-            set
-            {
-                // remove previous values
-                Properties.Remove("datetime");
-                Properties.Remove("start_datetime");
-                Properties.Remove("end_datetime");
-
-                // datetime, start_datetime, end_datetime
-                if (value.IsAnytime)
-                {
-                    Properties.Add("datetime", null);
-                }
-
-                if (value.IsMoment)
-                {
-                    Properties.Add("datetime", value.Start);
-                }
-                else
-                {
-                    Properties.Add("datetime", value.Start);
-                    Properties.Add("start_datetime", value.Start);
-                    Properties.Add("end_datetime", value.Start);
-                }
-            }
-        }
-
-        [JsonIgnore]
-        public string Title
-        {
-            get => this.GetProperty<string>("title");
-            set => this.SetProperty("title", value);
-        }
-
-        [JsonIgnore]
-        public string Description
-        {
-            get => this.GetProperty<string>("description");
-            set => this.SetProperty("description", value);
-        }
-
-        [JsonIgnore]
-        public DateTime Created
-        {
-            get => this.GetProperty<DateTime>("created");
-            set => this.SetProperty("created", value);
-        }
-
-        [JsonIgnore]
-        public DateTime Updated
-        {
-            get => this.GetProperty<DateTime>("updated");
-            set => this.SetProperty("updated", value);
         }
 
         [JsonIgnore]

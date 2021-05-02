@@ -50,24 +50,26 @@ namespace Stac.Test.Catalog
             extendedItemJson = extendedItemJson.Replace("cool_sensor_v1", "cool_sensor_v2");
             items.Add(extendedItemUri, StacConvert.Deserialize<StacItem>(extendedItemJson));
 
-            StacCollection collection = StacCollection.Create(new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json"),
-                                                                "simple-collection",
+            StacCollection collection = StacCollection.Create("simple-collection",
                                                                 "A simple collection demonstrating core catalog fields with links to a couple of items",
                                                                 items,
-                                                                null,
-                                                                "CC-BY-4.0");
+                                                                "CC-BY-4.0",
+                                                                new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json"),
+                                                                null);
             // TEMPORARY overrides until #1080 is fixed
-            collection.Extent.Spatial.BoundingBoxes[0] = new double[4] { 172.911, 1.343, 172.955, 1.3691 };
-            collection.Extent.Temporal.Interval[0] = new DateTime?[2] { DateTime.Parse("2020-12-11T09:06:43.312000Z"), DateTime.Parse("2020-12-14T18:02:31.437000Z") };
+            // collection.Extent.Spatial.BoundingBoxes[0] = new double[4] { 172.911, 1.343, 172.955, 1.3691 };
+            // collection.Extent.Temporal.Interval[0] = new DateTime?[2] { DateTime.Parse("2020-12-11T09:06:43.312000Z"), DateTime.Parse("2020-12-14T18:02:31.437000Z") };
             expectedJson = expectedJson.Replace(",\n      \"title\": \"Simple Item\"", "");
-            expectedJson = expectedJson.Replace("rc.2", "rc.2", false, CultureInfo.CurrentCulture);
-            expectedJson = expectedJson.Replace("cool_sensor_v1", "cool_sensor_v1\",\"cool_sensor_v2");
-            expectedJson = expectedJson.Replace("\"cool_sat2\",\n      \"cool_sat1\"\n","\"cool_sat1\",\n      \"cool_sat2\"\n");
-            expectedJson = expectedJson.Replace("minimum\": 0,\n      \"maximum\": 15","maximum\": 3.8,\n      \"minimum\": 3.8");
-            expectedJson = expectedJson.Replace("minimum\": 6.78,\n      \"maximum\": 40","maximum\": 135.7,\n      \"minimum\": 135.7");
-            expectedJson = expectedJson.Replace("sun_elevation","sun_azimuth");
-            expectedJson = expectedJson.Replace("\"gsd\": {\n      \"minimum\": 0.512,\n      \"maximum\": 0.7\n    }",
-                                                "\"gsd\": {\n      \"minimum\": 0.512,\n      \"maximum\": 0.66\n    },\n    \"eo:cloud_cover\": {\n      \"minimum\": 1.2,\n      \"maximum\": 1.2\n    },\n    \"proj:epsg\": {\n      \"minimum\": 32659,\n      \"maximum\": 32659\n    },\n    \"view:sun_elevation\": {\n      \"minimum\": 54.9,\n      \"maximum\": 54.9\n    }");
+            expectedJson = expectedJson.Replace("\"https://stac-extensions.github.io/eo/v1.0.0/schema.json\"",
+                                                "\"https://stac-extensions.github.io/eo/v1.0.0/schema.json\", \"https://stac-extensions.github.io/projection/v1.0.0/schema.json\"");
+            // expectedJson = expectedJson.Replace("rc.3", "rc.3", false, CultureInfo.CurrentCulture);
+            // expectedJson = expectedJson.Replace("cool_sensor_v1", "cool_sensor_v1\",\"cool_sensor_v2");
+            // expectedJson = expectedJson.Replace("\"cool_sat2\",\n      \"cool_sat1\"\n","\"cool_sat1\",\n      \"cool_sat2\"\n");
+            // expectedJson = expectedJson.Replace("minimum\": 0,\n      \"maximum\": 15","maximum\": 3.8,\n      \"minimum\": 3.8");
+            // expectedJson = expectedJson.Replace("minimum\": 6.78,\n      \"maximum\": 40","maximum\": 135.7,\n      \"minimum\": 135.7");
+            // expectedJson = expectedJson.Replace("sun_elevation","sun_azimuth");
+            // expectedJson = expectedJson.Replace("\"gsd\": {\n      \"minimum\": 0.512,\n      \"maximum\": 0.7\n    }",
+            //                                     "\"gsd\": {\n      \"minimum\": 0.512,\n      \"maximum\": 0.66\n    },\n    \"eo:cloud_cover\": {\n      \"minimum\": 1.2,\n      \"maximum\": 1.2\n    },\n    \"proj:epsg\": {\n      \"minimum\": 32659,\n      \"maximum\": 32659\n    },\n    \"view:sun_elevation\": {\n      \"minimum\": 54.9,\n      \"maximum\": 54.9\n    }");
             //
             collection.Title = "Simple Example Collection";
             collection.Links.Insert(0, StacLink.CreateRootLink(new Uri("./collection.json", UriKind.Relative), StacCollection.MEDIATYPE));

@@ -27,10 +27,10 @@ namespace Stac.Extensions
 
         public abstract IDictionary<string, Type> ItemFields { get; }
 
-        public virtual IDictionary<string, CreateSummary> GetSummaryFunctions()
+        public virtual IDictionary<string, SummaryFunction> GetSummaryFunctions()
         {
 
-            Dictionary<string, CreateSummary> summaryFunctions = new Dictionary<string, CreateSummary>();
+            Dictionary<string, SummaryFunction> summaryFunctions = new Dictionary<string, SummaryFunction>();
 
             foreach (var itemField in ItemFields)
             {
@@ -38,7 +38,7 @@ namespace Stac.Extensions
                 if (itemField.Value == typeof(bool) || itemField.Value == typeof(short) || itemField.Value == typeof(int) || itemField.Value == typeof(long) ||
                         itemField.Value == typeof(float) || itemField.Value == typeof(double) || itemField.Value == typeof(DateTime))
                     summaryFunction = CreateSummaryStatsObject;
-                summaryFunctions.Add(itemField.Key, summaryFunction);
+                summaryFunctions.Add(itemField.Key, new SummaryFunction(this, itemField.Key, summaryFunction));
             }
             return summaryFunctions;
         }

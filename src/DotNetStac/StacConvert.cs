@@ -3,6 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Exceptions;
+using Stac.Extensions.ItemCollections;
 
 namespace Stac
 {
@@ -12,7 +13,8 @@ namespace Stac
         {
             if (typeof(T) == typeof(StacItem)
                 || typeof(T) == typeof(StacCollection)
-                || typeof(T) == typeof(StacCatalog))
+                || typeof(T) == typeof(StacCatalog)
+                || typeof(T) == typeof(ItemCollection))
                 return JsonConvert.DeserializeObject<T>(json);
             JObject jobject = JsonConvert.DeserializeObject<JObject>(json,
             new JsonSerializerSettings

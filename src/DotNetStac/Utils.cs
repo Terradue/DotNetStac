@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Exceptions;
+using Stac.Extensions.ItemCollections;
 
 namespace Stac
 {
@@ -33,7 +34,7 @@ namespace Stac
             }
             else if (jObject.Value<string>("type") == "FeatureCollection")
             {
-                throw new NotSupportedException($"{jObject.Value<string>("id")}. Skipping; STAC ItemCollections not supported yet");
+                return typeof(ItemCollection);
             }
             else if (jObject.Value<string>("type") == "Collection" || jObject["extent"] != null || jObject["license"] != null)
             {

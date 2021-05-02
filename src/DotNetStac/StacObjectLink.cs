@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Net.Mime;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Stac
@@ -41,7 +39,7 @@ namespace Stac
         [JsonProperty("title")]
         public override string Title
         {
-            get => stacObject.Title;
+            get => stacObject.CommonMetadata().Title;
             set
             {
                 throw new InvalidOperationException("Cannot set Title on an STAC Object link");

@@ -5,6 +5,7 @@ using System.Reflection;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using Stac.Exceptions;
+using Stac.Schemas;
 
 namespace Stac.Extensions
 {

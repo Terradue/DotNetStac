@@ -72,7 +72,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
-        public Collection<string> StacExtensions { get; private set; }
+        public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// A list of references to other documents.
@@ -80,7 +80,7 @@ namespace Stac
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
-        public Collection<StacLink> Links
+        public ICollection<StacLink> Links
         {
             get; internal set;
         }
@@ -94,7 +94,7 @@ namespace Stac
         /// STAC type (Collection)
         /// </summary>
         [JsonProperty("type")]
-        public string Type => "Collection";
+        public virtual string Type => "Collection";
 
         /// <summary>
         /// Detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.
@@ -192,7 +192,25 @@ namespace Stac
 
         #region Static Methods
 
-        public static StacCollection Create(Uri collectionUri, string id, string description, IDictionary<Uri, StacItem> items, IDictionary<string, StacAsset> assets = null, string license = null)
+        /// <summary>
+        /// Generate a collection corresponding to the items' dictionary. Spatial and temporal extents
+        /// are computed. Fields values are summarized in stats object and value sets.
+        /// All Items are updated with the collection id
+        /// </summary>
+
+        /// <param name="id">Identifier of the collection</param>
+        /// <param name="description">Description of the collection</param>
+        /// <param name="items">Dictionary of Uri, StacItem. Uri points to the StacItem destination.</param>
+        /// <param name="license">License of the collection</param>
+        /// <param name="collectionUri">Uri of the collection. If provided, the items Uri and made relative to this one.</param>
+        /// <param name="assets">Assets of the collection</param>
+        /// <returns></returns>
+        public static StacCollection Create(string id,
+                                            string description,
+                                            IDictionary<Uri, StacItem> items,
+                                            string license = null,
+                                            Uri collectionUri = null,
+                                            IDictionary<string, StacAsset> assets = null)
         {
             var collection = new StacCollection(
                                       id,
@@ -201,25 +219,39 @@ namespace Stac
                                       assets,
                                       items.Select(item =>
                                       {
-                                          Uri itemUri = collectionUri.MakeRelativeUri(item.Key);
+                                          Uri itemUri = item.Key;
+                                          if (collectionUri != null)
+                                              itemUri = collectionUri.MakeRelativeUri(item.Key);
                                           if (!itemUri.IsAbsoluteUri) { itemUri = new Uri("./" + itemUri.OriginalString, UriKind.Relative); }
                                           return StacLink.CreateItemLink(item.Value, itemUri);
                                       }),
                                       license);
 
-            var summaryFunctions = items.SelectMany(item => item.Value.GetDeclaredExtensions().SelectMany(ext => ext.GetSummaryFunctions()))
+            var usedExtensions = items.SelectMany(item => item.Value.GetDeclaredExtensions());
+
+            var summaryFunctions = usedExtensions.SelectMany(ext => ext.GetSummaryFunctions())
                 .GroupBy(prop => prop.Key)
                 .ToDictionary(key => key.Key, value => value.First().Value);
 
-            summaryFunctions.Add("gsd", StacPropertiesContainerExtension.CreateSummaryStatsObject);
-            summaryFunctions.Add("platform", StacPropertiesContainerExtension.CreateSummaryValueSet);
-            summaryFunctions.Add("constellation", StacPropertiesContainerExtension.CreateSummaryValueSet);
-            summaryFunctions.Add("instruments", StacPropertiesContainerExtension.CreateSummaryValueSetFromArrays);
+            summaryFunctions.Add("gsd", new SummaryFunction(null, "gsd", StacPropertiesContainerExtension.CreateSummaryStatsObject));
+            summaryFunctions.Add("platform", new SummaryFunction(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet));
+            summaryFunctions.Add("constellation", new SummaryFunction(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet));
+            summaryFunctions.Add("instruments", new SummaryFunction(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSetFromArrays));
 
             collection.Summaries =
                 items.Values.SelectMany(item => item.Properties.Where(k => summaryFunctions.Keys.Contains(k.Key)))
                     .GroupBy(prop => prop.Key)
-                    .ToDictionary(key => key.Key, value => summaryFunctions[value.Key](value.Select(i => i.Value)));
+                    .ToDictionary(key => key.Key, value =>
+                    {
+                        if (summaryFunctions[value.Key].Extension != null && !collection.StacExtensions.Contains(summaryFunctions[value.Key].Extension.Identifier))
+                            collection.StacExtensions.Add(summaryFunctions[value.Key].Extension.Identifier);
+                        return summaryFunctions[value.Key].Summarize(value.Select(i => i.Value));
+                    });
+
+            foreach (var item in items)
+            {
+                item.Value.SetCollection(id, collectionUri);
+            }
 
             return collection;
         }

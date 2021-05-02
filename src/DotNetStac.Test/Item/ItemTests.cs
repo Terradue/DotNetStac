@@ -23,7 +23,7 @@ namespace Stac.Test.Item
 
             Assert.NotNull(item.Properties);
 
-            Assert.Equal("1.0.0-rc.2", item.StacVersion);
+            Assert.Equal("1.0.0-rc.3", item.StacVersion);
 
             Assert.Empty(item.StacExtensions);
 
@@ -35,8 +35,7 @@ namespace Stac.Test.Item
 
             Assert.Equal(new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 }, item.BoundingBoxes);
 
-            Assert.True(item.Properties.ContainsKey("collection"));
-            Assert.Equal("CS3", item.Properties["collection"]);
+            Assert.Equal("CS3", item.Collection);
 
             Assert.Equal(DateTime.Parse("2016-05-03T13:21:30.040Z").ToUniversalTime(), item.Properties["datetime"]);
 
@@ -77,7 +76,7 @@ namespace Stac.Test.Item
             StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
 
             item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
-            item.Links.Add(StacLink.CreateCollectionLink(new Uri("http://cool-sat.com/catalog.json")));
+            item.SetCollection("cool-sat", new Uri("http://cool-sat.com/catalog.json"));
 
             item.Assets.Add("analytic", new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
             item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(item, new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
@@ -105,7 +104,7 @@ namespace Stac.Test.Item
 
             var item = StacConvert.Deserialize<StacItem>(json);
 
-            Assert.Equal(item.DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
+            Assert.Equal(item.CommonMetadata().DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
         }
 
         [Fact]
@@ -121,7 +120,7 @@ namespace Stac.Test.Item
 
             Assert.NotNull(item.Properties);
 
-            Assert.Equal("1.0.0-rc.2", item.StacVersion);
+            Assert.Equal("1.0.0-rc.3", item.StacVersion);
 
         }
 

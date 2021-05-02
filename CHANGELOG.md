@@ -1,12 +1,13 @@
 # Changelog
 
-## unreleased (0.7.0)
+## [v0.7.0]
 
-From this release, the library has been completely resshufled to a simpler library focusing on full compliance with STAC specifications
+From this release, the library has been completely reshuffled to a simpler library focusing on full compliance with STAC specifications.
+At the moment of this release, the STAC specification is 1.0.0-rc.3 and minor changes in the spec should not break this implementation.
 
 ### Added
 
-- Json Schema validation
+- Json Schema validation and validator class
 - All missing object implementation to target STAC specification 1.0.0
 - Collection creation helper with automatic summaries
 

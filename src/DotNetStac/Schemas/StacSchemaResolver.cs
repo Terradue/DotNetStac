@@ -1,11 +1,12 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
+using Stac.Extensions.ItemCollections;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Stac.Extensions
+namespace Stac.Schemas
 {
     public class StacSchemaResolver
     {
@@ -37,6 +38,8 @@ namespace Stac.Extensions
             bool isExtension = false;
             if (shortcut == "item" || shortcut == "catalog" || shortcut == "collection")
                 schemaUri = new Uri(baseUri, $"{shortcut}-spec/json-schema/{shortcut}.json");
+            else if (shortcut == "item-collection")
+                return ItemCollection.GenerateJSchema(version);
             else if (!string.IsNullOrEmpty(shortcut))
             {
                 if (shortcut == "proj")
@@ -63,7 +66,15 @@ namespace Stac.Extensions
             }
             else
             {
-                var stream = jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
+                Stream stream = null;
+                try
+                {
+                    stream = jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
+                }
+                catch (Exception e)
+                {
+                    throw new Stac.Exceptions.InvalidStacSchemaException(string.Format("Error getting schema at Uri '{0}'", schemaUri), e);
+                }
                 var sr = new StreamReader(stream);
                 schemaCompiled[schemaUri.ToString()] = JSchema.Parse(sr.ReadToEnd(), jSchemaResolver);
                 return schemaCompiled[schemaUri.ToString()];

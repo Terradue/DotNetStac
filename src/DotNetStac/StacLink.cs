@@ -26,9 +26,9 @@ namespace Stac
             return new StacLink(uri, "parent", null, mediaType);
         }
 
-        public static StacLink CreateCollectionLink(Uri uri, string mediaType = null)
+        public static StacLink CreateCollectionLink(Uri uri, string title = null)
         {
-            return new StacLink(uri, "collection", null, mediaType);
+            return new StacLink(uri, "collection", title, null);
         }
 
         public static StacLink CreateDerivedFromLink(Uri uri, string mediaType = null)

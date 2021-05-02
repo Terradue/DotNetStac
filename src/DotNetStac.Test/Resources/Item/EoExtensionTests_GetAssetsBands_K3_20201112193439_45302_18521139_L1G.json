@@ -5,7 +5,7 @@
         "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json"
     ],
-    "stac_version": "1.0.0-rc.2",
+    "stac_version": "1.0.0-rc.3",
     "links": [
         {
             "type": "application/json; profile=stac-item",
@@ -171,9 +171,9 @@
         ]
     },
     "properties": {
-        "datetime": "2020-11-12T20:34:47.8741569+01:00",
-        "start_datetime": "2020-11-12T20:34:47.8741569+01:00",
-        "end_datetime": "2020-11-12T20:34:50.2062721+01:00",
+        "datetime": "2020-11-12T20:34:47.8741569+00:00",
+        "start_datetime": "2020-11-12T20:34:47.8741569+00:00",
+        "end_datetime": "2020-11-12T20:34:50.2062721+00:00",
         "updated": "2020-12-13T19:01:45.790996Z",
         "platform": "kompsat-3",
         "constellation": "kompsat-3",

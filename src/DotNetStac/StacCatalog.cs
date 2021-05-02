@@ -70,7 +70,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
-        public Collection<string> StacExtensions { get; private set; }
+        public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// A list of references to other documents.
@@ -78,7 +78,7 @@ namespace Stac
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
-        public Collection<StacLink> Links
+        public ICollection<StacLink> Links
         {
             get; internal set;
         }

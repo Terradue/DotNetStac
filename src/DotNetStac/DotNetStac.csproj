@@ -5,14 +5,14 @@
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <VersionPrefix>0.7.0</VersionPrefix>
-    <VersionSuffix>alpha</VersionSuffix>
+    <!-- <VersionSuffix>alpha</VersionSuffix> -->
     <Authors>Emmanuel Mathot</Authors>
     <Authors>emmanuelmathot</Authors>
     <Company>Terradue</Company>
     <RepositoryUrl>https://github.com/Terradue/DotNetStac</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
-    <PackageIcon>stac_logo.png</PackageIcon>
+    <PackageIcon>stac_logo_128.png</PackageIcon>
     <Copyright>Copyright (c) 2010-2021 by Terradue</Copyright>
     <CodeAnalysisRuleSet>$(SolutionDir)StyleCop.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -30,11 +30,11 @@
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+    <!-- <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" /> -->
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <None Include="..\..\docs\logo\stac_logo.png" Pack="true" PackagePath="" />
+    <None Include="..\..\docs\images\stac_logo_128.png" Pack="true" PackagePath="" />
     <Content Include="..\proj\SRID.csv" copyToOutput="true">
       <IncludeInPackage>true</IncludeInPackage>
       <CopyToOutput>true</CopyToOutput>

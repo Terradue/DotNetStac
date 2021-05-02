@@ -63,5 +63,57 @@ namespace Stac
             return stacCatalog.Links.Where(l => l.RelationshipType == "item");
         }
 
+        /// <summary>
+        /// Set the id of the STAC Collection this Item references to 
+        /// see <seealso href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types">collection relation type</seealso>. 
+        /// </summary>
+        /// <param name="stacItem">stacItem to set the collection to</param>
+        /// <param name="collectionId">identifier of the collection</param>
+        /// <param name="collectionUri">uri to the collection</param>
+        /// <param name="collectionTitle">optional title of the collection</param>
+        public static void SetCollection(this StacItem stacItem, string collectionId, Uri collectionUri, string collectionTitle = null)
+        {
+            var existingLink = stacItem.Links.FirstOrDefault(l => l.Uri == collectionUri);
+            if (existingLink != null)
+                stacItem.Links.Remove(existingLink);
+            stacItem.Links.Add(StacLink.CreateCollectionLink(collectionUri));
+            stacItem.Collection = collectionId;
+        }
+
+        public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
+        {
+            if (collection is List<T> list)
+            {
+                list.AddRange(items);
+            }
+            else
+            {
+                foreach (T item in items)
+                    collection.Add(item);
+            }
+        }
+
+        public static void Insert<T>(this ICollection<T> collection, int index, T item)
+        {
+
+            if (index < 0 || index > collection.Count)
+                throw new ArgumentOutOfRangeException(nameof(index), "Index was out of range. Must be non-negative and less than the size of the collection.");
+
+            if (collection is IList<T> list)
+            {
+                list.Insert(index, item);
+            }
+            else
+            {
+                List<T> temp = new List<T>(collection);
+
+                collection.Clear();
+
+                collection.AddRange(temp.Take(index));
+                collection.Add(item);
+                collection.AddRange(temp.Skip(index));
+            }
+        }
+
     }
 }

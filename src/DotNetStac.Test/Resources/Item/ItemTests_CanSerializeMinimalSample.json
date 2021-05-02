@@ -1,5 +1,5 @@
 {
-    "stac_version": "1.0.0-rc.2",
+    "stac_version": "1.0.0-rc.3",
     "type": "Feature",
     "id": "CS3-20160503_132130_04",
     "bbox": [
@@ -8,6 +8,7 @@
         -122.2880486,
         37.613537207
     ],
+    "collection": "cool-sat",
     "geometry": {
         "type": "Polygon",
         "coordinates": [
