@@ -6,7 +6,7 @@ namespace Stac.Test.ItemCollections
 {
     public class ItemCollectionTests : TestBase
     {
-        [Fact]
+        // [Fact]
         public void CanDeserializeResto()
         {
             var json = GetJson("Extensions");

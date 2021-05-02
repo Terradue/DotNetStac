@@ -84,12 +84,11 @@ namespace Stac.Test.Item
             var properties = new Dictionary<string, object>();
 
             properties.Add("datetime", DateTime.Parse("2016-05-03T13:21:30.040Z").ToUniversalTime());
-            properties.Add("collection", "CS3");
 
             StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
 
             item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
-            item.Links.Add(StacLink.CreateCollectionLink(new Uri("http://cool-sat.com/catalog.json")));
+            item.SetCollection("CS3", new Uri("http://cool-sat.com/catalog.json"));
 
             item.Assets.Add("analytic", new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
             item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(item, new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));

@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "id": "b083c1b2-75b9-59a0-bd76-ce0955f1467c",
-  "stac_version": "1.0.0-rc.2",
+  "stac_version": "1.0.0-rc.3",
   "context": {
     "returned": 20,
     "limit": 20,
@@ -15,7 +15,7 @@
       "appliedFilters": {
         "q": "#month:01"
       },
-      "processingTime": 1.260221004486084
+      "processingTime": 32.56619095802307
     }
   },
   "links": [
@@ -75,7 +75,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59UPT",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 27.03,
@@ -355,7 +357,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -381,7 +383,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "58UGD",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 11.35,
@@ -624,7 +628,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -686,7 +690,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59ULU",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 12.22,
@@ -974,7 +980,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -1050,7 +1056,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59UMU",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 50.89,
@@ -1339,7 +1347,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -1411,7 +1419,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59UNU",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 39.29,
@@ -1748,7 +1758,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -1804,7 +1814,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "58UGE",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 12.43,
@@ -2093,7 +2105,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -2119,7 +2131,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59UPU",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 32.14,
@@ -2362,7 +2376,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -2412,7 +2426,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59ULV",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 11.74,
@@ -2701,7 +2717,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -2761,7 +2777,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59UMV",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 28.33,
@@ -3049,7 +3067,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -3121,7 +3139,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59UNV",
         "dataTakeId": "GS2B_20210131T235129_020405_N02.09",
         "eo:cloud_cover": 17.3,
@@ -3401,7 +3421,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -3457,7 +3477,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59VPG",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 99.81,
@@ -3737,7 +3759,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -3793,7 +3815,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "60VUM",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 99.91,
@@ -4073,7 +4097,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -4133,7 +4157,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59VNH",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 99.94,
@@ -4413,7 +4439,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -4485,7 +4511,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "60VVM",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 99.97,
@@ -4765,7 +4793,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -4829,7 +4857,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "60VWM",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 99.99,
@@ -5109,7 +5139,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -5177,7 +5207,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59VPH",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 99.99,
@@ -5457,7 +5489,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -5525,7 +5557,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "60VUN",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 99.99,
@@ -5805,7 +5839,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -5857,7 +5891,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "60VVN",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 100,
@@ -6137,7 +6173,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -6189,7 +6225,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "60VWN",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 100,
@@ -6469,7 +6507,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -6525,7 +6563,9 @@
         "productType": "REFLECTANCE",
         "processingLevel": "LEVEL1C",
         "platform": "S2B",
-        "instruments": "MSI",
+        "instruments": [
+          "MSI"
+        ],
         "tileId": "59VPJ",
         "dataTakeId": "GS2B_20210131T234819_020405_N02.09",
         "eo:cloud_cover": 100,
@@ -6882,7 +6922,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.2",
+      "stac_version": "1.0.0-rc.3",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",

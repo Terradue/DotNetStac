@@ -11,6 +11,8 @@ using System.Linq;
 using System.Net.Mime;
 using Newtonsoft.Json.Linq;
 using Semver;
+using System.Collections.Specialized;
+using System.IO;
 
 namespace Stac
 {
@@ -29,7 +31,8 @@ namespace Stac
             Preconditions.CheckNotNull(id, "id");
             StacExtensions = new Collection<string>();
             StacVersion = Versions.StacVersionList.Current;
-            Links = new Collection<StacLink>();
+            Links = new ObservableCollection<StacLink>();
+            (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
             Assets = new Dictionary<string, StacAsset>();
         }
 
@@ -39,12 +42,37 @@ namespace Stac
         {
             this.StacExtensions = stacItem.StacExtensions;
             this.StacVersion = stacItem.StacVersion;
-            this.Links = new Collection<StacLink>(stacItem.Links);
+            this.Links = new ObservableCollection<StacLink>(stacItem.Links);
+            (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
             this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets);
             this.Collection = stacItem.Collection;
         }
 
-        # region IStacObject
+        private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems != null)
+            {
+                foreach (var oldLink in e.NewItems.Cast<StacLink>())
+                {
+                    if (oldLink.RelationshipType == "collection")
+                    {
+                        Collection = null;
+                    }
+                }
+            }
+            if (e.NewItems != null)
+            {
+                foreach (var newLink in e.NewItems.Cast<StacLink>())
+                {
+                    if (newLink.RelationshipType == "collection" && string.IsNullOrEmpty(Collection))
+                    {
+                        Collection = Path.GetFileNameWithoutExtension(newLink.Uri.ToString());
+                    }
+                }
+            }
+        }
+
+        #region IStacObject
 
         /// <summary>
         /// The STAC version the Item implements
@@ -59,7 +87,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
-        public Collection<string> StacExtensions { get; private set; }
+        public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// A list of references to other documents.
@@ -67,7 +95,7 @@ namespace Stac
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
-        public Collection<StacLink> Links
+        public ICollection<StacLink> Links
         {
             get; private set;
         }
@@ -80,6 +108,10 @@ namespace Stac
         [JsonProperty("assets")]
         public IDictionary<string, StacAsset> Assets { get; private set; }
 
+        /// <summary>
+        /// The id of the STAC Collection this Item references to
+        /// </summary>
+        /// <value>gets the collection id</value>
         [JsonProperty("collection")]
         public string Collection { get; internal set; }
 

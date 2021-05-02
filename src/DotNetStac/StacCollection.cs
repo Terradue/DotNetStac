@@ -72,7 +72,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
-        public Collection<string> StacExtensions { get; private set; }
+        public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// A list of references to other documents.
@@ -80,7 +80,7 @@ namespace Stac
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
-        public Collection<StacLink> Links
+        public ICollection<StacLink> Links
         {
             get; internal set;
         }
@@ -195,6 +195,7 @@ namespace Stac
         /// <summary>
         /// Generate a collection corresponding to the items' dictionary. Spatial and temporal extents
         /// are computed. Fields values are summarized in stats object and value sets.
+        /// All Items are updated with the collection id
         /// </summary>
 
         /// <param name="id">Identifier of the collection</param>
@@ -226,19 +227,31 @@ namespace Stac
                                       }),
                                       license);
 
-            var summaryFunctions = items.SelectMany(item => item.Value.GetDeclaredExtensions().SelectMany(ext => ext.GetSummaryFunctions()))
+            var usedExtensions = items.SelectMany(item => item.Value.GetDeclaredExtensions());
+
+            var summaryFunctions = usedExtensions.SelectMany(ext => ext.GetSummaryFunctions())
                 .GroupBy(prop => prop.Key)
                 .ToDictionary(key => key.Key, value => value.First().Value);
 
-            summaryFunctions.Add("gsd", StacPropertiesContainerExtension.CreateSummaryStatsObject);
-            summaryFunctions.Add("platform", StacPropertiesContainerExtension.CreateSummaryValueSet);
-            summaryFunctions.Add("constellation", StacPropertiesContainerExtension.CreateSummaryValueSet);
-            summaryFunctions.Add("instruments", StacPropertiesContainerExtension.CreateSummaryValueSetFromArrays);
+            summaryFunctions.Add("gsd", new SummaryFunction(null, "gsd", StacPropertiesContainerExtension.CreateSummaryStatsObject));
+            summaryFunctions.Add("platform", new SummaryFunction(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet));
+            summaryFunctions.Add("constellation", new SummaryFunction(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet));
+            summaryFunctions.Add("instruments", new SummaryFunction(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSetFromArrays));
 
             collection.Summaries =
                 items.Values.SelectMany(item => item.Properties.Where(k => summaryFunctions.Keys.Contains(k.Key)))
                     .GroupBy(prop => prop.Key)
-                    .ToDictionary(key => key.Key, value => summaryFunctions[value.Key](value.Select(i => i.Value)));
+                    .ToDictionary(key => key.Key, value =>
+                    {
+                        if (summaryFunctions[value.Key].Extension != null && !collection.StacExtensions.Contains(summaryFunctions[value.Key].Extension.Identifier))
+                            collection.StacExtensions.Add(summaryFunctions[value.Key].Extension.Identifier);
+                        return summaryFunctions[value.Key].Summarize(value.Select(i => i.Value));
+                    });
+
+            foreach (var item in items)
+            {
+                item.Value.SetCollection(id, collectionUri);
+            }
 
             return collection;
         }

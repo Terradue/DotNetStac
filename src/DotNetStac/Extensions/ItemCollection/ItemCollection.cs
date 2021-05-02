@@ -1,87 +1,109 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
+using Stac.Collection;
 using Stac.Model;
 
-namespace Stac.Extensions.Processing
+namespace Stac.Extensions.ItemCollections
 {
-    public class ProcessingStacExtension : StacPropertiesContainerExtension, IStacExtension
+    public class ItemCollection : StacCollection, IStacExtension
     {
 
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/processing/v1.0.0/schema.json";
-        public const string LineageField = "processing:lineage";
-        public const string LevelField = "processing:level";
-        public const string FacilityField = "processing:facility";
-        public const string SoftwareField = "processing:software";
-        private readonly Dictionary<string, Type> itemFields;
 
-        public ProcessingStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
+        public ItemCollection(string id,
+                              string description,
+                              List<StacItem> stacItems) : base(id,
+                                                               description,
+                                                               null)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(LineageField, typeof(string));
-            itemFields.Add(LevelField, typeof(string));
-            itemFields.Add(FacilityField, typeof(string));
-            itemFields.Add(SoftwareField, typeof(IDictionary<string, string>));
-        }
-
-        public string Lineage
-        {
-            get { return StacPropertiesContainer.GetProperty<string>(LineageField); }
-            set { StacPropertiesContainer.SetProperty(LineageField, value); DeclareStacExtension(); }
-        }
-
-        public string Level
-        {
-            get { return StacPropertiesContainer.GetProperty<string>(LevelField); }
-            set { StacPropertiesContainer.SetProperty(LevelField, value); DeclareStacExtension(); }
-        }
-
-        public string Facility
-        {
-            get { return StacPropertiesContainer.GetProperty<string>(FacilityField); }
-            set { StacPropertiesContainer.SetProperty(FacilityField, value); DeclareStacExtension(); }
-        }
-
-        public IDictionary<string, string> Software
-        {
-            get
+            if (stacItems != null)
             {
-                Dictionary<string, string> existingSoftware = StacPropertiesContainer.GetProperty<Dictionary<string, string>>(SoftwareField);
-                ObservableDictionary<string, string> software = null;
-                if (existingSoftware == null)
-                    software = new ObservableDictionary<string, string>();
-                else
-                    software = new ObservableDictionary<string, string>(existingSoftware);
-                software.CollectionChanged += UpdateSoftwareField;
-                return software;
+                Features = new List<StacItem>(stacItems);
+                Extent = StacExtent.Create(stacItems);
             }
         }
 
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        /// <summary>
+        /// STAC type (FeatureCollection)
+        /// </summary>
+        [JsonProperty("type")]
+        public override string Type => "FeatureCollection";
 
-        private void UpdateSoftwareField(object sender, NotifyCollectionChangedEventArgs e)
+        [JsonProperty(PropertyName = "features", Required = Required.Always)]
+        public List<StacItem> Features { get; set; }
+
+        public string Identifier => JsonSchemaUrl;
+
+        public IDictionary<string, SummaryFunction> GetSummaryFunctions()
         {
-            StacPropertiesContainer.SetProperty(SoftwareField, new Dictionary<string, string>(sender as IDictionary<string, string>));
-            DeclareStacExtension();
+            return new Dictionary<string, SummaryFunction>();
         }
 
-    }
-
-    public static class ProcessingStacExtensionExtensions
-    {
-        public static ProcessingStacExtension ProcessingExtension(this StacItem stacItem)
+        internal static JSchema GenerateJSchema(string version)
         {
-            return new ProcessingStacExtension(stacItem);
+
+            JSchema jSchema = new JSchema();
+            jSchema.SchemaVersion = new Uri("http://json-schema.org/draft-07/schema#");
+            jSchema.Title = "STAC ItemCollection Extension";
+            jSchema.Type = JSchemaType.Object;
+            jSchema.Description = "This object represents the metadata for a set of items in a SpatioTemporal Asset Catalog.";
+            jSchema.AllowAdditionalProperties = true;
+
+            JSchema featureCollectionRef = new JSchema();
+
+            featureCollectionRef.Ref = GetSchema(new Uri("https://geojson.org/schema/FeatureCollection.json"));
+            JSchema fcr = new JSchema();
+            fcr.OneOf.Add(featureCollectionRef);
+
+            jSchema.AllOf.Add(fcr);
+
+            jSchema.AllOf.Add(new JSchema()
+            {
+                Properties = {
+                    { "stac_version", new JSchema(){
+                        Title = "STAC version",
+                        Type = JSchemaType.String
+                    }},
+                    { "stac_extensions", new JSchema(){
+                        Title = "STAC extensions",
+                        Type = JSchemaType.Array,
+                        UniqueItems = true,
+                        Items = { new JSchema { Type = JSchemaType.String, Format = "uri", Title = "Reference to a JSON Schema" } }
+                    }},
+                    { "features", new JSchema(){
+                        Title = "ItemCollection features",
+                        Type = JSchemaType.Array,
+                        Items = { new JSchema { Ref = GetSchema(new Uri("https://schemas.stacspec.org/v"+ version +"/item-spec/json-schema/item.json")) } }
+                    }},
+                    { "links", new JSchema(){
+                        Title = "Links",
+                        Type = JSchemaType.Array,
+                        Items = { new JSchema { Ref = GetSchema(new Uri("https://schemas.stacspec.org/v"+ version +"/item-spec/json-schema/item.json#/definitions/link")) } }
+                    }},
+                }
+            });
+
+            return jSchema;
         }
 
-        public static void Init(this ProcessingStacExtension processingStacExtension,
-                                string lineage,
-                                string level,
-                                string facility = null)
+        private static JSchema GetSchema(Uri schemaUri)
         {
-            processingStacExtension.Lineage = lineage;
-            processingStacExtension.Level = level;
-            processingStacExtension.Facility = facility;
+            JSchemaUrlResolver jSchemaResolver = new JSchemaUrlResolver();
+            Stream stream = null;
+            try
+            {
+                stream = jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
+            }
+            catch (Exception e)
+            {
+                throw new Stac.Exceptions.InvalidStacSchemaException(string.Format("Error getting schema at Uri '{0}'", schemaUri), e);
+            }
+            var sr = new StreamReader(stream);
+            return JSchema.Parse(sr.ReadToEnd(), jSchemaResolver);
         }
     }
 }

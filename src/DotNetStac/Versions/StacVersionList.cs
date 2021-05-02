@@ -5,7 +5,9 @@ namespace Stac.Versions
 {
     public static class StacVersionList
     {
-        public static SemVersion Current => V100rc2;
+        public static SemVersion Current => V100rc3;
+
+        public static SemVersion V100rc3 => new SemVersion(1, 0, 0, "rc.3");
 
         public static SemVersion V100rc2 => new SemVersion(1, 0, 0, "rc.2");
 

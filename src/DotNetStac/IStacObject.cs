@@ -17,11 +17,11 @@ namespace Stac
 
         SemVersion StacVersion { get; }
 
-        Collection<StacLink> Links { get; }
+        ICollection<StacLink> Links { get; }
         
         ContentType MediaType { get; }
 
-        Collection<string> StacExtensions { get; }
+        ICollection<string> StacExtensions { get; }
         
     }
 }

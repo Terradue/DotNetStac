@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
+using Stac.Extensions.ItemCollections;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,6 +38,8 @@ namespace Stac.Schemas
             bool isExtension = false;
             if (shortcut == "item" || shortcut == "catalog" || shortcut == "collection")
                 schemaUri = new Uri(baseUri, $"{shortcut}-spec/json-schema/{shortcut}.json");
+            else if (shortcut == "item-collection")
+                return ItemCollection.GenerateJSchema(version);
             else if (!string.IsNullOrEmpty(shortcut))
             {
                 if (shortcut == "proj")

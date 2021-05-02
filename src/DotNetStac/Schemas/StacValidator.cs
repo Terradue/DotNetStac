@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using Stac.Exceptions;
@@ -26,19 +27,26 @@ namespace Stac.Schemas
             this.stacTypes.Add(typeof(StacItem), "item");
             this.stacTypes.Add(typeof(StacCatalog), "catalog");
             this.stacTypes.Add(typeof(StacCollection), "collection");
-            this.stacTypes.Add(typeof(ItemCollection), "https://raw.githubusercontent.com/stac-extensions/item-collection/main/json-schema/schema.json");
+            this.stacTypes.Add(typeof(ItemCollection), "item-collection");
         }
 
+        /// <summary>
+        /// Validate a json string against its STAC schema specification
+        /// </summary>
+        /// <param name="jsonstr"></param>
+        /// <returns>true when valid</returns>
         public bool ValidateJson(string jsonstr)
         {
-            JObject json = JObject.Parse(jsonstr);
-            return ValidateJObject(json);
+            JObject jobject;
+            using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
+                jobject = JObject.Load(reader);
+            return ValidateJObject(jobject);
         }
 
         private bool ValidateJObject(JObject jObject)
         {
             Type stacType = Utils.IdentifyStacType(jObject);
-            
+
             // Get all schema to validate against
             List<string> schemas = new List<string>() { stacTypes[stacType] };
             if (jObject.Value<JArray>("stac_extensions") != null)
@@ -53,9 +61,9 @@ namespace Stac.Schemas
                 else
                     shortcut = schema;
 
-                if ( !jObject.ContainsKey("stac_version") )
+                if (!jObject.ContainsKey("stac_version"))
                     throw new InvalidStacDataException("Missing 'stac_version' property");
-                
+
                 var jsonSchema = schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
                 if (jObject.IsValid(jsonSchema, out errorMessages))
                     continue;

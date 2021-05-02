@@ -1,7 +1,8 @@
 {
-    "stac_version": "1.0.0-rc.2",
+    "stac_version": "1.0.0-rc.3",
     "type": "Feature",
     "id": "CS3-20160503_132130_04",
+    "collection": "CS3",
     "bbox": [
         -122.59750209,
         37.48803556,
@@ -37,7 +38,6 @@
     },
     "properties": {
         "datetime": "2016-05-03T13:21:30.040Z",
-        "collection": "CS3"
     },
     "links": [
         {
