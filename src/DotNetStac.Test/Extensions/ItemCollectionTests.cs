@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using Stac.Extensions.ItemCollections;
 using Xunit;
 
-namespace Stac.Test.ItemCollections
+namespace Stac.Test.Extensions
 {
     public class ItemCollectionTests : TestBase
     {

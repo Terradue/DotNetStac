@@ -1,9 +1,14 @@
 namespace Stac.Collection
 {
+    /// <summary>
+    /// Summary types
+    /// </summary>
     public enum SummaryItemType
     {
+        /// Summary Value Set
         ValueSet,
 
-        StatsObject
+        /// Summary Range Object
+        RangeObject
     }
 }

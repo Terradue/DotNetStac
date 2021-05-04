@@ -56,16 +56,16 @@ namespace Stac.Converters
                         switch (obj["minimum"].Type)
                         {
                             case JTokenType.Date:
-                                summaries.Add(key, new StacSummaryStatsObject<DateTime>(obj));
+                                summaries.Add(key, new StacSummaryRangeObject<DateTime>(obj));
                                 break;
                             case JTokenType.String:
-                                summaries.Add(key, new StacSummaryStatsObject<String>(obj));
+                                summaries.Add(key, new StacSummaryRangeObject<String>(obj));
                                 break;
                             case JTokenType.Integer:
-                                summaries.Add(key, new StacSummaryStatsObject<long>(obj));
+                                summaries.Add(key, new StacSummaryRangeObject<long>(obj));
                                 break;
                             case JTokenType.Float:
-                                summaries.Add(key, new StacSummaryStatsObject<double>(obj));
+                                summaries.Add(key, new StacSummaryRangeObject<double>(obj));
                                 break;
                         }
                     }

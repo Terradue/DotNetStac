@@ -45,7 +45,7 @@ namespace Stac.Extensions
 
         public static IStacSummaryItem CreateSummaryStatsObject(IEnumerable<object> arg)
         {
-            return new StacSummaryStatsObject<object>(arg.Min(), arg.Max());
+            return new StacSummaryRangeObject<object>(arg.Min(), arg.Max());
         }
 
         public static StacSummaryValueSet<object> CreateSummaryValueSet(IEnumerable<object> arg)

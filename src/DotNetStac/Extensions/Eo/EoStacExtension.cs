@@ -48,7 +48,7 @@ namespace Stac.Extensions.Eo
 
         public static StacAsset GetAsset(this StacItem stacItem, EoBandCommonName commonName)
         {
-            return stacItem.Assets.Values.FirstOrDefault(a => a.EoExtension().Bands.Any(b => b.CommonName == commonName));
+            return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).FirstOrDefault(a => a.EoExtension().Bands.Any(b => b.CommonName == commonName));
         }
     }
 }
