@@ -10,6 +10,10 @@ Stac 1.0.0-rc.4 compatible release
 - Version extension
 - Processing extension completed
 
+## Fixed
+
+- Internal contructors for extension supported by the extension manager
+
 ### Changed
 
 - Current version set to 1.0.0-rc.4
