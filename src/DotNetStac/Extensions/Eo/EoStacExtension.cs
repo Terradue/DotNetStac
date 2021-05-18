@@ -16,7 +16,7 @@ namespace Stac.Extensions.Eo
         private const string BandsField = "eo:bands";
         private const string CloudCoverField = "eo:cloud_cover";
 
-        public EoStacExtension(IStacPropertiesContainer stacpropertiesContainer) : base(JsonSchemaUrl, stacpropertiesContainer)
+        internal EoStacExtension(IStacPropertiesContainer stacpropertiesContainer) : base(JsonSchemaUrl, stacpropertiesContainer)
         {
             itemFields = new Dictionary<string, Type>();
             itemFields.Add(BandsField, typeof(EoBandObject[]));

@@ -19,7 +19,7 @@ namespace Stac.Extensions.Projection
 
         private readonly Dictionary<string, Type> itemFields;
 
-        public ProjectionStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
+        internal ProjectionStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
         {
             itemFields = new Dictionary<string, Type>();
             itemFields.Add(EpsgField, typeof(int));
