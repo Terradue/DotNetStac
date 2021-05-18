@@ -10,6 +10,7 @@ Stac 1.0.0-rc.4 compatible release
 - Version extension
 - Virtual Assets extension
 - Processing extension completed
+- File extension
 
 ## Fixed
 
