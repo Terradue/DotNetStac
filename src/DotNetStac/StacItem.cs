@@ -124,7 +124,7 @@ namespace Stac
             }
             foreach (StacAsset asset in Assets.Values)
             {
-                asset.ParentStacItem = this;
+                asset.ParentStacObject = this;
             }
         }
 

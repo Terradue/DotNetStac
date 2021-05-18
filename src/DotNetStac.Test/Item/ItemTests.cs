@@ -48,7 +48,7 @@ namespace Stac.Test.Item
 
             Assert.Equal("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png", item.Assets["thumbnail"].Uri.ToString());
             Assert.Equal("Thumbnail", item.Assets["thumbnail"].Title);
-            Assert.Contains("thumbnail", item.Assets["thumbnail"].SemanticRoles);
+            Assert.Contains("thumbnail", item.Assets["thumbnail"].Roles);
         }
 
         [Fact]
