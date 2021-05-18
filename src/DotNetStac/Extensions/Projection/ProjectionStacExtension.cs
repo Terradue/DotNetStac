@@ -30,9 +30,9 @@ namespace Stac.Extensions.Projection
             itemFields.Add(ProjCentroidField, typeof(CentroidObject));
         }
 
-        public long Epsg
+        public long? Epsg
         {
-            get { return StacPropertiesContainer.GetProperty<long>(EpsgField); }
+            get { return StacPropertiesContainer.GetProperty<long?>(EpsgField); }
             set { StacPropertiesContainer.SetProperty(EpsgField, value); DeclareStacExtension(); }
         }
 

@@ -23,7 +23,7 @@ namespace Stac.Test.Item
 
             Assert.NotNull(item.Properties);
 
-            Assert.Equal("1.0.0-rc.3", item.StacVersion);
+            Assert.Equal("1.0.0-rc.4", item.StacVersion);
 
             Assert.Empty(item.StacExtensions);
 
@@ -120,7 +120,7 @@ namespace Stac.Test.Item
 
             Assert.NotNull(item.Properties);
 
-            Assert.Equal("1.0.0-rc.3", item.StacVersion);
+            Assert.Equal("1.0.0-rc.4", item.StacVersion);
 
         }
 

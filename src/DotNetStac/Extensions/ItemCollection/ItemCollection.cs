@@ -38,6 +38,8 @@ namespace Stac.Extensions.ItemCollections
 
         public string Identifier => JsonSchemaUrl;
 
+        public bool IsDeclared => true;
+
         public IDictionary<string, SummaryFunction> GetSummaryFunctions()
         {
             return new Dictionary<string, SummaryFunction>();
@@ -61,7 +63,7 @@ namespace Stac.Extensions.ItemCollections
 
             jSchema.AllOf.Add(fcr);
 
-            JSchema itemSchema = GetSchema(new Uri("https://schemas.stacspec.org/v"+ version +"/item-spec/json-schema/item.json"));
+            JSchema itemSchema = GetSchema(new Uri("https://schemas.stacspec.org/v" + version + "/item-spec/json-schema/item.json"));
             JSchema linkSchema = JSchema.Parse(itemSchema.ExtensionData["definitions"]["link"].ToString());
 
             jSchema.AllOf.Add(new JSchema()

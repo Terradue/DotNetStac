@@ -3,7 +3,7 @@
 ## [v0.7.0]
 
 From this release, the library has been completely reshuffled to a simpler library focusing on full compliance with STAC specifications.
-At the moment of this release, the STAC specification is 1.0.0-rc.3 and minor changes in the spec should not break this implementation.
+At the moment of this release, the STAC specification is 1.0.0-rc.4 and minor changes in the spec should not break this implementation.
 
 ### Added
 
