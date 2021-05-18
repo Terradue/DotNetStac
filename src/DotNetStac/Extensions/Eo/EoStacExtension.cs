@@ -9,7 +9,7 @@ namespace Stac.Extensions.Eo
     /// </summary>
     public class EoStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extensions identifier and schema url
+        /// Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/eo/v1.0.0/schema.json";
 
         private static IDictionary<string, Type> itemFields;
