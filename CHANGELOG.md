@@ -1,5 +1,19 @@
 # Changelog
 
+## [unreleased]
+
+Stac 1.0.0-rc.4 compatible release
+
+### Added
+
+- Raster extension
+- Version extension
+- Processing extension completed
+
+### Changed
+
+- Current version set to 1.0.0-rc.4
+
 ## [v0.7.0]
 
 From this release, the library has been completely reshuffled to a simpler library focusing on full compliance with STAC specifications.
