@@ -1,15 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using Stac;
 using Stac.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Stac.Extensions;
 using System.Linq;
 using System.Net.Mime;
-using Newtonsoft.Json.Linq;
 using Semver;
 using System.Collections.Specialized;
 using System.IO;
@@ -29,7 +25,7 @@ namespace Stac
                         base(geometry, properties, id)
         {
             Preconditions.CheckNotNull(id, "id");
-            StacExtensions = new Collection<string>();
+            StacExtensions = new SortedSet<string>();
             StacVersion = Versions.StacVersionList.Current;
             Links = new ObservableCollection<StacLink>();
             (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
@@ -40,7 +36,7 @@ namespace Stac
                                                   new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties),
                                                   Preconditions.CheckNotNull(stacItem, "id").Id)
         {
-            this.StacExtensions = stacItem.StacExtensions;
+            this.StacExtensions = new SortedSet<string>(stacItem.StacExtensions);
             this.StacVersion = stacItem.StacVersion;
             this.Links = new ObservableCollection<StacLink>(stacItem.Links);
             (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;

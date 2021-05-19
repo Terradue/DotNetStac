@@ -43,7 +43,7 @@ namespace Stac
             else
                 this.Assets = new Dictionary<string, StacAsset>(assets);
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
-            this.StacExtensions = new Collection<string>();
+            this.StacExtensions = new SortedSet<string>();
             this.Providers = new Collection<StacProvider>();
             this.License = license;
             this.Keywords = new Collection<string>();

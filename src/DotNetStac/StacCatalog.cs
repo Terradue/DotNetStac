@@ -45,7 +45,7 @@ namespace Stac
                 this.Links = new Collection<StacLink>(links.ToList());
             this.Properties = new Dictionary<string, object>();
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
-            this.StacExtensions = new Collection<string>();
+            this.StacExtensions = new SortedSet<string>();
         }
 
         # region IStacObject
