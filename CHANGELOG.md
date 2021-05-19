@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [v0.8.0]
 
 Stac 1.0.0-rc.4 compatible release
 
@@ -11,8 +11,9 @@ Stac 1.0.0-rc.4 compatible release
 - Virtual Assets extension
 - Processing extension completed
 - File extension
+- More descriptive exceptions for deserialization
 
-## Fixed
+### Fixed
 
 - Internal contructors for extension supported by the extension manager
 
@@ -54,3 +55,8 @@ At the moment of this release, the STAC specification is 1.0.0-rc.4 and minor ch
 ### Changed
 
 - Cloned assets
+
+[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/0.8.0...HEAD>
+[v0.8.0]: <https://github.com/Terradue/DotnetStac/tree/0.8.0>
+[v0.7.0]: <https://github.com/Terradue/DotnetStac/tree/0.7.0>
+[v0.6.2]: <https://github.com/Terradue/DotnetStac/tree/0.6.2>
