@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+### Fixed
+
+### Changed
+
 ## [v0.8.0]
 
 Stac 1.0.0-rc.4 compatible release
