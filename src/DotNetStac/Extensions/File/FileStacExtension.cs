@@ -57,9 +57,9 @@ namespace Stac.Extensions.File
         /// The name of the facility that produced the data. 
         /// </summary>
         /// <value></value>
-        public uint HeaderSize
+        public uint? HeaderSize
         {
-            get { return StacPropertiesContainer.GetProperty<uint>(HeaderSizeField); }
+            get { return StacPropertiesContainer.GetProperty<uint?>(HeaderSizeField); }
             set { StacPropertiesContainer.SetProperty(HeaderSizeField, value); DeclareStacExtension(); }
         }
 
@@ -67,9 +67,9 @@ namespace Stac.Extensions.File
         /// The name of the facility that produced the data. 
         /// </summary>
         /// <value></value>
-        public ulong Size
+        public ulong? Size
         {
-            get { return StacPropertiesContainer.GetProperty<ulong>(SizeField); }
+            get { return StacPropertiesContainer.GetProperty<ulong?>(SizeField); }
             set { StacPropertiesContainer.SetProperty(SizeField, value); DeclareStacExtension(); }
         }
 
