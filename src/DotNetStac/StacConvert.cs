@@ -22,10 +22,16 @@ namespace Stac
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc
             });
             Type stacType = Utils.IdentifyStacType(jobject);
-            if ( typeof(T) == typeof(IStacCatalog) && !typeof(IStacCatalog).IsAssignableFrom(stacType) )
+            if (typeof(T) == typeof(IStacCatalog) && !typeof(IStacCatalog).IsAssignableFrom(stacType))
                 throw new InvalidCastException(stacType + "is not IStacCatalog");
-
-            return (T)jobject.ToObject(stacType);
+            try
+            {
+                return (T)jobject.ToObject(stacType);
+            }
+            catch (Exception e)
+            {
+                throw new Exceptions.InvalidStacDataException(string.Format("STAC object with ID '{0}' cannot be deserialized : {1}", jobject["id"], e.Message), e);
+            }
         }
 
         public static string Serialize(IStacObject stacObject)
