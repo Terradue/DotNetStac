@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "id": "b083c1b2-75b9-59a0-bd76-ce0955f1467c",
-  "stac_version": "1.0.0-rc.3",
+  "stac_version": "1.0.0-rc.4",
   "context": {
     "returned": 20,
     "limit": 20,
@@ -357,7 +357,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -628,7 +628,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -980,7 +980,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -1347,7 +1347,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -1758,7 +1758,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -2105,7 +2105,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -2376,7 +2376,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -2717,7 +2717,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -3067,7 +3067,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -3421,7 +3421,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -3759,7 +3759,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -4097,7 +4097,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -4439,7 +4439,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -4793,7 +4793,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -5139,7 +5139,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -5489,7 +5489,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -5839,7 +5839,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -6173,7 +6173,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -6507,7 +6507,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -6922,7 +6922,7 @@
           ]
         }
       },
-      "stac_version": "1.0.0-rc.3",
+      "stac_version": "1.0.0-rc.4",
       "stac_extensions": [
         "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json",

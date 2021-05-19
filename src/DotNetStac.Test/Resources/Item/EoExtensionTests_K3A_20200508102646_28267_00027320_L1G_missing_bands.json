@@ -5,7 +5,7 @@
         "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json"
     ],
-    "stac_version": "1.0.0-rc.3",
+    "stac_version": "1.0.0-rc.4",
     "links": [
         {
             "rel": "self",
@@ -49,7 +49,7 @@
                     "center_wavelength": 0.56,
                     "scale": 40.16064257028113,
                     "offset": -14.021,
-                    "eai": 1875.0
+                    "solar_illumination": 1875.0
                 }
             ]
         },
@@ -67,7 +67,7 @@
                     "center_wavelength": 0.83,
                     "scale": 76.92307692307692,
                     "offset": -10.2834,
-                    "eai": 1027.0
+                    "solar_illumination": 1027.0
                 }
             ]
         },
@@ -100,7 +100,7 @@
                     "center_wavelength": 0.66,
                     "scale": 43.66812227074236,
                     "offset": -13.0457,
-                    "eai": 1525.0
+                    "solar_illumination": 1525.0
                 }
             ]
         },

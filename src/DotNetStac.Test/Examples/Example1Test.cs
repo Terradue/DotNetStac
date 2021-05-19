@@ -82,7 +82,7 @@ namespace Stac.Test.Example
             );
 
             collection.Summaries.Add("datetime",
-                new StacSummaryStatsObject<DateTime>(
+                new StacSummaryRangeObject<DateTime>(
                     DateTime.Parse("2015-06-23T00:00:00Z").ToUniversalTime(),
                     DateTime.Parse("2019-07-10T13:44:56Z").ToUniversalTime()
                 )
@@ -101,14 +101,14 @@ namespace Stac.Test.Example
             );
 
             collection.Summaries.Add("view:off_nadir",
-                new StacSummaryStatsObject<double>(
+                new StacSummaryRangeObject<double>(
                     0.0,
                     100
                 )
             );
 
             collection.Summaries.Add("view:sun_elevation",
-                new StacSummaryStatsObject<double>(
+                new StacSummaryRangeObject<double>(
                     6.78,
                     89.9
                 )

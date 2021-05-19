@@ -26,7 +26,7 @@ namespace Stac.Extensions.Projection
         /// <returns>Enumerator</returns>
         public static IEnumerable<WKTstring> GetSRIDs()
         {
-            using (StreamReader sr = File.OpenText(filename))
+            using (StreamReader sr = System.IO.File.OpenText(filename))
             {
                 while (!sr.EndOfStream)
                 {

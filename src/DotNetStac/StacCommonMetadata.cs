@@ -147,20 +147,9 @@ namespace Stac
                                 if (stacPropertiesContainer.Properties["start_datetime"] is DateTime && stacPropertiesContainer.Properties["end_datetime"] is DateTime)
                                     return new Itenso.TimePeriod.TimeInterval((DateTime)stacPropertiesContainer.Properties["start_datetime"],
                                                                                 (DateTime)stacPropertiesContainer.Properties["end_datetime"]);
-                                else
-                                {
-                                    try
-                                    {
-                                        return new Itenso.TimePeriod.TimeInterval(System.DateTime.Parse(stacPropertiesContainer.Properties["start_datetime"].ToString()),
-                                                                                    System.DateTime.Parse(stacPropertiesContainer.Properties["end_datetime"].ToString()));
-                                    }
-                                    catch (Exception e1)
-                                    {
-                                        throw new FormatException(string.Format("start_datetime or end_datetime {0} is not a valid"), e1);
-                                    }
-                                }
-                            }
-                            throw new FormatException(string.Format("datetime {0} is not a valid"), e);
+                                throw new FormatException(string.Format("start_datetime and/or end_datetime are not a valid: {0}", e.Message), e);
+                            } 
+                            throw new FormatException(string.Format("datetime is not a valid", e.Message), e);
                         }
                     }
                 }
@@ -187,7 +176,7 @@ namespace Stac
                 {
                     stacPropertiesContainer.Properties.Add("datetime", value.Start);
                     stacPropertiesContainer.Properties.Add("start_datetime", value.Start);
-                    stacPropertiesContainer.Properties.Add("end_datetime", value.Start);
+                    stacPropertiesContainer.Properties.Add("end_datetime", value.End);
                 }
             }
         }

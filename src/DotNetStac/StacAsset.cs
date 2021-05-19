@@ -9,30 +9,65 @@ using System.Net.Mime;
 
 namespace Stac
 {
+    /// <summary>
+    /// STAC Asset Object implementing <seealso href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-object">STAC Asset</seealso>
+    /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class StacAsset : IStacPropertiesContainer
     {
 
         #region Static members
 
-        public static StacAsset CreateThumbnailAsset(StacItem stacItem, Uri uri, ContentType mediaType, string title = null)
+        /// <summary>
+        /// Create a thumbnail asset
+        /// </summary>
+        /// <param name="stacObject">parent stac object</param>
+        /// <param name="uri">Uri to the thumbnail</param>
+        /// <param name="mediaType">media type of the thumbnail</param>
+        /// <param name="title">title of the thumbnail (if any)</param>
+        /// <returns>A new Asset describing the thumbnail</returns>
+        public static StacAsset CreateThumbnailAsset(IStacObject stacObject, Uri uri, ContentType mediaType, string title = null)
         {
-            return new StacAsset(stacItem, uri, new string[] { "thumbnail" }, title, mediaType);
+            return new StacAsset(stacObject, uri, new string[] { "thumbnail" }, title, mediaType);
         }
 
-        public static StacAsset CreateOverviewAsset(StacItem stacItem, Uri uri, ContentType mediaType, string title = null)
+        /// <summary>
+        /// Create an overview asset
+        /// </summary>
+        /// <param name="stacObject">parent stac object</param>
+        /// <param name="uri">Uri to the overview</param>
+        /// <param name="mediaType">media type of the overview</param>
+        /// <param name="title">title of the overview (if any)</param>
+        /// <returns>A new Asset describing the overview</returns>
+        public static StacAsset CreateOverviewAsset(IStacObject stacObject, Uri uri, ContentType mediaType, string title = null)
         {
-            return new StacAsset(stacItem, uri, new string[] { "overview" }, title, mediaType);
+            return new StacAsset(stacObject, uri, new string[] { "overview" }, title, mediaType);
         }
 
-        public static StacAsset CreateDataAsset(StacItem stacItem, Uri uri, ContentType mediaType, string title = null)
+        /// <summary>
+        /// Create a data asset
+        /// </summary>
+        /// <param name="stacObject">parent stac object</param>
+        /// <param name="uri">Uri to the data</param>
+        /// <param name="mediaType">media type of the data</param>
+        /// <param name="title">title of the data (if any)</param>
+        /// <returns>A new Asset describing the data</returns>
+        public static StacAsset CreateDataAsset(IStacObject stacObject, Uri uri, ContentType mediaType, string title = null)
         {
-            return new StacAsset(stacItem, uri, new string[] { "data" }, title, mediaType);
+            return new StacAsset(stacObject, uri, new string[] { "data" }, title, mediaType);
         }
 
-        public static StacAsset CreateMetadataAsset(StacItem stacItem, Uri uri, ContentType mediaType, string title = null)
+        /// <summary>
+        /// Create a metadata asset
+        /// </summary>
+        /// <param name="stacObject">parent stac object</param>
+        /// <param name="uri">Uri to the metadata</param>
+        /// <param name="mediaType">media type of the metadata</param>
+        /// <param name="title">title of the metadata (if any)</param>
+        /// <returns>A new Asset describing the metadata</returns>
+        public static StacAsset CreateMetadataAsset(IStacObject stacObject, Uri uri, ContentType mediaType, string title = null)
         {
-            return new StacAsset(stacItem, uri, new string[] { "metadata" }, title, mediaType);
+            return new StacAsset(stacObject, uri, new string[] { "metadata" }, title, mediaType);
         }
 
         #endregion
@@ -42,47 +77,73 @@ namespace Stac
 
         ContentType type;
 
-        Collection<string> semanticRoles;
+        Collection<string> roles;
         private Dictionary<string, object> properties;
-        private StacItem parentStacItem;
+        private IStacObject parentStacObject;
 
         [JsonConstructor]
-        public StacAsset(StacItem stacItem)
+        internal StacAsset() 
         {
             properties = new Dictionary<string, object>();
-            parentStacItem = stacItem;
+            Roles = new Collection<string>();
         }
 
-        public StacAsset(StacItem stacItem, Uri uri) : this(stacItem)
+        /// <summary>
+        /// Initialize a new asset with a Uri
+        /// </summary>
+        /// <param name="stacObject">parent stac object</param>
+        /// <param name="uri">uri to the asset</param>
+        public StacAsset(IStacObject stacObject, Uri uri) : this()
         {
+            if (!(stacObject is StacItem || stacObject is StacCollection))
+                throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
+            parentStacObject = stacObject;
             Uri = uri;
+            
         }
 
-        public StacAsset(StacItem stacItem, Uri uri, IEnumerable<string> semanticRoles, string title, ContentType mediaType, ulong contentLength = 0) : this(stacItem, uri)
+        /// <summary>
+        /// Initialize a new asset
+        /// </summary>
+        /// <param name="stacObject">parent stac object</param>
+        /// <param name="uri">uri to the asset</param>
+        /// <param name="roles">roles of the asset</param>
+        /// <param name="title">title of the asset</param>
+        /// <param name="mediaType">media-type of the asset</param>
+        public StacAsset(IStacObject stacObject, Uri uri, IEnumerable<string> roles, string title, ContentType mediaType) : this(stacObject, uri)
         {
-            this.semanticRoles = semanticRoles == null ? new Collection<string>() : new Collection<string>(semanticRoles.ToList());
+            Roles = roles == null ? new Collection<string>() : new Collection<string>(roles.ToList());
             Title = title;
             MediaType = mediaType;
-            if (contentLength > 0)
-                ContentLength = contentLength;
         }
 
-        public StacAsset(StacAsset source, StacItem stacItem)
+        /// <summary>
+        /// Initialize a new asset from an existing one
+        /// </summary>
+        /// <param name="source">asset source to be copied</param>
+        /// <param name="stacObject">new parent stac object</param>
+        public StacAsset(StacAsset source, IStacObject stacObject)
         {
+            if (!(stacObject is StacItem || stacObject is StacCollection))
+                throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
             if (source == null)
                 throw new ArgumentNullException("source");
             base_uri = source.base_uri;
             href = source.href;
-            if (source.semanticRoles != null)
-                semanticRoles = new Collection<string>(source.semanticRoles);
+            if (source.roles != null)
+                roles = new Collection<string>(source.roles);
             title = source.title;
             type = source.type;
             description = source.description;
             if (source.properties != null)
                 properties = new Dictionary<string, object>(source.properties);
-            parentStacItem = stacItem;
+            parentStacObject = stacObject;
         }
 
+        /// <summary>
+        /// Media type of the asset
+        /// </summary>
+        /// <value></value>
         [JsonProperty("type")]
         [JsonConverter(typeof(ContentTypeConverter))]
         public ContentType MediaType
@@ -91,35 +152,21 @@ namespace Stac
             set { type = value; }
         }
 
+        /// <summary>
+        /// The semantic roles of the asset
+        /// </summary>
+        /// <value></value>
         [JsonProperty("roles")]
-        public List<string> Roles
+        public Collection<string> Roles
         {
-            get
-            {
-                if (semanticRoles == null || semanticRoles.Count == 0)
-                    return null;
-                return semanticRoles.ToList();
-            }
-            set
-            {
-                if (value == null)
-                    semanticRoles = null;
-                else
-                    semanticRoles = new Collection<string>(value);
-            }
+            get;
+            private set;
         }
 
-        [JsonIgnore]
-        public Collection<string> SemanticRoles
-        {
-            get
-            {
-                if (semanticRoles == null)
-                    semanticRoles = new Collection<string>();
-                return semanticRoles;
-            }
-        }
-
+        /// <summary>
+        /// The displayed title for clients and users.
+        /// </summary>
+        /// <value></value>
         [JsonProperty("title")]
         public string Title
         {
@@ -127,6 +174,10 @@ namespace Stac
             set { title = value; }
         }
 
+        /// <summary>
+        ///  URI to the asset object. Relative and absolute URI are both allowed.
+        /// </summary>
+        /// <value></value>
         [JsonProperty("href")]
         public Uri Uri
         {
@@ -134,6 +185,10 @@ namespace Stac
             set { href = value; }
         }
 
+        /// <summary>
+        /// A description of the Asset providing additional details, such as how it was processed or created.
+        /// </summary>
+        /// <value></value>
         [JsonProperty("description")]
         public string Description
         {
@@ -141,6 +196,10 @@ namespace Stac
             set { description = value; }
         }
 
+        /// <summary>
+        /// Extended properties
+        /// </summary>
+        /// <value></value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties
         {
@@ -155,13 +214,27 @@ namespace Stac
             }
         }
 
+        /// <summary>
+        /// Object container
+        /// </summary>
         [JsonIgnore]
-        public ulong ContentLength { get => this.GetProperty<ulong>("size"); set => this.SetProperty("size", value); }
+        public IStacObject StacObjectContainer => ParentStacObject;
 
+        /// <summary>
+        /// parent stac object
+        /// </summary>
+        /// <value></value>
         [JsonIgnore]
-        public IStacObject StacObjectContainer => ParentStacItem;
+        public IStacObject ParentStacObject { get => parentStacObject; internal set => parentStacObject = value; }
 
-        [JsonIgnore]
-        public StacItem ParentStacItem { get => parentStacItem; internal set => parentStacItem = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool ShouldSerializeStacExtensions()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return Roles.Count > 0;
+        }
     }
 }

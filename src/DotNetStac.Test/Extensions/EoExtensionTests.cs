@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 using Xunit;
 using Stac.Extensions.Eo;
 
-namespace Stac.Test.Item
+namespace Stac.Test.Extensions
 {
     public class EoExtensionTests : TestBase
     {
@@ -28,11 +28,14 @@ namespace Stac.Test.Item
             };
             eoBandObject.Properties.Add("scale", 27.62430939226519);
             eoBandObject.Properties.Add("offset", -22.1416);
-            eoBandObject.Properties.Add("eai", 2001.0);
+            eoBandObject.SolarIllumination = 2001.0;
 
             Assert.NotNull(k3MissingBands.Assets["MS1"]);
 
             k3MissingBands.Assets["MS1"].EoExtension().Bands = new EoBandObject[] { eoBandObject };
+
+            Assert.NotNull(k3MissingBands.GetAsset(EoBandCommonName.blue));
+            Assert.Equal(2001, k3MissingBands.GetBandObject(EoBandCommonName.blue).SolarIllumination);
 
             k3MissingBandsJson = JsonConvert.SerializeObject(k3MissingBands);
 
@@ -96,8 +99,10 @@ namespace Stac.Test.Item
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
 
-            EoStacExtension eo = new EoStacExtension(item);
+            EoStacExtension eo = item.EoExtension();
             eo.CloudCover = 0;
+
+            Assert.Equal<double>(0, eo.CloudCover);
 
             var actualJson = StacConvert.Serialize(item);
 

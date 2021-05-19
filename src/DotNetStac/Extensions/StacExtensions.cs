@@ -1,35 +1,60 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using Newtonsoft.Json.Schema;
 using Stac.Schemas;
 
 namespace Stac.Extensions
 {
+    /// <summary>
+    /// Helper class to access STAC extensions
+    /// </summary>
     public static class StacExtensions
     {
-        public static Dictionary<string, Type> ManagedStacExtensions = new Dictionary<string, Type>();
+        private static Dictionary<string, Type> managedStacExtensions = new Dictionary<string, Type>();
 
-        public static void InitManagedExtensions()
+        /// <summary>
+        /// Dictionary of extensions managed by the library
+        /// </summary>
+        /// <value></value>
+        public static Dictionary<string, Type> ManagedStacExtensions
         {
-            ManagedStacExtensions.Clear();
-            ManagedStacExtensions.Add(Eo.EoStacExtension.JsonSchemaUrl, typeof(Eo.EoStacExtension));
-            ManagedStacExtensions.Add("https://schemas.stacspec.org/v1.0.0-rc.3/extensions/eo/json-schema/schema.json#", typeof(Eo.EoStacExtension));
-            ManagedStacExtensions.Add("eo", typeof(Eo.EoStacExtension));
-            ManagedStacExtensions.Add(Processing.ProcessingStacExtension.JsonSchemaUrl, typeof(Processing.ProcessingStacExtension));
-            ManagedStacExtensions.Add("processing", typeof(Processing.ProcessingStacExtension));
-            ManagedStacExtensions.Add(Projection.ProjectionStacExtension.JsonSchemaUrl, typeof(Projection.ProjectionStacExtension));
-            ManagedStacExtensions.Add("projection", typeof(Projection.ProjectionStacExtension));
-            ManagedStacExtensions.Add("https://schemas.stacspec.org/v1.0.0-rc.3/extensions/projection/json-schema/schema.json#", typeof(Projection.ProjectionStacExtension));
-            ManagedStacExtensions.Add(Sar.SarStacExtension.JsonSchemaUrl, typeof(Sar.SarStacExtension));
-            ManagedStacExtensions.Add("sar", typeof(Sar.SarStacExtension));
-            ManagedStacExtensions.Add(Sat.SatStacExtension.JsonSchemaUrl, typeof(Sat.SatStacExtension));
-            ManagedStacExtensions.Add("sat", typeof(Sat.SatStacExtension));
-            ManagedStacExtensions.Add(View.ViewStacExtension.JsonSchemaUrl, typeof(View.ViewStacExtension));
-            ManagedStacExtensions.Add("view", typeof(View.ViewStacExtension));
-            ManagedStacExtensions.Add("https://schemas.stacspec.org/v1.0.0-rc.3/extensions/view/json-schema/schema.json#", typeof(View.ViewStacExtension));
+            get
+            {
+                if (managedStacExtensions.Count == 0) InitManagedExtensions();
+                return managedStacExtensions;
+            }
+            private set => managedStacExtensions = value;
         }
 
+        /// <summary>
+        /// Initialize the managed extensions
+        /// </summary>
+        public static void InitManagedExtensions()
+        {
+            managedStacExtensions.Clear();
+            managedStacExtensions.Add(Eo.EoStacExtension.JsonSchemaUrl, typeof(Eo.EoStacExtension));
+            managedStacExtensions.Add("eo", typeof(Eo.EoStacExtension));
+            managedStacExtensions.Add(Processing.ProcessingStacExtension.JsonSchemaUrl, typeof(Processing.ProcessingStacExtension));
+            managedStacExtensions.Add("processing", typeof(Processing.ProcessingStacExtension));
+            managedStacExtensions.Add(Projection.ProjectionStacExtension.JsonSchemaUrl, typeof(Projection.ProjectionStacExtension));
+            managedStacExtensions.Add("projection", typeof(Projection.ProjectionStacExtension));
+            managedStacExtensions.Add(Raster.RasterStacExtension.JsonSchemaUrl, typeof(Raster.RasterStacExtension));
+            managedStacExtensions.Add(Sar.SarStacExtension.JsonSchemaUrl, typeof(Sar.SarStacExtension));
+            managedStacExtensions.Add("sar", typeof(Sar.SarStacExtension));
+            managedStacExtensions.Add(Sat.SatStacExtension.JsonSchemaUrl, typeof(Sat.SatStacExtension));
+            managedStacExtensions.Add("sat", typeof(Sat.SatStacExtension));
+            managedStacExtensions.Add(View.ViewStacExtension.JsonSchemaUrl, typeof(View.ViewStacExtension));
+            managedStacExtensions.Add("view", typeof(View.ViewStacExtension));
+        }
+
+        /// <summary>
+        /// Get the declared extensions for a specific stac properties container
+        /// </summary>
+        /// <param name="stacPropertiesContainer"></param>
+        /// <returns></returns>
         public static IEnumerable<IStacExtension> GetDeclaredExtensions(this IStacPropertiesContainer stacPropertiesContainer)
         {
             if (ManagedStacExtensions.Count == 0) InitManagedExtensions();
@@ -39,11 +64,13 @@ namespace Stac.Extensions
 
         private static IStacExtension LoadStacExtension(string stacExtension, IStacObject stacObject)
         {
+            BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+            CultureInfo culture = CultureInfo.InvariantCulture; // use InvariantCulture or other if you prefer
             if (ManagedStacExtensions.ContainsKey(stacExtension))
             {
                 try
                 {
-                    return Activator.CreateInstance(ManagedStacExtensions[stacExtension], new object[1] { stacObject }) as IStacExtension;
+                    return Activator.CreateInstance(ManagedStacExtensions[stacExtension], flags, null, new object[1] { stacObject }, culture) as IStacExtension;
                 }
                 catch { }
             }

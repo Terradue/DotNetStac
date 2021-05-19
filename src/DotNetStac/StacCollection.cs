@@ -233,7 +233,7 @@ namespace Stac
                 .GroupBy(prop => prop.Key)
                 .ToDictionary(key => key.Key, value => value.First().Value);
 
-            summaryFunctions.Add("gsd", new SummaryFunction(null, "gsd", StacPropertiesContainerExtension.CreateSummaryStatsObject));
+            summaryFunctions.Add("gsd", new SummaryFunction(null, "gsd", StacPropertiesContainerExtension.CreateRangeSummaryObject));
             summaryFunctions.Add("platform", new SummaryFunction(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet));
             summaryFunctions.Add("constellation", new SummaryFunction(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet));
             summaryFunctions.Add("instruments", new SummaryFunction(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSetFromArrays));

@@ -19,7 +19,7 @@ namespace Stac.Extensions.Projection
 
         private readonly Dictionary<string, Type> itemFields;
 
-        public ProjectionStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
+        internal ProjectionStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
         {
             itemFields = new Dictionary<string, Type>();
             itemFields.Add(EpsgField, typeof(int));
@@ -30,9 +30,9 @@ namespace Stac.Extensions.Projection
             itemFields.Add(ProjCentroidField, typeof(CentroidObject));
         }
 
-        public long Epsg
+        public long? Epsg
         {
-            get { return StacPropertiesContainer.GetProperty<long>(EpsgField); }
+            get { return StacPropertiesContainer.GetProperty<long?>(EpsgField); }
             set { StacPropertiesContainer.SetProperty(EpsgField, value); DeclareStacExtension(); }
         }
 

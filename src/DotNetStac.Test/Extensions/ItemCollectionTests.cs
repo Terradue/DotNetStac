@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using Stac.Extensions.ItemCollections;
 using Xunit;
 
-namespace Stac.Test.ItemCollections
+namespace Stac.Test.Extensions
 {
     public class ItemCollectionTests : TestBase
     {
@@ -19,7 +19,7 @@ namespace Stac.Test.ItemCollections
 
             ItemCollection itemCollection = stacObject as ItemCollection;
 
-            Assert.Equal("1.0.0-rc.3", itemCollection.StacVersion);
+            Assert.Equal("1.0.0-rc.4", itemCollection.StacVersion);
 
             Assert.NotEmpty(itemCollection.Features);
            

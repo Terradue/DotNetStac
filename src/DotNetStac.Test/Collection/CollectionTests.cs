@@ -25,7 +25,7 @@ namespace Stac.Test.Collection
 
             Assert.NotNull(item.Summaries);
 
-            Assert.Equal("1.0.0-rc.3", item.StacVersion);
+            Assert.Equal("1.0.0-rc.4", item.StacVersion);
 
             Assert.Empty(item.StacExtensions);
 
@@ -37,12 +37,13 @@ namespace Stac.Test.Collection
             Assert.True(item.Summaries.ContainsKey("view:off_nadir"));
             Assert.True(item.Summaries.ContainsKey("eo:bands"));
 
-            Assert.IsType<StacSummaryStatsObject<DateTime>>(item.Summaries["datetime"]);
+            Assert.IsType<StacSummaryRangeObject<DateTime>>(item.Summaries["datetime"]);
 
-            Assert.Equal<DateTime>(DateTime.Parse("2015-06-23T00:00:00Z").ToUniversalTime(), (item.Summaries["datetime"] as StacSummaryStatsObject<DateTime>).Min);
+            Assert.Equal<DateTime>(DateTime.Parse("2015-06-23T00:00:00Z").ToUniversalTime(), (item.Summaries["datetime"] as StacSummaryRangeObject<DateTime>).Min);
 
             Assert.Equal<long>(32601, (item.Summaries["proj:epsg"] as StacSummaryValueSet<long>).Min());
             Assert.Equal<long>(32660, (item.Summaries["proj:epsg"] as StacSummaryValueSet<long>).Max());
+            Assert.Equal<long>(60, (item.Summaries["proj:epsg"] as StacSummaryValueSet<long>).Count);
 
             Assert.Equal(13, item.Summaries["eo:bands"].LongCount());
             Assert.Equal("B1", item.Summaries["eo:bands"][0]["name"]);
@@ -85,15 +86,17 @@ namespace Stac.Test.Collection
             });
 
             collection.Summaries.Add("datetime",
-                new StacSummaryStatsObject<DateTime>(
+                new StacSummaryRangeObject<DateTime>(
                     DateTime.Parse("2015-06-23T00:00:00Z").ToUniversalTime(),
                     DateTime.Parse("2019-07-10T13:44:56Z").ToUniversalTime()
                 )
             );
 
-            collection.Summaries.Add("platform",
-                new StacSummaryValueSet<string>(new string[] { "sentinel-2a", "sentinel-2b" })
-            );
+            var platforms = new StacSummaryValueSet<string>();
+            platforms.Add("sentinel-2a");
+            platforms.Add("sentinel-2b");
+
+            collection.Summaries.Add("platform", platforms);
 
             collection.Summaries.Add("constellation",
                 new StacSummaryValueSet<string>(new string[] { "sentinel-2" })
@@ -104,14 +107,14 @@ namespace Stac.Test.Collection
             );
 
             collection.Summaries.Add("view:off_nadir",
-                new StacSummaryStatsObject<double>(
+                new StacSummaryRangeObject<double>(
                     0.0,
                     100
                 )
             );
 
             collection.Summaries.Add("view:sun_elevation",
-                new StacSummaryStatsObject<double>(
+                new StacSummaryRangeObject<double>(
                     6.78,
                     89.9
                 )
@@ -210,6 +213,14 @@ namespace Stac.Test.Collection
             ValidateJson(expectedJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
+        }
+
+        [Fact]
+        public void RangeSummaryException()
+        {
+            var json = GetJson("Collection");
+            JObject wrongSummary = JObject.Parse(json);
+            Assert.Throws<ArgumentException>(() => new StacSummaryRangeObject<int>(wrongSummary));
         }
 
     }
