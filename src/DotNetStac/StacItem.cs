@@ -9,10 +9,11 @@ using System.Net.Mime;
 using Semver;
 using System.Collections.Specialized;
 using System.IO;
+using System;
 
 namespace Stac
 {
-    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
+    // [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
     {
         public const string MEDIATYPE = "application/geo+json";
@@ -26,10 +27,12 @@ namespace Stac
         {
             Preconditions.CheckNotNull(id, "id");
             StacExtensions = new SortedSet<string>();
+            Root = new StacItemRootPropertyContainer(this);
             StacVersion = Versions.StacVersionList.Current;
             Links = new ObservableCollection<StacLink>();
             (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
             Assets = new Dictionary<string, StacAsset>();
+            
         }
 
         public StacItem(StacItem stacItem) : base(Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
@@ -37,11 +40,13 @@ namespace Stac
                                                   Preconditions.CheckNotNull(stacItem, "id").Id)
         {
             this.StacExtensions = new SortedSet<string>(stacItem.StacExtensions);
+            this.Root = new StacItemRootPropertyContainer(this);
             this.StacVersion = stacItem.StacVersion;
             this.Links = new ObservableCollection<StacLink>(stacItem.Links);
             (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
             this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets);
             this.Collection = stacItem.Collection;
+            
         }
 
         private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -74,7 +79,7 @@ namespace Stac
         /// The STAC version the Item implements
         /// </summary>
         /// <value></value>
-        [JsonProperty("stac_version")]
+        [JsonProperty("stac_version", Order = -10)]
         [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
 
@@ -82,7 +87,7 @@ namespace Stac
         /// A list of extension identifiers the Item implements
         /// </summary>
         /// <value></value>
-        [JsonProperty("stac_extensions")]
+        [JsonProperty("stac_extensions", Order = -9)]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
@@ -90,7 +95,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
-        [JsonProperty("links")]
+        [JsonProperty("links", Order = 5)]
         public ICollection<StacLink> Links
         {
             get; private set;
@@ -101,15 +106,23 @@ namespace Stac
 
         # endregion IStacObject
 
-        [JsonProperty("assets")]
+        [JsonProperty("assets", Order = 4)]
         public IDictionary<string, StacAsset> Assets { get; private set; }
 
         /// <summary>
         /// The id of the STAC Collection this Item references to
         /// </summary>
         /// <value>gets the collection id</value>
-        [JsonProperty("collection")]
-        public string Collection { get; internal set; }
+        public string Collection { get => Root.GetProperty<string>("collection"); set => Root.SetProperty("collection", value); }
+
+        /// <summary>
+        /// Item root extended data
+        /// </summary>
+        /// <value></value>
+        [JsonExtensionData]
+        public IDictionary<string, object> RootProperties { get => Root.Properties; internal set => Root.Properties = value; }
+
+        private StacItemRootPropertyContainer Root;
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
@@ -129,6 +142,7 @@ namespace Stac
         {
             if (BoundingBoxes == null)
                 BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
+            StacExtensions = new SortedSet<string>(StacExtensions);
         }
 
         public bool ShouldSerializeStacExtensions()

@@ -102,15 +102,17 @@ namespace Stac
             }
         }
 
-        public int Gsd
+        public double? Gsd
         {
             get
             {
-                return stacPropertiesContainer.GetProperty<int>("gsd");
+                return stacPropertiesContainer.GetProperty<double>("gsd");
             }
             set
             {
-                stacPropertiesContainer.SetProperty("gsd", value);
+                if (value == 0) stacPropertiesContainer.RemoveProperty("gsd");
+                else
+                    stacPropertiesContainer.SetProperty("gsd", value);
             }
         }
 
@@ -148,7 +150,7 @@ namespace Stac
                                     return new Itenso.TimePeriod.TimeInterval((DateTime)stacPropertiesContainer.Properties["start_datetime"],
                                                                                 (DateTime)stacPropertiesContainer.Properties["end_datetime"]);
                                 throw new FormatException(string.Format("start_datetime and/or end_datetime are not a valid: {0}", e.Message), e);
-                            } 
+                            }
                             throw new FormatException(string.Format("datetime is not a valid", e.Message), e);
                         }
                     }

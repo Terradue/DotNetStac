@@ -6,6 +6,7 @@ namespace Stac.Common
     /// <summary>
     /// Statistics Object
     /// </summary>
+    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class Statistics
     {
         private IDictionary<string, object> properties;

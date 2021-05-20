@@ -4,7 +4,13 @@
 
 ### Added
 
+- Root fields accessor for Stac Item
+
 ### Fixed
+
+- gsd as double
+- null value handling (e.g. proj:epsg)
+- ObservationDirection as enum
 
 ### Changed
 

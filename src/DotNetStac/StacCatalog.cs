@@ -133,6 +133,7 @@ namespace Stac
             {
                 link.Parent = this;
             }
+            StacExtensions = new SortedSet<string>(StacExtensions);
         }
 
         public bool ShouldSerializeSummaries()

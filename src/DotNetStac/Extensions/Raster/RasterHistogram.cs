@@ -5,6 +5,7 @@ namespace Stac.Extensions.Raster
     /// <summary>
     /// The histogram object provides with distribution of pixel values in the band. Those values are sampled in buckets.
     /// </summary>
+    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class RasterHistogram
     {
         /// <summary>

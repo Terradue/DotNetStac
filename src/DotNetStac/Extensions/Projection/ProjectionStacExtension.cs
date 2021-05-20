@@ -72,6 +72,8 @@ namespace Stac.Extensions.Projection
         {
             if (coordinateSystem.AuthorityCode > 0)
                 Epsg = coordinateSystem.AuthorityCode;
+            else
+                Epsg = null;
             Wkt2 = coordinateSystem.WKT;
         }
 
