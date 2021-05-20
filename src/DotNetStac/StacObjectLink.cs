@@ -53,6 +53,7 @@ namespace Stac
             set;
         }
 
+        [JsonIgnore]
         public IStacObject StacObject => stacObject;
     }
 }
