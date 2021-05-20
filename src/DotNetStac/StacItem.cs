@@ -32,7 +32,7 @@ namespace Stac
             Links = new ObservableCollection<StacLink>();
             (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
             Assets = new Dictionary<string, StacAsset>();
-            
+
         }
 
         public StacItem(StacItem stacItem) : base(Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
@@ -46,7 +46,6 @@ namespace Stac
             (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
             this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets);
             this.Collection = stacItem.Collection;
-            
         }
 
         private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -113,7 +112,14 @@ namespace Stac
         /// The id of the STAC Collection this Item references to
         /// </summary>
         /// <value>gets the collection id</value>
-        public string Collection { get => Root.GetProperty<string>("collection"); set => Root.SetProperty("collection", value); }
+        public string Collection
+        {
+            get => Root.GetProperty<string>("collection"); 
+            set
+            {
+                if (value != null) Root.SetProperty("collection", value);
+            }
+        }
 
         /// <summary>
         /// Item root extended data
@@ -135,6 +141,7 @@ namespace Stac
             {
                 asset.ParentStacObject = this;
             }
+            StacExtensions = new SortedSet<string>(StacExtensions);
         }
 
         [OnSerializing]
@@ -142,7 +149,7 @@ namespace Stac
         {
             if (BoundingBoxes == null)
                 BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
-            StacExtensions = new SortedSet<string>(StacExtensions);
+
         }
 
         public bool ShouldSerializeStacExtensions()
@@ -153,5 +160,10 @@ namespace Stac
 
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
+
+        public object RasterExtension()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

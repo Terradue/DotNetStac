@@ -10,7 +10,7 @@ namespace Stac.Extensions.Raster
     /// of the Raster extension
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class RasterBand
+    public class RasterBand : IStacPropertiesContainer
     {
 
         IDictionary<string, object> properties;
@@ -104,5 +104,6 @@ namespace Stac.Extensions.Raster
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => properties; set => properties = value; }
 
+        public IStacObject StacObjectContainer => null;
     }
 }

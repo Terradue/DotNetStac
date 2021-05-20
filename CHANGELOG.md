@@ -5,6 +5,7 @@
 ### Added
 
 - Root fields accessor for Stac Item
+- Extensible raster object
 
 ### Fixed
 

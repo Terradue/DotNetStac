@@ -6,6 +6,7 @@ using System.Linq;
 using Stac.Converters;
 using Newtonsoft.Json;
 using System.Net.Mime;
+using System.Runtime.Serialization;
 
 namespace Stac
 {
@@ -85,7 +86,7 @@ namespace Stac
         internal StacAsset() 
         {
             properties = new Dictionary<string, object>();
-            Roles = new Collection<string>();
+            Roles = new SortedSet<string>();
         }
 
         /// <summary>
@@ -157,7 +158,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonProperty("roles")]
-        public Collection<string> Roles
+        public ICollection<string> Roles
         {
             get;
             private set;
@@ -235,6 +236,12 @@ namespace Stac
         {
             // don't serialize the Manager property if an employee is their own manager
             return Roles.Count > 0;
+        }
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            Roles = new SortedSet<string>(Roles);
         }
     }
 }

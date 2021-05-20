@@ -53,5 +53,6 @@ namespace Stac
             set;
         }
 
+        public IStacObject StacObject => stacObject;
     }
 }
