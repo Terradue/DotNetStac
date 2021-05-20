@@ -104,6 +104,7 @@ namespace Stac.Extensions.Raster
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => properties; set => properties = value; }
 
+        [JsonIgnore]
         public IStacObject StacObjectContainer => null;
     }
 }
