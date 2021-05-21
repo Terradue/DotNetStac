@@ -10,13 +10,13 @@ namespace Stac.Extensions.Raster
     /// of the Raster extension
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class RasterBand
+    public class RasterBand : IStacPropertiesContainer
     {
 
         IDictionary<string, object> properties;
         private double? nodata;
-        private RasterSampling sampling;
-        private DataType dataType;
+        private RasterSampling? sampling;
+        private DataType? dataType;
         private string unit;
         private double? scale;
         private double? offset;
@@ -41,7 +41,7 @@ namespace Stac.Extensions.Raster
         /// </summary>
         [JsonProperty("sampling")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public RasterSampling Sampling { get => sampling; set => sampling = value; }
+        public RasterSampling? Sampling { get => sampling; set => sampling = value; }
 
         /// <summary>
         /// The data type of the band.
@@ -49,7 +49,7 @@ namespace Stac.Extensions.Raster
         /// <value></value>
         [JsonProperty("data_type")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public DataType DataType { get => dataType; set => dataType = value; }
+        public DataType? DataType { get => dataType; set => dataType = value; }
 
         /// <summary>
         /// The actual number of bits used for this band.
@@ -104,5 +104,7 @@ namespace Stac.Extensions.Raster
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => properties; set => properties = value; }
 
+        [JsonIgnore]
+        public IStacObject StacObjectContainer => null;
     }
 }

@@ -53,6 +53,16 @@ namespace Stac
             return (T)Convert.ChangeType(@object, typeof(T));
         }
 
+        public static void RemoveProperty(this IStacPropertiesContainer propertiesContainer, string key)
+        {
+            propertiesContainer.Properties.RemoveProperty(key);
+        }
+
+        public static void RemoveProperty(this IDictionary<string, object> properties, string key)
+        {
+            properties.Remove(key);
+        }
+
         public static IEnumerable<StacLink> GetChildrenLinks(this IStacParent stacCatalog)
         {
             return stacCatalog.Links.Where(l => l.RelationshipType == "child");

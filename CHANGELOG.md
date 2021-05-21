@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.8.1]
+
+### Added
+
+- Root fields accessor for Stac Item
+- Extensible raster object
+
+### Fixed
+
+- gsd as double
+- null value handling (e.g. proj:epsg)
+- ObservationDirection as enum
+
+### Changed
+
 ## [v0.8.0]
 
 Stac 1.0.0-rc.4 compatible release
@@ -56,7 +71,8 @@ At the moment of this release, the STAC specification is 1.0.0-rc.4 and minor ch
 
 - Cloned assets
 
-[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/0.8.0...HEAD>
+[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/0.8.1...HEAD>
+[v0.8.0]: <https://github.com/Terradue/DotnetStac/tree/0.8.1>
 [v0.8.0]: <https://github.com/Terradue/DotnetStac/tree/0.8.0>
 [v0.7.0]: <https://github.com/Terradue/DotnetStac/tree/0.7.0>
 [v0.6.2]: <https://github.com/Terradue/DotnetStac/tree/0.6.2>

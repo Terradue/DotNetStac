@@ -113,9 +113,9 @@ namespace Stac.Extensions.Sar
             set { StacPropertiesContainer.SetProperty(LooksEquivalentNumberField, value); DeclareStacExtension(); }
         }
 
-        public string ObservationDirection
+        public ObservationDirection? ObservationDirection
         {
-            get { return StacPropertiesContainer.GetProperty<string>(ObservationDirectionField); }
+            get { return StacPropertiesContainer.GetProperty<ObservationDirection?>(ObservationDirectionField); }
             set { StacPropertiesContainer.SetProperty(ObservationDirectionField, value); DeclareStacExtension(); }
         }
 

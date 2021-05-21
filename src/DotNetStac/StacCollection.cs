@@ -15,7 +15,6 @@ namespace Stac
     /// <summary>
     /// STAC Collection Object implementing STAC Collection spec (https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md)
     /// </summary>
-    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class StacCollection : IStacObject, IStacParent, IStacCatalog
     {
         public const string MEDIATYPE = "application/json";
@@ -43,7 +42,7 @@ namespace Stac
             else
                 this.Assets = new Dictionary<string, StacAsset>(assets);
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
-            this.StacExtensions = new Collection<string>();
+            this.StacExtensions = new SortedSet<string>();
             this.Providers = new Collection<StacProvider>();
             this.License = license;
             this.Keywords = new Collection<string>();
@@ -167,6 +166,7 @@ namespace Stac
             {
                 link.Parent = this;
             }
+            StacExtensions = new SortedSet<string>(StacExtensions);
         }
 
 #pragma warning disable 1591

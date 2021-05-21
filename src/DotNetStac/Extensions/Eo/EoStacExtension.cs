@@ -38,7 +38,16 @@ namespace Stac.Extensions.Eo
         public EoBandObject[] Bands
         {
             get { return StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField); }
-            set { StacPropertiesContainer.SetProperty(BandsField, value); DeclareStacExtension(); }
+            set
+            {
+                if (value == null || value.Count() == 0)
+                    StacPropertiesContainer.RemoveProperty(BandsField);
+                else
+                {
+                    StacPropertiesContainer.SetProperty(BandsField, value);
+                    DeclareStacExtension();
+                }
+            }
         }
 
         /// <summary>

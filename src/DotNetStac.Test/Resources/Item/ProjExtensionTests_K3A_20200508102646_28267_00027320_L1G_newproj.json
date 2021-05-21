@@ -1,8 +1,8 @@
 {
     "stac_extensions": [
         "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
         "https://stac-extensions.github.io/view/v1.0.0/schema.json"
     ],
     "stac_version": "1.0.0-rc.4",
@@ -181,7 +181,7 @@
         "description": "dummy",
         "eo:cloud_cover": 0.0,
         "sat:absolute_orbit": 28267,
-        "proj:epsg": 32638,
+        "proj:epsg": null,
         "proj:wkt2": "GEOCCS[\"WGS84 Geocentric\", DATUM[\"World Geodetic System 1984\", SPHEROID[\"WGS 84\", 6378137, 298.257223563, AUTHORITY[\"EPSG\", \"7030\"]], AUTHORITY[\"EPSG\", \"6326\"]], PRIMEM[\"Greenwich\", 0, AUTHORITY[\"EPSG\", \"8901\"]], UNIT[\"metre\", 1, AUTHORITY[\"EPSG\", \"9001\"]], AXIS[\"X\", OTHER], AXIS[\"Y\", OTHER], AXIS[\"Z\", OTHER]]",
         "view:off_nadir": 0.0,
         "view:incidence_angle": 2.140217373,
