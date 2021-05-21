@@ -4,7 +4,7 @@
     <Title>DotNetStac</Title>
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <VersionPrefix>0.8.0</VersionPrefix>
+    <VersionPrefix>0.8.1</VersionPrefix>
     <!-- <VersionSuffix>alpha</VersionSuffix> -->
     <Authors>Emmanuel Mathot</Authors>
     <Authors>emmanuelmathot</Authors>
