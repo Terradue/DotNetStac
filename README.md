@@ -39,10 +39,19 @@ In a nutshell, the library allows serialization/desrialization of STAC JSON docu
 
 * (De)Serialization engine fully compliant with current version of [STAC specifications](https://stacspec.org)
 * Many helpers to support STAC objects manipulation:
-  * Field accessors using class properties (e.g. Title, DateTime, Geometry)
+  * Field accessors using class properties and common metadata (e.g. Title, DateTime, Geometry)
   * Collection creation helper summarizing Items set
-* STAC extensions support with C# extension classes with direct accessors to the fields.
 * JSON Schema validation using [Json.NET Schema](https://github.com/JamesNK/Newtonsoft.Json.Schema)
+* STAC extensions support with C# extension classes with direct accessors to the fields:
+  * [Electro-Optical](https://github.com/stac-extensions/eo) with `Common Band Name` enumeration
+  * [File Info](https://github.com/stac-extensions/file) with helpers to calculate [multihash](https://github.com/multiformats/cs-multihash) checksum
+  * [Processing](https://github.com/stac-extensions/processing)
+  * [Projection](https://github.com/stac-extensions/projection) with helpers to set `epsg` id and `wkt2` representation from [Proj.Net Coordinate Systems](https://github.com/NetTopologySuite/ProjNet4GeoAPI)
+  * [Raster](https://github.com/stac-extensions/raster)
+  * [SAR](https://github.com/stac-extensions/sar) with helpers for interferometric searches
+  * [Satellite](https://github.com/stac-extensions/sat) with extra orbit state vector and baseline calculation
+  * [Scientific Citation](https://github.com/stac-extensions/scientific)
+  * [View Geometry](https://github.com/stac-extensions/view)
 
 ## Getting Started
 

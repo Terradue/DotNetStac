@@ -49,7 +49,6 @@ namespace Stac.Test.Catalog
             string extendedItemJson = httpClient.GetStringAsync(extendedItemUri).GetAwaiter().GetResult();
             extendedItemJson = extendedItemJson.Replace("cool_sensor_v1", "cool_sensor_v2");
             items.Add(extendedItemUri, StacConvert.Deserialize<StacItem>(extendedItemJson));
-
             StacCollection collection = StacCollection.Create("simple-collection",
                                                                 "A simple collection demonstrating core catalog fields with links to a couple of items",
                                                                 items,
