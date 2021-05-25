@@ -51,7 +51,7 @@ namespace Stac
             return new StacLink(uri, "item", null, mediaType);
         }
 
-        public static StacLink CreateItemLink(IStacObject stacObject, Uri uri)
+        public static StacLink CreateObjectLink(IStacObject stacObject, Uri uri)
         {
             return new StacObjectLink(stacObject, uri);
         }
