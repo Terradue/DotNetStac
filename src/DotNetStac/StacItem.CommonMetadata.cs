@@ -19,6 +19,10 @@ namespace Stac
             set => this.SetProperty("title", value);
         }
 
+        /// <summary>
+        /// Detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.
+        /// </summary>
+        /// <value></value>
         public string Description
         {
             get => this.GetProperty<string>("description");
