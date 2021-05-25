@@ -5,16 +5,26 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet: [ '2.1.x', '3.1.x', '5.0.x' ]
     steps:
       - uses: actions/checkout@v2
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x' #${{ matrix.dotnet-version }}
+          dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: dotnet restore src
       - name: Build
         run: dotnet build src --configuration Release --no-restore
+  tests:
+    needs: [build]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet: [ '2.1.x', '3.1.x', '5.0.x' ]
+    steps:
       - name: Test
         run: dotnet test --collect:"XPlat Code Coverage" --settings:src/DotNetStac.Test/coverlet.runsettings --results-directory:TestResults src
       - uses: codecov/codecov-action@v1
@@ -24,6 +34,7 @@ jobs:
           fail_ci_if_error: false # optional (default = false)
           verbose: true # optional (default = false)
           flags: unittests
+          name: ${{ matrix.platform }}-${{ matrix.dotnet-version }}
       - uses: nikeee/docfx-action@v1.0.0
         name: Build Documentation
         with:
