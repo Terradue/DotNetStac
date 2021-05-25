@@ -1,14 +1,22 @@
 # Changelog
 
-## [Unreleased]
+## [v0.9.0]
 
 ### Added
 
+- More tests
+
 ### Fixed
+
+- Eo Band Common Name nullable
 
 ### Changed
 
+- Common Metadata as properties in Stac Objects
+
 ### Removed
+
+- Common metadata class helper
 
 ## [v0.8.1]
 
@@ -81,8 +89,9 @@ At the moment of this release, the STAC specification is 1.0.0-rc.4 and minor ch
 
 - Cloned assets
 
-[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/0.8.1...HEAD>
-[v0.8.0]: <https://github.com/Terradue/DotnetStac/tree/0.8.1>
+[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/0.9.0...HEAD>
+[v0.9.0]: <https://github.com/Terradue/DotnetStac/tree/0.9.0>
+[v0.8.1]: <https://github.com/Terradue/DotnetStac/tree/0.8.1>
 [v0.8.0]: <https://github.com/Terradue/DotnetStac/tree/0.8.0>
 [v0.7.0]: <https://github.com/Terradue/DotnetStac/tree/0.7.0>
 [v0.6.2]: <https://github.com/Terradue/DotnetStac/tree/0.6.2>
