@@ -68,12 +68,6 @@ namespace Stac
             Uri = uri;
         }
 
-        public StacLink(Uri uri, IStacObject hostObject)
-        {
-            this.Uri = uri;
-            this.Parent = hostObject;
-        }
-
         public StacLink(Uri uri, string relationshipType, string title, string mediaType, ulong contentLength = 0)
         {
             Uri = uri;
