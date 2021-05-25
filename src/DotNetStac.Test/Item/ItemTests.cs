@@ -71,16 +71,88 @@ namespace Stac.Test.Item
 
             var properties = new Dictionary<string, object>();
 
-            properties.Add("datetime", DateTime.Parse("2016-05-03T13:21:30.040Z").ToUniversalTime());
             properties.Add("collection", "CS3");
 
             StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
+
+            item.CommonMetadata().DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:21:30.040Z"));
 
             item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
             item.SetCollection("cool-sat", new Uri("http://cool-sat.com/catalog.json"));
 
             item.Assets.Add("analytic", new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
             item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(item, new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
+
+            // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
+            item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
+
+            var actualJson = StacConvert.Serialize(item);
+
+            ValidateJson(actualJson);
+
+            var expectedJson = GetJson("Item");
+
+            ValidateJson(expectedJson);
+
+            JsonAssert.AreEqual(expectedJson, actualJson);
+
+            item.Links.Remove(item.Links.First(l => l.RelationshipType == "collection"));
+            Assert.Null(item.Collection);
+        }
+
+        [Fact]
+        public void CanSerializeExtendedSample()
+        {
+            var coordinates = new[]
+            {
+                new List<IPosition>
+                {
+                    new Position(37.488035566,-122.308150179),
+                    new Position(37.538869539,-122.597502109),
+                    new Position(37.613537207,-122.576687533),
+                    new Position(37.562818007,-122.288048600),
+                    new Position(37.488035566,-122.308150179)
+                }
+            };
+
+            var geometry = new Polygon(new LineString[] { new LineString(coordinates[0]) });
+
+            var properties = new Dictionary<string, object>();
+
+            properties.Add("collection", "CS3");
+
+            StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
+
+            item.CommonMetadata().DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.MinValue, DateTime.MaxValue);
+            item.CommonMetadata().DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:21:30.040Z"), DateTime.Parse("2016-05-03T14:21:30.040Z"));
+
+            item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
+            item.SetCollection("cool-sat", new Uri("http://cool-sat.com/catalog.json"));
+
+            item.Assets.Add("analytic", new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
+            item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(item, new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
+
+            item.CommonMetadata().Created = new DateTime(2018, 1, 1);
+            item.CommonMetadata().Updated = new DateTime(2018, 1, 1);
+
+            Assert.Equal(new DateTime(2018, 1, 1), item.CommonMetadata().Created);
+            Assert.Equal(new DateTime(2018, 1, 1), item.CommonMetadata().Updated);
+
+            item.CommonMetadata().Gsd = 0;
+            item.CommonMetadata().Gsd = 1;
+            Assert.Equal(1, item.CommonMetadata().Gsd);
+
+            item.CommonMetadata().Title = "CS3-20160503_132130_04";
+            Assert.Equal("CS3-20160503_132130_04", item.CommonMetadata().Title);
+
+            item.CommonMetadata().Platform = "coolsat-3";
+            Assert.Equal("coolsat-3", item.CommonMetadata().Platform);
+
+            item.CommonMetadata().Mission = "coolsat-3";
+            Assert.Equal("coolsat-3", item.CommonMetadata().Mission);
+
+            item.CommonMetadata().Constellation = "coolsat";
+            Assert.Equal("coolsat", item.CommonMetadata().Constellation);
 
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();

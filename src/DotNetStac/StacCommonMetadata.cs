@@ -159,26 +159,25 @@ namespace Stac
             }
             set
             {
-                // remove previous values
-                stacPropertiesContainer.Properties.Remove("datetime");
-                stacPropertiesContainer.Properties.Remove("start_datetime");
-                stacPropertiesContainer.Properties.Remove("end_datetime");
-
                 // datetime, start_datetime, end_datetime
                 if (value.IsAnytime)
                 {
-                    stacPropertiesContainer.Properties.Add("datetime", null);
+                    stacPropertiesContainer.RemoveProperty("start_datetime");
+                    stacPropertiesContainer.RemoveProperty("end_datetime");
+                    stacPropertiesContainer.SetProperty("datetime", null);
                 }
 
                 if (value.IsMoment)
                 {
-                    stacPropertiesContainer.Properties.Add("datetime", value.Start);
+                    stacPropertiesContainer.RemoveProperty("start_datetime");
+                    stacPropertiesContainer.RemoveProperty("end_datetime");
+                    stacPropertiesContainer.SetProperty("datetime", value.Start);
                 }
                 else
                 {
-                    stacPropertiesContainer.Properties.Add("datetime", value.Start);
-                    stacPropertiesContainer.Properties.Add("start_datetime", value.Start);
-                    stacPropertiesContainer.Properties.Add("end_datetime", value.End);
+                    stacPropertiesContainer.SetProperty("datetime", value.Start);
+                    stacPropertiesContainer.SetProperty("start_datetime", value.Start);
+                    stacPropertiesContainer.SetProperty("end_datetime", value.End);
                 }
             }
         }
