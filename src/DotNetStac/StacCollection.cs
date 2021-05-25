@@ -223,7 +223,7 @@ namespace Stac
                                           if (collectionUri != null)
                                               itemUri = collectionUri.MakeRelativeUri(item.Key);
                                           if (!itemUri.IsAbsoluteUri) { itemUri = new Uri("./" + itemUri.OriginalString, UriKind.Relative); }
-                                          return StacLink.CreateItemLink(item.Value, itemUri);
+                                          return StacLink.CreateObjectLink(item.Value, itemUri);
                                       }),
                                       license);
 

@@ -223,5 +223,16 @@ namespace Stac.Test.Collection
             Assert.Throws<ArgumentException>(() => new StacSummaryRangeObject<int>(wrongSummary));
         }
 
+        [Fact]
+        public void CollectionStacObjectLink()
+        {
+            var simpleJson = GetJson("Collection", "CanDeserializeSentinel2Sample");
+            ValidateJson(simpleJson);
+            StacCollection simpleCollection = StacConvert.Deserialize<StacCollection>(simpleJson);
+            StacObjectLink stacObjectLink = (StacObjectLink)StacLink.CreateObjectLink(simpleCollection, new Uri("file:///test"));
+        }
+
+        
+
     }
 }
