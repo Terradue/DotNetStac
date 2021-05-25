@@ -73,12 +73,12 @@ namespace Stac.Test.Catalog
             collection.Title = "Simple Example Collection";
             collection.Links.Insert(0, StacLink.CreateRootLink(new Uri("./collection.json", UriKind.Relative), StacCollection.MEDIATYPE));
             collection.Links.Add(StacLink.CreateSelfLink(new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json"), StacCollection.MEDIATYPE));
-            collection.Providers.Add(new Stac.Collection.StacProvider("Remote Data, Inc"){
+            collection.Providers.Add(new StacProvider("Remote Data, Inc"){
                 Description = "Producers of awesome spatiotemporal assets",
                 Uri = new Uri("http://remotedata.io")
             });
-            collection.Providers[0].Roles.Add(Stac.Collection.StacProviderRole.producer);
-            collection.Providers[0].Roles.Add(Stac.Collection.StacProviderRole.processor);
+            collection.Providers[0].Roles.Add(StacProviderRole.producer);
+            collection.Providers[0].Roles.Add(StacProviderRole.processor);
             var orderedext = collection.StacExtensions.OrderBy(a => a).ToArray();
             collection.StacExtensions.Clear();
             collection.StacExtensions.AddRange(orderedext);

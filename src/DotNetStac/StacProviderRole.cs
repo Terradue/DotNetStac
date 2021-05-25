@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Stac.Collection
+namespace Stac
 {
     /// <summary>
     /// Possible roles of a provider.

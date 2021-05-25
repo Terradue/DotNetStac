@@ -39,7 +39,7 @@ namespace Stac
         [JsonProperty("title")]
         public override string Title
         {
-            get => stacObject.CommonMetadata().Title;
+            get => stacObject.GetProperty<string>("title");
             set
             {
                 throw new InvalidOperationException("Cannot set Title on an STAC Object link");

@@ -15,6 +15,8 @@ namespace Stac
     {
         string Id { get; }
 
+        string Title { get; }
+
         SemVersion StacVersion { get; }
 
         ICollection<StacLink> Links { get; }
