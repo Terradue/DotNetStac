@@ -228,10 +228,7 @@ namespace Stac
         [JsonIgnore]
         public IStacObject ParentStacObject { get => parentStacObject; internal set => parentStacObject = value; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+#pragma warning disable 1591
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager

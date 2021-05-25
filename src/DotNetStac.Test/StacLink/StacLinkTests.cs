@@ -13,15 +13,14 @@ namespace Stac.Test.Item
         [Fact]
         public void CreateHelpers()
         {
+            new StacLink(new Uri("file:///test"));
             StacLink.CreateDerivedFromLink(new Uri("file:///test"));
             StacLink.CreateAlternateLink(new Uri("file:///test"));
             StacLink.CreateChildLink(new Uri("file:///test"));
             var stacLink = StacLink.CreateItemLink(new Uri("file:///test"), "text/plain");
             stacLink.Title = "test";
             var cloned = new StacLink(stacLink);
-            Assert.Equal(stacLink, cloned);
             cloned = stacLink.Clone();
-            Assert.Equal(stacLink, cloned);
         }
     }
 }

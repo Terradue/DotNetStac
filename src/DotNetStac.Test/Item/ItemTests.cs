@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
@@ -93,6 +94,9 @@ namespace Stac.Test.Item
             ValidateJson(expectedJson);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
+
+            item.Links.Remove(item.Links.First(l => l.RelationshipType == "collection"));
+            Assert.Null(item.Collection);
         }
 
         [Fact]
@@ -163,6 +167,62 @@ namespace Stac.Test.Item
             item = StacConvert.Deserialize<StacItem>(json);
 
             var array = item.GetProperty<string[]>("test");
+        }
+
+        [Fact]
+        public void Geometry()
+        {
+            var pextentCheck = new[]
+            {
+                new List<IPosition>
+                {
+                    new Position(37.488035566,-122.308150179, 10),
+                    new Position(37.488035566,-122.308150179, 10),
+                }
+            };
+
+            var extentCheck = new[]
+            {
+                new List<IPosition>
+                {
+                    new Position(37.488035566,-122.597502109, 10),
+                    new Position(37.613537207,-122.288048600, 10),
+                }
+            };
+
+            var coordinates = new[]
+            {
+                new List<IPosition>
+                {
+                    new Position(37.488035566,-122.308150179, 10),
+                    new Position(37.538869539,-122.597502109, 10),
+                    new Position(37.613537207,-122.576687533, 10),
+                    new Position(37.562818007,-122.288048600, 10),
+                    new Position(37.488035566,-122.308150179, 10)
+                }
+            };
+
+            Point point = new Point(coordinates[0][0]);
+            var extent = StacGeometryHelpers.GetBoundingBox(point);
+            Assert.Equal<IPosition>(pextentCheck.First().ToArray(), extent);
+            MultiPoint mpoint = new MultiPoint(Array.ConvertAll<IPosition, Point>(coordinates[0].ToArray(), p => new Point(p)));
+            extent = StacGeometryHelpers.GetBoundingBox(mpoint);
+            Assert.Equal<IPosition>(extentCheck.First().ToArray(), extent);
+            var lineString = new LineString(coordinates[0]);
+            extent = StacGeometryHelpers.GetBoundingBox(lineString);
+            Assert.Equal<IPosition>(extentCheck.First().ToArray(), extent);
+            var mlinestring = new MultiLineString(new LineString[] { lineString });
+            extent = StacGeometryHelpers.GetBoundingBox(mlinestring);
+            Assert.Equal<IPosition>(extentCheck.First().ToArray(), extent);
+            var polygon = new Polygon(new LineString[] { lineString });
+            extent = StacGeometryHelpers.GetBoundingBox(polygon);
+            Assert.Equal<IPosition>(extentCheck.First().ToArray(), extent);
+            var mpolygon = new MultiPolygon(new Polygon[] { polygon });
+            extent = StacGeometryHelpers.GetBoundingBox(mpolygon);
+            Assert.Equal<IPosition>(extentCheck.First().ToArray(), extent);
+            var gcollection = new GeometryCollection(new IGeometryObject[] { polygon, lineString });
+            // extent = StacGeometryHelpers.GetBoundingBox(gcollection);
+            // Assert.Equal<IPosition>(extentCheck.First().ToArray(), extent);
         }
     }
 }

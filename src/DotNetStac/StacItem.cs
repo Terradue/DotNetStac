@@ -52,7 +52,7 @@ namespace Stac
         {
             if (e.OldItems != null)
             {
-                foreach (var oldLink in e.NewItems.Cast<StacLink>())
+                foreach (var oldLink in e.OldItems.Cast<StacLink>())
                 {
                     if (oldLink.RelationshipType == "collection")
                     {
@@ -118,6 +118,7 @@ namespace Stac
             set
             {
                 if (value != null) Root.SetProperty("collection", value);
+                else Root.RemoveProperty("collection");
             }
         }
 
@@ -160,10 +161,5 @@ namespace Stac
 
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
-
-        public object RasterExtension()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

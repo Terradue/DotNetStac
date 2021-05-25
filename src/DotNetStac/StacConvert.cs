@@ -17,11 +17,11 @@ namespace Stac
 
         public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null) where T : IStacObject
         {
-            if (typeof(T) == typeof(StacItem)
-                || typeof(T) == typeof(StacCollection)
-                || typeof(T) == typeof(StacCatalog)
-                || typeof(T) == typeof(ItemCollection))
-                return JsonConvert.DeserializeObject<T>(json);
+            // if (typeof(T) == typeof(StacItem)
+            //     || typeof(T) == typeof(StacCollection)
+            //     || typeof(T) == typeof(StacCatalog)
+            //     || typeof(T) == typeof(ItemCollection))
+            //     return JsonConvert.DeserializeObject<T>(json);
             if (serializerSettings == null)
                 serializerSettings = defaultJsonSerializerSettings;
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;

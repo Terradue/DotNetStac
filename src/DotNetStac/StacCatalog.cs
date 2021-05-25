@@ -136,6 +136,7 @@ namespace Stac
             StacExtensions = new SortedSet<string>(StacExtensions);
         }
 
+#pragma warning disable 1591
         public bool ShouldSerializeSummaries()
         {
             // don't serialize the Manager property if an employee is their own manager

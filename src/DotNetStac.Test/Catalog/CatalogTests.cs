@@ -63,7 +63,7 @@ namespace Stac.Test.Catalog
         {
             var simpleJson = GetJson("Catalog", "CanDeserializeMinimalSample");
             ValidateJson(simpleJson);
-            StacCollection simpleCollection = StacConvert.Deserialize<StacCollection>(simpleJson);
+            StacCatalog simpleCollection = StacConvert.Deserialize<StacCatalog>(simpleJson);
             StacObjectLink stacObjectLink = (StacObjectLink)StacLink.CreateObjectLink(simpleCollection, new Uri("file:///test"));
         }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Stac
 {
@@ -15,6 +16,7 @@ namespace Stac
 
         public IDictionary<string, object> Properties { get => properties; internal set => properties = value; }
 
+        [ExcludeFromCodeCoverage]
         public IStacObject StacObjectContainer => stacItem;
     }
 }

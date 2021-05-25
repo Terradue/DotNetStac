@@ -34,6 +34,9 @@ namespace Stac.Test.Extensions
 
             k3MissingBands.Assets["MS1"].EoExtension().Bands = new EoBandObject[] { eoBandObject };
 
+            Assert.Same(k3MissingBands, k3MissingBands.StacObjectContainer);
+            Assert.Same(k3MissingBands, k3MissingBands.Assets.First().Value.StacObjectContainer);
+
             Assert.NotNull(k3MissingBands.GetAsset(EoBandCommonName.blue));
             Assert.Equal(2001, k3MissingBands.GetBandObject(EoBandCommonName.blue).SolarIllumination);
 
