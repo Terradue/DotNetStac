@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Stac.Collection
+namespace Stac
 {
     /// <summary>
     /// The class provides properties about a provider. 

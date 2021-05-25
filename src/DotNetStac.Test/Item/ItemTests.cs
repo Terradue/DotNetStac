@@ -75,7 +75,7 @@ namespace Stac.Test.Item
 
             StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
 
-            item.CommonMetadata().DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:21:30.040Z"));
+            item.DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:21:30.040Z"));
 
             item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
             item.SetCollection("cool-sat", new Uri("http://cool-sat.com/catalog.json"));
@@ -123,8 +123,8 @@ namespace Stac.Test.Item
 
             StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
 
-            item.CommonMetadata().DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.MinValue, DateTime.MaxValue);
-            item.CommonMetadata().DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:21:30.040Z"), DateTime.Parse("2016-05-03T14:21:30.040Z"));
+            item.DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.MinValue, DateTime.MaxValue);
+            item.DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:21:30.040Z"), DateTime.Parse("2016-05-03T14:21:30.040Z"));
 
             item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
             item.SetCollection("cool-sat", new Uri("http://cool-sat.com/catalog.json"));
@@ -132,27 +132,27 @@ namespace Stac.Test.Item
             item.Assets.Add("analytic", new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null));
             item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(item, new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
 
-            item.CommonMetadata().Created = new DateTime(2018, 1, 1);
-            item.CommonMetadata().Updated = new DateTime(2018, 1, 1);
+            item.Created = new DateTime(2018, 1, 1);
+            item.Updated = new DateTime(2018, 1, 1);
 
-            Assert.Equal(new DateTime(2018, 1, 1), item.CommonMetadata().Created);
-            Assert.Equal(new DateTime(2018, 1, 1), item.CommonMetadata().Updated);
+            Assert.Equal(new DateTime(2018, 1, 1), item.Created);
+            Assert.Equal(new DateTime(2018, 1, 1), item.Updated);
 
-            item.CommonMetadata().Gsd = 0;
-            item.CommonMetadata().Gsd = 1;
-            Assert.Equal(1, item.CommonMetadata().Gsd);
+            item.Gsd = 0;
+            item.Gsd = 1;
+            Assert.Equal(1, item.Gsd);
 
-            item.CommonMetadata().Title = "CS3-20160503_132130_04";
-            Assert.Equal("CS3-20160503_132130_04", item.CommonMetadata().Title);
+            item.Title = "CS3-20160503_132130_04";
+            Assert.Equal("CS3-20160503_132130_04", item.Title);
 
-            item.CommonMetadata().Platform = "coolsat-3";
-            Assert.Equal("coolsat-3", item.CommonMetadata().Platform);
+            item.Platform = "coolsat-3";
+            Assert.Equal("coolsat-3", item.Platform);
 
-            item.CommonMetadata().Mission = "coolsat-3";
-            Assert.Equal("coolsat-3", item.CommonMetadata().Mission);
+            item.Mission = "coolsat-3";
+            Assert.Equal("coolsat-3", item.Mission);
 
-            item.CommonMetadata().Constellation = "coolsat";
-            Assert.Equal("coolsat", item.CommonMetadata().Constellation);
+            item.Constellation = "coolsat";
+            Assert.Equal("coolsat", item.Constellation);
 
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
@@ -180,7 +180,7 @@ namespace Stac.Test.Item
 
             var item = StacConvert.Deserialize<StacItem>(json);
 
-            Assert.Equal(item.CommonMetadata().DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
+            Assert.Equal(item.DateTime, new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-05-03T13:22:30Z").ToUniversalTime()));
         }
 
         [Fact]
