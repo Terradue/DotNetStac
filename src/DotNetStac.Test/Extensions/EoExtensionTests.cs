@@ -142,5 +142,15 @@ namespace Stac.Test.Extensions
             JsonAssert.AreEqual(json, actualJson);
         }
 
+        [Fact]
+        public void WrongCommonName()
+        {
+            var json = GetJson("Extensions");
+
+            var item = StacConvert.Deserialize<StacItem>(json);
+
+            Assert.Null(item.Assets["MS2"].EoExtension().Bands[0].CommonName);
+        }
+
     }
 }

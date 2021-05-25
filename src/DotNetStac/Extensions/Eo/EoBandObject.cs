@@ -16,7 +16,7 @@ namespace Stac.Extensions.Eo
 
         private string description;
 
-        private EoBandCommonName commonName;
+        private EoBandCommonName? commonName;
 
         IDictionary<string, object> properties;
 
@@ -25,7 +25,7 @@ namespace Stac.Extensions.Eo
         /// </summary>
         /// <param name="name">Name of the band</param>
         /// <param name="commonName">Common name of the band</param>
-        public EoBandObject(string name, EoBandCommonName commonName)
+        public EoBandObject(string name, EoBandCommonName? commonName)
         {
             this.name = name;
             this.commonName = commonName;
@@ -49,8 +49,7 @@ namespace Stac.Extensions.Eo
         /// </summary>
         /// <value></value>
         [JsonProperty("common_name")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public EoBandCommonName CommonName { get => commonName; set => commonName = value; }
+        public EoBandCommonName? CommonName { get => commonName; set => commonName = value; }
 
         /// <summary>
         /// The center wavelength of the band, in micrometers (μm).

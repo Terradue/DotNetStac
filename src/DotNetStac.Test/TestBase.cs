@@ -24,7 +24,7 @@ namespace Stac.Test
         .Assembly;
         private static readonly string AssemblyName = ThisAssembly.GetName().Name;
 
-        private StacValidator stacValidator = new StacValidator(new JSchemaUrlResolver());
+        private static StacValidator stacValidator = new StacValidator(new JSchemaUrlResolver());
 
         protected HttpClient httpClient = new HttpClient();
 
