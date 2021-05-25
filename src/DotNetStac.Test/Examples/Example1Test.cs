@@ -34,7 +34,7 @@ namespace Stac.Test.Example
                     childUri = new Uri(baseUri, childUri.ToString());
                 IStacObject child = StacConvert.Deserialize<IStacObject>(httpClient.GetStringAsync(childUri).GetAwaiter().GetResult());
 
-                Console.Out.WriteLine(prefix + child.Id + ": " + child.CommonMetadata().Title);
+                Console.Out.WriteLine(prefix + child.Id + ": " + child.Title);
                 if (child is StacCatalog || child is StacCollection)
                     ListChildrensItemsAndAssets(child as IStacParent, childUri, prefix + " ");
 

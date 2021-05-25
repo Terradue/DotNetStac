@@ -58,5 +58,14 @@ namespace Stac.Test.Catalog
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
 
+        [Fact]
+        public void CatalogStacObjectLink()
+        {
+            var simpleJson = GetJson("Catalog", "CanDeserializeMinimalSample");
+            ValidateJson(simpleJson);
+            StacCatalog simpleCollection = StacConvert.Deserialize<StacCatalog>(simpleJson);
+            StacObjectLink stacObjectLink = (StacObjectLink)StacLink.CreateObjectLink(simpleCollection, new Uri("file:///test"));
+        }
+
     }
 }

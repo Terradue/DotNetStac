@@ -31,8 +31,8 @@ namespace Stac.Test.Item
 
             StacItem stacItem = new StacItem("S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF", geometry, properties);
 
-            stacItem.CommonMetadata().DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-08-22T18:28:23.368922Z"));
-            stacItem.CommonMetadata().Platform = "sentinel-1a";
+            stacItem.DateTime = new Itenso.TimePeriod.TimeInterval(DateTime.Parse("2016-08-22T18:28:23.368922Z"));
+            stacItem.Platform = "sentinel-1a";
 
             stacItem.SarExtension().Required("IW", SarCommonFrequencyBandName.C, new string[2] { "VV", "VH" }, "GRD");
 

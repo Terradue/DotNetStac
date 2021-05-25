@@ -13,8 +13,8 @@ namespace Stac
     /// <summary>
     /// STAC Catalog Object implementing STAC Catalog spec (https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md)
     /// </summary>
-    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacCatalog : IStacObject, IStacParent, IStacCatalog
+    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore, MemberSerialization = MemberSerialization.OptIn)]
+    public partial class StacCatalog : IStacObject, IStacParent, IStacCatalog
     {
         /// <summary>
         /// Catalog Media-Type string
@@ -36,6 +36,7 @@ namespace Stac
         [JsonConstructor]
         public StacCatalog(string id, string description, IEnumerable<StacLink> links = null)
         {
+            this.Properties = new Dictionary<string, object>();
             this.Id = id;
             this.StacVersion = Versions.StacVersionList.Current;
             this.Description = description;
@@ -43,7 +44,6 @@ namespace Stac
                 this.Links = new Collection<StacLink>();
             else
                 this.Links = new Collection<StacLink>(links.ToList());
-            this.Properties = new Dictionary<string, object>();
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
         }
@@ -95,20 +95,6 @@ namespace Stac
         public string Type => "Catalog";
 
         /// <summary>
-        /// Detailed multi-line description to fully explain the Catalog. CommonMark 0.29 syntax MAY be used for rich text representation.
-        /// </summary>
-        /// <value></value>
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// A short descriptive one-line title for the Catalog.
-        /// </summary>
-        /// <value></value>
-        [JsonProperty("title")]
-        public string Title { get; set; }
-
-        /// <summary>
         /// A map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
         /// <value></value>
@@ -136,6 +122,7 @@ namespace Stac
             StacExtensions = new SortedSet<string>(StacExtensions);
         }
 
+#pragma warning disable 1591
         public bool ShouldSerializeSummaries()
         {
             // don't serialize the Manager property if an employee is their own manager

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
@@ -19,7 +21,10 @@ namespace Stac.Test.Collection
 
             ValidateJson(json);
 
-            var item = JsonConvert.DeserializeObject<StacCollection>(json);
+            byte[] byteArray = Encoding.ASCII.GetBytes(json);
+            MemoryStream stream = new MemoryStream(byteArray);
+
+            var item = StacConvert.Deserialize<StacCollection>(stream);
 
             Assert.NotNull(item);
 
@@ -222,6 +227,17 @@ namespace Stac.Test.Collection
             JObject wrongSummary = JObject.Parse(json);
             Assert.Throws<ArgumentException>(() => new StacSummaryRangeObject<int>(wrongSummary));
         }
+
+        [Fact]
+        public void CollectionStacObjectLink()
+        {
+            var simpleJson = GetJson("Collection", "CanDeserializeSentinel2Sample");
+            ValidateJson(simpleJson);
+            StacCollection simpleCollection = StacConvert.Deserialize<StacCollection>(simpleJson);
+            StacObjectLink stacObjectLink = (StacObjectLink)StacLink.CreateObjectLink(simpleCollection, new Uri("file:///test"));
+        }
+
+
 
     }
 }

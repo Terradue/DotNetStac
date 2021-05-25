@@ -78,6 +78,11 @@ namespace Stac.Extensions.File
         /// </summary>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
+        /// <summary>
+        /// Get the STAC asset
+        /// </summary>
+        public StacAsset StacAsset => base.StacPropertiesContainer as StacAsset;
+
     }
 
     /// <summary>
@@ -93,21 +98,57 @@ namespace Stac.Extensions.File
             return new FileStacExtension(stacAsset);
         }
 
-        public static async Task<string> AddFileCheckSum(this StacAsset stacAsset, HashType hashType, MultibaseEncoding encoding, Func<Uri, Stream> uriStreamer)
+        /// <summary>
+        /// Set possibly file extension properties from a FileInfo object:
+        /// - size
+        /// - checksum
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SetFileExtensionProperties(this FileStacExtension fileStacExtension,
+                                                      FileInfo file,
+                                                      HashType hashType = HashType.SHA1,
+                                                      MultibaseEncoding encoding = MultibaseEncoding.Base16Lower)
+        {
+            fileStacExtension.Size = Convert.ToUInt64(file.Length);
+            await fileStacExtension.SetFileCheckSum(hashType, encoding, uri => file.OpenRead());
+        }
+
+        /// <summary>
+        /// Set possibly file extension properties from a FileInfo object:
+        /// - size
+        /// - checksum
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SetFileExtensionProperties(this FileStacExtension fileStacExtension,
+                                                      Stream stream,
+                                                      HashType hashType = HashType.SHA1,
+                                                      MultibaseEncoding encoding = MultibaseEncoding.Base16Lower)
+        {
+            await fileStacExtension.SetFileCheckSum(hashType, encoding, uri => stream);
+        }
+
+        /// <summary>
+        /// Add the checksum property of the file extension
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SetFileCheckSum(this FileStacExtension fileStacExtension,
+                                                         HashType hashType,
+                                                         MultibaseEncoding encoding,
+                                                         Func<Uri, Stream> uriStreamer)
         {
             Multihash mh = null;
-            using (var stream = uriStreamer(stacAsset.Uri))
+            using (var stream = uriStreamer(fileStacExtension.StacAsset.Uri))
             {
                 byte[] data = null;
                 using (var mem = new MemoryStream())
                 {
                     await stream.CopyToAsync(mem);
                     data = mem.ToArray();
+                    fileStacExtension.Size = Convert.ToUInt64(mem.Length);
                 }
                 mh = Multihash.Sum(hashType, data);
             }
-            stacAsset.FileExtension().Checksum = mh;
-            return mh.ToString();
+            fileStacExtension.Checksum = mh;
         }
     }
 }

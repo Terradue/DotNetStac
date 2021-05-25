@@ -51,7 +51,7 @@ namespace Stac
             return new StacLink(uri, "item", null, mediaType);
         }
 
-        public static StacLink CreateItemLink(IStacObject stacObject, Uri uri)
+        public static StacLink CreateObjectLink(IStacObject stacObject, Uri uri)
         {
             return new StacObjectLink(stacObject, uri);
         }
@@ -66,12 +66,6 @@ namespace Stac
         public StacLink(Uri uri)
         {
             Uri = uri;
-        }
-
-        public StacLink(Uri uri, IStacObject hostObject)
-        {
-            this.Uri = uri;
-            this.Parent = hostObject;
         }
 
         public StacLink(Uri uri, string relationshipType, string title, string mediaType, ulong contentLength = 0)

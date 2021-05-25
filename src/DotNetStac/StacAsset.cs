@@ -7,6 +7,7 @@ using Stac.Converters;
 using Newtonsoft.Json;
 using System.Net.Mime;
 using System.Runtime.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Stac
 {
@@ -228,10 +229,8 @@ namespace Stac
         [JsonIgnore]
         public IStacObject ParentStacObject { get => parentStacObject; internal set => parentStacObject = value; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+#pragma warning disable 1591
+        [ExcludeFromCodeCoverage]
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Stac.Exceptions
 {
     [Serializable]
-    internal class InvalidStacDataException : Exception
+    public class InvalidStacDataException : Exception
     {
         public InvalidStacDataException()
         {

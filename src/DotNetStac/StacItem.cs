@@ -13,8 +13,11 @@ using System;
 
 namespace Stac
 {
-    // [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
+    /// <summary>
+    /// STAC Item Object implementing STAC Item spec (https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md)
+    /// </summary>
+    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore, MemberSerialization = MemberSerialization.OptIn)]
+    public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
     {
         public const string MEDIATYPE = "application/geo+json";
         public readonly static ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
@@ -52,7 +55,7 @@ namespace Stac
         {
             if (e.OldItems != null)
             {
-                foreach (var oldLink in e.NewItems.Cast<StacLink>())
+                foreach (var oldLink in e.OldItems.Cast<StacLink>())
                 {
                     if (oldLink.RelationshipType == "collection")
                     {
@@ -118,6 +121,7 @@ namespace Stac
             set
             {
                 if (value != null) Root.SetProperty("collection", value);
+                else Root.RemoveProperty("collection");
             }
         }
 
@@ -160,10 +164,5 @@ namespace Stac
 
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
-
-        public object RasterExtension()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

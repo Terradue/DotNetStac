@@ -54,9 +54,7 @@ namespace Stac.Extensions.VirtualAssets
             set { }
         }
 
-        /// <summary>
-        /// do not serialize href
-        /// </summary>
+#pragma warning disable 1591
         public bool ShouldSerializeUri() => false;
     }
 }

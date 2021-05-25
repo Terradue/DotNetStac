@@ -9,18 +9,23 @@ namespace Stac
 {
     public class StacConvert
     {
-        public static T Deserialize<T>(string json) where T : IStacObject
+        private static JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
         {
-            if (typeof(T) == typeof(StacItem)
-                || typeof(T) == typeof(StacCollection)
-                || typeof(T) == typeof(StacCatalog)
-                || typeof(T) == typeof(ItemCollection))
-                return JsonConvert.DeserializeObject<T>(json);
-            JObject jobject = JsonConvert.DeserializeObject<JObject>(json,
-            new JsonSerializerSettings
-            {
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc
-            });
+            DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            
+        };
+
+        public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null) where T : IStacObject
+        {
+            // if (typeof(T) == typeof(StacItem)
+            //     || typeof(T) == typeof(StacCollection)
+            //     || typeof(T) == typeof(StacCatalog)
+            //     || typeof(T) == typeof(ItemCollection))
+            //     return JsonConvert.DeserializeObject<T>(json);
+            if (serializerSettings == null)
+                serializerSettings = defaultJsonSerializerSettings;
+            serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+            JObject jobject = JsonConvert.DeserializeObject<JObject>(json, serializerSettings);
             Type stacType = Utils.IdentifyStacType(jobject);
             if (typeof(T) == typeof(IStacCatalog) && !typeof(IStacCatalog).IsAssignableFrom(stacType))
                 throw new InvalidCastException(stacType + "is not IStacCatalog");
@@ -34,13 +39,12 @@ namespace Stac
             }
         }
 
-        public static string Serialize(IStacObject stacObject)
+        public static string Serialize(IStacObject stacObject, JsonSerializerSettings serializerSettings = null)
         {
-            return JsonConvert.SerializeObject(stacObject,
-            new JsonSerializerSettings
-            {
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc
-            });
+            if (serializerSettings == null)
+                serializerSettings = defaultJsonSerializerSettings;
+            serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+            return JsonConvert.SerializeObject(stacObject, serializerSettings);
         }
 
         public static T Deserialize<T>(Stream stream) where T : IStacObject
