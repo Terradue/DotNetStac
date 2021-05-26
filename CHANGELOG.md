@@ -1,14 +1,10 @@
 # Changelog
 
-## [Unreleased]
-
-### Added
+## [v0.9.1]
 
 ### Fixed
 
-### Changed
-
-### Removed
+- Nullable fields conversion
 
 ## [v0.9.0]
 
@@ -99,7 +95,8 @@ At the moment of this release, the STAC specification is 1.0.0-rc.4 and minor ch
 
 - Cloned assets
 
-[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/0.9.0...HEAD>
+[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/0.9.1...HEAD>
+[v0.9.1]: <https://github.com/Terradue/DotnetStac/tree/0.9.1>
 [v0.9.0]: <https://github.com/Terradue/DotnetStac/tree/0.9.0>
 [v0.8.1]: <https://github.com/Terradue/DotnetStac/tree/0.8.1>
 [v0.8.0]: <https://github.com/Terradue/DotnetStac/tree/0.8.0>
