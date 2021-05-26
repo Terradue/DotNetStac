@@ -30,7 +30,7 @@ namespace Stac.Test.Collection
 
             Assert.NotNull(item.Summaries);
 
-            Assert.Equal("1.0.0-rc.4", item.StacVersion);
+            Assert.Equal("1.0.0", item.StacVersion);
 
             Assert.Empty(item.StacExtensions);
 
