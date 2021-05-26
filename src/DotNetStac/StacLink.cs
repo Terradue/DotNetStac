@@ -11,44 +11,44 @@ namespace Stac
     {
         #region Static members
 
-        public static StacLink CreateSelfLink(Uri uri, string mediaType = null)
+        public static StacLink CreateSelfLink(Uri uri, string mediaType = null, string title = null)
         {
-            return new StacLink(uri, "self", null, mediaType);
+            return new StacLink(uri, "self", title, mediaType);
         }
 
-        public static StacLink CreateRootLink(Uri uri, string mediaType = null)
+        public static StacLink CreateRootLink(Uri uri, string mediaType = null, string title = null)
         {
-            return new StacLink(uri, "root", null, mediaType);
+            return new StacLink(uri, "root", title, mediaType);
         }
 
-        public static StacLink CreateParentLink(Uri uri, string mediaType = null)
+        public static StacLink CreateParentLink(Uri uri, string mediaType = null, string title = null)
         {
-            return new StacLink(uri, "parent", null, mediaType);
+            return new StacLink(uri, "parent", title, mediaType);
         }
 
-        public static StacLink CreateCollectionLink(Uri uri, string title = null)
+        public static StacLink CreateCollectionLink(Uri uri, string mediaType = null, string title = null)
         {
             return new StacLink(uri, "collection", title, null);
         }
 
-        public static StacLink CreateDerivedFromLink(Uri uri, string mediaType = null)
+        public static StacLink CreateDerivedFromLink(Uri uri, string mediaType = null, string title = null)
         {
-            return new StacLink(uri, "derived_from", null, mediaType);
+            return new StacLink(uri, "derived_from", title, mediaType);
         }
 
-        public static StacLink CreateAlternateLink(Uri uri, string mediaType = null)
+        public static StacLink CreateAlternateLink(Uri uri, string mediaType = null, string title = null)
         {
-            return new StacLink(uri, "alternate", null, mediaType);
+            return new StacLink(uri, "alternate", title, mediaType);
         }
 
-        public static StacLink CreateChildLink(Uri uri, string mediaType = null)
+        public static StacLink CreateChildLink(Uri uri, string mediaType = null, string title = null)
         {
-            return new StacLink(uri, "child", null, mediaType);
+            return new StacLink(uri, "child", title, mediaType);
         }
 
-        public static StacLink CreateItemLink(Uri uri, string mediaType = null)
+        public static StacLink CreateItemLink(Uri uri, string mediaType = null, string title = null)
         {
-            return new StacLink(uri, "item", null, mediaType);
+            return new StacLink(uri, "item", title, mediaType);
         }
 
         public static StacLink CreateObjectLink(IStacObject stacObject, Uri uri)

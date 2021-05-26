@@ -19,7 +19,7 @@ namespace Stac.Test.Extensions
 
             ItemCollection itemCollection = stacObject as ItemCollection;
 
-            Assert.Equal("1.0.0-rc.4", itemCollection.StacVersion);
+            Assert.Equal("1.0.0", itemCollection.StacVersion);
 
             Assert.NotEmpty(itemCollection.Features);
            

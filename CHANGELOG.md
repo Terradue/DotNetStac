@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.0.0-rc.1]
+
+### Added
+
+title for link constructor
+
+### Changed
+
+Current STAC Version Set to 1.0.0
+
 ## [v0.9.1]
 
 ### Fixed
@@ -95,7 +105,8 @@ At the moment of this release, the STAC specification is 1.0.0-rc.4 and minor ch
 
 - Cloned assets
 
-[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/0.9.1...HEAD>
+[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/v1.0.0-rc.1...HEAD>
+[v0.9.1]: <https://github.com/Terradue/DotnetStac/tree/v1.0.0-rc.1>
 [v0.9.1]: <https://github.com/Terradue/DotnetStac/tree/0.9.1>
 [v0.9.0]: <https://github.com/Terradue/DotnetStac/tree/0.9.0>
 [v0.8.1]: <https://github.com/Terradue/DotnetStac/tree/0.8.1>
