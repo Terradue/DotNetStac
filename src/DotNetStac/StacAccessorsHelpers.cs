@@ -50,7 +50,23 @@ namespace Stac
                 return (@object as JToken).ToObject<T>();
             if (typeof(T).GetTypeInfo().IsEnum)
                 return (T)Enum.Parse(typeof(T), @object.ToString());
-            return (T)Convert.ChangeType(@object, typeof(T));
+            return ChangeType<T>(@object);
+        }
+
+        public static T ChangeType<T>(object value)
+        {
+            var t = typeof(T);
+
+            if (t.IsGenericType && t.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
+            {
+                if (value == null)
+                {
+                    return default(T);
+                }
+                t = Nullable.GetUnderlyingType(t);
+            }
+
+            return (T)Convert.ChangeType(value, t);
         }
 
         public static void RemoveProperty(this IStacPropertiesContainer propertiesContainer, string key)

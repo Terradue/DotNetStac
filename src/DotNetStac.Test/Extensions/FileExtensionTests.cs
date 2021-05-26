@@ -26,6 +26,8 @@ namespace Stac.Test.Extensions
                                                             "System reference Ids");
             await stacAsset.FileExtension().SetFileExtensionProperties(new System.IO.FileInfo("SRID.csv"));
             simpleitem.Assets.Add("srid", stacAsset);
+
+            Assert.Equal<UInt64>(1536937, stacAsset.FileExtension().Size.Value);
             
             string actualJson = JsonConvert.SerializeObject(simpleitem);
 
