@@ -1,5 +1,11 @@
 # Changelog
 
+## [v1.0.0-rc.2]
+
+### Fixed
+
+- instruments as convertible array
+
 ## [v1.0.0-rc.1]
 
 ### Added
@@ -105,8 +111,9 @@ At the moment of this release, the STAC specification is 1.0.0-rc.4 and minor ch
 
 - Cloned assets
 
-[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/v1.0.0-rc.1...HEAD>
-[v0.9.1]: <https://github.com/Terradue/DotnetStac/tree/v1.0.0-rc.1>
+[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/v1.0.0-rc.2...HEAD>
+[v1.0.0-rc.2]: <https://github.com/Terradue/DotnetStac/tree/v1.0.0-rc.2>
+[v1.0.0-rc.1]: <https://github.com/Terradue/DotnetStac/tree/v1.0.0-rc.1>
 [v0.9.1]: <https://github.com/Terradue/DotnetStac/tree/0.9.1>
 [v0.9.0]: <https://github.com/Terradue/DotnetStac/tree/0.9.0>
 [v0.8.1]: <https://github.com/Terradue/DotnetStac/tree/0.8.1>

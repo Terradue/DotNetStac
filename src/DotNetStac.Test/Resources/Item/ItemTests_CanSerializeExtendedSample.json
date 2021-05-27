@@ -41,6 +41,7 @@
         "platform": "coolsat-3",
         "mission": "coolsat-3",
         "constellation": "coolsat",
+        "instruments":["coolins"],
         "datetime": "2016-05-03T13:21:30.040Z",
         "start_datetime": "2016-05-03T13:21:30.040Z",
         "end_datetime": "2016-05-03T14:21:30.040Z",

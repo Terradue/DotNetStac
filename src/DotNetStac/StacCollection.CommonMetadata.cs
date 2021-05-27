@@ -62,7 +62,7 @@ namespace Stac
 
         public IEnumerable<string> Instruments
         {
-            get => this.GetProperty<IEnumerable<string>>("instruments");
+            get => this.GetProperty<string[]>("instruments");
             set => this.SetProperty("instruments", value);
         }
 
