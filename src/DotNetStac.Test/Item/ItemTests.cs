@@ -154,6 +154,9 @@ namespace Stac.Test.Item
             item.Constellation = "coolsat";
             Assert.Equal("coolsat", item.Constellation);
 
+            item.Instruments = new string[] { "coolins" };
+            Assert.Equal(new string[] { "coolins" }, item.Instruments);
+
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
 
