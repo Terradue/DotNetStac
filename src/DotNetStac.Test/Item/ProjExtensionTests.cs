@@ -1,6 +1,6 @@
-using Newtonsoft.Json;
-using Xunit;
+﻿using Newtonsoft.Json;
 using Stac.Extensions.Projection;
+using Xunit;
 
 namespace Stac.Test.Item
 {
@@ -27,7 +27,7 @@ namespace Stac.Test.Item
 
         }
 
-         [Fact]
+        [Fact]
         public void ReadCoordinateSystem()
         {
             var k3CompleteJson = GetJson("Item", "K3A_20200508102646_28267_00027320_L1G");

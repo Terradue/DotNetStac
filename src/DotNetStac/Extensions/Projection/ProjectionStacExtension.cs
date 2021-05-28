@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
 using ProjNet.CoordinateSystems;

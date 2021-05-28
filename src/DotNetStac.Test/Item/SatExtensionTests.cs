@@ -1,5 +1,5 @@
+﻿using Newtonsoft.Json;
 using Stac.Extensions.Sat;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace Stac.Test.Item
@@ -16,7 +16,7 @@ namespace Stac.Test.Item
             StacItem sentinel1Item_2 = StacConvert.Deserialize<StacItem>(sentinel1Json_2);
 
             var baseline = sentinel1Item_1.SatExtension().CalculateBaseline(sentinel1Item_2.SatExtension());
-            
+
         }
 
     }

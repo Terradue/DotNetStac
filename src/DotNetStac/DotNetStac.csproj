@@ -14,7 +14,7 @@
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
     <PackageIcon>stac_logo_128.png</PackageIcon>
     <Copyright>Copyright (c) 2010-2021 by Terradue</Copyright>
-    <CodeAnalysisRuleSet>$(SolutionDir)StyleCop.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>$(SolutionDir)StyleCop.ruleset</CodeAnalysisRuleSet> -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DebugType>full</DebugType>
     <InvariantGlobalization>true</InvariantGlobalization>

@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Stac.Converters;
-using Newtonsoft.Json;
 using System.Net.Mime;
 using System.Runtime.Serialization;
-using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
+using Stac.Converters;
 
 namespace Stac
 {
@@ -84,7 +84,7 @@ namespace Stac
         private IStacObject parentStacObject;
 
         [JsonConstructor]
-        internal StacAsset() 
+        internal StacAsset()
         {
             properties = new Dictionary<string, object>();
             Roles = new SortedSet<string>();
@@ -101,7 +101,7 @@ namespace Stac
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
             parentStacObject = stacObject;
             Uri = uri;
-            
+
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -49,7 +49,7 @@ namespace Stac.Collection
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[2]),
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[3])),
                 new StacTemporalExtent(items.Min(i => i.DateTime.Start), items.Max(i => i.DateTime.End))
-            ) ;
+            );
         }
     }
 }

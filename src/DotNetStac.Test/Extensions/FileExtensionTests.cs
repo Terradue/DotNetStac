@@ -1,12 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Xunit;
 using Stac.Extensions.File;
-using System.IO;
+using Xunit;
 
 namespace Stac.Test.Extensions
 {
@@ -28,7 +28,7 @@ namespace Stac.Test.Extensions
             simpleitem.Assets.Add("srid", stacAsset);
 
             Assert.Equal<UInt64>(1536937, stacAsset.FileExtension().Size.Value);
-            
+
             string actualJson = JsonConvert.SerializeObject(simpleitem);
 
             ValidateJson(actualJson);
@@ -52,7 +52,7 @@ namespace Stac.Test.Extensions
                                                             "System reference Ids");
             await stacAsset.FileExtension().SetFileExtensionProperties(File.OpenRead("SRID.csv"));
             simpleitem.Assets.Add("srid", stacAsset);
-            
+
             string actualJson = JsonConvert.SerializeObject(simpleitem);
 
             ValidateJson(actualJson);

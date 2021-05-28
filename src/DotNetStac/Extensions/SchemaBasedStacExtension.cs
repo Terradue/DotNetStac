@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,7 +9,7 @@ using Stac.Schemas;
 
 namespace Stac.Extensions
 {
-    public class SchemaBasedStacExtension : StacPropertiesContainerExtension, IStacExtension 
+    public class SchemaBasedStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
         private readonly IStacObject stacObject;
 
@@ -37,7 +37,7 @@ namespace Stac.Extensions
                                                       StacSchemaResolver stacSchemaResolver,
                                                       IStacObject stacObject)
         {
-            if ( StacSchemaResolver.CoreTypes.Contains(shortcut) )
+            if (StacSchemaResolver.CoreTypes.Contains(shortcut))
                 throw new Exceptions.InvalidStacSchemaException(shortcut + "is not an extension");
             var jsonSchema = stacSchemaResolver.LoadSchema(version: stacObject.StacVersion.ToString(), shortcut: shortcut);
             return new SchemaBasedStacExtension(jsonSchema, stacObject);

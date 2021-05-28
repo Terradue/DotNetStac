@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Semver;
 
 namespace Stac.Versions

@@ -1,15 +1,15 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
-using Stac.Converters;
-using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
-using System.Linq;
-using System.Net.Mime;
-using Semver;
 using System.Collections.Specialized;
 using System.IO;
-using System;
+using System.Linq;
+using System.Net.Mime;
+using System.Runtime.Serialization;
+using GeoJSON.Net.Geometry;
+using Newtonsoft.Json;
+using Semver;
+using Stac.Converters;
 
 namespace Stac
 {
@@ -117,7 +117,7 @@ namespace Stac
         /// <value>gets the collection id</value>
         public string Collection
         {
-            get => Root.GetProperty<string>("collection"); 
+            get => Root.GetProperty<string>("collection");
             set
             {
                 if (value != null) Root.SetProperty("collection", value);

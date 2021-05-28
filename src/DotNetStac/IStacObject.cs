@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Mime;
@@ -20,10 +20,10 @@ namespace Stac
         SemVersion StacVersion { get; }
 
         ICollection<StacLink> Links { get; }
-        
+
         ContentType MediaType { get; }
 
         ICollection<string> StacExtensions { get; }
-        
+
     }
 }

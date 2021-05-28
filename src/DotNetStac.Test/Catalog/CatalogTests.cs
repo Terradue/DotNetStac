@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -25,9 +25,9 @@ namespace Stac.Test.Catalog
 
             Assert.Equal("Catalog of NAIP Imagery", catalog.Description);
 
-            Assert.Contains(catalog.Links, link => link.RelationshipType == "self" && link.Uri == new Uri("https://www.fsa.usda.gov/naip/catalog.json") );
-            Assert.Contains(catalog.Links, link => link.RelationshipType == "child" && link.Uri == new Uri("https://www.fsa.usda.gov/naip/30087/catalog.json") );
-            Assert.Contains(catalog.Links, link => link.RelationshipType == "root" && link.Uri == new Uri("https://www.fsa.usda.gov/catalog.json") );
+            Assert.Contains(catalog.Links, link => link.RelationshipType == "self" && link.Uri == new Uri("https://www.fsa.usda.gov/naip/catalog.json"));
+            Assert.Contains(catalog.Links, link => link.RelationshipType == "child" && link.Uri == new Uri("https://www.fsa.usda.gov/naip/30087/catalog.json"));
+            Assert.Contains(catalog.Links, link => link.RelationshipType == "root" && link.Uri == new Uri("https://www.fsa.usda.gov/catalog.json"));
 
             var json2 = StacConvert.Serialize(catalog);
 
@@ -41,11 +41,11 @@ namespace Stac.Test.Catalog
         {
 
             StacCatalog collection = new StacCatalog("NAIP", "Catalog of NAIP Imagery");
-                                            
+
             collection.Links.Add(StacLink.CreateSelfLink(new Uri("https://www.fsa.usda.gov/naip/catalog.json")));
             collection.Links.Add(new StacLink(new Uri("https://www.fsa.usda.gov/naip/30087/catalog.json"), "child", null, null));
             collection.Links.Add(StacLink.CreateRootLink(new Uri("https://www.fsa.usda.gov/catalog.json")));
-            
+
             var actualJson = JsonConvert.SerializeObject(collection);
 
             Console.WriteLine(actualJson);

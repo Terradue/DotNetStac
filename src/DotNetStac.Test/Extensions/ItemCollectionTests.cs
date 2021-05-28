@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Stac.Extensions.ItemCollections;
 using Xunit;
 
@@ -22,7 +22,7 @@ namespace Stac.Test.Extensions
             Assert.Equal("1.0.0", itemCollection.StacVersion);
 
             Assert.NotEmpty(itemCollection.Features);
-           
+
         }
 
     }

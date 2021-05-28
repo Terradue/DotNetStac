@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -12,7 +12,7 @@ namespace Stac
         private static JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
         {
             DateTimeZoneHandling = DateTimeZoneHandling.Utc
-            
+
         };
 
         public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null) where T : IStacObject

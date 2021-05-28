@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,8 @@ namespace Stac.Collection
         /// Add a value item in the Summary Value Set
         /// </summary>
         /// <param name="item">value item</param>
-        public void Add(T item){
+        public void Add(T item)
+        {
             ((JArray)summary).Add(item);
         }
 
@@ -54,7 +55,7 @@ namespace Stac.Collection
         /// <summary>
         /// Get the Summary Value Set as an enumerable
         /// </summary>
-        public IEnumerable<T> SummarySet { get => summary.ToObject<List<T>>(); } 
+        public IEnumerable<T> SummarySet { get => summary.ToObject<List<T>>(); }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {

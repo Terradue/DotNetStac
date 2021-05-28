@@ -50,4 +50,8 @@ jobs:
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
         # Publish generated site using GitHub Pages
+      - name: Install dotnet format
+        run: dotnet tool update -g dotnet-format
+      - name: Check Format
+        run: dotnet format --check --verbosity diagnostic src/
     

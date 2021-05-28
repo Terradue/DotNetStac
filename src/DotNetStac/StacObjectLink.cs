@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Net.Mime;
 using Newtonsoft.Json;
 
@@ -11,9 +11,9 @@ namespace Stac
         internal StacObjectLink(IStacObject stacObject, Uri uri)
         {
             this.stacObject = stacObject;
-            if ( stacObject is StacItem )
+            if (stacObject is StacItem)
                 this.RelationshipType = "item";
-            if ( stacObject is StacCatalog || stacObject is StacCollection )
+            if (stacObject is StacCatalog || stacObject is StacCollection)
                 this.RelationshipType = "child";
             Uri = uri;
         }
