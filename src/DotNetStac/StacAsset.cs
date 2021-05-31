@@ -79,7 +79,6 @@ namespace Stac
 
         ContentType type;
 
-        Collection<string> roles;
         private Dictionary<string, object> properties;
         private IStacObject parentStacObject;
 
@@ -97,7 +96,7 @@ namespace Stac
         /// <param name="uri">uri to the asset</param>
         public StacAsset(IStacObject stacObject, Uri uri) : this()
         {
-            if (!(stacObject is StacItem || stacObject is StacCollection))
+            if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
             parentStacObject = stacObject;
             Uri = uri;
@@ -114,7 +113,7 @@ namespace Stac
         /// <param name="mediaType">media-type of the asset</param>
         public StacAsset(IStacObject stacObject, Uri uri, IEnumerable<string> roles, string title, ContentType mediaType) : this(stacObject, uri)
         {
-            Roles = roles == null ? new Collection<string>() : new Collection<string>(roles.ToList());
+            Roles = roles == null ? new SortedSet<string>() : new SortedSet<string>(roles.ToList());
             Title = title;
             MediaType = mediaType;
         }
@@ -126,14 +125,16 @@ namespace Stac
         /// <param name="stacObject">new parent stac object</param>
         public StacAsset(StacAsset source, IStacObject stacObject)
         {
-            if (!(stacObject is StacItem || stacObject is StacCollection))
+            if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
             if (source == null)
                 throw new ArgumentNullException("source");
             base_uri = source.base_uri;
             href = source.href;
-            if (source.roles != null)
-                roles = new Collection<string>(source.roles);
+            if (source.Roles != null)
+                Roles = new SortedSet<string>(source.Roles);
+            else 
+                Roles = new SortedSet<string>();
             title = source.title;
             type = source.type;
             description = source.description;

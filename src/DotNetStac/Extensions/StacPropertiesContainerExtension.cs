@@ -106,6 +106,7 @@ namespace Stac.Extensions
         /// </summary>
         protected void DeclareStacExtension()
         {
+            if (StacPropertiesContainer.StacObjectContainer == null) return;
             if (!StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(Identifier))
                 StacPropertiesContainer.StacObjectContainer.StacExtensions.Add(Identifier);
         }
