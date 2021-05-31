@@ -12,9 +12,10 @@ namespace Stac.Extensions.Eo
         /// Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/eo/v1.0.0/schema.json";
 
-        private static IDictionary<string, Type> itemFields;
         private const string BandsField = "eo:bands";
         private const string CloudCoverField = "eo:cloud_cover";
+
+        private static IDictionary<string, Type> itemFields;
 
         internal EoStacExtension(IStacPropertiesContainer stacpropertiesContainer) : base(JsonSchemaUrl, stacpropertiesContainer)
         {
