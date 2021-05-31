@@ -133,7 +133,7 @@ namespace Stac
             href = source.href;
             if (source.Roles != null)
                 Roles = new SortedSet<string>(source.Roles);
-            else 
+            else
                 Roles = new SortedSet<string>();
             title = source.title;
             type = source.type;

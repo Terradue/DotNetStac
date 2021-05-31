@@ -96,11 +96,11 @@ namespace Stac.Test.Extensions
             item.Links.Add(StacLink.CreateSelfLink(new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json")));
             item.SetCollection("CS3", new Uri("http://cool-sat.com/catalog.json"));
 
-            var asset =  new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null);
+            var asset = new StacAsset(item, new Uri("relative-path/to/analytic.tif", UriKind.Relative), null, "4-Band Analytic", null);
 
             asset.EoExtension().CloudCover = 0;
 
-            item.Assets.Add("analytic",asset);
+            item.Assets.Add("analytic", asset);
             item.Assets.Add("thumbnail", StacAsset.CreateThumbnailAsset(item, new Uri("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"), null, "Thumbnail"));
 
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
