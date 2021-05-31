@@ -1,17 +1,19 @@
 ﻿using System;
-using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.Interpolation;
-using GeoJSON.Net.Geometry;
-using MathNet.Numerics;
 using System.Collections;
 using System.Collections.Generic;
+using GeoJSON.Net.Geometry;
+using MathNet.Numerics;
+using MathNet.Numerics.Interpolation;
+using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Double;
 
-namespace Stac.Extensions.Sat {
+namespace Stac.Extensions.Sat
+{
 
-    public class BaselineCalculation {
+    public class BaselineCalculation
+    {
 
-      
+
         /// <summary>Synchronizes the vector.</summary>
         /// <returns>The vector.</returns>
         /// <param name="t0">T0.</param>
@@ -29,11 +31,13 @@ namespace Stac.Extensions.Sat {
             out double maxError,
             int maxIterations = 100,
             double tolerance = 0.00000001
-        ) {
+        )
+        {
             double t = t0;
             double delta = 0;
 
-            for (int i = 0; i < maxIterations; i++) {
+            for (int i = 0; i < maxIterations; i++)
+            {
 
                 double x = groundPoint.Longitude;
                 double y = groundPoint.Latitude;
@@ -51,7 +55,7 @@ namespace Stac.Extensions.Sat {
                 double aym = Ay(t, slave);
                 double azm = Az(t, slave);
 
-                delta = - (vxm * (x - sxm) + vym * (y - sym) + vzm * (z - szm)) / (axm * (x - sxm) + aym * (y - sym) + azm * (z - szm) - vxm * vxm - vym * vym - vzm * vzm);
+                delta = -(vxm * (x - sxm) + vym * (y - sym) + vzm * (z - szm)) / (axm * (x - sxm) + aym * (y - sym) + azm * (z - szm) - vxm * vxm - vym * vym - vzm * vzm);
                 t += delta;
                 if (Math.Abs(delta) < tolerance) break;
 
@@ -75,11 +79,13 @@ namespace Stac.Extensions.Sat {
             out double maxError,
             int maxIterations = 100,
             double tolerance = 0.00000001
-        ) {
+        )
+        {
             double t = t0;
             double delta = 0;
 
-            for (int i = 0; i < maxIterations; i++) {
+            for (int i = 0; i < maxIterations; i++)
+            {
 
                 double x = groundPoint.Longitude;
                 double y = groundPoint.Latitude;
@@ -97,7 +103,7 @@ namespace Stac.Extensions.Sat {
                 double aym = Ay(t, interpol);
                 double azm = Az(t, interpol);
 
-                delta = - (vxm * (x - sxm) + vym * (y - sym) + vzm * (z - szm)) / (axm * (x - sxm) + aym * (y - sym) + azm * (z - szm) - vxm * vxm - vym * vym - vzm * vzm);
+                delta = -(vxm * (x - sxm) + vym * (y - sym) + vzm * (z - szm)) / (axm * (x - sxm) + aym * (y - sym) + azm * (z - szm) - vxm * vxm - vym * vym - vzm * vzm);
                 t += delta;
                 if (Math.Abs(delta) < tolerance) break;
 
@@ -112,10 +118,11 @@ namespace Stac.Extensions.Sat {
         }
 
 
-        public static BaselineVector CalculateBaseline(DateTime[] time, SatOrbitStateVector[] master, SatOrbitStateVector[] slave, IPosition groundPoint) {
+        public static BaselineVector CalculateBaseline(DateTime[] time, SatOrbitStateVector[] master, SatOrbitStateVector[] slave, IPosition groundPoint)
+        {
 
-            var interpolSlave = PolyInterpol(time[1],slave);
-            var interpolMaster = PolyInterpol(time[0],master);
+            var interpolSlave = PolyInterpol(time[1], slave);
+            var interpolMaster = PolyInterpol(time[0], master);
 
             double x = groundPoint.Longitude;
             double y = groundPoint.Latitude;
@@ -129,7 +136,7 @@ namespace Stac.Extensions.Sat {
 
             // Define baseline vector:
             double[] b = new double[3] {
-                Sx(t, interpolSlave) - Sx(t, interpolMaster), 
+                Sx(t, interpolSlave) - Sx(t, interpolMaster),
                 Sy(t, interpolSlave) - Sy(t, interpolMaster),
                 Sz(t, interpolSlave) - Sz(t, interpolMaster)
             };
@@ -149,7 +156,7 @@ namespace Stac.Extensions.Sat {
             double vparMod = Math.Sqrt(vpar[0] * vpar[0] + vpar[1] * vpar[1] + vpar[2] * vpar[2]);
 
             // Parallel unit vector
-            double[] vparUnit = new double[3]; 
+            double[] vparUnit = new double[3];
             for (int k = 0; k < 3; k++) vparUnit[k] = vpar[k] / vparMod;
 
             // Along-track vector
@@ -165,7 +172,7 @@ namespace Stac.Extensions.Sat {
             double[] vaUnit = new double[3];
             for (int k = 0; k < 3; k++) vaUnit[k] = va[k] / vaMod;
 
-            double[] vperpUnit =  VectorProduct3D(vparUnit, vaUnit);
+            double[] vperpUnit = VectorProduct3D(vparUnit, vaUnit);
 
             double bPerp = b[0] * vperpUnit[0] + b[1] * vperpUnit[1] + b[2] * vperpUnit[2];
             double bParallel = b[0] * vparUnit[0] + b[1] * vparUnit[1] + b[2] * vparUnit[2];
@@ -175,7 +182,8 @@ namespace Stac.Extensions.Sat {
 
         }
 
-        public static double[] VectorProduct3D(double[] vectorA, double[] vectorB) {
+        public static double[] VectorProduct3D(double[] vectorA, double[] vectorB)
+        {
             if (vectorA.Length != 3 || vectorB.Length != 3)
                 throw new ArgumentException("3D vector product cannot be calculated, because one of the vectors is not a 3D vector");
             return new double[3] {
@@ -187,69 +195,80 @@ namespace Stac.Extensions.Sat {
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Sx(double time, IInterpolation[] orbitStates) {
+        public static double Sx(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 0);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Sy(double time, IInterpolation[] orbitStates) {
+        public static double Sy(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 1);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Sz(double time, IInterpolation[] orbitStates) {
+        public static double Sz(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 2);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Vx(double time, IInterpolation[] orbitStates) {
+        public static double Vx(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 3);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Vy(double time, IInterpolation[] orbitStates) {
+        public static double Vy(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 4);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Vz(double time, IInterpolation[] orbitStates) {
+        public static double Vz(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 5);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Ax(double time, IInterpolation[] orbitStates) {
+        public static double Ax(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 6);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Ay(double time, IInterpolation[] orbitStates) {
+        public static double Ay(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 7);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static double Az(double time, IInterpolation[] orbitStates) {
+        public static double Az(double time, IInterpolation[] orbitStates)
+        {
             return GetOrbitValue(time, orbitStates, 8);
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        private static double GetOrbitValue(double time, IInterpolation[] interpol, int index) {
-            
+        private static double GetOrbitValue(double time, IInterpolation[] interpol, int index)
+        {
+
             return interpol[index].Interpolate(time);
 
         }
 
         //---------------------------------------------------------------------------------------------------------------------
 
-        public static IInterpolation[] PolyInterpol(DateTime time0, SatOrbitStateVector[] orbitStateVectors){
+        public static IInterpolation[] PolyInterpol(DateTime time0, SatOrbitStateVector[] orbitStateVectors)
+        {
 
             var time = Array.ConvertAll<SatOrbitStateVector, double>(orbitStateVectors, o => o.Time.Subtract(time0).TotalSeconds);
 
@@ -264,10 +283,11 @@ namespace Stac.Extensions.Sat {
             Vector<double> ax1 = DenseVector.Create(vx1.Count, 0.0);
             Vector<double> ay1 = DenseVector.Create(vy1.Count, 0.0);
             Vector<double> az1 = DenseVector.Create(vz1.Count, 0.0);
-            for (int i = 0; i < vx1.Count; i++) {
-                ax1[i] = vx1[i] * i+1;
-                ay1[i] = vy1[i] * i+1;
-                az1[i] = vz1[i] * i+1;
+            for (int i = 0; i < vx1.Count; i++)
+            {
+                ax1[i] = vx1[i] * i + 1;
+                ay1[i] = vy1[i] * i + 1;
+                az1[i] = vz1[i] * i + 1;
             }
 
             IInterpolation[] coeff = new IInterpolation[9];

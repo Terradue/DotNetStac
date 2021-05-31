@@ -1,8 +1,8 @@
-using Stac.Extensions.Sat;
-using Newtonsoft.Json;
-using Xunit;
-using Stac.Extensions;
+﻿using Newtonsoft.Json;
 using Stac.Exceptions;
+using Stac.Extensions;
+using Stac.Extensions.Sat;
+using Xunit;
 
 namespace Stac.Test.Item
 {
@@ -12,7 +12,7 @@ namespace Stac.Test.Item
         public void ThrowInvalidExtensionShortcut()
         {
             Assert.Throws<InvalidStacSchemaException>(() => SchemaBasedStacExtension.Create("item", null, null));
-            
+
         }
 
     }

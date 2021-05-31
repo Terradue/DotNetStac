@@ -1,8 +1,8 @@
+﻿using System;
 using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
-using Xunit;
 using Stac.Extensions.Sar;
-using System;
+using Xunit;
 
 namespace Stac.Test.Item
 {

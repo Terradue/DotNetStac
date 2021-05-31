@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using ProjNet.CoordinateSystems;
 using ProjNet.IO.CoordinateSystems;
@@ -9,7 +9,8 @@ namespace Stac.Extensions.Projection
     {
         private const string filename = @"SRID.csv";
 
-        public struct WKTstring {
+        public struct WKTstring
+        {
             /// <summary>
             /// Well-known ID
             /// </summary>
@@ -50,7 +51,7 @@ namespace Stac.Extensions.Projection
         /// <returns>Coordinate system, or null if SRID was not found.</returns>
         public static CoordinateSystem GetCSbyID(int id)
         {
-   			CoordinateSystemFactory fac = new CoordinateSystemFactory();
+            CoordinateSystemFactory fac = new CoordinateSystemFactory();
             foreach (WKTstring wkt in GetSRIDs())
             {
                 if (wkt.WKID == id)

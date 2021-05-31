@@ -54,7 +54,8 @@
     "assets": {
         "analytic": {
             "href": "relative-path/to/analytic.tif",
-            "title": "4-Band Analytic"
+            "title": "4-Band Analytic",
+            "eo:cloud_cover": 0.0
         },
         "thumbnail": {
             "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",

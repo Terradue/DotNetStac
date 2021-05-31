@@ -1,6 +1,6 @@
-using Newtonsoft.Json;
-using Xunit;
+﻿using Newtonsoft.Json;
 using Stac.Extensions.Processing;
+using Xunit;
 
 namespace Stac.Test.Item
 {

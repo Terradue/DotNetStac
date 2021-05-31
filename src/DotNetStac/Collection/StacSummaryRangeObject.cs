@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Newtonsoft.Json.Linq;
 
 namespace Stac.Collection
@@ -36,14 +36,12 @@ namespace Stac.Collection
         /// <summary>
         /// Minimum of the range
         /// </summary>
-        /// <typeparam name="T">Type of the ordinal value</typeparam>
         /// <returns>Minimum of the range</returns>
         public T Min { get => summary["minimum"].Value<T>(); set => summary["minimum"] = new JValue(value); }
 
         /// <summary>
         /// Maximum of the range
         /// </summary>
-        /// <typeparam name="T">Type of the ordinal value</typeparam>
         /// <returns>Maximum of the range</returns>
         public T Max { get => summary["maximum"].Value<T>(); set => summary["maximum"] = new JValue(value); }
 

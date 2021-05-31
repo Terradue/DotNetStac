@@ -1,18 +1,18 @@
-using System;
-using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Stac.Exceptions;
-using Stac.Extensions.ItemCollections;
-
-namespace Stac
+﻿namespace Stac
 {
-    public class StacConvert
+    using System;
+    using System.IO;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
+    /// <summary>
+    /// Static class with main (de)serialization methods for STAC objects.
+    /// </summary>
+    public static class StacConvert
     {
         private static JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
         {
-            DateTimeZoneHandling = DateTimeZoneHandling.Utc
-            
+            DateTimeZoneHandling = DateTimeZoneHandling.Utc,
         };
 
         public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null) where T : IStacObject
@@ -23,12 +23,16 @@ namespace Stac
             //     || typeof(T) == typeof(ItemCollection))
             //     return JsonConvert.DeserializeObject<T>(json);
             if (serializerSettings == null)
+            {
                 serializerSettings = defaultJsonSerializerSettings;
+            }
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
             JObject jobject = JsonConvert.DeserializeObject<JObject>(json, serializerSettings);
             Type stacType = Utils.IdentifyStacType(jobject);
             if (typeof(T) == typeof(IStacCatalog) && !typeof(IStacCatalog).IsAssignableFrom(stacType))
+            {
                 throw new InvalidCastException(stacType + "is not IStacCatalog");
+            }
             try
             {
                 return (T)jobject.ToObject(stacType);

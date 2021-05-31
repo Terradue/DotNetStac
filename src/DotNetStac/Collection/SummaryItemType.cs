@@ -1,4 +1,4 @@
-namespace Stac.Collection
+﻿namespace Stac.Collection
 {
     /// <summary>
     /// Summary types

@@ -1,4 +1,4 @@
-namespace Stac.Extensions
+﻿namespace Stac.Extensions
 {
     public class SummaryFunction
     {
@@ -8,8 +8,8 @@ namespace Stac.Extensions
 
         public CreateSummary Summarize { get; }
 
-        public SummaryFunction(IStacExtension extension, string propertyName, CreateSummary summaryFunction )
-        
+        public SummaryFunction(IStacExtension extension, string propertyName, CreateSummary summaryFunction)
+
         {
             Extension = extension;
             PropertyName = propertyName;

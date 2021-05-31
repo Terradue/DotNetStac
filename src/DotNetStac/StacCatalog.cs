@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Stac.Converters;
-using Newtonsoft.Json;
-using Stac.Extensions;
 using System.Net.Mime;
-using Semver;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Semver;
+using Stac.Converters;
+using Stac.Extensions;
 
 namespace Stac
 {

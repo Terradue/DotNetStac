@@ -1,10 +1,10 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Schema;
-using Stac.Extensions.ItemCollections;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
+using Stac.Extensions.ItemCollections;
 
 namespace Stac.Schemas
 {

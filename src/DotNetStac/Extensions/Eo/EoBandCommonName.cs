@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Stac.Common;
 
@@ -12,7 +12,7 @@ namespace Stac.Extensions.Eo
     {
         coastal,
         blue,
-        green, 
+        green,
         red,
         yellow,
         pan,
@@ -20,7 +20,7 @@ namespace Stac.Extensions.Eo
         nir,
         nir08,
         nir09,
-        cirrus, 
+        cirrus,
         swir16,
         swir22,
         lwir,
