@@ -1,14 +1,15 @@
 # Changelog
 
-## [Unreleased]
+## [v1.0.0-rc3]
 
 ### Added
 
+more tests for eo extension
+
 ### Fixed
 
-### Changed
-
-### Removed
+- version extension in item properties
+- object null if orpheaned asset
 
 ## [v1.0.0-rc.2]
 
@@ -121,7 +122,8 @@ At the moment of this release, the STAC specification is 1.0.0-rc.4 and minor ch
 
 - Cloned assets
 
-[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/v1.0.0-rc.2...HEAD>
+[Unreleased]: <https://github.com/Terradue/DotnetStac/compare/v1.0.0-rc.3...HEAD>
+[v1.0.0-rc.3]: <https://github.com/Terradue/DotnetStac/tree/v1.0.0-rc.3>
 [v1.0.0-rc.2]: <https://github.com/Terradue/DotnetStac/tree/v1.0.0-rc.2>
 [v1.0.0-rc.1]: <https://github.com/Terradue/DotnetStac/tree/v1.0.0-rc.1>
 [v0.9.1]: <https://github.com/Terradue/DotnetStac/tree/0.9.1>
