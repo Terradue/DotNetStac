@@ -5,7 +5,7 @@
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>rc.2</VersionSuffix>
+    <VersionSuffix>rc.3</VersionSuffix>
     <Authors>Emmanuel Mathot</Authors>
     <Authors>emmanuelmathot</Authors>
     <Company>Terradue</Company>
