@@ -14,7 +14,7 @@
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
     <PackageIcon>stac_logo_128.png</PackageIcon>
     <Copyright>Copyright (c) 2010-2021 by Terradue</Copyright>
-    <!-- <CodeAnalysisRuleSet>$(SolutionDir)StyleCop.ruleset</CodeAnalysisRuleSet> -->
+    <CodeAnalysisRuleSet>$(ProjectDir)StyleCop.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DebugType>full</DebugType>
     <InvariantGlobalization>true</InvariantGlobalization>
@@ -32,7 +32,7 @@
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
     <PackageReference Include="Multiformats.Hash" Version="1.5.0" />
-    <!-- <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" /> -->
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />

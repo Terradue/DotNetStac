@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
-using Stac.Model;
 
 namespace Stac.Extensions.Version
 {
@@ -57,7 +55,6 @@ namespace Stac.Extensions.Version
         /// Potential fields and their types
         /// </summary>
         public override IDictionary<string, Type> ItemFields => itemFields;
-
 
     }
 
