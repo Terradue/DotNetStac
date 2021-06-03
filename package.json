@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "auto-changelog": "^2.3.0"
+  },
+  "auto-changelog": {
+    "output": "CHANGELOG.md",
+    "template": "keepachangelog",
+    "unreleased": true,
+    "commitLimit": false,
+    "hideEmptyReleases": true,
+    "ignoreCommitPattern": "^(.{0,5}|bump.*|ready.*|.*changelog.*)$"
+  }
+}
