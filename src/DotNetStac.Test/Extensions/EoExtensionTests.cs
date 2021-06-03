@@ -109,8 +109,8 @@ namespace Stac.Test.Extensions
             EoStacExtension eo = item.EoExtension();
             eo.CloudCover = 0;
 
-            Assert.Equal<double>(0, eo.CloudCover);
-            Assert.Equal<double>(0, double.Parse(asset.Properties["eo:cloud_cover"].ToString()));
+            Assert.Equal<double>(0.0, eo.CloudCover.Value);
+            Assert.Equal<double>(0.0, double.Parse(asset.Properties["eo:cloud_cover"].ToString()));
 
             var actualJson = StacConvert.Serialize(item);
 
