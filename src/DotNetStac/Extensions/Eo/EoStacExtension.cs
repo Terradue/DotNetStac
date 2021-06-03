@@ -27,10 +27,16 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// Estimate of cloud cover
         /// </summary>
-        public double CloudCover
+        public double? CloudCover
         {
-            get { return StacPropertiesContainer.GetProperty<double>(CloudCoverField); }
-            set { StacPropertiesContainer.SetProperty(CloudCoverField, value); DeclareStacExtension(); }
+            get { return StacPropertiesContainer.GetProperty<double?>(CloudCoverField); }
+            set
+            {
+                if (value == null)
+                    StacPropertiesContainer.RemoveProperty(CloudCoverField);
+                else
+                    StacPropertiesContainer.SetProperty(CloudCoverField, value); DeclareStacExtension();
+            }
         }
 
         /// <summary>
