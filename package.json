@@ -5,9 +5,10 @@
   "auto-changelog": {
     "output": "CHANGELOG.md",
     "template": "keepachangelog",
-    "unreleased": true,
+    "unreleased": false,
     "commitLimit": false,
     "hideEmptyReleases": true,
-    "ignoreCommitPattern": "^(.{0,5}|bump.*|ready.*|.*changelog.*)$"
+    "ignoreCommitPattern": "^(.{0,5}|bump.*|ready.*|.*changelog.*)$",
+    "releaseSummary": true
   }
 }
