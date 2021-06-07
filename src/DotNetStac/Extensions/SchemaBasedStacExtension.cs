@@ -13,11 +13,11 @@ namespace Stac.Extensions
     {
         private readonly IStacObject stacObject;
 
-        public SchemaBasedStacExtension(JSchema jsonSchema,
-                                        IStacObject stacObject) : base(jsonSchema.Id.ToString(),
+        public SchemaBasedStacExtension(Uri jsonSchema,
+                                        IStacObject stacObject) : base(jsonSchema.ToString(),
                                                                        stacObject)
         {
-            Preconditions.CheckNotNull<JSchema>(jsonSchema, "jsonSchema");
+            Preconditions.CheckNotNull<Uri>(jsonSchema, "jsonSchema");
             JsonSchema = jsonSchema;
             this.stacObject = stacObject;
         }
@@ -29,7 +29,7 @@ namespace Stac.Extensions
         {
             Preconditions.CheckNotNull<Uri>(schemaUri, "schemaUri");
             this.stacObject = stacObject;
-            JsonSchema = stacSchemaResolver.LoadSchema(schemaUri.ToString());
+            JsonSchema = schemaUri;
         }
 
 
@@ -39,13 +39,14 @@ namespace Stac.Extensions
         {
             if (StacSchemaResolver.CoreTypes.Contains(shortcut))
                 throw new Exceptions.InvalidStacSchemaException(shortcut + "is not an extension");
-            var jsonSchema = stacSchemaResolver.LoadSchema(version: stacObject.StacVersion.ToString(), shortcut: shortcut);
-            return new SchemaBasedStacExtension(jsonSchema, stacObject);
+            Uri schema = new Uri($"https://stac-extensions.github.io/{shortcut}/v1.0.0/schema.json");
+
+            return new SchemaBasedStacExtension(schema, stacObject);
         }
 
-        public override string Identifier => JsonSchema.Id.ToString();
+        public override string Identifier => JsonSchema.ToString();
 
-        public JSchema JsonSchema { get; }
+        public Uri JsonSchema { get; }
 
         public override IDictionary<string, Type> ItemFields => new Dictionary<string, Type>();
     }

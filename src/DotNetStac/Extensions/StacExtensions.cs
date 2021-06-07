@@ -75,13 +75,11 @@ namespace Stac.Extensions
                 catch { }
             }
 
-            string shortcut = null, baseUrl = null;
+            Uri schema = null;
             if (Uri.IsWellFormedUriString(stacExtension, UriKind.Absolute))
-                baseUrl = stacExtension;
+                schema = new Uri(stacExtension);
             else
-                shortcut = stacExtension;
-            var schema = new StacSchemaResolver(new JSchemaUrlResolver())
-                .LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: stacObject.StacVersion.ToString());
+                schema = new Uri($"https://stac-extensions.github.io/{stacExtension}/v1.0.0/schema.json");
 
             return new SchemaBasedStacExtension(schema, stacObject);
         }
