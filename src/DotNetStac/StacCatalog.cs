@@ -19,7 +19,7 @@ namespace Stac
         /// <summary>
         /// Catalog Media-Type string
         /// </summary>
-        public const string MEDIATYPE = "application/json; profile=stac-catalog";
+        public const string MEDIATYPE = "application/json";
 
         /// <summary>
         /// Catalog Media-Type Object
