@@ -67,5 +67,26 @@ namespace Stac.Test.Catalog
             StacObjectLink stacObjectLink = (StacObjectLink)StacLink.CreateObjectLink(simpleCollection, new Uri("file:///test"));
         }
 
+        [Fact]
+        public void CatalogClone()
+        {
+            var simpleJson = GetJson("Catalog", "CanDeserializeMinimalSample");
+            ValidateJson(simpleJson);
+            StacCatalog simpleCollection = StacConvert.Deserialize<StacCatalog>(simpleJson);
+            StacCatalog simpleCollectionClone = new StacCatalog(simpleCollection);
+
+            var clonedJson = JsonConvert.SerializeObject(simpleCollectionClone);
+            ValidateJson(clonedJson);
+
+            JsonAssert.AreEqual(simpleJson, clonedJson);
+
+            simpleCollectionClone = (StacCatalog)simpleCollection.Clone();
+
+            clonedJson = JsonConvert.SerializeObject(simpleCollectionClone);
+            ValidateJson(clonedJson);
+
+            JsonAssert.AreEqual(simpleJson, clonedJson);
+        }
+
     }
 }

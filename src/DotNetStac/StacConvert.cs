@@ -1,6 +1,7 @@
 ﻿namespace Stac
 {
     using System;
+    using System.Globalization;
     using System.IO;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -13,6 +14,7 @@
         private static JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
         {
             DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+            Culture = CultureInfo.CreateSpecificCulture("en-US"),
         };
 
         public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null) where T : IStacObject
@@ -46,7 +48,9 @@
         public static string Serialize(IStacObject stacObject, JsonSerializerSettings serializerSettings = null)
         {
             if (serializerSettings == null)
+            {
                 serializerSettings = defaultJsonSerializerSettings;
+            }
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
             return JsonConvert.SerializeObject(stacObject, serializerSettings);
         }

@@ -299,5 +299,26 @@ namespace Stac.Test.Item
             // extent = StacGeometryHelpers.GetBoundingBox(gcollection);
             // Assert.Equal<IPosition>(extentCheck.First().ToArray(), extent);
         }
+
+        [Fact]
+        public void ItemClone()
+        {
+            var simpleJson = GetJson("Item");
+            ValidateJson(simpleJson);
+            StacItem simpleItem = StacConvert.Deserialize<StacItem>(simpleJson);
+            StacItem simpleItemClone = new StacItem(simpleItem);
+
+            var clonedJson = StacConvert.Serialize(simpleItemClone);
+            ValidateJson(clonedJson);
+
+            JsonAssert.AreEqual(simpleJson, clonedJson);
+
+            simpleItemClone = (StacItem)simpleItem.Clone();
+
+            clonedJson = StacConvert.Serialize(simpleItemClone);
+            ValidateJson(clonedJson);
+
+            JsonAssert.AreEqual(simpleJson, clonedJson);
+        }
     }
 }

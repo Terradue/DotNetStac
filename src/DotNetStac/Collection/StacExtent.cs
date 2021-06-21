@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -9,30 +10,41 @@ namespace Stac.Collection
     /// <seealso href="https://github.com/radiantearth/stac-spec/blob/dev/collection-spec/collection-spec.md#extent-object">STAC Extent Object</seealso>
     /// </summary>
     [JsonObject]
-    public class StacExtent
+    public class StacExtent : ICloneable
     {
         /// <summary>
         /// Initialise a new instance of the <see cref="StacExtent" /> class.
         /// </summary>
-        /// <param name="spatial">Spatial Extent</param>
-        /// <param name="temporal">Temporal Extent</param>
+        /// <param name="spatial">Spatial Extent.</param>
+        /// <param name="temporal">Temporal Extent.</param>
+        [JsonConstructor]
         public StacExtent(StacSpatialExtent spatial, StacTemporalExtent temporal)
         {
-            Spatial = spatial;
-            Temporal = temporal;
+            this.Spatial = spatial;
+            this.Temporal = temporal;
         }
 
         /// <summary>
-        /// Potential <see cref="StacSpatialExtent" /> covered by the Collection.
+        /// Initialize a new Stac Extent from an existing one (clone).
         /// </summary>
-        /// <value>Gets/sets the spatial extent</value>
+        /// <param name="extent"></param>
+        public StacExtent(StacExtent extent)
+        {
+            this.Spatial = new StacSpatialExtent(extent.Spatial);
+            this.Temporal = new StacTemporalExtent(extent.Temporal);
+        }
+
+        /// <summary>
+        /// Gets or sets Potential <see cref="StacSpatialExtent" /> covered by the Collection.
+        /// </summary>
+        /// <value>The spatial extent.</value>
         [JsonProperty("spatial")]
         public StacSpatialExtent Spatial { get; set; }
 
         /// <summary>
-        /// Potential <see cref="StacTemporalExtent" /> covered by the Collection.
+        /// Gets or sets Potential <see cref="StacTemporalExtent" /> covered by the Collection.
         /// </summary>
-        /// <value>Gets/sets the temporal extent</value>
+        /// <value>The temporal extent.</value>
         [JsonProperty("temporal")]
         public StacTemporalExtent Temporal { get; set; }
 
@@ -50,6 +62,11 @@ namespace Stac.Collection
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[3])),
                 new StacTemporalExtent(items.Min(i => i.DateTime.Start), items.Max(i => i.DateTime.End))
             );
+        }
+
+        public object Clone()
+        {
+            return new StacExtent(this);
         }
     }
 }
