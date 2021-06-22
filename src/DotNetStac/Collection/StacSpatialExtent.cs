@@ -29,7 +29,7 @@ namespace Stac.Collection
         /// <param name="spatial"></param>
         public StacSpatialExtent(StacSpatialExtent spatial)
         {
-            this.BoundingBoxes = (double[][])spatial.BoundingBoxes.Clone(); 
+            this.BoundingBoxes = (double[][])spatial.BoundingBoxes.Clone();
         }
 
         /// <summary>

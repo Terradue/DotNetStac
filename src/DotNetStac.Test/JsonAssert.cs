@@ -44,7 +44,8 @@ namespace Stac.Test
 
         private static IList<JsonConverter> GetConverters()
         {
-            return new List<JsonConverter>(){
+            return new List<JsonConverter>()
+            {
             };
         }
 
