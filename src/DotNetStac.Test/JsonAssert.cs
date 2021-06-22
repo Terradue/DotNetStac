@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
@@ -25,14 +28,25 @@ namespace Stac.Test
                 JsonConvert.SerializeObject(JObject.Parse(expectJson).SortProperties(),
                     new JsonSerializerSettings
                     {
-                        DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                        DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                        Culture = CultureInfo.CreateSpecificCulture("en-US"),
+                        Converters = GetConverters()
                     }),
                 JsonConvert.SerializeObject(JObject.Parse(actualJson).SortProperties(),
                     new JsonSerializerSettings
                     {
-                        DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                        DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                        Culture = CultureInfo.CreateSpecificCulture("en-US"),
+                        Converters = GetConverters()
                     })
             );
+        }
+
+        private static IList<JsonConverter> GetConverters()
+        {
+            return new List<JsonConverter>()
+            {
+            };
         }
 
         /// <summary>

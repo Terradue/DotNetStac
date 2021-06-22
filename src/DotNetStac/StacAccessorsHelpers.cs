@@ -106,6 +106,16 @@ namespace Stac
             stacItem.Collection = collectionId;
         }
 
+        /// <summary>
+        /// Gets the collection of the Item as a StacLink
+        /// </summary>
+        /// <param name="stacItem"></param>
+        /// <returns>a Stac Link</returns>
+        public static StacLink GetCollection(this StacItem stacItem)
+        {
+            return stacItem.Links.FirstOrDefault(l => l.RelationshipType == "collection");
+        }
+
         public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
             if (collection is List<T> list)

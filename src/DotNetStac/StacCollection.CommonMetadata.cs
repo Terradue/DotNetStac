@@ -10,7 +10,7 @@ namespace Stac
     /// They are often used in STAC Item properties, but can also be used in other places, e.g. an Item Asset or Collection Asset.
     /// <seealso href="https://github.com/radiantearth/stac-spec/blob/dev/item-spec/common-metadata.md">STAC Common Metadata</seealso>
     /// </summary>
-    public partial class StacCollection : IStacObject, IStacParent, IStacCatalog
+    public partial class StacCollection : IStacObject, IStacParent, IStacCatalog, ICloneable
     {
 
         /// <summary>
@@ -154,6 +154,7 @@ namespace Stac
                 }
             }
         }
+
 
     }
 }

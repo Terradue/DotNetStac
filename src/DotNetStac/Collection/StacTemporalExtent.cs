@@ -10,6 +10,8 @@ namespace Stac.Collection
     [JsonObject]
     public class StacTemporalExtent
     {
+
+
         /// <summary>
         /// Initialize a new instance of the <see cref="StacTemporalExtent" /> class with a single extent.
         /// </summary>
@@ -19,6 +21,15 @@ namespace Stac.Collection
         public StacTemporalExtent(DateTime? start, DateTime? end)
         {
             Interval = new DateTime?[1][] { new DateTime?[2] { start, end } };
+        }
+
+        /// <summary>
+        /// Intialize a new Stac Temporal Extent from an exisiting one (clone)
+        /// </summary>
+        /// <param name="temporal"></param>
+        public StacTemporalExtent(StacTemporalExtent temporal)
+        {
+            this.Interval = (System.DateTime?[][])temporal.Interval.Clone();
         }
 
         /// <summary>

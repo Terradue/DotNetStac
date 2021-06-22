@@ -16,7 +16,7 @@ namespace Stac
     /// STAC Collection Object implementing STAC Collection spec (https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md)
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore, MemberSerialization = MemberSerialization.OptIn)]
-    public partial class StacCollection : IStacObject, IStacParent, IStacCatalog
+    public partial class StacCollection : IStacObject, IStacParent, IStacCatalog, ICloneable
     {
         public const string MEDIATYPE = "application/json";
         public readonly static ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);
@@ -50,7 +50,26 @@ namespace Stac
             this.Extent = extent;
         }
 
-        # region IStacObject
+        /// <summary>
+        /// Initialize a new Stac Collection from an existing one (clone)
+        /// </summary>
+        /// <param name="stacCollection">existing Stac Collection</param>
+        public StacCollection(StacCollection stacCollection)
+        {
+            this.Id = stacCollection.Id;
+            this.StacExtensions = new SortedSet<string>(stacCollection.StacExtensions);
+            this.StacVersion = stacCollection.StacVersion;
+            this.Links = new Collection<StacLink>(stacCollection.Links.ToList());
+            this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>(stacCollection.Summaries);
+            this.Properties = new Dictionary<string, object>(stacCollection.Properties);
+            this.Assets = new Dictionary<string, StacAsset>(stacCollection.Assets);
+            this.Providers = new Collection<StacProvider>(stacCollection.Providers);
+            this.License = stacCollection.License;
+            this.Keywords = new Collection<string>(stacCollection.Keywords);
+            this.Extent = new StacExtent(stacCollection.Extent);
+        }
+
+        #region IStacObject
 
         /// <summary>
         /// Identifier for the Collection.
@@ -88,7 +107,7 @@ namespace Stac
         [JsonIgnore]
         public ContentType MediaType => COLLECTION_MEDIATYPE;
 
-        # endregion IStacObject
+        #endregion IStacObject
 
         /// <summary>
         /// STAC type (Collection)
@@ -229,5 +248,14 @@ namespace Stac
         }
 
         #endregion
+
+        /// <summary>
+        /// Clone this object.
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return new StacCollection(this);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Stac
         /// <summary>
         /// Catalog Media-Type string
         /// </summary>
-        public const string MEDIATYPE = "application/json; profile=stac-catalog";
+        public const string MEDIATYPE = "application/json";
 
         /// <summary>
         /// Catalog Media-Type Object
@@ -46,6 +46,20 @@ namespace Stac
                 this.Links = new Collection<StacLink>(links.ToList());
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
+        }
+
+        /// <summary>
+        /// Initialize a new Stac Catalog from an existing one (clone)
+        /// </summary>
+        /// <param name="stacCatalog">existing Stac Catalog</param>
+        public StacCatalog(StacCatalog stacCatalog)
+        {
+            this.Id = stacCatalog.Id;
+            this.StacExtensions = new SortedSet<string>(stacCatalog.StacExtensions);
+            this.StacVersion = stacCatalog.StacVersion;
+            this.Links = new Collection<StacLink>(stacCatalog.Links.ToList());
+            this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>(stacCatalog.Summaries);
+            this.Properties = new Dictionary<string, object>(stacCatalog.Properties);
         }
 
         # region IStacObject

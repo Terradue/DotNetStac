@@ -17,7 +17,7 @@ namespace Stac
     /// STAC Item Object implementing STAC Item spec (https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md)
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore, MemberSerialization = MemberSerialization.OptIn)]
-    public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
+    public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, ICloneable
     {
         public const string MEDIATYPE = "application/geo+json";
         public readonly static ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
@@ -160,6 +160,15 @@ namespace Stac
         {
             // don't serialize the Manager property if an employee is their own manager
             return StacExtensions.Count > 0;
+        }
+
+        /// <summary>
+        /// Create a new Stac Item from this existing one
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return new StacItem(this);
         }
 
         [JsonIgnore]

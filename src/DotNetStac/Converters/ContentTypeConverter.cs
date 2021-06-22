@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
 using System.Net.Mime;
 using Newtonsoft.Json;
 
@@ -15,7 +18,8 @@ namespace Stac
         {
             try
             {
-                return new ContentType((string)reader.Value);
+                var ct = new ContentType((string)reader.Value);
+                return ct;
             }
             catch (Exception e)
             {

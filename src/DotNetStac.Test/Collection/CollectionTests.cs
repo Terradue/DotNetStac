@@ -237,7 +237,26 @@ namespace Stac.Test.Collection
             StacObjectLink stacObjectLink = (StacObjectLink)StacLink.CreateObjectLink(simpleCollection, new Uri("file:///test"));
         }
 
+        [Fact]
+        public void CollectionClone()
+        {
+            var simpleJson = GetJson("Collection");
+            ValidateJson(simpleJson);
+            StacCollection simpleCollection = StacConvert.Deserialize<StacCollection>(simpleJson);
+            StacCollection simpleCollectionClone = new StacCollection(simpleCollection);
 
+            var clonedJson = StacConvert.Serialize(simpleCollectionClone);
+            ValidateJson(clonedJson);
+
+            JsonAssert.AreEqual(simpleJson, clonedJson);
+
+            simpleCollectionClone = (StacCollection)simpleCollection.Clone();
+
+            clonedJson = StacConvert.Serialize(simpleCollectionClone);
+            ValidateJson(clonedJson);
+
+            JsonAssert.AreEqual(simpleJson, clonedJson);
+        }
 
     }
 }
