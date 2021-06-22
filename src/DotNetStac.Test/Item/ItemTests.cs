@@ -303,7 +303,7 @@ namespace Stac.Test.Item
         [Fact]
         public void ItemClone()
         {
-            var simpleJson = GetJson("Item");
+            var simpleJson = GetJson("Item", "ItemCloneIn");
             ValidateJson(simpleJson);
             StacItem simpleItem = StacConvert.Deserialize<StacItem>(simpleJson);
             StacItem simpleItemClone = new StacItem(simpleItem);
@@ -311,14 +311,15 @@ namespace Stac.Test.Item
             var clonedJson = StacConvert.Serialize(simpleItemClone);
             ValidateJson(clonedJson);
 
-            JsonAssert.AreEqual(simpleJson, clonedJson);
+            var expectedJson = GetJson("Item");
+            JsonAssert.AreEqual(simpleJson, expectedJson);
 
             simpleItemClone = (StacItem)simpleItem.Clone();
 
             clonedJson = StacConvert.Serialize(simpleItemClone);
             ValidateJson(clonedJson);
 
-            JsonAssert.AreEqual(simpleJson, clonedJson);
+            JsonAssert.AreEqual(simpleJson, expectedJson);
         }
     }
 }
