@@ -79,7 +79,7 @@ namespace Stac.Converters
         {
             Dictionary<string, IStacSummaryItem> summaries = (Dictionary<string, IStacSummaryItem>)value;
 
-            serializer.Serialize(writer, summaries.ToDictionary(k => k.Key, k => k.Value.AsJToken));
+            serializer.Serialize(writer, summaries.Where(k => k.Value != null).ToDictionary(k => k.Key, k => k.Value.AsJToken));
         }
     }
 }

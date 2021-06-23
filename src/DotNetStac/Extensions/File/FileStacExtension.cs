@@ -83,6 +83,12 @@ namespace Stac.Extensions.File
         /// </summary>
         public StacAsset StacAsset => base.StacPropertiesContainer as StacAsset;
 
+        public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
+        {
+            Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
+            return summaryFunctions;
+        }
+
     }
 
     /// <summary>

@@ -41,6 +41,8 @@ namespace Stac.Collection
         /// </summary>
         public JToken AsJToken => summary;
 
+        public abstract IEnumerable<object> Enumerate();
+
         /// <summary>
         /// Get Enumerator of object children
         /// </summary>

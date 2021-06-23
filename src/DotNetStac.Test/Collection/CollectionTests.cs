@@ -258,5 +258,32 @@ namespace Stac.Test.Collection
             JsonAssert.AreEqual(simpleJson, clonedJson);
         }
 
+        [Fact]
+        public void UpdateCollection()
+        {
+            var collectionJson = GetJson("Collection", "CanDeserializeSentinel2Sample");
+
+            ValidateJson(collectionJson);
+
+            var collection = StacConvert.Deserialize<StacCollection>(collectionJson);
+
+            var itemJson = GetJson("Collection", "K3A_20200508102646_28267_00027320_L1G");
+
+            ValidateJson(itemJson);
+
+            var item = StacConvert.Deserialize<StacItem>(itemJson);
+
+            Dictionary<Uri, StacItem> items = new Dictionary<Uri, StacItem>();
+            items.Add(new Uri("http://test/test.json"), item);
+
+            collection.Update(items);
+
+            var actualJson = StacConvert.Serialize(collection);
+
+            var expectedJson = GetJson("Collection");
+
+            JsonAssert.AreEqual(expectedJson, actualJson);
+        }
+
     }
 }
