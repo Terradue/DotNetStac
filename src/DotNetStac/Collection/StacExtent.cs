@@ -84,10 +84,10 @@ namespace Stac.Collection
                                                  .Concat(new double[] { this.Spatial.BoundingBoxes[0][3] })
                                                  .Max());
             Temporal = new StacTemporalExtent(items.Select(i => i.DateTime.Start)
-                                                   .Concat(new DateTime[]{this.Temporal.Interval[0][0].GetValueOrDefault()})
+                                                   .Concat(new DateTime[] { this.Temporal.Interval[0][0].GetValueOrDefault() })
                                                    .Min(),
                                               items.Select(i => i.DateTime.End)
-                                                   .Concat(new DateTime[]{this.Temporal.Interval[0][1].GetValueOrDefault()})
+                                                   .Concat(new DateTime[] { this.Temporal.Interval[0][1].GetValueOrDefault() })
                                                    .Max());
         }
     }
