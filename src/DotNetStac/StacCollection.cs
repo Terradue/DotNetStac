@@ -44,7 +44,6 @@ namespace Stac
                 this.Assets = new Dictionary<string, StacAsset>(assets);
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
-            this.Providers = new Collection<StacProvider>();
             this.License = license;
             this.Keywords = new Collection<string>();
             this.Extent = extent;
@@ -63,7 +62,6 @@ namespace Stac
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>(stacCollection.Summaries);
             this.Properties = new Dictionary<string, object>(stacCollection.Properties);
             this.Assets = new Dictionary<string, StacAsset>(stacCollection.Assets);
-            this.Providers = new Collection<StacProvider>(stacCollection.Providers);
             this.License = stacCollection.License;
             this.Keywords = new Collection<string>(stacCollection.Keywords);
             this.Extent = new StacExtent(stacCollection.Extent);

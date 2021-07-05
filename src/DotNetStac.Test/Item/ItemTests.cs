@@ -321,5 +321,25 @@ namespace Stac.Test.Item
 
             JsonAssert.AreEqual(simpleJson, expectedJson);
         }
+
+        [Fact]
+        public void ItemProviders()
+        {
+            var simpleJson = GetJson("Item", "ItemProvidersIn");
+            ValidateJson(simpleJson);
+            StacItem simpleItem = StacConvert.Deserialize<StacItem>(simpleJson);
+
+            simpleItem.Providers.Add(new StacProvider("ESA", new StacProviderRole[] { StacProviderRole.licensor }));
+
+            Assert.Contains<string, object>("providers", simpleItem.Properties);
+
+            simpleItem.Providers.RemoveAt(0);
+
+            Assert.DoesNotContain<string, object>("providers", simpleItem.Properties);
+
+            var newJson = StacConvert.Serialize(simpleItem);
+            ValidateJson(newJson);
+
+        }
     }
 }
