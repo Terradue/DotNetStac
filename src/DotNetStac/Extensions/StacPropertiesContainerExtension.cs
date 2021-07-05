@@ -121,6 +121,27 @@ namespace Stac.Extensions
                 StacPropertiesContainer.StacObjectContainer.StacExtensions.Add(Identifier);
         }
 
+        /// <summary>
+        /// Remove the extension in the STAC object
+        /// </summary>
+        protected void RemoveStacExtension()
+        {
+            if (StacPropertiesContainer.StacObjectContainer == null) return;
+            if (StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(Identifier))
+                StacPropertiesContainer.StacObjectContainer.StacExtensions.Remove(Identifier);
+        }
 
+        public void SetProperty(string key, object value)
+        {
+            this.SetProperty(key, value);
+            DeclareStacExtension();
+        }
+
+        public void RemoveProperty(string key)
+        {
+            this.RemoveProperty(key);
+            if (!StacPropertiesContainer.Properties.Any(p => ItemFields.ContainsKey(p.Key)))
+                RemoveStacExtension();
+        }
     }
 }
