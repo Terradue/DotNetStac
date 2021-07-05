@@ -34,7 +34,8 @@ namespace Stac.Extensions.Eo
             {
                 if (value == null)
                     StacPropertiesContainer.RemoveProperty(CloudCoverField);
-                else{
+                else
+                {
                     StacPropertiesContainer.SetProperty(CloudCoverField, value); DeclareStacExtension();
                 }
             }
