@@ -40,9 +40,9 @@ namespace Stac.Extensions.ItemCollections
 
         public bool IsDeclared => true;
 
-        public IDictionary<string, SummaryFunction> GetSummaryFunctions()
+        public IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
-            return new Dictionary<string, SummaryFunction>();
+            return new Dictionary<string, ISummaryFunction>();
         }
 
         internal static JSchema GenerateJSchema(string version)

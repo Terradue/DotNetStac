@@ -84,6 +84,13 @@ namespace Stac.Extensions.Projection
             Wkt2 = cs.WKT;
             Epsg = srid;
         }
+
+        public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
+        {
+            Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
+            summaryFunctions.Add(EpsgField, new SummaryFunction<int>(this, EpsgField, CreateSummaryValueSet<int>));
+            return summaryFunctions;
+        }
     }
 
     public class CentroidObject

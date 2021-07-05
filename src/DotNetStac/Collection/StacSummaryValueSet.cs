@@ -62,5 +62,9 @@ namespace Stac.Collection
             return SummarySet.GetEnumerator();
         }
 
+        public override IEnumerable<object> Enumerate()
+        {
+            return this;
+        }
     }
 }

@@ -34,8 +34,9 @@ namespace Stac.Extensions.Eo
             {
                 if (value == null)
                     StacPropertiesContainer.RemoveProperty(CloudCoverField);
-                else
+                else{
                     StacPropertiesContainer.SetProperty(CloudCoverField, value); DeclareStacExtension();
+                }
             }
         }
 
@@ -61,6 +62,13 @@ namespace Stac.Extensions.Eo
         /// Potential fields and their types
         /// </summary>
         public override IDictionary<string, Type> ItemFields => itemFields;
+
+        public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
+        {
+            Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
+            summaryFunctions.Add(CloudCoverField, new SummaryFunction<double>(this, CloudCoverField, CreateRangeSummaryObject<double>));
+            return summaryFunctions;
+        }
     }
 
     /// <summary>

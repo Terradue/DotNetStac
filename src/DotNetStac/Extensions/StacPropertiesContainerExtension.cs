@@ -7,7 +7,7 @@ using Newtonsoft.Json.Schema;
 using Stac.Collection;
 using Stac.Exceptions;
 
-public delegate IStacSummaryItem CreateSummary(IEnumerable<object> arg);
+public delegate IStacSummaryItem CreateSummary<T>(IEnumerable<T> arg);
 
 namespace Stac.Extensions
 {
@@ -56,18 +56,28 @@ namespace Stac.Extensions
         /// Get he potential summary functions for each field that can be summarized
         /// </summary>
         /// <returns></returns>
-        public virtual IDictionary<string, SummaryFunction> GetSummaryFunctions()
+        public virtual IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
-
-            Dictionary<string, SummaryFunction> summaryFunctions = new Dictionary<string, SummaryFunction>();
+            Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
 
             foreach (var itemField in ItemFields)
             {
-                CreateSummary summaryFunction = CreateSummaryValueSet;
-                if (itemField.Value == typeof(bool) || itemField.Value == typeof(short) || itemField.Value == typeof(int) || itemField.Value == typeof(long) ||
-                        itemField.Value == typeof(float) || itemField.Value == typeof(double) || itemField.Value == typeof(DateTime))
-                    summaryFunction = CreateRangeSummaryObject;
-                summaryFunctions.Add(itemField.Key, new SummaryFunction(this, itemField.Key, summaryFunction));
+                if (itemField.Value == typeof(bool))
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<bool>(this, itemField.Key, CreateSummaryValueSet<bool>));
+                else if (itemField.Value == typeof(short))
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<short>(this, itemField.Key, CreateRangeSummaryObject<short>));
+                else if (itemField.Value == typeof(int))
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<int>(this, itemField.Key, CreateRangeSummaryObject<int>));
+                else if (itemField.Value == typeof(long))
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<long>(this, itemField.Key, CreateRangeSummaryObject<long>));
+                else if (itemField.Value == typeof(float))
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<float>(this, itemField.Key, CreateRangeSummaryObject<float>));
+                else if (itemField.Value == typeof(double))
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<double>(this, itemField.Key, CreateRangeSummaryObject<double>));
+                else if (itemField.Value == typeof(DateTime))
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<DateTime>(this, itemField.Key, CreateRangeSummaryObject<DateTime>));
+                else
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<string>(this, itemField.Key, CreateSummaryValueSet<string>));
             }
             return summaryFunctions;
         }
@@ -76,7 +86,7 @@ namespace Stac.Extensions
         /// Generic method to summarize in a range any ordinal object
         /// </summary>
         /// <param name="arg">ordinal object</param>
-        public static IStacSummaryItem CreateRangeSummaryObject(IEnumerable<object> arg)
+        public static IStacSummaryItem CreateRangeSummaryObject<T>(IEnumerable<T> arg)
         {
             return new StacSummaryRangeObject<object>(arg.Min(), arg.Max());
         }
@@ -86,9 +96,9 @@ namespace Stac.Extensions
         /// </summary>
         /// <param name="arg"></param>
         /// <returns></returns>
-        public static StacSummaryValueSet<object> CreateSummaryValueSet(IEnumerable<object> arg)
+        public static StacSummaryValueSet<T> CreateSummaryValueSet<T>(IEnumerable<T> arg)
         {
-            return new StacSummaryValueSet<object>(arg.Distinct());
+            return new StacSummaryValueSet<T>(arg.Distinct());
         }
 
         /// <summary>
@@ -96,10 +106,10 @@ namespace Stac.Extensions
         /// </summary>
         /// <param name="arg">an array</param>
         /// <returns></returns>
-        internal static IStacSummaryItem CreateSummaryValueSetFromArrays(IEnumerable<object> arg)
-        {
-            return new StacSummaryValueSet<object>(arg.SelectMany(a => a as IEnumerable<object>).Distinct());
-        }
+        // internal static IStacSummaryItem CreateSummaryValueSetFromArrays<T>(IEnumerable<T> arg)
+        // {
+        //     return new StacSummaryValueSet<T>(arg.SelectMany(a => a as IEnumerable<T>).Distinct());
+        // }
 
         /// <summary>
         /// Declares the extension in the STAC object
@@ -111,6 +121,27 @@ namespace Stac.Extensions
                 StacPropertiesContainer.StacObjectContainer.StacExtensions.Add(Identifier);
         }
 
+        /// <summary>
+        /// Remove the extension in the STAC object
+        /// </summary>
+        protected void RemoveStacExtension()
+        {
+            if (StacPropertiesContainer.StacObjectContainer == null) return;
+            if (StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(Identifier))
+                StacPropertiesContainer.StacObjectContainer.StacExtensions.Remove(Identifier);
+        }
 
+        public void SetProperty(string key, object value)
+        {
+            this.SetProperty(key, value);
+            DeclareStacExtension();
+        }
+
+        public void RemoveProperty(string key)
+        {
+            this.RemoveProperty(key);
+            if (!StacPropertiesContainer.Properties.Any(p => ItemFields.ContainsKey(p.Key)))
+                RemoveStacExtension();
+        }
     }
 }

@@ -10,6 +10,6 @@ namespace Stac.Extensions
 
         bool IsDeclared { get; }
 
-        IDictionary<string, SummaryFunction> GetSummaryFunctions();
+        IDictionary<string, ISummaryFunction> GetSummaryFunctions();
     }
 }
