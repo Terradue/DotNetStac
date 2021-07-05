@@ -40,7 +40,7 @@ namespace Stac
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </summary>
         /// <value></value>
-        public Collection<StacProvider> Providers  => this.GetObservableCollectionProperty<StacProvider>("providers");
+        public Collection<StacProvider> Providers => this.GetObservableCollectionProperty<StacProvider>("providers");
 
         public string Platform
         {

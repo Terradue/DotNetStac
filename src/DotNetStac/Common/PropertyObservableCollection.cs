@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace Stac.Common
         private void ObservableCollectionInPropertiesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             PropertiesContainer.RemoveProperty(Key);
-            if ( this.Count == 0 ) return;
+            if (this.Count == 0) return;
             PropertiesContainer.SetProperty(Key, this.ToList());
         }
     }
