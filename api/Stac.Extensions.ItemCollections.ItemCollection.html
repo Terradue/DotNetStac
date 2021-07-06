@@ -1,0 +1,504 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ItemCollection
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ItemCollection
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Stac.Extensions.ItemCollections.ItemCollection">
+  
+  
+  <h1 id="Stac_Extensions_ItemCollections_ItemCollection" data-uid="Stac.Extensions.ItemCollections.ItemCollection" class="text-break">Class ItemCollection
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Stac.StacCollection.html">StacCollection</a></div>
+    <div class="level2"><span class="xref">ItemCollection</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Stac.IStacCatalog.html">IStacCatalog</a></div>
+    <div><a class="xref" href="Stac.IStacParent.html">IStacParent</a></div>
+    <div><a class="xref" href="Stac.IStacObject.html">IStacObject</a></div>
+    <div><a class="xref" href="Stac.IStacPropertiesContainer.html">IStacPropertiesContainer</a></div>
+    <div><span class="xref">ICloneable</span></div>
+    <div><a class="xref" href="Stac.Extensions.IStacExtension.html">IStacExtension</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Title">StacCollection.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Description">StacCollection.Description</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_License">StacCollection.License</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Providers">StacCollection.Providers</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Platform">StacCollection.Platform</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Instruments">StacCollection.Instruments</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Constellation">StacCollection.Constellation</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Mission">StacCollection.Mission</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Gsd">StacCollection.Gsd</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Created">StacCollection.Created</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Updated">StacCollection.Updated</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_DateTime">StacCollection.DateTime</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_MEDIATYPE">StacCollection.MEDIATYPE</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_COLLECTION_MEDIATYPE">StacCollection.COLLECTION_MEDIATYPE</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Id">StacCollection.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_StacVersion">StacCollection.StacVersion</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_StacExtensions">StacCollection.StacExtensions</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Links">StacCollection.Links</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_MediaType">StacCollection.MediaType</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Summaries">StacCollection.Summaries</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Properties">StacCollection.Properties</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Extent">StacCollection.Extent</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Keywords">StacCollection.Keywords</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Assets">StacCollection.Assets</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_StacObjectContainer">StacCollection.StacObjectContainer</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_ShouldSerializeSummaries">StacCollection.ShouldSerializeSummaries()</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_ShouldSerializeStacExtensions">StacCollection.ShouldSerializeStacExtensions()</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_ShouldSerializeAssets">StacCollection.ShouldSerializeAssets()</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Create_System_String_System_String_IDictionary_Uri_Stac_StacItem__System_String_Uri_IDictionary_System_String_Stac_StacAsset__">StacCollection.Create(String, String, IDictionary&lt;Uri, StacItem&gt;, String, Uri, IDictionary&lt;String, StacAsset&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Update_IDictionary_Uri_Stac_StacItem__">StacCollection.Update(IDictionary&lt;Uri, StacItem&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Clone">StacCollection.Clone()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Stac.Extensions.ItemCollections.html">Stac.Extensions.ItemCollections</a></h6>
+  <h6><strong>Assembly</strong>: DotNetStac.dll</h6>
+  <h5 id="Stac_Extensions_ItemCollections_ItemCollection_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ItemCollection : StacCollection, IStacCatalog, IStacParent, IStacObject, IStacPropertiesContainer, ICloneable, IStacExtension</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/8f1f2d33d4cd2e39a8530119892a60cb702086d5/apiSpec/new?filename=Stac_Extensions_ItemCollections_ItemCollection__ctor_System_String_System_String_List_Stac_StacItem__.md&amp;value=---%0Auid%3A%20Stac.Extensions.ItemCollections.ItemCollection.%23ctor(System.String%2CSystem.String%2CList%7BStac.StacItem%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/8f1f2d33d4cd2e39a8530119892a60cb702086d5/src/DotNetStac/Extensions/ItemCollection/ItemCollection.cs/#L17">View Source</a>
+  </span>
+  <a id="Stac_Extensions_ItemCollections_ItemCollection__ctor_" data-uid="Stac.Extensions.ItemCollections.ItemCollection.#ctor*"></a>
+  <h4 id="Stac_Extensions_ItemCollections_ItemCollection__ctor_System_String_System_String_List_Stac_StacItem__" data-uid="Stac.Extensions.ItemCollections.ItemCollection.#ctor(System.String,System.String,List{Stac.StacItem})">ItemCollection(String, String, List&lt;StacItem&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ItemCollection(string id, string description, List&lt;StacItem&gt; stacItems)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Stac.StacItem.html">StacItem</a>&gt;</td>
+        <td><span class="parametername">stacItems</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/8f1f2d33d4cd2e39a8530119892a60cb702086d5/apiSpec/new?filename=Stac_Extensions_ItemCollections_ItemCollection_JsonSchemaUrl.md&amp;value=---%0Auid%3A%20Stac.Extensions.ItemCollections.ItemCollection.JsonSchemaUrl%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/8f1f2d33d4cd2e39a8530119892a60cb702086d5/src/DotNetStac/Extensions/ItemCollection/ItemCollection.cs/#L15">View Source</a>
+  </span>
+  <h4 id="Stac_Extensions_ItemCollections_ItemCollection_JsonSchemaUrl" data-uid="Stac.Extensions.ItemCollections.ItemCollection.JsonSchemaUrl">JsonSchemaUrl</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string JsonSchemaUrl = null</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/8f1f2d33d4cd2e39a8530119892a60cb702086d5/apiSpec/new?filename=Stac_Extensions_ItemCollections_ItemCollection_Features.md&amp;value=---%0Auid%3A%20Stac.Extensions.ItemCollections.ItemCollection.Features%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/8f1f2d33d4cd2e39a8530119892a60cb702086d5/src/DotNetStac/Extensions/ItemCollection/ItemCollection.cs/#L36">View Source</a>
+  </span>
+  <a id="Stac_Extensions_ItemCollections_ItemCollection_Features_" data-uid="Stac.Extensions.ItemCollections.ItemCollection.Features*"></a>
+  <h4 id="Stac_Extensions_ItemCollections_ItemCollection_Features" data-uid="Stac.Extensions.ItemCollections.ItemCollection.Features">Features</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;StacItem&gt; Features { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Stac.StacItem.html">StacItem</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/8f1f2d33d4cd2e39a8530119892a60cb702086d5/apiSpec/new?filename=Stac_Extensions_ItemCollections_ItemCollection_Identifier.md&amp;value=---%0Auid%3A%20Stac.Extensions.ItemCollections.ItemCollection.Identifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/8f1f2d33d4cd2e39a8530119892a60cb702086d5/src/DotNetStac/Extensions/ItemCollection/ItemCollection.cs/#L39">View Source</a>
+  </span>
+  <a id="Stac_Extensions_ItemCollections_ItemCollection_Identifier_" data-uid="Stac.Extensions.ItemCollections.ItemCollection.Identifier*"></a>
+  <h4 id="Stac_Extensions_ItemCollections_ItemCollection_Identifier" data-uid="Stac.Extensions.ItemCollections.ItemCollection.Identifier">Identifier</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Identifier { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/8f1f2d33d4cd2e39a8530119892a60cb702086d5/apiSpec/new?filename=Stac_Extensions_ItemCollections_ItemCollection_IsDeclared.md&amp;value=---%0Auid%3A%20Stac.Extensions.ItemCollections.ItemCollection.IsDeclared%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/8f1f2d33d4cd2e39a8530119892a60cb702086d5/src/DotNetStac/Extensions/ItemCollection/ItemCollection.cs/#L41">View Source</a>
+  </span>
+  <a id="Stac_Extensions_ItemCollections_ItemCollection_IsDeclared_" data-uid="Stac.Extensions.ItemCollections.ItemCollection.IsDeclared*"></a>
+  <h4 id="Stac_Extensions_ItemCollections_ItemCollection_IsDeclared" data-uid="Stac.Extensions.ItemCollections.ItemCollection.IsDeclared">IsDeclared</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDeclared { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/8f1f2d33d4cd2e39a8530119892a60cb702086d5/apiSpec/new?filename=Stac_Extensions_ItemCollections_ItemCollection_Type.md&amp;value=---%0Auid%3A%20Stac.Extensions.ItemCollections.ItemCollection.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/8f1f2d33d4cd2e39a8530119892a60cb702086d5/src/DotNetStac/Extensions/ItemCollection/ItemCollection.cs/#L33">View Source</a>
+  </span>
+  <a id="Stac_Extensions_ItemCollections_ItemCollection_Type_" data-uid="Stac.Extensions.ItemCollections.ItemCollection.Type*"></a>
+  <h4 id="Stac_Extensions_ItemCollections_ItemCollection_Type" data-uid="Stac.Extensions.ItemCollections.ItemCollection.Type">Type</h4>
+  <div class="markdown level1 summary"><p>STAC type (FeatureCollection)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Type { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Stac.StacCollection.html#Stac_StacCollection_Type">StacCollection.Type</a></div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/8f1f2d33d4cd2e39a8530119892a60cb702086d5/apiSpec/new?filename=Stac_Extensions_ItemCollections_ItemCollection_GetSummaryFunctions.md&amp;value=---%0Auid%3A%20Stac.Extensions.ItemCollections.ItemCollection.GetSummaryFunctions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/8f1f2d33d4cd2e39a8530119892a60cb702086d5/src/DotNetStac/Extensions/ItemCollection/ItemCollection.cs/#L43">View Source</a>
+  </span>
+  <a id="Stac_Extensions_ItemCollections_ItemCollection_GetSummaryFunctions_" data-uid="Stac.Extensions.ItemCollections.ItemCollection.GetSummaryFunctions*"></a>
+  <h4 id="Stac_Extensions_ItemCollections_ItemCollection_GetSummaryFunctions" data-uid="Stac.Extensions.ItemCollections.ItemCollection.GetSummaryFunctions">GetSummaryFunctions()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDictionary&lt;string, ISummaryFunction&gt; GetSummaryFunctions()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Stac.Extensions.ISummaryFunction.html">ISummaryFunction</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Stac.IStacCatalog.html">IStacCatalog</a>
+  </div>
+  <div>
+      <a class="xref" href="Stac.IStacParent.html">IStacParent</a>
+  </div>
+  <div>
+      <a class="xref" href="Stac.IStacObject.html">IStacObject</a>
+  </div>
+  <div>
+      <a class="xref" href="Stac.IStacPropertiesContainer.html">IStacPropertiesContainer</a>
+  </div>
+  <div>
+      <span class="xref">ICloneable</span>
+  </div>
+  <div>
+      <a class="xref" href="Stac.Extensions.IStacExtension.html">IStacExtension</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Stac.Extensions.Version.VersionStacExtensionExtensions.html#Stac_Extensions_Version_VersionStacExtensionExtensions_VersionExtension_Stac_StacCollection_">VersionStacExtensionExtensions.VersionExtension(StacCollection)</a>
+  </div>
+  <div>
+      <a class="xref" href="Stac.Extensions.Version.VersionStacExtensionExtensions.html#Stac_Extensions_Version_VersionStacExtensionExtensions_PredecessorVersion_Stac_StacCollection_Func_Stac_StacLink_Stac_StacCollection__">VersionStacExtensionExtensions.PredecessorVersion(StacCollection, Func&lt;StacLink, StacCollection&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Stac.Extensions.Version.VersionStacExtensionExtensions.html#Stac_Extensions_Version_VersionStacExtensionExtensions_SuccessorVersion_Stac_StacCollection_Func_Stac_StacLink_Stac_StacCollection__">VersionStacExtensionExtensions.SuccessorVersion(StacCollection, Func&lt;StacLink, StacCollection&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Stac.Extensions.Version.VersionStacExtensionExtensions.html#Stac_Extensions_Version_VersionStacExtensionExtensions_LatestVersion_Stac_StacCollection_Func_Stac_StacLink_Stac_StacCollection__">VersionStacExtensionExtensions.LatestVersion(StacCollection, Func&lt;StacLink, StacCollection&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Stac.Extensions.VirtualAssets.VirtualAssetsStacExtensionExtensions.html#Stac_Extensions_VirtualAssets_VirtualAssetsStacExtensionExtensions_EoExtension_Stac_StacCollection_">VirtualAssetsStacExtensionExtensions.EoExtension(StacCollection)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Terradue/DotNetStac/new/8f1f2d33d4cd2e39a8530119892a60cb702086d5/apiSpec/new?filename=Stac_Extensions_ItemCollections_ItemCollection.md&amp;value=---%0Auid%3A%20Stac.Extensions.ItemCollections.ItemCollection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Terradue/DotNetStac/blob/8f1f2d33d4cd2e39a8530119892a60cb702086d5/src/DotNetStac/Extensions/ItemCollection/ItemCollection.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

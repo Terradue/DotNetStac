@@ -1,0 +1,1309 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.IStacSummaryItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.IStacSummaryItem.html",
+          "hash": "d8jAJs84qiJ1k1Xo/+NqEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.StacExtent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.StacExtent.html",
+          "hash": "U3ORlh1PeV7+7LySpMXO2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.StacSpatialExtent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.StacSpatialExtent.html",
+          "hash": "ReE2Cd7pq9Fdwem8G5OtaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.StacSummaryItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.StacSummaryItem.html",
+          "hash": "76wLx7LqRdnwD4xWJcZk2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.StacSummaryRangeObject-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.StacSummaryRangeObject-1.html",
+          "hash": "Meij+sgZdDzPyjr5+wl9qw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.StacSummaryValueSet-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.StacSummaryValueSet-1.html",
+          "hash": "qNHyZgYRoFlQ2MMwY8wRDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.StacTemporalExtent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.StacTemporalExtent.html",
+          "hash": "CQIi8oiP5SFsbOvKpSVnRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.SummaryItemType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.SummaryItemType.html",
+          "hash": "ofOELql/Ly04twWe8HiOUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Collection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Collection.html",
+          "hash": "KNnxMW0vydGxp3KiXWoXug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Common.DataType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Common.DataType.html",
+          "hash": "0j8wyOMkPn3+90UG0dlWWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Common.PropertyObservableCollection-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Common.PropertyObservableCollection-1.html",
+          "hash": "7+x7IIJ+0ta8QOod6F6Tyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Common.Statistics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Common.Statistics.html",
+          "hash": "mG6ia4P1G0k5aENPojCAxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Common.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Common.html",
+          "hash": "bImClwh8fRA+t7r9CEDRqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Converters.CollectionConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Converters.CollectionConverter-1.html",
+          "hash": "ItArj3uR9sl4mpYVW7mMYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Converters.html",
+          "hash": "qoA4hNTjGwFEiTvcOP/3IA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Exceptions.InvalidStacDataException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Exceptions.InvalidStacDataException.html",
+          "hash": "0pLAJyUylGepvMigKZoenw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Exceptions.InvalidStacSchemaException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Exceptions.InvalidStacSchemaException.html",
+          "hash": "K6iv5Oxl5S2daDtMriDc0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Exceptions.html",
+          "hash": "YNArKCgfqHH/bY92phsXDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Eo.EoBandCommonName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Eo.EoBandCommonName.html",
+          "hash": "HxAxwDOkFMLGINTeTM2t1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Eo.EoBandObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Eo.EoBandObject.html",
+          "hash": "zFF/3k2roXqFTA7nW2pIHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Eo.EoStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Eo.EoStacExtension.html",
+          "hash": "4+fBSHqZo6TJu7VH0/e21g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Eo.EoStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Eo.EoStacExtensionExtensions.html",
+          "hash": "uhwKtjpX5JI1dqa0kY7iMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Eo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Eo.html",
+          "hash": "zB2t0zTOfqTJoz3+1QAgqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.File.ByteOrder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.File.ByteOrder.html",
+          "hash": "C7Wah8erpZJWU6aqlQmcPw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.File.FileStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.File.FileStacExtension.html",
+          "hash": "VNt7luDUHnQRndtJIu3RzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.File.FileStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.File.FileStacExtensionExtensions.html",
+          "hash": "vYe7eFGrHivQs9tpajQ6nQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.File.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.File.html",
+          "hash": "9C6HR83ykmW6V1JKSgURPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.IStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.IStacExtension.html",
+          "hash": "RinRNvR7HiBDUP0He12Nsw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.ISummaryFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.ISummaryFunction.html",
+          "hash": "xN0hcDW/hfmpSfzLyFliQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.ItemCollections.ItemCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.ItemCollections.ItemCollection.html",
+          "hash": "jNMt+I1+iXAbX6XwFUfY4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.ItemCollections.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.ItemCollections.html",
+          "hash": "X4PeSacYhmDIyLvPkAtrMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Processing.ProcessingStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Processing.ProcessingStacExtension.html",
+          "hash": "vnXWs9Kz6sDRTRt6BCP25A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Processing.ProcessingStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Processing.ProcessingStacExtensionExtensions.html",
+          "hash": "G81LXCEAb4Y3ZLCMV32lqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Processing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Processing.html",
+          "hash": "OWPFBttl1I0KcBuobanvMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Projection.CentroidObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Projection.CentroidObject.html",
+          "hash": "fbmDJm6i9D5iF2HwZ3d93g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Projection.ProjectionStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Projection.ProjectionStacExtension.html",
+          "hash": "X20Bhaxu96dYjjhmPQGD8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Projection.ProjectionStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Projection.ProjectionStacExtensionExtensions.html",
+          "hash": "743nzjnHZuyI8rOyJ+LVSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Projection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Projection.html",
+          "hash": "e6DAxdu3WvmDMd6UsTlKww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Raster.RasterBand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Raster.RasterBand.html",
+          "hash": "50okAQ79EtQsEJub8G2a5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Raster.RasterHistogram.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Raster.RasterHistogram.html",
+          "hash": "ATFMX2+RcQbk+cirMmWXAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Raster.RasterSampling.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Raster.RasterSampling.html",
+          "hash": "omGKbGJeC9hNc4+vkfaG8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Raster.RasterStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Raster.RasterStacExtension.html",
+          "hash": "pzUrgSxv36qvv9jCp3jVeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Raster.RasterStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Raster.RasterStacExtensionExtensions.html",
+          "hash": "FbGspy6L1VMNsd5WEBHAJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Raster.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Raster.html",
+          "hash": "+owbjZEIWP/P9Sks0/2D/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sar.ObservationDirection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sar.ObservationDirection.html",
+          "hash": "2YXMio8q3gBeTY4SH2UP0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sar.SarCommonFrequencyBandName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sar.SarCommonFrequencyBandName.html",
+          "hash": "gTAam0l0fe04XDzMkyZ6mg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sar.SarStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sar.SarStacExtension.html",
+          "hash": "qneOkY/Wak6LBzVH8PZvWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sar.SarStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sar.SarStacExtensionExtensions.html",
+          "hash": "M+RxFnD+H7DZOQTLe1O0Pw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sar.html",
+          "hash": "fw0Edh7fsnlM/NkhfEryzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sat.BaselineCalculation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sat.BaselineCalculation.html",
+          "hash": "R1skW9/1DCnwu8a0QFItMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sat.BaselineVector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sat.BaselineVector.html",
+          "hash": "VkLwgKhS67iuzreOSRGrNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sat.SatOrbitStateVector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sat.SatOrbitStateVector.html",
+          "hash": "HI5IanbDyjdCEYRR7tXMCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sat.SatStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sat.SatStacExtension.html",
+          "hash": "4+rM/lMQd+Np2emAeMvXQw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sat.SatStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sat.SatStacExtensionExtensions.html",
+          "hash": "YF2lRTRc0BJPkCPcCwDM9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sat.SatStacExtensionHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sat.SatStacExtensionHelpers.html",
+          "hash": "E2NaE8qbO/O1xU7sHHD4Aw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Sat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Sat.html",
+          "hash": "DR8yYvjMldJoaDAKShmYXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.SchemaBasedStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.SchemaBasedStacExtension.html",
+          "hash": "rZMW6Tpcsenc6Fw16wwqDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.StacExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.StacExtensions.html",
+          "hash": "QKLQ/xcQNMeoaNw/+GtvPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.StacPropertiesContainerExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.StacPropertiesContainerExtension.html",
+          "hash": "K1/8L/kpX/pLBJNApTJKnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.SummaryFunction-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.SummaryFunction-1.html",
+          "hash": "1azhL2mtjSmb/0rOzpKPTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Version.VersionStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Version.VersionStacExtension.html",
+          "hash": "ASZ7ncI7ZsCXOH4J0NvAqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Version.VersionStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Version.VersionStacExtensionExtensions.html",
+          "hash": "N0gRARzuCEXcDtrafre32g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.Version.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.Version.html",
+          "hash": "Dvpx0FmnvoW5A0IzKNZBrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.View.ViewStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.View.ViewStacExtension.html",
+          "hash": "/s+RUUMwc+xyWvSc1l05mA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.View.ViewStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.View.ViewStacExtensionExtensions.html",
+          "hash": "/PLInlDV2ORG3jfI6LPlkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.View.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.View.html",
+          "hash": "MQkInZrLjYZ5eskfhkli1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.VirtualAssets.VirtualAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.VirtualAssets.VirtualAsset.html",
+          "hash": "tRD30shGyrEFXhzdOVsxUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.VirtualAssets.VirtualAssetsStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.VirtualAssets.VirtualAssetsStacExtension.html",
+          "hash": "gOW/gRhr14wc/hVHFlGVxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.VirtualAssets.VirtualAssetsStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.VirtualAssets.VirtualAssetsStacExtensionExtensions.html",
+          "hash": "sxORpsSpmGCbYz71nVN+Ow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.VirtualAssets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.VirtualAssets.html",
+          "hash": "bESUCmnEodKvJrLmTFS2+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Extensions.html",
+          "hash": "Gi67UR4T6I0IS6nkGmMs5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.IStacCatalog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.IStacCatalog.html",
+          "hash": "711DHulNs+jqHqX9sDy83Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.IStacObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.IStacObject.html",
+          "hash": "I0hObynAj6DJvK5vx3+7yg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.IStacParent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.IStacParent.html",
+          "hash": "J+8CuIQYMI/E1G80xFhsUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.IStacPropertiesContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.IStacPropertiesContainer.html",
+          "hash": "u32fGlHSzFkJrVFABy8CTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Model.ObservableDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Model.ObservableDictionary-2.html",
+          "hash": "3S59lYSvKQrK26HFe3O9+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Model.html",
+          "hash": "2Lv8Wvz3ThOoEV7/IKZePQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Preconditions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Preconditions.html",
+          "hash": "S4FR+8CX1BiKZKKkQbagmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Schemas.StacSchemaResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Schemas.StacSchemaResolver.html",
+          "hash": "prv1CwEsCCFbFqqksehF4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Schemas.StacValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Schemas.StacValidator.html",
+          "hash": "LsUMYn1nCvX6vGN7RSZtEw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Schemas.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Schemas.html",
+          "hash": "/LN7kdMuEoEYOlZO8tUiyQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacAccessorsHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacAccessorsHelpers.html",
+          "hash": "TyydlzH2hSIa8PRarPFwtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacAsset.html",
+          "hash": "h3uESmfKPWgDGcaqtDmZeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacCatalog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacCatalog.html",
+          "hash": "OIfjtu/+KjCEvENFoh1bOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacCollection.html",
+          "hash": "yBD8XeARdOFfD5zSD4cUCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacConvert.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacConvert.html",
+          "hash": "5g7Cw6QYUgo3lSF73B6EdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacGeometryHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacGeometryHelpers.html",
+          "hash": "nXqimojSSrHA2/C8Lk1uVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacItem.html",
+          "hash": "I3oEFU3YNZ1w4M5+495YGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacLink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacLink.html",
+          "hash": "2wERnbcZPs3lzrRSyCc3PA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacObjectLink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacObjectLink.html",
+          "hash": "lRlghFgBMeYy42a6Lgf86w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacProvider.html",
+          "hash": "Ui1WKDmI8FIjedkzwJkOdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.StacProviderRole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.StacProviderRole.html",
+          "hash": "7E151Lb3iYRHjwgsefRfvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Utils.html",
+          "hash": "7Lva3tFU82VPI87UHMgjbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Versions.StacVersionList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Versions.StacVersionList.html",
+          "hash": "P4XPBhFNre3reH4mstl39w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.Versions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.Versions.html",
+          "hash": "h5c3uSzHvqr1kg1FbanroA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Stac.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Stac.html",
+          "hash": "YZNdPCZHUuJREHrEEAunCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "3KuTqYv32eMzU7Hiap8ICg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "kpG957UuefkW8Yl2OnClrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "iZDk3tFHlgwz/tsZlflUJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/stac_logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/stac_logo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/stac_logo_128.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/stac_logo_128.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "YeAHvVxvQgw7c8LrDFCn1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 96,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
