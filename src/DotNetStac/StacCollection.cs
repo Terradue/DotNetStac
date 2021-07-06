@@ -44,7 +44,6 @@ namespace Stac
                 this.Assets = new Dictionary<string, StacAsset>(assets);
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
-            this.Providers = new Collection<StacProvider>();
             this.License = license;
             this.Keywords = new Collection<string>();
             this.Extent = extent;
@@ -63,7 +62,6 @@ namespace Stac
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>(stacCollection.Summaries);
             this.Properties = new Dictionary<string, object>(stacCollection.Properties);
             this.Assets = new Dictionary<string, StacAsset>(stacCollection.Assets);
-            this.Providers = new Collection<StacProvider>(stacCollection.Providers);
             this.License = stacCollection.License;
             this.Keywords = new Collection<string>(stacCollection.Keywords);
             this.Extent = new StacExtent(stacCollection.Extent);
@@ -224,30 +222,63 @@ namespace Stac
                 .GroupBy(prop => prop.Key)
                 .ToDictionary(key => key.Key, value => value.First().Value);
 
-            summaryFunctions.Add("gsd", new SummaryFunction(null, "gsd", StacPropertiesContainerExtension.CreateRangeSummaryObject));
-            summaryFunctions.Add("platform", new SummaryFunction(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet));
-            summaryFunctions.Add("constellation", new SummaryFunction(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet));
-            summaryFunctions.Add("instruments", new SummaryFunction(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSetFromArrays));
+            summaryFunctions.Add("gsd", new SummaryFunction<double>(null, "gsd", StacPropertiesContainerExtension.CreateRangeSummaryObject<double>));
+            summaryFunctions.Add("platform", new SummaryFunction<string>(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
+            summaryFunctions.Add("constellation", new SummaryFunction<string>(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
+            summaryFunctions.Add("instruments", new SummaryFunction<string>(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
 
             collection.Summaries =
                 items.Values.SelectMany(item => item.Properties.Where(k => summaryFunctions.Keys.Contains(k.Key)))
                     .GroupBy(prop => prop.Key)
                     .ToDictionary(key => key.Key, value =>
                     {
-                        if (summaryFunctions[value.Key].Extension != null && !collection.StacExtensions.Contains(summaryFunctions[value.Key].Extension.Identifier))
-                            collection.StacExtensions.Add(summaryFunctions[value.Key].Extension.Identifier);
-                        return summaryFunctions[value.Key].Summarize(value.Select(i => i.Value));
+                        if (summaryFunctions.ContainsKey(value.Key))
+                        {
+                            if (summaryFunctions[value.Key].Extension != null && !collection.StacExtensions.Contains(summaryFunctions[value.Key].Extension.Identifier))
+                                collection.StacExtensions.Add(summaryFunctions[value.Key].Extension.Identifier);
+                            return summaryFunctions[value.Key].Summarize(value.Select(i => i.Value));
+                        }
+                        return null;
                     });
-
-            foreach (var item in items)
-            {
-                item.Value.SetCollection(id, collectionUri);
-            }
 
             return collection;
         }
 
         #endregion
+
+        public void Update(IDictionary<Uri, StacItem> items)
+        {
+
+            this.Extent.Update(items.Values);
+
+            var usedExtensions = items.SelectMany(item => item.Value.GetDeclaredExtensions());
+
+            var summaryFunctions = usedExtensions.SelectMany(ext => ext.GetSummaryFunctions())
+                .GroupBy(prop => prop.Key)
+                .ToDictionary(key => key.Key, value => value.First().Value);
+
+            summaryFunctions.Add("gsd", new SummaryFunction<double>(null, "gsd", StacPropertiesContainerExtension.CreateRangeSummaryObject<double>));
+            summaryFunctions.Add("platform", new SummaryFunction<string>(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
+            summaryFunctions.Add("constellation", new SummaryFunction<string>(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
+            summaryFunctions.Add("instruments", new SummaryFunction<string>(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
+
+            this.Summaries =
+                items.Values.SelectMany(item => item.Properties.Where(k => summaryFunctions.Keys.Contains(k.Key)))
+                    .Concat(this.Summaries.SelectMany(s => s.Value.Enumerate().Select(v => new KeyValuePair<string, object>(s.Key, v))))
+                    .GroupBy(prop => prop.Key)
+                    .ToDictionary(key => key.Key, value =>
+                    {
+                        if (summaryFunctions.ContainsKey(value.Key))
+                        {
+                            if (summaryFunctions[value.Key].Extension != null && !this.StacExtensions.Contains(summaryFunctions[value.Key].Extension.Identifier))
+                                this.StacExtensions.Add(summaryFunctions[value.Key].Extension.Identifier);
+                            return summaryFunctions[value.Key].Summarize(value.Select(i => i.Value));
+                        }
+                        return null;
+                    });
+
+            return;
+        }
 
         /// <summary>
         /// Clone this object.

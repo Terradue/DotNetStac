@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
 namespace Stac.Collection
@@ -45,6 +46,9 @@ namespace Stac.Collection
         /// <returns>Maximum of the range</returns>
         public T Max { get => summary["maximum"].Value<T>(); set => summary["maximum"] = new JValue(value); }
 
-
+        public override IEnumerable<object> Enumerate()
+        {
+            return new object[2] { Min, Max };
+        }
     }
 }

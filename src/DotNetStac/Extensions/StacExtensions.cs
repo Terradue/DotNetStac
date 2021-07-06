@@ -14,6 +14,7 @@ namespace Stac.Extensions
     public static class StacExtensions
     {
         private static Dictionary<string, Type> managedStacExtensions = new Dictionary<string, Type>();
+        private static object initLock = new Object();
 
         /// <summary>
         /// Dictionary of extensions managed by the library
@@ -34,20 +35,23 @@ namespace Stac.Extensions
         /// </summary>
         public static void InitManagedExtensions()
         {
-            managedStacExtensions.Clear();
-            managedStacExtensions.Add(Eo.EoStacExtension.JsonSchemaUrl, typeof(Eo.EoStacExtension));
-            managedStacExtensions.Add("eo", typeof(Eo.EoStacExtension));
-            managedStacExtensions.Add(Processing.ProcessingStacExtension.JsonSchemaUrl, typeof(Processing.ProcessingStacExtension));
-            managedStacExtensions.Add("processing", typeof(Processing.ProcessingStacExtension));
-            managedStacExtensions.Add(Projection.ProjectionStacExtension.JsonSchemaUrl, typeof(Projection.ProjectionStacExtension));
-            managedStacExtensions.Add("projection", typeof(Projection.ProjectionStacExtension));
-            managedStacExtensions.Add(Raster.RasterStacExtension.JsonSchemaUrl, typeof(Raster.RasterStacExtension));
-            managedStacExtensions.Add(Sar.SarStacExtension.JsonSchemaUrl, typeof(Sar.SarStacExtension));
-            managedStacExtensions.Add("sar", typeof(Sar.SarStacExtension));
-            managedStacExtensions.Add(Sat.SatStacExtension.JsonSchemaUrl, typeof(Sat.SatStacExtension));
-            managedStacExtensions.Add("sat", typeof(Sat.SatStacExtension));
-            managedStacExtensions.Add(View.ViewStacExtension.JsonSchemaUrl, typeof(View.ViewStacExtension));
-            managedStacExtensions.Add("view", typeof(View.ViewStacExtension));
+            lock (initLock)
+            {
+                managedStacExtensions.Clear();
+                managedStacExtensions.Add(Eo.EoStacExtension.JsonSchemaUrl, typeof(Eo.EoStacExtension));
+                managedStacExtensions.Add("eo", typeof(Eo.EoStacExtension));
+                managedStacExtensions.Add(Processing.ProcessingStacExtension.JsonSchemaUrl, typeof(Processing.ProcessingStacExtension));
+                managedStacExtensions.Add("processing", typeof(Processing.ProcessingStacExtension));
+                managedStacExtensions.Add(Projection.ProjectionStacExtension.JsonSchemaUrl, typeof(Projection.ProjectionStacExtension));
+                managedStacExtensions.Add("projection", typeof(Projection.ProjectionStacExtension));
+                managedStacExtensions.Add(Raster.RasterStacExtension.JsonSchemaUrl, typeof(Raster.RasterStacExtension));
+                managedStacExtensions.Add(Sar.SarStacExtension.JsonSchemaUrl, typeof(Sar.SarStacExtension));
+                managedStacExtensions.Add("sar", typeof(Sar.SarStacExtension));
+                managedStacExtensions.Add(Sat.SatStacExtension.JsonSchemaUrl, typeof(Sat.SatStacExtension));
+                managedStacExtensions.Add("sat", typeof(Sat.SatStacExtension));
+                managedStacExtensions.Add(View.ViewStacExtension.JsonSchemaUrl, typeof(View.ViewStacExtension));
+                managedStacExtensions.Add("view", typeof(View.ViewStacExtension));
+            }
         }
 
         /// <summary>

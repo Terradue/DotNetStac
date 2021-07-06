@@ -22,5 +22,7 @@ namespace Stac.Collection
         /// <value></value>
         JToken AsJToken { get; }
 
+        IEnumerable<object> Enumerate();
+
     }
 }

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
+using Stac.Common;
 
 namespace Stac
 {
@@ -47,11 +50,26 @@ namespace Stac
             var @object = GetProperty(properties, key);
             if (@object == null) return default(T);
             if (@object is JToken)
+            {
                 return (@object as JToken).ToObject<T>();
+            }
             if (typeof(T).GetTypeInfo().IsEnum)
                 return (T)Enum.Parse(typeof(T), @object.ToString());
             return ChangeType<T>(@object);
         }
+
+        public static PropertyObservableCollection<T> GetObservableCollectionProperty<T>(this IStacPropertiesContainer propertiesContainer, string key)
+        {
+            List<T> array = propertiesContainer.GetProperty<List<T>>(key);
+            PropertyObservableCollection<T> observableCollection = new PropertyObservableCollection<T>(propertiesContainer, key);
+            if (array != null && array.Count > 0)
+            {
+                observableCollection.AddRange<T>(array);
+            }
+            return observableCollection;
+        }
+
+
 
         public static T ChangeType<T>(object value)
         {

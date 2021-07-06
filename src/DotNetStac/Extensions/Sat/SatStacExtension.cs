@@ -20,7 +20,6 @@ namespace Stac.Extensions.Sat
         public SatStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
         {
             itemFields = new Dictionary<string, Type>();
-            itemFields.Add(OrbitStateVectorField, typeof(SortedDictionary<DateTime, SatOrbitStateVector>));
             itemFields.Add(AscendingNodeCrossingDateTimeField, typeof(DateTime));
             itemFields.Add(SceneCenterCoordinatesField, typeof(double[]));
             itemFields.Add(RelativeOrbitField, typeof(int));

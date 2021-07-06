@@ -56,6 +56,12 @@ namespace Stac.Extensions.Version
         /// </summary>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
+        public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
+        {
+            Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
+            return summaryFunctions;
+        }
+
     }
 
     /// <summary>
