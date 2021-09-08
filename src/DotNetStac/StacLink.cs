@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net.Mime;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Stac
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
+    [DataContract]
     public class StacLink
     {
         #region Static members
@@ -90,16 +94,27 @@ namespace Stac
         }
 
         [JsonProperty("type")]
-        [JsonConverter(typeof(ContentTypeConverter))]
+        [DataMember(Name = "type")]
+        public string Type
+        {
+            get => ContentType?.ToString();
+            set => ContentType = value == null ? null : new ContentType(value);
+        }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ContentType ContentType { get; set; }
 
-        [JsonProperty("rel")]
+        [JsonProperty("rel", Required = Required.Always)]
+        [DataMember(Name = "rel", IsRequired = true)]
         public virtual string RelationshipType { get; set; }
 
         [JsonProperty("title")]
+        [DataMember(Name = "title")]
         public virtual string Title { get; set; }
 
         [JsonProperty("href")]
+        [DataMember(Name = "href", IsRequired = true)]
         public virtual Uri Uri { get; set; }
 
         [JsonIgnore]
@@ -112,6 +127,5 @@ namespace Stac
         {
             return new StacLink(this);
         }
-
     }
 }

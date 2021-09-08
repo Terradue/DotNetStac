@@ -5,7 +5,6 @@
     <Description>Terradue .Net library for working with any SpatioTemporal Asset Catalog</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <VersionPrefix>1.1.1</VersionPrefix>
-    <!-- <VersionSuffix>rc.4</VersionSuffix> -->
     <Authors>Emmanuel Mathot</Authors>
     <Authors>emmanuelmathot</Authors>
     <Company>Terradue</Company>
@@ -20,23 +19,24 @@
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="2.0.2" />
-    <PackageReference Include="GeoJSON.Net" Version="1.2.19" />
-    <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1" />
-    <PackageReference Include="MathNet.Numerics" Version="4.12.0" />
-    <PackageReference Include="ProjNet" Version="2.0.0" />
-    <PackageReference Include="semver" Version="2.0.6" />
-    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14" />
-    <PackageReference Include="System.Reflection" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
-    <PackageReference Include="Multiformats.Hash" Version="1.5.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0"/>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
+    <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="2.0.2"/>
+    <PackageReference Include="GeoJSON.Net" Version="1.2.19"/>
+    <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1"/>
+    <PackageReference Include="MathNet.Numerics" Version="4.12.0"/>
+    <PackageReference Include="ProjNet" Version="2.0.0"/>
+    <PackageReference Include="semver" Version="2.0.6"/>
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14"/>
+    <PackageReference Include="System.Reflection" Version="4.3.0"/>
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0"/>
+    <PackageReference Include="Multiformats.Hash" Version="1.5.0"/>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All"/>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0"/>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <None Include="..\..\docs\images\stac_logo_128.png" Pack="true" PackagePath="" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\docs\images\stac_logo_128.png" Pack="true" PackagePath=""/>
     <Content Include="..\proj\SRID.csv" copyToOutput="true">
       <IncludeInPackage>true</IncludeInPackage>
       <CopyToOutput>true</CopyToOutput>
@@ -44,7 +44,7 @@
       <copyToOutput>true</copyToOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <AdditionalFiles Include="$(ProjectDir)stylecop.json" Link="stylecop.json" />
-    <AdditionalFiles Include="$(ProjectDir)StyleCop.ruleset" Link="StyleCop.ruleset" />
+    <AdditionalFiles Include="$(ProjectDir)stylecop.json" Link="stylecop.json"/>
+    <AdditionalFiles Include="$(ProjectDir)StyleCop.ruleset" Link="StyleCop.ruleset"/>
   </ItemGroup>
 </Project>
