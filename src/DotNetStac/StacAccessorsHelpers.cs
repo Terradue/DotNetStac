@@ -9,6 +9,9 @@ using Stac.Common;
 
 namespace Stac
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class StacAccessorsHelpers
     {
 
