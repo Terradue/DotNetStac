@@ -53,8 +53,13 @@ namespace Stac
             {
                 return (@object as JToken).ToObject<T>();
             }
-            if (typeof(T).GetTypeInfo().IsEnum)
-                return (T)Enum.Parse(typeof(T), @object.ToString());
+            var t = typeof(T);
+            if (t.IsGenericType && t.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
+            {
+                t = Nullable.GetUnderlyingType(t);
+                if (t.GetTypeInfo().IsEnum)
+                    return (T)Enum.Parse(t, @object.ToString());
+            }
             return ChangeType<T>(@object);
         }
 
