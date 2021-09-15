@@ -10,7 +10,7 @@ namespace Stac.Test.Item
         [Fact]
         public void GetPropertyTest()
         {
-           var coordinates = new[]
+            var coordinates = new[]
             {
                 new List<IPosition>
                 {
