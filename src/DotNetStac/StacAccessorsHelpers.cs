@@ -58,8 +58,8 @@ namespace Stac
             {
                 t = Nullable.GetUnderlyingType(t);
             }
-             if (t.GetTypeInfo().IsEnum)
-                    return (T)Enum.Parse(t, @object.ToString());
+            if (t.GetTypeInfo().IsEnum)
+                return (T)Enum.Parse(t, @object.ToString());
             return ChangeType<T>(@object);
         }
 
