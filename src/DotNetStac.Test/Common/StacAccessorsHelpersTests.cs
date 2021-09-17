@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
+using Stac.Collection;
 using Stac.Common;
 using Xunit;
 
@@ -47,6 +48,25 @@ namespace Stac.Test.Item
             item = StacConvert.Deserialize<StacItem>(itemJson);
 
             Assert.Equal(dataType, item.GetProperty<DataType?>("test"));
+
+
+            SummaryItemType summaryItemType = default(SummaryItemType);
+
+            item.SetProperty("summary", summaryItemType);
+
+            Assert.NotNull(item.GetProperty<SummaryItemType>("summary"));
+
+            summaryItemType = SummaryItemType.RangeObject;
+
+            item.SetProperty("summary", summaryItemType);
+
+            Assert.Equal(summaryItemType, item.GetProperty<SummaryItemType>("summary"));
+
+            itemJson = StacConvert.Serialize(item);
+
+            item = StacConvert.Deserialize<StacItem>(itemJson);
+
+            Assert.Equal(summaryItemType, item.GetProperty<SummaryItemType>("summary"));
 
         }
     }

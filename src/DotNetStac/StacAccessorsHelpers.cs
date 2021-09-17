@@ -57,9 +57,9 @@ namespace Stac
             if (t.IsGenericType && t.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
             {
                 t = Nullable.GetUnderlyingType(t);
-                if (t.GetTypeInfo().IsEnum)
-                    return (T)Enum.Parse(t, @object.ToString());
             }
+             if (t.GetTypeInfo().IsEnum)
+                    return (T)Enum.Parse(t, @object.ToString());
             return ChangeType<T>(@object);
         }
 
