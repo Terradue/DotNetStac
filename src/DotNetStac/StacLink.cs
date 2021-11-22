@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Mime;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
@@ -118,6 +119,9 @@ namespace Stac
 
         [JsonIgnore]
         public ulong Length { get; set; }
+
+        [JsonExtensionData]
+        public IDictionary<string, object> AdditionalProperties { get; set; }
 
         public virtual StacLink Clone()
         {

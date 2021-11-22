@@ -5,6 +5,7 @@ using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Stac.Exceptions;
 using Xunit;
 
 namespace Stac.Test.Item
@@ -340,6 +341,26 @@ namespace Stac.Test.Item
             var newJson = StacConvert.Serialize(simpleItem);
             ValidateJson(newJson);
 
+        }
+
+        [Fact]
+        public void EmptyCollection()
+        {
+            var simpleJson = GetJson("Item", "EmptyCollectionIn");
+            StacItem simpleItem = JsonConvert.DeserializeObject<StacItem>(simpleJson);
+            var newJson = StacConvert.Serialize(simpleItem);
+            Assert.Throws<InvalidStacDataException>(() => ValidateJson(newJson));
+
+        }
+
+        [Fact]
+        public void ItemLinkExtensions()
+        {
+            var simpleJson = GetJson("Item", "ItemLinkExtensions");
+            ValidateJson(simpleJson);
+            StacItem simpleItem = StacConvert.Deserialize<StacItem>(simpleJson);
+
+            Assert.Equal("GET", simpleItem.Links.First().AdditionalProperties["method"]);
         }
     }
 }
