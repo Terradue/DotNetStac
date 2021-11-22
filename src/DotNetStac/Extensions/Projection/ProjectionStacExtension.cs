@@ -16,6 +16,8 @@ namespace Stac.Extensions.Projection
         public const string ProjGeometryField = "proj:geometry";
         public const string ProjBboxField = "proj:bbox";
         public const string ProjCentroidField = "proj:centroid";
+        public const string ProjShapeField = "proj:shape";
+        public const string ProjTransformField = "proj:transform";
 
         private readonly Dictionary<string, Type> itemFields;
 
@@ -28,6 +30,8 @@ namespace Stac.Extensions.Projection
             itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
             itemFields.Add(ProjBboxField, typeof(double[]));
             itemFields.Add(ProjCentroidField, typeof(CentroidObject));
+            itemFields.Add(ProjShapeField, typeof(int[]));
+            itemFields.Add(ProjTransformField, typeof(double[]));
         }
 
         public long? Epsg
@@ -64,6 +68,18 @@ namespace Stac.Extensions.Projection
         {
             get { return StacPropertiesContainer.GetProperty<CentroidObject>(ProjCentroidField); }
             set { StacPropertiesContainer.SetProperty(ProjCentroidField, value); DeclareStacExtension(); }
+        }
+
+        public int[] Shape
+        {
+            get { return StacPropertiesContainer.GetProperty<int[]>(ProjShapeField); }
+            set { StacPropertiesContainer.SetProperty(ProjShapeField, value); DeclareStacExtension(); }
+        }
+
+        public double[] Transform
+        {
+            get { return StacPropertiesContainer.GetProperty<double[]>(ProjTransformField); }
+            set { StacPropertiesContainer.SetProperty(ProjTransformField, value); DeclareStacExtension(); }
         }
 
         public override IDictionary<string, Type> ItemFields => itemFields;
