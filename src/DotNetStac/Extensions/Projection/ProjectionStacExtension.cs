@@ -34,6 +34,19 @@ namespace Stac.Extensions.Projection
             itemFields.Add(ProjTransformField, typeof(double[]));
         }
 
+        internal ProjectionStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
+        {
+            itemFields = new Dictionary<string, Type>();
+            itemFields.Add(EpsgField, typeof(int));
+            itemFields.Add(Wkt2Field, typeof(string));
+            itemFields.Add(ProjJsonField, typeof(string));
+            itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
+            itemFields.Add(ProjBboxField, typeof(double[]));
+            itemFields.Add(ProjCentroidField, typeof(CentroidObject));
+            itemFields.Add(ProjShapeField, typeof(int[]));
+            itemFields.Add(ProjTransformField, typeof(double[]));
+        }
+
         public long? Epsg
         {
             get { return StacPropertiesContainer.GetProperty<long?>(EpsgField); }
@@ -121,6 +134,11 @@ namespace Stac.Extensions.Projection
         public static ProjectionStacExtension ProjectionExtension(this StacItem stacItem)
         {
             return new ProjectionStacExtension(stacItem);
+        }
+
+        public static ProjectionStacExtension ProjectionExtension(this StacAsset stacAsset)
+        {
+            return new ProjectionStacExtension(stacAsset);
         }
     }
 }
