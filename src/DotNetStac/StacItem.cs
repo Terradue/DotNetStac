@@ -115,6 +115,7 @@ namespace Stac
         /// The id of the STAC Collection this Item references to
         /// </summary>
         /// <value>gets the collection id</value>
+        [JsonIgnore]
         public string Collection
         {
             get => Root.GetProperty<string>("collection");
