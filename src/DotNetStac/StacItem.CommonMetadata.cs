@@ -121,6 +121,14 @@ namespace Stac
             set
             {
                 // datetime, start_datetime, end_datetime
+                if (value == null)
+                {
+                    this.RemoveProperty("start_datetime");
+                    this.RemoveProperty("end_datetime");
+                    this.SetProperty("datetime", null);
+                    return;
+                }
+                // datetime, start_datetime, end_datetime
                 if (value.IsAnytime)
                 {
                     this.RemoveProperty("start_datetime");
