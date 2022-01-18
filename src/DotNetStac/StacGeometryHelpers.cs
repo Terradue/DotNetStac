@@ -1,12 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 
 namespace Stac
 {
+    /// <summary>
+    /// Some helpers for manipulating geometries
+    /// </summary>
     public static class StacGeometryHelpers
     {
 
+        /// <summary>
+        /// Get The bounding box of a geometry in a StacItem
+        /// </summary>
+        /// <param name="stacItem">The STAC Item containing the geometry</param>
+        /// <returns></returns>
         public static double[] GetBoundingBoxFromGeometryExtent(this StacItem stacItem)
         {
             var boundingBoxes = stacItem.Geometry.GetBoundingBox();
@@ -22,8 +31,15 @@ namespace Stac
                 };
         }
 
+        /// <summary>
+        /// Get the bounding box of a geometry object
+        /// </summary>
+        /// <param name="geometry">the geometry object</param>
+        /// <returns></returns>
         public static IPosition[] GetBoundingBox(this IGeometryObject geometry)
         {
+            if (geometry == null)
+                throw new ArgumentNullException(nameof(geometry));
             IPosition upperRight = null, lowerLeft = null;
 
             switch (geometry.Type)
@@ -68,6 +84,11 @@ namespace Stac
             return new IPosition[2] { lowerLeft, upperRight };
         }
 
+        /// <summary>
+        /// Get the lower left corner of a bounding box
+        /// </summary>
+        /// <param name="positions">set of positions</param>
+        /// <returns></returns>
         public static IPosition GetLowerLeft(this IPosition[] positions)
         {
             if (positions == null || positions.Length == 0) return null;
@@ -77,6 +98,11 @@ namespace Stac
                 return new GeoJSON.Net.Geometry.Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude));
         }
 
+        /// <summary>
+        /// Get the upper right corner of a bounding box
+        /// </summary>
+        /// <param name="positions">set of positions</param>
+        /// <returns></returns>
         public static IPosition GetUpperRight(this IPosition[] positions)
         {
             if (positions == null || positions.Length == 0) return null;

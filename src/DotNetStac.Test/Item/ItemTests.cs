@@ -386,5 +386,16 @@ namespace Stac.Test.Item
             Assert.Throws<InvalidStacDataException>(() => ValidateJson(json));
 
         }
+
+        [Fact]
+        public void NullGeometry()
+        {
+
+            StacItem item = new StacItem("nogeometry", null);
+            item.DateTime = null;
+            string json = StacConvert.Serialize(item);
+            Assert.Throws<InvalidStacDataException>(() => ValidateJson(json));
+
+        }
     }
 }

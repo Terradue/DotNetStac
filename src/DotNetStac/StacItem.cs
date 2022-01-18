@@ -16,7 +16,7 @@ namespace Stac
     /// <summary>
     /// STAC Item Object implementing STAC Item spec (https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md)
     /// </summary>
-    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore, MemberSerialization = MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, ICloneable
     {
         public const string MEDIATYPE = "application/geo+json";
@@ -152,7 +152,7 @@ namespace Stac
         [OnSerializing]
         internal void OnSerializingMethod(StreamingContext context)
         {
-            if (BoundingBoxes == null)
+            if (BoundingBoxes == null && Geometry != null)
                 BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
 
         }
