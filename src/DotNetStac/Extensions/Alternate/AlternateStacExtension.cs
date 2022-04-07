@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Stac.Extensions.Storage;
 
 namespace Stac.Extensions.Alternate
 {
@@ -61,6 +62,9 @@ namespace Stac.Extensions.Alternate
             AlternateAssets = alternateAssets;
             return alternateAssetObject;
         }
+
+
+
     }
 
     /// <summary>
@@ -70,11 +74,19 @@ namespace Stac.Extensions.Alternate
     {
 
         /// <summary>
-        /// Initilize a EoStacExtension class from a STAC asset
+        /// Initilize a AlternateStacExtension class from a STAC asset
         /// </summary>
         public static AlternateStacExtension AlternateExtension(this StacAsset stacAsset)
         {
             return new AlternateStacExtension(stacAsset);
+        }
+
+        /// <summary>
+        /// Initilize a AlternateStacExtension class from an alternate asset
+        /// </summary>
+        public static StorageStacExtension StorageExtension(this AlternateAssetObject alternateAssetObject)
+        {
+            return new StorageStacExtension(alternateAssetObject);
         }
     }
 }
