@@ -70,18 +70,15 @@ namespace Stac.Test
 
             foreach (var property in jObject.Properties().OrderBy(p => p.Name))
             {
-                var value = property.Value as JObject;
-
-                if (value != null)
+                if (property.Value is JObject value)
                 {
                     value = value.SortProperties();
                     result.Add(property.Name, value);
                     continue;
                 }
 
-                var avalues = property.Value as JArray;
 
-                if (avalues != null)
+                if (property.Value is JArray avalues)
                 {
                     if (avalues.Count == 0) continue;
                     avalues = avalues.SortProperties();
@@ -101,9 +98,7 @@ namespace Stac.Test
 
             foreach (var item in jArray)
             {
-                var value = item as JObject;
-
-                if (value != null)
+                if (item is JObject value)
                 {
                     value = value.SortProperties();
                     result.Add(value);

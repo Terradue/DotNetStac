@@ -35,7 +35,7 @@ namespace Stac.Converters
                             summaries.Add(key, new StacSummaryValueSet<DateTime>(enumerable));
                             break;
                         case JTokenType.String:
-                            summaries.Add(key, new StacSummaryValueSet<String>(enumerable));
+                            summaries.Add(key, new StacSummaryValueSet<string>(enumerable));
                             break;
                         case JTokenType.Integer:
                             summaries.Add(key, new StacSummaryValueSet<long>(enumerable));
@@ -59,7 +59,7 @@ namespace Stac.Converters
                                 summaries.Add(key, new StacSummaryRangeObject<DateTime>(obj));
                                 break;
                             case JTokenType.String:
-                                summaries.Add(key, new StacSummaryRangeObject<String>(obj));
+                                summaries.Add(key, new StacSummaryRangeObject<string>(obj));
                                 break;
                             case JTokenType.Integer:
                                 summaries.Add(key, new StacSummaryRangeObject<long>(obj));

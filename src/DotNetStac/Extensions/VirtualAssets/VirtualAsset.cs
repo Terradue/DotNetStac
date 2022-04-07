@@ -22,7 +22,7 @@ namespace Stac.Extensions.VirtualAssets
         /// <returns></returns>
         public static VirtualAsset Create(StacItem stacItem, IList<string> assetsKey, IStacObject newStacObject = null)
         {
-            IStacObject parentObject = newStacObject == null ? stacItem : newStacObject;
+            IStacObject parentObject = newStacObject ?? stacItem;
             return new VirtualAsset(parentObject, stacItem.Assets.Select(asset => new Uri(asset.Value.Uri, "#" + asset.Key)).ToList());
         }
 
