@@ -25,9 +25,9 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// A dictionary of alternate location information for an asset.
         /// </summary>
-        public IDictionary<string,AlternateAssetObject> AlternateAssets
+        public IDictionary<string, AlternateAssetObject> AlternateAssets
         {
-            get { return StacPropertiesContainer.GetProperty<Dictionary<string,AlternateAssetObject>>(AlternateField); }
+            get { return StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField); }
             set
             {
                 if (value == null || value.Count() == 0)
