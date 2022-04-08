@@ -95,7 +95,7 @@ namespace Stac
             {
                 if (this.Properties.ContainsKey("datetime"))
                 {
-                    if (this.Properties["datetime"] is DateTime)
+                    if (this.Properties["datetime"] is DateTime?)
                         return new Itenso.TimePeriod.TimeInterval((DateTime)this.Properties["datetime"]);
                     else
                     {
@@ -107,7 +107,7 @@ namespace Stac
                         {
                             if (this.Properties.ContainsKey("start_datetime") && this.Properties.ContainsKey("end_datetime"))
                             {
-                                if (this.Properties["start_datetime"] is DateTime && this.Properties["end_datetime"] is DateTime)
+                                if (this.Properties["start_datetime"] is DateTime? && this.Properties["end_datetime"] is DateTime?)
                                     return new Itenso.TimePeriod.TimeInterval((DateTime)this.Properties["start_datetime"],
                                                                                 (DateTime)this.Properties["end_datetime"]);
                                 throw new FormatException(string.Format("start_datetime and/or end_datetime are not a valid: {0}", e.Message), e);
@@ -120,6 +120,14 @@ namespace Stac
             }
             set
             {
+                // datetime, start_datetime, end_datetime
+                if (value == null)
+                {
+                    this.RemoveProperty("start_datetime");
+                    this.RemoveProperty("end_datetime");
+                    this.SetProperty("datetime", null);
+                    return;
+                }
                 // datetime, start_datetime, end_datetime
                 if (value.IsAnytime)
                 {

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "auto-changelog": "^2.3.0"
+    "auto-changelog": "^2.4.0"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -8,7 +8,7 @@
     "unreleased": false,
     "commitLimit": false,
     "hideEmptyReleases": true,
-    "ignoreCommitPattern": "^(.{0,5}|bump.*|ready.*|.*changelog.*|.*formatting.*)$",
+    "ignoreCommitPattern": "^(.{0,5}|bump.*|ready.*|.*changelog.*|.*formatting.*|.*typo.*)$",
     "releaseSummary": true
   }
 }

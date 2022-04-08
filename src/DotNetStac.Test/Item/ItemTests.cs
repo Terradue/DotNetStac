@@ -362,5 +362,40 @@ namespace Stac.Test.Item
 
             Assert.Equal("GET", simpleItem.Links.First().AdditionalProperties["method"]);
         }
+
+        [Fact]
+        public void NullDateTime()
+        {
+            var coordinates = new[]
+            {
+                new List<IPosition>
+                {
+                    new Position(37.488035566,-122.308150179),
+                    new Position(37.538869539,-122.597502109),
+                    new Position(37.613537207,-122.576687533),
+                    new Position(37.562818007,-122.288048600),
+                    new Position(37.488035566,-122.308150179)
+                }
+            };
+
+            var geometry = new Polygon(new LineString[] { new LineString(coordinates[0]) });
+
+            StacItem item = new StacItem("notime", geometry);
+            item.DateTime = null;
+            string json = StacConvert.Serialize(item);
+            Assert.Throws<InvalidStacDataException>(() => ValidateJson(json));
+
+        }
+
+        [Fact]
+        public void NullGeometry()
+        {
+
+            StacItem item = new StacItem("nogeometry", null);
+            item.DateTime = null;
+            string json = StacConvert.Serialize(item);
+            Assert.Throws<InvalidStacDataException>(() => ValidateJson(json));
+
+        }
     }
 }

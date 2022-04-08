@@ -54,7 +54,6 @@ namespace Stac.Schemas
 
             foreach (var schema in schemas)
             {
-                IList<ValidationError> errorMessages = null;
                 string shortcut = null, baseUrl = null;
                 if (Uri.IsWellFormedUriString(schema, UriKind.Absolute))
                     baseUrl = schema;
@@ -65,7 +64,7 @@ namespace Stac.Schemas
                     throw new InvalidStacDataException("Missing 'stac_version' property");
 
                 var jsonSchema = schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
-                if (jObject.IsValid(jsonSchema, out errorMessages))
+                if (jObject.IsValid(jsonSchema, out IList<ValidationError> errorMessages))
                     continue;
 
                 throw new InvalidStacDataException(schema + ":\n" + string.Join("\n", errorMessages.
