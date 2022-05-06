@@ -66,12 +66,12 @@ namespace Stac
                     break;
                 case GeoJSONObjectType.MultiPolygon:
                     MultiPolygon multiPolygon = geometry as MultiPolygon;
-                    double lowerLeftLon = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0].Longitude);
-                    double lowerLeftLat = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0].Latitude);
-                    double upperRightLon = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1].Longitude);
-                    double upperRightLat = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1].Latitude);
-                    lowerLeft = new Position(lowerLeftLat, lowerLeftLon);
-                    upperRight = new Position(upperRightLat, upperRightLon);
+                    IPosition lowerLeftLonPos = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0]);
+                    IPosition lowerLeftLatPos = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0]);
+                    IPosition upperRightLonPos = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1]);
+                    IPosition upperRightLatPos = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1]);
+                    lowerLeft = new Position(lowerLeftLatPos.Latitude, lowerLeftLonPos.Longitude, (lowerLeftLatPos.Altitude + lowerLeftLonPos.Altitude) / 2);
+                    upperRight = new Position(upperRightLatPos.Latitude, upperRightLonPos.Longitude, (upperRightLatPos.Altitude + upperRightLonPos.Altitude) / 2);
                     break;
                 case GeoJSONObjectType.Point:
                     Point point = geometry as Point;
