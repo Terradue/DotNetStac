@@ -56,7 +56,7 @@ namespace Stac.Extensions.Alternate
 
         public AlternateAssetObject AddAlternate(string key, Uri uri, string title = null, string description = null)
         {
-            AlternateAssetObject alternateAssetObject = new AlternateAssetObject(uri, StacAsset.ParentStacObject, title, description);
+            AlternateAssetObject alternateAssetObject = new AlternateAssetObject(uri.ToString(), StacAsset.ParentStacObject, title, description);
             var alternateAssets = AlternateAssets ?? new Dictionary<string, AlternateAssetObject>();
             alternateAssets.Add(key, alternateAssetObject);
             AlternateAssets = alternateAssets;

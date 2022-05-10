@@ -66,8 +66,12 @@ namespace Stac
                     break;
                 case GeoJSONObjectType.MultiPolygon:
                     MultiPolygon multiPolygon = geometry as MultiPolygon;
-                    lowerLeft = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0]);
-                    upperRight = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1]);
+                    IPosition lowerLeftLonPos = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0]);
+                    IPosition lowerLeftLatPos = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0]);
+                    IPosition upperRightLonPos = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1]);
+                    IPosition upperRightLatPos = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1]);
+                    lowerLeft = new Position(lowerLeftLatPos.Latitude, lowerLeftLonPos.Longitude, (lowerLeftLatPos.Altitude + lowerLeftLonPos.Altitude) / 2);
+                    upperRight = new Position(upperRightLatPos.Latitude, upperRightLonPos.Longitude, (upperRightLatPos.Altitude + upperRightLonPos.Altitude) / 2);
                     break;
                 case GeoJSONObjectType.Point:
                     Point point = geometry as Point;

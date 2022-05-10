@@ -11,7 +11,7 @@ namespace Stac.Extensions.Alternate
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class AlternateAssetObject : IStacPropertiesContainer
     {
-        private Uri uri;
+        private string href;
         private readonly IStacObject _parent;
         private string title;
 
@@ -22,13 +22,13 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// Initialize a new Band Object
         /// </summary>
-        /// <param name="uri">URI to the asset object</param>
+        /// <param name="href">URI to the asset object</param>
         /// <param name="parent">Parent object</param>
         /// <param name="title">The displayed title for clients and users.</param>
         /// <param name="description">A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.</param>
-        public AlternateAssetObject(Uri uri, IStacObject parent = null, string title = null, string description = null)
+        public AlternateAssetObject(string href, IStacObject parent = null, string title = null, string description = null)
         {
-            this.uri = uri;
+            this.href = href;
             _parent = parent;
             this.title = title;
             this.description = description;
@@ -40,7 +40,7 @@ namespace Stac.Extensions.Alternate
         /// </summary>
         [JsonProperty("href")]
         [JsonRequired]
-        public string Uri { get => uri.ToString(); set => uri = new Uri(value); }
+        public string Href { get => href; set => href = value; }
 
         /// <summary>
         /// The displayed title for clients and users.
@@ -67,5 +67,12 @@ namespace Stac.Extensions.Alternate
         /// <returns></returns>
         [JsonIgnore]
         public IStacObject StacObjectContainer => _parent;
+
+        /// <summary>
+        /// Uri
+        /// </summary>
+        /// <returns></returns>
+        [JsonIgnore]
+        public Uri Uri => new Uri(href);
     }
 }

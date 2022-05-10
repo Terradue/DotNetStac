@@ -34,5 +34,16 @@ namespace Stac.Test.Extensions
             Assert.Equal("s3://bucket/key/srid.csv", simpleitem.Assets["srid"].AlternateExtension().AlternateAssets["s3"].Uri.ToString());
         }
 
+        [Fact]
+        public async System.Threading.Tasks.Task LS9Alternates()
+        {
+            var simpleJson = GetJson("Extensions", "LS9Sample");
+            ValidateJson(simpleJson);
+
+            StacItem ls9item = StacConvert.Deserialize<StacItem>(simpleJson);
+
+            Assert.Equal("s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2022/088/084/LC09_L2SP_088084_20220405_20220407_02_T2/LC09_L2SP_088084_20220405_20220407_02_T2_thumb_small.jpeg", ls9item.Assets["thumbnail"].AlternateExtension().AlternateAssets["s3"].Uri.ToString());
+        }
+
     }
 }

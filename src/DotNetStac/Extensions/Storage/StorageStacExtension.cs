@@ -18,10 +18,10 @@ namespace Stac.Extensions.Storage
     {
         /// Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/storage/v1.0.0/schema.json";
-        private const string PlatformField = "storage:platform";
-        private const string RegionField = "storage:region";
-        private const string RequesterPaysField = "storage:requester_pays";
-        private const string TierField = "storage:tier";
+        public const string PlatformField = "storage:platform";
+        public const string RegionField = "storage:region";
+        public const string RequesterPaysField = "storage:requester_pays";
+        public const string TierField = "storage:tier";
         private readonly Dictionary<string, Type> itemFields;
 
         internal StorageStacExtension(IStacPropertiesContainer stacObject) : base(JsonSchemaUrl, stacObject)
