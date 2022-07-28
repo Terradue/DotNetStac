@@ -397,5 +397,16 @@ namespace Stac.Test.Item
             Assert.Throws<InvalidStacDataException>(() => ValidateJson(json));
 
         }
+
+        [Fact]
+        public void EmptyProviders()
+        {
+            var json = GetJson("Item");
+
+            var item = StacConvert.Deserialize<StacItem>(json);
+
+            Assert.NotNull(item.Providers);
+
+        }
     }
 }

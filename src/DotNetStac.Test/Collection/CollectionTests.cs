@@ -285,5 +285,13 @@ namespace Stac.Test.Collection
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
 
+        [Fact]
+        public void CollectionSentinel1()
+        {
+            var simpleJson = GetJson("Collection", "sentinel-1-grd");
+            ValidateJson(simpleJson);
+            StacCollection simpleCollection = StacConvert.Deserialize<StacCollection>(simpleJson);
+        }
+
     }
 }
