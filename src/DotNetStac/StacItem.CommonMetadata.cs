@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Stac
 {
@@ -17,16 +18,6 @@ namespace Stac
         {
             get => this.GetProperty<string>("title");
             set => this.SetProperty("title", value);
-        }
-
-        /// <summary>
-        /// Detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.
-        /// </summary>
-        /// <value></value>
-        public string Description
-        {
-            get => this.GetProperty<string>("description");
-            set => this.SetProperty("description", value);
         }
 
         public string License

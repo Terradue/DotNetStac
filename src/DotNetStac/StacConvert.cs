@@ -14,7 +14,7 @@ namespace Stac
         private static JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
         {
             DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-            Culture = CultureInfo.CreateSpecificCulture("en-US"),
+            Culture = CultureInfo.CreateSpecificCulture("en-US")
         };
 
         public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null) where T : IStacObject
@@ -37,6 +37,7 @@ namespace Stac
             }
             try
             {
+                // return (T)JsonConvert.DeserializeObject(json, typeof(T), serializerSettings);
                 return (T)jobject.ToObject(stacType);
             }
             catch (Exception e)

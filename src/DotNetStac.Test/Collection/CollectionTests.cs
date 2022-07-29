@@ -291,6 +291,8 @@ namespace Stac.Test.Collection
             var simpleJson = GetJson("Collection", "sentinel-1-grd");
             ValidateJson(simpleJson);
             StacCollection simpleCollection = StacConvert.Deserialize<StacCollection>(simpleJson);
+            var newJson = StacConvert.Serialize(simpleCollection);
+            ValidateJson(newJson);
         }
 
     }

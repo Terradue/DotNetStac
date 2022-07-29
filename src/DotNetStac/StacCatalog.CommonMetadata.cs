@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Stac
 {
@@ -12,7 +13,7 @@ namespace Stac
     /// </summary>
     public partial class StacCatalog : IStacObject, IStacParent, IStacCatalog, ICloneable
     {
-
+        [JsonProperty("title")]
         public string Title
         {
             get => this.GetProperty<string>("title");
