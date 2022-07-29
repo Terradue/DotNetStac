@@ -41,47 +41,63 @@ namespace Stac
             if (geometry == null)
                 throw new ArgumentNullException(nameof(geometry));
             IPosition upperRight = null, lowerLeft = null;
+            double lowerLeftLon, lowerLeftLat, upperRightLon, upperRightLat;
+            double? lowerLeftAlt = null, upperRightAlt = null;
 
             switch (geometry.Type)
             {
                 case GeoJSONObjectType.GeometryCollection:
                     GeometryCollection geometryCollection = geometry as GeometryCollection;
-                    lowerLeft = geometryCollection.Geometries.Min(geom => geom.GetBoundingBox()[0]);
-                    upperRight = geometryCollection.Geometries.Max(geom => geom.GetBoundingBox()[1]);
+                    lowerLeftLon = geometryCollection.Geometries.Min(gp => gp.GetBoundingBox()[0].Longitude);
+                    lowerLeftLat = geometryCollection.Geometries.Min(gp => gp.GetBoundingBox()[0].Latitude);
+                    lowerLeftAlt = geometryCollection.Geometries.Min(gp => gp.GetBoundingBox()[0].Altitude);
+                    upperRightLon = geometryCollection.Geometries.Max(gp => gp.GetBoundingBox()[1].Longitude);
+                    upperRightLat = geometryCollection.Geometries.Max(gp => gp.GetBoundingBox()[1].Latitude);
+                    upperRightAlt = geometryCollection.Geometries.Max(gp => gp.GetBoundingBox()[1].Altitude);
+                    lowerLeft = new Position(lowerLeftLat, lowerLeftLon, lowerLeftAlt);
+                    upperRight = new Position(upperRightLat, upperRightLon, upperRightAlt);
+                    break;
+                case GeoJSONObjectType.MultiPolygon:
+                    MultiPolygon multiPolygon = geometry as MultiPolygon;
+                    lowerLeftLon = multiPolygon.Coordinates.Min(gp => gp.GetBoundingBox()[0].Longitude);
+                    lowerLeftLat = multiPolygon.Coordinates.Min(gp => gp.GetBoundingBox()[0].Latitude);
+                    lowerLeftAlt = multiPolygon.Coordinates.Min(gp => gp.GetBoundingBox()[0].Altitude);
+                    upperRightLon = multiPolygon.Coordinates.Max(gp => gp.GetBoundingBox()[1].Longitude);
+                    upperRightLat = multiPolygon.Coordinates.Max(gp => gp.GetBoundingBox()[1].Latitude);
+                    upperRightAlt = multiPolygon.Coordinates.Max(gp => gp.GetBoundingBox()[1].Altitude);
+                    lowerLeft = new Position(lowerLeftLat, lowerLeftLon, lowerLeftAlt);
+                    upperRight = new Position(upperRightLat, upperRightLon, upperRightAlt);
+                    break;
+                case GeoJSONObjectType.MultiLineString:
+                    MultiLineString multiLineString = geometry as MultiLineString;
+                    lowerLeftLon = multiLineString.Coordinates.Min(gp => gp.GetBoundingBox()[0].Longitude);
+                    lowerLeftLat = multiLineString.Coordinates.Min(gp => gp.GetBoundingBox()[0].Latitude);
+                    lowerLeftAlt = multiLineString.Coordinates.Min(gp => gp.GetBoundingBox()[0].Altitude);
+                    upperRightLon = multiLineString.Coordinates.Max(gp => gp.GetBoundingBox()[1].Longitude);
+                    upperRightLat = multiLineString.Coordinates.Max(gp => gp.GetBoundingBox()[1].Latitude);
+                    upperRightAlt = multiLineString.Coordinates.Max(gp => gp.GetBoundingBox()[1].Altitude);
+                    lowerLeft = new Position(lowerLeftLat, lowerLeftLon, lowerLeftAlt);
+                    upperRight = new Position(upperRightLat, upperRightLon, upperRightAlt);
+                    break;
+                case GeoJSONObjectType.Polygon:
+                    Polygon polygon = geometry as Polygon;
+                    lowerLeft = polygon.Coordinates.Min(ls => ls.GetBoundingBox()[0]);
+                    upperRight = polygon.Coordinates.Max(ls => ls.GetBoundingBox()[1]);
                     break;
                 case GeoJSONObjectType.LineString:
                     LineString lineString = geometry as LineString;
                     lowerLeft = lineString.Coordinates.ToArray().GetLowerLeft();
                     upperRight = lineString.Coordinates.ToArray().GetUpperRight();
                     break;
-                case GeoJSONObjectType.MultiLineString:
-                    MultiLineString multiLineString = geometry as MultiLineString;
-                    lowerLeft = multiLineString.Coordinates.Min(lString => lString.GetBoundingBox()[0]);
-                    upperRight = multiLineString.Coordinates.Max(lString => lString.GetBoundingBox()[1]);
-                    break;
                 case GeoJSONObjectType.MultiPoint:
                     MultiPoint multiPoint = geometry as MultiPoint;
                     lowerLeft = multiPoint.Coordinates.Select(p => p.Coordinates).ToArray().GetLowerLeft();
                     upperRight = multiPoint.Coordinates.Select(p => p.Coordinates).ToArray().GetUpperRight();
                     break;
-                case GeoJSONObjectType.MultiPolygon:
-                    MultiPolygon multiPolygon = geometry as MultiPolygon;
-                    IPosition lowerLeftLonPos = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0]);
-                    IPosition lowerLeftLatPos = multiPolygon.Coordinates.Min(poly => poly.GetBoundingBox()[0]);
-                    IPosition upperRightLonPos = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1]);
-                    IPosition upperRightLatPos = multiPolygon.Coordinates.Max(poly => poly.GetBoundingBox()[1]);
-                    lowerLeft = new Position(lowerLeftLatPos.Latitude, lowerLeftLonPos.Longitude, (lowerLeftLatPos.Altitude + lowerLeftLonPos.Altitude) / 2);
-                    upperRight = new Position(upperRightLatPos.Latitude, upperRightLonPos.Longitude, (upperRightLatPos.Altitude + upperRightLonPos.Altitude) / 2);
-                    break;
                 case GeoJSONObjectType.Point:
                     Point point = geometry as Point;
                     lowerLeft = point.Coordinates;
                     upperRight = point.Coordinates;
-                    break;
-                case GeoJSONObjectType.Polygon:
-                    Polygon polygon = geometry as Polygon;
-                    lowerLeft = polygon.Coordinates.Min(lString => lString.GetBoundingBox()[0]);
-                    upperRight = polygon.Coordinates.Max(lString => lString.GetBoundingBox()[1]);
                     break;
             }
 

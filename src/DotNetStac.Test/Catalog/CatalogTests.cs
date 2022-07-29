@@ -13,7 +13,7 @@ namespace Stac.Test.Catalog
 
             ValidateJson(json);
 
-            var catalog = StacConvert.Deserialize<StacCatalog>(json);
+            var catalog = JsonConvert.DeserializeObject<StacCatalog>(json);
 
             Assert.NotNull(catalog);
 

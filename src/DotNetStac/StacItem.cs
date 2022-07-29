@@ -16,7 +16,7 @@ namespace Stac
     /// <summary>
     /// STAC Item Object implementing STAC Item spec (https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md)
     /// </summary>
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore, MemberSerialization = MemberSerialization.OptIn)]
     public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, ICloneable
     {
         public const string MEDIATYPE = "application/geo+json";
@@ -115,7 +115,7 @@ namespace Stac
         /// The id of the STAC Collection this Item references to
         /// </summary>
         /// <value>gets the collection id</value>
-        [JsonIgnore]
+        [JsonProperty("collection")]
         public string Collection
         {
             get => Root.GetProperty<string>("collection");

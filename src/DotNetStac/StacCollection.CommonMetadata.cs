@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Stac
 {
@@ -17,6 +18,7 @@ namespace Stac
         /// A short descriptive one-line title for the Collection.
         /// </summary>
         /// <value></value>
+        [JsonProperty("title")]
         public string Title
         {
             get => this.GetProperty<string>("title");
@@ -48,6 +50,7 @@ namespace Stac
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </summary>
         /// <value></value>
+        [JsonProperty("providers")]
         public Collection<StacProvider> Providers => this.GetObservableCollectionProperty<StacProvider>("providers");
 
         public string Platform

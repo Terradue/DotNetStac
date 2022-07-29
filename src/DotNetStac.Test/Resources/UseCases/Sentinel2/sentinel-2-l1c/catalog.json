@@ -1,331 +1,341 @@
 {
-    "stac_extensions": [
-        "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
-    ],
-    "id": "sentinel-2-l1c",
-    "title": "Sentinel 2 L1C",
-    "type": "Collection",
-    "description": "Sentinel-2a and Sentinel-2b imagery",
-    "keywords": [
-        "sentinel",
-        "earth observation",
-        "esa"
-    ],
-    "version": "0.1.0",
-    "stac_version": "1.0.0",
-    "extent": {
-        "spatial": {
-            "bbox": [
-                [
-                    -180,
-                    -90,
-                    180,
-                    90
-                ]
-            ]
-        },
-        "temporal": {
-            "interval": [
-                [
-                    "2013-06-01T00:00:00",
-                    null
-                ]
-            ]
-        }
+  "stac_extensions": [
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json"
+  ],
+  "id": "sentinel-2-l1c",
+  "title": "Sentinel 2 L1C",
+  "type": "Collection",
+  "description": "Sentinel-2a and Sentinel-2b imagery",
+  "keywords": [
+    "sentinel",
+    "earth observation",
+    "esa"
+  ],
+  "version": "0.1.0",
+  "stac_version": "1.0.0",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
     },
-    "providers": [
-        {
-            "name": "ESA",
-            "roles": [
-                "producer"
-            ],
-            "url": "https://earth.esa.int/web/guest/home"
-        },
-        {
-            "name": "Synergise",
-            "roles": [
-                "processor"
-            ],
-            "url": "https://registry.opendata.aws/sentinel-2/"
-        },
-        {
-            "name": "AWS",
-            "roles": [
-                "host"
-            ],
-            "url": "http://sentinel-pds.s3-website.eu-central-1.amazonaws.com/"
-        },
-        {
-            "name": "Development Seed",
-            "roles": [
-                "processor"
-            ],
-            "url": "https://github.com/sat-utils/sat-stac-sentinel"
-        }
-    ],
-    "license": "proprietary",
-    "properties": {
-        "collection": "sentinel-2-l1c",
-        "eo:gsd": 10,
-        "eo:instrument": "MSI",
-        "eo:off_nadir": 0
+    "temporal": {
+      "interval": [
+        [
+          "2013-06-01T00:00:00",
+          null
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "ESA",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://earth.esa.int/web/guest/home"
     },
-    "links": [
-        {
-            "rel": "license",
-            "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
-        },
-        {
-            "rel": "self",
-            "href": "https://sentinel-stac.s3.amazonaws.com/sentinel-2-l1c/catalog.json"
-        },
-        {
-            "rel": "root",
-            "href": "../catalog.json"
-        },
-        {
-            "rel": "parent",
-            "href": "../catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "9/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "47/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "2/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "42/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "35/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "55/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "33/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "7/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "51/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "39/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "30/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "41/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "23/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "6/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "40/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "53/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "60/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "16/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "50/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "27/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "19/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "12/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "32/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "37/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "11/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "54/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "29/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "24/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "49/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "5/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "34/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "13/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "59/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "57/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "20/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "4/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "46/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "45/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "21/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "18/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "31/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "17/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "3/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "36/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "14/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "38/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "25/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "58/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "22/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "43/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "44/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "1/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "28/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "15/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "48/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "8/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "56/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "10/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "52/catalog.json"
-        },
-        {
-            "rel": "child",
-            "href": "26/catalog.json"
-        }
+    {
+      "name": "Synergise",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://registry.opendata.aws/sentinel-2/"
+    },
+    {
+      "name": "AWS",
+      "roles": [
+        "host"
+      ],
+      "url": "http://sentinel-pds.s3-website.eu-central-1.amazonaws.com/"
+    },
+    {
+      "name": "Development Seed",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://github.com/sat-utils/sat-stac-sentinel"
+    }
+  ],
+  "license": "proprietary",
+  "summaries": {
+    "collection": [
+      "sentinel-2-l1c"
+    ],
+    "eo:gsd": [
+      10,
+      20,
+      60
+    ],
+    "eo:instrument": [
+      "MSI"
+    ],
+    "eo:off_nadir": [
+      0
     ]
+  },
+  "links": [
+    {
+      "rel": "license",
+      "href": "https://sentinel.esa.int/documents/247904/690755/Sentinel_Data_Legal_Notice"
+    },
+    {
+      "rel": "self",
+      "href": "https://sentinel-stac.s3.amazonaws.com/sentinel-2-l1c/catalog.json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "9/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "47/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "2/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "42/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "35/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "55/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "33/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "7/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "51/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "39/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "30/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "41/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "23/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "6/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "40/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "53/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "60/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "16/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "50/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "27/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "19/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "12/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "32/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "37/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "11/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "54/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "29/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "24/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "49/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "5/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "34/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "13/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "59/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "57/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "20/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "4/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "46/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "45/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "21/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "18/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "31/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "17/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "3/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "36/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "14/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "38/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "25/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "58/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "22/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "43/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "44/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "1/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "28/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "15/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "48/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "8/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "56/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "10/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "52/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "26/catalog.json"
+    }
+  ]
 }
