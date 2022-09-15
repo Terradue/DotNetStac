@@ -76,7 +76,15 @@ namespace Stac.Schemas
         internal static string FormatMessage(ValidationError validationError, string prefix)
         {
             StringBuilder message = new StringBuilder();
-            message.AppendFormat(prefix + "[{0},{1}]", validationError.LineNumber, validationError.LinePosition);
+            message.Append(prefix);
+            if (validationError.LineNumber > 1 && validationError.LinePosition > 1)
+            {
+                message.AppendFormat("[{0},{1}]", validationError.LineNumber, validationError.LinePosition);
+            }
+            else
+            {
+                message.AppendFormat("[ROOT]");
+            }
             if (!string.IsNullOrEmpty(validationError.Path))
             {
                 message.AppendFormat(" Path '{0}'", validationError.Path);
