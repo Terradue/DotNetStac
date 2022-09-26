@@ -29,7 +29,11 @@ namespace Stac
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue((value as ContentType).ToString());
+            var strs = (value as ContentType).ToString().Split(';');
+            List<string> parts = new List<string>();
+            parts.Add(strs[0]);
+            parts.AddRange(strs.Skip(1).OrderBy(s => s));
+            writer.WriteValue(string.Join(";", parts));
         }
     }
 }

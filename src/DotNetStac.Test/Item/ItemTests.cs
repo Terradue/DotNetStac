@@ -312,7 +312,7 @@ namespace Stac.Test.Item
             var clonedJson = StacConvert.Serialize(simpleItemClone);
             ValidateJson(clonedJson);
 
-            JsonAssert.AreEqual(clonedJson, simpleJson);
+            JsonAssert.AreEqual(simpleJson, clonedJson);
 
             var expectedJson = GetJson("Item");
             JsonAssert.AreEqual(simpleJson, expectedJson);
