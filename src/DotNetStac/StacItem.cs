@@ -45,9 +45,10 @@ namespace Stac
             this.StacExtensions = new SortedSet<string>(stacItem.StacExtensions);
             this.Root = new StacItemRootPropertyContainer(this);
             this.StacVersion = stacItem.StacVersion;
-            this.Links = new ObservableCollection<StacLink>(stacItem.Links);
+            this.Links = new ObservableCollection<StacLink>(stacItem.Links.Select(l => new StacLink(l)));
             (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
-            this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets);
+            this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets.Select(a => new KeyValuePair<string, StacAsset>(a.Key, new StacAsset(a.Value, this)))
+                                                                           .ToDictionary(kvp => kvp.Key, kvp => kvp.Value));
             this.Collection = stacItem.Collection;
         }
 

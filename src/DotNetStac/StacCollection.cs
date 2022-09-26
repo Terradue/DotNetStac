@@ -61,7 +61,8 @@ namespace Stac
             this.Links = new Collection<StacLink>(stacCollection.Links.ToList());
             this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>(stacCollection.Summaries);
             this.Properties = new Dictionary<string, object>(stacCollection.Properties);
-            this.Assets = new Dictionary<string, StacAsset>(stacCollection.Assets);
+            this.Assets = new Dictionary<string, StacAsset>(stacCollection.Assets.Select(a => new KeyValuePair<string, StacAsset>(a.Key, new StacAsset(a.Value, this)))
+                                                                           .ToDictionary(kvp => kvp.Key, kvp => kvp.Value));
             this.License = stacCollection.License;
             this.Keywords = new Collection<string>(stacCollection.Keywords);
             this.Extent = new StacExtent(stacCollection.Extent);
