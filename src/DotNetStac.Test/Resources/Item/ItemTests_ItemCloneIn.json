@@ -74,7 +74,7 @@
         },
         "overview": {
             "title": "True color image",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "overview"
             ],
@@ -134,7 +134,7 @@
         },
         "visual": {
             "title": "True color image",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "overview"
             ],
@@ -178,7 +178,7 @@
         },
         "B01": {
             "title": "Band 1 (coastal)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -210,7 +210,7 @@
         },
         "B02": {
             "title": "Band 2 (blue)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -242,7 +242,7 @@
         },
         "B03": {
             "title": "Band 3 (green)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -274,7 +274,7 @@
         },
         "B04": {
             "title": "Band 4 (red)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -306,7 +306,7 @@
         },
         "B05": {
             "title": "Band 5",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -337,7 +337,7 @@
         },
         "B06": {
             "title": "Band 6",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -368,7 +368,7 @@
         },
         "B07": {
             "title": "Band 7",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -399,7 +399,7 @@
         },
         "B08": {
             "title": "Band 8 (nir)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -431,7 +431,7 @@
         },
         "B8A": {
             "title": "Band 8A",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -462,7 +462,7 @@
         },
         "B09": {
             "title": "Band 9",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -493,7 +493,7 @@
         },
         "B11": {
             "title": "Band 11 (swir16)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -525,7 +525,7 @@
         },
         "B12": {
             "title": "Band 12 (swir22)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -557,7 +557,7 @@
         },
         "AOT": {
             "title": "Aerosol Optical Thickness (AOT)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -580,7 +580,7 @@
         },
         "WVP": {
             "title": "Water Vapour (WVP)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -603,7 +603,7 @@
         },
         "SCL": {
             "title": "Scene Classification Map (SCL)",
-            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "type": "image/tiff; profile=cloud-optimized; application=geotiff",
             "roles": [
                 "data"
             ],
