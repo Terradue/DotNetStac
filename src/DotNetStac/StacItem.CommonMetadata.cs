@@ -20,6 +20,14 @@ namespace Stac
             set => this.SetProperty("title", value);
         }
 
+        [JsonProperty("__description", Required = Required.Default)]
+        [JsonIgnore]
+        public string Description
+        {
+            get => this.GetProperty<string>("description");
+            set => this.SetProperty("description", value);
+        }
+
         public string License
         {
             get => this.GetProperty<string>("license");
