@@ -44,6 +44,10 @@ namespace Stac
             {
                 return typeof(StacCatalog);
             }
+            else if (jObject.ContainsKey("links") && jObject["links"].Type == JTokenType.Array)
+            {
+                return typeof(SimpleLinksCollectionObject);
+            }
             else
             {
                 throw new InvalidStacDataException($"{jObject.Value<string>("id")}. Unknown data");

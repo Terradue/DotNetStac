@@ -11,7 +11,7 @@ namespace Stac
     /// <summary>
     /// Common interface for all Stac objects
     /// </summary>
-    public interface IStacObject : IStacPropertiesContainer
+    public interface IStacObject : IStacPropertiesContainer, ILinksCollectionObject
     {
         string Id { get; }
 
