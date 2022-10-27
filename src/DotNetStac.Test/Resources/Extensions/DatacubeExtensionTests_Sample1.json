@@ -1,0 +1,199 @@
+{
+    "stac_version": "1.0.0",
+    "type": "Feature",
+    "id": "e7318e2c-878e-4e7c-9163-1897472acdb7",
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    96.678611,
+                    1.2458333
+                ],
+                [
+                    99.184444,
+                    1.2458333
+                ],
+                [
+                    99.184444,
+                    3.3061111
+                ],
+                [
+                    96.678611,
+                    3.3061111
+                ],
+                [
+                    96.678611,
+                    1.2458333
+                ]
+            ]
+        ]
+    },
+    "properties": {
+        "datetime": "2022-02-17T23:12:39Z",
+        "created": "2022-10-08T20:09:21.7042023Z",
+        "cube:dimensions": {
+            "x": {
+                "type": "spatial",
+                "axis": "x",
+                "extent": [
+                    96.678611,
+                    99.184444
+                ],
+                "reference_system": 4326
+            },
+            "y": {
+                "type": "spatial",
+                "axis": "y",
+                "extent": [
+                    1.2458333,
+                    3.3061111
+                ],
+                "reference_system": 4326
+            },
+            "time": {
+                "type": "temporal",
+                "values": [
+                    "2022-02-17T23:12:39Z",
+                    "2022-03-13T23:12:39Z",
+                    "2022-03-25T23:12:40Z",
+                    "2022-04-06T23:12:40Z",
+                    "2022-04-18T23:12:40Z",
+                    "2022-04-30T23:12:41Z",
+                    "2022-05-12T23:12:42Z",
+                    "2022-05-24T23:12:42Z",
+                    "2022-06-05T23:12:43Z",
+                    "2022-06-17T23:12:44Z",
+                    "2022-06-29T23:12:45Z",
+                    "2022-07-11T23:12:45Z",
+                    "2022-07-23T23:12:46Z",
+                    "2022-08-04T23:12:47Z",
+                    "2022-08-16T23:12:48Z",
+                    "2022-08-28T23:12:48Z",
+                    "2022-09-09T23:12:49Z",
+                    "2022-09-21T23:12:48Z"
+                ]
+            }
+        },
+        "cube:variables": {
+            "coherence-2112618628": {
+                "dimensions": [
+                    "y",
+                    "x"
+                ],
+                "type": "data",
+                "description": "Coherence",
+                "extent": [
+                    0.8500050902366638,
+                    0.9977672100067139
+                ]
+            },
+            "cose-756841983": {
+                "dimensions": [
+                    "y",
+                    "x"
+                ],
+                "type": "data",
+                "description": "CosE",
+                "extent": [
+                    0.5035539269447327,
+                    0.6193761825561523
+                ]
+            },
+            "cosn-58321755": {
+                "dimensions": [
+                    "y",
+                    "x"
+                ],
+                "type": "data",
+                "description": "CosN",
+                "extent": [
+                    -0.1286633014678955,
+                    -0.10506770014762878
+                ]
+            },
+            "cosu-1188264944": {
+                "dimensions": [
+                    "y",
+                    "x"
+                ],
+                "type": "data",
+                "description": "CosU",
+                "extent": [
+                    0.7744796872138977,
+                    0.8575478792190552
+                ]
+            },
+            "displacement-608842020": {
+                "dimensions": [
+                    "y",
+                    "x"
+                ],
+                "type": "data",
+                "description": "Displacement",
+                "unit": "cm",
+                "extent": [
+                    -3.171799898147583,
+                    3.8494999408721924
+                ]
+            },
+            "topography-45811051": {
+                "dimensions": [
+                    "y",
+                    "x"
+                ],
+                "type": "data",
+                "description": "Topography",
+                "unit": "m",
+                "extent": [
+                    -11.09000015258789,
+                    1924.4000244140625
+                ]
+            },
+            "velocity-940887636": {
+                "dimensions": [
+                    "time",
+                    "y",
+                    "x"
+                ],
+                "type": "data",
+                "description": "Velocity",
+                "unit": "cm/yr",
+                "extent": [
+                    -6.013400077819824,
+                    6.747799873352051
+                ]
+            }
+        }
+    },
+    "bbox": [
+        96.678611,
+        1.2458333,
+        99.184444,
+        3.3061111
+    ],
+    "assets": {},
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://egms-dev.terradue.com/api/ns/egms/ts/e7318e2c-878e-4e7c-9163-1897472acdb7",
+            "type": "application/geo+json"
+        },
+        {
+            "rel": "collection",
+            "href": "https://egms-dev.terradue.com/api/ns/egms/cs/mdis",
+            "type": "application/json"
+        },
+        {
+            "rel": "root",
+            "href": "https://egms-dev.terradue.com/api/ns/egms",
+            "type": "application/json"
+        },
+        {
+            "rel": "tsapi",
+            "href": "https://egms-dev.terradue.com/swagger/v1/swagger.json",
+            "type": "application/json"
+        }
+    ],
+    "collection": "mdis"
+}
