@@ -12,7 +12,8 @@ namespace Stac.Test.Extensions
     public class RasterExtensionTests : TestBase
     {
         [Fact]
-        public void Iris(){
+        public void Iris()
+        {
             var json = GetJson("Extensions");
 
             var item = StacConvert.Deserialize<IStacObject>(json);
