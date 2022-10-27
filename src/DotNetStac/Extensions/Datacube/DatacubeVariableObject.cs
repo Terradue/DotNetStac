@@ -14,7 +14,7 @@ namespace Stac.Extensions.Datacube
     {
         IDictionary<string, object> properties;
         protected string[] dimensions;
-        protected DatacubeVariableType? type;                
+        protected DatacubeVariableType? type;
         protected string description;
         protected double[] extent;
         protected string[] values;

@@ -41,7 +41,7 @@ namespace Stac.Extensions.Datacube
         /// A dictionary of available dimensions where each object is a DatacubeDimension Object.
         /// </summary>
         public IDictionary<string, DatacubeDimension> Dimensions
-        {            
+        {
             get
             {
                 Dictionary<string, DatacubeDimension> existingDimensions = StacPropertiesContainer.GetProperty<Dictionary<string, DatacubeDimension>>(DimensionField);

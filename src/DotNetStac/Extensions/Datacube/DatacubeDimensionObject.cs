@@ -13,11 +13,11 @@ namespace Stac.Extensions.Datacube
     public class DatacubeDimension : IStacPropertiesContainer
     {
         IDictionary<string, object> properties;
-        protected string type;                
+        protected string type;
         protected string description;
         protected double[] extent;
         protected object values;
-        protected double? step;        
+        protected double? step;
 
         /// <summary>
         /// Type of the dimension.
@@ -66,7 +66,8 @@ namespace Stac.Extensions.Datacube
         }
     }
 
-    public class DatacubeDimensionSpatial : DatacubeDimension {
+    public class DatacubeDimensionSpatial : DatacubeDimension
+    {
         protected DatacubeAxis? axis;
         protected object reference_system;
 
@@ -83,18 +84,20 @@ namespace Stac.Extensions.Datacube
         public object ReferenceSystem { get => reference_system; set => reference_system = value; }
 
         public DatacubeDimensionSpatial() : base()
-        {            
+        {
         }
     }
 
-    public class DatacubeDimensionSpatialHorizontal : DatacubeDimensionSpatial {
+    public class DatacubeDimensionSpatialHorizontal : DatacubeDimensionSpatial
+    {
         public DatacubeDimensionSpatialHorizontal() : base()
         {
             base.axis = DatacubeAxis.x;
         }
     }
 
-    public class DatacubeDimensionSpatialVertical : DatacubeDimensionSpatial {
+    public class DatacubeDimensionSpatialVertical : DatacubeDimensionSpatial
+    {
         private string unit;
 
         /// <summary>
@@ -109,16 +112,18 @@ namespace Stac.Extensions.Datacube
         }
     }
 
-    public class DatacubeDimensionTemporal : DatacubeDimension {
+    public class DatacubeDimensionTemporal : DatacubeDimension
+    {
 
         public DatacubeDimensionTemporal() : base()
         {
-            
+
         }
     }
 
-    public class DatacubeDimensionAdditional : DatacubeDimension {
- 
+    public class DatacubeDimensionAdditional : DatacubeDimension
+    {
+
         private string unit;
         protected object reference_system;
 
@@ -136,7 +141,7 @@ namespace Stac.Extensions.Datacube
 
         public DatacubeDimensionAdditional() : base()
         {
-            
+
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Stac.Extensions.Datacube
         x,
 
         y,
-        
+
         z
     }
 }
