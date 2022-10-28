@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -185,7 +185,7 @@ namespace Stac.Common
                 {
                     foreach (var field in ExtractNullPropertiesFromObject(property.Value))
                     {
-                        yield return String.Join(".", property.Name, field);
+                        yield return string.Join(".", property.Name, field);
                     }
                 }
             }

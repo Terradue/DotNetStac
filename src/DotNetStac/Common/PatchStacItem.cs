@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
+﻿using System.Collections.Generic;
 
 namespace Stac.Common
 {
