@@ -20,7 +20,7 @@ namespace Stac.Common
             var itemJson = StacConvert.Serialize(stacObject);
             var patchJson = StacConvert.Serialize(patch);
             IDictionary<string, object> patchdic = JsonConvert.DeserializeObject<IDictionary<string, object>>(patchJson);
-            if (patchdic.ContainsKey("links") && patchdic["links"] is IEnumerable<object>
+            if (patchdic.ContainsKey("links") && patchdic["links"] is IEnumerable<object> en
                 && ((IEnumerable<object>)patchdic["links"]).Count() == 0)
             {
                 patchdic.Remove("links");
