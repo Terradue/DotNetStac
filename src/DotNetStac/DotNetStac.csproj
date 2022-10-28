@@ -33,6 +33,7 @@
     <PackageReference Include="Multiformats.Hash" Version="1.5.0"/>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All"/>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0"/>
+    <PackageReference Include="System.Text.Json" Version="6.0.6" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>

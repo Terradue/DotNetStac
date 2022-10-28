@@ -1,0 +1,88 @@
+{
+  "id": "S2A_30VWN_20200830_0_L2A",
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -2.0,
+          61.0
+        ],
+        [
+          -3.5,
+          50.0
+        ],
+        [
+          -3.5,
+          63
+        ],
+        [
+          -1.0,
+          63.0
+        ],
+        [
+          -2.0,
+          61.0
+        ]
+      ]
+    ]
+  },
+  "properties": {
+    "datetime": "2022-08-30T11:34:28Z",
+    "platform": "sentinel-2c",
+  },
+  "collection": "sentinel-s2-l3a-cogs",
+  "assets": {
+    "B01": {
+      "title": "Band 1 (coastal)",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data"
+      ],
+      "gsd": 70,
+      "eo:bands": [
+        {
+          "name": "B01",
+          "common_name": "blue",
+          "center_wavelength": 0.5,
+          "full_width_half_max": 0.127
+        }
+      ],
+      "href": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/30/V/WN/2020/8/S2A_30VWN_20200830_0_L2A/B01.tiff",
+      "proj:shape": null,
+    },
+    "B2000": {
+      "title": "Band 2 (blue)",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data"
+      ],
+      "gsd": 10,
+      "eo:bands": [
+        {
+          "name": "B02",
+          "common_name": "blue",
+          "center_wavelength": 0.4966,
+          "full_width_half_max": 0.098
+        }
+      ],
+      "href": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/30/V/WN/2020/8/S2A_30VWN_20200830_0_L2A/B02.tif",
+      "proj:shape": [
+        10980,
+        10980
+      ],
+      "proj:transform": [
+        10,
+        0,
+        499980,
+        0,
+        -10,
+        6800040,
+        0,
+        0,
+        1
+      ]
+    }
+  }
+}
