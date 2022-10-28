@@ -50,6 +50,8 @@ namespace Stac
             this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets.Select(a => new KeyValuePair<string, StacAsset>(a.Key, new StacAsset(a.Value, this)))
                                                                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value));
             this.Collection = stacItem.Collection;
+            this.BoundingBoxes = stacItem.BoundingBoxes;
+            this.CRS = stacItem.CRS;
         }
 
         private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
