@@ -37,10 +37,35 @@ namespace Stac.Schemas
         /// <returns>true when valid</returns>
         public bool ValidateJson(string jsonstr)
         {
+            using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
+                DetectDuplicateKeys(reader);
             JObject jobject;
             using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
                 jobject = JObject.Load(reader);
             return ValidateJObject(jobject);
+        }
+
+        private bool DetectDuplicateKeys(JsonReader jobject)
+        {
+            var stack = new Stack<string>();
+            while (jobject.Read())
+            {
+                switch (jobject.TokenType)
+                {
+                    case JsonToken.StartObject:
+                        DetectDuplicateKeys(jobject);
+                        break;
+                    case JsonToken.PropertyName:
+                        var propertyName = jobject.Value.ToString();
+                        if (stack.Contains(propertyName))
+                            throw new InvalidStacDataException($"Duplicate key {propertyName} found in JSON: " + jobject.Path);
+                        stack.Push(propertyName);
+                        break;
+                    case JsonToken.EndObject:
+                        return true;
+                }
+            }
+            return true;
         }
 
         private bool ValidateJObject(JObject jObject)

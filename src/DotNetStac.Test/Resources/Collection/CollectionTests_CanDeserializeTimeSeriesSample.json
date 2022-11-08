@@ -1,0 +1,61 @@
+{
+  "description": "Time Series Collection",
+  "providers": [],
+  "id": "0000024-220301000006171-oozie-oozi-W",
+  "stac_version": "1.0.0",
+  "links": [
+    {
+      "type": "application/geo+json",
+      "rel": "item",
+      "title": "DTSLOS_ldonnini_20211002_20220307_UIDH",
+      "href": "https://gep-users-1.s3.fr-par.scw.cloud/emathot/timeseries/8FBE667F14998140A1540C2DF3733BAB4386FC4E.json"
+    },
+    {
+      "type": "application/json",
+      "rel": "self",
+      "href": "https://gep-users-1.s3.fr-par.scw.cloud/emathot/timeseries/0000024-220301000006171-oozie-oozi-W.json"
+    },
+    {
+      "type": "application/json",
+      "rel": "root",
+      "href": "https://gep-users-1.s3.fr-par.scw.cloud/emathot/catalog.json"
+    }
+  ],
+  "type": "Collection",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -97.234167,
+          29.779444,
+          -94.523611,
+          30.933611
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-10-02T12:23:14.8893Z",
+          "2021-10-02T12:23:14.8893Z"
+        ]
+      ]
+    }
+  },
+  "keywords": [],
+  "assets": {
+    "enclosure-3": {
+      "type": "application/octet-stream",
+      "roles": [
+        "data",
+        "enclosure",
+        "timeseries"
+      ],
+      "title": "File (csv)",
+      "href": "https://gep-users-1.s3.fr-par.scw.cloud/emathot/timeseries/DTSLOS_ldonnini_20211002_20220307_UIDH.csv",
+      "file:size": 209231423,
+      "ts:format": "PSBAS"
+    }
+  },
+  "license": "proprietary"
+}
