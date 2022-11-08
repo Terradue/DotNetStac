@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -294,6 +295,20 @@ namespace Stac.Test.Collection
             var newJson = StacConvert.Serialize(simpleCollection);
             ValidateJson(newJson);
         }
+
+        [Fact]
+        public void CollectionTimeSeries()
+        {
+            var simpleJson = GetJson("Collection", "CanDeserializeTimeSeriesSample");
+            ValidateJson(simpleJson);
+            StacCollection simpleCollection = JsonConvert.DeserializeObject<StacCollection>(simpleJson);
+            var context = new ValidationContext(simpleCollection);
+            var results = new List<ValidationResult>();
+            Assert.True(Validator.TryValidateObject(simpleCollection, context, results, true));
+            var newJson = StacConvert.Serialize(simpleCollection);
+            ValidateJson(newJson);
+        }
+
 
     }
 }
