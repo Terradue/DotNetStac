@@ -198,7 +198,9 @@ namespace Stac.Test.Example
 
             var json = JsonConvert.SerializeObject(collection);
 
-            Console.WriteLine(json);
+            StacCollection deserializedCollection = JsonConvert.DeserializeObject<StacCollection>(json);
+            Assert.Equal(collection.Description, deserializedCollection.Description);
+            Assert.Equal(collection.Providers.First().Name, deserializedCollection.Providers.First().Name);
 
         }
 

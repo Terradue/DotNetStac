@@ -18,7 +18,8 @@ namespace Stac
         /// A short descriptive one-line title for the Collection.
         /// </summary>
         /// <value></value>
-        [JsonProperty("title")]
+        [JsonProperty("__title", Required = Required.Default)]
+        [JsonIgnore]
         public string Title
         {
             get => this.GetProperty<string>("title");
@@ -29,7 +30,8 @@ namespace Stac
         /// Detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
         /// <value></value>
-        [JsonProperty("description")]
+        [JsonProperty("__description", Required = Required.Default)]
+        [JsonIgnore]
         public string Description
         {
             get => this.GetProperty<string>("description");
@@ -51,7 +53,8 @@ namespace Stac
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </summary>
         /// <value></value>
-        [JsonProperty("providers")]
+        [JsonProperty("__providers", Required = Required.Default)]
+        [JsonIgnore]
         public Collection<StacProvider> Providers => this.GetObservableCollectionProperty<StacProvider>("providers");
 
         public string Platform

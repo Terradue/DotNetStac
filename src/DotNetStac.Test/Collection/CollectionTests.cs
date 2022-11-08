@@ -302,9 +302,6 @@ namespace Stac.Test.Collection
             var simpleJson = GetJson("Collection", "CanDeserializeTimeSeriesSample");
             ValidateJson(simpleJson);
             StacCollection simpleCollection = JsonConvert.DeserializeObject<StacCollection>(simpleJson);
-            var context = new ValidationContext(simpleCollection);
-            var results = new List<ValidationResult>();
-            Assert.True(Validator.TryValidateObject(simpleCollection, context, results, true));
             var newJson = StacConvert.Serialize(simpleCollection);
             ValidateJson(newJson);
         }

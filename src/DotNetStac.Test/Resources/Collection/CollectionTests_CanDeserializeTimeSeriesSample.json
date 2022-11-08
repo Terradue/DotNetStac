@@ -57,6 +57,5 @@
       "ts:format": "PSBAS"
     }
   },
-  "description": "Time Series Collection",
   "license": "proprietary"
 }
