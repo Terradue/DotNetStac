@@ -12,7 +12,7 @@ namespace Stac.Extensions.VirtualAssets
         /// Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/virtual-assets/v1.0.0/schema.json";
 
-        private static IDictionary<string, Type> itemFields;
+        private IDictionary<string, Type> itemFields;
         private const string VirtualAssetsField = "virtual:assets";
 
         internal VirtualAssetsStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, stacObject)

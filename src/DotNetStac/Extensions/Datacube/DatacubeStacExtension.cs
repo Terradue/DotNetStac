@@ -14,7 +14,7 @@ namespace Stac.Extensions.Datacube
         /// Extensions identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/datacube/v2.1.0/schema.json";
 
-        private static IDictionary<string, Type> itemFields;
+        private IDictionary<string, Type> itemFields;
         private const string DimensionField = "cube:dimensions";
         private const string VariableField = "cube:variables";
 

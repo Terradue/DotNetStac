@@ -12,7 +12,7 @@ namespace Stac.Extensions.Raster
         /// Extensions identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/raster/v1.0.0/schema.json";
 
-        private static IDictionary<string, Type> itemFields;
+        private IDictionary<string, Type> itemFields;
         private const string BandsField = "raster:bands";
 
         internal RasterStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
