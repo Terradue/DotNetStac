@@ -162,7 +162,7 @@ namespace Stac.Test.Item
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
 
-            
+
 
             var actualJson = StacConvert.Serialize(item);
 
