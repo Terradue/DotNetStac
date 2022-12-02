@@ -306,6 +306,17 @@ namespace Stac.Test.Collection
             ValidateJson(newJson);
         }
 
+        [Fact]
+        public void SerializeSimpleCollection()
+        {
+            var simpleItemJson = GetJson("Collection", "CanSerializeMinimalSample");
+            var simpleItem = StacConvert.Deserialize<StacItem>(simpleItemJson);
+            StacCollection simpleCollection = StacCollection.Create("simple-collection", "Simple Collection", 
+                new Dictionary<Uri, StacItem> { { new Uri("item1", UriKind.Relative), simpleItem } }, "various");
+            var newJson = JsonConvert.SerializeObject(simpleCollection);
+            ValidateJson(newJson);
+        }
+
 
     }
 }
