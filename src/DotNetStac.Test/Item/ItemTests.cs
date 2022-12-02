@@ -51,6 +51,7 @@ namespace Stac.Test.Item
             Assert.Equal("http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png", item.Assets["thumbnail"].Uri.ToString());
             Assert.Equal("Thumbnail", item.Assets["thumbnail"].Title);
             Assert.Contains("thumbnail", item.Assets["thumbnail"].Roles);
+
         }
 
         [Fact]
@@ -161,6 +162,8 @@ namespace Stac.Test.Item
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
 
+            
+
             var actualJson = StacConvert.Serialize(item);
 
             ValidateJson(actualJson);
@@ -173,6 +176,39 @@ namespace Stac.Test.Item
 
             item.Links.Remove(item.Links.First(l => l.RelationshipType == "collection"));
             Assert.Null(item.Collection);
+        }
+
+        [Fact]
+        public void CanAddProvider()
+        {
+            var coordinates = new[]
+            {
+                new List<IPosition>
+                {
+                    new Position(37.488035566,-122.308150179),
+                    new Position(37.538869539,-122.597502109),
+                    new Position(37.613537207,-122.576687533),
+                    new Position(37.562818007,-122.288048600),
+                    new Position(37.488035566,-122.308150179)
+                }
+            };
+
+            var geometry = new Polygon(new LineString[] { new LineString(coordinates[0]) });
+
+            var properties = new Dictionary<string, object>();
+
+            properties.Add("collection", "CS3");
+
+            StacItem item = new StacItem("CS3-20160503_132130_04", geometry, properties);
+
+            StacProvider provider = new StacProvider("test");
+            provider.Description = "test";
+            provider.Uri = new Uri("http://test.com");
+            properties.Add("providers", new StacProvider[] { provider });
+
+            Assert.NotNull(item.Providers);
+
+            var actualJson = StacConvert.Serialize(item);
         }
 
         [Fact]
@@ -199,6 +235,8 @@ namespace Stac.Test.Item
             Assert.NotNull(item);
 
             Assert.NotNull(item.Properties);
+
+            Assert.NotNull(item.Providers);
 
             Assert.Equal("1.0.0", item.StacVersion);
 

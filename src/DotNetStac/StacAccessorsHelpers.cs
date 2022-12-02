@@ -65,9 +65,17 @@ namespace Stac
 
         public static PropertyObservableCollection<T> GetObservableCollectionProperty<T>(this IStacPropertiesContainer propertiesContainer, string key)
         {
-            List<T> array = propertiesContainer.GetProperty<List<T>>(key);
+            List<T> array = new List<T>();
+            try
+            {
+                array = propertiesContainer.GetProperty<List<T>>(key);
+            }
+            catch
+            {
+                array = propertiesContainer.GetProperty<T[]>(key)?.ToList();
+            }
             PropertyObservableCollection<T> observableCollection = new PropertyObservableCollection<T>(propertiesContainer, key);
-            if (array != null && array.Count > 0)
+            if (array != null && array.Count() > 0)
             {
                 observableCollection.AddRange<T>(array);
             }
