@@ -162,7 +162,7 @@ namespace Stac.Test.Item
             // item.BoundingBoxes = new double[4] { -122.59750209, 37.48803556, -122.2880486, 37.613537207 };
             item.BoundingBoxes = item.GetBoundingBoxFromGeometryExtent();
 
-            
+
 
             var actualJson = StacConvert.Serialize(item);
 
@@ -446,6 +446,23 @@ namespace Stac.Test.Item
             var item = StacConvert.Deserialize<StacItem>(json);
 
             Assert.NotNull(item.Providers);
+
+        }
+
+        [Fact]
+        public void EmptyGeometry()
+        {
+            var json = GetJson("Item");
+
+            var item = StacConvert.Deserialize<StacItem>(json);
+
+            Assert.Null(item.Geometry);
+
+            json = StacConvert.Serialize(item);
+
+            JToken token = JToken.Parse(json);
+
+            Assert.NotNull(token.Children().FirstOrDefault(c => c.Path == "geometry"));
 
         }
     }
