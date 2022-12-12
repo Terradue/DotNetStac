@@ -18,7 +18,9 @@ namespace Stac
         /// <returns></returns>
         public static double[] GetBoundingBoxFromGeometryExtent(this StacItem stacItem)
         {
-            var boundingBoxes = stacItem.Geometry.GetBoundingBox();
+            var boundingBoxes = stacItem.Geometry?.GetBoundingBox();
+            if (boundingBoxes == null)
+                return new double[] { -180, -90, 180, 90 };
             if (boundingBoxes[0].Altitude.HasValue)
                 return new double[] {
                     boundingBoxes[0].Longitude, boundingBoxes[0].Latitude, boundingBoxes[0].Altitude.Value,
