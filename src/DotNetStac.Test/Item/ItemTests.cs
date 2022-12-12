@@ -5,6 +5,7 @@ using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Stac.Collection;
 using Stac.Exceptions;
 using Xunit;
 
@@ -463,6 +464,8 @@ namespace Stac.Test.Item
             JToken token = JToken.Parse(json);
 
             Assert.NotNull(token.Children().FirstOrDefault(c => c.Path == "geometry"));
+
+            var extent = StacExtent.Create(new List<StacItem>() { item });
 
         }
 

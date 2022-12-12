@@ -55,12 +55,17 @@ namespace Stac.Collection
         /// <returns>A <see cref="StacExtent" /> that represents the spatio-temporal extent of all the items together</returns>
         public static StacExtent Create(IEnumerable<StacItem> items)
         {
+            DateTime? minDate = items.Where(i => i.DateTime != Itenso.TimePeriod.TimeInterval.Anytime).Min(i => i.DateTime.Start);
+            DateTime? maxDate = items.Where(i => i.DateTime != Itenso.TimePeriod.TimeInterval.Anytime).Max(i => i.DateTime.End);
+            minDate = minDate == DateTime.MinValue ? null : minDate;
+            maxDate = maxDate == DateTime.MaxValue ? null : maxDate;
             return new StacExtent(
                 new StacSpatialExtent(items.Min(i => i.GetBoundingBoxFromGeometryExtent()[0]),
                                                 items.Min(i => i.GetBoundingBoxFromGeometryExtent()[1]),
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[2]),
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[3])),
-                new StacTemporalExtent(items.Min(i => i.DateTime.Start), items.Max(i => i.DateTime.End))
+                
+                new StacTemporalExtent(minDate, maxDate)
             );
         }
 
