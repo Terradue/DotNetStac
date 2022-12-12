@@ -64,7 +64,7 @@ namespace Stac.Collection
                                                 items.Min(i => i.GetBoundingBoxFromGeometryExtent()[1]),
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[2]),
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[3])),
-                
+
                 new StacTemporalExtent(minDate, maxDate)
             );
         }
