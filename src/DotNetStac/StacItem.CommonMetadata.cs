@@ -102,6 +102,11 @@ namespace Stac
                         {
                             return new Itenso.TimePeriod.TimeInterval(System.DateTime.Parse(this.Properties["datetime"].ToString()));
                         }
+                        catch (NullReferenceException nre)
+                        {
+                            if (!this.Properties.ContainsKey("datetime") || (!this.Properties.ContainsKey("start_datetime") && !this.Properties.ContainsKey("end_datetime")))
+                                throw new FormatException("One of datetime, start_datetime and/or end_datetime are required", nre);
+                        }
                         catch (Exception e)
                         {
                             if (this.Properties.ContainsKey("start_datetime") && this.Properties.ContainsKey("end_datetime"))

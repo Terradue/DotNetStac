@@ -465,5 +465,18 @@ namespace Stac.Test.Item
             Assert.NotNull(token.Children().FirstOrDefault(c => c.Path == "geometry"));
 
         }
+
+        [Fact]
+        public void EmptyDate()
+        {
+            var json = GetJson("Item");
+
+            // ValidateJson(json);
+
+            var item = StacConvert.Deserialize<StacItem>(json);
+
+            Assert.Throws<FormatException>(() => item.DateTime);
+
+        }
     }
 }
