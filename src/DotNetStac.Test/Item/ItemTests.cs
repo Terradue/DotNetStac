@@ -448,5 +448,22 @@ namespace Stac.Test.Item
             Assert.NotNull(item.Providers);
 
         }
+
+        [Fact]
+        public void EmptyGeometry()
+        {
+            var json = GetJson("Item");
+
+            var item = StacConvert.Deserialize<StacItem>(json);
+
+            Assert.Null(item.Geometry);
+
+            json = StacConvert.Serialize(item);
+
+            JToken token = JToken.Parse(json);
+
+            Assert.NotNull(token.Children().FirstOrDefault(c => c.Path == "geometry"));
+
+        }
     }
 }
