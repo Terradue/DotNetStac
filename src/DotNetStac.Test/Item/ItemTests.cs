@@ -481,5 +481,19 @@ namespace Stac.Test.Item
             Assert.Throws<FormatException>(() => item.DateTime);
 
         }
+
+        [Fact]
+        public void NullDateTimeButStartAndEnd()
+        {
+            var json = GetJson("Item");
+
+            ValidateJson(json);
+
+            var item = StacConvert.Deserialize<StacItem>(json);
+
+            Assert.Equal(DateTime.Parse("1972-12-01T00:00:00Z").ToUniversalTime(), item.DateTime.Start.ToUniversalTime());
+
+        }
+
     }
 }

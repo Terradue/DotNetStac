@@ -1,0 +1,73 @@
+{
+    "stac_version": "1.0.0",
+    "stac_extensions": [],
+    "type": "Feature",
+    "id": "snowgrid_meanHS_1973",
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    96.69999999999999,
+                    48.19999999999973
+                ],
+                [
+                    96.69999999999999,
+                    52.19999999999999
+                ],
+                [
+                    102.80000000000038,
+                    52.19999999999999
+                ],
+                [
+                    102.80000000000038,
+                    48.19999999999973
+                ],
+                [
+                    96.69999999999999,
+                    48.19999999999973
+                ]
+            ]
+        ]
+    },
+    "properties": {
+        "start_datetime": "1972-12-01T00:00:00Z",
+        "end_datetime": "1973-05-31T00:00:00Z",
+        "datetime": null,
+        "description": "Name | Value \n---- | ----- \nAgency | **ZAMG** \n            Product | **snowgrid_meanHS_1973** \nDescription | **Seasonal mean of snow height.** \n Start Date | **1972-12-01T00:00:00Z** \nEnd Date | **1973-05-31T00:00:00Z** \n",
+        "title": "Mean snow height (HS) (meanHS) - 1973",
+        "license": "CC-BY-SA-3.0",
+        "mission": "SNOWGRID-CL",
+        "platform": "SNOWGRID-CL"
+    },
+    "bbox": [
+        96.69999999999999,
+        48.19999999999973,
+        102.80000000000038,
+        52.19999999999999
+    ],
+    "assets": {
+        "snowgrid_meanHS_1973": {
+            "href": "https://store.terradue.com/temporary-uploads/livio/indices_cog/snowgrid/meanHS/GDA-AID-DR_UC7-ADBMON_Product_SNOWGRID-CL-meanHS-V01_IronDzud-Khuvsgul-1973.tif",
+            "type": "image/tiff; application=geotiff",
+            "title": "Mean snow height (HS) (meanHS) - 1973",
+            "description": "Seasonal mean of snow height.",
+            "roles": [
+                "data",
+                "overview"
+            ]
+        }
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json"
+        }
+    ]
+}
