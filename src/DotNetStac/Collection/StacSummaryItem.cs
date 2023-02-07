@@ -30,7 +30,6 @@ namespace Stac.Collection
         /// <summary>
         /// accessor of fields in the object
         /// </summary>
-
         public JToken this[object key]
         {
             get

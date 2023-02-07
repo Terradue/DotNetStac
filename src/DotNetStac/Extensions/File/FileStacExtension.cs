@@ -36,7 +36,9 @@ namespace Stac.Extensions.File
         /// <summary>
         /// Gets or sets the byte order of integer values in the file. One of big-endian or little-endian.
         /// </summary>
-
+        /// <value>
+        /// <placeholder>The byte order of integer values in the file. One of big-endian or little-endian.</placeholder>
+        /// </value>
         public ByteOrder ByteOrder
         {
             get { return this.StacPropertiesContainer.GetProperty<ByteOrder>(ByteOrderField); }
@@ -46,7 +48,9 @@ namespace Stac.Extensions.File
         /// <summary>
         /// Gets or sets the name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
         /// </summary>
-
+        /// <value>
+        /// <placeholder>The name commonly used to refer to the processing level to make it easier to search for product level across collections or items.</placeholder>
+        /// </value>
         public Multihash Checksum
         {
             get { return Multihash.Parse(this.StacPropertiesContainer.GetProperty<string>(ChecksumField)); }
@@ -56,7 +60,9 @@ namespace Stac.Extensions.File
         /// <summary>
         /// Gets or sets the name of the facility that produced the data. 
         /// </summary>
-
+        /// <value>
+        /// <placeholder>The name of the facility that produced the data. </placeholder>
+        /// </value>
         public uint? HeaderSize
         {
             get { return this.StacPropertiesContainer.GetProperty<uint?>(HeaderSizeField); }
@@ -66,7 +72,9 @@ namespace Stac.Extensions.File
         /// <summary>
         /// Gets or sets the name of the facility that produced the data. 
         /// </summary>
-
+        /// <value>
+        /// <placeholder>The name of the facility that produced the data. </placeholder>
+        /// </value>
         public ulong? Size
         {
             get { return this.StacPropertiesContainer.GetProperty<ulong?>(SizeField); }

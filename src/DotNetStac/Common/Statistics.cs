@@ -37,42 +37,54 @@ namespace Stac.Common
         /// <summary>
         /// Gets or sets mean value
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Mean value</placeholder>
+        /// </value>
         [JsonProperty("mean")]
         public double? Mean { get; set; }
 
         /// <summary>
         /// Gets or sets minimum value
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Minimum value</placeholder>
+        /// </value>
         [JsonProperty("minimum")]
         public double? Minimum { get; set; }
 
         /// <summary>
         /// Gets or sets maximum value
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Maximum value</placeholder>
+        /// </value>
         [JsonProperty("maximum")]
         public double? Maximum { get; set; }
 
         /// <summary>
         /// Gets or sets standard Deviation
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Standard Deviation</placeholder>
+        /// </value>
         [JsonProperty("stdev")]
         public double? Stdev { get; set; }
 
         /// <summary>
         /// Gets or sets valid percentage
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Valid percentage</placeholder>
+        /// </value>
         [JsonProperty("valid_percent")]
         public double? ValidPercent { get; set; }
 
         /// <summary>
         /// Gets or sets additional fields
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Additional fields</placeholder>
+        /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 

@@ -19,7 +19,9 @@ namespace Stac
         /// <summary>
         /// Gets or sets a short descriptive one-line title for the Collection.
         /// </summary>
-
+        /// <value>
+        /// <placeholder>A short descriptive one-line title for the Collection.</placeholder>
+        /// </value>
         [JsonProperty("__title", Required = Required.Default)]
         [JsonIgnore]
         public string Title
@@ -31,7 +33,9 @@ namespace Stac
         /// <summary>
         /// Gets or sets detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.</placeholder>
+        /// </value>
         [JsonProperty("__description", Required = Required.Default)]
         [JsonIgnore]
         public string Description
@@ -43,7 +47,9 @@ namespace Stac
         /// <summary>
         /// Gets or sets collection's license(s), either a SPDX License identifier, various if multiple licenses apply or proprietary for all other cases.
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Collection's license(s), either a SPDX License identifier, various if multiple licenses apply or proprietary for all other cases.</placeholder>
+        /// </value>
         public string License
         {
             get => this.GetProperty<string>("license");
@@ -54,7 +60,10 @@ namespace Stac
         /// Gets a list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </summary>
-
+        /// <value>
+        /// <placeholder>A list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
+        /// Providers should be listed in chronological order with the most recent provider being the last element of the list.</placeholder>
+        /// </value>
         [JsonProperty("__providers", Required = Required.Default)]
         [JsonIgnore]
         public Collection<StacProvider> Providers => this.GetObservableCollectionProperty<StacProvider>("providers");

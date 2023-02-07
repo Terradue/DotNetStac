@@ -49,6 +49,7 @@ namespace Stac.Common
             {
                 return;
             }
+
             this.PropertiesContainer.SetProperty(this.Key, this.ToList());
         }
     }

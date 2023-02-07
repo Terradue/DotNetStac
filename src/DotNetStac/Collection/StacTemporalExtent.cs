@@ -38,7 +38,9 @@ namespace Stac.Collection
         /// <summary>
         /// Gets or sets potential temporal extents.
         /// </summary>
-
+        /// <value>
+        /// <placeholder>Potential temporal extents.</placeholder>
+        /// </value>
         [JsonProperty("interval")]
         public DateTime?[][] Interval { get; set; }
     }
