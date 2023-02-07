@@ -7,13 +7,6 @@ using System.Collections.Generic;
 
 namespace Stac.Extensions.View
 {
-    public static class ViewStacExtensionExtensions
-    {
-        public static ViewStacExtension ViewExtension(this StacItem stacItem)
-        {
-            return new ViewStacExtension(stacItem);
-        }
-    }
 
     public class ViewStacExtension : StacPropertiesContainerExtension, IStacExtension
     {

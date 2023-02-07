@@ -3,6 +3,7 @@
 // File Name: VersionExtensionTests.cs
 
 using Newtonsoft.Json;
+using Stac.Extensions.Version;
 using Xunit;
 
 namespace Stac.Test.Extensions
