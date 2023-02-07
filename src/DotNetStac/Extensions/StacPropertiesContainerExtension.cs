@@ -63,8 +63,27 @@ namespace Stac.Extensions
         public bool IsDeclared => this.StacPropertiesContainer.GetDeclaredExtensions().Any(e => e.Identifier == this.Identifier);
 
         /// <summary>
+        /// Generic method to summarize in a range any ordinal object
+        /// </summary>
+        /// <param name="arg">ordinal object</param>
+        public static IStacSummaryItem CreateRangeSummaryObject<T>(IEnumerable<T> arg)
+        {
+            return new StacSummaryRangeObject<object>(arg.Min(), arg.Max());
+        }
+
+        /// <summary>
+        /// Generic method to summarize in a value set an array of object
+        /// </summary>
+        /// <param name="arg"></param>
+        public static StacSummaryValueSet<T> CreateSummaryValueSet<T>(IEnumerable<T> arg)
+        {
+            return new StacSummaryValueSet<T>(arg.Distinct());
+        }
+
+        /// <summary>
         /// Get he potential summary functions for each field that can be summarized
         /// </summary>
+        /// <returns>Dictionary of summary functions</returns>
         public virtual IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
@@ -108,39 +127,20 @@ namespace Stac.Extensions
             return summaryFunctions;
         }
 
-        /// <summary>
-        /// Generic method to summarize in a range any ordinal object
-        /// </summary>
-        /// <param name="arg">ordinal object</param>
-        public static IStacSummaryItem CreateRangeSummaryObject<T>(IEnumerable<T> arg)
-        {
-            return new StacSummaryRangeObject<object>(arg.Min(), arg.Max());
-        }
-
-        /// <summary>
-        /// Generic method to summarize in a value set an array of object
-        /// </summary>
-        /// <param name="arg"></param>
-        public static StacSummaryValueSet<T> CreateSummaryValueSet<T>(IEnumerable<T> arg)
-        {
-            return new StacSummaryValueSet<T>(arg.Distinct());
-        }
-
         public void SetProperty(string key, object value)
         {
             this.SetProperty(key, value);
             this.DeclareStacExtension();
         }
 
-        /// <summary>
-        /// Generic method to summarize in a value set an array of array
-        /// </summary>
-        /// <param name="arg">an array</param>
-
-        // internal static IStacSummaryItem CreateSummaryValueSetFromArrays<T>(IEnumerable<T> arg)
-        // {
-        //     return new StacSummaryValueSet<T>(arg.SelectMany(a => a as IEnumerable<T>).Distinct());
-        // }
+        public void RemoveProperty(string key)
+        {
+            this.RemoveProperty(key);
+            if (!this.StacPropertiesContainer.Properties.Any(p => this.ItemFields.ContainsKey(p.Key)))
+            {
+                this.RemoveStacExtension();
+            }
+        }
 
         /// <summary>
         /// Declares the extension in the STAC object
@@ -171,15 +171,6 @@ namespace Stac.Extensions
             if (this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(this.Identifier))
             {
                 this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Remove(this.Identifier);
-            }
-        }
-
-        public void RemoveProperty(string key)
-        {
-            this.RemoveProperty(key);
-            if (!this.StacPropertiesContainer.Properties.Any(p => this.ItemFields.ContainsKey(p.Key)))
-            {
-                this.RemoveStacExtension();
             }
         }
     }

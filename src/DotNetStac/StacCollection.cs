@@ -180,38 +180,6 @@ namespace Stac
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
 
-#pragma warning disable 1591
-        public bool ShouldSerializeSummaries()
-        {
-            // don't serialize the Manager property if an employee is their own manager
-            return this.Summaries.Count > 0;
-        }
-
-        [OnDeserialized]
-        internal void OnDeserializedMethod(StreamingContext context)
-        {
-            foreach (StacLink link in this.Links)
-            {
-                link.Parent = this;
-            }
-
-            this.StacExtensions = new SortedSet<string>(this.StacExtensions);
-        }
-
-#pragma warning disable 1591
-        public bool ShouldSerializeStacExtensions()
-        {
-            // don't serialize the Manager property if an employee is their own manager
-            return this.StacExtensions.Count > 0;
-        }
-
-#pragma warning disable 1591
-        public bool ShouldSerializeAssets()
-        {
-            // don't serialize the Manager property if an employee is their own manager
-            return this.Assets.Count > 0;
-        }
-
         /// <summary>
         /// Generate a collection corresponding to the items' dictionary. Spatial and temporal extents
         /// are computed. Fields values are summarized in stats object and value sets.
@@ -285,6 +253,27 @@ namespace Stac
             return collection;
         }
 
+#pragma warning disable 1591
+        public bool ShouldSerializeSummaries()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return this.Summaries.Count > 0;
+        }
+
+#pragma warning disable 1591
+        public bool ShouldSerializeStacExtensions()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return this.StacExtensions.Count > 0;
+        }
+
+#pragma warning disable 1591
+        public bool ShouldSerializeAssets()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return this.Assets.Count > 0;
+        }
+
         public void Update(IDictionary<Uri, StacItem> items)
         {
             this.Extent.Update(items.Values);
@@ -328,6 +317,17 @@ namespace Stac
         public object Clone()
         {
             return new StacCollection(this);
+        }
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in this.Links)
+            {
+                link.Parent = this;
+            }
+
+            this.StacExtensions = new SortedSet<string>(this.StacExtensions);
         }
     }
 }

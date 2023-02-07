@@ -12,26 +12,6 @@ namespace Stac.Extensions.Sat
     public class SatOrbitStateVector
     {
         /// <summary>
-        /// Time of the state vector
-        /// </summary>
-        public DateTime Time;
-
-        /// <summary>
-        /// Position of the state vector
-        /// </summary>
-        public double[] Position;
-
-        /// <summary>
-        /// Velocity of the state vector
-        /// </summary>
-        public double[] Velocity;
-
-        /// <summary>
-        /// Acceleration of the state vector
-        /// </summary>
-        public double[] Acceleration;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="SatOrbitStateVector"/> class.
         /// </summary>
         /// <param name="time">Time of the state vector</param>
@@ -45,5 +25,37 @@ namespace Stac.Extensions.Sat
             this.Velocity = velocity;
             this.Acceleration = acceleration;
         }
+
+        /// <summary>
+        /// Gets or sets time of the state vector
+        /// </summary>
+        /// <value>
+        /// Time of the state vector
+        /// </value>
+        public DateTime Time { get; set; }
+
+        /// <summary>
+        /// Gets or sets position of the state vector
+        /// </summary>
+        /// <value>
+        /// Position of the state vector
+        /// </value>
+        public double[] Position { get; set; }
+
+        /// <summary>
+        /// Gets or sets velocity of the state vector
+        /// </summary>
+        /// <value>
+        /// Velocity of the state vector
+        /// </value>
+        public double[] Velocity { get; set; }
+
+        /// <summary>
+        /// Gets or sets acceleration of the state vector
+        /// </summary>
+        /// <value>
+        /// Acceleration of the state vector
+        /// </value>
+        public double[] Acceleration { get; set; }
     }
 }

@@ -83,6 +83,26 @@ namespace Stac.Model
         void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
             => this.TryAddWithNotification(item);
 
+        void ICollection<KeyValuePair<TKey, TValue>>.Clear()
+        {
+            this._dictionary.Clear();
+            this.NotifyObserversOfChange();
+        }
+
+        bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item)
+            => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).Contains(item);
+
+        void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
+            => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).CopyTo(array, arrayIndex);
+
+        bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
+            => this.TryRemoveWithNotification(item.Key, out TValue temp);
+
+        // IEnumerable<KeyValuePair<TKey,TValue>> Members
+
+        IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
+            => this._dictionary.GetEnumerator();
+
         /// <summary>
         /// Notifies observers of CollectionChanged or PropertyChanged of an update to the dictionary.
         /// </summary>
@@ -215,26 +235,6 @@ namespace Stac.Model
 
             return -1;
         }
-
-        void ICollection<KeyValuePair<TKey, TValue>>.Clear()
-        {
-            this._dictionary.Clear();
-            this.NotifyObserversOfChange();
-        }
-
-        bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item)
-            => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).Contains(item);
-
-        void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-            => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).CopyTo(array, arrayIndex);
-
-        bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
-            => this.TryRemoveWithNotification(item.Key, out TValue temp);
-
-        // IEnumerable<KeyValuePair<TKey,TValue>> Members
-
-        IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
-            => this._dictionary.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
             => this._dictionary.GetEnumerator();

@@ -10,6 +10,20 @@ using Newtonsoft.Json.Linq;
 namespace Stac.Extensions.Sat
 {
     /// <summary>
+    /// Extension methods for the SatStacExtension
+    /// </summary>
+    public static class SatStacExtensionExtensions
+    {
+        /// <summary>
+        /// Gets the SatStacExtension from the StacItem.
+        /// </summary>
+        public static SatStacExtension SatExtension(this StacItem stacItem)
+        {
+            return new SatStacExtension(stacItem);
+        }
+    }
+
+    /// <summary>
     /// Satellite extension
     /// </summary>
     public class SatStacExtension : StacPropertiesContainerExtension, IStacExtension
@@ -186,7 +200,12 @@ namespace Stac.Extensions.Sat
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the stac item.
+        /// </summary>
+        /// <value>
+        /// <placeholder>The stac item.</placeholder>
+        /// </value>
         public StacItem StacItem => this.StacPropertiesContainer as StacItem;
 
         /// <inheritdoc/>
@@ -202,20 +221,6 @@ namespace Stac.Extensions.Sat
             var osvlist = osvarray.ToObject<List<SatOrbitStateVector>>();
 
             return new SortedDictionary<DateTime, SatOrbitStateVector>(osvlist.ToDictionary(osv => osv.Time, osv => osv));
-        }
-    }
-
-    /// <summary>
-    /// Extension methods for the SatStacExtension
-    /// </summary>
-    public static class SatStacExtensionExtensions
-    {
-        /// <summary>
-        /// Gets the SatStacExtension from the StacItem.
-        /// </summary>
-        public static SatStacExtension SatExtension(this StacItem stacItem)
-        {
-            return new SatStacExtension(stacItem);
         }
     }
 }

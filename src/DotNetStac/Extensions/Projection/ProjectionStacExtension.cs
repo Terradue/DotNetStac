@@ -9,6 +9,19 @@ using ProjNet.CoordinateSystems;
 
 namespace Stac.Extensions.Projection
 {
+    public static class ProjectionStacExtensionExtensions
+    {
+        public static ProjectionStacExtension ProjectionExtension(this StacItem stacItem)
+        {
+            return new ProjectionStacExtension(stacItem);
+        }
+
+        public static ProjectionStacExtension ProjectionExtension(this StacAsset stacAsset)
+        {
+            return new ProjectionStacExtension(stacAsset);
+        }
+    }
+
     public class ProjectionStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/projection/v1.0.0/schema.json";
@@ -207,18 +220,5 @@ namespace Stac.Extensions.Projection
         private double Longitude { get; set; }
 
         private double Latitude { get; set; }
-    }
-
-    public static class ProjectionStacExtensionExtensions
-    {
-        public static ProjectionStacExtension ProjectionExtension(this StacItem stacItem)
-        {
-            return new ProjectionStacExtension(stacItem);
-        }
-
-        public static ProjectionStacExtension ProjectionExtension(this StacAsset stacAsset)
-        {
-            return new ProjectionStacExtension(stacAsset);
-        }
     }
 }

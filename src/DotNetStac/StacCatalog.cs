@@ -154,6 +154,12 @@ namespace Stac
             return this.Summaries.Count > 0;
         }
 
+        public bool ShouldSerializeStacExtensions()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return this.StacExtensions.Count > 0;
+        }
+
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
@@ -163,12 +169,6 @@ namespace Stac
             }
 
             this.StacExtensions = new SortedSet<string>(this.StacExtensions);
-        }
-
-        public bool ShouldSerializeStacExtensions()
-        {
-            // don't serialize the Manager property if an employee is their own manager
-            return this.StacExtensions.Count > 0;
         }
     }
 }

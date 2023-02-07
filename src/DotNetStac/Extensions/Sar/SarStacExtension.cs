@@ -8,6 +8,37 @@ using System.Linq;
 
 namespace Stac.Extensions.Sar
 {
+    public static class SarStacExtensionExtensions
+    {
+        public static SarStacExtension SarExtension(this StacItem stacItem)
+        {
+            return new SarStacExtension(stacItem);
+        }
+
+        public static SarStacExtension SarExtension(this StacAsset stacAsset)
+        {
+            return new SarStacExtension(stacAsset);
+        }
+
+        public static StacAsset GetAsset(this StacItem stacItem, string polarization)
+        {
+            return stacItem.Assets.Values.FirstOrDefault(a => a.SarExtension().Polarizations.Contains(polarization));
+        }
+
+        public static void Required(
+            this SarStacExtension sarStacExtension,
+            string instrumentMode,
+            SarCommonFrequencyBandName frequencyBandName,
+            string[] polarizations,
+            string productType)
+        {
+            sarStacExtension.InstrumentMode = instrumentMode;
+            sarStacExtension.FrequencyBand = frequencyBandName;
+            sarStacExtension.Polarizations = polarizations;
+            sarStacExtension.ProductType = productType;
+        }
+    }
+
     public class SarStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/sar/v1.0.0/schema.json";
@@ -230,36 +261,5 @@ namespace Stac.Extensions.Sar
 
         /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => this._itemFields;
-    }
-
-    public static class SarStacExtensionExtensions
-    {
-        public static SarStacExtension SarExtension(this StacItem stacItem)
-        {
-            return new SarStacExtension(stacItem);
-        }
-
-        public static SarStacExtension SarExtension(this StacAsset stacAsset)
-        {
-            return new SarStacExtension(stacAsset);
-        }
-
-        public static StacAsset GetAsset(this StacItem stacItem, string polarization)
-        {
-            return stacItem.Assets.Values.FirstOrDefault(a => a.SarExtension().Polarizations.Contains(polarization));
-        }
-
-        public static void Required(
-            this SarStacExtension sarStacExtension,
-            string instrumentMode,
-            SarCommonFrequencyBandName frequencyBandName,
-            string[] polarizations,
-            string productType)
-        {
-            sarStacExtension.InstrumentMode = instrumentMode;
-            sarStacExtension.FrequencyBand = frequencyBandName;
-            sarStacExtension.Polarizations = polarizations;
-            sarStacExtension.ProductType = productType;
-        }
     }
 }

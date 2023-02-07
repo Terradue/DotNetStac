@@ -10,6 +10,34 @@ using Stac.Model;
 namespace Stac.Extensions.Processing
 {
     /// <summary>
+    /// Extension methods for accessing Processing extension
+    /// </summary>
+    public static class ProcessingStacExtensionExtensions
+    {
+        /// <summary>
+        /// Initilize a EoStacExtension class from a STAC item
+        /// </summary>
+        public static ProcessingStacExtension ProcessingExtension(this StacItem stacItem)
+        {
+            return new ProcessingStacExtension(stacItem);
+        }
+
+        /// <summary>
+        /// Initialize the major fields of processing extensions
+        /// </summary>
+        public static void Init(
+            this ProcessingStacExtension processingStacExtension,
+            string lineage,
+            string level,
+            string facility = null)
+        {
+            processingStacExtension.Lineage = lineage;
+            processingStacExtension.Level = level;
+            processingStacExtension.Facility = facility;
+        }
+    }
+
+    /// <summary>
     /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/processing">Processing extension</seealso>
     /// </summary>
     public class ProcessingStacExtension : StacPropertiesContainerExtension, IStacExtension
@@ -130,34 +158,6 @@ namespace Stac.Extensions.Processing
         {
             this.StacPropertiesContainer.SetProperty(SoftwareField, new Dictionary<string, string>(sender as IDictionary<string, string>));
             this.DeclareStacExtension();
-        }
-    }
-
-    /// <summary>
-    /// Extension methods for accessing Processing extension
-    /// </summary>
-    public static class ProcessingStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC item
-        /// </summary>
-        public static ProcessingStacExtension ProcessingExtension(this StacItem stacItem)
-        {
-            return new ProcessingStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initialize the major fields of processing extensions
-        /// </summary>
-        public static void Init(
-            this ProcessingStacExtension processingStacExtension,
-            string lineage,
-            string level,
-            string facility = null)
-        {
-            processingStacExtension.Lineage = lineage;
-            processingStacExtension.Level = level;
-            processingStacExtension.Facility = facility;
         }
     }
 }

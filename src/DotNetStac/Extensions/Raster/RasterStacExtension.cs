@@ -8,6 +8,20 @@ using System.Collections.Generic;
 namespace Stac.Extensions.Raster
 {
     /// <summary>
+    /// Extension methods for accessing EO extension
+    /// </summary>
+    public static class RasterStacExtensionExtensions
+    {
+        /// <summary>
+        /// Initilize a EoStacExtension class from a STAC asset
+        /// </summary>
+        public static RasterStacExtension RasterExtension(this StacAsset stacAsset)
+        {
+            return new RasterStacExtension(stacAsset);
+        }
+    }
+
+    /// <summary>
     /// Helper class to access the fields deined by the <seealso href="https://github.com/stac-extensions/raster">Raster extension</seealso>
     /// </summary>
     public class RasterStacExtension : StacPropertiesContainerExtension, IStacExtension
@@ -58,20 +72,6 @@ namespace Stac.Extensions.Raster
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
             return summaryFunctions;
-        }
-    }
-
-    /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class RasterStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC asset
-        /// </summary>
-        public static RasterStacExtension RasterExtension(this StacAsset stacAsset)
-        {
-            return new RasterStacExtension(stacAsset);
         }
     }
 }

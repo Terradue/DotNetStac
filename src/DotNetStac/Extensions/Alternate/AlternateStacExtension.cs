@@ -10,6 +10,28 @@ using Stac.Extensions.Storage;
 namespace Stac.Extensions.Alternate
 {
     /// <summary>
+    /// Extension methods for accessing Alternate extension
+    /// </summary>
+    public static class AlternateStacExtensionExtensions
+    {
+        /// <summary>
+        /// Initilize a AlternateStacExtension class from a STAC asset
+        /// </summary>
+        public static AlternateStacExtension AlternateExtension(this StacAsset stacAsset)
+        {
+            return new AlternateStacExtension(stacAsset);
+        }
+
+        /// <summary>
+        /// Initilize a AlternateStacExtension class from an alternate asset
+        /// </summary>
+        public static StorageStacExtension StorageExtension(this AlternateAssetObject alternateAssetObject)
+        {
+            return new StorageStacExtension(alternateAssetObject);
+        }
+    }
+
+    /// <summary>
     /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/alternate">Alternate extension</seealso>
     /// </summary>
     public class AlternateStacExtension : StacPropertiesContainerExtension, IStacAssetExtension, IStacExtension
@@ -78,28 +100,6 @@ namespace Stac.Extensions.Alternate
             alternateAssets.Add(key, alternateAssetObject);
             this.AlternateAssets = alternateAssets;
             return alternateAssetObject;
-        }
-    }
-
-    /// <summary>
-    /// Extension methods for accessing Alternate extension
-    /// </summary>
-    public static class AlternateStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a AlternateStacExtension class from a STAC asset
-        /// </summary>
-        public static AlternateStacExtension AlternateExtension(this StacAsset stacAsset)
-        {
-            return new AlternateStacExtension(stacAsset);
-        }
-
-        /// <summary>
-        /// Initilize a AlternateStacExtension class from an alternate asset
-        /// </summary>
-        public static StorageStacExtension StorageExtension(this AlternateAssetObject alternateAssetObject)
-        {
-            return new StorageStacExtension(alternateAssetObject);
         }
     }
 }

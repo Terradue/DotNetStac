@@ -7,6 +7,14 @@ using System.Collections.Generic;
 
 namespace Stac.Extensions.View
 {
+    public static class ViewStacExtensionExtensions
+    {
+        public static ViewStacExtension ViewExtension(this StacItem stacItem)
+        {
+            return new ViewStacExtension(stacItem);
+        }
+    }
+
     public class ViewStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/view/v1.0.0/schema.json";
@@ -105,13 +113,5 @@ namespace Stac.Extensions.View
 
         /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => this._itemFields;
-    }
-
-    public static class ViewStacExtensionExtensions
-    {
-        public static ViewStacExtension ViewExtension(this StacItem stacItem)
-        {
-            return new ViewStacExtension(stacItem);
-        }
     }
 }

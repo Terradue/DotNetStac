@@ -10,6 +10,36 @@ using Stac.Model;
 namespace Stac.Extensions.Datacube
 {
     /// <summary>
+    /// Extension methods for accessing EO extension
+    /// </summary>
+    public static class DatacubeStacExtensionExtensions
+    {
+        /// <summary>
+        /// Initilize a DatacubeStacExtension class from a STAC asset
+        /// </summary>
+        public static DatacubeStacExtension DatacubeStacExtension(this StacAsset stacAsset)
+        {
+            return new DatacubeStacExtension(stacAsset);
+        }
+
+        /// <summary>
+        /// Initilize a DatacubeStacExtension class from a STAC item
+        /// </summary>
+        public static DatacubeStacExtension DatacubeStacExtension(this StacItem stacItem)
+        {
+            return new DatacubeStacExtension(stacItem);
+        }
+
+        /// <summary>
+        /// Initilize a DatacubeStacExtension class from a STAC collection
+        /// </summary>
+        public static DatacubeStacExtension DatacubeStacExtension(this StacCollection stacCollection)
+        {
+            return new DatacubeStacExtension(stacCollection);
+        }
+    }
+
+    /// <summary>
     /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/datacube">Datacube extension</seealso>
     /// </summary>
     public class DatacubeStacExtension : StacPropertiesContainerExtension, IStacExtension
@@ -26,14 +56,6 @@ namespace Stac.Extensions.Datacube
         {
         }
 
-        private DatacubeStacExtension(IStacPropertiesContainer stacPropertiesContainer)
-            : base(JsonSchemaUrl, stacPropertiesContainer)
-        {
-            this._itemFields = new Dictionary<string, Type>();
-            this._itemFields.Add(DimensionField, typeof(IDictionary<string, DatacubeDimension>));
-            this._itemFields.Add(VariableField, typeof(IDictionary<string, DatacubeVariable>));
-        }
-
         internal DatacubeStacExtension(StacAsset stacAsset)
             : this((IStacPropertiesContainer)stacAsset)
         {
@@ -42,6 +64,14 @@ namespace Stac.Extensions.Datacube
         internal DatacubeStacExtension(StacItem stacItem)
             : this((IStacPropertiesContainer)stacItem)
         {
+        }
+
+        private DatacubeStacExtension(IStacPropertiesContainer stacPropertiesContainer)
+            : base(JsonSchemaUrl, stacPropertiesContainer)
+        {
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(DimensionField, typeof(IDictionary<string, DatacubeDimension>));
+            this._itemFields.Add(VariableField, typeof(IDictionary<string, DatacubeVariable>));
         }
 
         /// <summary>
@@ -121,36 +151,6 @@ namespace Stac.Extensions.Datacube
         {
             this.StacPropertiesContainer.SetProperty(VariableField, new Dictionary<string, DatacubeVariable>(sender as IDictionary<string, DatacubeVariable>));
             this.DeclareStacExtension();
-        }
-    }
-
-    /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class DatacubeStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a DatacubeStacExtension class from a STAC asset
-        /// </summary>
-        public static DatacubeStacExtension DatacubeStacExtension(this StacAsset stacAsset)
-        {
-            return new DatacubeStacExtension(stacAsset);
-        }
-
-        /// <summary>
-        /// Initilize a DatacubeStacExtension class from a STAC item
-        /// </summary>
-        public static DatacubeStacExtension DatacubeStacExtension(this StacItem stacItem)
-        {
-            return new DatacubeStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initilize a DatacubeStacExtension class from a STAC collection
-        /// </summary>
-        public static DatacubeStacExtension DatacubeStacExtension(this StacCollection stacCollection)
-        {
-            return new DatacubeStacExtension(stacCollection);
         }
     }
 }

@@ -9,6 +9,48 @@ using System.Linq;
 namespace Stac.Extensions.Eo
 {
     /// <summary>
+    /// Extension methods for accessing EO extension
+    /// </summary>
+    public static class EoStacExtensionExtensions
+    {
+        /// <summary>
+        /// Initilize a EoStacExtension class from a STAC item
+        /// </summary>
+        public static EoStacExtension EoExtension(this StacItem stacItem)
+        {
+            return new EoStacExtension(stacItem);
+        }
+
+        /// <summary>
+        /// Initilize a EoStacExtension class from a STAC asset
+        /// </summary>
+        public static EoStacExtension EoExtension(this StacAsset stacAsset)
+        {
+            return new EoStacExtension(stacAsset);
+        }
+
+        /// <summary>
+        /// Get a STAC asset from a STAC item by its common name
+        /// </summary>
+        /// <param name="stacItem">Stac Item</param>
+        /// <param name="commonName">common name</param>
+        public static StacAsset GetAsset(this StacItem stacItem, EoBandCommonName commonName)
+        {
+            return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).FirstOrDefault(a => a.EoExtension().Bands.Any(b => b.CommonName == commonName));
+        }
+
+        /// <summary>
+        /// Get a STAC EO Band object from a STAC item by its common name
+        /// </summary>
+        /// <param name="stacItem">Stac Item</param>
+        /// <param name="commonName">common name</param>
+        public static EoBandObject GetBandObject(this StacItem stacItem, EoBandCommonName commonName)
+        {
+            return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).Select(a => a.EoExtension().Bands.FirstOrDefault(b => b.CommonName == commonName)).First();
+        }
+    }
+
+    /// <summary>
     /// Helper class to access the fields deined by the <seealso href="https://github.com/stac-extensions/eo">EO extension</seealso>
     /// </summary>
     public class EoStacExtension : StacPropertiesContainerExtension, IStacExtension
@@ -93,48 +135,6 @@ namespace Stac.Extensions.Eo
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
             summaryFunctions.Add(CloudCoverField, new SummaryFunction<double>(this, CloudCoverField, CreateRangeSummaryObject));
             return summaryFunctions;
-        }
-    }
-
-    /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class EoStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC item
-        /// </summary>
-        public static EoStacExtension EoExtension(this StacItem stacItem)
-        {
-            return new EoStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC asset
-        /// </summary>
-        public static EoStacExtension EoExtension(this StacAsset stacAsset)
-        {
-            return new EoStacExtension(stacAsset);
-        }
-
-        /// <summary>
-        /// Get a STAC asset from a STAC item by its common name
-        /// </summary>
-        /// <param name="stacItem">Stac Item</param>
-        /// <param name="commonName">common name</param>
-        public static StacAsset GetAsset(this StacItem stacItem, EoBandCommonName commonName)
-        {
-            return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).FirstOrDefault(a => a.EoExtension().Bands.Any(b => b.CommonName == commonName));
-        }
-
-        /// <summary>
-        /// Get a STAC EO Band object from a STAC item by its common name
-        /// </summary>
-        /// <param name="stacItem">Stac Item</param>
-        /// <param name="commonName">common name</param>
-        public static EoBandObject GetBandObject(this StacItem stacItem, EoBandCommonName commonName)
-        {
-            return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).Select(a => a.EoExtension().Bands.FirstOrDefault(b => b.CommonName == commonName)).First();
         }
     }
 }

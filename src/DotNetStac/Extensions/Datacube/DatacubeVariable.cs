@@ -15,11 +15,11 @@ namespace Stac.Extensions.Datacube
     public class DatacubeVariable : IStacPropertiesContainer
     {
         protected string[] dimensions;
-        private IDictionary<string, object> _properties;
         protected DatacubeVariableType? type;
         protected string description;
         protected double[] extent;
         protected string[] values;
+        private IDictionary<string, object> _properties;
         private string _unit;
 
         public DatacubeVariable()

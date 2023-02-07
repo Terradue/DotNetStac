@@ -142,6 +142,14 @@ namespace Stac
             return this.StacExtensions.Count > 0;
         }
 
+        /// <summary>
+        /// Create a new Stac Item from this existing one
+        /// </summary>
+        public object Clone()
+        {
+            return new StacItem(this);
+        }
+
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
@@ -156,6 +164,15 @@ namespace Stac
             }
 
             this.StacExtensions = new SortedSet<string>(this.StacExtensions);
+        }
+
+        [OnSerializing]
+        internal void OnSerializingMethod(StreamingContext context)
+        {
+            if (this.BoundingBoxes == null && this.Geometry != null)
+            {
+                this.BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
+            }
         }
 
         private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -181,23 +198,6 @@ namespace Stac
                     }
                 }
             }
-        }
-
-        [OnSerializing]
-        internal void OnSerializingMethod(StreamingContext context)
-        {
-            if (this.BoundingBoxes == null && this.Geometry != null)
-            {
-                this.BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
-            }
-        }
-
-        /// <summary>
-        /// Create a new Stac Item from this existing one
-        /// </summary>
-        public object Clone()
-        {
-            return new StacItem(this);
         }
     }
 }

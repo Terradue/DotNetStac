@@ -8,6 +8,28 @@ using System.Collections.Generic;
 namespace Stac.Extensions.VirtualAssets
 {
     /// <summary>
+    /// Extension methods for accessing EO extension
+    /// </summary>
+    public static class VirtualAssetsStacExtensionExtensions
+    {
+        /// <summary>
+        /// Initilize a VirtualAssetsStacExtension class from a STAC item
+        /// </summary>
+        public static VirtualAssetsStacExtension EoExtension(this StacItem stacItem)
+        {
+            return new VirtualAssetsStacExtension(stacItem);
+        }
+
+        /// <summary>
+        /// Initilize a VirtualAssetsStacExtension class from a STAC collection
+        /// </summary>
+        public static VirtualAssetsStacExtension EoExtension(this StacCollection stacCollection)
+        {
+            return new VirtualAssetsStacExtension(stacCollection);
+        }
+    }
+
+    /// <summary>
     /// Helper class to access the fields deined by the <seealso href="https://github.com/stac-extensions/eo">EO extension</seealso>
     /// </summary>
     public class VirtualAssetsStacExtension : StacPropertiesContainerExtension, IStacExtension
@@ -52,27 +74,5 @@ namespace Stac.Extensions.VirtualAssets
         /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this._itemFields;
-    }
-
-    /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class VirtualAssetsStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a VirtualAssetsStacExtension class from a STAC item
-        /// </summary>
-        public static VirtualAssetsStacExtension EoExtension(this StacItem stacItem)
-        {
-            return new VirtualAssetsStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initilize a VirtualAssetsStacExtension class from a STAC collection
-        /// </summary>
-        public static VirtualAssetsStacExtension EoExtension(this StacCollection stacCollection)
-        {
-            return new VirtualAssetsStacExtension(stacCollection);
-        }
     }
 }
