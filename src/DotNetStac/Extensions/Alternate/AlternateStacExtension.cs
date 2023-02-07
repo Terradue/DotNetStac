@@ -76,7 +76,6 @@ namespace Stac.Extensions.Alternate
             this.AlternateAssets = alternateAssets;
             return alternateAssetObject;
         }
-
     }
 
     /// <summary>

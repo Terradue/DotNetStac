@@ -9,6 +9,5 @@ namespace Stac
     /// </summary>
     public interface IStacParent : IStacObject
     {
-
     }
 }

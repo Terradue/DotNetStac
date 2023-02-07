@@ -55,6 +55,18 @@ namespace Stac
             set => this.ContentType = value == null ? null : new ContentType(value);
         }
 
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual ContentType ContentType { get; set; }
+
+        [JsonProperty("rel", Required = Required.Always)]
+        [DataMember(Name = "rel", IsRequired = true)]
+        public virtual string RelationshipType { get; set; }
+
+        [JsonProperty("title")]
+        [DataMember(Name = "title")]
+        public virtual string Title { get; set; }
+
         public static StacLink CreateSelfLink(Uri uri, string mediaType = null, string title = null)
         {
             return new StacLink(uri, "self", title, mediaType);
@@ -99,18 +111,6 @@ namespace Stac
         {
             return new StacObjectLink(stacObject, uri);
         }
-
-        [JsonIgnore]
-        [IgnoreDataMember]
-        public virtual ContentType ContentType { get; set; }
-
-        [JsonProperty("rel", Required = Required.Always)]
-        [DataMember(Name = "rel", IsRequired = true)]
-        public virtual string RelationshipType { get; set; }
-
-        [JsonProperty("title")]
-        [DataMember(Name = "title")]
-        public virtual string Title { get; set; }
 
         [JsonProperty("href")]
         [DataMember(Name = "href", IsRequired = true)]

@@ -102,7 +102,6 @@ namespace Stac.Extensions.Sat
 
             return new SortedDictionary<DateTime, SatOrbitStateVector>(osvlist.ToDictionary(osv => osv.Time, osv => osv));
         }
-
     }
 
     public static class SatStacExtensionExtensions

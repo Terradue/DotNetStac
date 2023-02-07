@@ -61,6 +61,5 @@ namespace Stac.Collection
         {
             return this.summary.Children().GetEnumerator();
         }
-
     }
 }

@@ -67,6 +67,5 @@ namespace Stac
         [JsonProperty("__providers", Required = Required.Default)]
         [JsonIgnore]
         public Collection<StacProvider> Providers => this.GetObservableCollectionProperty<StacProvider>("providers");
-
     }
 }

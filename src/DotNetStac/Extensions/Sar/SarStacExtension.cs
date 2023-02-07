@@ -147,10 +147,10 @@ namespace Stac.Extensions.Sar
 
         public static void Required(
             this SarStacExtension sarStacExtension,
-                                string instrumentMode,
-                                SarCommonFrequencyBandName frequencyBandName,
-                                string[] polarizations,
-                                string productType)
+            string instrumentMode,
+            SarCommonFrequencyBandName frequencyBandName,
+            string[] polarizations,
+            string productType)
         {
             sarStacExtension.InstrumentMode = instrumentMode;
             sarStacExtension.FrequencyBand = frequencyBandName;
@@ -158,5 +158,4 @@ namespace Stac.Extensions.Sar
             sarStacExtension.ProductType = productType;
         }
     }
-
 }

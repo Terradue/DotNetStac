@@ -121,6 +121,45 @@ namespace Stac
         }
 
         /// <summary>
+        /// Gets the semantic roles of the asset
+        /// </summary>
+        /// <value>
+        /// The semantic roles of the asset
+        /// </value>
+        [JsonProperty("roles")]
+        public ICollection<string> Roles
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets or sets the displayed title for clients and users.
+        /// </summary>
+        /// <value>
+        /// The displayed title for clients and users.
+        /// </value>
+        [JsonProperty("title")]
+        public string Title
+        {
+            get { return this._title; }
+            set { this._title = value; }
+        }
+
+        /// <summary>
+        ///  Gets or sets uRI to the asset object. Relative and absolute URI are both allowed.
+        /// </summary>
+        /// <value>
+        /// URI to the asset object. Relative and absolute URI are both allowed.
+        /// </value>
+        [JsonProperty("href")]
+        public Uri Uri
+        {
+            get { return this._href; }
+            set { this._href = value; }
+        }
+
+        /// <summary>
         /// Create a thumbnail asset
         /// </summary>
         /// <param name="stacObject">parent stac object</param>
@@ -170,45 +209,6 @@ namespace Stac
         public static StacAsset CreateMetadataAsset(IStacObject stacObject, Uri uri, ContentType mediaType, string title = null)
         {
             return new StacAsset(stacObject, uri, new string[] { "metadata" }, title, mediaType);
-        }
-
-        /// <summary>
-        /// Gets the semantic roles of the asset
-        /// </summary>
-        /// <value>
-        /// The semantic roles of the asset
-        /// </value>
-        [JsonProperty("roles")]
-        public ICollection<string> Roles
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Gets or sets the displayed title for clients and users.
-        /// </summary>
-        /// <value>
-        /// The displayed title for clients and users.
-        /// </value>
-        [JsonProperty("title")]
-        public string Title
-        {
-            get { return this._title; }
-            set { this._title = value; }
-        }
-
-        /// <summary>
-        ///  Gets or sets uRI to the asset object. Relative and absolute URI are both allowed.
-        /// </summary>
-        /// <value>
-        /// URI to the asset object. Relative and absolute URI are both allowed.
-        /// </value>
-        [JsonProperty("href")]
-        public Uri Uri
-        {
-            get { return this._href; }
-            set { this._href = value; }
         }
 
         /// <summary>

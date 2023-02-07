@@ -193,7 +193,6 @@ namespace Stac.Extensions.Sat
             double bAlong = b[0] * vaUnit[0] + b[1] * vaUnit[1] + b[2] * vaUnit[2];
 
             return new BaselineVector(bPerp, bParallel, bAlong);
-
         }
 
         public static double[] VectorProduct3D(double[] vectorA, double[] vectorB)
@@ -279,7 +278,6 @@ namespace Stac.Extensions.Sat
         {
 
             return interpol[index].Interpolate(time);
-
         }
 
         //---------------------------------------------------------------------------------------------------------------------
@@ -320,9 +318,6 @@ namespace Stac.Extensions.Sat
             coeff[8] = Interpolate.CubicSplineRobust(time, az1.ToArray());
 
             return coeff;
-
         }
-
     }
-
 }

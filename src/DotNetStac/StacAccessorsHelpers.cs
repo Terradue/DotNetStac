@@ -203,6 +203,5 @@ namespace Stac
                 collection.AddRange(temp.Skip(index));
             }
         }
-
     }
 }

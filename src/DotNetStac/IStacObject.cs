@@ -24,6 +24,5 @@ namespace Stac
         ContentType MediaType { get; }
 
         ICollection<string> StacExtensions { get; }
-
     }
 }

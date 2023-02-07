@@ -92,7 +92,6 @@ namespace Stac.Extensions.Storage
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
             return summaryFunctions;
         }
-
     }
 
     /// <summary>
@@ -115,6 +114,5 @@ namespace Stac.Extensions.Storage
         {
             return new StorageStacExtension(stacItem);
         }
-
     }
 }

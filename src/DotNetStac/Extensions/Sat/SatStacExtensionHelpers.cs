@@ -37,7 +37,6 @@ namespace Stac.Extensions.Sat
             var baseline = BaselineCalculation.CalculateBaseline(times, masterOrbits.ToArray(), slaveOrbits.ToArray(), p0);
 
             return baseline;
-
         }
     }
 }

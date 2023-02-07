@@ -15,8 +15,8 @@ namespace Stac.Extensions
     /// </summary>
     public static class StacExtensions
     {
-        private static Dictionary<string, Type> managedStacExtensions = new Dictionary<string, Type>();
         private static readonly object initLock = new object();
+        private static Dictionary<string, Type> managedStacExtensions = new Dictionary<string, Type>();
 
         /// <summary>
         /// Gets dictionary of extensions managed by the library

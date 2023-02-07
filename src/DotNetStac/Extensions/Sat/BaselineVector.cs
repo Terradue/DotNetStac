@@ -31,5 +31,4 @@ namespace Stac.Extensions.Sat
             get { return this.along; }
         }
     }
-
 }

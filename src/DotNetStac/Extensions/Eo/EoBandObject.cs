@@ -95,6 +95,5 @@ namespace Stac.Extensions.Eo
         /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
-
     }
 }

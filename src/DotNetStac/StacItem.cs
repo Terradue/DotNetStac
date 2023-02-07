@@ -31,8 +31,8 @@ namespace Stac
         [JsonConstructor]
         public StacItem(
             string id,
-                        IGeometryObject geometry,
-                        IDictionary<string, object> properties = null)
+            IGeometryObject geometry,
+            IDictionary<string, object> properties = null)
             : base(geometry, properties, id)
         {
             Preconditions.CheckNotNull(id, "id");
@@ -42,14 +42,13 @@ namespace Stac
             this.Links = new ObservableCollection<StacLink>();
             (this.Links as ObservableCollection<StacLink>).CollectionChanged += this.LinksCollectionChanged;
             this.Assets = new Dictionary<string, StacAsset>();
-
         }
 
         public StacItem(StacItem stacItem)
             : base(
                 Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
-                                                  new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties),
-                                                  Preconditions.CheckNotNull(stacItem, "id").Id)
+                new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties),
+                Preconditions.CheckNotNull(stacItem, "id").Id)
         {
             this.StacExtensions = new SortedSet<string>(stacItem.StacExtensions);
             this.Root = new StacItemRootPropertyContainer(this);
@@ -102,31 +101,6 @@ namespace Stac
         [JsonProperty("assets", Order = 4)]
         public IDictionary<string, StacAsset> Assets { get; private set; }
 
-        private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.OldItems != null)
-            {
-                foreach (var oldLink in e.OldItems.Cast<StacLink>())
-                {
-                    if (oldLink.RelationshipType == "collection")
-                    {
-                        this.Collection = null;
-                    }
-                }
-            }
-
-            if (e.NewItems != null)
-            {
-                foreach (var newLink in e.NewItems.Cast<StacLink>())
-                {
-                    if (newLink.RelationshipType == "collection" && string.IsNullOrEmpty(this.Collection))
-                    {
-                        this.Collection = Path.GetFileNameWithoutExtension(newLink.Uri.ToString());
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Gets or sets the id of the STAC Collection this Item references to
         /// </summary>
@@ -161,6 +135,31 @@ namespace Stac
         /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
+
+        private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems != null)
+            {
+                foreach (var oldLink in e.OldItems.Cast<StacLink>())
+                {
+                    if (oldLink.RelationshipType == "collection")
+                    {
+                        this.Collection = null;
+                    }
+                }
+            }
+
+            if (e.NewItems != null)
+            {
+                foreach (var newLink in e.NewItems.Cast<StacLink>())
+                {
+                    if (newLink.RelationshipType == "collection" && string.IsNullOrEmpty(this.Collection))
+                    {
+                        this.Collection = Path.GetFileNameWithoutExtension(newLink.Uri.ToString());
+                    }
+                }
+            }
+        }
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)

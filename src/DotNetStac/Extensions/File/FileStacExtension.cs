@@ -104,7 +104,6 @@ namespace Stac.Extensions.File
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
             return summaryFunctions;
         }
-
     }
 
     /// <summary>
@@ -127,9 +126,9 @@ namespace Stac.Extensions.File
         /// </summary>
         public static async Task SetFileExtensionProperties(
             this FileStacExtension fileStacExtension,
-                                                      FileInfo file,
-                                                      HashType hashType = HashType.SHA1,
-                                                      MultibaseEncoding encoding = MultibaseEncoding.Base16Lower)
+            FileInfo file,
+            HashType hashType = HashType.SHA1,
+            MultibaseEncoding encoding = MultibaseEncoding.Base16Lower)
         {
             fileStacExtension.Size = Convert.ToUInt64(file.Length);
             await fileStacExtension.SetFileCheckSum(hashType, encoding, uri => file.OpenRead());
@@ -142,9 +141,9 @@ namespace Stac.Extensions.File
         /// </summary>
         public static async Task SetFileExtensionProperties(
             this FileStacExtension fileStacExtension,
-                                                      Stream stream,
-                                                      HashType hashType = HashType.SHA1,
-                                                      MultibaseEncoding encoding = MultibaseEncoding.Base16Lower)
+            Stream stream,
+            HashType hashType = HashType.SHA1,
+            MultibaseEncoding encoding = MultibaseEncoding.Base16Lower)
         {
             await fileStacExtension.SetFileCheckSum(hashType, encoding, uri => stream);
         }
@@ -154,9 +153,9 @@ namespace Stac.Extensions.File
         /// </summary>
         public static async Task SetFileCheckSum(
             this FileStacExtension fileStacExtension,
-                                                         HashType hashType,
-                                                         MultibaseEncoding encoding,
-                                                         Func<Uri, Stream> uriStreamer)
+            HashType hashType,
+            MultibaseEncoding encoding,
+            Func<Uri, Stream> uriStreamer)
         {
             Multihash mh = null;
             using (var stream = uriStreamer(fileStacExtension.StacAsset.Uri))

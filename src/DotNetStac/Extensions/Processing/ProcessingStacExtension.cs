@@ -107,7 +107,6 @@ namespace Stac.Extensions.Processing
             this.StacPropertiesContainer.SetProperty(SoftwareField, new Dictionary<string, string>(sender as IDictionary<string, string>));
             this.DeclareStacExtension();
         }
-
     }
 
     /// <summary>
@@ -128,9 +127,9 @@ namespace Stac.Extensions.Processing
         /// </summary>
         public static void Init(
             this ProcessingStacExtension processingStacExtension,
-                                string lineage,
-                                string level,
-                                string facility = null)
+            string lineage,
+            string level,
+            string facility = null)
         {
             processingStacExtension.Lineage = lineage;
             processingStacExtension.Level = level;

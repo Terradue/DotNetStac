@@ -14,6 +14,5 @@ namespace Stac
         IDictionary<string, object> Properties { get; }
 
         IStacObject StacObjectContainer { get; }
-
     }
 }

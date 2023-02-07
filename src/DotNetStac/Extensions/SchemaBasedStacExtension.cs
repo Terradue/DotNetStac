@@ -16,10 +16,10 @@ namespace Stac.Extensions
 
         public SchemaBasedStacExtension(
             Uri jsonSchema,
-                                        IStacObject stacObject)
+            IStacObject stacObject)
             : base(
                 jsonSchema.ToString(),
-                                                                       stacObject)
+                stacObject)
         {
             Preconditions.CheckNotNull(jsonSchema, "jsonSchema");
             this.JsonSchema = jsonSchema;
@@ -28,11 +28,11 @@ namespace Stac.Extensions
 
         public SchemaBasedStacExtension(
             Uri schemaUri,
-                                           StacSchemaResolver stacSchemaResolver,
-                                           IStacObject stacObject)
+            StacSchemaResolver stacSchemaResolver,
+            IStacObject stacObject)
             : base(
                 schemaUri.ToString(),
-                                                                       stacObject)
+                stacObject)
         {
             Preconditions.CheckNotNull(schemaUri, "schemaUri");
             this.stacObject = stacObject;
@@ -49,8 +49,8 @@ namespace Stac.Extensions
 
         public static SchemaBasedStacExtension Create(
             string shortcut,
-                                                      StacSchemaResolver stacSchemaResolver,
-                                                      IStacObject stacObject)
+            StacSchemaResolver stacSchemaResolver,
+            IStacObject stacObject)
         {
             if (StacSchemaResolver.CoreTypes.Contains(shortcut))
             {

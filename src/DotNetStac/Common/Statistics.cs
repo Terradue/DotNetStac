@@ -87,6 +87,5 @@ namespace Stac.Common
         /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
-
     }
 }

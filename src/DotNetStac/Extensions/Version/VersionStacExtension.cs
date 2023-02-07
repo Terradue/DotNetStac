@@ -74,7 +74,6 @@ namespace Stac.Extensions.Version
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
             return summaryFunctions;
         }
-
     }
 
     /// <summary>

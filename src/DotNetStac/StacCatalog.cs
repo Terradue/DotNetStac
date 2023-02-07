@@ -170,6 +170,5 @@ namespace Stac
             // don't serialize the Manager property if an employee is their own manager
             return this.StacExtensions.Count > 0;
         }
-
     }
 }

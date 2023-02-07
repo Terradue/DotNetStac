@@ -149,7 +149,6 @@ namespace Stac.Extensions.Datacube
         public DatacubeDimensionTemporal()
             : base()
         {
-
         }
     }
 
@@ -162,7 +161,6 @@ namespace Stac.Extensions.Datacube
         public DatacubeDimensionAdditional()
             : base()
         {
-
         }
 
         /// <summary>

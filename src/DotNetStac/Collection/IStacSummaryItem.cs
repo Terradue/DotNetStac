@@ -36,6 +36,5 @@ namespace Stac.Collection
         /// The summary item as a JToken
         /// </value>
         IEnumerable<object> Enumerate();
-
     }
 }

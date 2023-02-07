@@ -28,11 +28,11 @@ namespace Stac
         [JsonConstructor]
         public StacCollection(
             string id,
-                              string description,
-                              StacExtent extent,
-                              IDictionary<string, StacAsset> assets = null,
-                              IEnumerable<StacLink> links = null,
-                              string license = "proprietary")
+            string description,
+            StacExtent extent,
+            IDictionary<string, StacAsset> assets = null,
+            IEnumerable<StacLink> links = null,
+            string license = "proprietary")
         {
             this.Properties = new Dictionary<string, object>();
             this.Id = id;
@@ -225,11 +225,11 @@ namespace Stac
         /// <param name="assets">Assets of the collection</param>
         public static StacCollection Create(
             string id,
-                                            string description,
-                                            IDictionary<Uri, StacItem> items,
-                                            string license = null,
-                                            Uri collectionUri = null,
-                                            IDictionary<string, StacAsset> assets = null)
+            string description,
+            IDictionary<Uri, StacItem> items,
+            string license = null,
+            Uri collectionUri = null,
+            IDictionary<string, StacAsset> assets = null)
         {
             var collection = new StacCollection(
                                       id,

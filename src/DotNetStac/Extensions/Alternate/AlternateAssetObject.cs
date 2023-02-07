@@ -15,8 +15,8 @@ namespace Stac.Extensions.Alternate
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class AlternateAssetObject : IStacPropertiesContainer
     {
-        private string href;
         private readonly IStacObject _parent;
+        private string href;
         private string title;
 
         private string description;
