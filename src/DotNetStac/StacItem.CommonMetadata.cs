@@ -134,6 +134,7 @@ namespace Stac
 
                 return Itenso.TimePeriod.TimeInterval.Anytime;
             }
+
             set
             {
                 // datetime, start_datetime, end_datetime

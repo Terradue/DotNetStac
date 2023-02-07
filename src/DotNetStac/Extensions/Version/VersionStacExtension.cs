@@ -28,7 +28,8 @@ namespace Stac.Extensions.Version
 
         private readonly Dictionary<string, Type> itemFields;
 
-        internal VersionStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, stacObject)
+        internal VersionStacExtension(IStacObject stacObject)
+            : base(JsonSchemaUrl, stacObject)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(VersionField, typeof(string));

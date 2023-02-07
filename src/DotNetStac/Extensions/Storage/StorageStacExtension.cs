@@ -20,7 +20,8 @@ namespace Stac.Extensions.Storage
         public const string TierField = "storage:tier";
         private readonly Dictionary<string, Type> itemFields;
 
-        internal StorageStacExtension(IStacPropertiesContainer stacObject) : base(JsonSchemaUrl, stacObject)
+        internal StorageStacExtension(IStacPropertiesContainer stacObject)
+            : base(JsonSchemaUrl, stacObject)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(PlatformField, typeof(string));

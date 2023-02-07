@@ -21,7 +21,8 @@ namespace Stac.Common
         /// </summary>
         /// <param name="propertiesContainer">The properties container.</param>
         /// <param name="key">The property key.</param>
-        public PropertyObservableCollection(IStacPropertiesContainer propertiesContainer, string key) : base()
+        public PropertyObservableCollection(IStacPropertiesContainer propertiesContainer, string key)
+            : base()
         {
             this.PropertiesContainer = propertiesContainer;
             this.Key = key;

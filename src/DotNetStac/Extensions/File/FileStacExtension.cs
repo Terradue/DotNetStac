@@ -24,7 +24,8 @@ namespace Stac.Extensions.File
         private const string SizeField = "file:size";
         private readonly Dictionary<string, Type> itemFields;
 
-        internal FileStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
+        internal FileStacExtension(StacAsset stacAsset)
+            : base(JsonSchemaUrl, stacAsset)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(ByteOrderField, typeof(string));

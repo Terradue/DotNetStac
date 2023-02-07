@@ -22,7 +22,8 @@ namespace Stac.Extensions.Processing
         private const string SoftwareField = "processing:software";
         private readonly Dictionary<string, Type> itemFields;
 
-        internal ProcessingStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
+        internal ProcessingStacExtension(StacItem stacItem)
+            : base(JsonSchemaUrl, stacItem)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(LineageField, typeof(string));

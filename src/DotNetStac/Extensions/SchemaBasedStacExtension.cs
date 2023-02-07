@@ -15,7 +15,8 @@ namespace Stac.Extensions
         private readonly IStacObject stacObject;
 
         public SchemaBasedStacExtension(Uri jsonSchema,
-                                        IStacObject stacObject) : base(jsonSchema.ToString(),
+                                        IStacObject stacObject)
+            : base(jsonSchema.ToString(),
                                                                        stacObject)
         {
             Preconditions.CheckNotNull(jsonSchema, "jsonSchema");
@@ -25,13 +26,22 @@ namespace Stac.Extensions
 
         public SchemaBasedStacExtension(Uri schemaUri,
                                            StacSchemaResolver stacSchemaResolver,
-                                           IStacObject stacObject) : base(schemaUri.ToString(),
+                                           IStacObject stacObject)
+            : base(schemaUri.ToString(),
                                                                        stacObject)
         {
             Preconditions.CheckNotNull(schemaUri, "schemaUri");
             this.stacObject = stacObject;
             this.JsonSchema = schemaUri;
         }
+
+        /// <inheritdoc/>
+        public override string Identifier => this.JsonSchema.ToString();
+
+        public Uri JsonSchema { get; }
+
+        /// <inheritdoc/>
+        public override IDictionary<string, Type> ItemFields => new Dictionary<string, Type>();
 
         public static SchemaBasedStacExtension Create(string shortcut,
                                                       StacSchemaResolver stacSchemaResolver,
@@ -46,13 +56,5 @@ namespace Stac.Extensions
 
             return new SchemaBasedStacExtension(schema, stacObject);
         }
-
-        /// <inheritdoc/>
-        public override string Identifier => this.JsonSchema.ToString();
-
-        public Uri JsonSchema { get; }
-
-        /// <inheritdoc/>
-        public override IDictionary<string, Type> ItemFields => new Dictionary<string, Type>();
     }
 }

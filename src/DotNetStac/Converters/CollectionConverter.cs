@@ -13,6 +13,12 @@ namespace Stac.Converters
     public class CollectionConverter<T> : JsonConverter
     {
         /// <inheritdoc/>
+        public override bool CanRead => true;
+
+        /// <inheritdoc/>
+        public override bool CanWrite => true;
+
+        /// <inheritdoc/>
         public override bool CanConvert(Type objectType)
         {
             return objectType == typeof(Collection<T>);
@@ -29,12 +35,6 @@ namespace Stac.Converters
 
             return new Collection<T>();
         }
-
-        /// <inheritdoc/>
-        public override bool CanRead => true;
-
-        /// <inheritdoc/>
-        public override bool CanWrite => true;
 
         /// <inheritdoc/>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

@@ -28,6 +28,14 @@ namespace Stac.Collection
         }
 
         /// <summary>
+        /// Gets jToken transformer
+        /// </summary>
+        /// <value>
+        /// JToken transformer
+        /// </value>
+        public JToken AsJToken => this.summary;
+
+        /// <summary>
         /// accessor of fields in the object
         /// </summary>
         public JToken this[object key]
@@ -37,14 +45,6 @@ namespace Stac.Collection
                 return this.summary[key];
             }
         }
-
-        /// <summary>
-        /// Gets jToken transformer
-        /// </summary>
-        /// <value>
-        /// JToken transformer
-        /// </value>
-        public JToken AsJToken => this.summary;
 
         /// <inheritdoc/>
         public abstract IEnumerable<object> Enumerate();

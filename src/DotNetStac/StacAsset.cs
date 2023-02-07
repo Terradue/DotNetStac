@@ -26,6 +26,46 @@ namespace Stac
         private IStacObject _parentStacObject;
 
         /// <summary>
+        /// Initialize a new asset with a Uri
+        /// </summary>
+        /// <param name="stacObject">parent stac object</param>
+        /// <param name="uri">uri to the asset</param>
+        public StacAsset(IStacObject stacObject, Uri uri)
+            : this()
+        {
+            if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
+            {
+                throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
+            }
+
+            this._parentStacObject = stacObject;
+            this.Uri = uri;
+        }
+
+        /// <summary>
+        /// Initialize a new asset
+        /// </summary>
+        /// <param name="stacObject">parent stac object</param>
+        /// <param name="uri">uri to the asset</param>
+        /// <param name="roles">roles of the asset</param>
+        /// <param name="title">title of the asset</param>
+        /// <param name="mediaType">media-type of the asset</param>
+        public StacAsset(IStacObject stacObject, Uri uri, IEnumerable<string> roles, string title, ContentType mediaType)
+            : this(stacObject, uri)
+        {
+            this.Roles = roles == null ? new SortedSet<string>() : new SortedSet<string>(roles.ToList());
+            this.Title = title;
+            this.MediaType = mediaType;
+        }
+
+        [JsonConstructor]
+        internal StacAsset()
+        {
+            this._properties = new Dictionary<string, object>();
+            this.Roles = new SortedSet<string>();
+        }
+
+        /// <summary>
         /// Create a thumbnail asset
         /// </summary>
         /// <param name="stacObject">parent stac object</param>
@@ -75,44 +115,6 @@ namespace Stac
         public static StacAsset CreateMetadataAsset(IStacObject stacObject, Uri uri, ContentType mediaType, string title = null)
         {
             return new StacAsset(stacObject, uri, new string[] { "metadata" }, title, mediaType);
-        }
-
-        [JsonConstructor]
-        internal StacAsset()
-        {
-            this._properties = new Dictionary<string, object>();
-            this.Roles = new SortedSet<string>();
-        }
-
-        /// <summary>
-        /// Initialize a new asset with a Uri
-        /// </summary>
-        /// <param name="stacObject">parent stac object</param>
-        /// <param name="uri">uri to the asset</param>
-        public StacAsset(IStacObject stacObject, Uri uri) : this()
-        {
-            if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
-            {
-                throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
-            }
-
-            this._parentStacObject = stacObject;
-            this.Uri = uri;
-        }
-
-        /// <summary>
-        /// Initialize a new asset
-        /// </summary>
-        /// <param name="stacObject">parent stac object</param>
-        /// <param name="uri">uri to the asset</param>
-        /// <param name="roles">roles of the asset</param>
-        /// <param name="title">title of the asset</param>
-        /// <param name="mediaType">media-type of the asset</param>
-        public StacAsset(IStacObject stacObject, Uri uri, IEnumerable<string> roles, string title, ContentType mediaType) : this(stacObject, uri)
-        {
-            this.Roles = roles == null ? new SortedSet<string>() : new SortedSet<string>(roles.ToList());
-            this.Title = title;
-            this.MediaType = mediaType;
         }
 
         /// <summary>

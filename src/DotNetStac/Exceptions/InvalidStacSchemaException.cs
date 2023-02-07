@@ -14,15 +14,18 @@ namespace Stac.Exceptions
         {
         }
 
-        public InvalidStacSchemaException(string message) : base(message)
+        public InvalidStacSchemaException(string message)
+            : base(message)
         {
         }
 
-        public InvalidStacSchemaException(string message, Exception innerException) : base(message, innerException)
+        public InvalidStacSchemaException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
-        protected InvalidStacSchemaException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected InvalidStacSchemaException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

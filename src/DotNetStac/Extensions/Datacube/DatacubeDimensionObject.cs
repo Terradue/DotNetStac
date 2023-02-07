@@ -21,6 +21,11 @@ namespace Stac.Extensions.Datacube
         protected object values;
         protected double? step;
 
+        public DatacubeDimension()
+        {
+            this.properties = new Dictionary<string, object>();
+        }
+
         /// <summary>
         /// Gets or sets type of the dimension.
         /// </summary>
@@ -78,17 +83,17 @@ namespace Stac.Extensions.Datacube
         /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => null;
-
-        public DatacubeDimension()
-        {
-            this.properties = new Dictionary<string, object>();
-        }
     }
 
     public class DatacubeDimensionSpatial : DatacubeDimension
     {
         protected DatacubeAxis? axis;
         protected object reference_system;
+
+        public DatacubeDimensionSpatial()
+            : base()
+        {
+        }
 
         /// <summary>
         /// Gets or sets axis of the spatial dimension.
@@ -107,15 +112,12 @@ namespace Stac.Extensions.Datacube
         /// </value>
         [JsonProperty("reference_system")]
         public object ReferenceSystem { get => this.reference_system; set => this.reference_system = value; }
-
-        public DatacubeDimensionSpatial() : base()
-        {
-        }
     }
 
     public class DatacubeDimensionSpatialHorizontal : DatacubeDimensionSpatial
     {
-        public DatacubeDimensionSpatialHorizontal() : base()
+        public DatacubeDimensionSpatialHorizontal()
+            : base()
         {
             this.axis = DatacubeAxis.x;
         }
@@ -125,6 +127,12 @@ namespace Stac.Extensions.Datacube
     {
         private string unit;
 
+        public DatacubeDimensionSpatialVertical()
+            : base()
+        {
+            this.axis = DatacubeAxis.z;
+        }
+
         /// <summary>
         /// Gets or sets the unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
         /// </summary>
@@ -133,17 +141,13 @@ namespace Stac.Extensions.Datacube
         /// </value>
         [JsonProperty("unit")]
         public string Unit { get => this.unit; set => this.unit = value; }
-
-        public DatacubeDimensionSpatialVertical() : base()
-        {
-            this.axis = DatacubeAxis.z;
-        }
     }
 
     public class DatacubeDimensionTemporal : DatacubeDimension
     {
 
-        public DatacubeDimensionTemporal() : base()
+        public DatacubeDimensionTemporal()
+            : base()
         {
 
         }
@@ -154,6 +158,12 @@ namespace Stac.Extensions.Datacube
 
         private string unit;
         protected object reference_system;
+
+        public DatacubeDimensionAdditional()
+            : base()
+        {
+
+        }
 
         /// <summary>
         /// Gets or sets the unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
@@ -172,10 +182,5 @@ namespace Stac.Extensions.Datacube
         /// </value>
         [JsonProperty("reference_system")]
         public object ReferenceSystem { get => this.reference_system; set => this.reference_system = value; }
-
-        public DatacubeDimensionAdditional() : base()
-        {
-
-        }
     }
 }

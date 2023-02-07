@@ -21,22 +21,26 @@ namespace Stac.Extensions.Datacube
         private const string DimensionField = "cube:dimensions";
         private const string VariableField = "cube:variables";
 
-        private DatacubeStacExtension(IStacPropertiesContainer stacPropertiesContainer) : base(JsonSchemaUrl, stacPropertiesContainer)
+        private DatacubeStacExtension(IStacPropertiesContainer stacPropertiesContainer)
+            : base(JsonSchemaUrl, stacPropertiesContainer)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(DimensionField, typeof(IDictionary<string, DatacubeDimension>));
             this.itemFields.Add(VariableField, typeof(IDictionary<string, DatacubeVariable>));
         }
 
-        internal DatacubeStacExtension(StacCollection stacCollection) : this((IStacPropertiesContainer)stacCollection)
+        internal DatacubeStacExtension(StacCollection stacCollection)
+            : this((IStacPropertiesContainer)stacCollection)
         {
         }
 
-        internal DatacubeStacExtension(StacAsset stacAsset) : this((IStacPropertiesContainer)stacAsset)
+        internal DatacubeStacExtension(StacAsset stacAsset)
+            : this((IStacPropertiesContainer)stacAsset)
         {
         }
 
-        internal DatacubeStacExtension(StacItem stacItem) : this((IStacPropertiesContainer)stacItem)
+        internal DatacubeStacExtension(StacItem stacItem)
+            : this((IStacPropertiesContainer)stacItem)
         {
         }
 
@@ -66,12 +70,6 @@ namespace Stac.Extensions.Datacube
             }
         }
 
-        private void UpdateDimensionField(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            this.StacPropertiesContainer.SetProperty(DimensionField, new Dictionary<string, DatacubeDimension>(sender as IDictionary<string, DatacubeDimension>));
-            this.DeclareStacExtension();
-        }
-
         /// <summary>
         /// Gets a dictionary of available variables where each object is a DatacubeVariable Object.
         /// </summary>
@@ -98,12 +96,6 @@ namespace Stac.Extensions.Datacube
             }
         }
 
-        private void UpdateVariableField(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            this.StacPropertiesContainer.SetProperty(VariableField, new Dictionary<string, DatacubeVariable>(sender as IDictionary<string, DatacubeVariable>));
-            this.DeclareStacExtension();
-        }
-
         /// <summary>
         /// Gets potential fields and their types
         /// </summary>
@@ -111,6 +103,18 @@ namespace Stac.Extensions.Datacube
         /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this.itemFields;
+
+        private void UpdateDimensionField(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.StacPropertiesContainer.SetProperty(DimensionField, new Dictionary<string, DatacubeDimension>(sender as IDictionary<string, DatacubeDimension>));
+            this.DeclareStacExtension();
+        }
+
+        private void UpdateVariableField(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.StacPropertiesContainer.SetProperty(VariableField, new Dictionary<string, DatacubeVariable>(sender as IDictionary<string, DatacubeVariable>));
+            this.DeclareStacExtension();
+        }
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

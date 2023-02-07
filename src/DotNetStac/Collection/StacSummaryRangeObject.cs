@@ -19,7 +19,8 @@ namespace Stac.Collection
         /// </summary>
         /// <param name="summary">JSON Range object</param>
         /// <exception cref="ArgumentException">Thrown when neither "minimum" nor "maximum" fields are present in the range object.</exception>
-        public StacSummaryRangeObject(JObject summary) : base(summary)
+        public StacSummaryRangeObject(JObject summary)
+            : base(summary)
         {
             if (!summary.ContainsKey("minimum") || !summary.ContainsKey("maximum"))
             {
@@ -32,7 +33,8 @@ namespace Stac.Collection
         /// </summary>
         /// <param name="min"></param>
         /// <param name="max"></param>
-        public StacSummaryRangeObject(T min, T max) : base(new JObject())
+        public StacSummaryRangeObject(T min, T max)
+            : base(new JObject())
         {
             this.Min = min;
             this.Max = max;

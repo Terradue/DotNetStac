@@ -13,19 +13,6 @@ namespace Stac.Extensions.Projection
     {
         private const string filename = @"SRID.csv";
 
-        public struct WKTstring
-        {
-            /// <summary>
-            /// Well-known ID
-            /// </summary>
-            public int WKID;
-
-            /// <summary>
-            /// Well-known Text
-            /// </summary>
-            public string WKT;
-        }
-
         /// <summary>
         /// Enumerates all SRID's in the SRID.csv file.
         /// </summary>
@@ -68,6 +55,19 @@ namespace Stac.Extensions.Projection
             }
 
             return null;
+        }
+
+        public struct WKTstring
+        {
+            /// <summary>
+            /// Well-known ID
+            /// </summary>
+            public int WKID;
+
+            /// <summary>
+            /// Well-known Text
+            /// </summary>
+            public string WKT;
         }
     }
 }

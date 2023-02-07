@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Stac.Collection;
 
-public delegate IStacSummaryItem CreateSummary<T>(IEnumerable<T> arg);
-
 namespace Stac.Extensions
 {
     /// <summary>
@@ -186,3 +184,5 @@ namespace Stac.Extensions
         }
     }
 }
+
+public delegate IStacSummaryItem CreateSummary<T>(IEnumerable<T> arg);

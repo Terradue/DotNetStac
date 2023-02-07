@@ -22,6 +22,11 @@ namespace Stac.Extensions.Datacube
         protected string[] values;
         private string unit;
 
+        public DatacubeVariable()
+        {
+            this.properties = new Dictionary<string, object>();
+        }
+
         /// <summary>
         /// Gets or sets the dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.
         /// </summary>
@@ -88,10 +93,5 @@ namespace Stac.Extensions.Datacube
         /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => null;
-
-        public DatacubeVariable()
-        {
-            this.properties = new Dictionary<string, object>();
-        }
     }
 }

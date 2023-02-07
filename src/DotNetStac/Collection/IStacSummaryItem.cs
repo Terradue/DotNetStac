@@ -13,17 +13,17 @@ namespace Stac.Collection
     public interface IStacSummaryItem : IEnumerable<JToken>
     {
         /// <summary>
-        /// Gets or sets the summary value with the specified fields (for objects only)
-        /// </summary>
-        JToken this[object key] { get; }
-
-        /// <summary>
         /// Gets the summary item as a JToken
         /// </summary>
         /// <value>
         /// The summary item as a JToken
         /// </value>
         JToken AsJToken { get; }
+
+        /// <summary>
+        /// Gets or sets the summary value with the specified fields (for objects only)
+        /// </summary>
+        JToken this[object key] { get; }
 
         IEnumerable<object> Enumerate();
 

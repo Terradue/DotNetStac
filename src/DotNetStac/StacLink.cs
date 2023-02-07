@@ -14,6 +14,24 @@ namespace Stac
     [DataContract]
     public class StacLink
     {
+        public StacLink()
+        {
+        }
+
+        public StacLink(Uri uri)
+        {
+            this.Uri = uri;
+        }
+
+        public StacLink(Uri uri, string relationshipType, string title, string mediaType, ulong contentLength = 0)
+        {
+            this.Uri = uri;
+            this.RelationshipType = relationshipType;
+            this.Title = title;
+            this.ContentType = mediaType == null ? null : new ContentType(mediaType);
+            this.Length = contentLength;
+        }
+
         public static StacLink CreateSelfLink(Uri uri, string mediaType = null, string title = null)
         {
             return new StacLink(uri, "self", title, mediaType);
@@ -57,24 +75,6 @@ namespace Stac
         public static StacLink CreateObjectLink(IStacObject stacObject, Uri uri)
         {
             return new StacObjectLink(stacObject, uri);
-        }
-
-        public StacLink()
-        {
-        }
-
-        public StacLink(Uri uri)
-        {
-            this.Uri = uri;
-        }
-
-        public StacLink(Uri uri, string relationshipType, string title, string mediaType, ulong contentLength = 0)
-        {
-            this.Uri = uri;
-            this.RelationshipType = relationshipType;
-            this.Title = title;
-            this.ContentType = mediaType == null ? null : new ContentType(mediaType);
-            this.Length = contentLength;
         }
 
         public StacLink(StacLink source)

@@ -17,13 +17,13 @@ namespace Stac.Schemas
 
         public static string[] CoreTypes = new string[] { "item", "catalog", "collection" };
 
+        private static readonly IDictionary<string, Uri> schemaMap = new Dictionary<string, Uri>();
+
         public StacSchemaResolver(JSchemaResolver jSchemaResolver)
         {
             this._jSchemaResolver = jSchemaResolver;
             this._schemaCompiled = new Dictionary<string, JSchema>();
         }
-
-        private static readonly IDictionary<string, Uri> schemaMap = new Dictionary<string, Uri>();
 
         public JSchema LoadSchema(string baseUrl = null, string version = null, string shortcut = null)
         {

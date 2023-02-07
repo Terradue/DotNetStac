@@ -18,7 +18,8 @@ namespace Stac.Extensions.ItemCollections
 
         public ItemCollection(string id,
                               string description,
-                              List<StacItem> stacItems) : base(id,
+                              List<StacItem> stacItems)
+            : base(id,
                                                                description,
                                                                null)
         {

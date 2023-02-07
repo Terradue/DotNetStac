@@ -21,7 +21,8 @@ namespace Stac.Extensions.Eo
 
         private readonly IDictionary<string, Type> itemFields;
 
-        internal EoStacExtension(IStacPropertiesContainer stacpropertiesContainer) : base(JsonSchemaUrl, stacpropertiesContainer)
+        internal EoStacExtension(IStacPropertiesContainer stacpropertiesContainer)
+            : base(JsonSchemaUrl, stacpropertiesContainer)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(BandsField, typeof(EoBandObject[]));
@@ -37,6 +38,7 @@ namespace Stac.Extensions.Eo
         public double? CloudCover
         {
             get { return this.StacPropertiesContainer.GetProperty<double?>(CloudCoverField); }
+
             set
             {
                 if (value == null)
@@ -57,6 +59,7 @@ namespace Stac.Extensions.Eo
         public EoBandObject[] Bands
         {
             get { return this.StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField); }
+
             set
             {
                 if (value == null || value.Count() == 0)

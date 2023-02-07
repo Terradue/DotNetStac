@@ -18,6 +18,7 @@ namespace Stac
         string Title { get; }
 
         SemVersion StacVersion { get; }
+
         new ICollection<StacLink> Links { get; }
 
         ContentType MediaType { get; }

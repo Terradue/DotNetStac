@@ -18,7 +18,8 @@ namespace Stac.Extensions.VirtualAssets
         private readonly IDictionary<string, Type> itemFields;
         private const string VirtualAssetsField = "virtual:assets";
 
-        internal VirtualAssetsStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, stacObject)
+        internal VirtualAssetsStacExtension(IStacObject stacObject)
+            : base(JsonSchemaUrl, stacObject)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(VirtualAssetsField, typeof(VirtualAsset));

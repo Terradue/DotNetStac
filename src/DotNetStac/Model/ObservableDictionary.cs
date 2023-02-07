@@ -34,7 +34,8 @@ namespace Stac.Model
             this._dictionary = new ConcurrentDictionary<TKey, TValue>();
         }
 
-        public ObservableDictionary(IDictionary<TKey, TValue> init) : this()
+        public ObservableDictionary(IDictionary<TKey, TValue> init)
+            : this()
         {
             this._context = AsyncOperationManager.SynchronizationContext;
             this._dictionary = new ConcurrentDictionary<TKey, TValue>(init);
@@ -45,6 +46,22 @@ namespace Stac.Model
 
         /// <summary>Event raised when a property on the collection changes.</summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        int ICollection<KeyValuePair<TKey, TValue>>.Count
+        {
+            get => this._dictionary.Count;
+        }
+
+        bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly
+        {
+            get => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).IsReadOnly;
+        }
+
+        /// <inheritdoc/>
+        public ICollection<TKey> Keys
+        {
+            get { return this._dictionary.Keys; }
+        }
 
         /// <summary>
         /// Notifies observers of CollectionChanged or PropertyChanged of an update to the dictionary.
@@ -193,14 +210,17 @@ namespace Stac.Model
         void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
             => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).CopyTo(array, arrayIndex);
 
-        int ICollection<KeyValuePair<TKey, TValue>>.Count
+        /// <inheritdoc/>
+        public ICollection<TValue> Values
         {
-            get => this._dictionary.Count;
+            get => this._dictionary.Values;
         }
 
-        bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly
+        /// <inheritdoc/>
+        public TValue this[TKey key]
         {
-            get => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).IsReadOnly;
+            get => this._dictionary[key];
+            set => this.UpdateWithNotification(key, value);
         }
 
         bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
@@ -225,30 +245,11 @@ namespace Stac.Model
             => this._dictionary.ContainsKey(key);
 
         /// <inheritdoc/>
-        public ICollection<TKey> Keys
-        {
-            get { return this._dictionary.Keys; }
-        }
-
-        /// <inheritdoc/>
         public bool Remove(TKey key)
             => this.TryRemoveWithNotification(key, out TValue temp);
 
         /// <inheritdoc/>
         public bool TryGetValue(TKey key, out TValue value)
             => this._dictionary.TryGetValue(key, out value);
-
-        /// <inheritdoc/>
-        public ICollection<TValue> Values
-        {
-            get => this._dictionary.Values;
-        }
-
-        /// <inheritdoc/>
-        public TValue this[TKey key]
-        {
-            get => this._dictionary[key];
-            set => this.UpdateWithNotification(key, value);
-        }
     }
 }

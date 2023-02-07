@@ -9,6 +9,13 @@ namespace Stac.Extensions.Sat
     {
         private readonly double perpendicular, parallel, along;
 
+        public BaselineVector(double perpendicular, double parallel, double along)
+        {
+            this.perpendicular = perpendicular;
+            this.parallel = parallel;
+            this.along = along;
+        }
+
         public double Perpendicular
         {
             get { return this.perpendicular; }
@@ -22,13 +29,6 @@ namespace Stac.Extensions.Sat
         public double Along
         {
             get { return this.along; }
-        }
-
-        public BaselineVector(double perpendicular, double parallel, double along)
-        {
-            this.perpendicular = perpendicular;
-            this.parallel = parallel;
-            this.along = along;
         }
     }
 

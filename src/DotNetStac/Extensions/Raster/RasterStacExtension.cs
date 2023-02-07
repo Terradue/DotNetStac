@@ -18,7 +18,8 @@ namespace Stac.Extensions.Raster
         private readonly IDictionary<string, Type> itemFields;
         private const string BandsField = "raster:bands";
 
-        internal RasterStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
+        internal RasterStacExtension(StacAsset stacAsset)
+            : base(JsonSchemaUrl, stacAsset)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(BandsField, typeof(RasterBand[]));

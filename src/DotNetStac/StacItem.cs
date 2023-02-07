@@ -26,11 +26,13 @@ namespace Stac
         public const string MEDIATYPE = "application/geo+json";
         public static readonly ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
 
+        private readonly StacItemRootPropertyContainer Root;
+
         [JsonConstructor]
         public StacItem(string id,
                         IGeometryObject geometry,
-                        IDictionary<string, object> properties = null) :
-                        base(geometry, properties, id)
+                        IDictionary<string, object> properties = null)
+            : base(geometry, properties, id)
         {
             Preconditions.CheckNotNull(id, "id");
             this.StacExtensions = new SortedSet<string>();
@@ -42,7 +44,8 @@ namespace Stac
 
         }
 
-        public StacItem(StacItem stacItem) : base(Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
+        public StacItem(StacItem stacItem)
+            : base(Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
                                                   new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties),
                                                   Preconditions.CheckNotNull(stacItem, "id").Id)
         {
@@ -56,31 +59,6 @@ namespace Stac
             this.Collection = stacItem.Collection;
             this.BoundingBoxes = stacItem.BoundingBoxes;
             this.CRS = stacItem.CRS;
-        }
-
-        private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.OldItems != null)
-            {
-                foreach (var oldLink in e.OldItems.Cast<StacLink>())
-                {
-                    if (oldLink.RelationshipType == "collection")
-                    {
-                        this.Collection = null;
-                    }
-                }
-            }
-
-            if (e.NewItems != null)
-            {
-                foreach (var newLink in e.NewItems.Cast<StacLink>())
-                {
-                    if (newLink.RelationshipType == "collection" && string.IsNullOrEmpty(this.Collection))
-                    {
-                        this.Collection = Path.GetFileNameWithoutExtension(newLink.Uri.ToString());
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -113,6 +91,31 @@ namespace Stac
         public ICollection<StacLink> Links
         {
             get; private set;
+        }
+
+        private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems != null)
+            {
+                foreach (var oldLink in e.OldItems.Cast<StacLink>())
+                {
+                    if (oldLink.RelationshipType == "collection")
+                    {
+                        this.Collection = null;
+                    }
+                }
+            }
+
+            if (e.NewItems != null)
+            {
+                foreach (var newLink in e.NewItems.Cast<StacLink>())
+                {
+                    if (newLink.RelationshipType == "collection" && string.IsNullOrEmpty(this.Collection))
+                    {
+                        this.Collection = Path.GetFileNameWithoutExtension(newLink.Uri.ToString());
+                    }
+                }
+            }
         }
 
         /// <inheritdoc/>
@@ -153,7 +156,9 @@ namespace Stac
         [JsonExtensionData]
         public IDictionary<string, object> RootProperties { get => this.Root.Properties; internal set => this.Root.Properties = value; }
 
-        private readonly StacItemRootPropertyContainer Root;
+        /// <inheritdoc/>
+        [JsonIgnore]
+        public IStacObject StacObjectContainer => this;
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
@@ -193,9 +198,5 @@ namespace Stac
         {
             return new StacItem(this);
         }
-
-        /// <inheritdoc/>
-        [JsonIgnore]
-        public IStacObject StacObjectContainer => this;
     }
 }

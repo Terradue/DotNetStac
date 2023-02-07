@@ -25,7 +25,8 @@ namespace Stac.Extensions.Projection
 
         private readonly Dictionary<string, Type> itemFields;
 
-        internal ProjectionStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
+        internal ProjectionStacExtension(StacItem stacItem)
+            : base(JsonSchemaUrl, stacItem)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(EpsgField, typeof(int));
@@ -38,7 +39,8 @@ namespace Stac.Extensions.Projection
             this.itemFields.Add(ProjTransformField, typeof(double[]));
         }
 
-        internal ProjectionStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
+        internal ProjectionStacExtension(StacAsset stacAsset)
+            : base(JsonSchemaUrl, stacAsset)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(EpsgField, typeof(int));

@@ -27,7 +27,8 @@ namespace Stac.Extensions.Sar
         public const string ObservationDirectionField = "sar:observation_direction";
         private readonly IDictionary<string, Type> itemFields;
 
-        internal SarStacExtension(IStacPropertiesContainer stacPropertiesContainer) : base(JsonSchemaUrl, stacPropertiesContainer)
+        internal SarStacExtension(IStacPropertiesContainer stacPropertiesContainer)
+            : base(JsonSchemaUrl, stacPropertiesContainer)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(InstrumentModeField, typeof(string[]));

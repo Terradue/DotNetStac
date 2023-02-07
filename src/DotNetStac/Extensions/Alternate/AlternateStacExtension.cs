@@ -21,7 +21,8 @@ namespace Stac.Extensions.Alternate
 
         private static IDictionary<string, Type> assetFields;
 
-        internal AlternateStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
+        internal AlternateStacExtension(StacAsset stacAsset)
+            : base(JsonSchemaUrl, stacAsset)
         {
             assetFields = new Dictionary<string, Type>();
             assetFields.Add(AlternateField, typeof(AlternateAssetObject[]));
@@ -36,6 +37,7 @@ namespace Stac.Extensions.Alternate
         public IDictionary<string, AlternateAssetObject> AlternateAssets
         {
             get { return this.StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField); }
+
             set
             {
                 if (value == null || value.Count() == 0)

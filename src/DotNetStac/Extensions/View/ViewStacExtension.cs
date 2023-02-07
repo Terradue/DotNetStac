@@ -13,13 +13,8 @@ namespace Stac.Extensions.View
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/view/v1.0.0/schema.json";
         private readonly Dictionary<string, Type> itemFields;
 
-        public static string OffNadirField => "view:off_nadir";
-        public static string IncidenceAngleField => "view:incidence_angle";
-        public static string AzimuthField => "view:azimuth";
-        public static string SunAzimuthField => "view:sun_azimuth";
-        public static string SunElevationField => "view:sun_elevation";
-
-        public ViewStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, stacObject)
+        public ViewStacExtension(IStacObject stacObject)
+            : base(JsonSchemaUrl, stacObject)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(OffNadirField, typeof(double));
@@ -28,6 +23,16 @@ namespace Stac.Extensions.View
             this.itemFields.Add(SunAzimuthField, typeof(double));
             this.itemFields.Add(SunElevationField, typeof(double));
         }
+
+        public static string OffNadirField => "view:off_nadir";
+
+        public static string IncidenceAngleField => "view:incidence_angle";
+
+        public static string AzimuthField => "view:azimuth";
+
+        public static string SunAzimuthField => "view:sun_azimuth";
+
+        public static string SunElevationField => "view:sun_elevation";
 
         public double OffNadir
         {

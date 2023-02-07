@@ -21,7 +21,8 @@ namespace Stac.Extensions.Sat
         public const string PlatformInternationalDesignatorField = "sat:platform_international_designator";
         private readonly Dictionary<string, Type> itemFields;
 
-        public SatStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
+        public SatStacExtension(StacItem stacItem)
+            : base(JsonSchemaUrl, stacItem)
         {
             this.itemFields = new Dictionary<string, Type>();
             this.itemFields.Add(AscendingNodeCrossingDateTimeField, typeof(DateTime));

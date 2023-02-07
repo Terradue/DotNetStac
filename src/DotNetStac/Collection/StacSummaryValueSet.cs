@@ -17,7 +17,8 @@ namespace Stac.Collection
         /// <summary>
         /// Initialize an empty Summary Value Set
         /// </summary>
-        public StacSummaryValueSet() : base(new JArray())
+        public StacSummaryValueSet()
+            : base(new JArray())
         {
         }
 
@@ -25,7 +26,8 @@ namespace Stac.Collection
         /// Initialize a Summary Value Set with a JSON array
         /// </summary>
         /// <param name="summarySet">JSON Array</param>
-        public StacSummaryValueSet(JArray summarySet) : base(summarySet)
+        public StacSummaryValueSet(JArray summarySet)
+            : base(summarySet)
         {
         }
 
@@ -33,17 +35,9 @@ namespace Stac.Collection
         /// Initialize a Summary Value Set with a set of values
         /// </summary>
         /// <param name="summarySet">set of values</param>
-        public StacSummaryValueSet(IEnumerable<T> summarySet) : base(new JArray(summarySet))
+        public StacSummaryValueSet(IEnumerable<T> summarySet)
+            : base(new JArray(summarySet))
         {
-        }
-
-        /// <summary>
-        /// Add a value item in the Summary Value Set
-        /// </summary>
-        /// <param name="item">value item</param>
-        public void Add(T item)
-        {
-            ((JArray)this.summary).Add(item);
         }
 
         /// <summary>
@@ -65,6 +59,15 @@ namespace Stac.Collection
         /// Get the Summary Value Set as an enumerable
         /// </value>
         public IEnumerable<T> SummarySet { get => this.summary.ToObject<List<T>>(); }
+
+        /// <summary>
+        /// Add a value item in the Summary Value Set
+        /// </summary>
+        /// <param name="item">value item</param>
+        public void Add(T item)
+        {
+            ((JArray)this.summary).Add(item);
+        }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
