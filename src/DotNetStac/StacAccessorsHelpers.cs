@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Common;
 
@@ -59,8 +62,80 @@ namespace Stac
                 t = Nullable.GetUnderlyingType(t);
             }
             if (t.GetTypeInfo().IsEnum)
-                return (T)Enum.Parse(t, @object.ToString());
+                return (T)LazyEnumParse(t, @object.ToString());
             return ChangeType<T>(@object);
+        }
+
+        public static object LazyEnumParse(Type t, string value)
+        {
+            // First try with the default Enum.Parse
+            try { return Enum.Parse(t, value); }
+            catch { }
+
+            // Then try each enum value
+            foreach (object enumValue in Enum.GetValues(t))
+            {
+                string[] possibleValues = enumValue.ToStringByAttributes();
+                if (possibleValues.Contains(value, StringComparer.InvariantCulture))
+                    return Enum.Parse(t, enumValue.ToString());
+            }
+
+            throw new ArgumentException($"Could not parse {value} to {t.Name}");
+        }
+
+        public static string[] ToStringByAttributes(this object value)
+        {
+            List<string> values = new List<string>();
+
+            var field = value
+                .GetType()
+                .GetField(value.ToString());
+
+            if (field == null) return values.ToArray();
+
+            var enumMemberAttribute = GetEnumMemberAttribute(field);
+            if (enumMemberAttribute != null)
+            {
+                values.Add(enumMemberAttribute.Value ?? string.Empty);
+            }
+
+            var descriptionAttribute = GetDescriptionAttribute(field);
+            if (descriptionAttribute != null)
+            {
+                values.Add(descriptionAttribute.Description ?? string.Empty);
+            }
+
+            var jsonPropertyAttribute = GetJsonPropertyAttribute(field);
+            if (jsonPropertyAttribute != null)
+            {
+                values.Add(jsonPropertyAttribute.PropertyName ?? string.Empty);
+            }
+
+            return values.ToArray();
+        }
+
+        private static DescriptionAttribute GetDescriptionAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(DescriptionAttribute), false)
+                .OfType<DescriptionAttribute>()
+                .SingleOrDefault();
+        }
+
+        private static EnumMemberAttribute GetEnumMemberAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(EnumMemberAttribute), false)
+                .OfType<EnumMemberAttribute>()
+                .SingleOrDefault();
+        }
+
+        private static JsonPropertyAttribute GetJsonPropertyAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(JsonPropertyAttribute), false)
+                .OfType<JsonPropertyAttribute>()
+                .SingleOrDefault();
         }
 
         public static PropertyObservableCollection<T> GetObservableCollectionProperty<T>(this IStacPropertiesContainer propertiesContainer, string key)

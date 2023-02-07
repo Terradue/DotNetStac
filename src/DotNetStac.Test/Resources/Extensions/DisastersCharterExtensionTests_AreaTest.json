@@ -1,0 +1,83 @@
+{
+  "stac_version": "1.0.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/version/v1.0.0/schema.json",
+    "https://terradue.github.io/stac-extensions-disaster/v1.0.0/schema.json"
+  ],
+  "type": "Feature",
+  "id": "AOI1",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -175.0037,
+          -21.0535
+        ],
+        [
+          -175.3676,
+          -21.0484
+        ],
+        [
+          -175.3443,
+          -21.2597
+        ],
+        [
+          -175.0806,
+          -21.2814
+        ],
+        [
+          -175.0085,
+          -21.2872
+        ],
+        [
+          -175.0065,
+          -21.2245
+        ],
+        [
+          -175.0037,
+          -21.0535
+        ]
+      ]
+    ]
+  },
+  "properties": {
+    "disaster:class": "area",
+    "datetime": "2022-01-15T15:35:00Z",
+    "description": "Call-855 AoI ID: 6, Priority: 1, SurfaceArea: 899, Comment: Tonga",
+    "title": "AOI1",
+    "disaster:activation_id": 744,
+    "disaster:call_ids": [
+      855
+    ],
+    "disaster:types": [
+      "other",
+      "volcano"
+    ],
+    "disaster:regions": [
+      "Tonga"
+    ],
+    "disaster:country": "TON",
+    "updated": "2022-01-21T14:12:04.7671632Z",
+    "version": "7"
+  },
+  "bbox": [
+    -175.3676,
+    -21.2872,
+    -175.0037,
+    -21.0484
+  ],
+  "assets": {},
+  "links": [
+    {
+      "type": "application/geo+json",
+      "rel": "self",
+      "href": "s3://cpe-operations-catalog/activations/act-744/areas/AOI1.json"
+    },
+    {
+      "type": "application/json",
+      "rel": "root",
+      "href": "s3://cpe-operations-catalog/catalog.json"
+    }
+  ]
+}
