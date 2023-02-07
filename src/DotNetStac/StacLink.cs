@@ -77,6 +77,9 @@ namespace Stac
         [JsonIgnore]
         public ulong Length { get; set; }
 
+        [JsonExtensionData]
+        public IDictionary<string, object> AdditionalProperties { get; set; }
+
         public static StacLink CreateSelfLink(Uri uri, string mediaType = null, string title = null)
         {
             return new StacLink(uri, "self", title, mediaType);
@@ -121,9 +124,6 @@ namespace Stac
         {
             return new StacObjectLink(stacObject, uri);
         }
-
-        [JsonExtensionData]
-        public IDictionary<string, object> AdditionalProperties { get; set; }
 
         public virtual StacLink Clone()
         {

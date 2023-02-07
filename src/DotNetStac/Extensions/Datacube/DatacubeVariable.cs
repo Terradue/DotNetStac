@@ -1,6 +1,6 @@
 ﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
 // License under the AGPL, Version 3.0.
-// File Name: DatacubeVariableObject.cs
+// File Name: DatacubeVariable.cs
 
 using System.Collections.Generic;
 using Newtonsoft.Json;

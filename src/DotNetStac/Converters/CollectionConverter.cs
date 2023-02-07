@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Stac.Converters
 {
+#pragma warning disable SA1649 // File name should match first type name
     public class CollectionConverter<T> : JsonConverter
     {
         /// <inheritdoc/>
@@ -49,4 +50,5 @@ namespace Stac.Converters
             writer.WriteEndArray();
         }
     }
+#pragma warning restore SA1649 // File name should match first type name
 }

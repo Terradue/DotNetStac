@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Stac.Collection
 {
+#pragma warning disable SA1649 // File name should match first type name
     /// <summary>
     /// Class representing a summary <seealso href="https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#range-object">Range Object</seealso>.
     /// </summary>
@@ -65,4 +66,5 @@ namespace Stac.Collection
             return new object[2] { this.Min, this.Max };
         }
     }
+#pragma warning restore SA1649 // File name should match first type name
 }

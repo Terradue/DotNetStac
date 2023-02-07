@@ -202,6 +202,15 @@ namespace Stac
         public IStacObject StacObjectContainer => this.ParentStacObject;
 
         /// <summary>
+        /// Gets parent stac object
+        /// </summary>
+        /// <value>
+        /// Parent stac object
+        /// </value>
+        [JsonIgnore]
+        public IStacObject ParentStacObject { get => this._parentStacObject; internal set => this._parentStacObject = value; }
+
+        /// <summary>
         /// Create a thumbnail asset
         /// </summary>
         /// <param name="stacObject">parent stac object</param>
@@ -252,15 +261,6 @@ namespace Stac
         {
             return new StacAsset(stacObject, uri, new string[] { "metadata" }, title, mediaType);
         }
-
-        /// <summary>
-        /// Gets parent stac object
-        /// </summary>
-        /// <value>
-        /// Parent stac object
-        /// </value>
-        [JsonIgnore]
-        public IStacObject ParentStacObject { get => this._parentStacObject; internal set => this._parentStacObject = value; }
 
 #pragma warning disable 1591
         [ExcludeFromCodeCoverage]

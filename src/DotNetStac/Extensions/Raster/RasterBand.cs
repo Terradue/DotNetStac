@@ -1,6 +1,6 @@
 ﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
 // License under the AGPL, Version 3.0.
-// File Name: RasterBandObject.cs
+// File Name: RasterBand.cs
 
 using System.Collections.Generic;
 using Newtonsoft.Json;

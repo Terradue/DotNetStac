@@ -10,6 +10,7 @@ using Stac.Collection;
 
 namespace Stac.Extensions
 {
+#pragma warning disable SA1649 // File name should match first type name
     public class SummaryFunction<T> : ISummaryFunction
     {
         private readonly CreateSummary<T> _summaryFunction;
@@ -48,4 +49,5 @@ namespace Stac.Extensions
             }));
         }
     }
+#pragma warning restore SA1649 // File name should match first type name
 }

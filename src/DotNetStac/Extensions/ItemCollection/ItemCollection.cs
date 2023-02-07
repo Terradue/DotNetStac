@@ -83,23 +83,23 @@ namespace Stac.Extensions.ItemCollections
                     { "stac_version", new JSchema(){
                         Title = "STAC version",
                         Type = JSchemaType.String
-                    }                                                                                },
+                    }                                                                                                    },
                     { "stac_extensions", new JSchema(){
                         Title = "STAC extensions",
                         Type = JSchemaType.Array,
                         UniqueItems = true,
                         Items = { new JSchema { Type = JSchemaType.String, Format = "uri", Title = "Reference to a JSON Schema" } }
-                    }                                                                                },
+                    }                                                                                                    },
                     { "features", new JSchema(){
                         Title = "ItemCollection features",
                         Type = JSchemaType.Array,
                         Items = { new JSchema { Ref = itemSchema } }
-                    }                                                                                },
+                    }                                                                                                    },
                     { "links", new JSchema(){
                         Title = "Links",
                         Type = JSchemaType.Array,
                         Items = { new JSchema { Ref = linkSchema } }
-                    }                                                                                },
+                    }                                                                                                    },
                 }
             });
 

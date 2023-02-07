@@ -8,6 +8,8 @@ using Newtonsoft.Json.Linq;
 
 namespace Stac.Collection
 {
+#pragma warning disable SA1649 // File name should match first type name
+
     /// <summary>
     /// Class representing a summary value set
     /// </summary>
@@ -73,7 +75,7 @@ namespace Stac.Collection
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            return this.AsJTokenSet.GetEnumerator();
+            return this.SummarySet.GetEnumerator();
         }
 
         /// <inheritdoc/>
@@ -82,4 +84,6 @@ namespace Stac.Collection
             return this;
         }
     }
+
+#pragma warning restore SA1649 // File name should match first type name
 }

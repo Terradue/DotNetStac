@@ -1,12 +1,13 @@
 ﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
 // License under the AGPL, Version 3.0.
-// File Name: DatacubeDimensionObject.cs
+// File Name: DatacubeDimension.cs
 
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Stac.Extensions.Datacube
 {
+
     /// <summary>
     /// Represents the <seealso href="https://github.com/stac-extensions/datacube#dimension-object">Dimension Object</seealso>
     /// of the Datacube extension

@@ -403,6 +403,7 @@ file_header_template = Copyright (c) by Terradue Srl. All Rights Reserved.\nLice
 
 dotnet_diagnostic.SA1101.severity = warning      # Prefix local calls with this
 dotnet_diagnostic.SA1111.severity = warning      # Closing parenthesis should be on line of last parameter
+dotnet_diagnostic.SA1115.severity = warning      # Parameter should follow comma
 dotnet_diagnostic.SA1116.severity = warning      # Split parameters should start on line after declaration
 dotnet_diagnostic.SA1119.severity = warning      # Statement must not use unnecessary parenthesis
 dotnet_diagnostic.SA1124.severity = warning      # Do not use regions
