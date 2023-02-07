@@ -86,8 +86,6 @@ namespace Stac
             return observableCollection;
         }
 
-
-
         public static T ChangeType<T>(object value)
         {
             var t = typeof(T);

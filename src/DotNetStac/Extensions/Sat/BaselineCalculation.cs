@@ -15,7 +15,6 @@ namespace Stac.Extensions.Sat
     public class BaselineCalculation
     {
 
-
         /// <summary>Synchronizes the vector.</summary>
         /// <returns>The vector.</returns>
         /// <param name="t0">T0.</param>
@@ -118,7 +117,6 @@ namespace Stac.Extensions.Sat
 
             return t;
         }
-
 
         public static BaselineVector CalculateBaseline(DateTime[] time, SatOrbitStateVector[] master, SatOrbitStateVector[] slave, IPosition groundPoint)
         {
@@ -309,6 +307,5 @@ namespace Stac.Extensions.Sat
         }
 
     }
-
 
 }

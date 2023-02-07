@@ -21,46 +21,46 @@ namespace Stac.Extensions.View
 
         public ViewStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, stacObject)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(OffNadirField, typeof(double));
-            itemFields.Add(IncidenceAngleField, typeof(double));
-            itemFields.Add(AzimuthField, typeof(double));
-            itemFields.Add(SunAzimuthField, typeof(double));
-            itemFields.Add(SunElevationField, typeof(double));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(OffNadirField, typeof(double));
+            this.itemFields.Add(IncidenceAngleField, typeof(double));
+            this.itemFields.Add(AzimuthField, typeof(double));
+            this.itemFields.Add(SunAzimuthField, typeof(double));
+            this.itemFields.Add(SunElevationField, typeof(double));
         }
 
         public double OffNadir
         {
-            get { return StacPropertiesContainer.GetProperty<double>(OffNadirField); }
-            set { StacPropertiesContainer.SetProperty(OffNadirField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<double>(OffNadirField); }
+            set { this.StacPropertiesContainer.SetProperty(OffNadirField, value); this.DeclareStacExtension(); }
         }
 
         public double IncidenceAngle
         {
-            get { return StacPropertiesContainer.GetProperty<double>(IncidenceAngleField); }
-            set { StacPropertiesContainer.SetProperty(IncidenceAngleField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<double>(IncidenceAngleField); }
+            set { this.StacPropertiesContainer.SetProperty(IncidenceAngleField, value); this.DeclareStacExtension(); }
         }
 
         public double Azimuth
         {
-            get { return StacPropertiesContainer.GetProperty<double>(AzimuthField); }
-            set { StacPropertiesContainer.SetProperty(AzimuthField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<double>(AzimuthField); }
+            set { this.StacPropertiesContainer.SetProperty(AzimuthField, value); this.DeclareStacExtension(); }
         }
 
         public double SunAzimuth
         {
-            get { return StacPropertiesContainer.GetProperty<double>(SunAzimuthField); }
-            set { StacPropertiesContainer.SetProperty(SunAzimuthField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<double>(SunAzimuthField); }
+            set { this.StacPropertiesContainer.SetProperty(SunAzimuthField, value); this.DeclareStacExtension(); }
         }
 
         public double SunElevation
         {
-            get { return StacPropertiesContainer.GetProperty<double>(SunElevationField); }
-            set { StacPropertiesContainer.SetProperty(SunElevationField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<double>(SunElevationField); }
+            set { this.StacPropertiesContainer.SetProperty(SunElevationField, value); this.DeclareStacExtension(); }
         }
 
         /// <inheritdoc/>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
     }
 
     public static class ViewStacExtensionExtensions

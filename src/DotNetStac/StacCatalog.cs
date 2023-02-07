@@ -137,24 +137,24 @@ namespace Stac
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
-            foreach (StacLink link in Links)
+            foreach (StacLink link in this.Links)
             {
                 link.Parent = this;
             }
-            StacExtensions = new SortedSet<string>(StacExtensions);
+            this.StacExtensions = new SortedSet<string>(this.StacExtensions);
         }
 
 #pragma warning disable 1591
         public bool ShouldSerializeSummaries()
         {
             // don't serialize the Manager property if an employee is their own manager
-            return Summaries.Count > 0;
+            return this.Summaries.Count > 0;
         }
 
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager
-            return StacExtensions.Count > 0;
+            return this.StacExtensions.Count > 0;
         }
 
     }

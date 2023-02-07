@@ -19,7 +19,7 @@ namespace Stac.Extensions
                                                                        stacObject)
         {
             Preconditions.CheckNotNull(jsonSchema, "jsonSchema");
-            JsonSchema = jsonSchema;
+            this.JsonSchema = jsonSchema;
             this.stacObject = stacObject;
         }
 
@@ -30,9 +30,8 @@ namespace Stac.Extensions
         {
             Preconditions.CheckNotNull(schemaUri, "schemaUri");
             this.stacObject = stacObject;
-            JsonSchema = schemaUri;
+            this.JsonSchema = schemaUri;
         }
-
 
         public static SchemaBasedStacExtension Create(string shortcut,
                                                       StacSchemaResolver stacSchemaResolver,
@@ -46,7 +45,7 @@ namespace Stac.Extensions
         }
 
         /// <inheritdoc/>
-        public override string Identifier => JsonSchema.ToString();
+        public override string Identifier => this.JsonSchema.ToString();
 
         public Uri JsonSchema { get; }
 

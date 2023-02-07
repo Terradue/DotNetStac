@@ -23,9 +23,9 @@ namespace Stac.Extensions.Datacube
 
         private DatacubeStacExtension(IStacPropertiesContainer stacPropertiesContainer) : base(JsonSchemaUrl, stacPropertiesContainer)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(DimensionField, typeof(IDictionary<string, DatacubeDimension>));
-            itemFields.Add(VariableField, typeof(IDictionary<string, DatacubeVariable>));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(DimensionField, typeof(IDictionary<string, DatacubeDimension>));
+            this.itemFields.Add(VariableField, typeof(IDictionary<string, DatacubeVariable>));
         }
 
         internal DatacubeStacExtension(StacCollection stacCollection) : this((IStacPropertiesContainer)stacCollection)
@@ -50,21 +50,21 @@ namespace Stac.Extensions.Datacube
         {
             get
             {
-                Dictionary<string, DatacubeDimension> existingDimensions = StacPropertiesContainer.GetProperty<Dictionary<string, DatacubeDimension>>(DimensionField);
+                Dictionary<string, DatacubeDimension> existingDimensions = this.StacPropertiesContainer.GetProperty<Dictionary<string, DatacubeDimension>>(DimensionField);
                 ObservableDictionary<string, DatacubeDimension> dimensions = null;
                 if (existingDimensions == null)
                     dimensions = new ObservableDictionary<string, DatacubeDimension>();
                 else
                     dimensions = new ObservableDictionary<string, DatacubeDimension>(existingDimensions);
-                dimensions.CollectionChanged += UpdateDimensionField;
+                dimensions.CollectionChanged += this.UpdateDimensionField;
                 return dimensions;
             }
         }
 
         private void UpdateDimensionField(object sender, NotifyCollectionChangedEventArgs e)
         {
-            StacPropertiesContainer.SetProperty(DimensionField, new Dictionary<string, DatacubeDimension>(sender as IDictionary<string, DatacubeDimension>));
-            DeclareStacExtension();
+            this.StacPropertiesContainer.SetProperty(DimensionField, new Dictionary<string, DatacubeDimension>(sender as IDictionary<string, DatacubeDimension>));
+            this.DeclareStacExtension();
         }
 
         /// <summary>
@@ -77,21 +77,21 @@ namespace Stac.Extensions.Datacube
         {
             get
             {
-                Dictionary<string, DatacubeVariable> existingVariables = StacPropertiesContainer.GetProperty<Dictionary<string, DatacubeVariable>>(VariableField);
+                Dictionary<string, DatacubeVariable> existingVariables = this.StacPropertiesContainer.GetProperty<Dictionary<string, DatacubeVariable>>(VariableField);
                 ObservableDictionary<string, DatacubeVariable> variables = null;
                 if (existingVariables == null)
                     variables = new ObservableDictionary<string, DatacubeVariable>();
                 else
                     variables = new ObservableDictionary<string, DatacubeVariable>(existingVariables);
-                variables.CollectionChanged += UpdateVariableField;
+                variables.CollectionChanged += this.UpdateVariableField;
                 return variables;
             }
         }
 
         private void UpdateVariableField(object sender, NotifyCollectionChangedEventArgs e)
         {
-            StacPropertiesContainer.SetProperty(VariableField, new Dictionary<string, DatacubeVariable>(sender as IDictionary<string, DatacubeVariable>));
-            DeclareStacExtension();
+            this.StacPropertiesContainer.SetProperty(VariableField, new Dictionary<string, DatacubeVariable>(sender as IDictionary<string, DatacubeVariable>));
+            this.DeclareStacExtension();
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Stac.Extensions.Datacube
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
         /// </value>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

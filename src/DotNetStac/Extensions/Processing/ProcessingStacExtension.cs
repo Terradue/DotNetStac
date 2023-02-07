@@ -24,11 +24,11 @@ namespace Stac.Extensions.Processing
 
         internal ProcessingStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(LineageField, typeof(string));
-            itemFields.Add(LevelField, typeof(string));
-            itemFields.Add(FacilityField, typeof(string));
-            itemFields.Add(SoftwareField, typeof(IDictionary<string, string>));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(LineageField, typeof(string));
+            this.itemFields.Add(LevelField, typeof(string));
+            this.itemFields.Add(FacilityField, typeof(string));
+            this.itemFields.Add(SoftwareField, typeof(IDictionary<string, string>));
         }
 
         /// <summary>
@@ -37,8 +37,8 @@ namespace Stac.Extensions.Processing
         /// <value></value>
         public string Lineage
         {
-            get { return StacPropertiesContainer.GetProperty<string>(LineageField); }
-            set { StacPropertiesContainer.SetProperty(LineageField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(LineageField); }
+            set { this.StacPropertiesContainer.SetProperty(LineageField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace Stac.Extensions.Processing
         /// <value></value>
         public string Level
         {
-            get { return StacPropertiesContainer.GetProperty<string>(LevelField); }
-            set { StacPropertiesContainer.SetProperty(LevelField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(LevelField); }
+            set { this.StacPropertiesContainer.SetProperty(LevelField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace Stac.Extensions.Processing
         /// <value></value>
         public string Facility
         {
-            get { return StacPropertiesContainer.GetProperty<string>(FacilityField); }
-            set { StacPropertiesContainer.SetProperty(FacilityField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(FacilityField); }
+            set { this.StacPropertiesContainer.SetProperty(FacilityField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -69,13 +69,13 @@ namespace Stac.Extensions.Processing
         {
             get
             {
-                Dictionary<string, string> existingSoftware = StacPropertiesContainer.GetProperty<Dictionary<string, string>>(SoftwareField);
+                Dictionary<string, string> existingSoftware = this.StacPropertiesContainer.GetProperty<Dictionary<string, string>>(SoftwareField);
                 ObservableDictionary<string, string> software = null;
                 if (existingSoftware == null)
                     software = new ObservableDictionary<string, string>();
                 else
                     software = new ObservableDictionary<string, string>(existingSoftware);
-                software.CollectionChanged += UpdateSoftwareField;
+                software.CollectionChanged += this.UpdateSoftwareField;
                 return software;
             }
         }
@@ -86,13 +86,12 @@ namespace Stac.Extensions.Processing
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
         /// </value>
-        public override IDictionary<string, Type> ItemFields => itemFields;
-
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         private void UpdateSoftwareField(object sender, NotifyCollectionChangedEventArgs e)
         {
-            StacPropertiesContainer.SetProperty(SoftwareField, new Dictionary<string, string>(sender as IDictionary<string, string>));
-            DeclareStacExtension();
+            this.StacPropertiesContainer.SetProperty(SoftwareField, new Dictionary<string, string>(sender as IDictionary<string, string>));
+            this.DeclareStacExtension();
         }
 
     }

@@ -28,7 +28,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>Type of the dimension.</placeholder>
         /// </value>
         [JsonProperty("type")]
-        public string Type { get => type; set => type = value; }
+        public string Type { get => this.type; set => this.type = value; }
 
         /// <summary>
         /// Detailed multi-line description to explain the dimension. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
@@ -37,7 +37,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>Detailed multi-line description to explain the dimension. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.</placeholder>
         /// </value>
         [JsonProperty("description")]
-        public string Description { get => description; set => description = value; }
+        public string Description { get => this.description; set => this.description = value; }
 
         /// <summary>
         /// Extent (lower and upper bounds) of the dimension as two-element array. Open intervals with null are not allowed.
@@ -46,7 +46,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>Extent (lower and upper bounds) of the dimension as two-element array. Open intervals with null are not allowed.</placeholder>
         /// </value>
         [JsonProperty("extent")]
-        public double[] Extent { get => extent; set => extent = value; }
+        public double[] Extent { get => this.extent; set => this.extent = value; }
 
         /// <summary>
         /// Optionally, an ordered list of all values.
@@ -55,7 +55,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>Optionally, an ordered list of all values.</placeholder>
         /// </value>
         [JsonProperty("values")]
-        public object Values { get => values; set => values = value; }
+        public object Values { get => this.values; set => this.values = value; }
 
         /// <summary>
         /// The space between the values. Use null for irregularly spaced steps.
@@ -64,23 +64,22 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>The space between the values. Use null for irregularly spaced steps.</placeholder>
         /// </value>
         [JsonProperty("step")]
-        public double? Step { get => step; set => step = value; }
+        public double? Step { get => this.step; set => this.step = value; }
 
         /// <summary>
         /// Additional fields
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => properties; set => properties = value; }
+        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 
         /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => null;
 
-
         public DatacubeDimension()
         {
-            properties = new Dictionary<string, object>();
+            this.properties = new Dictionary<string, object>();
         }
     }
 
@@ -96,7 +95,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>Axis of the spatial dimension.</placeholder>
         /// </value>
         [JsonProperty("axis")]
-        public DatacubeAxis? Axis { get => axis; set => axis = value; }
+        public DatacubeAxis? Axis { get => this.axis; set => this.axis = value; }
 
         /// <summary>
         /// The spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.
@@ -105,7 +104,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>The spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.</placeholder>
         /// </value>
         [JsonProperty("reference_system")]
-        public object ReferenceSystem { get => reference_system; set => reference_system = value; }
+        public object ReferenceSystem { get => this.reference_system; set => this.reference_system = value; }
 
         public DatacubeDimensionSpatial() : base()
         {
@@ -116,7 +115,7 @@ namespace Stac.Extensions.Datacube
     {
         public DatacubeDimensionSpatialHorizontal() : base()
         {
-            axis = DatacubeAxis.x;
+            this.axis = DatacubeAxis.x;
         }
     }
 
@@ -131,11 +130,11 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        </placeholder>
         /// </value>
         [JsonProperty("unit")]
-        public string Unit { get => unit; set => unit = value; }
+        public string Unit { get => this.unit; set => this.unit = value; }
 
         public DatacubeDimensionSpatialVertical() : base()
         {
-            axis = DatacubeAxis.z;
+            this.axis = DatacubeAxis.z;
         }
     }
 
@@ -161,7 +160,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        </placeholder>
         /// </value>
         [JsonProperty("unit")]
-        public string Unit { get => unit; set => unit = value; }
+        public string Unit { get => this.unit; set => this.unit = value; }
 
         /// <summary>
         /// The spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.
@@ -170,7 +169,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>The spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.</placeholder>
         /// </value>
         [JsonProperty("reference_system")]
-        public object ReferenceSystem { get => reference_system; set => reference_system = value; }
+        public object ReferenceSystem { get => this.reference_system; set => this.reference_system = value; }
 
         public DatacubeDimensionAdditional() : base()
         {

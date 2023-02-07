@@ -24,7 +24,7 @@ namespace Stac.Collection
         [JsonConstructor]
         public StacSpatialExtent(double minX, double minY, double maxX, double maxY)
         {
-            BoundingBoxes = new double[1][] { new double[4] { minX, minY, maxX, maxY } };
+            this.BoundingBoxes = new double[1][] { new double[4] { minX, minY, maxX, maxY } };
         }
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace Stac.Extensions.Eo
         {
             this.name = name;
             this.commonName = commonName;
-            properties = new Dictionary<string, object>();
+            this.properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Stac.Extensions.Eo
         /// <placeholder>The name of the band (e.g., "B01", "B8", "band2", "red").</placeholder>
         /// </value>
         [JsonProperty("name")]
-        public string Name { get => name; set => name = value; }
+        public string Name { get => this.name; set => this.name = value; }
 
         /// <summary>
         /// Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.
@@ -49,14 +49,14 @@ namespace Stac.Extensions.Eo
         /// <placeholder>Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.</placeholder>
         /// </value>
         [JsonProperty("description")]
-        public string Description { get => description; set => description = value; }
+        public string Description { get => this.description; set => this.description = value; }
 
         /// <summary>
         /// The name commonly used to refer to the band to make it easier to search for bands across instruments.
         /// </summary>
         /// <value></value>
         [JsonProperty("common_name")]
-        public EoBandCommonName? CommonName { get => commonName; set => commonName = value; }
+        public EoBandCommonName? CommonName { get => this.commonName; set => this.commonName = value; }
 
         /// <summary>
         /// The center wavelength of the band, in micrometers (μm).
@@ -84,7 +84,7 @@ namespace Stac.Extensions.Eo
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => properties; set => properties = value; }
+        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 
     }
 }

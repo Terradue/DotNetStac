@@ -63,7 +63,6 @@ namespace Stac
 
         #endregion
 
-
         public StacLink()
         {
         }
@@ -88,20 +87,20 @@ namespace Stac
             {
                 throw new ArgumentNullException("source");
             }
-            Uri = source.Uri;
-            RelationshipType = source.RelationshipType;
-            Title = source.Title;
-            ContentType = source.ContentType;
-            Parent = source.Parent;
-            Length = source.Length;
+            this.Uri = source.Uri;
+            this.RelationshipType = source.RelationshipType;
+            this.Title = source.Title;
+            this.ContentType = source.ContentType;
+            this.Parent = source.Parent;
+            this.Length = source.Length;
         }
 
         [JsonProperty("type")]
         [DataMember(Name = "type")]
         public string Type
         {
-            get => ContentType?.ToString();
-            set => ContentType = value == null ? null : new ContentType(value);
+            get => this.ContentType?.ToString();
+            set => this.ContentType = value == null ? null : new ContentType(value);
         }
 
         [JsonIgnore]

@@ -26,11 +26,11 @@ namespace Stac.Extensions.File
 
         internal FileStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(ByteOrderField, typeof(string));
-            itemFields.Add(ChecksumField, typeof(string));
-            itemFields.Add(HeaderSizeField, typeof(string));
-            itemFields.Add(SizeField, typeof(IDictionary<string, string>));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(ByteOrderField, typeof(string));
+            this.itemFields.Add(ChecksumField, typeof(string));
+            this.itemFields.Add(HeaderSizeField, typeof(string));
+            this.itemFields.Add(SizeField, typeof(IDictionary<string, string>));
         }
 
         /// <summary>
@@ -39,8 +39,8 @@ namespace Stac.Extensions.File
         /// <value></value>
         public ByteOrder ByteOrder
         {
-            get { return StacPropertiesContainer.GetProperty<ByteOrder>(ByteOrderField); }
-            set { StacPropertiesContainer.SetProperty(ByteOrderField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<ByteOrder>(ByteOrderField); }
+            set { this.StacPropertiesContainer.SetProperty(ByteOrderField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -49,8 +49,8 @@ namespace Stac.Extensions.File
         /// <value></value>
         public Multihash Checksum
         {
-            get { return Multihash.Parse(StacPropertiesContainer.GetProperty<string>(ChecksumField)); }
-            set { StacPropertiesContainer.SetProperty(ChecksumField, value.ToString()); DeclareStacExtension(); }
+            get { return Multihash.Parse(this.StacPropertiesContainer.GetProperty<string>(ChecksumField)); }
+            set { this.StacPropertiesContainer.SetProperty(ChecksumField, value.ToString()); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace Stac.Extensions.File
         /// <value></value>
         public uint? HeaderSize
         {
-            get { return StacPropertiesContainer.GetProperty<uint?>(HeaderSizeField); }
-            set { StacPropertiesContainer.SetProperty(HeaderSizeField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<uint?>(HeaderSizeField); }
+            set { this.StacPropertiesContainer.SetProperty(HeaderSizeField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace Stac.Extensions.File
         /// <value></value>
         public ulong? Size
         {
-            get { return StacPropertiesContainer.GetProperty<ulong?>(SizeField); }
-            set { StacPropertiesContainer.SetProperty(SizeField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<ulong?>(SizeField); }
+            set { this.StacPropertiesContainer.SetProperty(SizeField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Stac.Extensions.File
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
         /// </value>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         /// <summary>
         /// Get the STAC asset
@@ -87,7 +87,7 @@ namespace Stac.Extensions.File
         /// <value>
         /// <placeholder>Get the STAC asset</placeholder>
         /// </value>
-        public StacAsset StacAsset => StacPropertiesContainer as StacAsset;
+        public StacAsset StacAsset => this.StacPropertiesContainer as StacAsset;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

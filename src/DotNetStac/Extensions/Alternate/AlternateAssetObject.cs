@@ -32,10 +32,10 @@ namespace Stac.Extensions.Alternate
         public AlternateAssetObject(string href, IStacObject parent = null, string title = null, string description = null)
         {
             this.href = href;
-            _parent = parent;
+            this._parent = parent;
             this.title = title;
             this.description = description;
-            properties = new Dictionary<string, object>();
+            this.properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Stac.Extensions.Alternate
         /// </value>
         [JsonProperty("href")]
         [JsonRequired]
-        public string Href { get => href; set => href = value; }
+        public string Href { get => this.href; set => this.href = value; }
 
         /// <summary>
         /// The displayed title for clients and users.
@@ -55,7 +55,7 @@ namespace Stac.Extensions.Alternate
         /// <placeholder>The displayed title for clients and users.</placeholder>
         /// </value>
         [JsonProperty("title")]
-        public string Title { get => title; set => title = value; }
+        public string Title { get => this.title; set => this.title = value; }
 
         /// <summary>
         /// A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.
@@ -64,14 +64,14 @@ namespace Stac.Extensions.Alternate
         /// <placeholder>A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.</placeholder>
         /// </value>
         [JsonProperty("description")]
-        public string Description { get => description; set => description = value; }
+        public string Description { get => this.description; set => this.description = value; }
 
         /// <summary>
         /// Additional fields
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => properties; set => properties = value; }
+        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 
         /// <summary>
         /// Parent Stac Object
@@ -81,7 +81,7 @@ namespace Stac.Extensions.Alternate
         /// <placeholder>Parent Stac Object</placeholder>
         /// </value>
         [JsonIgnore]
-        public IStacObject StacObjectContainer => _parent;
+        public IStacObject StacObjectContainer => this._parent;
 
         /// <summary>
         /// Uri
@@ -91,6 +91,6 @@ namespace Stac.Extensions.Alternate
         /// <placeholder>Uri</placeholder>
         /// </value>
         [JsonIgnore]
-        public Uri Uri => new Uri(href);
+        public Uri Uri => new Uri(this.href);
     }
 }

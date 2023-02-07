@@ -29,7 +29,7 @@ namespace Stac.Extensions.Raster
         /// </summary>
         public RasterBand()
         {
-            properties = new Dictionary<string, object>();
+            this.properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Stac.Extensions.Raster
         /// <placeholder>Pixel values used to identify pixels that are nodata in the assets.</placeholder>
         /// </value>
         [JsonProperty("nodata")]
-        public double? Nodata { get => nodata; set => nodata = value; }
+        public double? Nodata { get => this.nodata; set => this.nodata = value; }
 
         /// <summary>
         /// One of area or point. Indicates whether a pixel value should be assumed to represent 
@@ -51,7 +51,7 @@ namespace Stac.Extensions.Raster
         /// </value>
         [JsonProperty("sampling")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public RasterSampling? Sampling { get => sampling; set => sampling = value; }
+        public RasterSampling? Sampling { get => this.sampling; set => this.sampling = value; }
 
         /// <summary>
         /// The data type of the band.
@@ -59,7 +59,7 @@ namespace Stac.Extensions.Raster
         /// <value></value>
         [JsonProperty("data_type")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public DataType? DataType { get => dataType; set => dataType = value; }
+        public DataType? DataType { get => this.dataType; set => this.dataType = value; }
 
         /// <summary>
         /// The actual number of bits used for this band.
@@ -89,7 +89,7 @@ namespace Stac.Extensions.Raster
         /// <placeholder>Unit denomination of the pixel value.</placeholder>
         /// </value>
         [JsonProperty("unit")]
-        public string Unit { get => unit; set => unit = value; }
+        public string Unit { get => this.unit; set => this.unit = value; }
 
         /// <summary>
         /// multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).
@@ -98,7 +98,7 @@ namespace Stac.Extensions.Raster
         /// <placeholder>multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).</placeholder>
         /// </value>
         [JsonProperty("scale")]
-        public double? Scale { get => scale; set => scale = value; }
+        public double? Scale { get => this.scale; set => this.scale = value; }
 
         /// <summary>
         /// number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).
@@ -107,7 +107,7 @@ namespace Stac.Extensions.Raster
         /// <placeholder>number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).</placeholder>
         /// </value>
         [JsonProperty("offset")]
-        public double? Offset { get => offset; set => offset = value; }
+        public double? Offset { get => this.offset; set => this.offset = value; }
 
         /// <summary>
         /// Histogram distribution information of the pixels values in the band
@@ -121,7 +121,7 @@ namespace Stac.Extensions.Raster
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => properties; set => properties = value; }
+        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 
         /// <inheritdoc/>
         [JsonIgnore]

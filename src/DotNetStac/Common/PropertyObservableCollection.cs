@@ -12,9 +12,9 @@ namespace Stac.Common
     {
         public PropertyObservableCollection(IStacPropertiesContainer propertiesContainer, string key) : base()
         {
-            PropertiesContainer = propertiesContainer;
-            Key = key;
-            this.CollectionChanged += ObservableCollectionInPropertiesChanged;
+            this.PropertiesContainer = propertiesContainer;
+            this.Key = key;
+            this.CollectionChanged += this.ObservableCollectionInPropertiesChanged;
         }
 
         public IStacPropertiesContainer PropertiesContainer { get; }
@@ -22,9 +22,9 @@ namespace Stac.Common
 
         private void ObservableCollectionInPropertiesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            PropertiesContainer.RemoveProperty(Key);
+            this.PropertiesContainer.RemoveProperty(this.Key);
             if (this.Count == 0) return;
-            PropertiesContainer.SetProperty(Key, this.ToList());
+            this.PropertiesContainer.SetProperty(this.Key, this.ToList());
         }
     }
 }

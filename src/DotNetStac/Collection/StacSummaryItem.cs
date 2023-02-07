@@ -35,7 +35,7 @@ namespace Stac.Collection
         {
             get
             {
-                return summary[key];
+                return this.summary[key];
             }
         }
 
@@ -45,7 +45,7 @@ namespace Stac.Collection
         /// <value>
         /// <placeholder>JToken transformer</placeholder>
         /// </value>
-        public JToken AsJToken => summary;
+        public JToken AsJToken => this.summary;
 
         /// <inheritdoc/>
         public abstract IEnumerable<object> Enumerate();
@@ -56,12 +56,12 @@ namespace Stac.Collection
         /// <returns></returns>
         public IEnumerator GetEnumerator()
         {
-            return summary.Children().GetEnumerator();
+            return this.summary.Children().GetEnumerator();
         }
 
         IEnumerator<JToken> IEnumerable<JToken>.GetEnumerator()
         {
-            return summary.Children().GetEnumerator();
+            return this.summary.Children().GetEnumerator();
         }
 
     }

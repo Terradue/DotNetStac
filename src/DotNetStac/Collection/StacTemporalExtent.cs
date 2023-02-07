@@ -15,7 +15,6 @@ namespace Stac.Collection
     public class StacTemporalExtent
     {
 
-
         /// <summary>
         /// Initialize a new instance of the <see cref="StacTemporalExtent" /> class with a single extent.
         /// </summary>
@@ -24,7 +23,7 @@ namespace Stac.Collection
         [JsonConstructor]
         public StacTemporalExtent(DateTime? start, DateTime? end)
         {
-            Interval = new DateTime?[1][] { new DateTime?[2] { start, end } };
+            this.Interval = new DateTime?[1][] { new DateTime?[2] { start, end } };
         }
 
         /// <summary>

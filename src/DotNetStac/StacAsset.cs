@@ -80,8 +80,8 @@ namespace Stac
         [JsonConstructor]
         internal StacAsset()
         {
-            _properties = new Dictionary<string, object>();
-            Roles = new SortedSet<string>();
+            this._properties = new Dictionary<string, object>();
+            this.Roles = new SortedSet<string>();
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace Stac
         {
             if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
-            _parentStacObject = stacObject;
-            Uri = uri;
+            this._parentStacObject = stacObject;
+            this.Uri = uri;
         }
 
         /// <summary>
@@ -107,9 +107,9 @@ namespace Stac
         /// <param name="mediaType">media-type of the asset</param>
         public StacAsset(IStacObject stacObject, Uri uri, IEnumerable<string> roles, string title, ContentType mediaType) : this(stacObject, uri)
         {
-            Roles = roles == null ? new SortedSet<string>() : new SortedSet<string>(roles.ToList());
-            Title = title;
-            MediaType = mediaType;
+            this.Roles = roles == null ? new SortedSet<string>() : new SortedSet<string>(roles.ToList());
+            this.Title = title;
+            this.MediaType = mediaType;
         }
 
         /// <summary>
@@ -123,18 +123,18 @@ namespace Stac
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
             if (source == null)
                 throw new ArgumentNullException("source");
-            _base_uri = source._base_uri;
-            _href = source._href;
+            this._base_uri = source._base_uri;
+            this._href = source._href;
             if (source.Roles != null)
-                Roles = new SortedSet<string>(source.Roles);
+                this.Roles = new SortedSet<string>(source.Roles);
             else
-                Roles = new SortedSet<string>();
-            _title = source._title;
-            _type = source._type;
-            _description = source._description;
+                this.Roles = new SortedSet<string>();
+            this._title = source._title;
+            this._type = source._type;
+            this._description = source._description;
             if (source._properties != null)
-                _properties = new Dictionary<string, object>(source._properties);
-            _parentStacObject = stacObject;
+                this._properties = new Dictionary<string, object>(source._properties);
+            this._parentStacObject = stacObject;
         }
 
         /// <summary>
@@ -145,8 +145,8 @@ namespace Stac
         [JsonConverter(typeof(ContentTypeConverter))]
         public ContentType MediaType
         {
-            get { return _type; }
-            set { _type = value; }
+            get { return this._type; }
+            set { this._type = value; }
         }
 
         /// <summary>
@@ -167,8 +167,8 @@ namespace Stac
         [JsonProperty("title")]
         public string Title
         {
-            get { return _title; }
-            set { _title = value; }
+            get { return this._title; }
+            set { this._title = value; }
         }
 
         /// <summary>
@@ -178,8 +178,8 @@ namespace Stac
         [JsonProperty("href")]
         public Uri Uri
         {
-            get { return _href; }
-            set { _href = value; }
+            get { return this._href; }
+            set { this._href = value; }
         }
 
         /// <summary>
@@ -189,8 +189,8 @@ namespace Stac
         [JsonProperty("description")]
         public string Description
         {
-            get { return _description; }
-            set { _description = value; }
+            get { return this._description; }
+            set { this._description = value; }
         }
 
         /// <summary>
@@ -202,12 +202,12 @@ namespace Stac
         {
             get
             {
-                return _properties;
+                return this._properties;
             }
 
             set
             {
-                _properties = new Dictionary<string, object>(value);
+                this._properties = new Dictionary<string, object>(value);
             }
         }
 
@@ -218,27 +218,27 @@ namespace Stac
         /// <placeholder>Object container</placeholder>
         /// </value>
         [JsonIgnore]
-        public IStacObject StacObjectContainer => ParentStacObject;
+        public IStacObject StacObjectContainer => this.ParentStacObject;
 
         /// <summary>
         /// parent stac object
         /// </summary>
         /// <value></value>
         [JsonIgnore]
-        public IStacObject ParentStacObject { get => _parentStacObject; internal set => _parentStacObject = value; }
+        public IStacObject ParentStacObject { get => this._parentStacObject; internal set => this._parentStacObject = value; }
 
 #pragma warning disable 1591
         [ExcludeFromCodeCoverage]
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager
-            return Roles.Count > 0;
+            return this.Roles.Count > 0;
         }
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
-            Roles = new SortedSet<string>(Roles);
+            this.Roles = new SortedSet<string>(this.Roles);
         }
     }
 }

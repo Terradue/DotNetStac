@@ -23,7 +23,7 @@ namespace Stac.Extensions
         /// <inheritdoc/>
         public IStacSummaryItem Summarize(IEnumerable<object> items)
         {
-            return summaryFunction(items.SelectMany(i =>
+            return this.summaryFunction(items.SelectMany(i =>
             {
                 try
                 {
@@ -41,8 +41,8 @@ namespace Stac.Extensions
 
         public SummaryFunction(IStacExtension extension, string propertyName, CreateSummary<T> summaryFunction)
         {
-            Extension = extension;
-            PropertyName = propertyName;
+            this.Extension = extension;
+            this.PropertyName = propertyName;
             this.summaryFunction = summaryFunction;
         }
     }

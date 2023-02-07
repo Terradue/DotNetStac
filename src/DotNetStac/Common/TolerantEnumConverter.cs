@@ -12,13 +12,13 @@ namespace Stac.Common
     {
         public override bool CanConvert(Type objectType)
         {
-            Type type = IsNullableType(objectType) ? Nullable.GetUnderlyingType(objectType) : objectType;
+            Type type = this.IsNullableType(objectType) ? Nullable.GetUnderlyingType(objectType) : objectType;
             return type.IsEnum;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            bool isNullable = IsNullableType(objectType);
+            bool isNullable = this.IsNullableType(objectType);
             Type enumType = isNullable ? Nullable.GetUnderlyingType(objectType) : objectType;
 
             string[] names = Enum.GetNames(enumType);

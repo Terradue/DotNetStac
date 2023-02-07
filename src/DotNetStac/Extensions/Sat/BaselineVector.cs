@@ -11,17 +11,17 @@ namespace Stac.Extensions.Sat
 
         public double Perpendicular
         {
-            get { return perpendicular; }
+            get { return this.perpendicular; }
         }
 
         public double Parallel
         {
-            get { return parallel; }
+            get { return this.parallel; }
         }
 
         public double Along
         {
-            get { return along; }
+            get { return this.along; }
         }
 
         public BaselineVector(double perpendicular, double parallel, double along)

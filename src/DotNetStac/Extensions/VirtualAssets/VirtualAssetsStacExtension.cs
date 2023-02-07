@@ -20,8 +20,8 @@ namespace Stac.Extensions.VirtualAssets
 
         internal VirtualAssetsStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, stacObject)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(VirtualAssetsField, typeof(VirtualAsset));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(VirtualAssetsField, typeof(VirtualAsset));
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace Stac.Extensions.VirtualAssets
         /// </value>
         public IDictionary<string, VirtualAsset> Assets
         {
-            get { return StacPropertiesContainer.GetProperty<IDictionary<string, VirtualAsset>>(VirtualAssetsField); }
-            set { StacPropertiesContainer.SetProperty(VirtualAssetsField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<IDictionary<string, VirtualAsset>>(VirtualAssetsField); }
+            set { this.StacPropertiesContainer.SetProperty(VirtualAssetsField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Stac.Extensions.VirtualAssets
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
         /// </value>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
     }
 
     /// <summary>

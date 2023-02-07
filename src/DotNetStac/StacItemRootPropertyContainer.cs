@@ -15,12 +15,12 @@ namespace Stac
         public StacItemRootPropertyContainer(StacItem stacItem)
         {
             this.stacItem = stacItem;
-            properties = new Dictionary<string, object>();
+            this.properties = new Dictionary<string, object>();
         }
 
-        public IDictionary<string, object> Properties { get => properties; internal set => properties = value; }
+        public IDictionary<string, object> Properties { get => this.properties; internal set => this.properties = value; }
 
         [ExcludeFromCodeCoverage]
-        public IStacObject StacObjectContainer => stacItem;
+        public IStacObject StacObjectContainer => this.stacItem;
     }
 }

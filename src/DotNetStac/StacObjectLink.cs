@@ -23,7 +23,7 @@ namespace Stac
             {
                 this.RelationshipType = "child";
             }
-            Uri = uri;
+            this.Uri = uri;
         }
 
         /// <inheritdoc/>
@@ -31,7 +31,7 @@ namespace Stac
         [JsonConverter(typeof(ContentTypeConverter))]
         public override ContentType ContentType
         {
-            get => stacObject.MediaType;
+            get => this.stacObject.MediaType;
             set
             {
                 throw new InvalidOperationException("Cannot set MediaType on an STAC Object link");
@@ -50,7 +50,7 @@ namespace Stac
         [JsonProperty("title")]
         public override string Title
         {
-            get => stacObject.Title;
+            get => this.stacObject.Title;
             set
             {
                 throw new InvalidOperationException("Cannot set Title on an STAC Object link");
@@ -66,6 +66,6 @@ namespace Stac
         }
 
         [JsonIgnore]
-        public IStacObject StacObject => stacObject;
+        public IStacObject StacObject => this.stacObject;
     }
 }

@@ -10,7 +10,7 @@ namespace Stac
     {
         public SimpleLinksCollectionObject()
         {
-            Links = new List<StacLink>();
+            this.Links = new List<StacLink>();
         }
 
         /// <inheritdoc/>

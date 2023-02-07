@@ -35,15 +35,15 @@ namespace Stac.Extensions.Alternate
         /// </value>
         public IDictionary<string, AlternateAssetObject> AlternateAssets
         {
-            get { return StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField); }
+            get { return this.StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField); }
             set
             {
                 if (value == null || value.Count() == 0)
-                    StacPropertiesContainer.RemoveProperty(AlternateField);
+                    this.StacPropertiesContainer.RemoveProperty(AlternateField);
                 else
                 {
-                    StacPropertiesContainer.SetProperty(AlternateField, value);
-                    DeclareStacExtension();
+                    this.StacPropertiesContainer.SetProperty(AlternateField, value);
+                    this.DeclareStacExtension();
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace Stac.Extensions.Alternate
         public override IDictionary<string, Type> ItemFields => assetFields;
 
         /// <inheritdoc/>
-        public StacAsset StacAsset => StacPropertiesContainer as StacAsset;
+        public StacAsset StacAsset => this.StacPropertiesContainer as StacAsset;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
@@ -68,14 +68,12 @@ namespace Stac.Extensions.Alternate
 
         public AlternateAssetObject AddAlternate(string key, Uri uri, string title = null, string description = null)
         {
-            AlternateAssetObject alternateAssetObject = new AlternateAssetObject(uri.ToString(), StacAsset.ParentStacObject, title, description);
-            var alternateAssets = AlternateAssets ?? new Dictionary<string, AlternateAssetObject>();
+            AlternateAssetObject alternateAssetObject = new AlternateAssetObject(uri.ToString(), this.StacAsset.ParentStacObject, title, description);
+            var alternateAssets = this.AlternateAssets ?? new Dictionary<string, AlternateAssetObject>();
             alternateAssets.Add(key, alternateAssetObject);
-            AlternateAssets = alternateAssets;
+            this.AlternateAssets = alternateAssets;
             return alternateAssetObject;
         }
-
-
 
     }
 

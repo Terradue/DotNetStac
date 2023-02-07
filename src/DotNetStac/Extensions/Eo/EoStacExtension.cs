@@ -23,9 +23,9 @@ namespace Stac.Extensions.Eo
 
         internal EoStacExtension(IStacPropertiesContainer stacpropertiesContainer) : base(JsonSchemaUrl, stacpropertiesContainer)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(BandsField, typeof(EoBandObject[]));
-            itemFields.Add(CloudCoverField, typeof(double));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(BandsField, typeof(EoBandObject[]));
+            this.itemFields.Add(CloudCoverField, typeof(double));
         }
 
         /// <summary>
@@ -36,14 +36,14 @@ namespace Stac.Extensions.Eo
         /// </value>
         public double? CloudCover
         {
-            get { return StacPropertiesContainer.GetProperty<double?>(CloudCoverField); }
+            get { return this.StacPropertiesContainer.GetProperty<double?>(CloudCoverField); }
             set
             {
                 if (value == null)
-                    StacPropertiesContainer.RemoveProperty(CloudCoverField);
+                    this.StacPropertiesContainer.RemoveProperty(CloudCoverField);
                 else
                 {
-                    StacPropertiesContainer.SetProperty(CloudCoverField, value); DeclareStacExtension();
+                    this.StacPropertiesContainer.SetProperty(CloudCoverField, value); this.DeclareStacExtension();
                 }
             }
         }
@@ -56,15 +56,15 @@ namespace Stac.Extensions.Eo
         /// </value>
         public EoBandObject[] Bands
         {
-            get { return StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField); }
+            get { return this.StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField); }
             set
             {
                 if (value == null || value.Count() == 0)
-                    StacPropertiesContainer.RemoveProperty(BandsField);
+                    this.StacPropertiesContainer.RemoveProperty(BandsField);
                 else
                 {
-                    StacPropertiesContainer.SetProperty(BandsField, value);
-                    DeclareStacExtension();
+                    this.StacPropertiesContainer.SetProperty(BandsField, value);
+                    this.DeclareStacExtension();
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace Stac.Extensions.Eo
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
         /// </value>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

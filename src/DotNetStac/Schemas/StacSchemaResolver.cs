@@ -60,24 +60,24 @@ namespace Stac.Schemas
                 schemaUri = schemaMap[baseUrl];
             }
 
-            if (_schemaCompiled.ContainsKey(schemaUri.ToString()))
+            if (this._schemaCompiled.ContainsKey(schemaUri.ToString()))
             {
-                return _schemaCompiled[schemaUri.ToString()];
+                return this._schemaCompiled[schemaUri.ToString()];
             }
             else
             {
                 Stream stream = null;
                 try
                 {
-                    stream = _jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
+                    stream = this._jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
                 }
                 catch (Exception e)
                 {
                     throw new Exceptions.InvalidStacSchemaException(string.Format("Error getting schema at Uri '{0}'", schemaUri), e);
                 }
                 var sr = new StreamReader(stream);
-                _schemaCompiled[schemaUri.ToString()] = JSchema.Parse(sr.ReadToEnd(), _jSchemaResolver);
-                return _schemaCompiled[schemaUri.ToString()];
+                this._schemaCompiled[schemaUri.ToString()] = JSchema.Parse(sr.ReadToEnd(), this._jSchemaResolver);
+                return this._schemaCompiled[schemaUri.ToString()];
             }
         }
     }

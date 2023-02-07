@@ -43,7 +43,7 @@ namespace Stac.Collection
         /// <param name="item">value item</param>
         public void Add(T item)
         {
-            ((JArray)summary).Add(item);
+            ((JArray)this.summary).Add(item);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Stac.Collection
         /// <value>
         /// <placeholder>Summary Value Set total of items</placeholder>
         /// </value>
-        public int Count => summary.Count();
+        public int Count => this.summary.Count();
 
         /// <summary>
         /// Get the Summary Value Set as an enumerable
@@ -61,11 +61,11 @@ namespace Stac.Collection
         /// <value>
         /// <placeholder>Get the Summary Value Set as an enumerable</placeholder>
         /// </value>
-        public IEnumerable<T> SummarySet { get => summary.ToObject<List<T>>(); }
+        public IEnumerable<T> SummarySet { get => this.summary.ToObject<List<T>>(); }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            return SummarySet.GetEnumerator();
+            return this.SummarySet.GetEnumerator();
         }
 
         /// <inheritdoc/>

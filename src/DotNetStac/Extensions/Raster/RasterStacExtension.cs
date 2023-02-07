@@ -20,8 +20,8 @@ namespace Stac.Extensions.Raster
 
         internal RasterStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(BandsField, typeof(RasterBand[]));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(BandsField, typeof(RasterBand[]));
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace Stac.Extensions.Raster
         /// </value>
         public RasterBand[] Bands
         {
-            get { return StacPropertiesContainer.GetProperty<RasterBand[]>(BandsField); }
-            set { StacPropertiesContainer.SetProperty(BandsField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<RasterBand[]>(BandsField); }
+            set { this.StacPropertiesContainer.SetProperty(BandsField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Stac.Extensions.Raster
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
         /// </value>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

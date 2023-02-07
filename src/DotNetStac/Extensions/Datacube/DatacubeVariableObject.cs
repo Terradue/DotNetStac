@@ -29,7 +29,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>The dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.</placeholder>
         /// </value>
         [JsonProperty("dimensions")]
-        public string[] Dimensions { get => dimensions; set => dimensions = value; }
+        public string[] Dimensions { get => this.dimensions; set => this.dimensions = value; }
 
         /// <summary>
         /// Type of the variable.
@@ -38,7 +38,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>Type of the variable.</placeholder>
         /// </value>
         [JsonProperty("type")]
-        public DatacubeVariableType? Type { get => type; set => type = value; }
+        public DatacubeVariableType? Type { get => this.type; set => this.type = value; }
 
         /// <summary>
         /// Detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
@@ -47,7 +47,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>Detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.</placeholder>
         /// </value>
         [JsonProperty("description")]
-        public string Description { get => description; set => description = value; }
+        public string Description { get => this.description; set => this.description = value; }
 
         /// <summary>
         /// If the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.
@@ -56,7 +56,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>If the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.</placeholder>
         /// </value>
         [JsonProperty("extent")]
-        public double[] Extent { get => extent; set => extent = value; }
+        public double[] Extent { get => this.extent; set => this.extent = value; }
 
         /// <summary>
         /// An (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.
@@ -65,7 +65,7 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>An (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.</placeholder>
         /// </value>
         [JsonProperty("values")]
-        public string[] Values { get => values; set => values = value; }
+        public string[] Values { get => this.values; set => this.values = value; }
 
         /// <summary>
         /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
@@ -74,23 +74,22 @@ namespace Stac.Extensions.Datacube
         /// <placeholder>The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        </placeholder>
         /// </value>
         [JsonProperty("unit")]
-        public string Unit { get => unit; set => unit = value; }
+        public string Unit { get => this.unit; set => this.unit = value; }
 
         /// <summary>
         /// Additional fields
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => properties; set => properties = value; }
+        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 
         /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => null;
 
-
         public DatacubeVariable()
         {
-            properties = new Dictionary<string, object>();
+            this.properties = new Dictionary<string, object>();
         }
     }
 }

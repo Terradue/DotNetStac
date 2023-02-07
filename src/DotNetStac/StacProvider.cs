@@ -29,9 +29,9 @@ namespace Stac
         {
             this.Name = name;
             if (providerRoles != null)
-                Roles = new Collection<StacProviderRole>(providerRoles.ToList());
+                this.Roles = new Collection<StacProviderRole>(providerRoles.ToList());
             else
-                Roles = new Collection<StacProviderRole>();
+                this.Roles = new Collection<StacProviderRole>();
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Stac
         public bool ShouldSerializeRoles()
         {
             // don't serialize the Manager property if an employee is their own manager
-            return Roles.Count > 0;
+            return this.Roles.Count > 0;
         }
     }
 }

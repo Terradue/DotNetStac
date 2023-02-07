@@ -34,8 +34,8 @@ namespace Stac.Collection
         /// <returns></returns>
         public StacSummaryRangeObject(T min, T max) : base(new JObject())
         {
-            Min = min;
-            Max = max;
+            this.Min = min;
+            this.Max = max;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Stac.Collection
         /// <value>
         /// <placeholder>Minimum of the range</placeholder>
         /// </value>
-        public T Min { get => summary["minimum"].Value<T>(); set => summary["minimum"] = new JValue(value); }
+        public T Min { get => this.summary["minimum"].Value<T>(); set => this.summary["minimum"] = new JValue(value); }
 
         /// <summary>
         /// Maximum of the range
@@ -54,12 +54,12 @@ namespace Stac.Collection
         /// <value>
         /// <placeholder>Maximum of the range</placeholder>
         /// </value>
-        public T Max { get => summary["maximum"].Value<T>(); set => summary["maximum"] = new JValue(value); }
+        public T Max { get => this.summary["maximum"].Value<T>(); set => this.summary["maximum"] = new JValue(value); }
 
         /// <inheritdoc/>
         public override IEnumerable<object> Enumerate()
         {
-            return new object[2] { Min, Max };
+            return new object[2] { this.Min, this.Max };
         }
     }
 }

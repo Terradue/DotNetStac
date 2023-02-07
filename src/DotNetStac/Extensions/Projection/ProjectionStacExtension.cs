@@ -27,96 +27,96 @@ namespace Stac.Extensions.Projection
 
         internal ProjectionStacExtension(StacItem stacItem) : base(JsonSchemaUrl, stacItem)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(EpsgField, typeof(int));
-            itemFields.Add(Wkt2Field, typeof(string));
-            itemFields.Add(ProjJsonField, typeof(string));
-            itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
-            itemFields.Add(ProjBboxField, typeof(double[]));
-            itemFields.Add(ProjCentroidField, typeof(CentroidObject));
-            itemFields.Add(ProjShapeField, typeof(int[]));
-            itemFields.Add(ProjTransformField, typeof(double[]));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(EpsgField, typeof(int));
+            this.itemFields.Add(Wkt2Field, typeof(string));
+            this.itemFields.Add(ProjJsonField, typeof(string));
+            this.itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
+            this.itemFields.Add(ProjBboxField, typeof(double[]));
+            this.itemFields.Add(ProjCentroidField, typeof(CentroidObject));
+            this.itemFields.Add(ProjShapeField, typeof(int[]));
+            this.itemFields.Add(ProjTransformField, typeof(double[]));
         }
 
         internal ProjectionStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(EpsgField, typeof(int));
-            itemFields.Add(Wkt2Field, typeof(string));
-            itemFields.Add(ProjJsonField, typeof(string));
-            itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
-            itemFields.Add(ProjBboxField, typeof(double[]));
-            itemFields.Add(ProjCentroidField, typeof(CentroidObject));
-            itemFields.Add(ProjShapeField, typeof(int[]));
-            itemFields.Add(ProjTransformField, typeof(double[]));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(EpsgField, typeof(int));
+            this.itemFields.Add(Wkt2Field, typeof(string));
+            this.itemFields.Add(ProjJsonField, typeof(string));
+            this.itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
+            this.itemFields.Add(ProjBboxField, typeof(double[]));
+            this.itemFields.Add(ProjCentroidField, typeof(CentroidObject));
+            this.itemFields.Add(ProjShapeField, typeof(int[]));
+            this.itemFields.Add(ProjTransformField, typeof(double[]));
         }
 
         public long? Epsg
         {
-            get { return StacPropertiesContainer.GetProperty<long?>(EpsgField); }
-            set { StacPropertiesContainer.SetProperty(EpsgField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<long?>(EpsgField); }
+            set { this.StacPropertiesContainer.SetProperty(EpsgField, value); this.DeclareStacExtension(); }
         }
 
         public string Wkt2
         {
-            get { return StacPropertiesContainer.GetProperty<string>(Wkt2Field); }
-            set { StacPropertiesContainer.SetProperty(Wkt2Field, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(Wkt2Field); }
+            set { this.StacPropertiesContainer.SetProperty(Wkt2Field, value); this.DeclareStacExtension(); }
         }
 
         public string ProjJson
         {
-            get { return StacPropertiesContainer.GetProperty<string>(ProjJsonField); }
-            set { StacPropertiesContainer.SetProperty(ProjJsonField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(ProjJsonField); }
+            set { this.StacPropertiesContainer.SetProperty(ProjJsonField, value); this.DeclareStacExtension(); }
         }
 
         public IGeometryObject Geometry
         {
-            get { return StacPropertiesContainer.GetProperty<IGeometryObject>(Wkt2Field); }
-            set { StacPropertiesContainer.SetProperty(Wkt2Field, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<IGeometryObject>(Wkt2Field); }
+            set { this.StacPropertiesContainer.SetProperty(Wkt2Field, value); this.DeclareStacExtension(); }
         }
 
         public double[] Bbox
         {
-            get { return StacPropertiesContainer.GetProperty<double[]>(ProjBboxField); }
-            set { StacPropertiesContainer.SetProperty(ProjBboxField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<double[]>(ProjBboxField); }
+            set { this.StacPropertiesContainer.SetProperty(ProjBboxField, value); this.DeclareStacExtension(); }
         }
 
         public CentroidObject Centroid
         {
-            get { return StacPropertiesContainer.GetProperty<CentroidObject>(ProjCentroidField); }
-            set { StacPropertiesContainer.SetProperty(ProjCentroidField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<CentroidObject>(ProjCentroidField); }
+            set { this.StacPropertiesContainer.SetProperty(ProjCentroidField, value); this.DeclareStacExtension(); }
         }
 
         public int[] Shape
         {
-            get { return StacPropertiesContainer.GetProperty<int[]>(ProjShapeField); }
-            set { StacPropertiesContainer.SetProperty(ProjShapeField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<int[]>(ProjShapeField); }
+            set { this.StacPropertiesContainer.SetProperty(ProjShapeField, value); this.DeclareStacExtension(); }
         }
 
         public double[] Transform
         {
-            get { return StacPropertiesContainer.GetProperty<double[]>(ProjTransformField); }
-            set { StacPropertiesContainer.SetProperty(ProjTransformField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<double[]>(ProjTransformField); }
+            set { this.StacPropertiesContainer.SetProperty(ProjTransformField, value); this.DeclareStacExtension(); }
         }
 
         /// <inheritdoc/>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         public void SetCoordinateSystem(CoordinateSystem coordinateSystem)
         {
             if (coordinateSystem.AuthorityCode > 0)
-                Epsg = coordinateSystem.AuthorityCode;
+                this.Epsg = coordinateSystem.AuthorityCode;
             else
-                Epsg = null;
-            Wkt2 = coordinateSystem.WKT;
+                this.Epsg = null;
+            this.Wkt2 = coordinateSystem.WKT;
         }
 
         public void SetCoordinateSystem(int srid)
         {
             var cs = SRIDReader.GetCSbyID(srid);
             if (cs == null) return;
-            Wkt2 = cs.WKT;
-            Epsg = srid;
+            this.Wkt2 = cs.WKT;
+            this.Epsg = srid;
         }
 
         /// <inheritdoc/>

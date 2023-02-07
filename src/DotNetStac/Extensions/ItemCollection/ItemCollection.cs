@@ -24,8 +24,8 @@ namespace Stac.Extensions.ItemCollections
         {
             if (stacItems != null)
             {
-                Features = new List<StacItem>(stacItems);
-                Extent = StacExtent.Create(stacItems);
+                this.Features = new List<StacItem>(stacItems);
+                this.Extent = StacExtent.Create(stacItems);
             }
         }
 

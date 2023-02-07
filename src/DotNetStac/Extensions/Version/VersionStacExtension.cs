@@ -30,9 +30,9 @@ namespace Stac.Extensions.Version
 
         internal VersionStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, stacObject)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(VersionField, typeof(string));
-            itemFields.Add(DeprecatedField, typeof(bool));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(VersionField, typeof(string));
+            this.itemFields.Add(DeprecatedField, typeof(bool));
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace Stac.Extensions.Version
         /// <value></value>
         public string Version
         {
-            get { return StacPropertiesContainer.GetProperty<string>(VersionField); }
-            set { StacPropertiesContainer.SetProperty(VersionField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(VersionField); }
+            set { this.StacPropertiesContainer.SetProperty(VersionField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace Stac.Extensions.Version
         /// <value></value>
         public bool Deprecated
         {
-            get { return StacPropertiesContainer.GetProperty<bool>(DeprecatedField); }
-            set { StacPropertiesContainer.SetProperty(DeprecatedField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<bool>(DeprecatedField); }
+            set { this.StacPropertiesContainer.SetProperty(DeprecatedField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Stac.Extensions.Version
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
         /// </value>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

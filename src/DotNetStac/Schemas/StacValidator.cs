@@ -38,11 +38,11 @@ namespace Stac.Schemas
         public bool ValidateJson(string jsonstr)
         {
             using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
-                DetectDuplicateKeys(reader);
+                this.DetectDuplicateKeys(reader);
             JObject jobject;
             using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
                 jobject = JObject.Load(reader);
-            return ValidateJObject(jobject);
+            return this.ValidateJObject(jobject);
         }
 
         private bool DetectDuplicateKeys(JsonReader jobject)
@@ -53,7 +53,7 @@ namespace Stac.Schemas
                 switch (jobject.TokenType)
                 {
                     case JsonToken.StartObject:
-                        DetectDuplicateKeys(jobject);
+                        this.DetectDuplicateKeys(jobject);
                         break;
                     case JsonToken.PropertyName:
                         var propertyName = jobject.Value.ToString();
@@ -73,7 +73,7 @@ namespace Stac.Schemas
             Type stacType = Utils.IdentifyStacType(jObject);
 
             // Get all schema to validate against
-            List<string> schemas = new List<string>() { stacTypes[stacType] };
+            List<string> schemas = new List<string>() { this.stacTypes[stacType] };
             if (jObject.Value<JArray>("stac_extensions") != null)
                 schemas.AddRange(jObject.Value<JArray>("stac_extensions").Select(a => a.Value<string>()));
 
@@ -88,7 +88,7 @@ namespace Stac.Schemas
                 if (!jObject.ContainsKey("stac_version"))
                     throw new InvalidStacDataException("Missing 'stac_version' property");
 
-                var jsonSchema = schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
+                var jsonSchema = this.schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
                 if (jObject.IsValid(jsonSchema, out IList<ValidationError> errorMessages))
                     continue;
 

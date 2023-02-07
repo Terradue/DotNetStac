@@ -22,11 +22,11 @@ namespace Stac.Extensions.Storage
 
         internal StorageStacExtension(IStacPropertiesContainer stacObject) : base(JsonSchemaUrl, stacObject)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(PlatformField, typeof(string));
-            itemFields.Add(RegionField, typeof(string));
-            itemFields.Add(RequesterPaysField, typeof(bool));
-            itemFields.Add(TierField, typeof(string));
+            this.itemFields = new Dictionary<string, Type>();
+            this.itemFields.Add(PlatformField, typeof(string));
+            this.itemFields.Add(RegionField, typeof(string));
+            this.itemFields.Add(RequesterPaysField, typeof(bool));
+            this.itemFields.Add(TierField, typeof(string));
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace Stac.Extensions.Storage
         /// <value></value>
         public string Platform
         {
-            get { return StacPropertiesContainer.GetProperty<string>(PlatformField); }
-            set { StacPropertiesContainer.SetProperty(PlatformField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(PlatformField); }
+            set { this.StacPropertiesContainer.SetProperty(PlatformField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace Stac.Extensions.Storage
         /// <value></value>
         public string Region
         {
-            get { return StacPropertiesContainer.GetProperty<string>(RegionField); }
-            set { StacPropertiesContainer.SetProperty(RegionField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(RegionField); }
+            set { this.StacPropertiesContainer.SetProperty(RegionField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace Stac.Extensions.Storage
         /// <value></value>
         public bool? RequesterPays
         {
-            get { return StacPropertiesContainer.GetProperty<bool?>(RequesterPaysField); }
-            set { StacPropertiesContainer.SetProperty(RequesterPaysField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<bool?>(RequesterPaysField); }
+            set { this.StacPropertiesContainer.SetProperty(RequesterPaysField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -65,8 +65,8 @@ namespace Stac.Extensions.Storage
         /// <value></value>
         public string Tier
         {
-            get { return StacPropertiesContainer.GetProperty<string>(TierField); }
-            set { StacPropertiesContainer.SetProperty(TierField, value); DeclareStacExtension(); }
+            get { return this.StacPropertiesContainer.GetProperty<string>(TierField); }
+            set { this.StacPropertiesContainer.SetProperty(TierField, value); this.DeclareStacExtension(); }
         }
 
         /// <summary>
@@ -75,8 +75,7 @@ namespace Stac.Extensions.Storage
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
         /// </value>
-        public override IDictionary<string, Type> ItemFields => itemFields;
-
+        public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

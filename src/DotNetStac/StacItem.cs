@@ -33,12 +33,12 @@ namespace Stac
                         base(geometry, properties, id)
         {
             Preconditions.CheckNotNull(id, "id");
-            StacExtensions = new SortedSet<string>();
-            Root = new StacItemRootPropertyContainer(this);
-            StacVersion = Versions.StacVersionList.Current;
-            Links = new ObservableCollection<StacLink>();
-            (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
-            Assets = new Dictionary<string, StacAsset>();
+            this.StacExtensions = new SortedSet<string>();
+            this.Root = new StacItemRootPropertyContainer(this);
+            this.StacVersion = Versions.StacVersionList.Current;
+            this.Links = new ObservableCollection<StacLink>();
+            (this.Links as ObservableCollection<StacLink>).CollectionChanged += this.LinksCollectionChanged;
+            this.Assets = new Dictionary<string, StacAsset>();
 
         }
 
@@ -50,7 +50,7 @@ namespace Stac
             this.Root = new StacItemRootPropertyContainer(this);
             this.StacVersion = stacItem.StacVersion;
             this.Links = new ObservableCollection<StacLink>(stacItem.Links.Select(l => new StacLink(l)));
-            (Links as ObservableCollection<StacLink>).CollectionChanged += LinksCollectionChanged;
+            (this.Links as ObservableCollection<StacLink>).CollectionChanged += this.LinksCollectionChanged;
             this.Assets = new Dictionary<string, StacAsset>(stacItem.Assets.Select(a => new KeyValuePair<string, StacAsset>(a.Key, new StacAsset(a.Value, this)))
                                                                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value));
             this.Collection = stacItem.Collection;
@@ -66,7 +66,7 @@ namespace Stac
                 {
                     if (oldLink.RelationshipType == "collection")
                     {
-                        Collection = null;
+                        this.Collection = null;
                     }
                 }
             }
@@ -74,9 +74,9 @@ namespace Stac
             {
                 foreach (var newLink in e.NewItems.Cast<StacLink>())
                 {
-                    if (newLink.RelationshipType == "collection" && string.IsNullOrEmpty(Collection))
+                    if (newLink.RelationshipType == "collection" && string.IsNullOrEmpty(this.Collection))
                     {
-                        Collection = Path.GetFileNameWithoutExtension(newLink.Uri.ToString());
+                        this.Collection = Path.GetFileNameWithoutExtension(newLink.Uri.ToString());
                     }
                 }
             }
@@ -127,11 +127,11 @@ namespace Stac
         [JsonIgnore]
         public string Collection
         {
-            get => Root.GetProperty<string>("collection");
+            get => this.Root.GetProperty<string>("collection");
             set
             {
-                if (value != null) Root.SetProperty("collection", value);
-                else Root.RemoveProperty("collection");
+                if (value != null) this.Root.SetProperty("collection", value);
+                else this.Root.RemoveProperty("collection");
             }
         }
 
@@ -140,36 +140,36 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
-        public IDictionary<string, object> RootProperties { get => Root.Properties; internal set => Root.Properties = value; }
+        public IDictionary<string, object> RootProperties { get => this.Root.Properties; internal set => this.Root.Properties = value; }
 
         private readonly StacItemRootPropertyContainer Root;
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
-            foreach (StacLink link in Links)
+            foreach (StacLink link in this.Links)
             {
                 link.Parent = this;
             }
-            foreach (StacAsset asset in Assets.Values)
+            foreach (StacAsset asset in this.Assets.Values)
             {
                 asset.ParentStacObject = this;
             }
-            StacExtensions = new SortedSet<string>(StacExtensions);
+            this.StacExtensions = new SortedSet<string>(this.StacExtensions);
         }
 
         [OnSerializing]
         internal void OnSerializingMethod(StreamingContext context)
         {
-            if (BoundingBoxes == null && Geometry != null)
-                BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
+            if (this.BoundingBoxes == null && this.Geometry != null)
+                this.BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
 
         }
 
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager
-            return StacExtensions.Count > 0;
+            return this.StacExtensions.Count > 0;
         }
 
         /// <summary>

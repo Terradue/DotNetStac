@@ -21,12 +21,12 @@ namespace Stac.Common
         [JsonConstructor]
         public Statistics(double? minimum, double? maximum, double? mean, double? stdev, double? validPercent)
         {
-            Mean = mean;
-            Minimum = minimum;
-            Maximum = maximum;
-            Stdev = stdev;
-            ValidPercent = validPercent;
-            properties = new Dictionary<string, object>();
+            this.Mean = mean;
+            this.Minimum = minimum;
+            this.Maximum = maximum;
+            this.Stdev = stdev;
+            this.ValidPercent = validPercent;
+            this.properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Stac.Common
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => properties; set => properties = value; }
+        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 
     }
 }

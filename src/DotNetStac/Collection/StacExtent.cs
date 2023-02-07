@@ -81,7 +81,7 @@ namespace Stac.Collection
 
         internal void Update(ICollection<StacItem> items)
         {
-            Spatial = new StacSpatialExtent(items.Select(i => i.GetBoundingBoxFromGeometryExtent()[0])
+            this.Spatial = new StacSpatialExtent(items.Select(i => i.GetBoundingBoxFromGeometryExtent()[0])
                                                  .Concat(new double[] { this.Spatial.BoundingBoxes[0][0] })
                                                  .Min(),
                                             items.Select(i => i.GetBoundingBoxFromGeometryExtent()[1])
@@ -93,7 +93,7 @@ namespace Stac.Collection
                                             items.Select(i => i.GetBoundingBoxFromGeometryExtent()[3])
                                                  .Concat(new double[] { this.Spatial.BoundingBoxes[0][3] })
                                                  .Max());
-            Temporal = new StacTemporalExtent(items.Select(i => i.DateTime.Start)
+            this.Temporal = new StacTemporalExtent(items.Select(i => i.DateTime.Start)
                                                    .Concat(new DateTime[] { this.Temporal.Interval[0][0].GetValueOrDefault() })
                                                    .Min(),
                                               items.Select(i => i.DateTime.End)

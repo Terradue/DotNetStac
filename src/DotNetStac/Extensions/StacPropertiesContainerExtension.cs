@@ -29,7 +29,7 @@ namespace Stac.Extensions
         protected StacPropertiesContainerExtension(string identifier, IStacPropertiesContainer stacPropertiesContainer)
         {
             this.identifier = identifier;
-            StacPropertiesContainer = stacPropertiesContainer;
+            this.StacPropertiesContainer = stacPropertiesContainer;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Stac.Extensions
         /// <value>
         /// <placeholder>Identifier of the extension</placeholder>
         /// </value>
-        public virtual string Identifier => identifier;
+        public virtual string Identifier => this.identifier;
 
         /// <summary>
         /// Stac Object extended by the extension
@@ -62,7 +62,7 @@ namespace Stac.Extensions
         /// <value>
         /// <placeholder>Indicate if the extension is already declared</placeholder>
         /// </value>
-        public bool IsDeclared => StacPropertiesContainer.GetDeclaredExtensions().Any(e => e.Identifier == Identifier);
+        public bool IsDeclared => this.StacPropertiesContainer.GetDeclaredExtensions().Any(e => e.Identifier == this.Identifier);
 
         /// <summary>
         /// Get he potential summary functions for each field that can be summarized
@@ -145,9 +145,9 @@ namespace Stac.Extensions
         /// </summary>
         protected void DeclareStacExtension()
         {
-            if (StacPropertiesContainer.StacObjectContainer == null) return;
-            if (!StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(Identifier))
-                StacPropertiesContainer.StacObjectContainer.StacExtensions.Add(Identifier);
+            if (this.StacPropertiesContainer.StacObjectContainer == null) return;
+            if (!this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(this.Identifier))
+                this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Add(this.Identifier);
         }
 
         /// <summary>
@@ -155,22 +155,22 @@ namespace Stac.Extensions
         /// </summary>
         protected void RemoveStacExtension()
         {
-            if (StacPropertiesContainer.StacObjectContainer == null) return;
-            if (StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(Identifier))
-                StacPropertiesContainer.StacObjectContainer.StacExtensions.Remove(Identifier);
+            if (this.StacPropertiesContainer.StacObjectContainer == null) return;
+            if (this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(this.Identifier))
+                this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Remove(this.Identifier);
         }
 
         public void SetProperty(string key, object value)
         {
             this.SetProperty(key, value);
-            DeclareStacExtension();
+            this.DeclareStacExtension();
         }
 
         public void RemoveProperty(string key)
         {
             this.RemoveProperty(key);
-            if (!StacPropertiesContainer.Properties.Any(p => ItemFields.ContainsKey(p.Key)))
-                RemoveStacExtension();
+            if (!this.StacPropertiesContainer.Properties.Any(p => this.ItemFields.ContainsKey(p.Key)))
+                this.RemoveStacExtension();
         }
     }
 }

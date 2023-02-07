@@ -18,10 +18,10 @@ namespace Stac.Extensions.Sat
 
         public SatOrbitStateVector(DateTime time, double[] position, double[] velocity, double[] acceleration)
         {
-            Time = time;
-            Position = position;
-            Velocity = velocity;
-            Acceleration = acceleration;
+            this.Time = time;
+            this.Position = position;
+            this.Velocity = velocity;
+            this.Acceleration = acceleration;
         }
     }
 }

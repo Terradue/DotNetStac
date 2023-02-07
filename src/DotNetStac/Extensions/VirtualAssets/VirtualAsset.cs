@@ -38,7 +38,7 @@ namespace Stac.Extensions.VirtualAssets
         /// <returns></returns>
         public VirtualAsset(IStacObject stacObject, IList<Uri> uris) : base(stacObject, null)
         {
-            Uris = uris;
+            this.Uris = uris;
         }
 
         /// <summary>

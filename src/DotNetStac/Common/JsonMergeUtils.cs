@@ -55,7 +55,6 @@ namespace Stac.Common
                 MergeObjects(jsonWriter, originalDoc.RootElement, patchDoc.RootElement);
             }
 
-
             return Encoding.UTF8.GetString(memStream.ToArray());
         }
 
