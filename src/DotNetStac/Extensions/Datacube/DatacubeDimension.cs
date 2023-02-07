@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 
 namespace Stac.Extensions.Datacube
 {
-
     /// <summary>
     /// Represents the <seealso href="https://github.com/stac-extensions/datacube#dimension-object">Dimension Object</seealso>
     /// of the Datacube extension
@@ -146,7 +145,6 @@ namespace Stac.Extensions.Datacube
 
     public class DatacubeDimensionTemporal : DatacubeDimension
     {
-
         public DatacubeDimensionTemporal()
             : base()
         {
@@ -155,7 +153,6 @@ namespace Stac.Extensions.Datacube
 
     public class DatacubeDimensionAdditional : DatacubeDimension
     {
-
         private string _unit;
         protected object reference_system;
 

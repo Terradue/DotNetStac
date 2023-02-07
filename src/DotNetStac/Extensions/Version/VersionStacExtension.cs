@@ -13,7 +13,6 @@ namespace Stac.Extensions.Version
     /// </summary>
     public class VersionStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-
         // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/version/v1.0.0/schema.json";
 

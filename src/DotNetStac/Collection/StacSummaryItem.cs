@@ -21,7 +21,7 @@ namespace Stac.Collection
         /// <summary>
         /// Initializes a new instance of the <see cref="StacSummaryItem"/> class.
         /// </summary>
-        /// <param name="summary"></param>
+        /// <param name="summary">The summary.</param>
         protected StacSummaryItem(JToken summary)
         {
             this._summary = summary;
@@ -38,6 +38,7 @@ namespace Stac.Collection
         /// <summary>
         /// accessor of fields in the object
         /// </summary>
+        /// <param name="key">key of the field</param>
         public JToken this[object key]
         {
             get
@@ -52,6 +53,7 @@ namespace Stac.Collection
         /// <summary>
         /// Get Enumerator of object children
         /// </summary>
+        /// <returns>Enumerator of object children</returns>
         public IEnumerator GetEnumerator()
         {
             return this._summary.Children().GetEnumerator();

@@ -4,7 +4,6 @@
 
 namespace Stac.Extensions.Sat
 {
-
     public struct BaselineVector
     {
         private readonly double _perpendicular, _parallel, _along;

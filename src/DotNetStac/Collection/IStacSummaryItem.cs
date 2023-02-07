@@ -32,9 +32,6 @@ namespace Stac.Collection
         /// <summary>
         /// Gets the summary item as a JToken
         /// </summary>
-        /// <value>
-        /// The summary item as a JToken
-        /// </value>
         /// <returns>The summary item as a JToken</returns>
         IEnumerable<object> Enumerate();
     }

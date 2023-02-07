@@ -16,7 +16,6 @@ namespace Stac
     /// </summary>
     public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
     {
-
         /// <inheritdoc/>
         public string Title
         {

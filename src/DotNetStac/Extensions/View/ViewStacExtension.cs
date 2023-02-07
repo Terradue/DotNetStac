@@ -9,7 +9,6 @@ namespace Stac.Extensions.View
 {
     public class ViewStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/view/v1.0.0/schema.json";
         private readonly Dictionary<string, Type> _itemFields;
 

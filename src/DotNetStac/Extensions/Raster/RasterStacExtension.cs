@@ -58,7 +58,6 @@ namespace Stac.Extensions.Raster
     /// </summary>
     public static class RasterStacExtensionExtensions
     {
-
         /// <summary>
         /// Initilize a EoStacExtension class from a STAC asset
         /// </summary>

@@ -37,7 +37,10 @@ namespace Stac.Extensions.Eo
         /// </value>
         public double? CloudCover
         {
-            get { return this.StacPropertiesContainer.GetProperty<double?>(CloudCoverField); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<double?>(CloudCoverField);
+            }
 
             set
             {
@@ -58,7 +61,10 @@ namespace Stac.Extensions.Eo
         /// </value>
         public EoBandObject[] Bands
         {
-            get { return this.StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField);
+            }
 
             set
             {

@@ -14,7 +14,6 @@ namespace Stac.Extensions.VirtualAssets
     /// </summary>
     public class VirtualAsset : StacAsset
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="VirtualAsset"/> class.
         /// </summary>

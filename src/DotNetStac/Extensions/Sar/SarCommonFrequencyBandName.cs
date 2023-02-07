@@ -10,7 +10,6 @@ namespace Stac.Extensions.Sar
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SarCommonFrequencyBandName
     {
-
         P,
         L,
         S,

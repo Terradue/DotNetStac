@@ -287,7 +287,6 @@ namespace Stac
 
         public void Update(IDictionary<Uri, StacItem> items)
         {
-
             this.Extent.Update(items.Values);
 
             var usedExtensions = items.SelectMany(item => item.Value.GetDeclaredExtensions());

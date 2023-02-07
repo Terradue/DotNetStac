@@ -13,7 +13,6 @@ namespace Stac.Extensions.ItemCollections
 {
     public class ItemCollection : StacCollection, IStacExtension
     {
-
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/processing/v1.0.0/schema.json";
 
         public ItemCollection(
@@ -58,7 +57,6 @@ namespace Stac.Extensions.ItemCollections
 
         internal static JSchema GenerateJSchema(string version)
         {
-
             JSchema jSchema = new JSchema();
             jSchema.SchemaVersion = new Uri("http://json-schema.org/draft-07/schema#");
             jSchema.Title = "STAC ItemCollection Extension";
@@ -83,23 +81,23 @@ namespace Stac.Extensions.ItemCollections
                     { "stac_version", new JSchema(){
                         Title = "STAC version",
                         Type = JSchemaType.String
-                    }                                                                                                    },
+                    }                                                                                                                        },
                     { "stac_extensions", new JSchema(){
                         Title = "STAC extensions",
                         Type = JSchemaType.Array,
                         UniqueItems = true,
                         Items = { new JSchema { Type = JSchemaType.String, Format = "uri", Title = "Reference to a JSON Schema" } }
-                    }                                                                                                    },
+                    }                                                                                                                        },
                     { "features", new JSchema(){
                         Title = "ItemCollection features",
                         Type = JSchemaType.Array,
                         Items = { new JSchema { Ref = itemSchema } }
-                    }                                                                                                    },
+                    }                                                                                                                        },
                     { "links", new JSchema(){
                         Title = "Links",
                         Type = JSchemaType.Array,
                         Items = { new JSchema { Ref = linkSchema } }
-                    }                                                                                                    },
+                    }                                                                                                                        },
                 }
             });
 

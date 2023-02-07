@@ -11,7 +11,6 @@ namespace Stac.Extensions.Projection
 {
     public class ProjectionStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/projection/v1.0.0/schema.json";
 
         public const string EpsgField = "proj:epsg";

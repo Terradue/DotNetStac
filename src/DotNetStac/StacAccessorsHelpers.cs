@@ -13,7 +13,6 @@ namespace Stac
 {
     public static class StacAccessorsHelpers
     {
-
         public static void SetProperty(this IStacObject stacObject, string key, object value)
         {
             stacObject.Properties.SetProperty(key, value);
@@ -182,7 +181,6 @@ namespace Stac
 
         public static void Insert<T>(this ICollection<T> collection, int index, T item)
         {
-
             if (index < 0 || index > collection.Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(index), "Index was out of range. Must be non-negative and less than the size of the collection.");

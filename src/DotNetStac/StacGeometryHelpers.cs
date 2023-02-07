@@ -14,7 +14,6 @@ namespace Stac
     /// </summary>
     public static class StacGeometryHelpers
     {
-
         /// <summary>
         /// Get The bounding box of a geometry in a StacItem
         /// </summary>

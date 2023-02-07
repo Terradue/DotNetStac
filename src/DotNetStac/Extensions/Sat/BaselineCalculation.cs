@@ -11,10 +11,8 @@ using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace Stac.Extensions.Sat
 {
-
     public class BaselineCalculation
     {
-
         /// <summary>Synchronizes the vector.</summary>
         /// <returns>The vector.</returns>
         /// <param name="t0">T0.</param>
@@ -38,7 +36,6 @@ namespace Stac.Extensions.Sat
 
             for (int i = 0; i < maxIterations; i++)
             {
-
                 double x = groundPoint.Longitude;
                 double y = groundPoint.Latitude;
                 double z = groundPoint.Altitude.Value;
@@ -87,7 +84,6 @@ namespace Stac.Extensions.Sat
 
             for (int i = 0; i < maxIterations; i++)
             {
-
                 double x = groundPoint.Longitude;
                 double y = groundPoint.Latitude;
                 double z = groundPoint.Altitude.Value;
@@ -122,7 +118,6 @@ namespace Stac.Extensions.Sat
 
         public static BaselineVector CalculateBaseline(DateTime[] time, SatOrbitStateVector[] master, SatOrbitStateVector[] slave, IPosition groundPoint)
         {
-
             var interpolSlave = PolyInterpol(time[1], slave);
             var interpolMaster = PolyInterpol(time[0], master);
 
@@ -274,7 +269,6 @@ namespace Stac.Extensions.Sat
 
         private static double GetOrbitValue(double time, IInterpolation[] interpol, int index)
         {
-
             return interpol[index].Interpolate(time);
         }
 
@@ -282,7 +276,6 @@ namespace Stac.Extensions.Sat
 
         public static IInterpolation[] PolyInterpol(DateTime time0, SatOrbitStateVector[] orbitStateVectors)
         {
-
             var time = Array.ConvertAll(orbitStateVectors, o => o.Time.Subtract(time0).TotalSeconds);
 
             Vector<double> x1 = DenseVector.OfArray(Array.ConvertAll(orbitStateVectors, o => o.Position[0]));

@@ -33,8 +33,8 @@ namespace Stac.Collection
         /// Initializes a new instance of the <see cref="StacSummaryRangeObject{T}"/> class.
         /// Initialize a Summary Range Object with a minimum and a maximum value
         /// </summary>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
+        /// <param name="min">The minimum value</param>
+        /// <param name="max">The maximum value</param>
         public StacSummaryRangeObject(T min, T max)
             : base(new JObject())
         {
@@ -47,7 +47,7 @@ namespace Stac.Collection
         /// </summary>
         /// <returns>Minimum of the range</returns>
         /// <value>
-        /// Minimum of the range
+        /// <placeholder>Minimum of the range</placeholder>
         /// </value>
         public T Min { get => this.AsJToken["minimum"].Value<T>(); set => this.AsJToken["minimum"] = new JValue(value); }
 
@@ -56,7 +56,7 @@ namespace Stac.Collection
         /// </summary>
         /// <returns>Maximum of the range</returns>
         /// <value>
-        /// Maximum of the range
+        /// <placeholder>Maximum of the range</placeholder>
         /// </value>
         public T Max { get => this.AsJToken["maximum"].Value<T>(); set => this.AsJToken["maximum"] = new JValue(value); }
 

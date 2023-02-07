@@ -14,7 +14,6 @@ namespace Stac.Collection
     [JsonObject]
     public class StacTemporalExtent
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="StacTemporalExtent"/> class.
         /// </summary>

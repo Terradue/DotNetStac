@@ -16,7 +16,6 @@ namespace Stac.Common
 {
     public class JsonMergeUtils
     {
-
         /// <summary>
         /// Return the result of merging the original JSON document with the JSON Merge patch document
         /// according to https://tools.ietf.org/html/rfc7386 
@@ -33,7 +32,6 @@ namespace Stac.Common
             using (var patchDoc = JsonDocument.Parse(patch))
             using (var jsonWriter = new Utf8JsonWriter(memStream, writerOptions ?? new JsonWriterOptions { Indented = true }))
             {
-
                 var originalKind = originalDoc.RootElement.ValueKind;
                 var patchKind = patchDoc.RootElement.ValueKind;
 

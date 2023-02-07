@@ -15,7 +15,6 @@ namespace Stac
     /// </summary>
     public partial class StacCollection : IStacObject, IStacParent, IStacCatalog, ICloneable
     {
-
         /// <summary>
         /// Gets or sets a short descriptive one-line title for the Collection.
         /// </summary>

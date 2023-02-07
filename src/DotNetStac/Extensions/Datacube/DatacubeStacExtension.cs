@@ -129,7 +129,6 @@ namespace Stac.Extensions.Datacube
     /// </summary>
     public static class DatacubeStacExtensionExtensions
     {
-
         /// <summary>
         /// Initilize a DatacubeStacExtension class from a STAC asset
         /// </summary>

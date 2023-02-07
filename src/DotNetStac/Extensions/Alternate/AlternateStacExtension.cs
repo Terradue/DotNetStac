@@ -36,7 +36,10 @@ namespace Stac.Extensions.Alternate
         /// </value>
         public IDictionary<string, AlternateAssetObject> AlternateAssets
         {
-            get { return this.StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField);
+            }
 
             set
             {
@@ -83,7 +86,6 @@ namespace Stac.Extensions.Alternate
     /// </summary>
     public static class AlternateStacExtensionExtensions
     {
-
         /// <summary>
         /// Initilize a AlternateStacExtension class from a STAC asset
         /// </summary>
