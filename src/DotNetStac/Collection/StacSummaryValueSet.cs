@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacSummaryValueSet.cs
+
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Stac.Collection;
 
 namespace Stac.Collection
 {
@@ -50,11 +50,17 @@ namespace Stac.Collection
         /// Summary Value Set total of items
         /// </summary>
         /// <returns></returns>
+        /// <value>
+        /// <placeholder>Summary Value Set total of items</placeholder>
+        /// </value>
         public int Count => summary.Count();
 
         /// <summary>
         /// Get the Summary Value Set as an enumerable
         /// </summary>
+        /// <value>
+        /// <placeholder>Get the Summary Value Set as an enumerable</placeholder>
+        /// </value>
         public IEnumerable<T> SummarySet { get => summary.ToObject<List<T>>(); }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
@@ -62,6 +68,7 @@ namespace Stac.Collection
             return SummarySet.GetEnumerator();
         }
 
+        /// <inheritdoc/>
         public override IEnumerable<object> Enumerate()
         {
             return this;

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: DatacubeVariableObject.cs
+
+using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Stac.Common;
 
 namespace Stac.Extensions.Datacube
 {
@@ -12,7 +14,7 @@ namespace Stac.Extensions.Datacube
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class DatacubeVariable : IStacPropertiesContainer
     {
-        IDictionary<string, object> properties;
+        private IDictionary<string, object> properties;
         protected string[] dimensions;
         protected DatacubeVariableType? type;
         protected string description;
@@ -23,36 +25,54 @@ namespace Stac.Extensions.Datacube
         /// <summary>
         /// The dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.
         /// </summary>
+        /// <value>
+        /// <placeholder>The dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.</placeholder>
+        /// </value>
         [JsonProperty("dimensions")]
         public string[] Dimensions { get => dimensions; set => dimensions = value; }
 
         /// <summary>
         /// Type of the variable.
         /// </summary>
+        /// <value>
+        /// <placeholder>Type of the variable.</placeholder>
+        /// </value>
         [JsonProperty("type")]
         public DatacubeVariableType? Type { get => type; set => type = value; }
 
         /// <summary>
         /// Detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
         /// </summary>
+        /// <value>
+        /// <placeholder>Detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.</placeholder>
+        /// </value>
         [JsonProperty("description")]
         public string Description { get => description; set => description = value; }
 
         /// <summary>
         /// If the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.
         /// </summary>
+        /// <value>
+        /// <placeholder>If the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.</placeholder>
+        /// </value>
         [JsonProperty("extent")]
         public double[] Extent { get => extent; set => extent = value; }
 
         /// <summary>
         /// An (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.
         /// </summary>
+        /// <value>
+        /// <placeholder>An (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.</placeholder>
+        /// </value>
         [JsonProperty("values")]
         public string[] Values { get => values; set => values = value; }
 
         /// <summary>
         /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
         /// </summary>
+        /// <value>
+        /// <placeholder>The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        </placeholder>
+        /// </value>
         [JsonProperty("unit")]
         public string Unit { get => unit; set => unit = value; }
 
@@ -63,6 +83,7 @@ namespace Stac.Extensions.Datacube
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => properties; set => properties = value; }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => null;
 

@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: AlternateStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Stac.Extensions.Storage;
@@ -26,6 +30,9 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// A dictionary of alternate location information for an asset.
         /// </summary>
+        /// <value>
+        /// <placeholder>A dictionary of alternate location information for an asset.</placeholder>
+        /// </value>
         public IDictionary<string, AlternateAssetObject> AlternateAssets
         {
             get { return StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField); }
@@ -44,10 +51,15 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => assetFields;
 
+        /// <inheritdoc/>
         public StacAsset StacAsset => StacPropertiesContainer as StacAsset;
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();

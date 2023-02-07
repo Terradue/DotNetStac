@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: ProjectionStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
 using ProjNet.CoordinateSystems;
@@ -95,6 +99,7 @@ namespace Stac.Extensions.Projection
             set { StacPropertiesContainer.SetProperty(ProjTransformField, value); DeclareStacExtension(); }
         }
 
+        /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
         public void SetCoordinateSystem(CoordinateSystem coordinateSystem)
@@ -114,19 +119,20 @@ namespace Stac.Extensions.Projection
             Epsg = srid;
         }
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
-            summaryFunctions.Add(EpsgField, new SummaryFunction<int>(this, EpsgField, CreateSummaryValueSet<int>));
+            summaryFunctions.Add(EpsgField, new SummaryFunction<int>(this, EpsgField, CreateSummaryValueSet));
             return summaryFunctions;
         }
     }
 
     public class CentroidObject
     {
-        double Longitude { get; set; }
+        private double Longitude { get; set; }
 
-        double Latitude { get; set; }
+        private double Latitude { get; set; }
     }
 
     public static class ProjectionStacExtensionExtensions

@@ -1,10 +1,12 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacExtensions.cs
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json.Schema;
-using Stac.Schemas;
 
 namespace Stac.Extensions
 {
@@ -14,7 +16,7 @@ namespace Stac.Extensions
     public static class StacExtensions
     {
         private static Dictionary<string, Type> managedStacExtensions = new Dictionary<string, Type>();
-        private static object initLock = new object();
+        private static readonly object initLock = new object();
 
         /// <summary>
         /// Dictionary of extensions managed by the library
@@ -76,7 +78,9 @@ namespace Stac.Extensions
                 {
                     return Activator.CreateInstance(ManagedStacExtensions[stacExtension], flags, null, new object[1] { stacObject }, culture) as IStacExtension;
                 }
-                catch { }
+                catch
+                {
+                }
             }
 
             Uri schema = null;

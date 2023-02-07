@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: Sentinel2.cs
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,7 +40,7 @@ namespace Stac.Test.UseCases
                     return StacConvert.Deserialize<IStacObject>(childJson);
                 });
 
-            Assert.Equal(1, children.Count());
+            Assert.Single(children);
 
             Assert.IsAssignableFrom<StacCollection>(children.First());
         }

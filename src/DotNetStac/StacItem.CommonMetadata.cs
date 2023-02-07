@@ -1,7 +1,10 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacItem.CommonMetadata.cs
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace Stac
@@ -14,6 +17,7 @@ namespace Stac
     public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject
     {
 
+        /// <inheritdoc/>
         public string Title
         {
             get => this.GetProperty<string>("title");

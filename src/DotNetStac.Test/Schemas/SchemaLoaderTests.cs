@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: SchemaLoaderTests.cs
+
 using Stac.Exceptions;
 using Stac.Extensions;
-using Stac.Extensions.Sat;
 using Xunit;
 
 namespace Stac.Test.Item

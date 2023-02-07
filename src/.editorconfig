@@ -370,6 +370,7 @@ dotnet_diagnostic.RS0018.severity = warning
 dotnet_diagnostic.RS0010.severity = warning
 
 # Microsoft.CodeAnalysis.CSharp.Features
+# Prefix local calls with this
                                                   # Name:                                         Before:                                             After:
 dotnet_diagnostic.IDE0001.severity = warning      # Simplify names                                System.Version version;                             Version version;
 dotnet_diagnostic.IDE0002.severity = warning      # Simplify (member access)                      System.Version.Equals("1", "2");                    Version.Equals("1", "2");
@@ -396,6 +397,11 @@ dotnet_diagnostic.VSTHRD111.severity = none     # Use ConfigureAwait(true).
 dotnet_diagnostic.VSSDK006.severity = none      # Check whether the result of GetService calls is null
 
 # Microsoft.CodeAnalysis.VisualBasic.CodeStyle/Microsoft.CodeAnalysis.CSharp.CodeStyle
-dotnet_diagnostic.IDE0073.severity = warning      # Enforce file header
-file_header_template = Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license. See the LICENSE.md file in the project root for more information.
+dotnet_diagnostic.IDE0073.severity = warning     # Enforce file header
 
+file_header_template = Copyright (c) by Terradue Srl. All Rights Reserved.\nLicense under the AGPL, Version 3.0.\nFile Name: {fileName}
+
+dotnet_diagnostic.SA1636.severity = none         # Disable file header matching
+dotnet_diagnostic.SA1501.severity = error        # Braces must not be omitted
+dotnet_diagnostic.SA1101.severity = warning      # Prefix local calls with this
+dotnet_diagnostic.SA1507.severity = warning      # Code should not contain multiple blank lines in a row

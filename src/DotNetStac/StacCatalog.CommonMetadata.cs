@@ -1,7 +1,10 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacCatalog.CommonMetadata.cs
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace Stac
@@ -13,6 +16,7 @@ namespace Stac
     /// </summary>
     public partial class StacCatalog : IStacObject, IStacParent, IStacCatalog, ICloneable
     {
+        /// <inheritdoc/>
         [JsonProperty("title")]
         public string Title
         {
@@ -140,6 +144,7 @@ namespace Stac
             }
         }
 
+        /// <inheritdoc/>
         public object Clone()
         {
             return new StacCatalog(this);

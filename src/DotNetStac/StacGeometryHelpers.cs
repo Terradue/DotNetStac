@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacGeometryHelpers.cs
+
+using System;
 using System.Linq;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
@@ -110,28 +114,34 @@ namespace Stac
         /// Get the lower left corner of a bounding box
         /// </summary>
         /// <param name="positions">set of positions</param>
-        /// <returns></returns>
         public static IPosition GetLowerLeft(this IPosition[] positions)
         {
             if (positions == null || positions.Length == 0) return null;
             if (positions[0].Altitude.HasValue)
-                return new GeoJSON.Net.Geometry.Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude), positions.Min(p => p.Altitude));
+                return new Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude), positions.Min(p => p.Altitude));
             else
-                return new GeoJSON.Net.Geometry.Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude));
+                return new Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude));
         }
 
         /// <summary>
-        /// Get the upper right corner of a bounding box
+        /// Get the upper right corner of a bounding box.
         /// </summary>
-        /// <param name="positions">set of positions</param>
+        /// <param name="positions">set of positions.</param>
         /// <returns></returns>
         public static IPosition GetUpperRight(this IPosition[] positions)
         {
-            if (positions == null || positions.Length == 0) return null;
+            if (positions == null || positions.Length == 0)
+            {
+                return null;
+            }
             if (positions[0].Altitude.HasValue)
-                return new GeoJSON.Net.Geometry.Position(positions.Max(p => p.Latitude), positions.Max(p => p.Longitude), positions.Max(p => p.Altitude));
+            {
+                return new Position(positions.Max(p => p.Latitude), positions.Max(p => p.Longitude), positions.Max(p => p.Altitude));
+            }
             else
-                return new GeoJSON.Net.Geometry.Position(positions.Max(p => p.Latitude), positions.Max(p => p.Longitude));
+            {
+                return new Position(positions.Max(p => p.Latitude), positions.Max(p => p.Longitude));
+            }
         }
     }
 }

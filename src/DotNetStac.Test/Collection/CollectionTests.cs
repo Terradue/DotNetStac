@@ -1,11 +1,12 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: CollectionTests.cs
+
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text;
-using GeoJSON.Net;
-using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Collection;
@@ -45,10 +46,10 @@ namespace Stac.Test.Collection
 
             Assert.IsType<StacSummaryRangeObject<DateTime>>(item.Summaries["datetime"]);
 
-            Assert.Equal<DateTime>(DateTime.Parse("2015-06-23T00:00:00Z").ToUniversalTime(), (item.Summaries["datetime"] as StacSummaryRangeObject<DateTime>).Min);
+            Assert.Equal(DateTime.Parse("2015-06-23T00:00:00Z").ToUniversalTime(), (item.Summaries["datetime"] as StacSummaryRangeObject<DateTime>).Min);
 
-            Assert.Equal<long>(32601, (item.Summaries["proj:epsg"] as StacSummaryValueSet<long>).Min());
-            Assert.Equal<long>(32660, (item.Summaries["proj:epsg"] as StacSummaryValueSet<long>).Max());
+            Assert.Equal(32601, (item.Summaries["proj:epsg"] as StacSummaryValueSet<long>).Min());
+            Assert.Equal(32660, (item.Summaries["proj:epsg"] as StacSummaryValueSet<long>).Max());
             Assert.Equal<long>(60, (item.Summaries["proj:epsg"] as StacSummaryValueSet<long>).Count);
 
             Assert.Equal(13, item.Summaries["eo:bands"].LongCount());

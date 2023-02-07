@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: AlternateAssetObject.cs
+
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -16,8 +20,7 @@ namespace Stac.Extensions.Alternate
         private string title;
 
         private string description;
-
-        IDictionary<string, object> properties;
+        private IDictionary<string, object> properties;
 
         /// <summary>
         /// Initialize a new Band Object
@@ -38,6 +41,9 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// REQUIRED. URI to the asset object. Relative and absolute URI are both allowed.
         /// </summary>
+        /// <value>
+        /// <placeholder>REQUIRED. URI to the asset object. Relative and absolute URI are both allowed.</placeholder>
+        /// </value>
         [JsonProperty("href")]
         [JsonRequired]
         public string Href { get => href; set => href = value; }
@@ -45,12 +51,18 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// The displayed title for clients and users.
         /// </summary>
+        /// <value>
+        /// <placeholder>The displayed title for clients and users.</placeholder>
+        /// </value>
         [JsonProperty("title")]
         public string Title { get => title; set => title = value; }
 
         /// <summary>
         /// A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
+        /// <value>
+        /// <placeholder>A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.</placeholder>
+        /// </value>
         [JsonProperty("description")]
         public string Description { get => description; set => description = value; }
 
@@ -65,6 +77,9 @@ namespace Stac.Extensions.Alternate
         /// Parent Stac Object
         /// </summary>
         /// <returns></returns>
+        /// <value>
+        /// <placeholder>Parent Stac Object</placeholder>
+        /// </value>
         [JsonIgnore]
         public IStacObject StacObjectContainer => _parent;
 
@@ -72,6 +87,9 @@ namespace Stac.Extensions.Alternate
         /// Uri
         /// </summary>
         /// <returns></returns>
+        /// <value>
+        /// <placeholder>Uri</placeholder>
+        /// </value>
         [JsonIgnore]
         public Uri Uri => new Uri(href);
     }

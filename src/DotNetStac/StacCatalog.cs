@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacCatalog.cs
+
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mime;
@@ -6,7 +10,6 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Semver;
 using Stac.Converters;
-using Stac.Extensions;
 
 namespace Stac
 {
@@ -25,7 +28,7 @@ namespace Stac
         /// Catalog Media-Type Object
         /// </summary>
         /// <returns></returns>
-        public readonly static ContentType CATALOG_MEDIATYPE = new ContentType(MEDIATYPE);
+        public static readonly ContentType CATALOG_MEDIATYPE = new ContentType(MEDIATYPE);
 
         /// <summary>
         /// Initialize an empty STAC Catalog
@@ -44,7 +47,7 @@ namespace Stac
                 this.Links = new Collection<StacLink>();
             else
                 this.Links = new Collection<StacLink>(links.ToList());
-            this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
+            this.Summaries = new Dictionary<string, Collection.IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
         }
 
@@ -58,7 +61,7 @@ namespace Stac
             this.StacExtensions = new SortedSet<string>(stacCatalog.StacExtensions);
             this.StacVersion = stacCatalog.StacVersion;
             this.Links = new Collection<StacLink>(stacCatalog.Links.ToList());
-            this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>(stacCatalog.Summaries);
+            this.Summaries = new Dictionary<string, Collection.IStacSummaryItem>(stacCatalog.Summaries);
             this.Properties = new Dictionary<string, object>(stacCatalog.Properties);
         }
 
@@ -97,6 +100,7 @@ namespace Stac
             get; internal set;
         }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public ContentType MediaType => CATALOG_MEDIATYPE;
 
@@ -105,6 +109,9 @@ namespace Stac
         /// <summary>
         /// STAC type (Catalog)
         /// </summary>
+        /// <value>
+        /// <placeholder>STAC type (Catalog)</placeholder>
+        /// </value>
         [JsonProperty("type")]
         public string Type => "Catalog";
 
@@ -114,7 +121,7 @@ namespace Stac
         /// <value></value>
         [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
-        public Dictionary<string, Stac.Collection.IStacSummaryItem> Summaries { get; internal set; }
+        public Dictionary<string, Collection.IStacSummaryItem> Summaries { get; internal set; }
 
         /// <summary>
         /// Catalog Properties
@@ -123,6 +130,7 @@ namespace Stac
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
 

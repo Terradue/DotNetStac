@@ -1,5 +1,8 @@
-﻿using System;
-using System.Buffers;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: JsonMergeUtils.cs
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -62,8 +65,9 @@ namespace Stac.Common
         /// </summary>
         /// <param name="original"></param>
         /// <param name="patch"></param>
+        /// <param name="token"></param>
         /// <param name="writerOptions">Writer options used to write the merge result.</param>
-        public static async Task<string> MergeAsync(string original, System.IO.Stream patch, CancellationToken token = default, JsonWriterOptions? writerOptions = null)
+        public static async Task<string> MergeAsync(string original, Stream patch, CancellationToken token = default, JsonWriterOptions? writerOptions = null)
         {
             var outputBuffer = new MemoryStream();
             var jsonDocumentOptions = new JsonDocumentOptions();
@@ -103,9 +107,7 @@ namespace Stac.Common
         /// <remarks>Nested field names are returned joined by "." 
         /// Array items are ignored.
         /// </remarks>
-        /// <param name="original"></param>
         /// <param name="patch"></param>
-        /// <param name="writerOptions">Writer options used to write the merge result.</param>
         /// <returns>The list of null properties.</returns>
         public static List<string> ExtractNullProperties(string patch)
         {
@@ -124,12 +126,10 @@ namespace Stac.Common
         /// <remarks>Nested field names are returned joined by "." 
         /// Array items are ignored.
         /// </remarks>
-        /// <param name="original"></param>
         /// <param name="patch"></param>
-        /// <param name="writerOptions">Writer options used to write the merge result.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>The list of null properties.</returns>
-        public static async Task<List<string>> ExtractNullPropertiesAsync(System.IO.Stream patch, CancellationToken token = default)
+        public static async Task<List<string>> ExtractNullPropertiesAsync(Stream patch, CancellationToken token = default)
         {
             var patchDoc = await JsonDocument.ParseAsync(patch, new JsonDocumentOptions(), token);
             if (patchDoc.RootElement.ValueKind != JsonValueKind.Object)
@@ -160,13 +160,12 @@ namespace Stac.Common
         /// to serialize and deserialize the model.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <typeparam name="T">the model type</typeparam>
         /// <param name="original"></param>
         /// <param name="patch"></param>
         /// <param name="options">JSON serialization options</param>
         /// <param name="token">Cancellation token</param>
         /// <returns>A task that returns a new model representing the patched instance.</returns>
-        public static async Task<T> MergeModelAsync<T>(T original, System.IO.Stream patch, JsonSerializerOptions options = null, CancellationToken token = default)
+        public static async Task<T> MergeModelAsync<T>(T original, Stream patch, JsonSerializerOptions options = null, CancellationToken token = default)
         {
             var originalJson = JsonSerializer.Serialize(original, options);
             return JsonSerializer.Deserialize<T>(await MergeAsync(originalJson, patch, token), options);

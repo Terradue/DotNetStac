@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: EoBandObject.cs
+
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Stac.Extensions.Eo
@@ -15,8 +19,7 @@ namespace Stac.Extensions.Eo
         private string description;
 
         private EoBandCommonName? commonName;
-
-        IDictionary<string, object> properties;
+        private IDictionary<string, object> properties;
 
         /// <summary>
         /// Initialize a new Band Object
@@ -33,12 +36,18 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// The name of the band (e.g., "B01", "B8", "band2", "red").
         /// </summary>
+        /// <value>
+        /// <placeholder>The name of the band (e.g., "B01", "B8", "band2", "red").</placeholder>
+        /// </value>
         [JsonProperty("name")]
         public string Name { get => name; set => name = value; }
 
         /// <summary>
         /// Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
+        /// <value>
+        /// <placeholder>Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.</placeholder>
+        /// </value>
         [JsonProperty("description")]
         public string Description { get => description; set => description = value; }
 

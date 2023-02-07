@@ -1,6 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: BaselineCalculation.cs
+
+using System;
 using GeoJSON.Net.Geometry;
 using MathNet.Numerics;
 using MathNet.Numerics.Interpolation;
@@ -18,7 +20,7 @@ namespace Stac.Extensions.Sat
         /// <returns>The vector.</returns>
         /// <param name="t0">T0.</param>
         /// <param name="groundPoint">Ground point.</param>
-        /// <param name="master">Master.</param>
+        /// <param name="slave"></param>
         /// <param name="converged">Converged.</param>
         /// <param name="maxError">Max error.</param>
         /// <param name="maxIterations">Max iterations.</param>
@@ -270,15 +272,15 @@ namespace Stac.Extensions.Sat
         public static IInterpolation[] PolyInterpol(DateTime time0, SatOrbitStateVector[] orbitStateVectors)
         {
 
-            var time = Array.ConvertAll<SatOrbitStateVector, double>(orbitStateVectors, o => o.Time.Subtract(time0).TotalSeconds);
+            var time = Array.ConvertAll(orbitStateVectors, o => o.Time.Subtract(time0).TotalSeconds);
 
-            Vector<double> x1 = DenseVector.OfArray(Array.ConvertAll<SatOrbitStateVector, double>(orbitStateVectors, o => o.Position[0]));
-            Vector<double> y1 = DenseVector.OfArray(Array.ConvertAll<SatOrbitStateVector, double>(orbitStateVectors, o => o.Position[1]));
-            Vector<double> z1 = DenseVector.OfArray(Array.ConvertAll<SatOrbitStateVector, double>(orbitStateVectors, o => o.Position[2]));
+            Vector<double> x1 = DenseVector.OfArray(Array.ConvertAll(orbitStateVectors, o => o.Position[0]));
+            Vector<double> y1 = DenseVector.OfArray(Array.ConvertAll(orbitStateVectors, o => o.Position[1]));
+            Vector<double> z1 = DenseVector.OfArray(Array.ConvertAll(orbitStateVectors, o => o.Position[2]));
 
-            Vector<double> vx1 = DenseVector.OfArray(Array.ConvertAll<SatOrbitStateVector, double>(orbitStateVectors, o => o.Velocity[0]));
-            Vector<double> vy1 = DenseVector.OfArray(Array.ConvertAll<SatOrbitStateVector, double>(orbitStateVectors, o => o.Velocity[1]));
-            Vector<double> vz1 = DenseVector.OfArray(Array.ConvertAll<SatOrbitStateVector, double>(orbitStateVectors, o => o.Velocity[2]));
+            Vector<double> vx1 = DenseVector.OfArray(Array.ConvertAll(orbitStateVectors, o => o.Velocity[0]));
+            Vector<double> vy1 = DenseVector.OfArray(Array.ConvertAll(orbitStateVectors, o => o.Velocity[1]));
+            Vector<double> vz1 = DenseVector.OfArray(Array.ConvertAll(orbitStateVectors, o => o.Velocity[2]));
 
             Vector<double> ax1 = DenseVector.Create(vx1.Count, 0.0);
             Vector<double> ay1 = DenseVector.Create(vy1.Count, 0.0);

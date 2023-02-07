@@ -1,6 +1,9 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: RasterStacExtension.cs
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Stac.Extensions.Raster
 {
@@ -12,7 +15,7 @@ namespace Stac.Extensions.Raster
         /// Extensions identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/raster/v1.0.0/schema.json";
 
-        private IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> itemFields;
         private const string BandsField = "raster:bands";
 
         internal RasterStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
@@ -24,6 +27,9 @@ namespace Stac.Extensions.Raster
         /// <summary>
         /// An array of available bands where each object is a Band Object.
         /// </summary>
+        /// <value>
+        /// <placeholder>An array of available bands where each object is a Band Object.</placeholder>
+        /// </value>
         public RasterBand[] Bands
         {
             get { return StacPropertiesContainer.GetProperty<RasterBand[]>(BandsField); }
@@ -33,8 +39,12 @@ namespace Stac.Extensions.Raster
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();

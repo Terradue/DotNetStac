@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacAsset.cs
+
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Mime;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Stac.Converters;
 
 namespace Stac
 {
     /// <summary>
-    /// STAC Asset Object implementing <seealso href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-object">STAC Asset</seealso>
+    /// STAC Asset Object implementing <seealso href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#asset-object">STAC Asset</seealso>.
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class StacAsset : IStacPropertiesContainer
     {
-
-        #region Static members
+        private readonly Uri _base_uri;
+        private Uri _href;
+        private string _title, _description;
+        private ContentType _type;
+        private Dictionary<string, object> _properties;
+        private IStacObject _parentStacObject;
 
         /// <summary>
         /// Create a thumbnail asset
@@ -72,20 +77,10 @@ namespace Stac
             return new StacAsset(stacObject, uri, new string[] { "metadata" }, title, mediaType);
         }
 
-        #endregion
-
-        Uri base_uri, href;
-        string title, description;
-
-        ContentType type;
-
-        private Dictionary<string, object> properties;
-        private IStacObject parentStacObject;
-
         [JsonConstructor]
         internal StacAsset()
         {
-            properties = new Dictionary<string, object>();
+            _properties = new Dictionary<string, object>();
             Roles = new SortedSet<string>();
         }
 
@@ -98,9 +93,8 @@ namespace Stac
         {
             if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
-            parentStacObject = stacObject;
+            _parentStacObject = stacObject;
             Uri = uri;
-
         }
 
         /// <summary>
@@ -129,18 +123,18 @@ namespace Stac
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
             if (source == null)
                 throw new ArgumentNullException("source");
-            base_uri = source.base_uri;
-            href = source.href;
+            _base_uri = source._base_uri;
+            _href = source._href;
             if (source.Roles != null)
                 Roles = new SortedSet<string>(source.Roles);
             else
                 Roles = new SortedSet<string>();
-            title = source.title;
-            type = source.type;
-            description = source.description;
-            if (source.properties != null)
-                properties = new Dictionary<string, object>(source.properties);
-            parentStacObject = stacObject;
+            _title = source._title;
+            _type = source._type;
+            _description = source._description;
+            if (source._properties != null)
+                _properties = new Dictionary<string, object>(source._properties);
+            _parentStacObject = stacObject;
         }
 
         /// <summary>
@@ -151,8 +145,8 @@ namespace Stac
         [JsonConverter(typeof(ContentTypeConverter))]
         public ContentType MediaType
         {
-            get { return type; }
-            set { type = value; }
+            get { return _type; }
+            set { _type = value; }
         }
 
         /// <summary>
@@ -173,8 +167,8 @@ namespace Stac
         [JsonProperty("title")]
         public string Title
         {
-            get { return title; }
-            set { title = value; }
+            get { return _title; }
+            set { _title = value; }
         }
 
         /// <summary>
@@ -184,8 +178,8 @@ namespace Stac
         [JsonProperty("href")]
         public Uri Uri
         {
-            get { return href; }
-            set { href = value; }
+            get { return _href; }
+            set { _href = value; }
         }
 
         /// <summary>
@@ -195,8 +189,8 @@ namespace Stac
         [JsonProperty("description")]
         public string Description
         {
-            get { return description; }
-            set { description = value; }
+            get { return _description; }
+            set { _description = value; }
         }
 
         /// <summary>
@@ -208,18 +202,21 @@ namespace Stac
         {
             get
             {
-                return properties;
+                return _properties;
             }
 
             set
             {
-                properties = new Dictionary<string, object>(value);
+                _properties = new Dictionary<string, object>(value);
             }
         }
 
         /// <summary>
         /// Object container
         /// </summary>
+        /// <value>
+        /// <placeholder>Object container</placeholder>
+        /// </value>
         [JsonIgnore]
         public IStacObject StacObjectContainer => ParentStacObject;
 
@@ -228,7 +225,7 @@ namespace Stac
         /// </summary>
         /// <value></value>
         [JsonIgnore]
-        public IStacObject ParentStacObject { get => parentStacObject; internal set => parentStacObject = value; }
+        public IStacObject ParentStacObject { get => _parentStacObject; internal set => _parentStacObject = value; }
 
 #pragma warning disable 1591
         [ExcludeFromCodeCoverage]

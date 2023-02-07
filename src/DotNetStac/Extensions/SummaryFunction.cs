@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: SummaryFunction.cs
+
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
@@ -8,12 +12,15 @@ namespace Stac.Extensions
 {
     public class SummaryFunction<T> : ISummaryFunction
     {
+        /// <inheritdoc/>
         public IStacExtension Extension { get; }
 
+        /// <inheritdoc/>
         public string PropertyName { get; }
 
-        private CreateSummary<T> summaryFunction;
+        private readonly CreateSummary<T> summaryFunction;
 
+        /// <inheritdoc/>
         public IStacSummaryItem Summarize(IEnumerable<object> items)
         {
             return summaryFunction(items.SelectMany(i =>

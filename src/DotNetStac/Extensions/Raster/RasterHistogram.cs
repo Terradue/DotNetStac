@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: RasterHistogram.cs
+
+using Newtonsoft.Json;
 
 namespace Stac.Extensions.Raster
 {

@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacTemporalExtent.cs
+
+using System;
 using Newtonsoft.Json;
 
 namespace Stac.Collection
@@ -29,7 +33,7 @@ namespace Stac.Collection
         /// <param name="temporal"></param>
         public StacTemporalExtent(StacTemporalExtent temporal)
         {
-            this.Interval = (System.DateTime?[][])temporal.Interval.Clone();
+            this.Interval = (DateTime?[][])temporal.Interval.Clone();
         }
 
         /// <summary>

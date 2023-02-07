@@ -1,13 +1,9 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StorageStacExtension.cs
+
+using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.IO;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using Multiformats.Base;
-using Multiformats.Hash;
-using Multiformats.Hash.Algorithms;
-using Stac.Model;
 
 namespace Stac.Extensions.Storage
 {
@@ -76,9 +72,13 @@ namespace Stac.Extensions.Storage
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();

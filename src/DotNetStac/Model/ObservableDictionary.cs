@@ -1,11 +1,13 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: ObservableDictionary.cs
+
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 
 namespace Stac.Model
@@ -207,28 +209,35 @@ namespace Stac.Model
         // IDictionary<TKey,TValue> Members
 
 
+        /// <inheritdoc/>
         public void Add(TKey key, TValue value)
             => TryAddWithNotification(key, value);
 
+        /// <inheritdoc/>
         public bool ContainsKey(TKey key)
             => _dictionary.ContainsKey(key);
 
+        /// <inheritdoc/>
         public ICollection<TKey> Keys
         {
             get { return _dictionary.Keys; }
         }
 
+        /// <inheritdoc/>
         public bool Remove(TKey key)
             => TryRemoveWithNotification(key, out TValue temp);
 
+        /// <inheritdoc/>
         public bool TryGetValue(TKey key, out TValue value)
             => _dictionary.TryGetValue(key, out value);
 
+        /// <inheritdoc/>
         public ICollection<TValue> Values
         {
             get => _dictionary.Values;
         }
 
+        /// <inheritdoc/>
         public TValue this[TKey key]
         {
             get => _dictionary[key];

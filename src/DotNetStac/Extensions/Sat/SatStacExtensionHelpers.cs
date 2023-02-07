@@ -1,9 +1,10 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: SatStacExtensionHelpers.cs
+
+using System;
 using System.Linq;
 using GeoJSON.Net.Geometry;
-using Itenso.TimePeriod;
-using Stac;
-using Stac.Extensions;
 
 namespace Stac.Extensions.Sat
 {

@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacSummaryItem.cs
+
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
@@ -39,8 +42,12 @@ namespace Stac.Collection
         /// <summary>
         /// JToken transformer
         /// </summary>
+        /// <value>
+        /// <placeholder>JToken transformer</placeholder>
+        /// </value>
         public JToken AsJToken => summary;
 
+        /// <inheritdoc/>
         public abstract IEnumerable<object> Enumerate();
 
         /// <summary>

@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: SatStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
@@ -79,6 +83,7 @@ namespace Stac.Extensions.Sat
 
         public StacItem StacItem => StacPropertiesContainer as StacItem;
 
+        /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
         private SortedDictionary<DateTime, SatOrbitStateVector> SortOrbitStateVectors(JToken osvarray)

@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacSummariesConverter.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Collection;

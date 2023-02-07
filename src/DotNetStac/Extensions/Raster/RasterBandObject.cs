@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: RasterBandObject.cs
+
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Stac.Common;
@@ -12,8 +16,7 @@ namespace Stac.Extensions.Raster
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class RasterBand : IStacPropertiesContainer
     {
-
-        IDictionary<string, object> properties;
+        private IDictionary<string, object> properties;
         private double? nodata;
         private RasterSampling? sampling;
         private DataType? dataType;
@@ -32,6 +35,9 @@ namespace Stac.Extensions.Raster
         /// <summary>
         /// Pixel values used to identify pixels that are nodata in the assets.
         /// </summary>
+        /// <value>
+        /// <placeholder>Pixel values used to identify pixels that are nodata in the assets.</placeholder>
+        /// </value>
         [JsonProperty("nodata")]
         public double? Nodata { get => nodata; set => nodata = value; }
 
@@ -39,6 +45,10 @@ namespace Stac.Extensions.Raster
         /// One of area or point. Indicates whether a pixel value should be assumed to represent 
         /// a sampling over the region of the pixel or a point sample at the center of the pixel.
         /// </summary>
+        /// <value>
+        /// <placeholder>One of area or point. Indicates whether a pixel value should be assumed to represent 
+        /// a sampling over the region of the pixel or a point sample at the center of the pixel.</placeholder>
+        /// </value>
         [JsonProperty("sampling")]
         [JsonConverter(typeof(StringEnumConverter))]
         public RasterSampling? Sampling { get => sampling; set => sampling = value; }
@@ -75,18 +85,27 @@ namespace Stac.Extensions.Raster
         /// <summary>
         /// Unit denomination of the pixel value.
         /// </summary>
+        /// <value>
+        /// <placeholder>Unit denomination of the pixel value.</placeholder>
+        /// </value>
         [JsonProperty("unit")]
         public string Unit { get => unit; set => unit = value; }
 
         /// <summary>
         /// multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).
         /// </summary>
+        /// <value>
+        /// <placeholder>multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).</placeholder>
+        /// </value>
         [JsonProperty("scale")]
         public double? Scale { get => scale; set => scale = value; }
 
         /// <summary>
         /// number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).
         /// </summary>
+        /// <value>
+        /// <placeholder>number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).</placeholder>
+        /// </value>
         [JsonProperty("offset")]
         public double? Offset { get => offset; set => offset = value; }
 
@@ -104,6 +123,7 @@ namespace Stac.Extensions.Raster
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => properties; set => properties = value; }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => null;
     }

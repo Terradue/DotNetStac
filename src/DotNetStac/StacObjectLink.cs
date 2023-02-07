@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacObjectLink.cs
+
+using System;
 using System.Net.Mime;
 using Newtonsoft.Json;
 
@@ -12,12 +16,17 @@ namespace Stac
         {
             this.stacObject = stacObject;
             if (stacObject is StacItem)
+            {
                 this.RelationshipType = "item";
+            }
             if (stacObject is StacCatalog || stacObject is StacCollection)
+            {
                 this.RelationshipType = "child";
+            }
             Uri = uri;
         }
 
+        /// <inheritdoc/>
         [JsonProperty("type")]
         [JsonConverter(typeof(ContentTypeConverter))]
         public override ContentType ContentType
@@ -29,6 +38,7 @@ namespace Stac
             }
         }
 
+        /// <inheritdoc/>
         [JsonProperty("rel")]
         public override string RelationshipType
         {
@@ -36,6 +46,7 @@ namespace Stac
             set;
         }
 
+        /// <inheritdoc/>
         [JsonProperty("title")]
         public override string Title
         {
@@ -46,6 +57,7 @@ namespace Stac
             }
         }
 
+        /// <inheritdoc/>
         [JsonProperty("href")]
         public override Uri Uri
         {

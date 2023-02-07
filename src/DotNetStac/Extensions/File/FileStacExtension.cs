@@ -1,13 +1,13 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: FileStacExtension.cs
+
+using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Multiformats.Base;
 using Multiformats.Hash;
-using Multiformats.Hash.Algorithms;
-using Stac.Model;
 
 namespace Stac.Extensions.File
 {
@@ -47,9 +47,9 @@ namespace Stac.Extensions.File
         /// The name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
         /// </summary>
         /// <value></value>
-        public Multiformats.Hash.Multihash Checksum
+        public Multihash Checksum
         {
-            get { return Multiformats.Hash.Multihash.Parse(StacPropertiesContainer.GetProperty<string>(ChecksumField)); }
+            get { return Multihash.Parse(StacPropertiesContainer.GetProperty<string>(ChecksumField)); }
             set { StacPropertiesContainer.SetProperty(ChecksumField, value.ToString()); DeclareStacExtension(); }
         }
 
@@ -76,13 +76,20 @@ namespace Stac.Extensions.File
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
         /// <summary>
         /// Get the STAC asset
         /// </summary>
-        public StacAsset StacAsset => base.StacPropertiesContainer as StacAsset;
+        /// <value>
+        /// <placeholder>Get the STAC asset</placeholder>
+        /// </value>
+        public StacAsset StacAsset => StacPropertiesContainer as StacAsset;
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();

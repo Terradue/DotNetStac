@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: ProcessingStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using Stac.Model;
@@ -79,6 +83,9 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
 

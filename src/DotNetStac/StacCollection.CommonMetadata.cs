@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacCollection.CommonMetadata.cs
+
+using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Newtonsoft.Json;
 
 namespace Stac

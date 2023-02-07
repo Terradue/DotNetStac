@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: EoBandCommonName.cs
+
+using Newtonsoft.Json;
 using Stac.Common;
 
 namespace Stac.Extensions.Eo

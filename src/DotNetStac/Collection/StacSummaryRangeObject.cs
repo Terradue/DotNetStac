@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacSummaryRangeObject.cs
+
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
@@ -14,7 +18,7 @@ namespace Stac.Collection
         /// Initialize a Summary Range Object with a JSON object.
         /// </summary>
         /// <param name="summary">JSON Range object</param>
-        /// <exception cref="System.ArgumentException">Thrown when neither "minimum" nor "maximum" fields are present in the range object.</exception>
+        /// <exception cref="ArgumentException">Thrown when neither "minimum" nor "maximum" fields are present in the range object.</exception>
         /// <returns></returns>
         public StacSummaryRangeObject(JObject summary) : base(summary)
         {
@@ -38,14 +42,21 @@ namespace Stac.Collection
         /// Minimum of the range
         /// </summary>
         /// <returns>Minimum of the range</returns>
+        /// <value>
+        /// <placeholder>Minimum of the range</placeholder>
+        /// </value>
         public T Min { get => summary["minimum"].Value<T>(); set => summary["minimum"] = new JValue(value); }
 
         /// <summary>
         /// Maximum of the range
         /// </summary>
         /// <returns>Maximum of the range</returns>
+        /// <value>
+        /// <placeholder>Maximum of the range</placeholder>
+        /// </value>
         public T Max { get => summary["maximum"].Value<T>(); set => summary["maximum"] = new JValue(value); }
 
+        /// <inheritdoc/>
         public override IEnumerable<object> Enumerate()
         {
             return new object[2] { Min, Max };

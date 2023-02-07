@@ -1,11 +1,14 @@
-﻿
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: TolerantEnumConverter.cs
+
 using System;
 using System.Linq;
 using Newtonsoft.Json;
 
 namespace Stac.Common
 {
-    class TolerantEnumConverter : JsonConverter
+    internal class TolerantEnumConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

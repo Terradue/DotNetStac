@@ -1,10 +1,10 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: IStacObject.cs
+
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Net.Mime;
-using Newtonsoft.Json.Linq;
 using Semver;
-using Stac.Extensions;
 
 namespace Stac
 {
@@ -18,8 +18,7 @@ namespace Stac
         string Title { get; }
 
         SemVersion StacVersion { get; }
-
-        ICollection<StacLink> Links { get; }
+        new ICollection<StacLink> Links { get; }
 
         ContentType MediaType { get; }
 

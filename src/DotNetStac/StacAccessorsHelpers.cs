@@ -1,7 +1,9 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacAccessorsHelpers.cs
+
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
@@ -59,7 +61,9 @@ namespace Stac
                 t = Nullable.GetUnderlyingType(t);
             }
             if (t.GetTypeInfo().IsEnum)
+            {
                 return (T)Enum.Parse(t, @object.ToString());
+            }
             return ChangeType<T>(@object);
         }
 
@@ -77,7 +81,7 @@ namespace Stac
             PropertyObservableCollection<T> observableCollection = new PropertyObservableCollection<T>(propertiesContainer, key);
             if (array != null && array.Count() > 0)
             {
-                observableCollection.AddRange<T>(array);
+                observableCollection.AddRange(array);
             }
             return observableCollection;
         }

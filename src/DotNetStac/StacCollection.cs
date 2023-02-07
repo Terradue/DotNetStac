@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacCollection.cs
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,7 +23,7 @@ namespace Stac
     public partial class StacCollection : IStacObject, IStacParent, IStacCatalog, ICloneable
     {
         public const string MEDIATYPE = "application/json";
-        public readonly static ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);
+        public static readonly ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);
 
 
         [JsonConstructor]
@@ -42,7 +46,7 @@ namespace Stac
                 this.Assets = new Dictionary<string, StacAsset>();
             else
                 this.Assets = new Dictionary<string, StacAsset>(assets);
-            this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
+            this.Summaries = new Dictionary<string, IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
             this.License = license;
             this.Keywords = new Collection<string>();
@@ -59,7 +63,7 @@ namespace Stac
             this.StacExtensions = new SortedSet<string>(stacCollection.StacExtensions);
             this.StacVersion = stacCollection.StacVersion;
             this.Links = new Collection<StacLink>(stacCollection.Links.ToList());
-            this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>(stacCollection.Summaries);
+            this.Summaries = new Dictionary<string, IStacSummaryItem>(stacCollection.Summaries);
             this.Properties = new Dictionary<string, object>(stacCollection.Properties);
             this.Assets = new Dictionary<string, StacAsset>(stacCollection.Assets.Select(a => new KeyValuePair<string, StacAsset>(a.Key, new StacAsset(a.Value, this)))
                                                                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value));
@@ -103,6 +107,7 @@ namespace Stac
             get; internal set;
         }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public ContentType MediaType => COLLECTION_MEDIATYPE;
 
@@ -111,6 +116,9 @@ namespace Stac
         /// <summary>
         /// STAC type (Collection)
         /// </summary>
+        /// <value>
+        /// <placeholder>STAC type (Collection)</placeholder>
+        /// </value>
         [JsonProperty("type")]
         public virtual string Type => "Collection";
 
@@ -120,7 +128,7 @@ namespace Stac
         /// <value></value>
         [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
-        public Dictionary<string, Stac.Collection.IStacSummaryItem> Summaries { get; internal set; }
+        public Dictionary<string, IStacSummaryItem> Summaries { get; internal set; }
 
         /// <summary>
         /// Collection extended data
@@ -146,6 +154,7 @@ namespace Stac
         [JsonProperty("assets")]
         public IDictionary<string, StacAsset> Assets { get; internal set; }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
 
@@ -211,8 +220,13 @@ namespace Stac
                                       {
                                           Uri itemUri = item.Key;
                                           if (collectionUri != null)
+                                          {
                                               itemUri = collectionUri.MakeRelativeUri(item.Key);
-                                          if (!itemUri.IsAbsoluteUri) { itemUri = new Uri("./" + itemUri.OriginalString, UriKind.Relative); }
+                                          }
+                                          if (!itemUri.IsAbsoluteUri)
+                                          {
+                                              itemUri = new Uri("./" + itemUri.OriginalString, UriKind.Relative);
+                                          }
                                           return StacLink.CreateObjectLink(item.Value, itemUri);
                                       }),
                                       license);
@@ -223,10 +237,10 @@ namespace Stac
                 .GroupBy(prop => prop.Key)
                 .ToDictionary(key => key.Key, value => value.First().Value);
 
-            summaryFunctions.Add("gsd", new SummaryFunction<double>(null, "gsd", StacPropertiesContainerExtension.CreateRangeSummaryObject<double>));
-            summaryFunctions.Add("platform", new SummaryFunction<string>(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
-            summaryFunctions.Add("constellation", new SummaryFunction<string>(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
-            summaryFunctions.Add("instruments", new SummaryFunction<string>(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
+            summaryFunctions.Add("gsd", new SummaryFunction<double>(null, "gsd", StacPropertiesContainerExtension.CreateRangeSummaryObject));
+            summaryFunctions.Add("platform", new SummaryFunction<string>(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet));
+            summaryFunctions.Add("constellation", new SummaryFunction<string>(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet));
+            summaryFunctions.Add("instruments", new SummaryFunction<string>(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSet));
 
             collection.Summaries =
                 items.Values.SelectMany(item => item.Properties.Where(k => summaryFunctions.Keys.Contains(k.Key)))
@@ -258,10 +272,10 @@ namespace Stac
                 .GroupBy(prop => prop.Key)
                 .ToDictionary(key => key.Key, value => value.First().Value);
 
-            summaryFunctions.Add("gsd", new SummaryFunction<double>(null, "gsd", StacPropertiesContainerExtension.CreateRangeSummaryObject<double>));
-            summaryFunctions.Add("platform", new SummaryFunction<string>(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
-            summaryFunctions.Add("constellation", new SummaryFunction<string>(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
-            summaryFunctions.Add("instruments", new SummaryFunction<string>(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSet<string>));
+            summaryFunctions.Add("gsd", new SummaryFunction<double>(null, "gsd", StacPropertiesContainerExtension.CreateRangeSummaryObject));
+            summaryFunctions.Add("platform", new SummaryFunction<string>(null, "platform", StacPropertiesContainerExtension.CreateSummaryValueSet));
+            summaryFunctions.Add("constellation", new SummaryFunction<string>(null, "constellation", StacPropertiesContainerExtension.CreateSummaryValueSet));
+            summaryFunctions.Add("instruments", new SummaryFunction<string>(null, "instruments", StacPropertiesContainerExtension.CreateSummaryValueSet));
 
             this.Summaries =
                 items.Values.SelectMany(item => item.Properties.Where(k => summaryFunctions.Keys.Contains(k.Key)))

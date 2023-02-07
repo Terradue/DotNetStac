@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacLink.cs
+
+using System;
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Runtime.Serialization;
@@ -66,22 +70,24 @@ namespace Stac
 
         public StacLink(Uri uri)
         {
-            Uri = uri;
+            this.Uri = uri;
         }
 
         public StacLink(Uri uri, string relationshipType, string title, string mediaType, ulong contentLength = 0)
         {
-            Uri = uri;
-            RelationshipType = relationshipType;
-            Title = title;
-            ContentType = mediaType == null ? null : new ContentType(mediaType);
+            this.Uri = uri;
+            this.RelationshipType = relationshipType;
+            this.Title = title;
+            this.ContentType = mediaType == null ? null : new ContentType(mediaType);
             this.Length = contentLength;
         }
 
         public StacLink(StacLink source)
         {
             if (source == null)
+            {
                 throw new ArgumentNullException("source");
+            }
             Uri = source.Uri;
             RelationshipType = source.RelationshipType;
             Title = source.Title;

@@ -1,6 +1,7 @@
-﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacRepositoryCatalogTests.cs
+
 using Xunit;
 
 namespace Stac.Test.Catalog

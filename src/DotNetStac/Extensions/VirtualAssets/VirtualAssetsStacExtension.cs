@@ -1,6 +1,9 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: VirtualAssetsStacExtension.cs
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Stac.Extensions.VirtualAssets
 {
@@ -12,7 +15,7 @@ namespace Stac.Extensions.VirtualAssets
         /// Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/virtual-assets/v1.0.0/schema.json";
 
-        private IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> itemFields;
         private const string VirtualAssetsField = "virtual:assets";
 
         internal VirtualAssetsStacExtension(IStacObject stacObject) : base(JsonSchemaUrl, stacObject)
@@ -24,6 +27,9 @@ namespace Stac.Extensions.VirtualAssets
         /// <summary>
         /// Virtual Assets
         /// </summary>
+        /// <value>
+        /// <placeholder>Virtual Assets</placeholder>
+        /// </value>
         public IDictionary<string, VirtualAsset> Assets
         {
             get { return StacPropertiesContainer.GetProperty<IDictionary<string, VirtualAsset>>(VirtualAssetsField); }
@@ -33,6 +39,9 @@ namespace Stac.Extensions.VirtualAssets
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => itemFields;
     }
 

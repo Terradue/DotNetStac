@@ -1,11 +1,13 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: BaselineVector.cs
 
 namespace Stac.Extensions.Sat
 {
 
     public struct BaselineVector
     {
-        private double perpendicular, parallel, along;
+        private readonly double perpendicular, parallel, along;
 
         public double Perpendicular
         {

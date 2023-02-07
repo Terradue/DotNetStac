@@ -1,7 +1,10 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: DatacubeStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
 using Stac.Model;
 
 namespace Stac.Extensions.Datacube
@@ -14,7 +17,7 @@ namespace Stac.Extensions.Datacube
         /// Extensions identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/datacube/v2.1.0/schema.json";
 
-        private IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> itemFields;
         private const string DimensionField = "cube:dimensions";
         private const string VariableField = "cube:variables";
 
@@ -40,6 +43,9 @@ namespace Stac.Extensions.Datacube
         /// <summary>
         /// A dictionary of available dimensions where each object is a DatacubeDimension Object.
         /// </summary>
+        /// <value>
+        /// <placeholder>A dictionary of available dimensions where each object is a DatacubeDimension Object.</placeholder>
+        /// </value>
         public IDictionary<string, DatacubeDimension> Dimensions
         {
             get
@@ -64,6 +70,9 @@ namespace Stac.Extensions.Datacube
         /// <summary>
         /// A dictionary of available variables where each object is a DatacubeVariable Object.
         /// </summary>
+        /// <value>
+        /// <placeholder>A dictionary of available variables where each object is a DatacubeVariable Object.</placeholder>
+        /// </value>
         public IDictionary<string, DatacubeVariable> Variables
         {
             get
@@ -88,8 +97,12 @@ namespace Stac.Extensions.Datacube
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();

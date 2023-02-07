@@ -1,11 +1,11 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacPropertiesContainerExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Schema;
 using Stac.Collection;
-using Stac.Exceptions;
 
 public delegate IStacSummaryItem CreateSummary<T>(IEnumerable<T> arg);
 
@@ -35,21 +35,33 @@ namespace Stac.Extensions
         /// <summary>
         /// Identifier of the extension
         /// </summary>
+        /// <value>
+        /// <placeholder>Identifier of the extension</placeholder>
+        /// </value>
         public virtual string Identifier => identifier;
 
         /// <summary>
         /// Stac Object extended by the extension
         /// </summary>
+        /// <value>
+        /// <placeholder>Stac Object extended by the extension</placeholder>
+        /// </value>
         public IStacPropertiesContainer StacPropertiesContainer { get; private set; }
 
         /// <summary>
         /// Get the potential fields of the extensions and their type
         /// </summary>
+        /// <value>
+        /// <placeholder>Get the potential fields of the extensions and their type</placeholder>
+        /// </value>
         public abstract IDictionary<string, Type> ItemFields { get; }
 
         /// <summary>
         /// Indicate if the extension is already declared
         /// </summary>
+        /// <value>
+        /// <placeholder>Indicate if the extension is already declared</placeholder>
+        /// </value>
         public bool IsDeclared => StacPropertiesContainer.GetDeclaredExtensions().Any(e => e.Identifier == Identifier);
 
         /// <summary>
@@ -60,25 +72,42 @@ namespace Stac.Extensions
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
 
-            foreach (var itemField in ItemFields)
+            foreach (var itemField in this.ItemFields)
             {
                 if (itemField.Value == typeof(bool))
-                    summaryFunctions.Add(itemField.Key, new SummaryFunction<bool>(this, itemField.Key, CreateSummaryValueSet<bool>));
+                {
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<bool>(this, itemField.Key, CreateSummaryValueSet));
+                }
                 else if (itemField.Value == typeof(short))
-                    summaryFunctions.Add(itemField.Key, new SummaryFunction<short>(this, itemField.Key, CreateRangeSummaryObject<short>));
+                {
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<short>(this, itemField.Key, CreateRangeSummaryObject));
+                }
                 else if (itemField.Value == typeof(int))
-                    summaryFunctions.Add(itemField.Key, new SummaryFunction<int>(this, itemField.Key, CreateRangeSummaryObject<int>));
+                {
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<int>(this, itemField.Key, CreateRangeSummaryObject));
+                }
                 else if (itemField.Value == typeof(long))
-                    summaryFunctions.Add(itemField.Key, new SummaryFunction<long>(this, itemField.Key, CreateRangeSummaryObject<long>));
+                {
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<long>(this, itemField.Key, CreateRangeSummaryObject));
+                }
                 else if (itemField.Value == typeof(float))
-                    summaryFunctions.Add(itemField.Key, new SummaryFunction<float>(this, itemField.Key, CreateRangeSummaryObject<float>));
+                {
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<float>(this, itemField.Key, CreateRangeSummaryObject));
+                }
                 else if (itemField.Value == typeof(double))
-                    summaryFunctions.Add(itemField.Key, new SummaryFunction<double>(this, itemField.Key, CreateRangeSummaryObject<double>));
+                {
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<double>(this, itemField.Key, CreateRangeSummaryObject));
+                }
                 else if (itemField.Value == typeof(DateTime))
-                    summaryFunctions.Add(itemField.Key, new SummaryFunction<DateTime>(this, itemField.Key, CreateRangeSummaryObject<DateTime>));
+                {
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<DateTime>(this, itemField.Key, CreateRangeSummaryObject));
+                }
                 else
-                    summaryFunctions.Add(itemField.Key, new SummaryFunction<string>(this, itemField.Key, CreateSummaryValueSet<string>));
+                {
+                    summaryFunctions.Add(itemField.Key, new SummaryFunction<string>(this, itemField.Key, CreateSummaryValueSet));
+                }
             }
+            
             return summaryFunctions;
         }
 

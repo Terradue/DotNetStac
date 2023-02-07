@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacConvert.cs
+
+using System;
 using System.Globalization;
 using System.IO;
 using Newtonsoft.Json;
@@ -11,7 +15,7 @@ namespace Stac
     /// </summary>
     public static class StacConvert
     {
-        private static JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
+        private static readonly JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
         {
             DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             Culture = CultureInfo.CreateSpecificCulture("en-US")

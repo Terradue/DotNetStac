@@ -1,11 +1,13 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: ItemCollection.cs
+
+using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
 using Stac.Collection;
-using Stac.Model;
 
 namespace Stac.Extensions.ItemCollections
 {
@@ -30,16 +32,22 @@ namespace Stac.Extensions.ItemCollections
         /// <summary>
         /// STAC type (FeatureCollection)
         /// </summary>
+        /// <value>
+        /// <placeholder>STAC type (FeatureCollection)</placeholder>
+        /// </value>
         [JsonProperty("type")]
         public override string Type => "FeatureCollection";
 
         [JsonProperty(PropertyName = "features", Required = Required.Always)]
         public List<StacItem> Features { get; set; }
 
+        /// <inheritdoc/>
         public string Identifier => JsonSchemaUrl;
 
+        /// <inheritdoc/>
         public bool IsDeclared => true;
 
+        /// <inheritdoc/>
         public IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             return new Dictionary<string, ISummaryFunction>();
@@ -105,7 +113,7 @@ namespace Stac.Extensions.ItemCollections
             }
             catch (Exception e)
             {
-                throw new Stac.Exceptions.InvalidStacSchemaException(string.Format("Error getting schema at Uri '{0}'", schemaUri), e);
+                throw new Exceptions.InvalidStacSchemaException(string.Format("Error getting schema at Uri '{0}'", schemaUri), e);
             }
             var sr = new StreamReader(stream);
             return JSchema.Parse(sr.ReadToEnd(), jSchemaResolver);

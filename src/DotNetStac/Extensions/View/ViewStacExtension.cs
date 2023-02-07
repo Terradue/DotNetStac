@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: ViewStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 
 namespace Stac.Extensions.View
@@ -55,6 +59,7 @@ namespace Stac.Extensions.View
             set { StacPropertiesContainer.SetProperty(SunElevationField, value); DeclareStacExtension(); }
         }
 
+        /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => itemFields;
     }
 

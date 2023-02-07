@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: EoStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +19,7 @@ namespace Stac.Extensions.Eo
         private const string BandsField = "eo:bands";
         private const string CloudCoverField = "eo:cloud_cover";
 
-        private IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> itemFields;
 
         internal EoStacExtension(IStacPropertiesContainer stacpropertiesContainer) : base(JsonSchemaUrl, stacpropertiesContainer)
         {
@@ -27,6 +31,9 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// Estimate of cloud cover
         /// </summary>
+        /// <value>
+        /// <placeholder>Estimate of cloud cover</placeholder>
+        /// </value>
         public double? CloudCover
         {
             get { return StacPropertiesContainer.GetProperty<double?>(CloudCoverField); }
@@ -44,6 +51,9 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// An array of available bands where each object is a Band Object.
         /// </summary>
+        /// <value>
+        /// <placeholder>An array of available bands where each object is a Band Object.</placeholder>
+        /// </value>
         public EoBandObject[] Bands
         {
             get { return StacPropertiesContainer.GetProperty<EoBandObject[]>(BandsField); }
@@ -62,12 +72,16 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
-            summaryFunctions.Add(CloudCoverField, new SummaryFunction<double>(this, CloudCoverField, CreateRangeSummaryObject<double>));
+            summaryFunctions.Add(CloudCoverField, new SummaryFunction<double>(this, CloudCoverField, CreateRangeSummaryObject));
             return summaryFunctions;
         }
     }

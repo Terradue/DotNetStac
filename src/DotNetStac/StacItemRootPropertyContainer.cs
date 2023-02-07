@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacItemRootPropertyContainer.cs
+
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Stac

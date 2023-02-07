@@ -1,7 +1,10 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: Example1Test.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Collection;
@@ -12,19 +15,19 @@ namespace Stac.Test.Example
     public class Example1Test : TestBase
     {
         //[Fact]
-        public void Deserialize()
-        {
-            Uri catalogUri = new Uri("https://landsat-stac.s3.amazonaws.com/catalog.json");
-            StacCatalog catalog = StacConvert.Deserialize<StacCatalog>(httpClient.GetStringAsync(catalogUri).GetAwaiter().GetResult());
+        // public void Deserialize()
+        // {
+        //     Uri catalogUri = new Uri("https://landsat-stac.s3.amazonaws.com/catalog.json");
+        //     StacCatalog catalog = StacConvert.Deserialize<StacCatalog>(httpClient.GetStringAsync(catalogUri).GetAwaiter().GetResult());
 
-            Console.Out.WriteLine(catalog.Id);
-            Console.Out.WriteLine(catalog.StacVersion);
+        //     Console.Out.WriteLine(catalog.Id);
+        //     Console.Out.WriteLine(catalog.StacVersion);
 
-            ListChildrensItemsAndAssets(catalog, catalogUri);
+        //     ListChildrensItemsAndAssets(catalog, catalogUri);
 
-        }
+        // }
 
-        void ListChildrensItemsAndAssets(IStacParent catalog, Uri baseUri, string prefix = "", int limit = 2)
+        private void ListChildrensItemsAndAssets(IStacParent catalog, Uri baseUri, string prefix = "", int limit = 2)
         {
             // Get children first (sub catalogs and collections)
             foreach (var childLink in catalog.GetChildrenLinks().Concat(catalog.GetItemLinks()))

@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: VirtualAsset.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -47,6 +51,9 @@ namespace Stac.Extensions.VirtualAssets
         /// <summary>
         /// Do not use
         /// </summary>
+        /// <value>
+        /// <placeholder>Do not use</placeholder>
+        /// </value>
         [JsonIgnore]
         public new Uri Uri
         {

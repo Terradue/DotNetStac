@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: VersionStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -54,8 +58,12 @@ namespace Stac.Extensions.Version
         /// <summary>
         /// Potential fields and their types
         /// </summary>
+        /// <value>
+        /// <placeholder>Potential fields and their types</placeholder>
+        /// </value>
         public override IDictionary<string, Type> ItemFields => itemFields;
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
@@ -93,7 +101,7 @@ namespace Stac.Extensions.Version
         /// <returns>null if no precedessor version</returns>
         public static StacItem PredecessorVersion(this StacItem stacItem, Func<StacLink, StacItem> stacLinkResolver)
         {
-            return GetVersion<StacItem>(stacItem, VersionStacExtension.PredecessorVersionRel, stacLinkResolver);
+            return GetVersion(stacItem, VersionStacExtension.PredecessorVersionRel, stacLinkResolver);
         }
 
         /// <summary>
@@ -104,7 +112,7 @@ namespace Stac.Extensions.Version
         /// <returns>null if no precedessor version</returns>
         public static StacCollection PredecessorVersion(this StacCollection stacCollection, Func<StacLink, StacCollection> stacLinkResolver)
         {
-            return GetVersion<StacCollection>(stacCollection, VersionStacExtension.PredecessorVersionRel, stacLinkResolver);
+            return GetVersion(stacCollection, VersionStacExtension.PredecessorVersionRel, stacLinkResolver);
         }
 
         /// <summary>
@@ -115,7 +123,7 @@ namespace Stac.Extensions.Version
         /// <returns>null if no successor version</returns>
         public static StacItem SuccessorVersion(this StacItem stacItem, Func<StacLink, StacItem> stacLinkResolver)
         {
-            return GetVersion<StacItem>(stacItem, VersionStacExtension.SuccessorVersionRel, stacLinkResolver);
+            return GetVersion(stacItem, VersionStacExtension.SuccessorVersionRel, stacLinkResolver);
         }
 
         /// <summary>
@@ -126,7 +134,7 @@ namespace Stac.Extensions.Version
         /// <returns>null if no successor version</returns>
         public static StacCollection SuccessorVersion(this StacCollection stacCollection, Func<StacLink, StacCollection> stacLinkResolver)
         {
-            return GetVersion<StacCollection>(stacCollection, VersionStacExtension.SuccessorVersionRel, stacLinkResolver);
+            return GetVersion(stacCollection, VersionStacExtension.SuccessorVersionRel, stacLinkResolver);
         }
 
         /// <summary>
@@ -137,7 +145,7 @@ namespace Stac.Extensions.Version
         /// <returns>null if no latest version</returns>
         public static StacItem LatestVersion(this StacItem stacItem, Func<StacLink, StacItem> stacLinkResolver)
         {
-            return GetVersion<StacItem>(stacItem, VersionStacExtension.LatestVersionRel, stacLinkResolver);
+            return GetVersion(stacItem, VersionStacExtension.LatestVersionRel, stacLinkResolver);
         }
 
         /// <summary>
@@ -148,7 +156,7 @@ namespace Stac.Extensions.Version
         /// <returns>null if no latest version</returns>
         public static StacCollection LatestVersion(this StacCollection stacCollection, Func<StacLink, StacCollection> stacLinkResolver)
         {
-            return GetVersion<StacCollection>(stacCollection, VersionStacExtension.LatestVersionRel, stacLinkResolver);
+            return GetVersion(stacCollection, VersionStacExtension.LatestVersionRel, stacLinkResolver);
         }
 
         internal static T GetVersion<T>(this T stacObject, string relType, Func<StacLink, T> stacLinkResolver) where T : IStacObject

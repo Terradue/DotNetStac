@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacExtent.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -69,6 +73,7 @@ namespace Stac.Collection
             );
         }
 
+        /// <inheritdoc/>
         public object Clone()
         {
             return new StacExtent(this);

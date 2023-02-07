@@ -1,25 +1,25 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacValidator.cs
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using Stac.Exceptions;
 using Stac.Extensions.ItemCollections;
-using Stac.Schemas;
 
 namespace Stac.Schemas
 {
     public class StacValidator
     {
-        private StacSchemaResolver schemaResolver = null;
+        private readonly StacSchemaResolver schemaResolver = null;
 
-        private Dictionary<Type, string> stacTypes = new Dictionary<Type, string>();
+        private readonly Dictionary<Type, string> stacTypes = new Dictionary<Type, string>();
 
         public StacValidator(JSchemaUrlResolver jSchemaUrlResolver)
         {

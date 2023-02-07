@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacItem.cs
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -20,7 +24,7 @@ namespace Stac
     public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, ICloneable
     {
         public const string MEDIATYPE = "application/geo+json";
-        public readonly static ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
+        public static readonly ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
 
         [JsonConstructor]
         public StacItem(string id,
@@ -106,6 +110,7 @@ namespace Stac
             get; private set;
         }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public ContentType MediaType => ITEM_MEDIATYPE;
 
@@ -137,7 +142,7 @@ namespace Stac
         [JsonExtensionData]
         public IDictionary<string, object> RootProperties { get => Root.Properties; internal set => Root.Properties = value; }
 
-        private StacItemRootPropertyContainer Root;
+        private readonly StacItemRootPropertyContainer Root;
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
@@ -176,6 +181,7 @@ namespace Stac
             return new StacItem(this);
         }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
     }

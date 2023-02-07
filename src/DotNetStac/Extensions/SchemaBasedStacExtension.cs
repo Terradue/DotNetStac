@@ -1,9 +1,10 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: SchemaBasedStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Schema;
 using Stac.Exceptions;
 using Stac.Schemas;
 
@@ -17,7 +18,7 @@ namespace Stac.Extensions
                                         IStacObject stacObject) : base(jsonSchema.ToString(),
                                                                        stacObject)
         {
-            Preconditions.CheckNotNull<Uri>(jsonSchema, "jsonSchema");
+            Preconditions.CheckNotNull(jsonSchema, "jsonSchema");
             JsonSchema = jsonSchema;
             this.stacObject = stacObject;
         }
@@ -27,7 +28,7 @@ namespace Stac.Extensions
                                            IStacObject stacObject) : base(schemaUri.ToString(),
                                                                        stacObject)
         {
-            Preconditions.CheckNotNull<Uri>(schemaUri, "schemaUri");
+            Preconditions.CheckNotNull(schemaUri, "schemaUri");
             this.stacObject = stacObject;
             JsonSchema = schemaUri;
         }
@@ -38,16 +39,18 @@ namespace Stac.Extensions
                                                       IStacObject stacObject)
         {
             if (StacSchemaResolver.CoreTypes.Contains(shortcut))
-                throw new Exceptions.InvalidStacSchemaException(shortcut + "is not an extension");
+                throw new InvalidStacSchemaException(shortcut + "is not an extension");
             Uri schema = new Uri($"https://stac-extensions.github.io/{shortcut}/v1.0.0/schema.json");
 
             return new SchemaBasedStacExtension(schema, stacObject);
         }
 
+        /// <inheritdoc/>
         public override string Identifier => JsonSchema.ToString();
 
         public Uri JsonSchema { get; }
 
+        /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => new Dictionary<string, Type>();
     }
 }

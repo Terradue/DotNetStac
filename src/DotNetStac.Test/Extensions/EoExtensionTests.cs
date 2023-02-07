@@ -1,9 +1,12 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: EoExtensionTests.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Stac.Extensions.Eo;
 using Xunit;
 
@@ -109,8 +112,8 @@ namespace Stac.Test.Extensions
             EoStacExtension eo = item.EoExtension();
             eo.CloudCover = 0;
 
-            Assert.Equal<double>(0.0, eo.CloudCover.Value);
-            Assert.Equal<double>(0.0, double.Parse(asset.Properties["eo:cloud_cover"].ToString()));
+            Assert.Equal(0.0, eo.CloudCover.Value);
+            Assert.Equal(0.0, double.Parse(asset.Properties["eo:cloud_cover"].ToString()));
 
             var actualJson = StacConvert.Serialize(item);
 
