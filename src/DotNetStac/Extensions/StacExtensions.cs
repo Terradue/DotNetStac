@@ -15,7 +15,7 @@ namespace Stac.Extensions
     /// </summary>
     public static class StacExtensions
     {
-        private static readonly object initLock = new object();
+        private static readonly object InitLock = new object();
         private static Dictionary<string, Type> managedStacExtensions = new Dictionary<string, Type>();
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Stac.Extensions
         /// </summary>
         public static void InitManagedExtensions()
         {
-            lock (initLock)
+            lock (InitLock)
             {
                 managedStacExtensions.Clear();
                 managedStacExtensions.Add(Eo.EoStacExtension.JsonSchemaUrl, typeof(Eo.EoStacExtension));
@@ -65,7 +65,8 @@ namespace Stac.Extensions
         /// <summary>
         /// Get the declared extensions for a specific stac properties container
         /// </summary>
-        /// <param name="stacPropertiesContainer"></param>
+        /// <param name="stacPropertiesContainer">The stac properties container</param>
+        /// <returns>Collection of extensions</returns>
         public static IEnumerable<IStacExtension> GetDeclaredExtensions(this IStacPropertiesContainer stacPropertiesContainer)
         {
             if (ManagedStacExtensions.Count == 0)

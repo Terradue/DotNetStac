@@ -4,116 +4,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Stac.Extensions.Version
 {
-    /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class VersionStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC item
-        /// </summary>
-        public static VersionStacExtension VersionExtension(this StacItem stacItem)
-        {
-            return new VersionStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC collection
-        /// </summary>
-        public static VersionStacExtension VersionExtension(this StacCollection stacItem)
-        {
-            return new VersionStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Retrieve the predecessor version of the Stac Item if any
-        /// </summary>
-        /// <param name="stacItem">current Stac Item</param>
-        /// <param name="stacLinkResolver">Function that read a Stac Link to get the StacItem</param>
-        /// <returns>null if no precedessor version</returns>
-        public static StacItem PredecessorVersion(this StacItem stacItem, Func<StacLink, StacItem> stacLinkResolver)
-        {
-            return GetVersion(stacItem, VersionStacExtension.PredecessorVersionRel, stacLinkResolver);
-        }
-
-        /// <summary>
-        /// Retrieve the predecessor version of the Stac Collection if any
-        /// </summary>
-        /// <param name="stacCollection">current Stac Collection</param>
-        /// <param name="stacLinkResolver">Function that read a Stac Link to get the StacItem</param>
-        /// <returns>null if no precedessor version</returns>
-        public static StacCollection PredecessorVersion(this StacCollection stacCollection, Func<StacLink, StacCollection> stacLinkResolver)
-        {
-            return GetVersion(stacCollection, VersionStacExtension.PredecessorVersionRel, stacLinkResolver);
-        }
-
-        /// <summary>
-        /// Retrieve the successor version of the Stac Item if any
-        /// </summary>
-        /// <param name="stacItem">current Stac Item</param>
-        /// <param name="stacLinkResolver">Function that read a Stac Link to get the StacItem</param>
-        /// <returns>null if no successor version</returns>
-        public static StacItem SuccessorVersion(this StacItem stacItem, Func<StacLink, StacItem> stacLinkResolver)
-        {
-            return GetVersion(stacItem, VersionStacExtension.SuccessorVersionRel, stacLinkResolver);
-        }
-
-        /// <summary>
-        /// Retrieve the successor version of the Stac Collection if any
-        /// </summary>
-        /// <param name="stacCollection">current Stac Collection</param>
-        /// <param name="stacLinkResolver">Function that read a Stac Link to get the StacItem</param>
-        /// <returns>null if no successor version</returns>
-        public static StacCollection SuccessorVersion(this StacCollection stacCollection, Func<StacLink, StacCollection> stacLinkResolver)
-        {
-            return GetVersion(stacCollection, VersionStacExtension.SuccessorVersionRel, stacLinkResolver);
-        }
-
-        /// <summary>
-        /// Retrieve the latest version of the Stac Item if any
-        /// </summary>
-        /// <param name="stacItem">current Stac Item</param>
-        /// <param name="stacLinkResolver">Function that read a Stac Link to get the StacItem</param>
-        /// <returns>null if no latest version</returns>
-        public static StacItem LatestVersion(this StacItem stacItem, Func<StacLink, StacItem> stacLinkResolver)
-        {
-            return GetVersion(stacItem, VersionStacExtension.LatestVersionRel, stacLinkResolver);
-        }
-
-        /// <summary>
-        /// Retrieve the latest version of the Stac Collection if any
-        /// </summary>
-        /// <param name="stacCollection">current Stac Collection</param>
-        /// <param name="stacLinkResolver">Function that read a Stac Link to get the StacItem</param>
-        /// <returns>null if no latest version</returns>
-        public static StacCollection LatestVersion(this StacCollection stacCollection, Func<StacLink, StacCollection> stacLinkResolver)
-        {
-            return GetVersion(stacCollection, VersionStacExtension.LatestVersionRel, stacLinkResolver);
-        }
-
-        internal static T GetVersion<T>(this T stacObject, string relType, Func<StacLink, T> stacLinkResolver)
-            where T : IStacObject
-        {
-            var predecessorVersionLink = stacObject.Links.FirstOrDefault(l => l.RelationshipType == relType);
-            if (predecessorVersionLink == null)
-            {
-                return default(T);
-            }
-
-            return stacLinkResolver(predecessorVersionLink);
-        }
-    }
-
     /// <summary>
     /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/version">Version extension</seealso>
     /// </summary>
     public class VersionStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-#pragma warning disable SA1591 // Elements should be documented
+#pragma warning disable CS1591 // Elements should be documented
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/version/v1.0.0/schema.json";
 
         public const string VersionField = "version";
@@ -125,7 +24,7 @@ namespace Stac.Extensions.Version
 
         public const string LatestVersionRel = "predecessor-version";
 
-#pragma warning disable SA1591 // Elements should be documented
+#pragma warning disable CS1591 // Elements should be documented
 
         private readonly Dictionary<string, Type> _itemFields;
 

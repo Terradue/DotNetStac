@@ -8,8 +8,17 @@ using GeoJSON.Net.Geometry;
 
 namespace Stac.Extensions.Sat
 {
+    /// <summary>
+    /// Helpers methods for the SatStacExtension
+    /// </summary>
     public static class SatStacExtensionHelpers
     {
+        /// <summary>
+        /// Calculates the baseline.
+        /// </summary>
+        /// <returns>The baseline.</returns>
+        /// <param name="sat1">Sat1.</param>
+        /// <param name="sat2">Sat2.</param>
         public static BaselineVector CalculateBaseline(this SatStacExtension sat1, SatStacExtension sat2)
         {
             StacItem masterItem = sat1.StacItem;

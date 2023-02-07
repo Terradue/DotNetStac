@@ -7,41 +7,18 @@ using System.Collections.Generic;
 
 namespace Stac.Extensions.Storage
 {
-#pragma warning disable SA1402 // File may only contain a single type
-    /// <summary>
-    /// Extension methods for accessing Storage extension
-    /// </summary>
-    public static class StorageStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a StorageStacExtension class from a STAC Asset
-        /// </summary>
-        public static StorageStacExtension StorageExtension(this StacAsset stacAsset)
-        {
-            return new StorageStacExtension(stacAsset);
-        }
-
-        /// <summary>
-        /// Initilize a StorageStacExtension class from a STAC Item
-        /// </summary>
-        public static StorageStacExtension StorageExtension(this StacItem stacItem)
-        {
-            return new StorageStacExtension(stacItem);
-        }
-    }
-
     /// <summary>
     /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/storage">Storage extension</seealso>
     /// </summary>
     public class StorageStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-#pragma warning disable SA1591 // Elements should be documented
+#pragma warning disable CS1591 // Elements should be documented
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/storage/v1.0.0/schema.json";
         public const string PlatformField = "storage:platform";
         public const string RegionField = "storage:region";
         public const string RequesterPaysField = "storage:requester_pays";
         public const string TierField = "storage:tier";
-#pragma warning restore SA1591 // Elements should be documented
+#pragma warning restore CS1591 // Elements should be documented
         private readonly Dictionary<string, Type> _itemFields;
 
         /// <summary>
@@ -153,5 +130,4 @@ namespace Stac.Extensions.Storage
             return summaryFunctions;
         }
     }
-#pragma warning restore SA1402 // File may only contain a single type
 }

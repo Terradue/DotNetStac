@@ -11,10 +11,16 @@ using Stac.Collection;
 namespace Stac.Extensions
 {
 #pragma warning disable SA1649 // File name should match first type name
+    /// <summary>
+    /// Defines a function that creates a summary item from a collection of items.
+    /// </summary>
     public class SummaryFunction<T> : ISummaryFunction
     {
         private readonly CreateSummary<T> _summaryFunction;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SummaryFunction{T}"/> class.
+        /// </summary>
         public SummaryFunction(IStacExtension extension, string propertyName, CreateSummary<T> summaryFunction)
         {
             this.Extension = extension;

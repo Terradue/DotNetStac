@@ -14,7 +14,7 @@ namespace Stac.Schemas
     {
         public static string[] CoreTypes = new string[] { "item", "catalog", "collection" };
 
-        private static readonly IDictionary<string, Uri> schemaMap = new Dictionary<string, Uri>();
+        private static readonly IDictionary<string, Uri> SchemaMap = new Dictionary<string, Uri>();
 
         private readonly JSchemaResolver _jSchemaResolver;
         private readonly IDictionary<string, JSchema> _schemaCompiled;
@@ -56,9 +56,9 @@ namespace Stac.Schemas
                 schemaUri = baseUri;
             }
 
-            if (!string.IsNullOrEmpty(baseUrl) && schemaMap.ContainsKey(baseUrl))
+            if (!string.IsNullOrEmpty(baseUrl) && SchemaMap.ContainsKey(baseUrl))
             {
-                schemaUri = schemaMap[baseUrl];
+                schemaUri = SchemaMap[baseUrl];
             }
 
             if (this._schemaCompiled.ContainsKey(schemaUri.ToString()))

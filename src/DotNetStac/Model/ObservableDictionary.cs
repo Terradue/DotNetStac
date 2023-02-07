@@ -103,6 +103,27 @@ namespace Stac.Model
         IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
             => this._dictionary.GetEnumerator();
 
+        IEnumerator IEnumerable.GetEnumerator()
+            => this._dictionary.GetEnumerator();
+
+        // IDictionary<TKey,TValue> Members
+
+        /// <inheritdoc/>
+        public void Add(TKey key, TValue value)
+            => this.TryAddWithNotification(key, value);
+
+        /// <inheritdoc/>
+        public bool ContainsKey(TKey key)
+            => this._dictionary.ContainsKey(key);
+
+        /// <inheritdoc/>
+        public bool Remove(TKey key)
+            => this.TryRemoveWithNotification(key, out TValue temp);
+
+        /// <inheritdoc/>
+        public bool TryGetValue(TKey key, out TValue value)
+            => this._dictionary.TryGetValue(key, out value);
+
         /// <summary>
         /// Notifies observers of CollectionChanged or PropertyChanged of an update to the dictionary.
         /// </summary>
@@ -235,27 +256,6 @@ namespace Stac.Model
 
             return -1;
         }
-
-        IEnumerator IEnumerable.GetEnumerator()
-            => this._dictionary.GetEnumerator();
-
-        // IDictionary<TKey,TValue> Members
-
-        /// <inheritdoc/>
-        public void Add(TKey key, TValue value)
-            => this.TryAddWithNotification(key, value);
-
-        /// <inheritdoc/>
-        public bool ContainsKey(TKey key)
-            => this._dictionary.ContainsKey(key);
-
-        /// <inheritdoc/>
-        public bool Remove(TKey key)
-            => this.TryRemoveWithNotification(key, out TValue temp);
-
-        /// <inheritdoc/>
-        public bool TryGetValue(TKey key, out TValue value)
-            => this._dictionary.TryGetValue(key, out value);
     }
 
 #pragma warning restore SA1649 // File name should match first type name

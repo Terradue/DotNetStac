@@ -15,7 +15,7 @@ namespace Stac
     /// </summary>
     public static class StacConvert
     {
-        private static readonly JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
+        private static readonly JsonSerializerSettings DefaultJsonSerializerSettings = new JsonSerializerSettings()
         {
             DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             Culture = CultureInfo.CreateSpecificCulture("en-US"),
@@ -31,7 +31,7 @@ namespace Stac
             //     return JsonConvert.DeserializeObject<T>(json);
             if (serializerSettings == null)
             {
-                serializerSettings = defaultJsonSerializerSettings;
+                serializerSettings = DefaultJsonSerializerSettings;
             }
 
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
@@ -57,7 +57,7 @@ namespace Stac
         {
             if (serializerSettings == null)
             {
-                serializerSettings = defaultJsonSerializerSettings;
+                serializerSettings = DefaultJsonSerializerSettings;
             }
 
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;

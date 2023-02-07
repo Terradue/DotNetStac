@@ -10,10 +10,18 @@ using Stac.Schemas;
 
 namespace Stac.Extensions
 {
+    /// <summary>
+    /// A schema based extension
+    /// </summary>
     public class SchemaBasedStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
         private readonly IStacObject _stacObject;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SchemaBasedStacExtension"/> class.
+        /// </summary>
+        /// <param name="jsonSchema">The json schema.</param>
+        /// <param name="stacObject">The stac object.</param>
         public SchemaBasedStacExtension(
             Uri jsonSchema,
             IStacObject stacObject)
@@ -26,6 +34,12 @@ namespace Stac.Extensions
             this._stacObject = stacObject;
         }
 
+        /// <summary>
+        ///  Initializes a new instance of the <see cref="SchemaBasedStacExtension"/> class.
+        /// </summary>
+        /// <param name="schemaUri">The schema URI.</param>
+        /// <param name="stacSchemaResolver">The stac schema resolver.</param>
+        /// <param name="stacObject">The stac object.</param>
         public SchemaBasedStacExtension(
             Uri schemaUri,
             StacSchemaResolver stacSchemaResolver,
@@ -42,11 +56,22 @@ namespace Stac.Extensions
         /// <inheritdoc/>
         public override string Identifier => this.JsonSchema.ToString();
 
+        /// <summary>
+        /// Gets the json schema.
+        /// </summary>
+        /// <returns>The schema URI</returns>
         public Uri JsonSchema { get; }
 
         /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => new Dictionary<string, Type>();
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="SchemaBasedStacExtension"/> class.
+        /// </summary>
+        /// <param name="shortcut">The shortcut.</param>
+        /// <param name="stacSchemaResolver">The stac schema resolver.</param>
+        /// <param name="stacObject">The stac object.</param>
+        /// <returns>The extension</returns>
         public static SchemaBasedStacExtension Create(
             string shortcut,
             StacSchemaResolver stacSchemaResolver,
