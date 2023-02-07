@@ -18,7 +18,7 @@ namespace Stac
         private static readonly JsonSerializerSettings defaultJsonSerializerSettings = new JsonSerializerSettings()
         {
             DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-            Culture = CultureInfo.CreateSpecificCulture("en-US")
+            Culture = CultureInfo.CreateSpecificCulture("en-US"),
         };
 
         public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null)

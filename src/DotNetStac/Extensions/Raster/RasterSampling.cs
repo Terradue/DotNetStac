@@ -12,6 +12,6 @@ namespace Stac.Extensions.Raster
     {
         area,
 
-        point
+        point,
     }
 }

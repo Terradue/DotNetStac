@@ -17,6 +17,6 @@ namespace Stac.Extensions.Sar
         X,
         Ku,
         K,
-        Ka
+        Ka,
     }
 }

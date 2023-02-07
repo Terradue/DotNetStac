@@ -23,6 +23,6 @@ namespace Stac
         processor,
 
         //  The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
-        host
+        host,
     }
 }

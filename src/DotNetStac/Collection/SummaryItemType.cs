@@ -17,6 +17,6 @@ namespace Stac.Collection
         /// <summary>
         /// Summary Range Object
         /// </summary>
-        RangeObject
+        RangeObject,
     }
 }

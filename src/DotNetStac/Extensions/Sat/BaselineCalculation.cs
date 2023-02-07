@@ -137,7 +137,7 @@ namespace Stac.Extensions.Sat
             {
                 Sx(t, interpolSlave) - Sx(t, interpolMaster),
                 Sy(t, interpolSlave) - Sy(t, interpolMaster),
-                Sz(t, interpolSlave) - Sz(t, interpolMaster)
+                Sz(t, interpolSlave) - Sz(t, interpolMaster),
             };
 
             double bMod = Math.Sqrt(b[0] * b[0] + b[1] * b[1] + b[2] * b[2]);
@@ -154,7 +154,7 @@ namespace Stac.Extensions.Sat
             {
                 x - Sx(t, interpolMaster),
                 y - Sy(t, interpolMaster),
-                z - Sz(t, interpolMaster)
+                z - Sz(t, interpolMaster),
             };
             double vparMod = Math.Sqrt(vpar[0] * vpar[0] + vpar[1] * vpar[1] + vpar[2] * vpar[2]);
 
@@ -170,7 +170,7 @@ namespace Stac.Extensions.Sat
             {
                 Vx(t, interpolMaster),
                 Vy(t, interpolMaster),
-                Vz(t, interpolMaster)
+                Vz(t, interpolMaster),
             };
 
             double vaMod = Math.Sqrt(va[0] * va[0] + va[1] * va[1] + va[2] * va[2]);
@@ -202,7 +202,7 @@ namespace Stac.Extensions.Sat
             {
                 vectorA[1] * vectorB[2] - vectorA[2] * vectorB[1],
                 vectorA[2] * vectorB[0] - vectorA[0] * vectorB[2],
-                vectorA[0] * vectorB[1] - vectorA[1] * vectorB[0]
+                vectorA[0] * vectorB[1] - vectorA[1] * vectorB[0],
             };
         }
 

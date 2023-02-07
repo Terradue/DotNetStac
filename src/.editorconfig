@@ -413,6 +413,7 @@ dotnet_diagnostic.SA1128.severity = warning      # Put constructor initializers 
 dotnet_diagnostic.SA1137.severity = warning      # Elements should have the same indentation
 dotnet_diagnostic.SA1201.severity = warning      # Elements must appear in the correct order
 dotnet_diagnostic.SA1214.severity = warning      # Readonly fields must appear before non-readonly fields
+dotnet_diagnostic.SA1413.severity = warning      # Use trailing comma in multi-line initializers
 dotnet_diagnostic.SA1500.severity = warning      # Braces for multi-line statements must not share line
 dotnet_diagnostic.SA1501.severity = warning      # Braces must not be omitted
 dotnet_diagnostic.SA1503.severity = warning      # Braces must not be omitted

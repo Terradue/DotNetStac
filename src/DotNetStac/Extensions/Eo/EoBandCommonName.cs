@@ -28,6 +28,6 @@ namespace Stac.Extensions.Eo
         swir22,
         lwir,
         lwir11,
-        lwir12
+        lwir12,
     }
 }

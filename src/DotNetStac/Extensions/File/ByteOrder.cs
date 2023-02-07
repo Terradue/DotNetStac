@@ -20,6 +20,6 @@ namespace Stac.Extensions.File
 
         // Little Endian
         [EnumMember(Value = "little-endian")]
-        LittleEndian
+        LittleEndian,
     }
 }

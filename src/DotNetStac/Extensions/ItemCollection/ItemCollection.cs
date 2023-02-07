@@ -111,7 +111,7 @@ namespace Stac.Extensions.ItemCollections
                         Items = { new JSchema { Ref = linkSchema } }
                     }
                     },
-                }
+                },
             });
 
             return jSchema;

@@ -20,6 +20,6 @@ namespace Stac.Extensions.Sar
 
         // right
         [EnumMember(Value = "right")]
-        Right
+        Right,
     }
 }

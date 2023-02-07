@@ -63,7 +63,7 @@ namespace Stac.Common
         cfloat64,
 
         // Other data type than the ones listed above (e.g. boolean, string, higher precision numbers)
-        other
+        other,
 
 #pragma warning restore SA1300 // Element should begin with upper-case letter
 #pragma warning restore SA1602 // EnumerationItemsMustBeDocumented

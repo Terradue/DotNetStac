@@ -12,6 +12,6 @@ namespace Stac.Extensions.Datacube
     {
         spatial,
 
-        temporal
+        temporal,
     }
 }

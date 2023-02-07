@@ -14,6 +14,6 @@ namespace Stac.Extensions.Datacube
 
         y,
 
-        z
+        z,
     }
 }
