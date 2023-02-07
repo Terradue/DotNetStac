@@ -28,7 +28,7 @@ namespace Stac.Extensions.Raster
         /// Gets or sets an array of available bands where each object is a Band Object.
         /// </summary>
         /// <value>
-        /// <placeholder>An array of available bands where each object is a Band Object.</placeholder>
+        /// An array of available bands where each object is a Band Object.
         /// </value>
         public RasterBand[] Bands
         {
@@ -40,7 +40,7 @@ namespace Stac.Extensions.Raster
         /// Gets potential fields and their types
         /// </summary>
         /// <value>
-        /// <placeholder>Potential fields and their types</placeholder>
+        /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this.itemFields;
 

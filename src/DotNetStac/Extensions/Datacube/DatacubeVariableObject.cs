@@ -26,7 +26,7 @@ namespace Stac.Extensions.Datacube
         /// Gets or sets the dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.
         /// </summary>
         /// <value>
-        /// <placeholder>The dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.</placeholder>
+        /// The dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.
         /// </value>
         [JsonProperty("dimensions")]
         public string[] Dimensions { get => this.dimensions; set => this.dimensions = value; }
@@ -35,7 +35,7 @@ namespace Stac.Extensions.Datacube
         /// Gets or sets type of the variable.
         /// </summary>
         /// <value>
-        /// <placeholder>Type of the variable.</placeholder>
+        /// Type of the variable.
         /// </value>
         [JsonProperty("type")]
         public DatacubeVariableType? Type { get => this.type; set => this.type = value; }
@@ -44,7 +44,7 @@ namespace Stac.Extensions.Datacube
         /// Gets or sets detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
         /// </summary>
         /// <value>
-        /// <placeholder>Detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.</placeholder>
+        /// Detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
         /// </value>
         [JsonProperty("description")]
         public string Description { get => this.description; set => this.description = value; }
@@ -53,7 +53,7 @@ namespace Stac.Extensions.Datacube
         /// Gets or sets if the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.
         /// </summary>
         /// <value>
-        /// <placeholder>If the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.</placeholder>
+        /// If the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.
         /// </value>
         [JsonProperty("extent")]
         public double[] Extent { get => this.extent; set => this.extent = value; }
@@ -62,7 +62,7 @@ namespace Stac.Extensions.Datacube
         /// Gets or sets an (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.
         /// </summary>
         /// <value>
-        /// <placeholder>An (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.</placeholder>
+        /// An (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.
         /// </value>
         [JsonProperty("values")]
         public string[] Values { get => this.values; set => this.values = value; }
@@ -71,7 +71,7 @@ namespace Stac.Extensions.Datacube
         /// Gets or sets the unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
         /// </summary>
         /// <value>
-        /// <placeholder>The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        </placeholder>
+        /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
         /// </value>
         [JsonProperty("unit")]
         public string Unit { get => this.unit; set => this.unit = value; }
@@ -80,7 +80,7 @@ namespace Stac.Extensions.Datacube
         /// Gets or sets additional fields
         /// </summary>
         /// <value>
-        /// <placeholder>Additional fields</placeholder>
+        /// Additional fields
         /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }

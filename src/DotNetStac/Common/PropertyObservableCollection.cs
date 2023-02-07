@@ -8,6 +8,8 @@ using System.Linq;
 
 namespace Stac.Common
 {
+#pragma warning disable SA1649 // File name should match first type name
+
     /// <summary>
     /// A collection that is observable and that is also stored in a <see cref="IStacPropertiesContainer"/> as a property.
     /// </summary>
@@ -30,7 +32,7 @@ namespace Stac.Common
         /// Gets the properties container.
         /// </summary>
         /// <value>
-        /// <placeholder>The properties container.</placeholder>
+        /// The properties container.
         /// </value>
         public IStacPropertiesContainer PropertiesContainer { get; }
 
@@ -38,7 +40,7 @@ namespace Stac.Common
         /// Gets the property key.
         /// </summary>
         /// <value>
-        /// <placeholder>The property key.</placeholder>
+        /// The property key.
         /// </value>
         public string Key { get; }
 
@@ -53,4 +55,6 @@ namespace Stac.Common
             this.PropertiesContainer.SetProperty(this.Key, this.ToList());
         }
     }
+
+#pragma warning restore SA1649 // File name should match first type name
 }

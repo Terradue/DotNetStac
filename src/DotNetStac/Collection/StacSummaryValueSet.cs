@@ -50,11 +50,11 @@ namespace Stac.Collection
         /// Gets summary Value Set total of items
         /// </summary>
         /// <value>
-        /// <placeholder>Summary Value Set total of items</placeholder>
+        /// Summary Value Set total of items
         /// </value>
 
         /// <value>
-        /// <placeholder>Summary Value Set total of items</placeholder>
+        /// Summary Value Set total of items
         /// </value>
         public int Count => this.summary.Count();
 
@@ -62,7 +62,7 @@ namespace Stac.Collection
         /// Gets get the Summary Value Set as an enumerable
         /// </summary>
         /// <value>
-        /// <placeholder>Get the Summary Value Set as an enumerable</placeholder>
+        /// Get the Summary Value Set as an enumerable
         /// </value>
         public IEnumerable<T> SummarySet { get => this.summary.ToObject<List<T>>(); }
 

@@ -31,7 +31,7 @@ namespace Stac.Extensions.Alternate
         /// Gets or sets a dictionary of alternate location information for an asset.
         /// </summary>
         /// <value>
-        /// <placeholder>A dictionary of alternate location information for an asset.</placeholder>
+        /// A dictionary of alternate location information for an asset.
         /// </value>
         public IDictionary<string, AlternateAssetObject> AlternateAssets
         {
@@ -52,7 +52,7 @@ namespace Stac.Extensions.Alternate
         /// Gets potential fields and their types
         /// </summary>
         /// <value>
-        /// <placeholder>Potential fields and their types</placeholder>
+        /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => assetFields;
 

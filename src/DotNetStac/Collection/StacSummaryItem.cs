@@ -42,7 +42,7 @@ namespace Stac.Collection
         /// Gets jToken transformer
         /// </summary>
         /// <value>
-        /// <placeholder>JToken transformer</placeholder>
+        /// JToken transformer
         /// </value>
         public JToken AsJToken => this.summary;
 

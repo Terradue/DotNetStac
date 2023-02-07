@@ -35,7 +35,7 @@ namespace Stac.Extensions.Processing
         /// Gets or sets lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described NASA ISO.
         /// </summary>
         /// <value>
-        /// <placeholder>Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described NASA ISO.</placeholder>
+        /// Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described NASA ISO.
         /// </value>
         public string Lineage
         {
@@ -47,7 +47,7 @@ namespace Stac.Extensions.Processing
         /// Gets or sets the name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
         /// </summary>
         /// <value>
-        /// <placeholder>The name commonly used to refer to the processing level to make it easier to search for product level across collections or items.</placeholder>
+        /// The name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
         /// </value>
         public string Level
         {
@@ -59,7 +59,7 @@ namespace Stac.Extensions.Processing
         /// Gets or sets the name of the facility that produced the data. 
         /// </summary>
         /// <value>
-        /// <placeholder>The name of the facility that produced the data. </placeholder>
+        /// The name of the facility that produced the data. 
         /// </value>
         public string Facility
         {
@@ -71,7 +71,7 @@ namespace Stac.Extensions.Processing
         /// Gets a dictionary with name/version for key/value describing one or more softwares that produced the data.
         /// </summary>
         /// <value>
-        /// <placeholder>A dictionary with name/version for key/value describing one or more softwares that produced the data.</placeholder>
+        /// A dictionary with name/version for key/value describing one or more softwares that produced the data.
         /// </value>
         public IDictionary<string, string> Software
         {
@@ -97,7 +97,7 @@ namespace Stac.Extensions.Processing
         /// Gets potential fields and their types
         /// </summary>
         /// <value>
-        /// <placeholder>Potential fields and their types</placeholder>
+        /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this.itemFields;
 

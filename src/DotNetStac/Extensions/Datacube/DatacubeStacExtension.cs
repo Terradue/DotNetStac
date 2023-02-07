@@ -44,7 +44,7 @@ namespace Stac.Extensions.Datacube
         /// Gets a dictionary of available dimensions where each object is a DatacubeDimension Object.
         /// </summary>
         /// <value>
-        /// <placeholder>A dictionary of available dimensions where each object is a DatacubeDimension Object.</placeholder>
+        /// A dictionary of available dimensions where each object is a DatacubeDimension Object.
         /// </value>
         public IDictionary<string, DatacubeDimension> Dimensions
         {
@@ -76,7 +76,7 @@ namespace Stac.Extensions.Datacube
         /// Gets a dictionary of available variables where each object is a DatacubeVariable Object.
         /// </summary>
         /// <value>
-        /// <placeholder>A dictionary of available variables where each object is a DatacubeVariable Object.</placeholder>
+        /// A dictionary of available variables where each object is a DatacubeVariable Object.
         /// </value>
         public IDictionary<string, DatacubeVariable> Variables
         {
@@ -108,7 +108,7 @@ namespace Stac.Extensions.Datacube
         /// Gets potential fields and their types
         /// </summary>
         /// <value>
-        /// <placeholder>Potential fields and their types</placeholder>
+        /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this.itemFields;
 

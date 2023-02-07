@@ -73,7 +73,7 @@ namespace Stac
         /// Gets identifier for the Catalog.
         /// </summary>
         /// <value>
-        /// <placeholder>Identifier for the Catalog.</placeholder>
+        /// Identifier for the Catalog.
         /// </value>
         [JsonProperty("id")]
         public string Id { get; internal set; }
@@ -82,7 +82,7 @@ namespace Stac
         /// Gets or sets the STAC version the Catalog implements
         /// </summary>
         /// <value>
-        /// <placeholder>The STAC version the Catalog implements</placeholder>
+        /// The STAC version the Catalog implements
         /// </value>
         [JsonProperty("stac_version")]
         [JsonConverter(typeof(SemVersionConverter))]
@@ -92,7 +92,7 @@ namespace Stac
         /// Gets a list of extension identifiers the Catalog implements
         /// </summary>
         /// <value>
-        /// <placeholder>A list of extension identifiers the Catalog implements</placeholder>
+        /// A list of extension identifiers the Catalog implements
         /// </value>
         [JsonProperty("stac_extensions")]
         public ICollection<string> StacExtensions { get; private set; }
@@ -101,7 +101,7 @@ namespace Stac
         /// Gets a list of references to other documents.
         /// </summary>
         /// <value>
-        /// <placeholder>A list of references to other documents.</placeholder>
+        /// A list of references to other documents.
         /// </value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
@@ -118,7 +118,7 @@ namespace Stac
         /// Gets sTAC type (Catalog)
         /// </summary>
         /// <value>
-        /// <placeholder>STAC type (Catalog)</placeholder>
+        /// STAC type (Catalog)
         /// </value>
         [JsonProperty("type")]
         public string Type => "Catalog";
@@ -127,7 +127,7 @@ namespace Stac
         /// Gets a map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
         /// <value>
-        /// <placeholder>A map of property summaries, either a set of values or statistics such as a range.</placeholder>
+        /// A map of property summaries, either a set of values or statistics such as a range.
         /// </value>
         [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
@@ -137,7 +137,7 @@ namespace Stac
         /// Gets catalog Properties
         /// </summary>
         /// <value>
-        /// <placeholder>Catalog Properties</placeholder>
+        /// Catalog Properties
         /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }

@@ -32,7 +32,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets estimate of cloud cover
         /// </summary>
         /// <value>
-        /// <placeholder>Estimate of cloud cover</placeholder>
+        /// Estimate of cloud cover
         /// </value>
         public double? CloudCover
         {
@@ -52,7 +52,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets an array of available bands where each object is a Band Object.
         /// </summary>
         /// <value>
-        /// <placeholder>An array of available bands where each object is a Band Object.</placeholder>
+        /// An array of available bands where each object is a Band Object.
         /// </value>
         public EoBandObject[] Bands
         {
@@ -73,7 +73,7 @@ namespace Stac.Extensions.Eo
         /// Gets potential fields and their types
         /// </summary>
         /// <value>
-        /// <placeholder>Potential fields and their types</placeholder>
+        /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this.itemFields;
 

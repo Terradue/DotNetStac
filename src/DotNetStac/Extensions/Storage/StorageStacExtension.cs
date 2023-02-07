@@ -33,7 +33,7 @@ namespace Stac.Extensions.Storage
         /// Gets or sets the cloud provider where data is stored
         /// </summary>
         /// <value>
-        /// <placeholder>The cloud provider where data is stored</placeholder>
+        /// The cloud provider where data is stored
         /// </value>
         public string Platform
         {
@@ -45,7 +45,7 @@ namespace Stac.Extensions.Storage
         /// Gets or sets the region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider)
         /// </summary>
         /// <value>
-        /// <placeholder>The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider)</placeholder>
+        /// The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider)
         /// </value>
         public string Region
         {
@@ -57,7 +57,7 @@ namespace Stac.Extensions.Storage
         /// Gets or sets is the data requester pays or is it data manager/cloud provider pays. Defaults to false
         /// </summary>
         /// <value>
-        /// <placeholder>Is the data requester pays or is it data manager/cloud provider pays. Defaults to false</placeholder>
+        /// Is the data requester pays or is it data manager/cloud provider pays. Defaults to false
         /// </value>
         public bool? RequesterPays
         {
@@ -69,7 +69,7 @@ namespace Stac.Extensions.Storage
         /// Gets or sets the title for the tier type (as defined by PaaS provider)
         /// </summary>
         /// <value>
-        /// <placeholder>The title for the tier type (as defined by PaaS provider)</placeholder>
+        /// The title for the tier type (as defined by PaaS provider)
         /// </value>
         public string Tier
         {
@@ -81,7 +81,7 @@ namespace Stac.Extensions.Storage
         /// Gets potential fields and their types
         /// </summary>
         /// <value>
-        /// <placeholder>Potential fields and their types</placeholder>
+        /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this.itemFields;
 

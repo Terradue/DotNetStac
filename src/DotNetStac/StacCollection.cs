@@ -85,7 +85,7 @@ namespace Stac
         /// Gets identifier for the Collection.
         /// </summary>
         /// <value>
-        /// <placeholder>Identifier for the Collection.</placeholder>
+        /// Identifier for the Collection.
         /// </value>
         [JsonProperty("id")]
         public string Id { get; internal set; }
@@ -94,7 +94,7 @@ namespace Stac
         /// Gets or sets the STAC version the Collection implements
         /// </summary>
         /// <value>
-        /// <placeholder>The STAC version the Collection implements</placeholder>
+        /// The STAC version the Collection implements
         /// </value>
         [JsonProperty("stac_version")]
         [JsonConverter(typeof(SemVersionConverter))]
@@ -104,7 +104,7 @@ namespace Stac
         /// Gets a list of extension identifiers the Collection implements
         /// </summary>
         /// <value>
-        /// <placeholder>A list of extension identifiers the Collection implements</placeholder>
+        /// A list of extension identifiers the Collection implements
         /// </value>
         [JsonProperty("stac_extensions")]
         public ICollection<string> StacExtensions { get; private set; }
@@ -113,7 +113,7 @@ namespace Stac
         /// Gets a list of references to other documents.
         /// </summary>
         /// <value>
-        /// <placeholder>A list of references to other documents.</placeholder>
+        /// A list of references to other documents.
         /// </value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
@@ -130,7 +130,7 @@ namespace Stac
         /// Gets sTAC type (Collection)
         /// </summary>
         /// <value>
-        /// <placeholder>STAC type (Collection)</placeholder>
+        /// STAC type (Collection)
         /// </value>
         [JsonProperty("type")]
         public virtual string Type => "Collection";
@@ -139,7 +139,7 @@ namespace Stac
         /// Gets a map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
         /// <value>
-        /// <placeholder>A map of property summaries, either a set of values or statistics such as a range.</placeholder>
+        /// A map of property summaries, either a set of values or statistics such as a range.
         /// </value>
         [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
@@ -149,7 +149,7 @@ namespace Stac
         /// Gets collection extended data
         /// </summary>
         /// <value>
-        /// <placeholder>Collection extended data</placeholder>
+        /// Collection extended data
         /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
@@ -158,7 +158,7 @@ namespace Stac
         /// Gets spatial and temporal extents.
         /// </summary>
         /// <value>
-        /// <placeholder>Spatial and temporal extents.</placeholder>
+        /// Spatial and temporal extents.
         /// </value>
         [JsonProperty("extent")]
         public StacExtent Extent { get; internal set; }
@@ -167,7 +167,7 @@ namespace Stac
         /// Gets list of keywords describing the Collection.
         /// </summary>
         /// <value>
-        /// <placeholder>List of keywords describing the Collection.</placeholder>
+        /// List of keywords describing the Collection.
         /// </value>
         [JsonProperty("keywords", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Collection<string> Keywords { get; internal set; }

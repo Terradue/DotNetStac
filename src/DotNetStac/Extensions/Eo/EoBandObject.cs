@@ -37,7 +37,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets the name of the band (e.g., "B01", "B8", "band2", "red").
         /// </summary>
         /// <value>
-        /// <placeholder>The name of the band (e.g., "B01", "B8", "band2", "red").</placeholder>
+        /// The name of the band (e.g., "B01", "B8", "band2", "red").
         /// </value>
         [JsonProperty("name")]
         public string Name { get => this.name; set => this.name = value; }
@@ -46,7 +46,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
         /// <value>
-        /// <placeholder>Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.</placeholder>
+        /// Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </value>
         [JsonProperty("description")]
         public string Description { get => this.description; set => this.description = value; }
@@ -55,7 +55,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets the name commonly used to refer to the band to make it easier to search for bands across instruments.
         /// </summary>
         /// <value>
-        /// <placeholder>The name commonly used to refer to the band to make it easier to search for bands across instruments.</placeholder>
+        /// The name commonly used to refer to the band to make it easier to search for bands across instruments.
         /// </value>
         [JsonProperty("common_name")]
         public EoBandCommonName? CommonName { get => this.commonName; set => this.commonName = value; }
@@ -64,7 +64,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets the center wavelength of the band, in micrometers (μm).
         /// </summary>
         /// <value>
-        /// <placeholder>The center wavelength of the band, in micrometers (μm).</placeholder>
+        /// The center wavelength of the band, in micrometers (μm).
         /// </value>
         [JsonProperty("center_wavelength")]
         public double? CenterWavelength { get; set; }
@@ -73,7 +73,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm).
         /// </summary>
         /// <value>
-        /// <placeholder>Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm).</placeholder>
+        /// Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm).
         /// </value>
         [JsonProperty("full_width_half_max")]
         public double? FullWidthHalfMax { get; set; }
@@ -82,7 +82,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets the solar illumination of the band, as measured at half the maximum transmission, in W/m2/micrometers.
         /// </summary>
         /// <value>
-        /// <placeholder>The solar illumination of the band, as measured at half the maximum transmission, in W/m2/micrometers.</placeholder>
+        /// The solar illumination of the band, as measured at half the maximum transmission, in W/m2/micrometers.
         /// </value>
         [JsonProperty("solar_illumination")]
         public double? SolarIllumination { get; set; }
@@ -91,7 +91,7 @@ namespace Stac.Extensions.Eo
         /// Gets or sets additional fields
         /// </summary>
         /// <value>
-        /// <placeholder>Additional fields</placeholder>
+        /// Additional fields
         /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }

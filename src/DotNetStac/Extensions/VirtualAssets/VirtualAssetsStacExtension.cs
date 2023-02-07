@@ -28,7 +28,7 @@ namespace Stac.Extensions.VirtualAssets
         /// Gets or sets virtual Assets
         /// </summary>
         /// <value>
-        /// <placeholder>Virtual Assets</placeholder>
+        /// Virtual Assets
         /// </value>
         public IDictionary<string, VirtualAsset> Assets
         {
@@ -40,7 +40,7 @@ namespace Stac.Extensions.VirtualAssets
         /// Gets potential fields and their types
         /// </summary>
         /// <value>
-        /// <placeholder>Potential fields and their types</placeholder>
+        /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this.itemFields;
     }

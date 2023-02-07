@@ -87,7 +87,7 @@ namespace Stac
         /// Gets or sets the STAC version the Item implements
         /// </summary>
         /// <value>
-        /// <placeholder>The STAC version the Item implements</placeholder>
+        /// The STAC version the Item implements
         /// </value>
         [JsonProperty("stac_version", Order = -10)]
         [JsonConverter(typeof(SemVersionConverter))]
@@ -97,7 +97,7 @@ namespace Stac
         /// Gets a list of extension identifiers the Item implements
         /// </summary>
         /// <value>
-        /// <placeholder>A list of extension identifiers the Item implements</placeholder>
+        /// A list of extension identifiers the Item implements
         /// </value>
         [JsonProperty("stac_extensions", Order = -9)]
         public ICollection<string> StacExtensions { get; private set; }
@@ -106,7 +106,7 @@ namespace Stac
         /// Gets a list of references to other documents.
         /// </summary>
         /// <value>
-        /// <placeholder>A list of references to other documents.</placeholder>
+        /// A list of references to other documents.
         /// </value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links", Order = 5)]
@@ -148,7 +148,7 @@ namespace Stac
         /// Gets item root extended data
         /// </summary>
         /// <value>
-        /// <placeholder>Item root extended data</placeholder>
+        /// Item root extended data
         /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> RootProperties { get => this.Root.Properties; internal set => this.Root.Properties = value; }

@@ -33,7 +33,7 @@ namespace Stac.Extensions.ItemCollections
         /// Gets sTAC type (FeatureCollection)
         /// </summary>
         /// <value>
-        /// <placeholder>STAC type (FeatureCollection)</placeholder>
+        /// STAC type (FeatureCollection)
         /// </value>
         [JsonProperty("type")]
         public override string Type => "FeatureCollection";

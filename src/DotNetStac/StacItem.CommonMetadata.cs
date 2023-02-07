@@ -43,8 +43,8 @@ namespace Stac
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </summary>
         /// <value>
-        /// <placeholder>A list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
-        /// Providers should be listed in chronological order with the most recent provider being the last element of the list.</placeholder>
+        /// A list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
+        /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </value>
         public Collection<StacProvider> Providers => this.GetObservableCollectionProperty<StacProvider>("providers");
 

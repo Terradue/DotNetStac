@@ -21,7 +21,7 @@ namespace Stac.Collection
         /// Gets the summary item as a JToken
         /// </summary>
         /// <value>
-        /// <placeholder>The summary item as a JToken</placeholder>
+        /// The summary item as a JToken
         /// </value>
         JToken AsJToken { get; }
 

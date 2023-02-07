@@ -22,7 +22,7 @@ namespace Stac.Extensions
         /// Gets dictionary of extensions managed by the library
         /// </summary>
         /// <value>
-        /// <placeholder>Dictionary of extensions managed by the library</placeholder>
+        /// Dictionary of extensions managed by the library
         /// </value>
         public static Dictionary<string, Type> ManagedStacExtensions
         {

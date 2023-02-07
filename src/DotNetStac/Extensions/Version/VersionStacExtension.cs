@@ -39,7 +39,7 @@ namespace Stac.Extensions.Version
         /// Gets or sets version of the Collection or Item.
         /// </summary>
         /// <value>
-        /// <placeholder>Version of the Collection or Item.</placeholder>
+        /// Version of the Collection or Item.
         /// </value>
         public string Version
         {
@@ -51,7 +51,7 @@ namespace Stac.Extensions.Version
         /// Gets or sets a value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed. 
         /// </summary>
         /// <value>
-        /// <placeholder>A value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed. </placeholder>
+        /// A value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed. 
         /// </value>
         public bool Deprecated
         {
@@ -63,7 +63,7 @@ namespace Stac.Extensions.Version
         /// Gets potential fields and their types
         /// </summary>
         /// <value>
-        /// <placeholder>Potential fields and their types</placeholder>
+        /// Potential fields and their types
         /// </value>
         public override IDictionary<string, Type> ItemFields => this.itemFields;
 

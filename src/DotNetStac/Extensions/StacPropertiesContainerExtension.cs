@@ -36,7 +36,7 @@ namespace Stac.Extensions
         /// Gets identifier of the extension
         /// </summary>
         /// <value>
-        /// <placeholder>Identifier of the extension</placeholder>
+        /// Identifier of the extension
         /// </value>
         public virtual string Identifier => this.identifier;
 
@@ -44,7 +44,7 @@ namespace Stac.Extensions
         /// Gets stac Object extended by the extension
         /// </summary>
         /// <value>
-        /// <placeholder>Stac Object extended by the extension</placeholder>
+        /// Stac Object extended by the extension
         /// </value>
         public IStacPropertiesContainer StacPropertiesContainer { get; private set; }
 
@@ -52,7 +52,7 @@ namespace Stac.Extensions
         /// Gets get the potential fields of the extensions and their type
         /// </summary>
         /// <value>
-        /// <placeholder>Get the potential fields of the extensions and their type</placeholder>
+        /// Get the potential fields of the extensions and their type
         /// </value>
         public abstract IDictionary<string, Type> ItemFields { get; }
 
@@ -60,7 +60,7 @@ namespace Stac.Extensions
         /// Gets a value indicating whether indicate if the extension is already declared
         /// </summary>
         /// <value>
-        /// <placeholder>Indicate if the extension is already declared</placeholder>
+        /// Indicate if the extension is already declared
         /// </value>
         public bool IsDeclared => this.StacPropertiesContainer.GetDeclaredExtensions().Any(e => e.Identifier == this.Identifier);
 
