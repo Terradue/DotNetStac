@@ -15,28 +15,28 @@ namespace Stac.Extensions.Raster
         /// <summary>
         /// Gets or sets number of buckets of the distribution.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("count")]
         public int? Count { get; set; }
 
         /// <summary>
         /// Gets or sets minimum value of the distribution. Also the mean value of the first bucket.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("min")]
         public double? Min { get; set; }
 
         /// <summary>
         /// Gets or sets minimum value of the distribution. Also the mean value of the last bucket.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("max")]
         public double? Max { get; set; }
 
         /// <summary>
         /// Gets or sets array of integer indicating the number of pixels included in the bucket.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("buckets")]
         public double[] Buckets { get; set; }
     }

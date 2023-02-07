@@ -56,7 +56,7 @@ namespace Stac.Extensions.Raster
         /// <summary>
         /// Gets or sets the data type of the band.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("data_type")]
         [JsonConverter(typeof(StringEnumConverter))]
         public DataType? DataType { get => this.dataType; set => this.dataType = value; }
@@ -64,21 +64,21 @@ namespace Stac.Extensions.Raster
         /// <summary>
         /// Gets or sets the actual number of bits used for this band.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("bits_per_sample")]
         public int? BitsPerSample { get; set; }
 
         /// <summary>
         /// Gets or sets average spatial resolution (in meters) of the pixels in the band.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("spatial_resolution")]
         public double? SpatialResolution { get; set; }
 
         /// <summary>
         /// Gets or sets statistics of all the pixels in the band
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("statistics")]
         public Statistics Statistics { get; set; }
 
@@ -112,14 +112,14 @@ namespace Stac.Extensions.Raster
         /// <summary>
         /// Gets or sets histogram distribution information of the pixels values in the band
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("histogram")]
         public RasterHistogram Histogram { get; set; }
 
         /// <summary>
         /// Gets or sets additional fields
         /// </summary>
-        /// <value></value>
+
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 

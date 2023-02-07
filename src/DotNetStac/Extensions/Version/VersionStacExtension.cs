@@ -38,7 +38,7 @@ namespace Stac.Extensions.Version
         /// <summary>
         /// Gets or sets version of the Collection or Item.
         /// </summary>
-        /// <value></value>
+
         public string Version
         {
             get { return this.StacPropertiesContainer.GetProperty<string>(VersionField); }
@@ -48,7 +48,7 @@ namespace Stac.Extensions.Version
         /// <summary>
         /// Gets or sets a value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed. 
         /// </summary>
-        /// <value></value>
+
         public bool Deprecated
         {
             get { return this.StacPropertiesContainer.GetProperty<bool>(DeprecatedField); }

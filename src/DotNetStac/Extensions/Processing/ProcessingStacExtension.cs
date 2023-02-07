@@ -34,7 +34,7 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets or sets lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described NASA ISO.
         /// </summary>
-        /// <value></value>
+
         public string Lineage
         {
             get { return this.StacPropertiesContainer.GetProperty<string>(LineageField); }
@@ -44,7 +44,7 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets or sets the name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
         /// </summary>
-        /// <value></value>
+
         public string Level
         {
             get { return this.StacPropertiesContainer.GetProperty<string>(LevelField); }
@@ -54,7 +54,7 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets or sets the name of the facility that produced the data. 
         /// </summary>
-        /// <value></value>
+
         public string Facility
         {
             get { return this.StacPropertiesContainer.GetProperty<string>(FacilityField); }
@@ -64,7 +64,7 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets a dictionary with name/version for key/value describing one or more softwares that produced the data.
         /// </summary>
-        /// <value></value>
+
         public IDictionary<string, string> Software
         {
             get

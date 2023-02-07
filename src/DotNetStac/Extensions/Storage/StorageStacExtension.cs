@@ -32,7 +32,7 @@ namespace Stac.Extensions.Storage
         /// <summary>
         /// Gets or sets the cloud provider where data is stored
         /// </summary>
-        /// <value></value>
+
         public string Platform
         {
             get { return this.StacPropertiesContainer.GetProperty<string>(PlatformField); }
@@ -42,7 +42,7 @@ namespace Stac.Extensions.Storage
         /// <summary>
         /// Gets or sets the region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider)
         /// </summary>
-        /// <value></value>
+
         public string Region
         {
             get { return this.StacPropertiesContainer.GetProperty<string>(RegionField); }
@@ -52,7 +52,7 @@ namespace Stac.Extensions.Storage
         /// <summary>
         /// Gets or sets is the data requester pays or is it data manager/cloud provider pays. Defaults to false
         /// </summary>
-        /// <value></value>
+
         public bool? RequesterPays
         {
             get { return this.StacPropertiesContainer.GetProperty<bool?>(RequesterPaysField); }
@@ -62,7 +62,7 @@ namespace Stac.Extensions.Storage
         /// <summary>
         /// Gets or sets the title for the tier type (as defined by PaaS provider)
         /// </summary>
-        /// <value></value>
+
         public string Tier
         {
             get { return this.StacPropertiesContainer.GetProperty<string>(TierField); }

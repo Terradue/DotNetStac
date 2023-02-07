@@ -18,6 +18,11 @@ namespace Stac.Common
         /// <summary>
         /// Initialize a new statistics object
         /// </summary>
+        /// <param name="minimum">minimum value</param>
+        /// <param name="maximum">maximum value</param>
+        /// <param name="mean">mean value</param>
+        /// <param name="stdev">standard deviation</param>
+        /// <param name="validPercent">valid percentage</param>
         [JsonConstructor]
         public Statistics(double? minimum, double? maximum, double? mean, double? stdev, double? validPercent)
         {
@@ -32,42 +37,42 @@ namespace Stac.Common
         /// <summary>
         /// Gets or sets mean value
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("mean")]
         public double? Mean { get; set; }
 
         /// <summary>
         /// Gets or sets minimum value
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("minimum")]
         public double? Minimum { get; set; }
 
         /// <summary>
         /// Gets or sets maximum value
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("maximum")]
         public double? Maximum { get; set; }
 
         /// <summary>
         /// Gets or sets standard Deviation
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("stdev")]
         public double? Stdev { get; set; }
 
         /// <summary>
         /// Gets or sets valid percentage
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("valid_percent")]
         public double? ValidPercent { get; set; }
 
         /// <summary>
         /// Gets or sets additional fields
         /// </summary>
-        /// <value></value>
+
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 

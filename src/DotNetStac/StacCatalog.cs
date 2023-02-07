@@ -72,14 +72,14 @@ namespace Stac
         /// <summary>
         /// Gets identifier for the Catalog.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("id")]
         public string Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the STAC version the Catalog implements
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("stac_version")]
         [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
@@ -87,14 +87,14 @@ namespace Stac
         /// <summary>
         /// Gets a list of extension identifiers the Catalog implements
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("stac_extensions")]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// Gets a list of references to other documents.
         /// </summary>
-        /// <value></value>
+
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
         public ICollection<StacLink> Links
@@ -118,7 +118,7 @@ namespace Stac
         /// <summary>
         /// Gets a map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
         public Dictionary<string, Collection.IStacSummaryItem> Summaries { get; internal set; }
@@ -126,7 +126,7 @@ namespace Stac
         /// <summary>
         /// Gets catalog Properties
         /// </summary>
-        /// <value></value>
+
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
 

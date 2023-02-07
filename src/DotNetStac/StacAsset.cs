@@ -157,7 +157,7 @@ namespace Stac
         /// <summary>
         /// Gets or sets media type of the asset
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("type")]
         [JsonConverter(typeof(ContentTypeConverter))]
         public ContentType MediaType
@@ -169,7 +169,7 @@ namespace Stac
         /// <summary>
         /// Gets the semantic roles of the asset
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("roles")]
         public ICollection<string> Roles
         {
@@ -180,7 +180,7 @@ namespace Stac
         /// <summary>
         /// Gets or sets the displayed title for clients and users.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("title")]
         public string Title
         {
@@ -191,7 +191,7 @@ namespace Stac
         /// <summary>
         ///  Gets or sets uRI to the asset object. Relative and absolute URI are both allowed.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("href")]
         public Uri Uri
         {
@@ -202,7 +202,7 @@ namespace Stac
         /// <summary>
         /// Gets or sets a description of the Asset providing additional details, such as how it was processed or created.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("description")]
         public string Description
         {
@@ -213,7 +213,7 @@ namespace Stac
         /// <summary>
         /// Gets or sets extended properties
         /// </summary>
-        /// <value></value>
+
         [JsonExtensionData]
         public IDictionary<string, object> Properties
         {
@@ -240,7 +240,7 @@ namespace Stac
         /// <summary>
         /// Gets parent stac object
         /// </summary>
-        /// <value></value>
+
         [JsonIgnore]
         public IStacObject ParentStacObject { get => this._parentStacObject; internal set => this._parentStacObject = value; }
 

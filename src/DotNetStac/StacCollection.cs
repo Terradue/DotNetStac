@@ -84,14 +84,14 @@ namespace Stac
         /// <summary>
         /// Gets identifier for the Collection.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("id")]
         public string Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the STAC version the Collection implements
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("stac_version")]
         [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
@@ -99,14 +99,14 @@ namespace Stac
         /// <summary>
         /// Gets a list of extension identifiers the Collection implements
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("stac_extensions")]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// Gets a list of references to other documents.
         /// </summary>
-        /// <value></value>
+
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
         public ICollection<StacLink> Links
@@ -130,7 +130,7 @@ namespace Stac
         /// <summary>
         /// Gets a map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
         public Dictionary<string, IStacSummaryItem> Summaries { get; internal set; }
@@ -138,21 +138,21 @@ namespace Stac
         /// <summary>
         /// Gets collection extended data
         /// </summary>
-        /// <value></value>
+
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
 
         /// <summary>
         /// Gets spatial and temporal extents.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("extent")]
         public StacExtent Extent { get; internal set; }
 
         /// <summary>
         /// Gets list of keywords describing the Collection.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("keywords", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Collection<string> Keywords { get; internal set; }
 

@@ -38,7 +38,7 @@ namespace Stac.Extensions.VirtualAssets
         /// <summary>
         /// Gets array of URIs to the assets object composing the virtual asset. Relative and absolute URI are both allowed
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("href")]
         public IList<Uri> Uris { get; private set; }
 

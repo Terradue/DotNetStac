@@ -15,13 +15,13 @@ namespace Stac.Collection
         /// <summary>
         /// Gets or sets the summary value with the specified fields (for objects only)
         /// </summary>
-        /// <value></value>
+
         JToken this[object key] { get; }
 
         /// <summary>
         /// Gets the summary item as a JToken
         /// </summary>
-        /// <value></value>
+
         JToken AsJToken { get; }
 
         IEnumerable<object> Enumerate();

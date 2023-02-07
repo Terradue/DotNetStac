@@ -79,7 +79,7 @@ namespace Stac.Extensions.Datacube
         /// <summary>
         /// Gets or sets additional fields
         /// </summary>
-        /// <value></value>
+
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 

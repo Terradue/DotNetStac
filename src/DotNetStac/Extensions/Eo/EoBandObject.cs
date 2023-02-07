@@ -54,35 +54,35 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// Gets or sets the name commonly used to refer to the band to make it easier to search for bands across instruments.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("common_name")]
         public EoBandCommonName? CommonName { get => this.commonName; set => this.commonName = value; }
 
         /// <summary>
         /// Gets or sets the center wavelength of the band, in micrometers (μm).
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("center_wavelength")]
         public double? CenterWavelength { get; set; }
 
         /// <summary>
         /// Gets or sets full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm).
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("full_width_half_max")]
         public double? FullWidthHalfMax { get; set; }
 
         /// <summary>
         /// Gets or sets the solar illumination of the band, as measured at half the maximum transmission, in W/m2/micrometers.
         /// </summary>
-        /// <value></value>
+
         [JsonProperty("solar_illumination")]
         public double? SolarIllumination { get; set; }
 
         /// <summary>
         /// Gets or sets additional fields
         /// </summary>
-        /// <value></value>
+
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 
