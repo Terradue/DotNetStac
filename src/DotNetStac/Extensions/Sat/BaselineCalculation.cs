@@ -249,11 +249,6 @@ namespace Stac.Extensions.Sat
             return GetOrbitValue(time, orbitStates, 8);
         }
 
-        private static double GetOrbitValue(double time, IInterpolation[] interpol, int index)
-        {
-            return interpol[index].Interpolate(time);
-        }
-
         public static IInterpolation[] PolyInterpol(DateTime time0, SatOrbitStateVector[] orbitStateVectors)
         {
             var time = Array.ConvertAll(orbitStateVectors, o => o.Time.Subtract(time0).TotalSeconds);
@@ -289,6 +284,11 @@ namespace Stac.Extensions.Sat
             coeff[8] = Interpolate.CubicSplineRobust(time, az1.ToArray());
 
             return coeff;
+        }
+
+        private static double GetOrbitValue(double time, IInterpolation[] interpol, int index)
+        {
+            return interpol[index].Interpolate(time);
         }
     }
 }

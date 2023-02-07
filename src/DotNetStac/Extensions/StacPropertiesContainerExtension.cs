@@ -126,6 +126,12 @@ namespace Stac.Extensions
             return new StacSummaryValueSet<T>(arg.Distinct());
         }
 
+        public void SetProperty(string key, object value)
+        {
+            this.SetProperty(key, value);
+            this.DeclareStacExtension();
+        }
+
         /// <summary>
         /// Generic method to summarize in a value set an array of array
         /// </summary>
@@ -166,12 +172,6 @@ namespace Stac.Extensions
             {
                 this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Remove(this.Identifier);
             }
-        }
-
-        public void SetProperty(string key, object value)
-        {
-            this.SetProperty(key, value);
-            this.DeclareStacExtension();
         }
 
         public void RemoveProperty(string key)

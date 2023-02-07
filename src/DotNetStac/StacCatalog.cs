@@ -147,6 +147,13 @@ namespace Stac
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
 
+#pragma warning disable 1591
+        public bool ShouldSerializeSummaries()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return this.Summaries.Count > 0;
+        }
+
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
@@ -156,13 +163,6 @@ namespace Stac
             }
 
             this.StacExtensions = new SortedSet<string>(this.StacExtensions);
-        }
-
-#pragma warning disable 1591
-        public bool ShouldSerializeSummaries()
-        {
-            // don't serialize the Manager property if an employee is their own manager
-            return this.Summaries.Count > 0;
         }
 
         public bool ShouldSerializeStacExtensions()

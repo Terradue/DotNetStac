@@ -136,6 +136,28 @@ namespace Stac
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
 
+        public bool ShouldSerializeStacExtensions()
+        {
+            // don't serialize the Manager property if an employee is their own manager
+            return this.StacExtensions.Count > 0;
+        }
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in this.Links)
+            {
+                link.Parent = this;
+            }
+
+            foreach (StacAsset asset in this.Assets.Values)
+            {
+                asset.ParentStacObject = this;
+            }
+
+            this.StacExtensions = new SortedSet<string>(this.StacExtensions);
+        }
+
         private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems != null)
@@ -161,22 +183,6 @@ namespace Stac
             }
         }
 
-        [OnDeserialized]
-        internal void OnDeserializedMethod(StreamingContext context)
-        {
-            foreach (StacLink link in this.Links)
-            {
-                link.Parent = this;
-            }
-
-            foreach (StacAsset asset in this.Assets.Values)
-            {
-                asset.ParentStacObject = this;
-            }
-
-            this.StacExtensions = new SortedSet<string>(this.StacExtensions);
-        }
-
         [OnSerializing]
         internal void OnSerializingMethod(StreamingContext context)
         {
@@ -184,12 +190,6 @@ namespace Stac
             {
                 this.BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
             }
-        }
-
-        public bool ShouldSerializeStacExtensions()
-        {
-            // don't serialize the Manager property if an employee is their own manager
-            return this.StacExtensions.Count > 0;
         }
 
         /// <summary>

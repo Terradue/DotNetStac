@@ -14,8 +14,8 @@ namespace Stac.Extensions.Datacube
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class DatacubeVariable : IStacPropertiesContainer
     {
-        private IDictionary<string, object> _properties;
         protected string[] dimensions;
+        private IDictionary<string, object> _properties;
         protected DatacubeVariableType? type;
         protected string description;
         protected double[] extent;

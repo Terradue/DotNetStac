@@ -78,6 +78,11 @@ namespace Stac.Model
             set => this.UpdateWithNotification(key, value);
         }
 
+        // ICollection<KeyValuePair<TKey,TValue>> Members
+
+        void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
+            => this.TryAddWithNotification(item);
+
         /// <summary>
         /// Notifies observers of CollectionChanged or PropertyChanged of an update to the dictionary.
         /// </summary>
@@ -210,11 +215,6 @@ namespace Stac.Model
 
             return -1;
         }
-
-        // ICollection<KeyValuePair<TKey,TValue>> Members
-
-        void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
-            => this.TryAddWithNotification(item);
 
         void ICollection<KeyValuePair<TKey, TValue>>.Clear()
         {

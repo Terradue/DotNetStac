@@ -51,6 +51,44 @@ namespace Stac.Schemas
             return this.ValidateJObject(jobject);
         }
 
+        internal static string FormatMessage(ValidationError validationError, string prefix)
+        {
+            StringBuilder message = new StringBuilder();
+            message.Append(prefix);
+            if (validationError.LineNumber > 1 && validationError.LinePosition > 1)
+            {
+                message.AppendFormat("[{0},{1}]", validationError.LineNumber, validationError.LinePosition);
+            }
+            else
+            {
+                message.AppendFormat("[ROOT]");
+            }
+
+            if (!string.IsNullOrEmpty(validationError.Path))
+            {
+                message.AppendFormat(" Path '{0}'", validationError.Path);
+            }
+
+            message.Append(": ");
+
+            message.Append(validationError.Message);
+            if (message[message.Length - 1] != '.')
+            {
+                message.Append('.');
+            }
+
+            if (validationError.ChildErrors != null && validationError.ChildErrors.Count > 0)
+            {
+                foreach (ValidationError childError in validationError.ChildErrors)
+                {
+                    message.Append('\n' + prefix);
+                    message.Append(FormatMessage(childError, prefix + "  "));
+                }
+            }
+
+            return message.ToString();
+        }
+
         private bool DetectDuplicateKeys(JsonReader jobject)
         {
             var stack = new Stack<string>();
@@ -117,44 +155,6 @@ namespace Stac.Schemas
             }
 
             return true;
-        }
-
-        internal static string FormatMessage(ValidationError validationError, string prefix)
-        {
-            StringBuilder message = new StringBuilder();
-            message.Append(prefix);
-            if (validationError.LineNumber > 1 && validationError.LinePosition > 1)
-            {
-                message.AppendFormat("[{0},{1}]", validationError.LineNumber, validationError.LinePosition);
-            }
-            else
-            {
-                message.AppendFormat("[ROOT]");
-            }
-
-            if (!string.IsNullOrEmpty(validationError.Path))
-            {
-                message.AppendFormat(" Path '{0}'", validationError.Path);
-            }
-
-            message.Append(": ");
-
-            message.Append(validationError.Message);
-            if (message[message.Length - 1] != '.')
-            {
-                message.Append('.');
-            }
-
-            if (validationError.ChildErrors != null && validationError.ChildErrors.Count > 0)
-            {
-                foreach (ValidationError childError in validationError.ChildErrors)
-                {
-                    message.Append('\n' + prefix);
-                    message.Append(FormatMessage(childError, prefix + "  "));
-                }
-            }
-
-            return message.ToString();
         }
     }
 }

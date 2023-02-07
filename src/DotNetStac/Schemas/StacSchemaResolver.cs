@@ -12,10 +12,10 @@ namespace Stac.Schemas
 {
     public class StacSchemaResolver
     {
+        public static string[] CoreTypes = new string[] { "item", "catalog", "collection" };
+
         private readonly JSchemaResolver _jSchemaResolver;
         private readonly IDictionary<string, JSchema> _schemaCompiled;
-
-        public static string[] CoreTypes = new string[] { "item", "catalog", "collection" };
 
         private static readonly IDictionary<string, Uri> schemaMap = new Dictionary<string, Uri>();
 

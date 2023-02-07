@@ -21,17 +21,17 @@ namespace Stac.Extensions.Datacube
         private const string DimensionField = "cube:dimensions";
         private const string VariableField = "cube:variables";
 
+        internal DatacubeStacExtension(StacCollection stacCollection)
+            : this((IStacPropertiesContainer)stacCollection)
+        {
+        }
+
         private DatacubeStacExtension(IStacPropertiesContainer stacPropertiesContainer)
             : base(JsonSchemaUrl, stacPropertiesContainer)
         {
             this._itemFields = new Dictionary<string, Type>();
             this._itemFields.Add(DimensionField, typeof(IDictionary<string, DatacubeDimension>));
             this._itemFields.Add(VariableField, typeof(IDictionary<string, DatacubeVariable>));
-        }
-
-        internal DatacubeStacExtension(StacCollection stacCollection)
-            : this((IStacPropertiesContainer)stacCollection)
-        {
         }
 
         internal DatacubeStacExtension(StacAsset stacAsset)
@@ -104,6 +104,13 @@ namespace Stac.Extensions.Datacube
         /// </value>
         public override IDictionary<string, Type> ItemFields => this._itemFields;
 
+        /// <inheritdoc/>
+        public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
+        {
+            Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
+            return summaryFunctions;
+        }
+
         private void UpdateDimensionField(object sender, NotifyCollectionChangedEventArgs e)
         {
             this.StacPropertiesContainer.SetProperty(DimensionField, new Dictionary<string, DatacubeDimension>(sender as IDictionary<string, DatacubeDimension>));
@@ -114,13 +121,6 @@ namespace Stac.Extensions.Datacube
         {
             this.StacPropertiesContainer.SetProperty(VariableField, new Dictionary<string, DatacubeVariable>(sender as IDictionary<string, DatacubeVariable>));
             this.DeclareStacExtension();
-        }
-
-        /// <inheritdoc/>
-        public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
-        {
-            Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
-            return summaryFunctions;
         }
     }
 

@@ -414,6 +414,7 @@ dotnet_diagnostic.SA1127.severity = warning      # Generic type constraints must
 dotnet_diagnostic.SA1128.severity = warning      # Put constructor initializers on their own line
 dotnet_diagnostic.SA1137.severity = warning      # Elements should have the same indentation
 dotnet_diagnostic.SA1201.severity = warning      # Elements must appear in the correct order
+dotnet_diagnostic.SA1202.severity = warning      # Elements must be ordered by access
 dotnet_diagnostic.SA1214.severity = warning      # Readonly fields must appear before non-readonly fields
 dotnet_diagnostic.SA1407.severity = warning      # Arithmetic expressions must declare precedence
 dotnet_diagnostic.SA1413.severity = warning      # Use trailing comma in multi-line initializers
