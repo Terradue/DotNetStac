@@ -23,34 +23,34 @@ namespace Stac.Extensions.Projection
         public const string ProjShapeField = "proj:shape";
         public const string ProjTransformField = "proj:transform";
 
-        private readonly Dictionary<string, Type> itemFields;
+        private readonly Dictionary<string, Type> _itemFields;
 
         internal ProjectionStacExtension(StacItem stacItem)
             : base(JsonSchemaUrl, stacItem)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(EpsgField, typeof(int));
-            this.itemFields.Add(Wkt2Field, typeof(string));
-            this.itemFields.Add(ProjJsonField, typeof(string));
-            this.itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
-            this.itemFields.Add(ProjBboxField, typeof(double[]));
-            this.itemFields.Add(ProjCentroidField, typeof(CentroidObject));
-            this.itemFields.Add(ProjShapeField, typeof(int[]));
-            this.itemFields.Add(ProjTransformField, typeof(double[]));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(EpsgField, typeof(int));
+            this._itemFields.Add(Wkt2Field, typeof(string));
+            this._itemFields.Add(ProjJsonField, typeof(string));
+            this._itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
+            this._itemFields.Add(ProjBboxField, typeof(double[]));
+            this._itemFields.Add(ProjCentroidField, typeof(CentroidObject));
+            this._itemFields.Add(ProjShapeField, typeof(int[]));
+            this._itemFields.Add(ProjTransformField, typeof(double[]));
         }
 
         internal ProjectionStacExtension(StacAsset stacAsset)
             : base(JsonSchemaUrl, stacAsset)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(EpsgField, typeof(int));
-            this.itemFields.Add(Wkt2Field, typeof(string));
-            this.itemFields.Add(ProjJsonField, typeof(string));
-            this.itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
-            this.itemFields.Add(ProjBboxField, typeof(double[]));
-            this.itemFields.Add(ProjCentroidField, typeof(CentroidObject));
-            this.itemFields.Add(ProjShapeField, typeof(int[]));
-            this.itemFields.Add(ProjTransformField, typeof(double[]));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(EpsgField, typeof(int));
+            this._itemFields.Add(Wkt2Field, typeof(string));
+            this._itemFields.Add(ProjJsonField, typeof(string));
+            this._itemFields.Add(ProjGeometryField, typeof(IGeometryObject));
+            this._itemFields.Add(ProjBboxField, typeof(double[]));
+            this._itemFields.Add(ProjCentroidField, typeof(CentroidObject));
+            this._itemFields.Add(ProjShapeField, typeof(int[]));
+            this._itemFields.Add(ProjTransformField, typeof(double[]));
         }
 
         public long? Epsg
@@ -102,7 +102,7 @@ namespace Stac.Extensions.Projection
         }
 
         /// <inheritdoc/>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         public void SetCoordinateSystem(CoordinateSystem coordinateSystem)
         {

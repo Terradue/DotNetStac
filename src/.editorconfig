@@ -402,6 +402,7 @@ dotnet_diagnostic.IDE0073.severity = warning     # Enforce file header
 file_header_template = Copyright (c) by Terradue Srl. All Rights Reserved.\nLicense under the AGPL, Version 3.0.\nFile Name: {fileName}
 
 dotnet_diagnostic.SA1101.severity = warning      # Prefix local calls with this
+dotnet_diagnostic.SA1111.severity = warning      # Closing parenthesis should be on line of last parameter
 dotnet_diagnostic.SA1116.severity = warning      # Split parameters should start on line after declaration
 dotnet_diagnostic.SA1119.severity = warning      # Statement must not use unnecessary parenthesis
 dotnet_diagnostic.SA1124.severity = warning      # Do not use regions
@@ -425,3 +426,4 @@ dotnet_diagnostic.SA1636.severity = none         # Disable file header matching
 dotnet_diagnostic.SA1642.severity = warning      # Constructor summary documentation must begin with standard text
 dotnet_diagnostic.SA1649.severity = warning      # File name must match first type name
 dotnet_diagnostic.SA1651.severity = warning      # Do not use placeholders in summaries
+dotnet_diagnostic.SX1309.severity = warning      # Field names should begin with underscore 

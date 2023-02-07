@@ -15,14 +15,14 @@ namespace Stac.Extensions.VirtualAssets
         // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/virtual-assets/v1.0.0/schema.json";
 
-        private readonly IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> _itemFields;
         private const string VirtualAssetsField = "virtual:assets";
 
         internal VirtualAssetsStacExtension(IStacObject stacObject)
             : base(JsonSchemaUrl, stacObject)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(VirtualAssetsField, typeof(VirtualAsset));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(VirtualAssetsField, typeof(VirtualAsset));
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Stac.Extensions.VirtualAssets
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
     }
 
     /// <summary>

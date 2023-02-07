@@ -22,16 +22,16 @@ namespace Stac.Extensions.File
         private const string ChecksumField = "file:checksum";
         private const string HeaderSizeField = "file:header_size";
         private const string SizeField = "file:size";
-        private readonly Dictionary<string, Type> itemFields;
+        private readonly Dictionary<string, Type> _itemFields;
 
         internal FileStacExtension(StacAsset stacAsset)
             : base(JsonSchemaUrl, stacAsset)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(ByteOrderField, typeof(string));
-            this.itemFields.Add(ChecksumField, typeof(string));
-            this.itemFields.Add(HeaderSizeField, typeof(string));
-            this.itemFields.Add(SizeField, typeof(IDictionary<string, string>));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(ByteOrderField, typeof(string));
+            this._itemFields.Add(ChecksumField, typeof(string));
+            this._itemFields.Add(HeaderSizeField, typeof(string));
+            this._itemFields.Add(SizeField, typeof(IDictionary<string, string>));
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Stac.Extensions.File
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         /// <summary>
         /// Gets get the STAC asset

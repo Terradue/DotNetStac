@@ -10,11 +10,11 @@ namespace Stac
 {
     public class StacObjectLink : StacLink
     {
-        private readonly IStacObject stacObject;
+        private readonly IStacObject _stacObject;
 
         internal StacObjectLink(IStacObject stacObject, Uri uri)
         {
-            this.stacObject = stacObject;
+            this._stacObject = stacObject;
             if (stacObject is StacItem)
             {
                 this.RelationshipType = "item";
@@ -33,7 +33,7 @@ namespace Stac
         [JsonConverter(typeof(ContentTypeConverter))]
         public override ContentType ContentType
         {
-            get => this.stacObject.MediaType;
+            get => this._stacObject.MediaType;
             set
             {
                 throw new InvalidOperationException("Cannot set MediaType on an STAC Object link");
@@ -52,7 +52,7 @@ namespace Stac
         [JsonProperty("title")]
         public override string Title
         {
-            get => this.stacObject.Title;
+            get => this._stacObject.Title;
             set
             {
                 throw new InvalidOperationException("Cannot set Title on an STAC Object link");
@@ -68,6 +68,6 @@ namespace Stac
         }
 
         [JsonIgnore]
-        public IStacObject StacObject => this.stacObject;
+        public IStacObject StacObject => this._stacObject;
     }
 }

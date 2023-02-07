@@ -14,7 +14,7 @@ namespace Stac.Extensions.Datacube
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class DatacubeDimension : IStacPropertiesContainer
     {
-        private IDictionary<string, object> properties;
+        private IDictionary<string, object> _properties;
         protected string type;
         protected string description;
         protected double[] extent;
@@ -23,7 +23,7 @@ namespace Stac.Extensions.Datacube
 
         public DatacubeDimension()
         {
-            this.properties = new Dictionary<string, object>();
+            this._properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Stac.Extensions.Datacube
         /// Additional fields
         /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
+        public IDictionary<string, object> Properties { get => this._properties; set => this._properties = value; }
 
         /// <inheritdoc/>
         [JsonIgnore]
@@ -125,7 +125,7 @@ namespace Stac.Extensions.Datacube
 
     public class DatacubeDimensionSpatialVertical : DatacubeDimensionSpatial
     {
-        private string unit;
+        private string _unit;
 
         public DatacubeDimensionSpatialVertical()
             : base()
@@ -140,7 +140,7 @@ namespace Stac.Extensions.Datacube
         /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
         /// </value>
         [JsonProperty("unit")]
-        public string Unit { get => this.unit; set => this.unit = value; }
+        public string Unit { get => this._unit; set => this._unit = value; }
     }
 
     public class DatacubeDimensionTemporal : DatacubeDimension
@@ -155,7 +155,7 @@ namespace Stac.Extensions.Datacube
     public class DatacubeDimensionAdditional : DatacubeDimension
     {
 
-        private string unit;
+        private string _unit;
         protected object reference_system;
 
         public DatacubeDimensionAdditional()
@@ -170,7 +170,7 @@ namespace Stac.Extensions.Datacube
         /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
         /// </value>
         [JsonProperty("unit")]
-        public string Unit { get => this.unit; set => this.unit = value; }
+        public string Unit { get => this._unit; set => this._unit = value; }
 
         /// <summary>
         /// Gets or sets the spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.

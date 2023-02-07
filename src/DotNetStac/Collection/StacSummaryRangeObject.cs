@@ -48,7 +48,7 @@ namespace Stac.Collection
         /// <value>
         /// Minimum of the range
         /// </value>
-        public T Min { get => this.summary["minimum"].Value<T>(); set => this.summary["minimum"] = new JValue(value); }
+        public T Min { get => this.AsJToken["minimum"].Value<T>(); set => this.AsJToken["minimum"] = new JValue(value); }
 
         /// <summary>
         /// Gets or sets maximum of the range
@@ -57,7 +57,7 @@ namespace Stac.Collection
         /// <value>
         /// Maximum of the range
         /// </value>
-        public T Max { get => this.summary["maximum"].Value<T>(); set => this.summary["maximum"] = new JValue(value); }
+        public T Max { get => this.AsJToken["maximum"].Value<T>(); set => this.AsJToken["maximum"] = new JValue(value); }
 
         /// <inheritdoc/>
         public override IEnumerable<object> Enumerate()

@@ -26,7 +26,7 @@ namespace Stac
         public const string MEDIATYPE = "application/geo+json";
         public static readonly ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
 
-        private readonly StacItemRootPropertyContainer Root;
+        private readonly StacItemRootPropertyContainer _Root;
 
         [JsonConstructor]
         public StacItem(
@@ -37,7 +37,7 @@ namespace Stac
         {
             Preconditions.CheckNotNull(id, "id");
             this.StacExtensions = new SortedSet<string>();
-            this.Root = new StacItemRootPropertyContainer(this);
+            this._Root = new StacItemRootPropertyContainer(this);
             this.StacVersion = Versions.StacVersionList.Current;
             this.Links = new ObservableCollection<StacLink>();
             (this.Links as ObservableCollection<StacLink>).CollectionChanged += this.LinksCollectionChanged;
@@ -51,7 +51,7 @@ namespace Stac
                 Preconditions.CheckNotNull(stacItem, "id").Id)
         {
             this.StacExtensions = new SortedSet<string>(stacItem.StacExtensions);
-            this.Root = new StacItemRootPropertyContainer(this);
+            this._Root = new StacItemRootPropertyContainer(this);
             this.StacVersion = stacItem.StacVersion;
             this.Links = new ObservableCollection<StacLink>(stacItem.Links.Select(l => new StacLink(l)));
             (this.Links as ObservableCollection<StacLink>).CollectionChanged += this.LinksCollectionChanged;
@@ -109,16 +109,16 @@ namespace Stac
         [JsonIgnore]
         public string Collection
         {
-            get => this.Root.GetProperty<string>("collection");
+            get => this._Root.GetProperty<string>("collection");
             set
             {
                 if (value != null)
                 {
-                    this.Root.SetProperty("collection", value);
+                    this._Root.SetProperty("collection", value);
                 }
                 else
                 {
-                    this.Root.RemoveProperty("collection");
+                    this._Root.RemoveProperty("collection");
                 }
             }
         }
@@ -130,7 +130,7 @@ namespace Stac
         /// Item root extended data
         /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> RootProperties { get => this.Root.Properties; internal set => this.Root.Properties = value; }
+        public IDictionary<string, object> RootProperties { get => this._Root.Properties; internal set => this._Root.Properties = value; }
 
         /// <inheritdoc/>
         [JsonIgnore]

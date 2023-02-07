@@ -16,11 +16,11 @@ namespace Stac.Extensions.Alternate
     public class AlternateAssetObject : IStacPropertiesContainer
     {
         private readonly IStacObject _parent;
-        private string href;
-        private string title;
+        private string _href;
+        private string _title;
 
-        private string description;
-        private IDictionary<string, object> properties;
+        private string _description;
+        private IDictionary<string, object> _properties;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlternateAssetObject"/> class.
@@ -31,11 +31,11 @@ namespace Stac.Extensions.Alternate
         /// <param name="description">A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.</param>
         public AlternateAssetObject(string href, IStacObject parent = null, string title = null, string description = null)
         {
-            this.href = href;
+            this._href = href;
             this._parent = parent;
-            this.title = title;
-            this.description = description;
-            this.properties = new Dictionary<string, object>();
+            this._title = title;
+            this._description = description;
+            this._properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Stac.Extensions.Alternate
         /// </value>
         [JsonProperty("href")]
         [JsonRequired]
-        public string Href { get => this.href; set => this.href = value; }
+        public string Href { get => this._href; set => this._href = value; }
 
         /// <summary>
         /// Gets or sets the displayed title for clients and users.
@@ -55,7 +55,7 @@ namespace Stac.Extensions.Alternate
         /// The displayed title for clients and users.
         /// </value>
         [JsonProperty("title")]
-        public string Title { get => this.title; set => this.title = value; }
+        public string Title { get => this._title; set => this._title = value; }
 
         /// <summary>
         /// Gets or sets a description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.
@@ -64,7 +64,7 @@ namespace Stac.Extensions.Alternate
         /// A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </value>
         [JsonProperty("description")]
-        public string Description { get => this.description; set => this.description = value; }
+        public string Description { get => this._description; set => this._description = value; }
 
         /// <summary>
         /// Gets or sets additional fields
@@ -73,7 +73,7 @@ namespace Stac.Extensions.Alternate
         /// Additional fields
         /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
+        public IDictionary<string, object> Properties { get => this._properties; set => this._properties = value; }
 
         /// <summary>
         /// Gets parent Stac Object
@@ -99,6 +99,6 @@ namespace Stac.Extensions.Alternate
         /// Uri
         /// </value>
         [JsonIgnore]
-        public Uri Uri => new Uri(this.href);
+        public Uri Uri => new Uri(this._href);
     }
 }

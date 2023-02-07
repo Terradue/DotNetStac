@@ -67,6 +67,16 @@ namespace Stac
         [DataMember(Name = "title")]
         public virtual string Title { get; set; }
 
+        [JsonProperty("href")]
+        [DataMember(Name = "href", IsRequired = true)]
+        public virtual Uri Uri { get; set; }
+
+        [JsonIgnore]
+        public IStacObject Parent { get; set; }
+
+        [JsonIgnore]
+        public ulong Length { get; set; }
+
         public static StacLink CreateSelfLink(Uri uri, string mediaType = null, string title = null)
         {
             return new StacLink(uri, "self", title, mediaType);
@@ -111,16 +121,6 @@ namespace Stac
         {
             return new StacObjectLink(stacObject, uri);
         }
-
-        [JsonProperty("href")]
-        [DataMember(Name = "href", IsRequired = true)]
-        public virtual Uri Uri { get; set; }
-
-        [JsonIgnore]
-        public IStacObject Parent { get; set; }
-
-        [JsonIgnore]
-        public ulong Length { get; set; }
 
         [JsonExtensionData]
         public IDictionary<string, object> AdditionalProperties { get; set; }

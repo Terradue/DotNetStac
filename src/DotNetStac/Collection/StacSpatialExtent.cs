@@ -31,7 +31,7 @@ namespace Stac.Collection
         /// Initializes a new instance of the <see cref="StacSpatialExtent"/> class.
         /// Initialize a new Stac Spatial extent from an existing one (clone)
         /// </summary>
-        /// <param name="spatial"></param>
+        /// <param name="spatial">The spatial extent.</param>
         public StacSpatialExtent(StacSpatialExtent spatial)
         {
             this.BoundingBoxes = (double[][])spatial.BoundingBoxes.Clone();
@@ -47,6 +47,7 @@ namespace Stac.Collection
         /// <summary>
         /// Clone this Extent
         /// </summary>
+        /// <returns>A new <see cref="StacSpatialExtent" /> that is a clone of this instance.</returns>
         public object Clone()
         {
             return new StacSpatialExtent(this);

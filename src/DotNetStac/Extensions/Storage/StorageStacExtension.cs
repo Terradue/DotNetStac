@@ -18,16 +18,16 @@ namespace Stac.Extensions.Storage
         public const string RegionField = "storage:region";
         public const string RequesterPaysField = "storage:requester_pays";
         public const string TierField = "storage:tier";
-        private readonly Dictionary<string, Type> itemFields;
+        private readonly Dictionary<string, Type> _itemFields;
 
         internal StorageStacExtension(IStacPropertiesContainer stacObject)
             : base(JsonSchemaUrl, stacObject)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(PlatformField, typeof(string));
-            this.itemFields.Add(RegionField, typeof(string));
-            this.itemFields.Add(RequesterPaysField, typeof(bool));
-            this.itemFields.Add(TierField, typeof(string));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(PlatformField, typeof(string));
+            this._itemFields.Add(RegionField, typeof(string));
+            this._itemFields.Add(RequesterPaysField, typeof(bool));
+            this._itemFields.Add(TierField, typeof(string));
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Stac.Extensions.Storage
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

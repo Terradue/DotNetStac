@@ -15,14 +15,14 @@ namespace Stac.Extensions.Raster
         // Extensions identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/raster/v1.0.0/schema.json";
 
-        private readonly IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> _itemFields;
         private const string BandsField = "raster:bands";
 
         internal RasterStacExtension(StacAsset stacAsset)
             : base(JsonSchemaUrl, stacAsset)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(BandsField, typeof(RasterBand[]));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(BandsField, typeof(RasterBand[]));
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Stac.Extensions.Raster
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

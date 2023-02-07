@@ -16,7 +16,7 @@ namespace Stac.Collection
         /// <summary>
         /// Json Object
         /// </summary>
-        protected readonly JToken summary;
+        private readonly JToken _summary;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StacSummaryItem"/> class.
@@ -24,7 +24,7 @@ namespace Stac.Collection
         /// <param name="summary"></param>
         protected StacSummaryItem(JToken summary)
         {
-            this.summary = summary;
+            this._summary = summary;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Stac.Collection
         /// <value>
         /// JToken transformer
         /// </value>
-        public JToken AsJToken => this.summary;
+        public JToken AsJToken => this._summary;
 
         /// <summary>
         /// accessor of fields in the object
@@ -42,7 +42,7 @@ namespace Stac.Collection
         {
             get
             {
-                return this.summary[key];
+                return this._summary[key];
             }
         }
 
@@ -54,12 +54,12 @@ namespace Stac.Collection
         /// </summary>
         public IEnumerator GetEnumerator()
         {
-            return this.summary.Children().GetEnumerator();
+            return this._summary.Children().GetEnumerator();
         }
 
         IEnumerator<JToken> IEnumerable<JToken>.GetEnumerator()
         {
-            return this.summary.Children().GetEnumerator();
+            return this._summary.Children().GetEnumerator();
         }
     }
 }

@@ -160,6 +160,48 @@ namespace Stac
         }
 
         /// <summary>
+        /// Gets or sets a description of the Asset providing additional details, such as how it was processed or created.
+        /// </summary>
+        /// <value>
+        /// A description of the Asset providing additional details, such as how it was processed or created.
+        /// </value>
+        [JsonProperty("description")]
+        public string Description
+        {
+            get { return this._description; }
+            set { this._description = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets extended properties
+        /// </summary>
+        /// <value>
+        /// Extended properties
+        /// </value>
+        [JsonExtensionData]
+        public IDictionary<string, object> Properties
+        {
+            get
+            {
+                return this._properties;
+            }
+
+            set
+            {
+                this._properties = new Dictionary<string, object>(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets object container
+        /// </summary>
+        /// <value>
+        /// Object container
+        /// </value>
+        [JsonIgnore]
+        public IStacObject StacObjectContainer => this.ParentStacObject;
+
+        /// <summary>
         /// Create a thumbnail asset
         /// </summary>
         /// <param name="stacObject">parent stac object</param>
@@ -210,48 +252,6 @@ namespace Stac
         {
             return new StacAsset(stacObject, uri, new string[] { "metadata" }, title, mediaType);
         }
-
-        /// <summary>
-        /// Gets or sets a description of the Asset providing additional details, such as how it was processed or created.
-        /// </summary>
-        /// <value>
-        /// A description of the Asset providing additional details, such as how it was processed or created.
-        /// </value>
-        [JsonProperty("description")]
-        public string Description
-        {
-            get { return this._description; }
-            set { this._description = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets extended properties
-        /// </summary>
-        /// <value>
-        /// Extended properties
-        /// </value>
-        [JsonExtensionData]
-        public IDictionary<string, object> Properties
-        {
-            get
-            {
-                return this._properties;
-            }
-
-            set
-            {
-                this._properties = new Dictionary<string, object>(value);
-            }
-        }
-
-        /// <summary>
-        /// Gets object container
-        /// </summary>
-        /// <value>
-        /// Object container
-        /// </value>
-        [JsonIgnore]
-        public IStacObject StacObjectContainer => this.ParentStacObject;
 
         /// <summary>
         /// Gets parent stac object

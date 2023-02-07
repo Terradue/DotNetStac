@@ -19,14 +19,14 @@ namespace Stac.Extensions.Eo
         private const string BandsField = "eo:bands";
         private const string CloudCoverField = "eo:cloud_cover";
 
-        private readonly IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> _itemFields;
 
         internal EoStacExtension(IStacPropertiesContainer stacpropertiesContainer)
             : base(JsonSchemaUrl, stacpropertiesContainer)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(BandsField, typeof(EoBandObject[]));
-            this.itemFields.Add(CloudCoverField, typeof(double));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(BandsField, typeof(EoBandObject[]));
+            this._itemFields.Add(CloudCoverField, typeof(double));
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Stac.Extensions.Eo
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()

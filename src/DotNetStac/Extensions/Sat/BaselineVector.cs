@@ -7,28 +7,28 @@ namespace Stac.Extensions.Sat
 
     public struct BaselineVector
     {
-        private readonly double perpendicular, parallel, along;
+        private readonly double _perpendicular, _parallel, _along;
 
         public BaselineVector(double perpendicular, double parallel, double along)
         {
-            this.perpendicular = perpendicular;
-            this.parallel = parallel;
-            this.along = along;
+            this._perpendicular = perpendicular;
+            this._parallel = parallel;
+            this._along = along;
         }
 
         public double Perpendicular
         {
-            get { return this.perpendicular; }
+            get { return this._perpendicular; }
         }
 
         public double Parallel
         {
-            get { return this.parallel; }
+            get { return this._parallel; }
         }
 
         public double Along
         {
-            get { return this.along; }
+            get { return this._along; }
         }
     }
 }

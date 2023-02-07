@@ -17,17 +17,17 @@ namespace Stac.Schemas
 {
     public class StacValidator
     {
-        private readonly StacSchemaResolver schemaResolver = null;
+        private readonly StacSchemaResolver _schemaResolver = null;
 
-        private readonly Dictionary<Type, string> stacTypes = new Dictionary<Type, string>();
+        private readonly Dictionary<Type, string> _stacTypes = new Dictionary<Type, string>();
 
         public StacValidator(JSchemaUrlResolver jSchemaUrlResolver)
         {
-            this.schemaResolver = new StacSchemaResolver(jSchemaUrlResolver);
-            this.stacTypes.Add(typeof(StacItem), "item");
-            this.stacTypes.Add(typeof(StacCatalog), "catalog");
-            this.stacTypes.Add(typeof(StacCollection), "collection");
-            this.stacTypes.Add(typeof(ItemCollection), "item-collection");
+            this._schemaResolver = new StacSchemaResolver(jSchemaUrlResolver);
+            this._stacTypes.Add(typeof(StacItem), "item");
+            this._stacTypes.Add(typeof(StacCatalog), "catalog");
+            this._stacTypes.Add(typeof(StacCollection), "collection");
+            this._stacTypes.Add(typeof(ItemCollection), "item-collection");
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Stac.Schemas
             Type stacType = Utils.IdentifyStacType(jObject);
 
             // Get all schema to validate against
-            List<string> schemas = new List<string>() { this.stacTypes[stacType] };
+            List<string> schemas = new List<string>() { this._stacTypes[stacType] };
             if (jObject.Value<JArray>("stac_extensions") != null)
             {
                 schemas.AddRange(jObject.Value<JArray>("stac_extensions").Select(a => a.Value<string>()));
@@ -106,7 +106,7 @@ namespace Stac.Schemas
                     throw new InvalidStacDataException("Missing 'stac_version' property");
                 }
 
-                var jsonSchema = this.schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
+                var jsonSchema = this._schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
                 if (jObject.IsValid(jsonSchema, out IList<ValidationError> errorMessages))
                 {
                     continue;

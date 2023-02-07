@@ -31,8 +31,7 @@ namespace Stac.Extensions.Sat
             out bool converged,
             out double maxError,
             int maxIterations = 100,
-            double tolerance = 0.00000001
-        )
+            double tolerance = 0.00000001)
         {
             double t = t0;
             double delta = 0;
@@ -81,8 +80,7 @@ namespace Stac.Extensions.Sat
             out bool converged,
             out double maxError,
             int maxIterations = 100,
-            double tolerance = 0.00000001
-        )
+            double tolerance = 0.00000001)
         {
             double t = t0;
             double delta = 0;

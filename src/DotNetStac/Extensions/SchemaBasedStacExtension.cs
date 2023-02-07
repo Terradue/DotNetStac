@@ -12,7 +12,7 @@ namespace Stac.Extensions
 {
     public class SchemaBasedStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        private readonly IStacObject stacObject;
+        private readonly IStacObject _stacObject;
 
         public SchemaBasedStacExtension(
             Uri jsonSchema,
@@ -23,7 +23,7 @@ namespace Stac.Extensions
         {
             Preconditions.CheckNotNull(jsonSchema, "jsonSchema");
             this.JsonSchema = jsonSchema;
-            this.stacObject = stacObject;
+            this._stacObject = stacObject;
         }
 
         public SchemaBasedStacExtension(
@@ -35,7 +35,7 @@ namespace Stac.Extensions
                 stacObject)
         {
             Preconditions.CheckNotNull(schemaUri, "schemaUri");
-            this.stacObject = stacObject;
+            this._stacObject = stacObject;
             this.JsonSchema = schemaUri;
         }
 

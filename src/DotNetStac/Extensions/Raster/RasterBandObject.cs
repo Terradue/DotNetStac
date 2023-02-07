@@ -16,20 +16,20 @@ namespace Stac.Extensions.Raster
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class RasterBand : IStacPropertiesContainer
     {
-        private IDictionary<string, object> properties;
-        private double? nodata;
-        private RasterSampling? sampling;
-        private DataType? dataType;
-        private string unit;
-        private double? scale;
-        private double? offset;
+        private IDictionary<string, object> _properties;
+        private double? _nodata;
+        private RasterSampling? _sampling;
+        private DataType? _dataType;
+        private string _unit;
+        private double? _scale;
+        private double? _offset;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RasterBand"/> class.
         /// </summary>
         public RasterBand()
         {
-            this.properties = new Dictionary<string, object>();
+            this._properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Stac.Extensions.Raster
         /// Pixel values used to identify pixels that are nodata in the assets.
         /// </value>
         [JsonProperty("nodata")]
-        public double? Nodata { get => this.nodata; set => this.nodata = value; }
+        public double? Nodata { get => this._nodata; set => this._nodata = value; }
 
         /// <summary>
         /// Gets or sets one of area or point. Indicates whether a pixel value should be assumed to represent 
@@ -51,7 +51,7 @@ namespace Stac.Extensions.Raster
         /// </value>
         [JsonProperty("sampling")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public RasterSampling? Sampling { get => this.sampling; set => this.sampling = value; }
+        public RasterSampling? Sampling { get => this._sampling; set => this._sampling = value; }
 
         /// <summary>
         /// Gets or sets the data type of the band.
@@ -61,7 +61,7 @@ namespace Stac.Extensions.Raster
         /// </value>
         [JsonProperty("data_type")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public DataType? DataType { get => this.dataType; set => this.dataType = value; }
+        public DataType? DataType { get => this._dataType; set => this._dataType = value; }
 
         /// <summary>
         /// Gets or sets the actual number of bits used for this band.
@@ -97,7 +97,7 @@ namespace Stac.Extensions.Raster
         /// Unit denomination of the pixel value.
         /// </value>
         [JsonProperty("unit")]
-        public string Unit { get => this.unit; set => this.unit = value; }
+        public string Unit { get => this._unit; set => this._unit = value; }
 
         /// <summary>
         /// Gets or sets multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).
@@ -106,7 +106,7 @@ namespace Stac.Extensions.Raster
         /// multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).
         /// </value>
         [JsonProperty("scale")]
-        public double? Scale { get => this.scale; set => this.scale = value; }
+        public double? Scale { get => this._scale; set => this._scale = value; }
 
         /// <summary>
         /// Gets or sets number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).
@@ -115,7 +115,7 @@ namespace Stac.Extensions.Raster
         /// number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).
         /// </value>
         [JsonProperty("offset")]
-        public double? Offset { get => this.offset; set => this.offset = value; }
+        public double? Offset { get => this._offset; set => this._offset = value; }
 
         /// <summary>
         /// Gets or sets histogram distribution information of the pixels values in the band
@@ -133,7 +133,7 @@ namespace Stac.Extensions.Raster
         /// Additional fields
         /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
+        public IDictionary<string, object> Properties { get => this._properties; set => this._properties = value; }
 
         /// <inheritdoc/>
         [JsonIgnore]

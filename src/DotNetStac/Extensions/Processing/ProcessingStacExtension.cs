@@ -20,16 +20,16 @@ namespace Stac.Extensions.Processing
         private const string LevelField = "processing:level";
         private const string FacilityField = "processing:facility";
         private const string SoftwareField = "processing:software";
-        private readonly Dictionary<string, Type> itemFields;
+        private readonly Dictionary<string, Type> _itemFields;
 
         internal ProcessingStacExtension(StacItem stacItem)
             : base(JsonSchemaUrl, stacItem)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(LineageField, typeof(string));
-            this.itemFields.Add(LevelField, typeof(string));
-            this.itemFields.Add(FacilityField, typeof(string));
-            this.itemFields.Add(SoftwareField, typeof(IDictionary<string, string>));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(LineageField, typeof(string));
+            this._itemFields.Add(LevelField, typeof(string));
+            this._itemFields.Add(FacilityField, typeof(string));
+            this._itemFields.Add(SoftwareField, typeof(IDictionary<string, string>));
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Stac.Extensions.Processing
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         private void UpdateSoftwareField(object sender, NotifyCollectionChangedEventArgs e)
         {

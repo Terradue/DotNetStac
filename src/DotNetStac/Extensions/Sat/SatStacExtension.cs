@@ -19,18 +19,18 @@ namespace Stac.Extensions.Sat
         public const string AbsoluteOrbitField = "sat:absolute_orbit";
         public const string OrbitStateField = "sat:orbit_state";
         public const string PlatformInternationalDesignatorField = "sat:platform_international_designator";
-        private readonly Dictionary<string, Type> itemFields;
+        private readonly Dictionary<string, Type> _itemFields;
 
         public SatStacExtension(StacItem stacItem)
             : base(JsonSchemaUrl, stacItem)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(AscendingNodeCrossingDateTimeField, typeof(DateTime));
-            this.itemFields.Add(SceneCenterCoordinatesField, typeof(double[]));
-            this.itemFields.Add(RelativeOrbitField, typeof(int));
-            this.itemFields.Add(AbsoluteOrbitField, typeof(int));
-            this.itemFields.Add(OrbitStateField, typeof(string));
-            this.itemFields.Add(PlatformInternationalDesignatorField, typeof(string));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(AscendingNodeCrossingDateTimeField, typeof(DateTime));
+            this._itemFields.Add(SceneCenterCoordinatesField, typeof(double[]));
+            this._itemFields.Add(RelativeOrbitField, typeof(int));
+            this._itemFields.Add(AbsoluteOrbitField, typeof(int));
+            this._itemFields.Add(OrbitStateField, typeof(string));
+            this._itemFields.Add(PlatformInternationalDesignatorField, typeof(string));
         }
 
         public SortedDictionary<DateTime, SatOrbitStateVector> OrbitStateVectors
@@ -89,7 +89,7 @@ namespace Stac.Extensions.Sat
         public StacItem StacItem => this.StacPropertiesContainer as StacItem;
 
         /// <inheritdoc/>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         private SortedDictionary<DateTime, SatOrbitStateVector> SortOrbitStateVectors(JToken osvarray)
         {

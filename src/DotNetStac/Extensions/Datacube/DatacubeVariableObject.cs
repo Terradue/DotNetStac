@@ -14,17 +14,17 @@ namespace Stac.Extensions.Datacube
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class DatacubeVariable : IStacPropertiesContainer
     {
-        private IDictionary<string, object> properties;
+        private IDictionary<string, object> _properties;
         protected string[] dimensions;
         protected DatacubeVariableType? type;
         protected string description;
         protected double[] extent;
         protected string[] values;
-        private string unit;
+        private string _unit;
 
         public DatacubeVariable()
         {
-            this.properties = new Dictionary<string, object>();
+            this._properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Stac.Extensions.Datacube
         /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
         /// </value>
         [JsonProperty("unit")]
-        public string Unit { get => this.unit; set => this.unit = value; }
+        public string Unit { get => this._unit; set => this._unit = value; }
 
         /// <summary>
         /// Gets or sets additional fields
@@ -88,7 +88,7 @@ namespace Stac.Extensions.Datacube
         /// Additional fields
         /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
+        public IDictionary<string, object> Properties { get => this._properties; set => this._properties = value; }
 
         /// <inheritdoc/>
         [JsonIgnore]

@@ -11,17 +11,17 @@ namespace Stac.Extensions.View
     {
 
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/view/v1.0.0/schema.json";
-        private readonly Dictionary<string, Type> itemFields;
+        private readonly Dictionary<string, Type> _itemFields;
 
         public ViewStacExtension(IStacObject stacObject)
             : base(JsonSchemaUrl, stacObject)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(OffNadirField, typeof(double));
-            this.itemFields.Add(IncidenceAngleField, typeof(double));
-            this.itemFields.Add(AzimuthField, typeof(double));
-            this.itemFields.Add(SunAzimuthField, typeof(double));
-            this.itemFields.Add(SunElevationField, typeof(double));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(OffNadirField, typeof(double));
+            this._itemFields.Add(IncidenceAngleField, typeof(double));
+            this._itemFields.Add(AzimuthField, typeof(double));
+            this._itemFields.Add(SunAzimuthField, typeof(double));
+            this._itemFields.Add(SunElevationField, typeof(double));
         }
 
         public static string OffNadirField => "view:off_nadir";
@@ -65,7 +65,7 @@ namespace Stac.Extensions.View
         }
 
         /// <inheritdoc/>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
     }
 
     public static class ViewStacExtensionExtensions

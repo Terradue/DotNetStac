@@ -17,7 +17,7 @@ namespace Stac.Extensions
     /// </summary>
     public abstract class StacPropertiesContainerExtension : IStacExtension
     {
-        private readonly string identifier;
+        private readonly string _identifier;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StacPropertiesContainerExtension"/> class.
@@ -26,7 +26,7 @@ namespace Stac.Extensions
         /// <param name="stacPropertiesContainer">STAC object</param>
         protected StacPropertiesContainerExtension(string identifier, IStacPropertiesContainer stacPropertiesContainer)
         {
-            this.identifier = identifier;
+            this._identifier = identifier;
             this.StacPropertiesContainer = stacPropertiesContainer;
         }
 
@@ -36,7 +36,7 @@ namespace Stac.Extensions
         /// <value>
         /// Identifier of the extension
         /// </value>
-        public virtual string Identifier => this.identifier;
+        public virtual string Identifier => this._identifier;
 
         /// <summary>
         /// Gets stac Object extended by the extension

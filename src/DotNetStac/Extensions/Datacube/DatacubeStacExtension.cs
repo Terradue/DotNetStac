@@ -17,16 +17,16 @@ namespace Stac.Extensions.Datacube
         // Extensions identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/datacube/v2.1.0/schema.json";
 
-        private readonly IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> _itemFields;
         private const string DimensionField = "cube:dimensions";
         private const string VariableField = "cube:variables";
 
         private DatacubeStacExtension(IStacPropertiesContainer stacPropertiesContainer)
             : base(JsonSchemaUrl, stacPropertiesContainer)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(DimensionField, typeof(IDictionary<string, DatacubeDimension>));
-            this.itemFields.Add(VariableField, typeof(IDictionary<string, DatacubeVariable>));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(DimensionField, typeof(IDictionary<string, DatacubeDimension>));
+            this._itemFields.Add(VariableField, typeof(IDictionary<string, DatacubeVariable>));
         }
 
         internal DatacubeStacExtension(StacCollection stacCollection)
@@ -102,7 +102,7 @@ namespace Stac.Extensions.Datacube
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         private void UpdateDimensionField(object sender, NotifyCollectionChangedEventArgs e)
         {

@@ -12,13 +12,13 @@ namespace Stac.Extensions
 {
     public class SummaryFunction<T> : ISummaryFunction
     {
-        private readonly CreateSummary<T> summaryFunction;
+        private readonly CreateSummary<T> _summaryFunction;
 
         public SummaryFunction(IStacExtension extension, string propertyName, CreateSummary<T> summaryFunction)
         {
             this.Extension = extension;
             this.PropertyName = propertyName;
-            this.summaryFunction = summaryFunction;
+            this._summaryFunction = summaryFunction;
         }
 
         /// <inheritdoc/>
@@ -30,7 +30,7 @@ namespace Stac.Extensions
         /// <inheritdoc/>
         public IStacSummaryItem Summarize(IEnumerable<object> items)
         {
-            return this.summaryFunction(items.SelectMany(i =>
+            return this._summaryFunction(items.SelectMany(i =>
             {
                 try
                 {

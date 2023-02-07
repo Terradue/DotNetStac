@@ -25,25 +25,25 @@ namespace Stac.Extensions.Sar
         public const string LooksAzimuthField = "sar:looks_azimuth";
         public const string LooksEquivalentNumberField = "sar:looks_equivalent_number";
         public const string ObservationDirectionField = "sar:observation_direction";
-        private readonly IDictionary<string, Type> itemFields;
+        private readonly IDictionary<string, Type> _itemFields;
 
         internal SarStacExtension(IStacPropertiesContainer stacPropertiesContainer)
             : base(JsonSchemaUrl, stacPropertiesContainer)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(InstrumentModeField, typeof(string[]));
-            this.itemFields.Add(FrequencyBandField, typeof(SarCommonFrequencyBandName));
-            this.itemFields.Add(CenterFrequencyField, typeof(double));
-            this.itemFields.Add(PolarizationsField, typeof(string[]));
-            this.itemFields.Add(ProductTypeField, typeof(string));
-            this.itemFields.Add(ResolutionRangeField, typeof(double));
-            this.itemFields.Add(ResolutionAzimuthField, typeof(double));
-            this.itemFields.Add(PixelSpacingRangeField, typeof(double));
-            this.itemFields.Add(PixelSpacingAzimuthField, typeof(double));
-            this.itemFields.Add(LooksRangeField, typeof(double));
-            this.itemFields.Add(LooksAzimuthField, typeof(double));
-            this.itemFields.Add(LooksEquivalentNumberField, typeof(double));
-            this.itemFields.Add(ObservationDirectionField, typeof(string));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(InstrumentModeField, typeof(string[]));
+            this._itemFields.Add(FrequencyBandField, typeof(SarCommonFrequencyBandName));
+            this._itemFields.Add(CenterFrequencyField, typeof(double));
+            this._itemFields.Add(PolarizationsField, typeof(string[]));
+            this._itemFields.Add(ProductTypeField, typeof(string));
+            this._itemFields.Add(ResolutionRangeField, typeof(double));
+            this._itemFields.Add(ResolutionAzimuthField, typeof(double));
+            this._itemFields.Add(PixelSpacingRangeField, typeof(double));
+            this._itemFields.Add(PixelSpacingAzimuthField, typeof(double));
+            this._itemFields.Add(LooksRangeField, typeof(double));
+            this._itemFields.Add(LooksAzimuthField, typeof(double));
+            this._itemFields.Add(LooksEquivalentNumberField, typeof(double));
+            this._itemFields.Add(ObservationDirectionField, typeof(string));
         }
 
         public string InstrumentMode
@@ -125,7 +125,7 @@ namespace Stac.Extensions.Sar
         }
 
         /// <inheritdoc/>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
     }
 
     public static class SarStacExtensionExtensions

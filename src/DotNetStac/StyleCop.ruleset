@@ -86,6 +86,7 @@
     <Rule Id="SA1629" Action="None" />
     <Rule Id="SA1636" Action="None" />
     <Rule Id="SA1309" Action="None" />
+    <Rule Id="SX1309" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="DocumentationAnalyzers" RuleNamespace="DocumentationAnalyzers">
     <Rule Id="DOC100" Action="Warning" />

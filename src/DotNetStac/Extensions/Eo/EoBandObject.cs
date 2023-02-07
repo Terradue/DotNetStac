@@ -14,12 +14,12 @@ namespace Stac.Extensions.Eo
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class EoBandObject
     {
-        private string name;
+        private string _name;
 
-        private string description;
+        private string _description;
 
-        private EoBandCommonName? commonName;
-        private IDictionary<string, object> properties;
+        private EoBandCommonName? _commonName;
+        private IDictionary<string, object> _properties;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EoBandObject"/> class.
@@ -28,9 +28,9 @@ namespace Stac.Extensions.Eo
         /// <param name="commonName">Common name of the band</param>
         public EoBandObject(string name, EoBandCommonName? commonName)
         {
-            this.name = name;
-            this.commonName = commonName;
-            this.properties = new Dictionary<string, object>();
+            this._name = name;
+            this._commonName = commonName;
+            this._properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Stac.Extensions.Eo
         /// The name of the band (e.g., "B01", "B8", "band2", "red").
         /// </value>
         [JsonProperty("name")]
-        public string Name { get => this.name; set => this.name = value; }
+        public string Name { get => this._name; set => this._name = value; }
 
         /// <summary>
         /// Gets or sets description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.
@@ -49,7 +49,7 @@ namespace Stac.Extensions.Eo
         /// Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </value>
         [JsonProperty("description")]
-        public string Description { get => this.description; set => this.description = value; }
+        public string Description { get => this._description; set => this._description = value; }
 
         /// <summary>
         /// Gets or sets the name commonly used to refer to the band to make it easier to search for bands across instruments.
@@ -58,7 +58,7 @@ namespace Stac.Extensions.Eo
         /// The name commonly used to refer to the band to make it easier to search for bands across instruments.
         /// </value>
         [JsonProperty("common_name")]
-        public EoBandCommonName? CommonName { get => this.commonName; set => this.commonName = value; }
+        public EoBandCommonName? CommonName { get => this._commonName; set => this._commonName = value; }
 
         /// <summary>
         /// Gets or sets the center wavelength of the band, in micrometers (μm).
@@ -94,6 +94,6 @@ namespace Stac.Extensions.Eo
         /// Additional fields
         /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
+        public IDictionary<string, object> Properties { get => this._properties; set => this._properties = value; }
     }
 }

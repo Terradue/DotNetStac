@@ -13,7 +13,7 @@ namespace Stac.Common
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class Statistics
     {
-        private IDictionary<string, object> properties;
+        private IDictionary<string, object> _properties;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Statistics"/> class.
@@ -31,7 +31,7 @@ namespace Stac.Common
             this.Maximum = maximum;
             this.Stdev = stdev;
             this.ValidPercent = validPercent;
-            this.properties = new Dictionary<string, object>();
+            this._properties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -86,6 +86,6 @@ namespace Stac.Common
         /// Additional fields
         /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
+        public IDictionary<string, object> Properties { get => this._properties; set => this._properties = value; }
     }
 }

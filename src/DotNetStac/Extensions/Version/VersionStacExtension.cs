@@ -26,14 +26,14 @@ namespace Stac.Extensions.Version
 
         internal const string LatestVersionRel = "predecessor-version";
 
-        private readonly Dictionary<string, Type> itemFields;
+        private readonly Dictionary<string, Type> _itemFields;
 
         internal VersionStacExtension(IStacObject stacObject)
             : base(JsonSchemaUrl, stacObject)
         {
-            this.itemFields = new Dictionary<string, Type>();
-            this.itemFields.Add(VersionField, typeof(string));
-            this.itemFields.Add(DeprecatedField, typeof(bool));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(VersionField, typeof(string));
+            this._itemFields.Add(DeprecatedField, typeof(bool));
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Stac.Extensions.Version
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => this.itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
