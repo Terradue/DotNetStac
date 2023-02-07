@@ -65,7 +65,8 @@ namespace Stac.Collection
             minDate = minDate == DateTime.MinValue ? null : minDate;
             maxDate = maxDate == DateTime.MaxValue ? null : maxDate;
             return new StacExtent(
-                new StacSpatialExtent(items.Min(i => i.GetBoundingBoxFromGeometryExtent()[0]),
+                new StacSpatialExtent(
+                    items.Min(i => i.GetBoundingBoxFromGeometryExtent()[0]),
                                                 items.Min(i => i.GetBoundingBoxFromGeometryExtent()[1]),
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[2]),
                                                 items.Max(i => i.GetBoundingBoxFromGeometryExtent()[3])),
@@ -82,7 +83,8 @@ namespace Stac.Collection
 
         internal void Update(ICollection<StacItem> items)
         {
-            this.Spatial = new StacSpatialExtent(items.Select(i => i.GetBoundingBoxFromGeometryExtent()[0])
+            this.Spatial = new StacSpatialExtent(
+                items.Select(i => i.GetBoundingBoxFromGeometryExtent()[0])
                                                  .Concat(new double[] { this.Spatial.BoundingBoxes[0][0] })
                                                  .Min(),
                                             items.Select(i => i.GetBoundingBoxFromGeometryExtent()[1])
@@ -94,7 +96,8 @@ namespace Stac.Collection
                                             items.Select(i => i.GetBoundingBoxFromGeometryExtent()[3])
                                                  .Concat(new double[] { this.Spatial.BoundingBoxes[0][3] })
                                                  .Max());
-            this.Temporal = new StacTemporalExtent(items.Select(i => i.DateTime.Start)
+            this.Temporal = new StacTemporalExtent(
+                items.Select(i => i.DateTime.Start)
                                                    .Concat(new DateTime[] { this.Temporal.Interval[0][0].GetValueOrDefault() })
                                                    .Min(),
                                               items.Select(i => i.DateTime.End)

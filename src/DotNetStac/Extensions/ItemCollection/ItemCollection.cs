@@ -16,10 +16,12 @@ namespace Stac.Extensions.ItemCollections
 
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/processing/v1.0.0/schema.json";
 
-        public ItemCollection(string id,
+        public ItemCollection(
+            string id,
                               string description,
                               List<StacItem> stacItems)
-            : base(id,
+            : base(
+                id,
                                                                description,
                                                                null)
         {

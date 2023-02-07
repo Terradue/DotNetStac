@@ -47,6 +47,14 @@ namespace Stac
             this.Length = source.Length;
         }
 
+        [JsonProperty("type")]
+        [DataMember(Name = "type")]
+        public string Type
+        {
+            get => this.ContentType?.ToString();
+            set => this.ContentType = value == null ? null : new ContentType(value);
+        }
+
         public static StacLink CreateSelfLink(Uri uri, string mediaType = null, string title = null)
         {
             return new StacLink(uri, "self", title, mediaType);
@@ -90,14 +98,6 @@ namespace Stac
         public static StacLink CreateObjectLink(IStacObject stacObject, Uri uri)
         {
             return new StacObjectLink(stacObject, uri);
-        }
-
-        [JsonProperty("type")]
-        [DataMember(Name = "type")]
-        public string Type
-        {
-            get => this.ContentType?.ToString();
-            set => this.ContentType = value == null ? null : new ContentType(value);
         }
 
         [JsonIgnore]

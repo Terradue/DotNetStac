@@ -107,6 +107,20 @@ namespace Stac
         }
 
         /// <summary>
+        /// Gets or sets media type of the asset
+        /// </summary>
+        /// <value>
+        /// Media type of the asset
+        /// </value>
+        [JsonProperty("type")]
+        [JsonConverter(typeof(ContentTypeConverter))]
+        public ContentType MediaType
+        {
+            get { return this._type; }
+            set { this._type = value; }
+        }
+
+        /// <summary>
         /// Create a thumbnail asset
         /// </summary>
         /// <param name="stacObject">parent stac object</param>
@@ -156,20 +170,6 @@ namespace Stac
         public static StacAsset CreateMetadataAsset(IStacObject stacObject, Uri uri, ContentType mediaType, string title = null)
         {
             return new StacAsset(stacObject, uri, new string[] { "metadata" }, title, mediaType);
-        }
-
-        /// <summary>
-        /// Gets or sets media type of the asset
-        /// </summary>
-        /// <value>
-        /// Media type of the asset
-        /// </value>
-        [JsonProperty("type")]
-        [JsonConverter(typeof(ContentTypeConverter))]
-        public ContentType MediaType
-        {
-            get { return this._type; }
-            set { this._type = value; }
         }
 
         /// <summary>

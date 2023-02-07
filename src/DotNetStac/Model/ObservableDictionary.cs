@@ -12,6 +12,8 @@ using System.Threading;
 
 namespace Stac.Model
 {
+#pragma warning disable SA1649 // File name should match first type name
+
     /// <summary>
     /// Provides a thread-safe dictionary for use with data binding.
     /// </summary>
@@ -69,6 +71,13 @@ namespace Stac.Model
             get => this._dictionary.Values;
         }
 
+        /// <inheritdoc/>
+        public TValue this[TKey key]
+        {
+            get => this._dictionary[key];
+            set => this.UpdateWithNotification(key, value);
+        }
+
         /// <summary>
         /// Notifies observers of CollectionChanged or PropertyChanged of an update to the dictionary.
         /// </summary>
@@ -78,7 +87,8 @@ namespace Stac.Model
             var propertyHandler = this.PropertyChanged;
             if (collectionHandler != null || propertyHandler != null)
             {
-                this._context.Send(s =>
+                this._context.Send(
+                    s =>
                 {
                     collectionHandler?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
                     propertyHandler?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -99,7 +109,8 @@ namespace Stac.Model
             var propertyHandler = this.PropertyChanged;
             if (collectionHandler != null || propertyHandler != null)
             {
-                this._context.Send(s =>
+                this._context.Send(
+                    s =>
                 {
                     collectionHandler?.Invoke(this, new NotifyCollectionChangedEventArgs(actionType, changedItem));
                     propertyHandler?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -121,7 +132,8 @@ namespace Stac.Model
             var propertyHandler = this.PropertyChanged;
             if (collectionHandler != null || propertyHandler != null)
             {
-                this._context.Send(s =>
+                this._context.Send(
+                    s =>
                 {
                     collectionHandler?.Invoke(this, new NotifyCollectionChangedEventArgs(actionType, item, index));
                     propertyHandler?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -216,13 +228,6 @@ namespace Stac.Model
         void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
             => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).CopyTo(array, arrayIndex);
 
-        /// <inheritdoc/>
-        public TValue this[TKey key]
-        {
-            get => this._dictionary[key];
-            set => this.UpdateWithNotification(key, value);
-        }
-
         bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
             => this.TryRemoveWithNotification(item.Key, out TValue temp);
 
@@ -252,4 +257,7 @@ namespace Stac.Model
         public bool TryGetValue(TKey key, out TValue value)
             => this._dictionary.TryGetValue(key, out value);
     }
+
+#pragma warning restore SA1649 // File name should match first type name
+
 }

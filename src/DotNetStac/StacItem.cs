@@ -29,7 +29,8 @@ namespace Stac
         private readonly StacItemRootPropertyContainer Root;
 
         [JsonConstructor]
-        public StacItem(string id,
+        public StacItem(
+            string id,
                         IGeometryObject geometry,
                         IDictionary<string, object> properties = null)
             : base(geometry, properties, id)
@@ -45,7 +46,8 @@ namespace Stac
         }
 
         public StacItem(StacItem stacItem)
-            : base(Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
+            : base(
+                Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
                                                   new Dictionary<string, object>(Preconditions.CheckNotNull(stacItem).Properties),
                                                   Preconditions.CheckNotNull(stacItem, "id").Id)
         {
@@ -97,6 +99,9 @@ namespace Stac
         [JsonIgnore]
         public ContentType MediaType => ITEM_MEDIATYPE;
 
+        [JsonProperty("assets", Order = 4)]
+        public IDictionary<string, StacAsset> Assets { get; private set; }
+
         private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems != null)
@@ -121,9 +126,6 @@ namespace Stac
                 }
             }
         }
-
-        [JsonProperty("assets", Order = 4)]
-        public IDictionary<string, StacAsset> Assets { get; private set; }
 
         /// <summary>
         /// Gets or sets the id of the STAC Collection this Item references to

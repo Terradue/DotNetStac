@@ -26,7 +26,8 @@ namespace Stac
         public static readonly ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);
 
         [JsonConstructor]
-        public StacCollection(string id,
+        public StacCollection(
+            string id,
                               string description,
                               StacExtent extent,
                               IDictionary<string, StacAsset> assets = null,
@@ -222,7 +223,8 @@ namespace Stac
         /// <param name="license">License of the collection</param>
         /// <param name="collectionUri">Uri of the collection. If provided, the items Uri and made relative to this one.</param>
         /// <param name="assets">Assets of the collection</param>
-        public static StacCollection Create(string id,
+        public static StacCollection Create(
+            string id,
                                             string description,
                                             IDictionary<Uri, StacItem> items,
                                             string license = null,

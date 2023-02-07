@@ -145,7 +145,8 @@ namespace Stac.Extensions.Sar
             return stacItem.Assets.Values.FirstOrDefault(a => a.SarExtension().Polarizations.Contains(polarization));
         }
 
-        public static void Required(this SarStacExtension sarStacExtension,
+        public static void Required(
+            this SarStacExtension sarStacExtension,
                                 string instrumentMode,
                                 SarCommonFrequencyBandName frequencyBandName,
                                 string[] polarizations,

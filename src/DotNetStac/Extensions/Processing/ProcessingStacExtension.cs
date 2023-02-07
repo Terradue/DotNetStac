@@ -126,7 +126,8 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Initialize the major fields of processing extensions
         /// </summary>
-        public static void Init(this ProcessingStacExtension processingStacExtension,
+        public static void Init(
+            this ProcessingStacExtension processingStacExtension,
                                 string lineage,
                                 string level,
                                 string facility = null)

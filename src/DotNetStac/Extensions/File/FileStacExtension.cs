@@ -125,7 +125,8 @@ namespace Stac.Extensions.File
         /// - size
         /// - checksum
         /// </summary>
-        public static async Task SetFileExtensionProperties(this FileStacExtension fileStacExtension,
+        public static async Task SetFileExtensionProperties(
+            this FileStacExtension fileStacExtension,
                                                       FileInfo file,
                                                       HashType hashType = HashType.SHA1,
                                                       MultibaseEncoding encoding = MultibaseEncoding.Base16Lower)
@@ -139,7 +140,8 @@ namespace Stac.Extensions.File
         /// - size
         /// - checksum
         /// </summary>
-        public static async Task SetFileExtensionProperties(this FileStacExtension fileStacExtension,
+        public static async Task SetFileExtensionProperties(
+            this FileStacExtension fileStacExtension,
                                                       Stream stream,
                                                       HashType hashType = HashType.SHA1,
                                                       MultibaseEncoding encoding = MultibaseEncoding.Base16Lower)
@@ -150,7 +152,8 @@ namespace Stac.Extensions.File
         /// <summary>
         /// Add the checksum property of the file extension
         /// </summary>
-        public static async Task SetFileCheckSum(this FileStacExtension fileStacExtension,
+        public static async Task SetFileCheckSum(
+            this FileStacExtension fileStacExtension,
                                                          HashType hashType,
                                                          MultibaseEncoding encoding,
                                                          Func<Uri, Stream> uriStreamer)
