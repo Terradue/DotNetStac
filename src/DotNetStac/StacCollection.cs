@@ -71,7 +71,6 @@ namespace Stac
             this.Extent = new StacExtent(stacCollection.Extent);
         }
 
-        #region IStacObject
 
         /// <summary>
         /// Identifier for the Collection.
@@ -110,7 +109,6 @@ namespace Stac
         [JsonIgnore]
         public ContentType MediaType => COLLECTION_MEDIATYPE;
 
-        #endregion IStacObject
 
         /// <summary>
         /// STAC type (Collection)
@@ -188,7 +186,6 @@ namespace Stac
             return this.Assets.Count > 0;
         }
 
-        #region Static Methods
 
         /// <summary>
         /// Generate a collection corresponding to the items' dictionary. Spatial and temporal extents
@@ -257,8 +254,6 @@ namespace Stac
 
             return collection;
         }
-
-        #endregion
 
         public void Update(IDictionary<Uri, StacItem> items)
         {

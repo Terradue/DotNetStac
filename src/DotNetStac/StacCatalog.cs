@@ -65,7 +65,6 @@ namespace Stac
             this.Properties = new Dictionary<string, object>(stacCatalog.Properties);
         }
 
-        # region IStacObject
 
         /// <summary>
         /// Identifier for the Catalog.
@@ -104,7 +103,6 @@ namespace Stac
         [JsonIgnore]
         public ContentType MediaType => CATALOG_MEDIATYPE;
 
-        # endregion IStacObject
 
         /// <summary>
         /// STAC type (Catalog)

@@ -15,7 +15,6 @@ namespace Stac.Extensions.VirtualAssets
     public class VirtualAsset : StacAsset
     {
 
-        #region Static members
 
         /// <summary>
         /// Create a new Virtual Asset from assets defined in an existing stac item
@@ -30,7 +29,6 @@ namespace Stac.Extensions.VirtualAssets
             return new VirtualAsset(parentObject, stacItem.Assets.Select(asset => new Uri(asset.Value.Uri, "#" + asset.Key)).ToList());
         }
 
-        #endregion
 
         /// <summary>
         /// Initialize a new Virtual Asset for a STAC object with an array of items

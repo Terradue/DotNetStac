@@ -14,8 +14,6 @@ namespace Stac
     [DataContract]
     public class StacLink
     {
-        #region Static members
-
         public static StacLink CreateSelfLink(Uri uri, string mediaType = null, string title = null)
         {
             return new StacLink(uri, "self", title, mediaType);
@@ -60,8 +58,6 @@ namespace Stac
         {
             return new StacObjectLink(stacObject, uri);
         }
-
-        #endregion
 
         public StacLink()
         {

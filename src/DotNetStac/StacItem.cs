@@ -82,7 +82,6 @@ namespace Stac
             }
         }
 
-        #region IStacObject
 
         /// <summary>
         /// The STAC version the Item implements
@@ -113,8 +112,6 @@ namespace Stac
         /// <inheritdoc/>
         [JsonIgnore]
         public ContentType MediaType => ITEM_MEDIATYPE;
-
-        # endregion IStacObject
 
         [JsonProperty("assets", Order = 4)]
         public IDictionary<string, StacAsset> Assets { get; private set; }
