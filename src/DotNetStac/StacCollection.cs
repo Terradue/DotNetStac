@@ -72,14 +72,14 @@ namespace Stac
         }
 
         /// <summary>
-        /// Identifier for the Collection.
+        /// Gets identifier for the Collection.
         /// </summary>
         /// <value></value>
         [JsonProperty("id")]
         public string Id { get; internal set; }
 
         /// <summary>
-        /// The STAC version the Collection implements
+        /// Gets or sets the STAC version the Collection implements
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_version")]
@@ -87,14 +87,14 @@ namespace Stac
         public SemVersion StacVersion { get; set; }
 
         /// <summary>
-        /// A list of extension identifiers the Collection implements
+        /// Gets a list of extension identifiers the Collection implements
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
-        /// A list of references to other documents.
+        /// Gets a list of references to other documents.
         /// </summary>
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
@@ -109,7 +109,7 @@ namespace Stac
         public ContentType MediaType => COLLECTION_MEDIATYPE;
 
         /// <summary>
-        /// STAC type (Collection)
+        /// Gets sTAC type (Collection)
         /// </summary>
         /// <value>
         /// <placeholder>STAC type (Collection)</placeholder>
@@ -118,7 +118,7 @@ namespace Stac
         public virtual string Type => "Collection";
 
         /// <summary>
-        /// A map of property summaries, either a set of values or statistics such as a range.
+        /// Gets a map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
         /// <value></value>
         [JsonProperty("summaries")]
@@ -126,21 +126,21 @@ namespace Stac
         public Dictionary<string, IStacSummaryItem> Summaries { get; internal set; }
 
         /// <summary>
-        /// Collection extended data
+        /// Gets collection extended data
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
 
         /// <summary>
-        /// Spatial and temporal extents.
+        /// Gets spatial and temporal extents.
         /// </summary>
         /// <value></value>
         [JsonProperty("extent")]
         public StacExtent Extent { get; internal set; }
 
         /// <summary>
-        /// List of keywords describing the Collection.
+        /// Gets list of keywords describing the Collection.
         /// </summary>
         /// <value></value>
         [JsonProperty("keywords", DefaultValueHandling = DefaultValueHandling.Ignore)]

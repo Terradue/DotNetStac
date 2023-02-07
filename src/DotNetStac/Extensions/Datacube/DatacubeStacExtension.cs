@@ -14,7 +14,7 @@ namespace Stac.Extensions.Datacube
     /// </summary>
     public class DatacubeStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extensions identifier and schema url
+        // Extensions identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/datacube/v2.1.0/schema.json";
 
         private readonly IDictionary<string, Type> itemFields;
@@ -41,7 +41,7 @@ namespace Stac.Extensions.Datacube
         }
 
         /// <summary>
-        /// A dictionary of available dimensions where each object is a DatacubeDimension Object.
+        /// Gets a dictionary of available dimensions where each object is a DatacubeDimension Object.
         /// </summary>
         /// <value>
         /// <placeholder>A dictionary of available dimensions where each object is a DatacubeDimension Object.</placeholder>
@@ -68,7 +68,7 @@ namespace Stac.Extensions.Datacube
         }
 
         /// <summary>
-        /// A dictionary of available variables where each object is a DatacubeVariable Object.
+        /// Gets a dictionary of available variables where each object is a DatacubeVariable Object.
         /// </summary>
         /// <value>
         /// <placeholder>A dictionary of available variables where each object is a DatacubeVariable Object.</placeholder>
@@ -95,7 +95,7 @@ namespace Stac.Extensions.Datacube
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>

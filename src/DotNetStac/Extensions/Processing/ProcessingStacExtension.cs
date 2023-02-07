@@ -14,7 +14,7 @@ namespace Stac.Extensions.Processing
     /// </summary>
     public class ProcessingStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extension identifier and schema url
+        // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/processing/v1.0.0/schema.json";
         private const string LineageField = "processing:lineage";
         private const string LevelField = "processing:level";
@@ -32,7 +32,7 @@ namespace Stac.Extensions.Processing
         }
 
         /// <summary>
-        /// Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described NASA ISO.
+        /// Gets or sets lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described NASA ISO.
         /// </summary>
         /// <value></value>
         public string Lineage
@@ -42,7 +42,7 @@ namespace Stac.Extensions.Processing
         }
 
         /// <summary>
-        /// The name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
+        /// Gets or sets the name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
         /// </summary>
         /// <value></value>
         public string Level
@@ -52,7 +52,7 @@ namespace Stac.Extensions.Processing
         }
 
         /// <summary>
-        /// The name of the facility that produced the data. 
+        /// Gets or sets the name of the facility that produced the data. 
         /// </summary>
         /// <value></value>
         public string Facility
@@ -62,7 +62,7 @@ namespace Stac.Extensions.Processing
         }
 
         /// <summary>
-        /// A dictionary with name/version for key/value describing one or more softwares that produced the data.
+        /// Gets a dictionary with name/version for key/value describing one or more softwares that produced the data.
         /// </summary>
         /// <value></value>
         public IDictionary<string, string> Software
@@ -81,7 +81,7 @@ namespace Stac.Extensions.Processing
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>

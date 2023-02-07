@@ -19,7 +19,7 @@ namespace Stac.Extensions
         private static readonly object initLock = new object();
 
         /// <summary>
-        /// Dictionary of extensions managed by the library
+        /// Gets dictionary of extensions managed by the library
         /// </summary>
         /// <value></value>
         public static Dictionary<string, Type> ManagedStacExtensions

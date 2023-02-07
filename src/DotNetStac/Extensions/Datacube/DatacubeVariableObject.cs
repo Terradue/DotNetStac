@@ -23,7 +23,7 @@ namespace Stac.Extensions.Datacube
         private string unit;
 
         /// <summary>
-        /// The dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.
+        /// Gets or sets the dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.
         /// </summary>
         /// <value>
         /// <placeholder>The dimensions of the variable. This should refer to keys in the cube:dimensions object or be an empty list if the variable has no dimensions.</placeholder>
@@ -32,7 +32,7 @@ namespace Stac.Extensions.Datacube
         public string[] Dimensions { get => this.dimensions; set => this.dimensions = value; }
 
         /// <summary>
-        /// Type of the variable.
+        /// Gets or sets type of the variable.
         /// </summary>
         /// <value>
         /// <placeholder>Type of the variable.</placeholder>
@@ -41,7 +41,7 @@ namespace Stac.Extensions.Datacube
         public DatacubeVariableType? Type { get => this.type; set => this.type = value; }
 
         /// <summary>
-        /// Detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
+        /// Gets or sets detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
         /// </summary>
         /// <value>
         /// <placeholder>Detailed multi-line description to explain the variable. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.</placeholder>
@@ -50,7 +50,7 @@ namespace Stac.Extensions.Datacube
         public string Description { get => this.description; set => this.description = value; }
 
         /// <summary>
-        /// If the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.
+        /// Gets or sets if the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.
         /// </summary>
         /// <value>
         /// <placeholder>If the variable consists of <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale">ordinal</seealso> values, the extent (lower and upper bounds) of the values as two-element array. Use null for open intervals.</placeholder>
@@ -59,7 +59,7 @@ namespace Stac.Extensions.Datacube
         public double[] Extent { get => this.extent; set => this.extent = value; }
 
         /// <summary>
-        /// An (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.
+        /// Gets or sets an (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.
         /// </summary>
         /// <value>
         /// <placeholder>An (ordered) list of all values, especially useful for <seealso href="https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level">nominal</seealso> values.</placeholder>
@@ -68,7 +68,7 @@ namespace Stac.Extensions.Datacube
         public string[] Values { get => this.values; set => this.values = value; }
 
         /// <summary>
-        /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
+        /// Gets or sets the unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        
         /// </summary>
         /// <value>
         /// <placeholder>The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).        </placeholder>
@@ -77,7 +77,7 @@ namespace Stac.Extensions.Datacube
         public string Unit { get => this.unit; set => this.unit = value; }
 
         /// <summary>
-        /// Additional fields
+        /// Gets or sets additional fields
         /// </summary>
         /// <value></value>
         [JsonExtensionData]

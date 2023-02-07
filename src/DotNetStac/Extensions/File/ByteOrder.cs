@@ -14,11 +14,11 @@ namespace Stac.Extensions.File
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ByteOrder
     {
-        /// Big Endian
+        // Big Endian
         [EnumMember(Value = "big-endian")]
         BigEndian,
 
-        /// Little Endian
+        // Little Endian
         [EnumMember(Value = "little-endian")]
         LittleEndian
 

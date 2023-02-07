@@ -12,7 +12,7 @@ namespace Stac.Extensions.Storage
     /// </summary>
     public class StorageStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extension identifier and schema url
+        // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/storage/v1.0.0/schema.json";
         public const string PlatformField = "storage:platform";
         public const string RegionField = "storage:region";
@@ -30,7 +30,7 @@ namespace Stac.Extensions.Storage
         }
 
         /// <summary>
-        /// The cloud provider where data is stored
+        /// Gets or sets the cloud provider where data is stored
         /// </summary>
         /// <value></value>
         public string Platform
@@ -40,7 +40,7 @@ namespace Stac.Extensions.Storage
         }
 
         /// <summary>
-        /// The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider)
+        /// Gets or sets the region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider)
         /// </summary>
         /// <value></value>
         public string Region
@@ -50,7 +50,7 @@ namespace Stac.Extensions.Storage
         }
 
         /// <summary>
-        /// Is the data requester pays or is it data manager/cloud provider pays. Defaults to false
+        /// Gets or sets is the data requester pays or is it data manager/cloud provider pays. Defaults to false
         /// </summary>
         /// <value></value>
         public bool? RequesterPays
@@ -60,7 +60,7 @@ namespace Stac.Extensions.Storage
         }
 
         /// <summary>
-        /// The title for the tier type (as defined by PaaS provider)
+        /// Gets or sets the title for the tier type (as defined by PaaS provider)
         /// </summary>
         /// <value></value>
         public string Tier
@@ -70,7 +70,7 @@ namespace Stac.Extensions.Storage
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>

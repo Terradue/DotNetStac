@@ -30,42 +30,42 @@ namespace Stac.Common
         }
 
         /// <summary>
-        /// mean value
+        /// Gets or sets mean value
         /// </summary>
         /// <value></value>
         [JsonProperty("mean")]
         public double? Mean { get; set; }
 
         /// <summary>
-        /// minimum value
+        /// Gets or sets minimum value
         /// </summary>
         /// <value></value>
         [JsonProperty("minimum")]
         public double? Minimum { get; set; }
 
         /// <summary>
-        /// maximum value
+        /// Gets or sets maximum value
         /// </summary>
         /// <value></value>
         [JsonProperty("maximum")]
         public double? Maximum { get; set; }
 
         /// <summary>
-        /// Standard Deviation
+        /// Gets or sets standard Deviation
         /// </summary>
         /// <value></value>
         [JsonProperty("stdev")]
         public double? Stdev { get; set; }
 
         /// <summary>
-        /// valid percentage
+        /// Gets or sets valid percentage
         /// </summary>
         /// <value></value>
         [JsonProperty("valid_percent")]
         public double? ValidPercent { get; set; }
 
         /// <summary>
-        /// Additional fields
+        /// Gets or sets additional fields
         /// </summary>
         /// <value></value>
         [JsonExtensionData]

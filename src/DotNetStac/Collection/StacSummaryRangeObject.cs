@@ -37,7 +37,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
-        /// Minimum of the range
+        /// Gets or sets minimum of the range
         /// </summary>
         /// <returns>Minimum of the range</returns>
         /// <value>
@@ -46,7 +46,7 @@ namespace Stac.Collection
         public T Min { get => this.summary["minimum"].Value<T>(); set => this.summary["minimum"] = new JValue(value); }
 
         /// <summary>
-        /// Maximum of the range
+        /// Gets or sets maximum of the range
         /// </summary>
         /// <returns>Maximum of the range</returns>
         /// <value>

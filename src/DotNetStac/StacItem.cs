@@ -83,7 +83,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// The STAC version the Item implements
+        /// Gets or sets the STAC version the Item implements
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_version", Order = -10)]
@@ -91,14 +91,14 @@ namespace Stac
         public SemVersion StacVersion { get; set; }
 
         /// <summary>
-        /// A list of extension identifiers the Item implements
+        /// Gets a list of extension identifiers the Item implements
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions", Order = -9)]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
-        /// A list of references to other documents.
+        /// Gets a list of references to other documents.
         /// </summary>
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
@@ -116,7 +116,7 @@ namespace Stac
         public IDictionary<string, StacAsset> Assets { get; private set; }
 
         /// <summary>
-        /// The id of the STAC Collection this Item references to
+        /// Gets or sets the id of the STAC Collection this Item references to
         /// </summary>
         /// <value>gets the collection id</value>
         [JsonProperty("__collection", Required = Required.Default)]
@@ -132,7 +132,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// Item root extended data
+        /// Gets item root extended data
         /// </summary>
         /// <value></value>
         [JsonExtensionData]

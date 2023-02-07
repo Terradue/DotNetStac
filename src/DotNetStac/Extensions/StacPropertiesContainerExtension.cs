@@ -33,7 +33,7 @@ namespace Stac.Extensions
         }
 
         /// <summary>
-        /// Identifier of the extension
+        /// Gets identifier of the extension
         /// </summary>
         /// <value>
         /// <placeholder>Identifier of the extension</placeholder>
@@ -41,7 +41,7 @@ namespace Stac.Extensions
         public virtual string Identifier => this.identifier;
 
         /// <summary>
-        /// Stac Object extended by the extension
+        /// Gets stac Object extended by the extension
         /// </summary>
         /// <value>
         /// <placeholder>Stac Object extended by the extension</placeholder>
@@ -49,7 +49,7 @@ namespace Stac.Extensions
         public IStacPropertiesContainer StacPropertiesContainer { get; private set; }
 
         /// <summary>
-        /// Get the potential fields of the extensions and their type
+        /// Gets get the potential fields of the extensions and their type
         /// </summary>
         /// <value>
         /// <placeholder>Get the potential fields of the extensions and their type</placeholder>
@@ -57,7 +57,7 @@ namespace Stac.Extensions
         public abstract IDictionary<string, Type> ItemFields { get; }
 
         /// <summary>
-        /// Indicate if the extension is already declared
+        /// Gets a value indicating whether indicate if the extension is already declared
         /// </summary>
         /// <value>
         /// <placeholder>Indicate if the extension is already declared</placeholder>
@@ -106,7 +106,7 @@ namespace Stac.Extensions
                     summaryFunctions.Add(itemField.Key, new SummaryFunction<string>(this, itemField.Key, CreateSummaryValueSet));
                 }
             }
-            
+
             return summaryFunctions;
         }
 

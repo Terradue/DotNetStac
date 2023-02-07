@@ -65,14 +65,14 @@ namespace Stac
         }
 
         /// <summary>
-        /// Identifier for the Catalog.
+        /// Gets identifier for the Catalog.
         /// </summary>
         /// <value></value>
         [JsonProperty("id")]
         public string Id { get; internal set; }
 
         /// <summary>
-        /// The STAC version the Catalog implements
+        /// Gets or sets the STAC version the Catalog implements
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_version")]
@@ -80,14 +80,14 @@ namespace Stac
         public SemVersion StacVersion { get; set; }
 
         /// <summary>
-        /// A list of extension identifiers the Catalog implements
+        /// Gets a list of extension identifiers the Catalog implements
         /// </summary>
         /// <value></value>
         [JsonProperty("stac_extensions")]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
-        /// A list of references to other documents.
+        /// Gets a list of references to other documents.
         /// </summary>
         /// <value></value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
@@ -102,7 +102,7 @@ namespace Stac
         public ContentType MediaType => CATALOG_MEDIATYPE;
 
         /// <summary>
-        /// STAC type (Catalog)
+        /// Gets sTAC type (Catalog)
         /// </summary>
         /// <value>
         /// <placeholder>STAC type (Catalog)</placeholder>
@@ -111,7 +111,7 @@ namespace Stac
         public string Type => "Catalog";
 
         /// <summary>
-        /// A map of property summaries, either a set of values or statistics such as a range.
+        /// Gets a map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
         /// <value></value>
         [JsonProperty("summaries")]
@@ -119,7 +119,7 @@ namespace Stac
         public Dictionary<string, Collection.IStacSummaryItem> Summaries { get; internal set; }
 
         /// <summary>
-        /// Catalog Properties
+        /// Gets catalog Properties
         /// </summary>
         /// <value></value>
         [JsonExtensionData]

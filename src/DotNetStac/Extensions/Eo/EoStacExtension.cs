@@ -13,7 +13,7 @@ namespace Stac.Extensions.Eo
     /// </summary>
     public class EoStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extension identifier and schema url
+        // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/eo/v1.0.0/schema.json";
 
         private const string BandsField = "eo:bands";
@@ -29,7 +29,7 @@ namespace Stac.Extensions.Eo
         }
 
         /// <summary>
-        /// Estimate of cloud cover
+        /// Gets or sets estimate of cloud cover
         /// </summary>
         /// <value>
         /// <placeholder>Estimate of cloud cover</placeholder>
@@ -49,7 +49,7 @@ namespace Stac.Extensions.Eo
         }
 
         /// <summary>
-        /// An array of available bands where each object is a Band Object.
+        /// Gets or sets an array of available bands where each object is a Band Object.
         /// </summary>
         /// <value>
         /// <placeholder>An array of available bands where each object is a Band Object.</placeholder>
@@ -70,7 +70,7 @@ namespace Stac.Extensions.Eo
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>

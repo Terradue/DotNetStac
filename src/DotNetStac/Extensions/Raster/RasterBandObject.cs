@@ -33,7 +33,7 @@ namespace Stac.Extensions.Raster
         }
 
         /// <summary>
-        /// Pixel values used to identify pixels that are nodata in the assets.
+        /// Gets or sets pixel values used to identify pixels that are nodata in the assets.
         /// </summary>
         /// <value>
         /// <placeholder>Pixel values used to identify pixels that are nodata in the assets.</placeholder>
@@ -42,7 +42,7 @@ namespace Stac.Extensions.Raster
         public double? Nodata { get => this.nodata; set => this.nodata = value; }
 
         /// <summary>
-        /// One of area or point. Indicates whether a pixel value should be assumed to represent 
+        /// Gets or sets one of area or point. Indicates whether a pixel value should be assumed to represent 
         /// a sampling over the region of the pixel or a point sample at the center of the pixel.
         /// </summary>
         /// <value>
@@ -54,7 +54,7 @@ namespace Stac.Extensions.Raster
         public RasterSampling? Sampling { get => this.sampling; set => this.sampling = value; }
 
         /// <summary>
-        /// The data type of the band.
+        /// Gets or sets the data type of the band.
         /// </summary>
         /// <value></value>
         [JsonProperty("data_type")]
@@ -62,28 +62,28 @@ namespace Stac.Extensions.Raster
         public DataType? DataType { get => this.dataType; set => this.dataType = value; }
 
         /// <summary>
-        /// The actual number of bits used for this band.
+        /// Gets or sets the actual number of bits used for this band.
         /// </summary>
         /// <value></value>
         [JsonProperty("bits_per_sample")]
         public int? BitsPerSample { get; set; }
 
         /// <summary>
-        /// Average spatial resolution (in meters) of the pixels in the band.
+        /// Gets or sets average spatial resolution (in meters) of the pixels in the band.
         /// </summary>
         /// <value></value>
         [JsonProperty("spatial_resolution")]
         public double? SpatialResolution { get; set; }
 
         /// <summary>
-        /// Statistics of all the pixels in the band
+        /// Gets or sets statistics of all the pixels in the band
         /// </summary>
         /// <value></value>
         [JsonProperty("statistics")]
         public Statistics Statistics { get; set; }
 
         /// <summary>
-        /// Unit denomination of the pixel value.
+        /// Gets or sets unit denomination of the pixel value.
         /// </summary>
         /// <value>
         /// <placeholder>Unit denomination of the pixel value.</placeholder>
@@ -92,7 +92,7 @@ namespace Stac.Extensions.Raster
         public string Unit { get => this.unit; set => this.unit = value; }
 
         /// <summary>
-        /// multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).
+        /// Gets or sets multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).
         /// </summary>
         /// <value>
         /// <placeholder>multiplicator factor of the pixel value to transform into the value (i.e. translate digital number to reflectance).</placeholder>
@@ -101,7 +101,7 @@ namespace Stac.Extensions.Raster
         public double? Scale { get => this.scale; set => this.scale = value; }
 
         /// <summary>
-        /// number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).
+        /// Gets or sets number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).
         /// </summary>
         /// <value>
         /// <placeholder>number to be added to the pixel value (after scaling) to transform into the value (i.e. translate digital number to reflectance).</placeholder>
@@ -110,14 +110,14 @@ namespace Stac.Extensions.Raster
         public double? Offset { get => this.offset; set => this.offset = value; }
 
         /// <summary>
-        /// Histogram distribution information of the pixels values in the band
+        /// Gets or sets histogram distribution information of the pixels values in the band
         /// </summary>
         /// <value></value>
         [JsonProperty("histogram")]
         public RasterHistogram Histogram { get; set; }
 
         /// <summary>
-        /// Additional fields
+        /// Gets or sets additional fields
         /// </summary>
         /// <value></value>
         [JsonExtensionData]

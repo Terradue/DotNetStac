@@ -36,14 +36,14 @@ namespace Stac.Extensions.VirtualAssets
         }
 
         /// <summary>
-        /// array of URIs to the assets object composing the virtual asset. Relative and absolute URI are both allowed
+        /// Gets array of URIs to the assets object composing the virtual asset. Relative and absolute URI are both allowed
         /// </summary>
         /// <value></value>
         [JsonProperty("href")]
         public IList<Uri> Uris { get; private set; }
 
         /// <summary>
-        /// Do not use
+        /// Gets or sets do not use
         /// </summary>
         /// <value>
         /// <placeholder>Do not use</placeholder>

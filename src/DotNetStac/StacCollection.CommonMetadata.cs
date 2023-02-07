@@ -17,7 +17,7 @@ namespace Stac
     {
 
         /// <summary>
-        /// A short descriptive one-line title for the Collection.
+        /// Gets or sets a short descriptive one-line title for the Collection.
         /// </summary>
         /// <value></value>
         [JsonProperty("__title", Required = Required.Default)]
@@ -29,7 +29,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// Detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.
+        /// Gets or sets detailed multi-line description to fully explain the Collection. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
         /// <value></value>
         [JsonProperty("__description", Required = Required.Default)]
@@ -41,7 +41,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// Collection's license(s), either a SPDX License identifier, various if multiple licenses apply or proprietary for all other cases.
+        /// Gets or sets collection's license(s), either a SPDX License identifier, various if multiple licenses apply or proprietary for all other cases.
         /// </summary>
         /// <value></value>
         public string License
@@ -51,7 +51,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// A list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
+        /// Gets a list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </summary>
         /// <value></value>

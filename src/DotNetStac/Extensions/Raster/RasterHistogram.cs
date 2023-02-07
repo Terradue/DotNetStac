@@ -13,28 +13,28 @@ namespace Stac.Extensions.Raster
     public class RasterHistogram
     {
         /// <summary>
-        /// number of buckets of the distribution.
+        /// Gets or sets number of buckets of the distribution.
         /// </summary>
         /// <value></value>
         [JsonProperty("count")]
         public int? Count { get; set; }
 
         /// <summary>
-        /// minimum value of the distribution. Also the mean value of the first bucket.
+        /// Gets or sets minimum value of the distribution. Also the mean value of the first bucket.
         /// </summary>
         /// <value></value>
         [JsonProperty("min")]
         public double? Min { get; set; }
 
         /// <summary>
-        /// minimum value of the distribution. Also the mean value of the last bucket.
+        /// Gets or sets minimum value of the distribution. Also the mean value of the last bucket.
         /// </summary>
         /// <value></value>
         [JsonProperty("max")]
         public double? Max { get; set; }
 
         /// <summary>
-        /// Array of integer indicating the number of pixels included in the bucket.
+        /// Gets or sets array of integer indicating the number of pixels included in the bucket.
         /// </summary>
         /// <value></value>
         [JsonProperty("buckets")]

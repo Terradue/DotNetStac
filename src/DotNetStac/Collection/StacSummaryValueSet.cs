@@ -47,7 +47,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
-        /// Summary Value Set total of items
+        /// Gets summary Value Set total of items
         /// </summary>
         /// <value>
         /// <placeholder>Summary Value Set total of items</placeholder>
@@ -59,7 +59,7 @@ namespace Stac.Collection
         public int Count => this.summary.Count();
 
         /// <summary>
-        /// Get the Summary Value Set as an enumerable
+        /// Gets get the Summary Value Set as an enumerable
         /// </summary>
         /// <value>
         /// <placeholder>Get the Summary Value Set as an enumerable</placeholder>

@@ -19,7 +19,7 @@ namespace Stac.Collection
         JToken this[object key] { get; }
 
         /// <summary>
-        /// Gets or sets the summary item as a JToken
+        /// Gets the summary item as a JToken
         /// </summary>
         /// <value></value>
         JToken AsJToken { get; }

@@ -12,7 +12,7 @@ namespace Stac.Extensions.VirtualAssets
     /// </summary>
     public class VirtualAssetsStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extension identifier and schema url
+        // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/virtual-assets/v1.0.0/schema.json";
 
         private readonly IDictionary<string, Type> itemFields;
@@ -25,7 +25,7 @@ namespace Stac.Extensions.VirtualAssets
         }
 
         /// <summary>
-        /// Virtual Assets
+        /// Gets or sets virtual Assets
         /// </summary>
         /// <value>
         /// <placeholder>Virtual Assets</placeholder>
@@ -37,7 +37,7 @@ namespace Stac.Extensions.VirtualAssets
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>

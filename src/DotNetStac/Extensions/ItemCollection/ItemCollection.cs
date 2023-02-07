@@ -30,7 +30,7 @@ namespace Stac.Extensions.ItemCollections
         }
 
         /// <summary>
-        /// STAC type (FeatureCollection)
+        /// Gets sTAC type (FeatureCollection)
         /// </summary>
         /// <value>
         /// <placeholder>STAC type (FeatureCollection)</placeholder>

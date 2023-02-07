@@ -34,7 +34,7 @@ namespace Stac.Extensions.Eo
         }
 
         /// <summary>
-        /// The name of the band (e.g., "B01", "B8", "band2", "red").
+        /// Gets or sets the name of the band (e.g., "B01", "B8", "band2", "red").
         /// </summary>
         /// <value>
         /// <placeholder>The name of the band (e.g., "B01", "B8", "band2", "red").</placeholder>
@@ -43,7 +43,7 @@ namespace Stac.Extensions.Eo
         public string Name { get => this.name; set => this.name = value; }
 
         /// <summary>
-        /// Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.
+        /// Gets or sets description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
         /// <value>
         /// <placeholder>Description to fully explain the band. CommonMark 0.29 syntax MAY be used for rich text representation.</placeholder>
@@ -52,35 +52,35 @@ namespace Stac.Extensions.Eo
         public string Description { get => this.description; set => this.description = value; }
 
         /// <summary>
-        /// The name commonly used to refer to the band to make it easier to search for bands across instruments.
+        /// Gets or sets the name commonly used to refer to the band to make it easier to search for bands across instruments.
         /// </summary>
         /// <value></value>
         [JsonProperty("common_name")]
         public EoBandCommonName? CommonName { get => this.commonName; set => this.commonName = value; }
 
         /// <summary>
-        /// The center wavelength of the band, in micrometers (μm).
+        /// Gets or sets the center wavelength of the band, in micrometers (μm).
         /// </summary>
         /// <value></value>
         [JsonProperty("center_wavelength")]
         public double? CenterWavelength { get; set; }
 
         /// <summary>
-        /// Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm).
+        /// Gets or sets full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm).
         /// </summary>
         /// <value></value>
         [JsonProperty("full_width_half_max")]
         public double? FullWidthHalfMax { get; set; }
 
         /// <summary>
-        /// The solar illumination of the band, as measured at half the maximum transmission, in W/m2/micrometers.
+        /// Gets or sets the solar illumination of the band, as measured at half the maximum transmission, in W/m2/micrometers.
         /// </summary>
         /// <value></value>
         [JsonProperty("solar_illumination")]
         public double? SolarIllumination { get; set; }
 
         /// <summary>
-        /// Additional fields
+        /// Gets or sets additional fields
         /// </summary>
         /// <value></value>
         [JsonExtensionData]

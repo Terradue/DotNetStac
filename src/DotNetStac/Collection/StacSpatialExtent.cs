@@ -37,7 +37,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
-        /// Potential spatial extents.
+        /// Gets or sets potential spatial extents.
         /// </summary>
         /// <value>Gets/sets double entry array of coordinates</value>
         [JsonProperty("bbox")]

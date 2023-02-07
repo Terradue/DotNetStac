@@ -39,7 +39,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// A list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
+        /// Gets a list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </summary>
         /// <value></value>

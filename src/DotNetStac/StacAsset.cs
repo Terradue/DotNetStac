@@ -138,7 +138,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// Media type of the asset
+        /// Gets or sets media type of the asset
         /// </summary>
         /// <value></value>
         [JsonProperty("type")]
@@ -150,7 +150,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// The semantic roles of the asset
+        /// Gets the semantic roles of the asset
         /// </summary>
         /// <value></value>
         [JsonProperty("roles")]
@@ -161,7 +161,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// The displayed title for clients and users.
+        /// Gets or sets the displayed title for clients and users.
         /// </summary>
         /// <value></value>
         [JsonProperty("title")]
@@ -172,7 +172,7 @@ namespace Stac
         }
 
         /// <summary>
-        ///  URI to the asset object. Relative and absolute URI are both allowed.
+        ///  Gets or sets uRI to the asset object. Relative and absolute URI are both allowed.
         /// </summary>
         /// <value></value>
         [JsonProperty("href")]
@@ -183,7 +183,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// A description of the Asset providing additional details, such as how it was processed or created.
+        /// Gets or sets a description of the Asset providing additional details, such as how it was processed or created.
         /// </summary>
         /// <value></value>
         [JsonProperty("description")]
@@ -194,7 +194,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// Extended properties
+        /// Gets or sets extended properties
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
@@ -212,7 +212,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// Object container
+        /// Gets object container
         /// </summary>
         /// <value>
         /// <placeholder>Object container</placeholder>
@@ -221,7 +221,7 @@ namespace Stac
         public IStacObject StacObjectContainer => this.ParentStacObject;
 
         /// <summary>
-        /// parent stac object
+        /// Gets parent stac object
         /// </summary>
         /// <value></value>
         [JsonIgnore]

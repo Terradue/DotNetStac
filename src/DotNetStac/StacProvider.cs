@@ -35,14 +35,14 @@ namespace Stac
         }
 
         /// <summary>
-        /// The name of the organization or the individual.
+        /// Gets or sets the name of the organization or the individual.
         /// </summary>
         /// <value>Gets/sets the name</value>
         [JsonProperty("name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Multi-line description to add further provider information such as processing details for processors and producers, 
+        /// Gets or sets multi-line description to add further provider information such as processing details for processors and producers, 
         /// hosting details for hosts or basic contact information. 
         /// CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
@@ -51,14 +51,14 @@ namespace Stac
         public string Description { get; set; }
 
         /// <summary>
-        /// Roles of the provider. Any of <see cref="StacProviderRole" />.
+        /// Gets roles of the provider. Any of <see cref="StacProviderRole" />.
         /// </summary>
         /// <value>Gets the roles collection</value>
         [JsonProperty("roles")]
         public Collection<StacProviderRole> Roles { get; private set; }
 
         /// <summary>
-        /// Homepage on which the provider describes the dataset and publishes contact information.
+        /// Gets or sets homepage on which the provider describes the dataset and publishes contact information.
         /// </summary>
         /// <value>Gets/sets the URL</value>
         [JsonProperty("url")]

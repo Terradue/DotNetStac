@@ -19,6 +19,7 @@ namespace Stac.Extensions.Projection
             /// Well-known ID
             /// </summary>
             public int WKID;
+
             /// <summary>
             /// Well-known Text
             /// </summary>
@@ -48,6 +49,7 @@ namespace Stac.Extensions.Projection
                 sr.Close();
             }
         }
+
         /// <summary>
         /// Gets a coordinate system from the SRID.csv file
         /// </summary>

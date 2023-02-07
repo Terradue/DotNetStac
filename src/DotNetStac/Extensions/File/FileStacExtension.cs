@@ -16,7 +16,7 @@ namespace Stac.Extensions.File
     /// </summary>
     public class FileStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extension identifier and schema url
+        // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/file/v1.0.0/schema.json";
         private const string ByteOrderField = "file:byte_order";
         private const string ChecksumField = "file:checksum";
@@ -34,7 +34,7 @@ namespace Stac.Extensions.File
         }
 
         /// <summary>
-        /// The byte order of integer values in the file. One of big-endian or little-endian.
+        /// Gets or sets the byte order of integer values in the file. One of big-endian or little-endian.
         /// </summary>
         /// <value></value>
         public ByteOrder ByteOrder
@@ -44,7 +44,7 @@ namespace Stac.Extensions.File
         }
 
         /// <summary>
-        /// The name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
+        /// Gets or sets the name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
         /// </summary>
         /// <value></value>
         public Multihash Checksum
@@ -54,7 +54,7 @@ namespace Stac.Extensions.File
         }
 
         /// <summary>
-        /// The name of the facility that produced the data. 
+        /// Gets or sets the name of the facility that produced the data. 
         /// </summary>
         /// <value></value>
         public uint? HeaderSize
@@ -64,7 +64,7 @@ namespace Stac.Extensions.File
         }
 
         /// <summary>
-        /// The name of the facility that produced the data. 
+        /// Gets or sets the name of the facility that produced the data. 
         /// </summary>
         /// <value></value>
         public ulong? Size
@@ -74,7 +74,7 @@ namespace Stac.Extensions.File
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
@@ -82,7 +82,7 @@ namespace Stac.Extensions.File
         public override IDictionary<string, Type> ItemFields => this.itemFields;
 
         /// <summary>
-        /// Get the STAC asset
+        /// Gets get the STAC asset
         /// </summary>
         /// <value>
         /// <placeholder>Get the STAC asset</placeholder>

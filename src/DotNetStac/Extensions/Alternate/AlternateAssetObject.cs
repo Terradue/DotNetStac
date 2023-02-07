@@ -39,7 +39,7 @@ namespace Stac.Extensions.Alternate
         }
 
         /// <summary>
-        /// REQUIRED. URI to the asset object. Relative and absolute URI are both allowed.
+        /// Gets or sets rEQUIRED. URI to the asset object. Relative and absolute URI are both allowed.
         /// </summary>
         /// <value>
         /// <placeholder>REQUIRED. URI to the asset object. Relative and absolute URI are both allowed.</placeholder>
@@ -49,7 +49,7 @@ namespace Stac.Extensions.Alternate
         public string Href { get => this.href; set => this.href = value; }
 
         /// <summary>
-        /// The displayed title for clients and users.
+        /// Gets or sets the displayed title for clients and users.
         /// </summary>
         /// <value>
         /// <placeholder>The displayed title for clients and users.</placeholder>
@@ -58,7 +58,7 @@ namespace Stac.Extensions.Alternate
         public string Title { get => this.title; set => this.title = value; }
 
         /// <summary>
-        /// A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.
+        /// Gets or sets a description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
         /// <value>
         /// <placeholder>A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.</placeholder>
@@ -67,14 +67,14 @@ namespace Stac.Extensions.Alternate
         public string Description { get => this.description; set => this.description = value; }
 
         /// <summary>
-        /// Additional fields
+        /// Gets or sets additional fields
         /// </summary>
         /// <value></value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get => this.properties; set => this.properties = value; }
 
         /// <summary>
-        /// Parent Stac Object
+        /// Gets parent Stac Object
         /// </summary>
         /// <value>
         /// <placeholder>Parent Stac Object</placeholder>
@@ -87,7 +87,7 @@ namespace Stac.Extensions.Alternate
         public IStacObject StacObjectContainer => this._parent;
 
         /// <summary>
-        /// Uri
+        /// Gets uri
         /// </summary>
         /// <value>
         /// <placeholder>Uri</placeholder>

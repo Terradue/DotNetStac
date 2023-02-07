@@ -12,7 +12,7 @@ namespace Stac.Extensions.Raster
     /// </summary>
     public class RasterStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extensions identifier and schema url
+        // Extensions identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/raster/v1.0.0/schema.json";
 
         private readonly IDictionary<string, Type> itemFields;
@@ -25,7 +25,7 @@ namespace Stac.Extensions.Raster
         }
 
         /// <summary>
-        /// An array of available bands where each object is a Band Object.
+        /// Gets or sets an array of available bands where each object is a Band Object.
         /// </summary>
         /// <value>
         /// <placeholder>An array of available bands where each object is a Band Object.</placeholder>
@@ -37,7 +37,7 @@ namespace Stac.Extensions.Raster
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>

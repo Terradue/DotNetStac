@@ -9,10 +9,10 @@ namespace Stac.Collection
     /// </summary>
     public enum SummaryItemType
     {
-        /// Summary Value Set
+        // Summary Value Set
         ValueSet,
 
-        /// Summary Range Object
+        // Summary Range Object
         RangeObject
     }
 }

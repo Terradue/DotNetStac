@@ -14,11 +14,11 @@ namespace Stac.Extensions.Sar
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ObservationDirection
     {
-        /// left
+        // left
         [EnumMember(Value = "left")]
         Left,
 
-        /// right
+        // right
         [EnumMember(Value = "right")]
         Right
     }

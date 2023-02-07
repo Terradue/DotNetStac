@@ -14,7 +14,7 @@ namespace Stac.Extensions.Alternate
     /// </summary>
     public class AlternateStacExtension : StacPropertiesContainerExtension, IStacAssetExtension, IStacExtension
     {
-        /// Extension identifier and schema url
+        // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/alternate-assets/v1.1.0/schema.json";
 
         private const string AlternateField = "alternate";
@@ -28,7 +28,7 @@ namespace Stac.Extensions.Alternate
         }
 
         /// <summary>
-        /// A dictionary of alternate location information for an asset.
+        /// Gets or sets a dictionary of alternate location information for an asset.
         /// </summary>
         /// <value>
         /// <placeholder>A dictionary of alternate location information for an asset.</placeholder>
@@ -49,7 +49,7 @@ namespace Stac.Extensions.Alternate
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>

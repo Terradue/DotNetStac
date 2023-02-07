@@ -14,7 +14,7 @@ namespace Stac.Extensions.Version
     public class VersionStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
 
-        /// Extension identifier and schema url
+        // Extension identifier and schema url
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/version/v1.0.0/schema.json";
 
         internal const string VersionField = "version";
@@ -36,7 +36,7 @@ namespace Stac.Extensions.Version
         }
 
         /// <summary>
-        /// Version of the Collection or Item.
+        /// Gets or sets version of the Collection or Item.
         /// </summary>
         /// <value></value>
         public string Version
@@ -46,7 +46,7 @@ namespace Stac.Extensions.Version
         }
 
         /// <summary>
-        /// Specifies that the Collection or Item is deprecated with the potential to be removed. 
+        /// Gets or sets a value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed. 
         /// </summary>
         /// <value></value>
         public bool Deprecated
@@ -56,7 +56,7 @@ namespace Stac.Extensions.Version
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
         /// <value>
         /// <placeholder>Potential fields and their types</placeholder>
