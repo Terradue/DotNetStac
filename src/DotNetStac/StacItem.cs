@@ -82,7 +82,6 @@ namespace Stac
             }
         }
 
-
         /// <summary>
         /// The STAC version the Item implements
         /// </summary>
@@ -172,7 +171,6 @@ namespace Stac
         /// <summary>
         /// Create a new Stac Item from this existing one
         /// </summary>
-        /// <returns></returns>
         public object Clone()
         {
             return new StacItem(this);

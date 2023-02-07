@@ -112,7 +112,6 @@ namespace Stac.Extensions.Eo
         /// </summary>
         /// <param name="stacItem">Stac Item</param>
         /// <param name="commonName">common name</param>
-        /// <returns></returns>
         public static StacAsset GetAsset(this StacItem stacItem, EoBandCommonName commonName)
         {
             return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).FirstOrDefault(a => a.EoExtension().Bands.Any(b => b.CommonName == commonName));
@@ -123,7 +122,6 @@ namespace Stac.Extensions.Eo
         /// </summary>
         /// <param name="stacItem">Stac Item</param>
         /// <param name="commonName">common name</param>
-        /// <returns></returns>
         public static EoBandObject GetBandObject(this StacItem stacItem, EoBandCommonName commonName)
         {
             return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).Select(a => a.EoExtension().Bands.FirstOrDefault(b => b.CommonName == commonName)).First();

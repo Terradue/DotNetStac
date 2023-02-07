@@ -49,7 +49,10 @@ namespace Stac.Collection
         /// <summary>
         /// Summary Value Set total of items
         /// </summary>
-        /// <returns></returns>
+        /// <value>
+        /// <placeholder>Summary Value Set total of items</placeholder>
+        /// </value>
+
         /// <value>
         /// <placeholder>Summary Value Set total of items</placeholder>
         /// </value>

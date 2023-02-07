@@ -46,7 +46,6 @@ namespace Stac.Collection
         /// <summary>
         /// Clone this Extent
         /// </summary>
-        /// <returns></returns>
         public object Clone()
         {
             return new StacSpatialExtent(this);

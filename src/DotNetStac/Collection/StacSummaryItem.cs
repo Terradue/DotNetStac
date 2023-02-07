@@ -53,7 +53,6 @@ namespace Stac.Collection
         /// <summary>
         /// Get Enumerator of object children
         /// </summary>
-        /// <returns></returns>
         public IEnumerator GetEnumerator()
         {
             return this.summary.Children().GetEnumerator();

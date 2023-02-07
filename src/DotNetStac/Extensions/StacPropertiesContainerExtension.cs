@@ -67,7 +67,6 @@ namespace Stac.Extensions
         /// <summary>
         /// Get he potential summary functions for each field that can be summarized
         /// </summary>
-        /// <returns></returns>
         public virtual IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
@@ -124,7 +123,6 @@ namespace Stac.Extensions
         /// Generic method to summarize in a value set an array of object
         /// </summary>
         /// <param name="arg"></param>
-        /// <returns></returns>
         public static StacSummaryValueSet<T> CreateSummaryValueSet<T>(IEnumerable<T> arg)
         {
             return new StacSummaryValueSet<T>(arg.Distinct());
@@ -134,7 +132,7 @@ namespace Stac.Extensions
         /// Generic method to summarize in a value set an array of array
         /// </summary>
         /// <param name="arg">an array</param>
-        /// <returns></returns>
+
         // internal static IStacSummaryItem CreateSummaryValueSetFromArrays<T>(IEnumerable<T> arg)
         // {
         //     return new StacSummaryValueSet<T>(arg.SelectMany(a => a as IEnumerable<T>).Distinct());

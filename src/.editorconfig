@@ -401,8 +401,9 @@ dotnet_diagnostic.IDE0073.severity = warning     # Enforce file header
 
 file_header_template = Copyright (c) by Terradue Srl. All Rights Reserved.\nLicense under the AGPL, Version 3.0.\nFile Name: {fileName}
 
-dotnet_diagnostic.SA1636.severity = none         # Disable file header matching
-dotnet_diagnostic.SA1501.severity = error        # Braces must not be omitted
 dotnet_diagnostic.SA1101.severity = warning      # Prefix local calls with this
-dotnet_diagnostic.SA1507.severity = warning      # Code should not contain multiple blank lines in a row
 dotnet_diagnostic.SA1124.severity = warning      # Do not use regions
+dotnet_diagnostic.SA1501.severity = warning      # Braces must not be omitted
+dotnet_diagnostic.SA1506.severity = warning      # Element documentation header must not be preceded by blank line
+dotnet_diagnostic.SA1507.severity = warning      # Code should not contain multiple blank lines in a row
+dotnet_diagnostic.SA1636.severity = none         # Disable file header matching

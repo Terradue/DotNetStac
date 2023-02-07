@@ -15,25 +15,21 @@ namespace Stac.Extensions.VirtualAssets
     public class VirtualAsset : StacAsset
     {
 
-
         /// <summary>
         /// Create a new Virtual Asset from assets defined in an existing stac item
         /// </summary>
         /// <param name="stacItem">Stac Item to reference the assets from</param>
         /// <param name="assetsKey">keys of the assets to be referenced</param>
         /// <param name="newStacObject">new stac object container of the virtuals assets. If not specified, the stacItem is used</param>
-        /// <returns></returns>
         public static VirtualAsset Create(StacItem stacItem, IList<string> assetsKey, IStacObject newStacObject = null)
         {
             IStacObject parentObject = newStacObject ?? stacItem;
             return new VirtualAsset(parentObject, stacItem.Assets.Select(asset => new Uri(asset.Value.Uri, "#" + asset.Key)).ToList());
         }
 
-
         /// <summary>
         /// Initialize a new Virtual Asset for a STAC object with an array of items
         /// </summary>
-        /// <returns></returns>
         public VirtualAsset(IStacObject stacObject, IList<Uri> uris) : base(stacObject, null)
         {
             this.Uris = uris;

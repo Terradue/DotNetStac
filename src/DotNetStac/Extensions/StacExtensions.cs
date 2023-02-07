@@ -60,7 +60,6 @@ namespace Stac.Extensions
         /// Get the declared extensions for a specific stac properties container
         /// </summary>
         /// <param name="stacPropertiesContainer"></param>
-        /// <returns></returns>
         public static IEnumerable<IStacExtension> GetDeclaredExtensions(this IStacPropertiesContainer stacPropertiesContainer)
         {
             if (ManagedStacExtensions.Count == 0) InitManagedExtensions();

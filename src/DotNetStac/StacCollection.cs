@@ -71,7 +71,6 @@ namespace Stac
             this.Extent = new StacExtent(stacCollection.Extent);
         }
 
-
         /// <summary>
         /// Identifier for the Collection.
         /// </summary>
@@ -108,7 +107,6 @@ namespace Stac
         /// <inheritdoc/>
         [JsonIgnore]
         public ContentType MediaType => COLLECTION_MEDIATYPE;
-
 
         /// <summary>
         /// STAC type (Collection)
@@ -186,20 +184,17 @@ namespace Stac
             return this.Assets.Count > 0;
         }
 
-
         /// <summary>
         /// Generate a collection corresponding to the items' dictionary. Spatial and temporal extents
         /// are computed. Fields values are summarized in stats object and value sets.
         /// All Items are updated with the collection id
         /// </summary>
-
         /// <param name="id">Identifier of the collection</param>
         /// <param name="description">Description of the collection</param>
         /// <param name="items">Dictionary of Uri, StacItem. Uri points to the StacItem destination.</param>
         /// <param name="license">License of the collection</param>
         /// <param name="collectionUri">Uri of the collection. If provided, the items Uri and made relative to this one.</param>
         /// <param name="assets">Assets of the collection</param>
-        /// <returns></returns>
         public static StacCollection Create(string id,
                                             string description,
                                             IDictionary<Uri, StacItem> items,
@@ -292,7 +287,6 @@ namespace Stac
         /// <summary>
         /// Clone this object.
         /// </summary>
-        /// <returns></returns>
         public object Clone()
         {
             return new StacCollection(this);

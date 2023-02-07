@@ -76,7 +76,10 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// Parent Stac Object
         /// </summary>
-        /// <returns></returns>
+        /// <value>
+        /// <placeholder>Parent Stac Object</placeholder>
+        /// </value>
+
         /// <value>
         /// <placeholder>Parent Stac Object</placeholder>
         /// </value>
@@ -86,7 +89,10 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// Uri
         /// </summary>
-        /// <returns></returns>
+        /// <value>
+        /// <placeholder>Uri</placeholder>
+        /// </value>
+
         /// <value>
         /// <placeholder>Uri</placeholder>
         /// </value>

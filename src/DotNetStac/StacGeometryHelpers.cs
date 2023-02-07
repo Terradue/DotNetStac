@@ -19,7 +19,6 @@ namespace Stac
         /// Get The bounding box of a geometry in a StacItem
         /// </summary>
         /// <param name="stacItem">The STAC Item containing the geometry</param>
-        /// <returns></returns>
         public static double[] GetBoundingBoxFromGeometryExtent(this StacItem stacItem)
         {
             var boundingBoxes = stacItem.Geometry?.GetBoundingBox();
@@ -41,7 +40,6 @@ namespace Stac
         /// Get the bounding box of a geometry object
         /// </summary>
         /// <param name="geometry">the geometry object</param>
-        /// <returns></returns>
         public static IPosition[] GetBoundingBox(this IGeometryObject geometry)
         {
             if (geometry == null)
@@ -127,7 +125,6 @@ namespace Stac
         /// Get the upper right corner of a bounding box.
         /// </summary>
         /// <param name="positions">set of positions.</param>
-        /// <returns></returns>
         public static IPosition GetUpperRight(this IPosition[] positions)
         {
             if (positions == null || positions.Length == 0)

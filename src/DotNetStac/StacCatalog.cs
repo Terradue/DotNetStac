@@ -27,7 +27,6 @@ namespace Stac
         /// <summary>
         /// Catalog Media-Type Object
         /// </summary>
-        /// <returns></returns>
         public static readonly ContentType CATALOG_MEDIATYPE = new ContentType(MEDIATYPE);
 
         /// <summary>
@@ -65,7 +64,6 @@ namespace Stac
             this.Properties = new Dictionary<string, object>(stacCatalog.Properties);
         }
 
-
         /// <summary>
         /// Identifier for the Catalog.
         /// </summary>
@@ -102,7 +100,6 @@ namespace Stac
         /// <inheritdoc/>
         [JsonIgnore]
         public ContentType MediaType => CATALOG_MEDIATYPE;
-
 
         /// <summary>
         /// STAC type (Catalog)
