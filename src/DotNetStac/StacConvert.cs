@@ -21,7 +21,8 @@ namespace Stac
             Culture = CultureInfo.CreateSpecificCulture("en-US")
         };
 
-        public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null) where T : IStacObject
+        public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null)
+            where T : IStacObject
         {
             // if (typeof(T) == typeof(StacItem)
             //     || typeof(T) == typeof(StacCollection)
@@ -32,6 +33,7 @@ namespace Stac
             {
                 serializerSettings = defaultJsonSerializerSettings;
             }
+
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
             JObject jobject = JsonConvert.DeserializeObject<JObject>(json, serializerSettings);
             Type stacType = Utils.IdentifyStacType(jobject);
@@ -39,6 +41,7 @@ namespace Stac
             {
                 throw new InvalidCastException(stacType + "is not IStacCatalog");
             }
+
             try
             {
                 // return (T)JsonConvert.DeserializeObject(json, typeof(T), serializerSettings);
@@ -56,11 +59,13 @@ namespace Stac
             {
                 serializerSettings = defaultJsonSerializerSettings;
             }
+
             serializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
             return JsonConvert.SerializeObject(stacObject, serializerSettings);
         }
 
-        public static T Deserialize<T>(Stream stream) where T : IStacObject
+        public static T Deserialize<T>(Stream stream)
+            where T : IStacObject
         {
             StreamReader sr = new StreamReader(stream);
             return Deserialize<T>(sr.ReadToEnd());

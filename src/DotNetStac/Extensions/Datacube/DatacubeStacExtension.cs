@@ -53,9 +53,14 @@ namespace Stac.Extensions.Datacube
                 Dictionary<string, DatacubeDimension> existingDimensions = this.StacPropertiesContainer.GetProperty<Dictionary<string, DatacubeDimension>>(DimensionField);
                 ObservableDictionary<string, DatacubeDimension> dimensions = null;
                 if (existingDimensions == null)
+                {
                     dimensions = new ObservableDictionary<string, DatacubeDimension>();
+                }
                 else
+                {
                     dimensions = new ObservableDictionary<string, DatacubeDimension>(existingDimensions);
+                }
+
                 dimensions.CollectionChanged += this.UpdateDimensionField;
                 return dimensions;
             }
@@ -80,9 +85,14 @@ namespace Stac.Extensions.Datacube
                 Dictionary<string, DatacubeVariable> existingVariables = this.StacPropertiesContainer.GetProperty<Dictionary<string, DatacubeVariable>>(VariableField);
                 ObservableDictionary<string, DatacubeVariable> variables = null;
                 if (existingVariables == null)
+                {
                     variables = new ObservableDictionary<string, DatacubeVariable>();
+                }
                 else
+                {
                     variables = new ObservableDictionary<string, DatacubeVariable>(existingVariables);
+                }
+
                 variables.CollectionChanged += this.UpdateVariableField;
                 return variables;
             }

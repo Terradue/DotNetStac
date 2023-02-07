@@ -115,6 +115,7 @@ namespace Stac.Extensions.ItemCollections
             {
                 throw new Exceptions.InvalidStacSchemaException(string.Format("Error getting schema at Uri '{0}'", schemaUri), e);
             }
+
             var sr = new StreamReader(stream);
             return JSchema.Parse(sr.ReadToEnd(), jSchemaResolver);
         }

@@ -83,6 +83,7 @@ namespace Stac
             {
                 throw new ArgumentNullException("source");
             }
+
             this.Uri = source.Uri;
             this.RelationshipType = source.RelationshipType;
             this.Title = source.Title;

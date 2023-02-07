@@ -74,9 +74,14 @@ namespace Stac
             get => this.GetProperty<double>("gsd");
             set
             {
-                if (value == 0) this.RemoveProperty("gsd");
+                if (value == 0)
+                {
+                    this.RemoveProperty("gsd");
+                }
                 else
+                {
                     this.SetProperty("gsd", value);
+                }
             }
         }
 
@@ -109,8 +114,11 @@ namespace Stac
                         catch (NullReferenceException nre)
                         {
                             if (!this.Properties.ContainsKey("datetime") || (!this.Properties.ContainsKey("start_datetime") && !this.Properties.ContainsKey("end_datetime")))
+                            {
                                 throw new FormatException("One of datetime, start_datetime and/or end_datetime are required", nre);
+                            }
                         }
+
                         if (this.Properties.ContainsKey("start_datetime") && this.Properties.ContainsKey("end_datetime"))
                         {
                             if (this.Properties["start_datetime"] is DateTime? && this.Properties["end_datetime"] is DateTime?)
@@ -120,6 +128,7 @@ namespace Stac
                         }
                     }
                 }
+
                 return Itenso.TimePeriod.TimeInterval.Anytime;
             }
             set
@@ -132,6 +141,7 @@ namespace Stac
                     this.SetProperty("datetime", null);
                     return;
                 }
+
                 // datetime, start_datetime, end_datetime
                 if (value.IsAnytime)
                 {

@@ -43,9 +43,14 @@ namespace Stac
             this.StacVersion = Versions.StacVersionList.Current;
             this.Description = description;
             if (links == null)
+            {
                 this.Links = new Collection<StacLink>();
+            }
             else
+            {
                 this.Links = new Collection<StacLink>(links.ToList());
+            }
+
             this.Summaries = new Dictionary<string, Collection.IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
         }
@@ -136,6 +141,7 @@ namespace Stac
             {
                 link.Parent = this;
             }
+
             this.StacExtensions = new SortedSet<string>(this.StacExtensions);
         }
 

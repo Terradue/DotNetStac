@@ -29,9 +29,13 @@ namespace Stac
         {
             this.Name = name;
             if (providerRoles != null)
+            {
                 this.Roles = new Collection<StacProviderRole>(providerRoles.ToList());
+            }
             else
+            {
                 this.Roles = new Collection<StacProviderRole>();
+            }
         }
 
         /// <summary>

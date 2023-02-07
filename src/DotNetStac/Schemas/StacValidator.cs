@@ -38,10 +38,16 @@ namespace Stac.Schemas
         public bool ValidateJson(string jsonstr)
         {
             using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
+            {
                 this.DetectDuplicateKeys(reader);
+            }
+
             JObject jobject;
             using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
+            {
                 jobject = JObject.Load(reader);
+            }
+
             return this.ValidateJObject(jobject);
         }
 
@@ -58,13 +64,17 @@ namespace Stac.Schemas
                     case JsonToken.PropertyName:
                         var propertyName = jobject.Value.ToString();
                         if (stack.Contains(propertyName))
+                        {
                             throw new InvalidStacDataException($"Duplicate key {propertyName} found in JSON: " + jobject.Path);
+                        }
+
                         stack.Push(propertyName);
                         break;
                     case JsonToken.EndObject:
                         return true;
                 }
             }
+
             return true;
         }
 
@@ -75,26 +85,37 @@ namespace Stac.Schemas
             // Get all schema to validate against
             List<string> schemas = new List<string>() { this.stacTypes[stacType] };
             if (jObject.Value<JArray>("stac_extensions") != null)
+            {
                 schemas.AddRange(jObject.Value<JArray>("stac_extensions").Select(a => a.Value<string>()));
+            }
 
             foreach (var schema in schemas)
             {
                 string shortcut = null, baseUrl = null;
                 if (Uri.IsWellFormedUriString(schema, UriKind.Absolute))
+                {
                     baseUrl = schema;
+                }
                 else
+                {
                     shortcut = schema;
+                }
 
                 if (!jObject.ContainsKey("stac_version"))
+                {
                     throw new InvalidStacDataException("Missing 'stac_version' property");
+                }
 
                 var jsonSchema = this.schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
                 if (jObject.IsValid(jsonSchema, out IList<ValidationError> errorMessages))
+                {
                     continue;
+                }
 
                 throw new InvalidStacDataException(schema + ":\n" + string.Join("\n", errorMessages.
                         Select(e => FormatMessage(e, ""))));
             }
+
             return true;
         }
 
@@ -110,6 +131,7 @@ namespace Stac.Schemas
             {
                 message.AppendFormat("[ROOT]");
             }
+
             if (!string.IsNullOrEmpty(validationError.Path))
             {
                 message.AppendFormat(" Path '{0}'", validationError.Path);

@@ -48,6 +48,7 @@ namespace Stac.Schemas
                     // Capture a very common mistake and give a better explanation (see #4)
                     throw new Exception("'stac_extensions' must contain 'projection instead of 'proj'.");
                 }
+
                 schemaUri = new Uri(baseUri, $"extensions/{shortcut}/json-schema/schema.json");
             }
             else
@@ -75,6 +76,7 @@ namespace Stac.Schemas
                 {
                     throw new Exceptions.InvalidStacSchemaException(string.Format("Error getting schema at Uri '{0}'", schemaUri), e);
                 }
+
                 var sr = new StreamReader(stream);
                 this._schemaCompiled[schemaUri.ToString()] = JSchema.Parse(sr.ReadToEnd(), this._jSchemaResolver);
                 return this._schemaCompiled[schemaUri.ToString()];

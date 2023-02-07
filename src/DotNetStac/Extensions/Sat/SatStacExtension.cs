@@ -38,7 +38,11 @@ namespace Stac.Extensions.Sat
             {
                 SortedDictionary<DateTime, SatOrbitStateVector> orbitStateVectors = new SortedDictionary<DateTime, SatOrbitStateVector>();
                 var osvarray = this.StacPropertiesContainer.GetProperty(OrbitStateVectorField);
-                if (osvarray == null) return null;
+                if (osvarray == null)
+                {
+                    return null;
+                }
+
                 orbitStateVectors = this.SortOrbitStateVectors(osvarray as JToken);
 
                 return orbitStateVectors;
@@ -89,7 +93,9 @@ namespace Stac.Extensions.Sat
         private SortedDictionary<DateTime, SatOrbitStateVector> SortOrbitStateVectors(JToken osvarray)
         {
             if (!(osvarray is JArray))
+            {
                 throw new FormatException(string.Format("[sat] field {0}: not an array", OrbitStateVectorField));
+            }
 
             var osvlist = osvarray.ToObject<List<SatOrbitStateVector>>();
 

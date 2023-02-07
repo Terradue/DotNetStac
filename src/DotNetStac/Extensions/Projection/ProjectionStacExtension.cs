@@ -105,16 +105,25 @@ namespace Stac.Extensions.Projection
         public void SetCoordinateSystem(CoordinateSystem coordinateSystem)
         {
             if (coordinateSystem.AuthorityCode > 0)
+            {
                 this.Epsg = coordinateSystem.AuthorityCode;
+            }
             else
+            {
                 this.Epsg = null;
+            }
+
             this.Wkt2 = coordinateSystem.WKT;
         }
 
         public void SetCoordinateSystem(int srid)
         {
             var cs = SRIDReader.GetCSbyID(srid);
-            if (cs == null) return;
+            if (cs == null)
+            {
+                return;
+            }
+
             this.Wkt2 = cs.WKT;
             this.Epsg = srid;
         }

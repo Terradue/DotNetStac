@@ -72,9 +72,14 @@ namespace Stac.Extensions.Processing
                 Dictionary<string, string> existingSoftware = this.StacPropertiesContainer.GetProperty<Dictionary<string, string>>(SoftwareField);
                 ObservableDictionary<string, string> software = null;
                 if (existingSoftware == null)
+                {
                     software = new ObservableDictionary<string, string>();
+                }
                 else
+                {
                     software = new ObservableDictionary<string, string>(existingSoftware);
+                }
+
                 software.CollectionChanged += this.UpdateSoftwareField;
                 return software;
             }

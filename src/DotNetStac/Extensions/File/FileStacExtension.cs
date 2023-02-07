@@ -156,8 +156,10 @@ namespace Stac.Extensions.File
                     data = mem.ToArray();
                     fileStacExtension.Size = Convert.ToUInt64(mem.Length);
                 }
+
                 mh = Multihash.Sum(hashType, data);
             }
+
             fileStacExtension.Checksum = mh;
         }
     }

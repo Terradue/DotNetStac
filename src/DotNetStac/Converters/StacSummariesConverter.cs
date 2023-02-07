@@ -50,6 +50,7 @@ namespace Stac.Converters
                             break;
                     }
                 }
+
                 if (objDic[key] is JObject)
                 {
                     JObject obj = (objDic[key] as JObject);

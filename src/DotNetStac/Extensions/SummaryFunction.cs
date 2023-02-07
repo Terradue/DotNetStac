@@ -28,7 +28,9 @@ namespace Stac.Extensions
                 try
                 {
                     if (i is JArray)
+                    {
                         return (i as IEnumerable).OfType<object>().Select(i2 => StacAccessorsHelpers.ChangeType<T>(i2));
+                    }
 
                     return new T[] { StacAccessorsHelpers.ChangeType<T>(i) };
                 }

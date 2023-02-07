@@ -16,9 +16,14 @@ namespace Stac.Extensions.Sat
             StacItem slaveItem = sat2.StacItem;
 
             if (sat1.OrbitStateVectors.Count() == 0)
+            {
                 throw new OperationCanceledException("sat1 has no orbit state vectors");
+            }
+
             if (sat2.OrbitStateVectors.Count() == 0)
+            {
                 throw new OperationCanceledException("sat2 has no orbit state vectors");
+            }
 
             DateTime masterAnxDate = sat1.AscendingNodeCrossingDateTime;
             DateTime slaveAnxDate = sat2.AscendingNodeCrossingDateTime;

@@ -92,7 +92,10 @@ namespace Stac
         public StacAsset(IStacObject stacObject, Uri uri) : this()
         {
             if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
+            {
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
+            }
+
             this._parentStacObject = stacObject;
             this.Uri = uri;
         }
@@ -120,20 +123,34 @@ namespace Stac
         public StacAsset(StacAsset source, IStacObject stacObject)
         {
             if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
+            {
                 throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
+            }
+
             if (source == null)
+            {
                 throw new ArgumentNullException("source");
+            }
+
             this._base_uri = source._base_uri;
             this._href = source._href;
             if (source.Roles != null)
+            {
                 this.Roles = new SortedSet<string>(source.Roles);
+            }
             else
+            {
                 this.Roles = new SortedSet<string>();
+            }
+
             this._title = source._title;
             this._type = source._type;
             this._description = source._description;
             if (source._properties != null)
+            {
                 this._properties = new Dictionary<string, object>(source._properties);
+            }
+
             this._parentStacObject = stacObject;
         }
 

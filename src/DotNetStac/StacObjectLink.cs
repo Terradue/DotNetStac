@@ -19,10 +19,12 @@ namespace Stac
             {
                 this.RelationshipType = "item";
             }
+
             if (stacObject is StacCatalog || stacObject is StacCollection)
             {
                 this.RelationshipType = "child";
             }
+
             this.Uri = uri;
         }
 

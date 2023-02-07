@@ -403,9 +403,12 @@ file_header_template = Copyright (c) by Terradue Srl. All Rights Reserved.\nLice
 
 dotnet_diagnostic.SA1101.severity = warning      # Prefix local calls with this
 dotnet_diagnostic.SA1124.severity = warning      # Do not use regions
+dotnet_diagnostic.SA1127.severity = warning      # Generic type constraints must be on their own line or share line with previous
 dotnet_diagnostic.SA1501.severity = warning      # Braces must not be omitted
+dotnet_diagnostic.SA1503.severity = warning      # Braces must not be omitted
 dotnet_diagnostic.SA1506.severity = warning      # Element documentation header must not be preceded by blank line
 dotnet_diagnostic.SA1507.severity = warning      # Code should not contain multiple blank lines in a row
+dotnet_diagnostic.SA1513.severity = warning      # Closing brace must be followed by blank line
 dotnet_diagnostic.SA1514.severity = warning      # Element documentation header must be preceded by blank line
 dotnet_diagnostic.SA1623.severity = warning      # Property summary documentation must match accessors
 dotnet_diagnostic.SA1626.severity = warning      # Single-line comments must not use documentation style slashes

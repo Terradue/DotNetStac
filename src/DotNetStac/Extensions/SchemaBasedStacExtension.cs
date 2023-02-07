@@ -38,7 +38,10 @@ namespace Stac.Extensions
                                                       IStacObject stacObject)
         {
             if (StacSchemaResolver.CoreTypes.Contains(shortcut))
+            {
                 throw new InvalidStacSchemaException(shortcut + "is not an extension");
+            }
+
             Uri schema = new Uri($"https://stac-extensions.github.io/{shortcut}/v1.0.0/schema.json");
 
             return new SchemaBasedStacExtension(schema, stacObject);

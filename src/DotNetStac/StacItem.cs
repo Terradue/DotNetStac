@@ -70,6 +70,7 @@ namespace Stac
                     }
                 }
             }
+
             if (e.NewItems != null)
             {
                 foreach (var newLink in e.NewItems.Cast<StacLink>())
@@ -126,8 +127,14 @@ namespace Stac
             get => this.Root.GetProperty<string>("collection");
             set
             {
-                if (value != null) this.Root.SetProperty("collection", value);
-                else this.Root.RemoveProperty("collection");
+                if (value != null)
+                {
+                    this.Root.SetProperty("collection", value);
+                }
+                else
+                {
+                    this.Root.RemoveProperty("collection");
+                }
             }
         }
 
@@ -147,10 +154,12 @@ namespace Stac
             {
                 link.Parent = this;
             }
+
             foreach (StacAsset asset in this.Assets.Values)
             {
                 asset.ParentStacObject = this;
             }
+
             this.StacExtensions = new SortedSet<string>(this.StacExtensions);
         }
 
@@ -158,8 +167,9 @@ namespace Stac
         internal void OnSerializingMethod(StreamingContext context)
         {
             if (this.BoundingBoxes == null && this.Geometry != null)
+            {
                 this.BoundingBoxes = this.GetBoundingBoxFromGeometryExtent();
-
+            }
         }
 
         public bool ShouldSerializeStacExtensions()

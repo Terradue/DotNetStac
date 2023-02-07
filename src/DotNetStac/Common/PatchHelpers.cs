@@ -8,9 +8,20 @@ using Newtonsoft.Json;
 
 namespace Stac.Common
 {
+    /// <summary>
+    /// Patch helpers
+    /// </summary>
     public static class PatchHelpers
     {
-        public static T Patch<T>(this T stacObject, IDictionary<string, object> patch) where T : IStacObject
+        /// <summary>
+        /// Patches the specified stac object with a dictionary.
+        /// </summary>
+        /// <typeparam name="T">The type of the stac object.</typeparam>
+        /// <param name="stacObject">The stac object.</param>
+        /// <param name="patch">The patch.</param>
+        /// <returns>The patched stac object.</returns>
+        public static T Patch<T>(this T stacObject, IDictionary<string, object> patch)
+            where T : IStacObject
         {
             var itemJson = StacConvert.Serialize(stacObject);
             var patchJson = JsonConvert.SerializeObject(patch);
@@ -18,7 +29,15 @@ namespace Stac.Common
             return StacConvert.Deserialize<T>(patchedJson);
         }
 
-        public static T Patch<T>(this T stacObject, IStacObject patch) where T : IStacObject
+        /// <summary>
+        /// Patches the specified stac object with another stac object.
+        /// </summary>
+        /// <typeparam name="T">The type of the stac object.</typeparam>
+        /// <param name="stacObject">The stac object.</param>
+        /// <param name="patch">The patch.</param>
+        /// <returns>The patched stac object.</returns>
+        public static T Patch<T>(this T stacObject, IStacObject patch)
+            where T : IStacObject
         {
             var itemJson = StacConvert.Serialize(stacObject);
             var patchJson = StacConvert.Serialize(patch);
@@ -28,6 +47,7 @@ namespace Stac.Common
             {
                 patchdic.Remove("links");
             }
+
             return Patch(stacObject, patchdic);
         }
     }

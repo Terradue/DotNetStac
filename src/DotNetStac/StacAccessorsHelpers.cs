@@ -43,27 +43,37 @@ namespace Stac
         public static object GetProperty(this IDictionary<string, object> properties, string key)
         {
             if (!properties.ContainsKey(key))
+            {
                 return null;
+            }
+
             return properties[key];
         }
 
         public static T GetProperty<T>(this IDictionary<string, object> properties, string key)
         {
             var @object = GetProperty(properties, key);
-            if (@object == null) return default(T);
+            if (@object == null)
+            {
+                return default(T);
+            }
+
             if (@object is JToken)
             {
                 return (@object as JToken).ToObject<T>();
             }
+
             var t = typeof(T);
             if (t.IsGenericType && t.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
             {
                 t = Nullable.GetUnderlyingType(t);
             }
+
             if (t.GetTypeInfo().IsEnum)
             {
                 return (T)Enum.Parse(t, @object.ToString());
             }
+
             return ChangeType<T>(@object);
         }
 
@@ -78,11 +88,13 @@ namespace Stac
             {
                 array = propertiesContainer.GetProperty<T[]>(key)?.ToList();
             }
+
             PropertyObservableCollection<T> observableCollection = new PropertyObservableCollection<T>(propertiesContainer, key);
             if (array != null && array.Count() > 0)
             {
                 observableCollection.AddRange(array);
             }
+
             return observableCollection;
         }
 
@@ -96,6 +108,7 @@ namespace Stac
                 {
                     return default(T);
                 }
+
                 t = Nullable.GetUnderlyingType(t);
             }
 
@@ -134,7 +147,10 @@ namespace Stac
         {
             var existingLink = stacItem.Links.FirstOrDefault(l => l.Uri == collectionUri);
             if (existingLink != null)
+            {
                 stacItem.Links.Remove(existingLink);
+            }
+
             stacItem.Links.Add(StacLink.CreateCollectionLink(collectionUri));
             stacItem.Collection = collectionId;
         }
@@ -158,7 +174,9 @@ namespace Stac
             else
             {
                 foreach (T item in items)
+                {
                     collection.Add(item);
+                }
             }
         }
 
@@ -166,7 +184,9 @@ namespace Stac
         {
 
             if (index < 0 || index > collection.Count)
+            {
                 throw new ArgumentOutOfRangeException(nameof(index), "Index was out of range. Must be non-negative and less than the size of the collection.");
+            }
 
             if (collection is IList<T> list)
             {

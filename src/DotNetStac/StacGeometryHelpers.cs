@@ -23,7 +23,10 @@ namespace Stac
         {
             var boundingBoxes = stacItem.Geometry?.GetBoundingBox();
             if (boundingBoxes == null)
+            {
                 return new double[] { -180, -90, 180, 90 };
+            }
+
             if (boundingBoxes[0].Altitude.HasValue)
                 return new double[] {
                     boundingBoxes[0].Longitude, boundingBoxes[0].Latitude, boundingBoxes[0].Altitude.Value,
@@ -43,7 +46,10 @@ namespace Stac
         public static IPosition[] GetBoundingBox(this IGeometryObject geometry)
         {
             if (geometry == null)
+            {
                 throw new ArgumentNullException(nameof(geometry));
+            }
+
             IPosition upperRight = null, lowerLeft = null;
             double lowerLeftLon, lowerLeftLat, upperRightLon, upperRightLat;
             double? lowerLeftAlt = null, upperRightAlt = null;
@@ -114,11 +120,19 @@ namespace Stac
         /// <param name="positions">set of positions</param>
         public static IPosition GetLowerLeft(this IPosition[] positions)
         {
-            if (positions == null || positions.Length == 0) return null;
+            if (positions == null || positions.Length == 0)
+            {
+                return null;
+            }
+
             if (positions[0].Altitude.HasValue)
+            {
                 return new Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude), positions.Min(p => p.Altitude));
+            }
             else
+            {
                 return new Position(positions.Min(p => p.Latitude), positions.Min(p => p.Longitude));
+            }
         }
 
         /// <summary>
@@ -131,6 +145,7 @@ namespace Stac
             {
                 return null;
             }
+
             if (positions[0].Altitude.HasValue)
             {
                 return new Position(positions.Max(p => p.Latitude), positions.Max(p => p.Longitude), positions.Max(p => p.Altitude));

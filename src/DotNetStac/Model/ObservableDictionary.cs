@@ -122,7 +122,11 @@ namespace Stac.Model
         {
             bool result = this._dictionary.TryAdd(key, value);
             int index = this.IndexOf(key);
-            if (result) this.NotifyObserversOfChange(NotifyCollectionChangedAction.Add, value, index);
+            if (result)
+            {
+                this.NotifyObserversOfChange(NotifyCollectionChangedAction.Add, value, index);
+            }
+
             return result;
         }
 
@@ -134,7 +138,11 @@ namespace Stac.Model
         {
             int index = this.IndexOf(key);
             bool result = this._dictionary.TryRemove(key, out value);
-            if (result) this.NotifyObserversOfChange(NotifyCollectionChangedAction.Remove, value, index);
+            if (result)
+            {
+                this.NotifyObserversOfChange(NotifyCollectionChangedAction.Remove, value, index);
+            }
+
             return result;
         }
 
@@ -159,8 +167,12 @@ namespace Stac.Model
             foreach (TKey k in keys)
             {
                 index++;
-                if (k.Equals(key)) return index;
+                if (k.Equals(key))
+                {
+                    return index;
+                }
             }
+
             return -1;
         }
 

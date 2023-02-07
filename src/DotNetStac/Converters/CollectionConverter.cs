@@ -26,6 +26,7 @@ namespace Stac.Converters
             {
                 return new Collection<T>(token.ToObject<List<T>>());
             }
+
             return new Collection<T>();
         }
 
@@ -44,6 +45,7 @@ namespace Stac.Converters
             {
                 serializer.Serialize(writer, item);
             }
+
             writer.WriteEndArray();
         }
     }

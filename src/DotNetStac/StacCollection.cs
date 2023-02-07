@@ -38,13 +38,23 @@ namespace Stac
             this.StacVersion = Versions.StacVersionList.Current;
             this.Description = description;
             if (links == null)
+            {
                 this.Links = new Collection<StacLink>();
+            }
             else
+            {
                 this.Links = new Collection<StacLink>(links.ToList());
+            }
+
             if (assets == null)
+            {
                 this.Assets = new Dictionary<string, StacAsset>();
+            }
             else
+            {
                 this.Assets = new Dictionary<string, StacAsset>(assets);
+            }
+
             this.Summaries = new Dictionary<string, IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
             this.License = license;
@@ -160,6 +170,7 @@ namespace Stac
             {
                 link.Parent = this;
             }
+
             this.StacExtensions = new SortedSet<string>(this.StacExtensions);
         }
 
@@ -214,10 +225,12 @@ namespace Stac
                                           {
                                               itemUri = collectionUri.MakeRelativeUri(item.Key);
                                           }
+
                                           if (!itemUri.IsAbsoluteUri)
                                           {
                                               itemUri = new Uri("./" + itemUri.OriginalString, UriKind.Relative);
                                           }
+
                                           return StacLink.CreateObjectLink(item.Value, itemUri);
                                       }),
                                       license);
@@ -241,9 +254,13 @@ namespace Stac
                         if (summaryFunctions.ContainsKey(value.Key))
                         {
                             if (summaryFunctions[value.Key].Extension != null && !collection.StacExtensions.Contains(summaryFunctions[value.Key].Extension.Identifier))
+                            {
                                 collection.StacExtensions.Add(summaryFunctions[value.Key].Extension.Identifier);
+                            }
+
                             return summaryFunctions[value.Key].Summarize(value.Select(i => i.Value));
                         }
+
                         return null;
                     });
 
@@ -275,9 +292,13 @@ namespace Stac
                         if (summaryFunctions.ContainsKey(value.Key))
                         {
                             if (summaryFunctions[value.Key].Extension != null && !this.StacExtensions.Contains(summaryFunctions[value.Key].Extension.Identifier))
+                            {
                                 this.StacExtensions.Add(summaryFunctions[value.Key].Extension.Identifier);
+                            }
+
                             return summaryFunctions[value.Key].Summarize(value.Select(i => i.Value));
                         }
+
                         return null;
                     });
 

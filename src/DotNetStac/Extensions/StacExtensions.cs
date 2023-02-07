@@ -26,7 +26,11 @@ namespace Stac.Extensions
         {
             get
             {
-                if (managedStacExtensions.Count == 0) InitManagedExtensions();
+                if (managedStacExtensions.Count == 0)
+                {
+                    InitManagedExtensions();
+                }
+
                 return managedStacExtensions;
             }
             private set => managedStacExtensions = value;
@@ -62,7 +66,11 @@ namespace Stac.Extensions
         /// <param name="stacPropertiesContainer"></param>
         public static IEnumerable<IStacExtension> GetDeclaredExtensions(this IStacPropertiesContainer stacPropertiesContainer)
         {
-            if (ManagedStacExtensions.Count == 0) InitManagedExtensions();
+            if (ManagedStacExtensions.Count == 0)
+            {
+                InitManagedExtensions();
+            }
+
             return stacPropertiesContainer.StacObjectContainer.StacExtensions
                     .Select(stacExtension => LoadStacExtension(stacExtension, stacPropertiesContainer.StacObjectContainer));
         }
@@ -84,9 +92,13 @@ namespace Stac.Extensions
 
             Uri schema = null;
             if (Uri.IsWellFormedUriString(stacExtension, UriKind.Absolute))
+            {
                 schema = new Uri(stacExtension);
+            }
             else
+            {
                 schema = new Uri($"https://stac-extensions.github.io/{stacExtension}/v1.0.0/schema.json");
+            }
 
             return new SchemaBasedStacExtension(schema, stacObject);
         }

@@ -46,6 +46,7 @@ namespace Stac.Extensions.Projection
                         yield return wkt;
                     }
                 }
+
                 sr.Close();
             }
         }
@@ -65,6 +66,7 @@ namespace Stac.Extensions.Projection
                     return CoordinateSystemWktReader.Parse(wkt.WKT) as CoordinateSystem;
                 }
             }
+
             return null;
         }
     }

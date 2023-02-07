@@ -72,9 +72,14 @@ namespace Stac
             get => this.GetProperty<double>("gsd");
             set
             {
-                if (value == 0) this.RemoveProperty("gsd");
+                if (value == 0)
+                {
+                    this.RemoveProperty("gsd");
+                }
                 else
+                {
                     this.SetProperty("gsd", value);
+                }
             }
         }
 
@@ -113,10 +118,12 @@ namespace Stac
                                                                                 (DateTime)this.Properties["end_datetime"]);
                                 throw new FormatException(string.Format("start_datetime and/or end_datetime are not a valid: {0}", e.Message), e);
                             }
+
                             throw new FormatException(string.Format("datetime is not a valid", e.Message), e);
                         }
                     }
                 }
+
                 return Itenso.TimePeriod.TimeInterval.Anytime;
             }
             set

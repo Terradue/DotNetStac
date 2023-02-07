@@ -143,9 +143,15 @@ namespace Stac.Extensions
         /// </summary>
         protected void DeclareStacExtension()
         {
-            if (this.StacPropertiesContainer.StacObjectContainer == null) return;
+            if (this.StacPropertiesContainer.StacObjectContainer == null)
+            {
+                return;
+            }
+
             if (!this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(this.Identifier))
+            {
                 this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Add(this.Identifier);
+            }
         }
 
         /// <summary>
@@ -153,9 +159,15 @@ namespace Stac.Extensions
         /// </summary>
         protected void RemoveStacExtension()
         {
-            if (this.StacPropertiesContainer.StacObjectContainer == null) return;
+            if (this.StacPropertiesContainer.StacObjectContainer == null)
+            {
+                return;
+            }
+
             if (this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Contains(this.Identifier))
+            {
                 this.StacPropertiesContainer.StacObjectContainer.StacExtensions.Remove(this.Identifier);
+            }
         }
 
         public void SetProperty(string key, object value)
@@ -168,7 +180,9 @@ namespace Stac.Extensions
         {
             this.RemoveProperty(key);
             if (!this.StacPropertiesContainer.Properties.Any(p => this.ItemFields.ContainsKey(p.Key)))
+            {
                 this.RemoveStacExtension();
+            }
         }
     }
 }

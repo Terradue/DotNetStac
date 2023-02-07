@@ -58,8 +58,10 @@ namespace Stac.Extensions.Sat
 
                 delta = -(vxm * (x - sxm) + vym * (y - sym) + vzm * (z - szm)) / (axm * (x - sxm) + aym * (y - sym) + azm * (z - szm) - vxm * vxm - vym * vym - vzm * vzm);
                 t += delta;
-                if (Math.Abs(delta) < tolerance) break;
-
+                if (Math.Abs(delta) < tolerance)
+                {
+                    break;
+                }
             }
 
             maxError = Math.Abs(delta);
@@ -106,8 +108,10 @@ namespace Stac.Extensions.Sat
 
                 delta = -(vxm * (x - sxm) + vym * (y - sym) + vzm * (z - szm)) / (axm * (x - sxm) + aym * (y - sym) + azm * (z - szm) - vxm * vxm - vym * vym - vzm * vzm);
                 t += delta;
-                if (Math.Abs(delta) < tolerance) break;
-
+                if (Math.Abs(delta) < tolerance)
+                {
+                    break;
+                }
             }
 
             maxError = Math.Abs(delta);
@@ -145,7 +149,10 @@ namespace Stac.Extensions.Sat
 
             // Baseline unit vector
             double[] bUnit = new double[3]; // 
-            for (int k = 0; k < 3; k++) bUnit[k] = b[k] / bMod;
+            for (int k = 0; k < 3; k++)
+            {
+                bUnit[k] = b[k] / bMod;
+            }
 
             // Parallel vector
             double[] vpar = new double[3] {
@@ -157,7 +164,10 @@ namespace Stac.Extensions.Sat
 
             // Parallel unit vector
             double[] vparUnit = new double[3];
-            for (int k = 0; k < 3; k++) vparUnit[k] = vpar[k] / vparMod;
+            for (int k = 0; k < 3; k++)
+            {
+                vparUnit[k] = vpar[k] / vparMod;
+            }
 
             // Along-track vector
             double[] va = new double[3] {
@@ -170,7 +180,10 @@ namespace Stac.Extensions.Sat
 
             // Along-track unit vector
             double[] vaUnit = new double[3];
-            for (int k = 0; k < 3; k++) vaUnit[k] = va[k] / vaMod;
+            for (int k = 0; k < 3; k++)
+            {
+                vaUnit[k] = va[k] / vaMod;
+            }
 
             double[] vperpUnit = VectorProduct3D(vparUnit, vaUnit);
 
@@ -185,7 +198,10 @@ namespace Stac.Extensions.Sat
         public static double[] VectorProduct3D(double[] vectorA, double[] vectorB)
         {
             if (vectorA.Length != 3 || vectorB.Length != 3)
+            {
                 throw new ArgumentException("3D vector product cannot be calculated, because one of the vectors is not a 3D vector");
+            }
+
             return new double[3] {
                 vectorA[1] * vectorB[2] - vectorA[2] * vectorB[1],
                 vectorA[2] * vectorB[0] - vectorA[0] * vectorB[2],

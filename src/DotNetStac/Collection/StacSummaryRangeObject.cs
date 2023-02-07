@@ -22,7 +22,9 @@ namespace Stac.Collection
         public StacSummaryRangeObject(JObject summary) : base(summary)
         {
             if (!summary.ContainsKey("minimum") || !summary.ContainsKey("maximum"))
+            {
                 throw new ArgumentException("summary stats must contains minimum and maximum fields");
+            }
         }
 
         /// <summary>

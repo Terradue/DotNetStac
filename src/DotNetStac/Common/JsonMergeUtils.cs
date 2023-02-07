@@ -21,8 +21,8 @@ namespace Stac.Common
         /// Return the result of merging the original JSON document with the JSON Merge patch document
         /// according to https://tools.ietf.org/html/rfc7386 
         /// </summary>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
+        /// <param name="original">Original JSON document to merge new content into.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="writerOptions">Writer options used to write the merge result.</param>
         /// <returns>The document that represents the merge result.</returns>
         public static string Merge(string original, string patch, JsonWriterOptions? writerOptions = null)
@@ -62,9 +62,9 @@ namespace Stac.Common
         /// Return the result of merging the original JSON document with the JSON Merge patch document
         /// according to https://tools.ietf.org/html/rfc7386 
         /// </summary>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
-        /// <param name="token"></param>
+        /// <param name="original">Original JSON document to merge new content into.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
+        /// <param name="token">Cancellation token.</param>
         /// <param name="writerOptions">Writer options used to write the merge result.</param>
         public static async Task<string> MergeAsync(string original, Stream patch, CancellationToken token = default, JsonWriterOptions? writerOptions = null)
         {
@@ -106,7 +106,7 @@ namespace Stac.Common
         /// <remarks>Nested field names are returned joined by "." 
         /// Array items are ignored.
         /// </remarks>
-        /// <param name="patch"></param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <returns>The list of null properties.</returns>
         public static List<string> ExtractNullProperties(string patch)
         {
@@ -125,7 +125,7 @@ namespace Stac.Common
         /// <remarks>Nested field names are returned joined by "." 
         /// Array items are ignored.
         /// </remarks>
-        /// <param name="patch"></param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>The list of null properties.</returns>
         public static async Task<List<string>> ExtractNullPropertiesAsync(Stream patch, CancellationToken token = default)
@@ -144,8 +144,8 @@ namespace Stac.Common
         /// to serialize and deserialize the model.
         /// </summary>
         /// <typeparam name="T">the model type</typeparam>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
+        /// <param name="original">Original model to merge new content into.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="options">JSON serialization options</param>
         /// <returns>A new model representing the patched instance.</returns>
         public static T MergeModel<T>(T original, string patch, JsonSerializerOptions options = null)
@@ -158,9 +158,9 @@ namespace Stac.Common
         /// Apply the result of a JSON merge patch to the given model, using System.Text.Json serializer
         /// to serialize and deserialize the model.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
+        /// <typeparam name="T">the model type</typeparam>
+        /// <param name="original">Original model to merge new content into.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="options">JSON serialization options</param>
         /// <param name="token">Cancellation token</param>
         /// <returns>A task that returns a new model representing the patched instance.</returns>
@@ -172,7 +172,7 @@ namespace Stac.Common
 
         private static IEnumerable<string> ExtractNullPropertiesFromObject(JsonElement patch)
         {
-            Debug.Assert(patch.ValueKind == JsonValueKind.Object);
+            Debug.Assert(patch.ValueKind == JsonValueKind.Object, "The patch JSON document must be an object type.");
             foreach (var property in patch.EnumerateObject())
             {
                 if (property.Value.ValueKind == JsonValueKind.Null)
@@ -191,8 +191,8 @@ namespace Stac.Common
 
         private static void MergeObjects(Utf8JsonWriter jsonWriter, JsonElement original, JsonElement patch)
         {
-            Debug.Assert(original.ValueKind == JsonValueKind.Object);
-            Debug.Assert(patch.ValueKind == JsonValueKind.Object);
+            Debug.Assert(original.ValueKind == JsonValueKind.Object, "The original JSON document to merge new content into must be an object type.");
+            Debug.Assert(patch.ValueKind == JsonValueKind.Object, "The patch JSON document must be an object type.");
 
             jsonWriter.WriteStartObject();
 

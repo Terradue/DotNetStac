@@ -159,10 +159,15 @@ namespace Stac.Extensions.Version
             return GetVersion(stacCollection, VersionStacExtension.LatestVersionRel, stacLinkResolver);
         }
 
-        internal static T GetVersion<T>(this T stacObject, string relType, Func<StacLink, T> stacLinkResolver) where T : IStacObject
+        internal static T GetVersion<T>(this T stacObject, string relType, Func<StacLink, T> stacLinkResolver)
+            where T : IStacObject
         {
             var predecessorVersionLink = stacObject.Links.FirstOrDefault(l => l.RelationshipType == relType);
-            if (predecessorVersionLink == null) return default(T);
+            if (predecessorVersionLink == null)
+            {
+                return default(T);
+            }
+
             return stacLinkResolver(predecessorVersionLink);
         }
     }
