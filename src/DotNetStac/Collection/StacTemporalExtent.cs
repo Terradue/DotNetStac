@@ -16,7 +16,7 @@ namespace Stac.Collection
     {
 
         /// <summary>
-        /// Initialize a new instance of the <see cref="StacTemporalExtent" /> class with a single extent.
+        /// Initializes a new instance of the <see cref="StacTemporalExtent"/> class.
         /// </summary>
         /// <param name="start"></param>
         /// <param name="end"></param>
@@ -27,6 +27,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacTemporalExtent"/> class.
         /// Intialize a new Stac Temporal Extent from an exisiting one (clone)
         /// </summary>
         /// <param name="temporal"></param>

@@ -23,7 +23,7 @@ namespace Stac.Extensions.Alternate
         private IDictionary<string, object> properties;
 
         /// <summary>
-        /// Initialize a new Band Object
+        /// Initializes a new instance of the <see cref="AlternateAssetObject"/> class.
         /// </summary>
         /// <param name="href">URI to the asset object</param>
         /// <param name="parent">Parent object</param>

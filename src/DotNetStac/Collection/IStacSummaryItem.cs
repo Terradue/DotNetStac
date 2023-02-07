@@ -23,8 +23,15 @@ namespace Stac.Collection
         /// <summary>
         /// Gets or sets the summary value with the specified fields (for objects only)
         /// </summary>
+        /// <value>
+        /// The <see cref="JToken"/>.
+        /// </value>
+        /// <param name="key">The key.</param>
         JToken this[object key] { get; }
 
+        /// <summary>
+        /// Gets the summary item as a JToken
+        /// </summary>
         IEnumerable<object> Enumerate();
 
     }

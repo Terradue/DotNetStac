@@ -26,7 +26,7 @@ namespace Stac.Model
         private readonly ConcurrentDictionary<TKey, TValue> _dictionary;
 
         /// <summary>
-        /// Initializes an instance of the ObservableConcurrentDictionary class.
+        /// Initializes a new instance of the <see cref="ObservableDictionary{TKey, TValue}"/> class.
         /// </summary>
         public ObservableDictionary()
         {
@@ -61,6 +61,12 @@ namespace Stac.Model
         public ICollection<TKey> Keys
         {
             get { return this._dictionary.Keys; }
+        }
+
+        /// <inheritdoc/>
+        public ICollection<TValue> Values
+        {
+            get => this._dictionary.Values;
         }
 
         /// <summary>
@@ -209,12 +215,6 @@ namespace Stac.Model
 
         void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
             => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).CopyTo(array, arrayIndex);
-
-        /// <inheritdoc/>
-        public ICollection<TValue> Values
-        {
-            get => this._dictionary.Values;
-        }
 
         /// <inheritdoc/>
         public TValue this[TKey key]

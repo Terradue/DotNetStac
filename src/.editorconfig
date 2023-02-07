@@ -418,5 +418,6 @@ dotnet_diagnostic.SA1516.severity = warning      # Elements must be separated by
 dotnet_diagnostic.SA1623.severity = warning      # Property summary documentation must match accessors
 dotnet_diagnostic.SA1626.severity = warning      # Single-line comments must not use documentation style slashes
 dotnet_diagnostic.SA1636.severity = none         # Disable file header matching
+dotnet_diagnostic.SA1642.severity = warning      # Constructor summary documentation must begin with standard text
 dotnet_diagnostic.SA1649.severity = warning      # File name must match first type name
 dotnet_diagnostic.SA1651.severity = warning      # Do not use placeholders in summaries

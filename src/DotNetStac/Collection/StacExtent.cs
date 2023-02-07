@@ -17,7 +17,7 @@ namespace Stac.Collection
     public class StacExtent : ICloneable
     {
         /// <summary>
-        /// Initialise a new instance of the <see cref="StacExtent" /> class.
+        /// Initializes a new instance of the <see cref="StacExtent"/> class.
         /// </summary>
         /// <param name="spatial">Spatial Extent.</param>
         /// <param name="temporal">Temporal Extent.</param>
@@ -29,6 +29,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacExtent"/> class.
         /// Initialize a new Stac Extent from an existing one (clone).
         /// </summary>
         /// <param name="extent"></param>

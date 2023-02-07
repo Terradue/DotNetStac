@@ -21,7 +21,7 @@ namespace Stac
     public class StacProvider
     {
         /// <summary>
-        /// Initialize a new instance of the <see cref="StacProvider" /> class.
+        /// Initializes a new instance of the <see cref="StacProvider"/> class.
         /// </summary>
         /// <param name="name">The name of the organization or the individual.</param>
         /// <param name="providerRoles">Roles of the provider. Any of <see cref="StacProviderRole" />.</param>

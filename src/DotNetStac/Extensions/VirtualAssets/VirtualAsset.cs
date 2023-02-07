@@ -16,7 +16,7 @@ namespace Stac.Extensions.VirtualAssets
     {
 
         /// <summary>
-        /// Initialize a new Virtual Asset for a STAC object with an array of items
+        /// Initializes a new instance of the <see cref="VirtualAsset"/> class.
         /// </summary>
         public VirtualAsset(IStacObject stacObject, IList<Uri> uris)
             : base(stacObject, null)

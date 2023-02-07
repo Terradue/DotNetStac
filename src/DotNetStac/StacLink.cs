@@ -32,6 +32,21 @@ namespace Stac
             this.Length = contentLength;
         }
 
+        public StacLink(StacLink source)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            this.Uri = source.Uri;
+            this.RelationshipType = source.RelationshipType;
+            this.Title = source.Title;
+            this.ContentType = source.ContentType;
+            this.Parent = source.Parent;
+            this.Length = source.Length;
+        }
+
         public static StacLink CreateSelfLink(Uri uri, string mediaType = null, string title = null)
         {
             return new StacLink(uri, "self", title, mediaType);
@@ -75,21 +90,6 @@ namespace Stac
         public static StacLink CreateObjectLink(IStacObject stacObject, Uri uri)
         {
             return new StacObjectLink(stacObject, uri);
-        }
-
-        public StacLink(StacLink source)
-        {
-            if (source == null)
-            {
-                throw new ArgumentNullException("source");
-            }
-
-            this.Uri = source.Uri;
-            this.RelationshipType = source.RelationshipType;
-            this.Title = source.Title;
-            this.ContentType = source.ContentType;
-            this.Parent = source.Parent;
-            this.Length = source.Length;
         }
 
         [JsonProperty("type")]

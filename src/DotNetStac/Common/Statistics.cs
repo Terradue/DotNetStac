@@ -16,7 +16,7 @@ namespace Stac.Common
         private IDictionary<string, object> properties;
 
         /// <summary>
-        /// Initialize a new statistics object
+        /// Initializes a new instance of the <see cref="Statistics"/> class.
         /// </summary>
         /// <param name="minimum">minimum value</param>
         /// <param name="maximum">maximum value</param>

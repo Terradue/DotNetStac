@@ -15,7 +15,7 @@ namespace Stac.Collection
     public class StacSpatialExtent : ICloneable
     {
         /// <summary>
-        /// Initialize a new instance of the <see cref="StacSpatialExtent" /> class with a single extent.
+        /// Initializes a new instance of the <see cref="StacSpatialExtent"/> class.
         /// </summary>
         /// <param name="minX">Minimum X bound</param>
         /// <param name="minY">Minimum Y bound</param>
@@ -28,6 +28,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacSpatialExtent"/> class.
         /// Initialize a new Stac Spatial extent from an existing one (clone)
         /// </summary>
         /// <param name="spatial"></param>

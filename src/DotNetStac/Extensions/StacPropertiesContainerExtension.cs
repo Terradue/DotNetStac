@@ -20,7 +20,7 @@ namespace Stac.Extensions
         private readonly string identifier;
 
         /// <summary>
-        /// Initialize a new class for a STAC object implementing <see cref="IStacPropertiesContainer" />.
+        /// Initializes a new instance of the <see cref="StacPropertiesContainerExtension"/> class.
         /// </summary>
         /// <param name="identifier">Identifier of the extension</param>
         /// <param name="stacPropertiesContainer">STAC object</param>

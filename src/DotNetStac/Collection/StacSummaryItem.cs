@@ -19,7 +19,7 @@ namespace Stac.Collection
         protected readonly JToken summary;
 
         /// <summary>
-        /// Initialize a new summary item with a JSON object
+        /// Initializes a new instance of the <see cref="StacSummaryItem"/> class.
         /// </summary>
         /// <param name="summary"></param>
         protected StacSummaryItem(JToken summary)

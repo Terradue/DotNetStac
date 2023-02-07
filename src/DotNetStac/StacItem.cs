@@ -93,6 +93,10 @@ namespace Stac
             get; private set;
         }
 
+        /// <inheritdoc/>
+        [JsonIgnore]
+        public ContentType MediaType => ITEM_MEDIATYPE;
+
         private void LinksCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems != null)
@@ -117,10 +121,6 @@ namespace Stac
                 }
             }
         }
-
-        /// <inheritdoc/>
-        [JsonIgnore]
-        public ContentType MediaType => ITEM_MEDIATYPE;
 
         [JsonProperty("assets", Order = 4)]
         public IDictionary<string, StacAsset> Assets { get; private set; }

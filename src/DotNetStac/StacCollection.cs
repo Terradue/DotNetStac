@@ -63,7 +63,7 @@ namespace Stac
         }
 
         /// <summary>
-        /// Initialize a new Stac Collection from an existing one (clone)
+        /// Initializes a new instance of the <see cref="StacCollection"/> class.
         /// </summary>
         /// <param name="stacCollection">existing Stac Collection</param>
         public StacCollection(StacCollection stacCollection)

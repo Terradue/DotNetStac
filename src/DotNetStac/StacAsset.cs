@@ -26,7 +26,7 @@ namespace Stac
         private IStacObject _parentStacObject;
 
         /// <summary>
-        /// Initialize a new asset with a Uri
+        /// Initializes a new instance of the <see cref="StacAsset"/> class.
         /// </summary>
         /// <param name="stacObject">parent stac object</param>
         /// <param name="uri">uri to the asset</param>
@@ -43,6 +43,7 @@ namespace Stac
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacAsset"/> class.
         /// Initialize a new asset
         /// </summary>
         /// <param name="stacObject">parent stac object</param>
@@ -56,6 +57,46 @@ namespace Stac
             this.Roles = roles == null ? new SortedSet<string>() : new SortedSet<string>(roles.ToList());
             this.Title = title;
             this.MediaType = mediaType;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacAsset"/> class.
+        /// Initialize a new asset from an existing one
+        /// </summary>
+        /// <param name="source">asset source to be copied</param>
+        /// <param name="stacObject">new parent stac object</param>
+        public StacAsset(StacAsset source, IStacObject stacObject)
+        {
+            if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
+            {
+                throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
+            }
+
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            this._base_uri = source._base_uri;
+            this._href = source._href;
+            if (source.Roles != null)
+            {
+                this.Roles = new SortedSet<string>(source.Roles);
+            }
+            else
+            {
+                this.Roles = new SortedSet<string>();
+            }
+
+            this._title = source._title;
+            this._type = source._type;
+            this._description = source._description;
+            if (source._properties != null)
+            {
+                this._properties = new Dictionary<string, object>(source._properties);
+            }
+
+            this._parentStacObject = stacObject;
         }
 
         [JsonConstructor]
@@ -115,45 +156,6 @@ namespace Stac
         public static StacAsset CreateMetadataAsset(IStacObject stacObject, Uri uri, ContentType mediaType, string title = null)
         {
             return new StacAsset(stacObject, uri, new string[] { "metadata" }, title, mediaType);
-        }
-
-        /// <summary>
-        /// Initialize a new asset from an existing one
-        /// </summary>
-        /// <param name="source">asset source to be copied</param>
-        /// <param name="stacObject">new parent stac object</param>
-        public StacAsset(StacAsset source, IStacObject stacObject)
-        {
-            if (!(stacObject == null || stacObject is StacItem || stacObject is StacCollection))
-            {
-                throw new InvalidOperationException("An asset cannot be defined in " + stacObject.GetType().Name);
-            }
-
-            if (source == null)
-            {
-                throw new ArgumentNullException("source");
-            }
-
-            this._base_uri = source._base_uri;
-            this._href = source._href;
-            if (source.Roles != null)
-            {
-                this.Roles = new SortedSet<string>(source.Roles);
-            }
-            else
-            {
-                this.Roles = new SortedSet<string>();
-            }
-
-            this._title = source._title;
-            this._type = source._type;
-            this._description = source._description;
-            if (source._properties != null)
-            {
-                this._properties = new Dictionary<string, object>(source._properties);
-            }
-
-            this._parentStacObject = stacObject;
         }
 
         /// <summary>

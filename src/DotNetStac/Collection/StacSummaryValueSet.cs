@@ -15,7 +15,7 @@ namespace Stac.Collection
     public class StacSummaryValueSet<T> : StacSummaryItem, IEnumerable<T>
     {
         /// <summary>
-        /// Initialize an empty Summary Value Set
+        /// Initializes a new instance of the <see cref="StacSummaryValueSet{T}"/> class.
         /// </summary>
         public StacSummaryValueSet()
             : base(new JArray())
@@ -23,6 +23,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacSummaryValueSet{T}"/> class.
         /// Initialize a Summary Value Set with a JSON array
         /// </summary>
         /// <param name="summarySet">JSON Array</param>
@@ -32,6 +33,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacSummaryValueSet{T}"/> class.
         /// Initialize a Summary Value Set with a set of values
         /// </summary>
         /// <param name="summarySet">set of values</param>

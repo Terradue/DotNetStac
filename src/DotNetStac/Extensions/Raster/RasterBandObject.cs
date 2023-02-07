@@ -25,7 +25,7 @@ namespace Stac.Extensions.Raster
         private double? offset;
 
         /// <summary>
-        /// Initialize a new Raster Band Object
+        /// Initializes a new instance of the <see cref="RasterBand"/> class.
         /// </summary>
         public RasterBand()
         {

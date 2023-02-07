@@ -22,7 +22,7 @@ namespace Stac.Extensions.Eo
         private IDictionary<string, object> properties;
 
         /// <summary>
-        /// Initialize a new Band Object
+        /// Initializes a new instance of the <see cref="EoBandObject"/> class.
         /// </summary>
         /// <param name="name">Name of the band</param>
         /// <param name="commonName">Common name of the band</param>

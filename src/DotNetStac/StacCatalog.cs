@@ -30,7 +30,7 @@ namespace Stac
         public static readonly ContentType CATALOG_MEDIATYPE = new ContentType(MEDIATYPE);
 
         /// <summary>
-        /// Initialize an empty STAC Catalog
+        /// Initializes a new instance of the <see cref="StacCatalog"/> class.
         /// </summary>
         /// <param name="id">required identifier of the catalog</param>
         /// <param name="description">required description of the catalog</param>
@@ -56,6 +56,7 @@ namespace Stac
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacCatalog"/> class.
         /// Initialize a new Stac Catalog from an existing one (clone)
         /// </summary>
         /// <param name="stacCatalog">existing Stac Catalog</param>

@@ -15,7 +15,7 @@ namespace Stac.Collection
     public class StacSummaryRangeObject<T> : StacSummaryItem
     {
         /// <summary>
-        /// Initialize a Summary Range Object with a JSON object.
+        /// Initializes a new instance of the <see cref="StacSummaryRangeObject{T}"/> class.
         /// </summary>
         /// <param name="summary">JSON Range object</param>
         /// <exception cref="ArgumentException">Thrown when neither "minimum" nor "maximum" fields are present in the range object.</exception>
@@ -29,6 +29,7 @@ namespace Stac.Collection
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacSummaryRangeObject{T}"/> class.
         /// Initialize a Summary Range Object with a minimum and a maximum value
         /// </summary>
         /// <param name="min"></param>
