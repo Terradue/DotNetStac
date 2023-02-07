@@ -42,11 +42,11 @@ namespace Stac.Extensions.Raster
         public double? Nodata { get => this._nodata; set => this._nodata = value; }
 
         /// <summary>
-        /// Gets or sets one of area or point. Indicates whether a pixel value should be assumed to represent 
+        /// Gets or sets one of area or point. Indicates whether a pixel value should be assumed to represent
         /// a sampling over the region of the pixel or a point sample at the center of the pixel.
         /// </summary>
         /// <value>
-        /// One of area or point. Indicates whether a pixel value should be assumed to represent 
+        /// One of area or point. Indicates whether a pixel value should be assumed to represent
         /// a sampling over the region of the pixel or a point sample at the center of the pixel.
         /// </value>
         [JsonProperty("sampling")]

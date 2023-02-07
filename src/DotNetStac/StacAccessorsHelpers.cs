@@ -135,8 +135,8 @@ namespace Stac
         }
 
         /// <summary>
-        /// Set the id of the STAC Collection this Item references to 
-        /// see <seealso href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types">collection relation type</seealso>. 
+        /// Set the id of the STAC Collection this Item references to
+        /// see <seealso href="https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#relation-types">collection relation type</seealso>.
         /// </summary>
         /// <param name="stacItem">stacItem to set the collection to</param>
         /// <param name="collectionId">identifier of the collection</param>

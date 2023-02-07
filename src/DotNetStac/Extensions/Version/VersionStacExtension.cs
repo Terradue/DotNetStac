@@ -56,10 +56,10 @@ namespace Stac.Extensions.Version
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed. 
+        /// Gets or sets a value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed.
         /// </summary>
         /// <value>
-        /// A value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed. 
+        /// A value indicating whether specifies that the Collection or Item is deprecated with the potential to be removed.
         /// </value>
         public bool Deprecated
         {

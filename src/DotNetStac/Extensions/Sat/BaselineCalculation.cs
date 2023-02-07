@@ -68,7 +68,7 @@ namespace Stac.Extensions.Sat
             return t;
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double SynchronizeVector2(
             double t0,
@@ -143,7 +143,7 @@ namespace Stac.Extensions.Sat
             double bMod = Math.Sqrt(b[0] * b[0] + b[1] * b[1] + b[2] * b[2]);
 
             // Baseline unit vector
-            double[] bUnit = new double[3]; // 
+            double[] bUnit = new double[3]; //
             for (int k = 0; k < 3; k++)
             {
                 bUnit[k] = b[k] / bMod;
@@ -206,77 +206,77 @@ namespace Stac.Extensions.Sat
             };
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Sx(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 0);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Sy(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 1);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Sz(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 2);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Vx(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 3);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Vy(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 4);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Vz(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 5);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Ax(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 6);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Ay(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 7);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static double Az(double time, IInterpolation[] orbitStates)
         {
             return GetOrbitValue(time, orbitStates, 8);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         private static double GetOrbitValue(double time, IInterpolation[] interpol, int index)
         {
             return interpol[index].Interpolate(time);
         }
 
-        //---------------------------------------------------------------------------------------------------------------------
+        
 
         public static IInterpolation[] PolyInterpol(DateTime time0, SatOrbitStateVector[] orbitStateVectors)
         {

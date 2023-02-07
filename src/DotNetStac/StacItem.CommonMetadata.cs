@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace Stac
 {
     /// <summary>
-    /// This class allows accessing commonly used fields in STAC Item 
+    /// This class allows accessing commonly used fields in STAC Item
     /// They are often used in STAC Item properties, but can also be used in other places, e.g. an Item Asset or Collection Asset.
     /// <seealso href="https://github.com/radiantearth/stac-spec/blob/dev/item-spec/common-metadata.md">STAC Common Metadata</seealso>
     /// </summary>
@@ -38,11 +38,11 @@ namespace Stac
         }
 
         /// <summary>
-        /// Gets a list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
+        /// Gets a list of providers, which may include all organizations capturing or processing the data or the hosting provider.
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </summary>
         /// <value>
-        /// A list of providers, which may include all organizations capturing or processing the data or the hosting provider. 
+        /// A list of providers, which may include all organizations capturing or processing the data or the hosting provider.
         /// Providers should be listed in chronological order with the most recent provider being the last element of the list.
         /// </value>
         public Collection<StacProvider> Providers => this.GetObservableCollectionProperty<StacProvider>("providers");

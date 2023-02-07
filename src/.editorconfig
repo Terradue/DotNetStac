@@ -401,6 +401,8 @@ dotnet_diagnostic.IDE0073.severity = warning     # Enforce file header
 
 file_header_template = Copyright (c) by Terradue Srl. All Rights Reserved.\nLicense under the AGPL, Version 3.0.\nFile Name: {fileName}
 
+# Microsoft.CodeAnalysis.CSharp.CodeStyle
+dotnet_diagnostic.SA1028.severity = warning      # Code should not contain trailing whitespace
 dotnet_diagnostic.SA1101.severity = warning      # Prefix local calls with this
 dotnet_diagnostic.SA1107.severity = warning      # Code should not contain multiple statements on one line
 dotnet_diagnostic.SA1111.severity = warning      # Closing parenthesis should be on line of last parameter
@@ -413,6 +415,7 @@ dotnet_diagnostic.SA1128.severity = warning      # Put constructor initializers 
 dotnet_diagnostic.SA1137.severity = warning      # Elements should have the same indentation
 dotnet_diagnostic.SA1201.severity = warning      # Elements must appear in the correct order
 dotnet_diagnostic.SA1214.severity = warning      # Readonly fields must appear before non-readonly fields
+dotnet_diagnostic.SA1407.severity = warning      # Arithmetic expressions must declare precedence
 dotnet_diagnostic.SA1413.severity = warning      # Use trailing comma in multi-line initializers
 dotnet_diagnostic.SA1500.severity = warning      # Braces for multi-line statements must not share line
 dotnet_diagnostic.SA1501.severity = warning      # Braces must not be omitted

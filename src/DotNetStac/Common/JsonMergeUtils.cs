@@ -18,7 +18,7 @@ namespace Stac.Common
     {
         /// <summary>
         /// Return the result of merging the original JSON document with the JSON Merge patch document
-        /// according to https://tools.ietf.org/html/rfc7386 
+        /// according to https://tools.ietf.org/html/rfc7386
         /// </summary>
         /// <param name="original">Original JSON document to merge new content into.</param>
         /// <param name="patch">JSON Merge patch document.</param>
@@ -58,7 +58,7 @@ namespace Stac.Common
 
         /// <summary>
         /// Return the result of merging the original JSON document with the JSON Merge patch document
-        /// according to https://tools.ietf.org/html/rfc7386 
+        /// according to https://tools.ietf.org/html/rfc7386
         /// </summary>
         /// <param name="original">Original JSON document to merge new content into.</param>
         /// <param name="patch">JSON Merge patch document.</param>
@@ -101,7 +101,7 @@ namespace Stac.Common
         /// <summary>
         /// Extract property names with a null value.
         /// </summary>
-        /// <remarks>Nested field names are returned joined by "." 
+        /// <remarks>Nested field names are returned joined by "."
         /// Array items are ignored.
         /// </remarks>
         /// <param name="patch">JSON Merge patch document.</param>
@@ -120,7 +120,7 @@ namespace Stac.Common
         /// <summary>
         /// Extract property names with a null value.
         /// </summary>
-        /// <remarks>Nested field names are returned joined by "." 
+        /// <remarks>Nested field names are returned joined by "."
         /// Array items are ignored.
         /// </remarks>
         /// <param name="patch">JSON Merge patch document.</param>

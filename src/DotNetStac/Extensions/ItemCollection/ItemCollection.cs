@@ -83,7 +83,7 @@ namespace Stac.Extensions.ItemCollections
                         "stac_version", new JSchema()
                     {
                         Title = "STAC version",
-                        Type = JSchemaType.String
+                        Type = JSchemaType.String,
                     }
                     },
                     {
@@ -92,7 +92,7 @@ namespace Stac.Extensions.ItemCollections
                         Title = "STAC extensions",
                         Type = JSchemaType.Array,
                         UniqueItems = true,
-                        Items = { new JSchema { Type = JSchemaType.String, Format = "uri", Title = "Reference to a JSON Schema" } }
+                        Items = { new JSchema { Type = JSchemaType.String, Format = "uri", Title = "Reference to a JSON Schema" } },
                     }
                     },
                     {
@@ -100,7 +100,7 @@ namespace Stac.Extensions.ItemCollections
                     {
                         Title = "ItemCollection features",
                         Type = JSchemaType.Array,
-                        Items = { new JSchema { Ref = itemSchema } }
+                        Items = { new JSchema { Ref = itemSchema } },
                     }
                     },
                     {
@@ -108,7 +108,7 @@ namespace Stac.Extensions.ItemCollections
                     {
                         Title = "Links",
                         Type = JSchemaType.Array,
-                        Items = { new JSchema { Ref = linkSchema } }
+                        Items = { new JSchema { Ref = linkSchema } },
                     }
                     },
                 },

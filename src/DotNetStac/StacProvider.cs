@@ -11,9 +11,9 @@ using Newtonsoft.Json;
 namespace Stac
 {
     /// <summary>
-    /// The class provides properties about a provider. 
-    /// A provider is any of the organizations that captures or processes the content of the Collection and 
-    /// therefore influences the data offered by this Collection. 
+    /// The class provides properties about a provider.
+    /// A provider is any of the organizations that captures or processes the content of the Collection and
+    /// therefore influences the data offered by this Collection.
     /// May also include information about the final storage provider hosting the data.
     /// <seealso href="https://github.com/radiantearth/stac-spec/blob/dev/collection-spec/collection-spec.md#provider-object">STAC Provider Object</seealso>
     /// </summary>
@@ -46,8 +46,8 @@ namespace Stac
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets multi-line description to add further provider information such as processing details for processors and producers, 
-        /// hosting details for hosts or basic contact information. 
+        /// Gets or sets multi-line description to add further provider information such as processing details for processors and producers,
+        /// hosting details for hosts or basic contact information.
         /// CommonMark 0.29 syntax MAY be used for rich text representation.
         /// </summary>
         /// <value>Gets/sets the description</value>

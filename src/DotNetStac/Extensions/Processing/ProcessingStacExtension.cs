@@ -73,10 +73,10 @@ namespace Stac.Extensions.Processing
         }
 
         /// <summary>
-        /// Gets or sets the name of the facility that produced the data. 
+        /// Gets or sets the name of the facility that produced the data.
         /// </summary>
         /// <value>
-        /// The name of the facility that produced the data. 
+        /// The name of the facility that produced the data.
         /// </value>
         public string Facility
         {
