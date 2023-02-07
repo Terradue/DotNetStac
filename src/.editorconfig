@@ -402,6 +402,7 @@ dotnet_diagnostic.IDE0073.severity = warning     # Enforce file header
 file_header_template = Copyright (c) by Terradue Srl. All Rights Reserved.\nLicense under the AGPL, Version 3.0.\nFile Name: {fileName}
 
 dotnet_diagnostic.SA1101.severity = warning      # Prefix local calls with this
+dotnet_diagnostic.SA1119.severity = warning      # Statement must not use unnecessary parenthesis
 dotnet_diagnostic.SA1124.severity = warning      # Do not use regions
 dotnet_diagnostic.SA1127.severity = warning      # Generic type constraints must be on their own line or share line with previous
 dotnet_diagnostic.SA1501.severity = warning      # Braces must not be omitted

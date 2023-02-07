@@ -14,7 +14,7 @@ namespace Stac
     {
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(ContentType));
+            return objectType == typeof(ContentType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

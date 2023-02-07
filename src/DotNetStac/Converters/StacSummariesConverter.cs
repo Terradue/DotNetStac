@@ -15,7 +15,7 @@ namespace Stac.Converters
     {
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(Dictionary<string, IStacSummaryItem>));
+            return objectType == typeof(Dictionary<string, IStacSummaryItem>);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -27,7 +27,7 @@ namespace Stac.Converters
             {
                 if (objDic[key] is JArray)
                 {
-                    JArray enumerable = (objDic[key] as JArray);
+                    JArray enumerable = objDic[key] as JArray;
                     switch (enumerable.First().Type)
                     {
                         case JTokenType.Boolean:
@@ -53,7 +53,7 @@ namespace Stac.Converters
 
                 if (objDic[key] is JObject)
                 {
-                    JObject obj = (objDic[key] as JObject);
+                    JObject obj = objDic[key] as JObject;
                     if (obj.ContainsKey("minimum") && obj.ContainsKey("maximum"))
                     {
                         switch (obj["minimum"].Type)

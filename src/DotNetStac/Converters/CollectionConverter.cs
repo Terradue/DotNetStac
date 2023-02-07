@@ -15,7 +15,7 @@ namespace Stac.Converters
         /// <inheritdoc/>
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(Collection<T>));
+            return objectType == typeof(Collection<T>);
         }
 
         /// <inheritdoc/>

@@ -73,7 +73,7 @@ namespace Stac.Common
 
         private bool IsNullableType(Type t)
         {
-            return (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>));
+            return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
     }
 }
