@@ -40,8 +40,16 @@ namespace Stac.Extensions.Processing
         /// </value>
         public string Lineage
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(LineageField); }
-            set { this.StacPropertiesContainer.SetProperty(LineageField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(LineageField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(LineageField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -52,8 +60,16 @@ namespace Stac.Extensions.Processing
         /// </value>
         public string Level
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(LevelField); }
-            set { this.StacPropertiesContainer.SetProperty(LevelField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(LevelField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(LevelField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -64,8 +80,16 @@ namespace Stac.Extensions.Processing
         /// </value>
         public string Facility
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(FacilityField); }
-            set { this.StacPropertiesContainer.SetProperty(FacilityField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(FacilityField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(FacilityField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>

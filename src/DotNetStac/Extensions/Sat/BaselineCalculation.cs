@@ -133,7 +133,8 @@ namespace Stac.Extensions.Sat
             //double ts = SynchronizeVector(t, groundPoint, interpolSlave, out converged, out maxError);
 
             // Define baseline vector:
-            double[] b = new double[3] {
+            double[] b = new double[3]
+            {
                 Sx(t, interpolSlave) - Sx(t, interpolMaster),
                 Sy(t, interpolSlave) - Sy(t, interpolMaster),
                 Sz(t, interpolSlave) - Sz(t, interpolMaster)
@@ -149,7 +150,8 @@ namespace Stac.Extensions.Sat
             }
 
             // Parallel vector
-            double[] vpar = new double[3] {
+            double[] vpar = new double[3]
+            {
                 x - Sx(t, interpolMaster),
                 y - Sy(t, interpolMaster),
                 z - Sz(t, interpolMaster)
@@ -164,7 +166,8 @@ namespace Stac.Extensions.Sat
             }
 
             // Along-track vector
-            double[] va = new double[3] {
+            double[] va = new double[3]
+            {
                 Vx(t, interpolMaster),
                 Vy(t, interpolMaster),
                 Vz(t, interpolMaster)
@@ -195,7 +198,8 @@ namespace Stac.Extensions.Sat
                 throw new ArgumentException("3D vector product cannot be calculated, because one of the vectors is not a 3D vector");
             }
 
-            return new double[3] {
+            return new double[3]
+            {
                 vectorA[1] * vectorB[2] - vectorA[2] * vectorB[1],
                 vectorA[2] * vectorB[0] - vectorA[0] * vectorB[2],
                 vectorA[0] * vectorB[1] - vectorA[1] * vectorB[0]

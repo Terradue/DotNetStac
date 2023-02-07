@@ -27,12 +27,14 @@ namespace Stac
             }
 
             if (boundingBoxes[0].Altitude.HasValue)
-                return new double[] {
+                return new double[]
+                {
                     boundingBoxes[0].Longitude, boundingBoxes[0].Latitude, boundingBoxes[0].Altitude.Value,
                     boundingBoxes[1].Longitude, boundingBoxes[1].Latitude, boundingBoxes[1].Altitude.Value,
                 };
             else
-                return new double[] {
+                return new double[]
+                {
                     boundingBoxes[0].Longitude, boundingBoxes[0].Latitude,
                     boundingBoxes[1].Longitude, boundingBoxes[1].Latitude,
                 };

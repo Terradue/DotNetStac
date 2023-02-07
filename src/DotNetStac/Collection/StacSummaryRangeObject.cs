@@ -47,7 +47,7 @@ namespace Stac.Collection
         /// </summary>
         /// <returns>Minimum of the range</returns>
         /// <value>
-        /// <placeholder>Minimum of the range</placeholder>
+        /// Minimum of the range
         /// </value>
         public T Min { get => this.AsJToken["minimum"].Value<T>(); set => this.AsJToken["minimum"] = new JValue(value); }
 
@@ -56,7 +56,7 @@ namespace Stac.Collection
         /// </summary>
         /// <returns>Maximum of the range</returns>
         /// <value>
-        /// <placeholder>Maximum of the range</placeholder>
+        /// Maximum of the range
         /// </value>
         public T Max { get => this.AsJToken["maximum"].Value<T>(); set => this.AsJToken["maximum"] = new JValue(value); }
 

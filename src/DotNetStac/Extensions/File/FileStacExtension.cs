@@ -42,8 +42,16 @@ namespace Stac.Extensions.File
         /// </value>
         public ByteOrder ByteOrder
         {
-            get { return this.StacPropertiesContainer.GetProperty<ByteOrder>(ByteOrderField); }
-            set { this.StacPropertiesContainer.SetProperty(ByteOrderField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<ByteOrder>(ByteOrderField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(ByteOrderField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -54,8 +62,16 @@ namespace Stac.Extensions.File
         /// </value>
         public Multihash Checksum
         {
-            get { return Multihash.Parse(this.StacPropertiesContainer.GetProperty<string>(ChecksumField)); }
-            set { this.StacPropertiesContainer.SetProperty(ChecksumField, value.ToString()); this.DeclareStacExtension(); }
+            get
+            {
+                return Multihash.Parse(this.StacPropertiesContainer.GetProperty<string>(ChecksumField));
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(ChecksumField, value.ToString());
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -66,8 +82,16 @@ namespace Stac.Extensions.File
         /// </value>
         public uint? HeaderSize
         {
-            get { return this.StacPropertiesContainer.GetProperty<uint?>(HeaderSizeField); }
-            set { this.StacPropertiesContainer.SetProperty(HeaderSizeField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<uint?>(HeaderSizeField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(HeaderSizeField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -78,8 +102,16 @@ namespace Stac.Extensions.File
         /// </value>
         public ulong? Size
         {
-            get { return this.StacPropertiesContainer.GetProperty<ulong?>(SizeField); }
-            set { this.StacPropertiesContainer.SetProperty(SizeField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<ulong?>(SizeField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(SizeField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>

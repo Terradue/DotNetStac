@@ -43,8 +43,16 @@ namespace Stac.Extensions.Version
         /// </value>
         public string Version
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(VersionField); }
-            set { this.StacPropertiesContainer.SetProperty(VersionField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(VersionField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(VersionField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -55,8 +63,16 @@ namespace Stac.Extensions.Version
         /// </value>
         public bool Deprecated
         {
-            get { return this.StacPropertiesContainer.GetProperty<bool>(DeprecatedField); }
-            set { this.StacPropertiesContainer.SetProperty(DeprecatedField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<bool>(DeprecatedField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(DeprecatedField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>

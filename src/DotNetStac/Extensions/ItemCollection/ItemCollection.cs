@@ -77,27 +77,40 @@ namespace Stac.Extensions.ItemCollections
 
             jSchema.AllOf.Add(new JSchema()
             {
-                Properties = {
-                    { "stac_version", new JSchema(){
+                Properties =
+                {
+                    {
+                        "stac_version", new JSchema()
+                    {
                         Title = "STAC version",
                         Type = JSchemaType.String
-                    }                                                                                                                        },
-                    { "stac_extensions", new JSchema(){
+                    }
+                    },
+                    {
+                        "stac_extensions", new JSchema()
+                    {
                         Title = "STAC extensions",
                         Type = JSchemaType.Array,
                         UniqueItems = true,
                         Items = { new JSchema { Type = JSchemaType.String, Format = "uri", Title = "Reference to a JSON Schema" } }
-                    }                                                                                                                        },
-                    { "features", new JSchema(){
+                    }
+                    },
+                    {
+                        "features", new JSchema()
+                    {
                         Title = "ItemCollection features",
                         Type = JSchemaType.Array,
                         Items = { new JSchema { Ref = itemSchema } }
-                    }                                                                                                                        },
-                    { "links", new JSchema(){
+                    }
+                    },
+                    {
+                        "links", new JSchema()
+                    {
                         Title = "Links",
                         Type = JSchemaType.Array,
                         Items = { new JSchema { Ref = linkSchema } }
-                    }                                                                                                                        },
+                    }
+                    },
                 }
             });
 

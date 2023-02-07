@@ -54,50 +54,114 @@ namespace Stac.Extensions.Projection
 
         public long? Epsg
         {
-            get { return this.StacPropertiesContainer.GetProperty<long?>(EpsgField); }
-            set { this.StacPropertiesContainer.SetProperty(EpsgField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<long?>(EpsgField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(EpsgField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public string Wkt2
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(Wkt2Field); }
-            set { this.StacPropertiesContainer.SetProperty(Wkt2Field, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(Wkt2Field);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(Wkt2Field, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public string ProjJson
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(ProjJsonField); }
-            set { this.StacPropertiesContainer.SetProperty(ProjJsonField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(ProjJsonField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(ProjJsonField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public IGeometryObject Geometry
         {
-            get { return this.StacPropertiesContainer.GetProperty<IGeometryObject>(Wkt2Field); }
-            set { this.StacPropertiesContainer.SetProperty(Wkt2Field, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<IGeometryObject>(Wkt2Field);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(Wkt2Field, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public double[] Bbox
         {
-            get { return this.StacPropertiesContainer.GetProperty<double[]>(ProjBboxField); }
-            set { this.StacPropertiesContainer.SetProperty(ProjBboxField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<double[]>(ProjBboxField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(ProjBboxField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public CentroidObject Centroid
         {
-            get { return this.StacPropertiesContainer.GetProperty<CentroidObject>(ProjCentroidField); }
-            set { this.StacPropertiesContainer.SetProperty(ProjCentroidField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<CentroidObject>(ProjCentroidField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(ProjCentroidField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public int[] Shape
         {
-            get { return this.StacPropertiesContainer.GetProperty<int[]>(ProjShapeField); }
-            set { this.StacPropertiesContainer.SetProperty(ProjShapeField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<int[]>(ProjShapeField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(ProjShapeField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public double[] Transform
         {
-            get { return this.StacPropertiesContainer.GetProperty<double[]>(ProjTransformField); }
-            set { this.StacPropertiesContainer.SetProperty(ProjTransformField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<double[]>(ProjTransformField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(ProjTransformField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <inheritdoc/>

@@ -33,8 +33,16 @@ namespace Stac.Extensions.Raster
         /// </value>
         public RasterBand[] Bands
         {
-            get { return this.StacPropertiesContainer.GetProperty<RasterBand[]>(BandsField); }
-            set { this.StacPropertiesContainer.SetProperty(BandsField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<RasterBand[]>(BandsField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(BandsField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>

@@ -33,8 +33,16 @@ namespace Stac.Extensions.VirtualAssets
         /// </value>
         public IDictionary<string, VirtualAsset> Assets
         {
-            get { return this.StacPropertiesContainer.GetProperty<IDictionary<string, VirtualAsset>>(VirtualAssetsField); }
-            set { this.StacPropertiesContainer.SetProperty(VirtualAssetsField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<IDictionary<string, VirtualAsset>>(VirtualAssetsField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(VirtualAssetsField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>

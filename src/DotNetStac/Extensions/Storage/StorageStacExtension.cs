@@ -38,8 +38,16 @@ namespace Stac.Extensions.Storage
         /// </value>
         public string Platform
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(PlatformField); }
-            set { this.StacPropertiesContainer.SetProperty(PlatformField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(PlatformField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(PlatformField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -50,8 +58,16 @@ namespace Stac.Extensions.Storage
         /// </value>
         public string Region
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(RegionField); }
-            set { this.StacPropertiesContainer.SetProperty(RegionField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(RegionField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(RegionField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -62,8 +78,16 @@ namespace Stac.Extensions.Storage
         /// </value>
         public bool? RequesterPays
         {
-            get { return this.StacPropertiesContainer.GetProperty<bool?>(RequesterPaysField); }
-            set { this.StacPropertiesContainer.SetProperty(RequesterPaysField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<bool?>(RequesterPaysField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(RequesterPaysField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
@@ -74,8 +98,16 @@ namespace Stac.Extensions.Storage
         /// </value>
         public string Tier
         {
-            get { return this.StacPropertiesContainer.GetProperty<string>(TierField); }
-            set { this.StacPropertiesContainer.SetProperty(TierField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<string>(TierField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(TierField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>

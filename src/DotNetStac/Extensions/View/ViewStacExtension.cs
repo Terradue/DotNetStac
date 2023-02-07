@@ -35,32 +35,72 @@ namespace Stac.Extensions.View
 
         public double OffNadir
         {
-            get { return this.StacPropertiesContainer.GetProperty<double>(OffNadirField); }
-            set { this.StacPropertiesContainer.SetProperty(OffNadirField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<double>(OffNadirField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(OffNadirField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public double IncidenceAngle
         {
-            get { return this.StacPropertiesContainer.GetProperty<double>(IncidenceAngleField); }
-            set { this.StacPropertiesContainer.SetProperty(IncidenceAngleField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<double>(IncidenceAngleField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(IncidenceAngleField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public double Azimuth
         {
-            get { return this.StacPropertiesContainer.GetProperty<double>(AzimuthField); }
-            set { this.StacPropertiesContainer.SetProperty(AzimuthField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<double>(AzimuthField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(AzimuthField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public double SunAzimuth
         {
-            get { return this.StacPropertiesContainer.GetProperty<double>(SunAzimuthField); }
-            set { this.StacPropertiesContainer.SetProperty(SunAzimuthField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<double>(SunAzimuthField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(SunAzimuthField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         public double SunElevation
         {
-            get { return this.StacPropertiesContainer.GetProperty<double>(SunElevationField); }
-            set { this.StacPropertiesContainer.SetProperty(SunElevationField, value); this.DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<double>(SunElevationField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(SunElevationField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <inheritdoc/>

@@ -4,10 +4,19 @@
 
 namespace Stac.Extensions.Sat
 {
+    /// <summary>
+    /// Baseline vector
+    /// </summary>
     public struct BaselineVector
     {
         private readonly double _perpendicular, _parallel, _along;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaselineVector"/> struct.
+        /// </summary>
+        /// <param name="perpendicular">Perpendicular component.</param>
+        /// <param name="parallel">Parallel component.</param>
+        /// <param name="along">Along component.</param>
         public BaselineVector(double perpendicular, double parallel, double along)
         {
             this._perpendicular = perpendicular;
@@ -15,16 +24,37 @@ namespace Stac.Extensions.Sat
             this._along = along;
         }
 
+        /// <summary>
+        /// Gets the perpendicular component.
+        /// </summary>
+        /// <returns>The perpendicular component.</returns>
+        /// <value>
+        /// The perpendicular component.
+        /// </value>
         public double Perpendicular
         {
             get { return this._perpendicular; }
         }
 
+        /// <summary>
+        /// Gets the parallel component.
+        /// </summary>
+        /// <returns>The parallel component.</returns>
+        /// <value>
+        /// The parallel component.
+        /// </value>
         public double Parallel
         {
             get { return this._parallel; }
         }
 
+        /// <summary>
+        /// Gets the along component.
+        /// </summary>
+        /// <returns>The along component.</returns>
+        /// <value>
+        /// The along component.
+        /// </value>
         public double Along
         {
             get { return this._along; }
