@@ -14,15 +14,30 @@ namespace Stac
     [DataContract]
     public class StacLink
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacLink"/> class.
+        /// </summary>
         public StacLink()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacLink"/> class.
+        /// </summary>
+        /// <param name="uri"></param>
         public StacLink(Uri uri)
         {
             this.Uri = uri;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacLink"/> class.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="relationshipType"></param>
+        /// <param name="title"></param>
+        /// <param name="mediaType"></param>
+        /// <param name="contentLength"></param>
         public StacLink(Uri uri, string relationshipType, string title, string mediaType, ulong contentLength = 0)
         {
             this.Uri = uri;
@@ -32,6 +47,10 @@ namespace Stac
             this.Length = contentLength;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacLink"/> class.
+        /// </summary>
+        /// <param name="source"></param>
         public StacLink(StacLink source)
         {
             if (source == null)

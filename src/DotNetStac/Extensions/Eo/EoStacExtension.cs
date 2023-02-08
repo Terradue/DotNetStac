@@ -9,57 +9,16 @@ using System.Linq;
 namespace Stac.Extensions.Eo
 {
     /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class EoStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC item
-        /// </summary>
-        public static EoStacExtension EoExtension(this StacItem stacItem)
-        {
-            return new EoStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC asset
-        /// </summary>
-        public static EoStacExtension EoExtension(this StacAsset stacAsset)
-        {
-            return new EoStacExtension(stacAsset);
-        }
-
-        /// <summary>
-        /// Get a STAC asset from a STAC item by its common name
-        /// </summary>
-        /// <param name="stacItem">Stac Item</param>
-        /// <param name="commonName">common name</param>
-        public static StacAsset GetAsset(this StacItem stacItem, EoBandCommonName commonName)
-        {
-            return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).FirstOrDefault(a => a.EoExtension().Bands.Any(b => b.CommonName == commonName));
-        }
-
-        /// <summary>
-        /// Get a STAC EO Band object from a STAC item by its common name
-        /// </summary>
-        /// <param name="stacItem">Stac Item</param>
-        /// <param name="commonName">common name</param>
-        public static EoBandObject GetBandObject(this StacItem stacItem, EoBandCommonName commonName)
-        {
-            return stacItem.Assets.Values.Where(a => a.EoExtension().Bands != null).Select(a => a.EoExtension().Bands.FirstOrDefault(b => b.CommonName == commonName)).First();
-        }
-    }
-
-    /// <summary>
     /// Helper class to access the fields deined by the <seealso href="https://github.com/stac-extensions/eo">EO extension</seealso>
     /// </summary>
     public class EoStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        // Extension identifier and schema url
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/eo/v1.0.0/schema.json";
 
         private const string BandsField = "eo:bands";
         private const string CloudCoverField = "eo:cloud_cover";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         private readonly IDictionary<string, Type> _itemFields;
 
@@ -74,9 +33,6 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// Gets or sets estimate of cloud cover
         /// </summary>
-        /// <value>
-        /// Estimate of cloud cover
-        /// </value>
         public double? CloudCover
         {
             get
@@ -101,9 +57,6 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// Gets or sets an array of available bands where each object is a Band Object.
         /// </summary>
-        /// <value>
-        /// An array of available bands where each object is a Band Object.
-        /// </value>
         public EoBandObject[] Bands
         {
             get
@@ -128,9 +81,6 @@ namespace Stac.Extensions.Eo
         /// <summary>
         /// Gets potential fields and their types
         /// </summary>
-        /// <value>
-        /// Potential fields and their types
-        /// </value>
         public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         /// <inheritdoc/>

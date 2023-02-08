@@ -28,6 +28,12 @@ namespace Stac
 
         private readonly StacItemRootPropertyContainer _Root;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacItem"/> class.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="geometry"></param>
+        /// <param name="properties"></param>
         [JsonConstructor]
         public StacItem(
             string id,
@@ -44,6 +50,10 @@ namespace Stac
             this.Assets = new Dictionary<string, StacAsset>();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacItem"/> class.
+        /// </summary>
+        /// <param name="stacItem"></param>
         public StacItem(StacItem stacItem)
             : base(
                 Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,

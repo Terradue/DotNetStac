@@ -8,6 +8,9 @@ namespace Stac
 {
     public class SimpleLinksCollectionObject : ILinksCollectionObject
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleLinksCollectionObject"/> class.
+        /// </summary>
         public SimpleLinksCollectionObject()
         {
             this.Links = new List<StacLink>();

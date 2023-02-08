@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json.Schema;
-using Stac.Extensions.ItemCollections;
 
 namespace Stac.Schemas
 {
@@ -19,6 +18,10 @@ namespace Stac.Schemas
         private readonly JSchemaResolver _jSchemaResolver;
         private readonly IDictionary<string, JSchema> _schemaCompiled;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacSchemaResolver"/> class.
+        /// </summary>
+        /// <param name="jSchemaResolver"></param>
         public StacSchemaResolver(JSchemaResolver jSchemaResolver)
         {
             this._jSchemaResolver = jSchemaResolver;
@@ -42,10 +45,6 @@ namespace Stac.Schemas
             if (shortcut == "item" || shortcut == "catalog" || shortcut == "collection")
             {
                 schemaUri = new Uri(baseUri, $"{shortcut}-spec/json-schema/{shortcut}.json");
-            }
-            else if (shortcut == "item-collection")
-            {
-                return ItemCollection.GenerateJSchema(version);
             }
             else if (!string.IsNullOrEmpty(shortcut))
             {

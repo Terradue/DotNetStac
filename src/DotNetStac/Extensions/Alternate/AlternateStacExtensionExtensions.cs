@@ -1,6 +1,6 @@
-// Copyright (c) by Terradue Srl. All Rights Reserved.
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
 // License under the AGPL, Version 3.0.
-// File Name: AlternateStacExtension.cs
+// File Name: AlternateStacExtensionExtensions.cs
 
 using Stac.Extensions.Storage;
 
@@ -14,6 +14,8 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// Initilize a AlternateStacExtension class from a STAC asset
         /// </summary>
+        /// <param name="stacAsset">The STAC asset.</param>
+        /// <returns>The AlternateStacExtension class</returns>
         public static AlternateStacExtension AlternateExtension(this StacAsset stacAsset)
         {
             return new AlternateStacExtension(stacAsset);
@@ -22,6 +24,8 @@ namespace Stac.Extensions.Alternate
         /// <summary>
         /// Initilize a AlternateStacExtension class from an alternate asset
         /// </summary>
+        /// <param name="alternateAssetObject">The alternate asset.</param>
+        /// <returns>The AlternateStacExtension class</returns>
         public static StorageStacExtension StorageExtension(this AlternateAssetObject alternateAssetObject)
         {
             return new StorageStacExtension(alternateAssetObject);

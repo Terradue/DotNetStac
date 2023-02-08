@@ -10,62 +10,50 @@ using Stac.Model;
 namespace Stac.Extensions.Datacube
 {
     /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class DatacubeStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a DatacubeStacExtension class from a STAC asset
-        /// </summary>
-        public static DatacubeStacExtension DatacubeStacExtension(this StacAsset stacAsset)
-        {
-            return new DatacubeStacExtension(stacAsset);
-        }
-
-        /// <summary>
-        /// Initilize a DatacubeStacExtension class from a STAC item
-        /// </summary>
-        public static DatacubeStacExtension DatacubeStacExtension(this StacItem stacItem)
-        {
-            return new DatacubeStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initilize a DatacubeStacExtension class from a STAC collection
-        /// </summary>
-        public static DatacubeStacExtension DatacubeStacExtension(this StacCollection stacCollection)
-        {
-            return new DatacubeStacExtension(stacCollection);
-        }
-    }
-
-    /// <summary>
     /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/datacube">Datacube extension</seealso>
     /// </summary>
     public class DatacubeStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        // Extensions identifier and schema url
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/datacube/v2.1.0/schema.json";
 
-        private readonly IDictionary<string, Type> _itemFields;
         private const string DimensionField = "cube:dimensions";
         private const string VariableField = "cube:variables";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
+        private readonly IDictionary<string, Type> _itemFields;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatacubeStacExtension"/> class.
+        /// </summary>
+        /// <param name="stacCollection">The stac collection.</param>
         internal DatacubeStacExtension(StacCollection stacCollection)
             : this((IStacPropertiesContainer)stacCollection)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatacubeStacExtension"/> class.
+        /// </summary>
+        /// <param name="stacAsset">The stac asset.</param>
         internal DatacubeStacExtension(StacAsset stacAsset)
             : this((IStacPropertiesContainer)stacAsset)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatacubeStacExtension"/> class.
+        /// </summary>
+        /// <param name="stacItem">The stac item.</param>
         internal DatacubeStacExtension(StacItem stacItem)
             : this((IStacPropertiesContainer)stacItem)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatacubeStacExtension"/> class.
+        /// </summary>
+        /// <param name="stacPropertiesContainer">The stac properties container.</param>
         private DatacubeStacExtension(IStacPropertiesContainer stacPropertiesContainer)
             : base(JsonSchemaUrl, stacPropertiesContainer)
         {

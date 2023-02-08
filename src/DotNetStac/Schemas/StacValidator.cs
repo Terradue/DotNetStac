@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using Stac.Exceptions;
-using Stac.Extensions.ItemCollections;
 
 namespace Stac.Schemas
 {
@@ -21,13 +20,16 @@ namespace Stac.Schemas
 
         private readonly Dictionary<Type, string> _stacTypes = new Dictionary<Type, string>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacValidator"/> class.
+        /// </summary>
+        /// <param name="jSchemaUrlResolver"></param>
         public StacValidator(JSchemaUrlResolver jSchemaUrlResolver)
         {
             this._schemaResolver = new StacSchemaResolver(jSchemaUrlResolver);
             this._stacTypes.Add(typeof(StacItem), "item");
             this._stacTypes.Add(typeof(StacCatalog), "catalog");
             this._stacTypes.Add(typeof(StacCollection), "collection");
-            this._stacTypes.Add(typeof(ItemCollection), "item-collection");
         }
 
         /// <summary>

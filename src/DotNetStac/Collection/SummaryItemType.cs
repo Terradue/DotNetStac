@@ -9,6 +9,7 @@ namespace Stac.Collection
     /// </summary>
     public enum SummaryItemType
     {
+#pragma warning disable SA1300 // Element should begin with upper-case letter
         /// <summary>
         /// Summary Value Set
         /// </summary>
@@ -18,5 +19,6 @@ namespace Stac.Collection
         /// Summary Range Object
         /// </summary>
         RangeObject,
+#pragma warning restore SA1300 // Element should begin with upper-case letter
     }
 }

@@ -6,7 +6,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Exceptions;
-using Stac.Extensions.ItemCollections;
 
 namespace Stac
 {
@@ -35,10 +34,6 @@ namespace Stac
             if (jObject.Value<string>("type") == "Feature")
             {
                 return typeof(StacItem);
-            }
-            else if (jObject.Value<string>("type") == "FeatureCollection")
-            {
-                return typeof(ItemCollection);
             }
             else if (jObject.Value<string>("type") == "Collection" || jObject["extent"] != null || jObject["license"] != null)
             {

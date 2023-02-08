@@ -13,16 +13,28 @@ namespace Stac
     [JsonConverter(typeof(StringEnumConverter))]
     public enum StacProviderRole
     {
-        /// The organization that is licensing the dataset under the license specified in the Collection's <see cref="StacCollection.License" /> field.
+#pragma warning disable SA1300 // Element should begin with upper-case letter
+#pragma warning disable SA1602 // EnumerationItemsMustBeDocumented
+        /// <summary>
+        // The organization that is licensing the dataset under the license specified in the Collection's <see cref="StacCollection.License" /> field.
+        // </summary>
         licensor,
 
-        // The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
+        /// <summary>
+        /// The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
+        /// </summary>
         producer,
 
-        // A processor is any provider who processed data to a derived product.
+        /// <summary>
+        /// A processor is any provider who processed data to a derived product.
+        /// </summary>
         processor,
 
-        // The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
+        /// <summary>
+        /// The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
+        /// </summary>
         host,
+#pragma warning restore SA1602 // EnumerationItemsMustBeDocumented
+#pragma warning restore SA1300 // Element should begin with upper-case letter
     }
 }

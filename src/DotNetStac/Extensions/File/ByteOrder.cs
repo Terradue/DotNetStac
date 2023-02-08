@@ -14,6 +14,8 @@ namespace Stac.Extensions.File
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ByteOrder
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable SA1602 // EnumerationItemsMustBeDocumented
         // Big Endian
         [EnumMember(Value = "big-endian")]
         BigEndian,
@@ -21,5 +23,7 @@ namespace Stac.Extensions.File
         // Little Endian
         [EnumMember(Value = "little-endian")]
         LittleEndian,
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning restore SA1602 // EnumerationItemsMustBeDocumented
     }
 }

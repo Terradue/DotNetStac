@@ -10,6 +10,9 @@ namespace Stac.Extensions.Sar
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SarCommonFrequencyBandName
     {
+#pragma warning disable SA1300 // Element should begin with upper-case letter
+#pragma warning disable SA1602 // EnumerationItemsMustBeDocumented
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         P,
         L,
         S,
@@ -18,5 +21,8 @@ namespace Stac.Extensions.Sar
         Ku,
         K,
         Ka,
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning restore SA1602 // EnumerationItemsMustBeDocumented
+#pragma warning restore SA1300 // Element should begin with upper-case letter
     }
 }

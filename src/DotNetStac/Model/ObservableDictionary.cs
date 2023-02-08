@@ -36,6 +36,10 @@ namespace Stac.Model
             this._dictionary = new ConcurrentDictionary<TKey, TValue>();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObservableDictionary{TKey, TValue}"/> class.
+        /// </summary>
+        /// <param name="init"></param>
         public ObservableDictionary(IDictionary<TKey, TValue> init)
             : this()
         {

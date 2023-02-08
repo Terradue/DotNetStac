@@ -25,6 +25,15 @@ namespace Stac
         public const string MEDIATYPE = "application/json";
         public static readonly ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacCollection"/> class.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="description"></param>
+        /// <param name="extent"></param>
+        /// <param name="assets"></param>
+        /// <param name="links"></param>
+        /// <param name="license"></param>
         [JsonConstructor]
         public StacCollection(
             string id,

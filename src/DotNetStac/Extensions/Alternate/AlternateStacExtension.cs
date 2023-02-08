@@ -80,6 +80,7 @@ namespace Stac.Extensions.Alternate
         /// <param name="uri">The uri of the alternate asset</param>
         /// <param name="title">The title of the alternate asset</param>
         /// <param name="description">The description of the alternate asset</param>
+        /// <returns>The alternate asset object</returns>
         public AlternateAssetObject AddAlternate(string key, Uri uri, string title = null, string description = null)
         {
             AlternateAssetObject alternateAssetObject = new AlternateAssetObject(uri.ToString(), this.StacAsset.ParentStacObject, title, description);

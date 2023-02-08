@@ -14,13 +14,16 @@ namespace Stac.Extensions.Datacube
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class DatacubeDimension : IStacPropertiesContainer
     {
-        protected string type;
-        protected string description;
-        protected double[] extent;
-        protected object values;
-        protected double? step;
+        private string _type;
+        private string _description;
+        private double[] _extent;
+        private object _values;
+        private double? _step;
         private IDictionary<string, object> _properties;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatacubeDimension"/> class.
+        /// </summary>
         public DatacubeDimension()
         {
             this._properties = new Dictionary<string, object>();
@@ -33,7 +36,7 @@ namespace Stac.Extensions.Datacube
         /// Type of the dimension.
         /// </value>
         [JsonProperty("type")]
-        public string Type { get => this.type; set => this.type = value; }
+        public string Type { get => this._type; set => this._type = value; }
 
         /// <summary>
         /// Gets or sets detailed multi-line description to explain the dimension. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
@@ -42,7 +45,7 @@ namespace Stac.Extensions.Datacube
         /// Detailed multi-line description to explain the dimension. <seealso href="http://commonmark.org/">CommonMark 0.29</seealso> syntax MAY be used for rich text representation.
         /// </value>
         [JsonProperty("description")]
-        public string Description { get => this.description; set => this.description = value; }
+        public string Description { get => this._description; set => this._description = value; }
 
         /// <summary>
         /// Gets or sets extent (lower and upper bounds) of the dimension as two-element array. Open intervals with null are not allowed.
@@ -51,7 +54,7 @@ namespace Stac.Extensions.Datacube
         /// Extent (lower and upper bounds) of the dimension as two-element array. Open intervals with null are not allowed.
         /// </value>
         [JsonProperty("extent")]
-        public double[] Extent { get => this.extent; set => this.extent = value; }
+        public double[] Extent { get => this._extent; set => this._extent = value; }
 
         /// <summary>
         /// Gets or sets optionally, an ordered list of all values.
@@ -60,7 +63,7 @@ namespace Stac.Extensions.Datacube
         /// Optionally, an ordered list of all values.
         /// </value>
         [JsonProperty("values")]
-        public object Values { get => this.values; set => this.values = value; }
+        public object Values { get => this._values; set => this._values = value; }
 
         /// <summary>
         /// Gets or sets the space between the values. Use null for irregularly spaced steps.
@@ -69,7 +72,7 @@ namespace Stac.Extensions.Datacube
         /// The space between the values. Use null for irregularly spaced steps.
         /// </value>
         [JsonProperty("step")]
-        public double? Step { get => this.step; set => this.step = value; }
+        public double? Step { get => this._step; set => this._step = value; }
 
         /// <summary>
         /// Gets or sets additional fields
@@ -83,100 +86,5 @@ namespace Stac.Extensions.Datacube
         /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => null;
-    }
-
-    public class DatacubeDimensionSpatial : DatacubeDimension
-    {
-        protected DatacubeAxis? axis;
-        protected object reference_system;
-
-        public DatacubeDimensionSpatial()
-            : base()
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets axis of the spatial dimension.
-        /// </summary>
-        /// <value>
-        /// Axis of the spatial dimension.
-        /// </value>
-        [JsonProperty("axis")]
-        public DatacubeAxis? Axis { get => this.axis; set => this.axis = value; }
-
-        /// <summary>
-        /// Gets or sets the spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.
-        /// </summary>
-        /// <value>
-        /// The spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.
-        /// </value>
-        [JsonProperty("reference_system")]
-        public object ReferenceSystem { get => this.reference_system; set => this.reference_system = value; }
-    }
-
-    public class DatacubeDimensionSpatialHorizontal : DatacubeDimensionSpatial
-    {
-        public DatacubeDimensionSpatialHorizontal()
-            : base()
-        {
-            this.axis = DatacubeAxis.x;
-        }
-    }
-
-    public class DatacubeDimensionSpatialVertical : DatacubeDimensionSpatial
-    {
-        private string _unit;
-
-        public DatacubeDimensionSpatialVertical()
-            : base()
-        {
-            this.axis = DatacubeAxis.z;
-        }
-
-        /// <summary>
-        /// Gets or sets the unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).
-        /// </summary>
-        /// <value>
-        /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).
-        /// </value>
-        [JsonProperty("unit")]
-        public string Unit { get => this._unit; set => this._unit = value; }
-    }
-
-    public class DatacubeDimensionTemporal : DatacubeDimension
-    {
-        public DatacubeDimensionTemporal()
-            : base()
-        {
-        }
-    }
-
-    public class DatacubeDimensionAdditional : DatacubeDimension
-    {
-        protected object reference_system;
-        private string _unit;
-
-        public DatacubeDimensionAdditional()
-            : base()
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).
-        /// </summary>
-        /// <value>
-        /// The unit of measurement for the data, preferably compliant to <seealso href="https://ncics.org/portfolio/other-resources/udunits2">UDUNITS-2</seealso> units (singular).
-        /// </value>
-        [JsonProperty("unit")]
-        public string Unit { get => this._unit; set => this._unit = value; }
-
-        /// <summary>
-        /// Gets or sets the spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.
-        /// </summary>
-        /// <value>
-        /// The spatial reference system for the data, specified as <seealso href="http://www.epsg-registry.org/">numerical EPSG code</seealso>, <seealso href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT2 (ISO 19162) string</seealso> or <seealso href="https://proj.org/specifications/projjson.html">PROJJSON object</seealso>. Defaults to EPSG code 4326.
-        /// </value>
-        [JsonProperty("reference_system")]
-        public object ReferenceSystem { get => this.reference_system; set => this.reference_system = value; }
     }
 }

@@ -13,6 +13,9 @@ namespace Stac.Extensions.Eo
     [JsonConverter(typeof(TolerantEnumConverter))]
     public enum EoBandCommonName
     {
+#pragma warning disable SA1300 // Element should begin with upper-case letter
+#pragma warning disable SA1602 // EnumerationItemsMustBeDocumented
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         coastal,
         blue,
         green,
@@ -29,5 +32,8 @@ namespace Stac.Extensions.Eo
         lwir,
         lwir11,
         lwir12,
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning restore SA1602 // EnumerationItemsMustBeDocumented
+#pragma warning restore SA1300 // Element should begin with upper-case letter
     }
 }
