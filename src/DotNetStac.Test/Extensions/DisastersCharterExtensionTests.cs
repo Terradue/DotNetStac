@@ -100,7 +100,7 @@ namespace Stac.Test.Extensions
             Assert.Equal(DisastersActivationStatus.Closed, item.DisasterExtension().ActivationStatus);
             item.DisasterExtension().ResolutionClass = DisastersResolutionClass.HR;
             Assert.Equal(DisastersResolutionClass.HR, item.DisasterExtension().ResolutionClass);
-            
+
 
 
         }
