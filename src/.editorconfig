@@ -421,6 +421,7 @@ dotnet_diagnostic.SA1201.severity = warning      # Elements must appear in the c
 dotnet_diagnostic.SA1202.severity = warning      # Elements must be ordered by access
 dotnet_diagnostic.SA1204.severity = warning      # Static elements must appear before instance elements
 dotnet_diagnostic.SA1214.severity = warning      # Readonly fields must appear before non-readonly fields
+dotnet_diagnostic.SA1306.severity = none         # Field names must begin with lower-case letter
 dotnet_diagnostic.SA1311.severity = warning      # Static readonly fields must begin with upper-case letter
 dotnet_diagnostic.SA1407.severity = warning      # Arithmetic expressions must declare precedence
 dotnet_diagnostic.SA1412.severity = warning      # Store files as UTF-8 with byte order mark
