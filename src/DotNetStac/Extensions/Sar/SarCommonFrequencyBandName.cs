@@ -7,6 +7,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Stac.Extensions.Sar
 {
+    /// <summary>
+    /// SAR common frequency band name
+    /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SarCommonFrequencyBandName
     {

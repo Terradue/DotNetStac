@@ -9,21 +9,12 @@ using ProjNet.CoordinateSystems;
 
 namespace Stac.Extensions.Projection
 {
-    public static class ProjectionStacExtensionExtensions
-    {
-        public static ProjectionStacExtension ProjectionExtension(this StacItem stacItem)
-        {
-            return new ProjectionStacExtension(stacItem);
-        }
-
-        public static ProjectionStacExtension ProjectionExtension(this StacAsset stacAsset)
-        {
-            return new ProjectionStacExtension(stacAsset);
-        }
-    }
-
+    /// <summary>
+    /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/projection">Projection extension</seealso>
+    /// </summary>
     public class ProjectionStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/projection/v1.0.0/schema.json";
 
         public const string EpsgField = "proj:epsg";
@@ -34,6 +25,8 @@ namespace Stac.Extensions.Projection
         public const string ProjCentroidField = "proj:centroid";
         public const string ProjShapeField = "proj:shape";
         public const string ProjTransformField = "proj:transform";
+
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         private readonly Dictionary<string, Type> _itemFields;
 
@@ -65,6 +58,9 @@ namespace Stac.Extensions.Projection
             this._itemFields.Add(ProjTransformField, typeof(double[]));
         }
 
+        /// <summary>
+        /// Gets or sets the EPSG code.
+        /// </summary>
         public long? Epsg
         {
             get
@@ -79,6 +75,9 @@ namespace Stac.Extensions.Projection
             }
         }
 
+        /// <summary>
+        /// Gets or sets the WKT2 string.
+        /// </summary>
         public string Wkt2
         {
             get
@@ -93,6 +92,9 @@ namespace Stac.Extensions.Projection
             }
         }
 
+        /// <summary>
+        /// Gets or sets the PROJJSON string.
+        /// </summary>
         public string ProjJson
         {
             get
@@ -107,6 +109,9 @@ namespace Stac.Extensions.Projection
             }
         }
 
+        /// <summary>
+        /// Gets or sets the specific geometry.
+        /// </summary>
         public IGeometryObject Geometry
         {
             get
@@ -121,6 +126,9 @@ namespace Stac.Extensions.Projection
             }
         }
 
+        /// <summary>
+        /// Gets or sets the bounding box.
+        /// </summary>
         public double[] Bbox
         {
             get
@@ -135,6 +143,9 @@ namespace Stac.Extensions.Projection
             }
         }
 
+        /// <summary>
+        /// Gets or sets the centroid.
+        /// </summary>
         public CentroidObject Centroid
         {
             get
@@ -149,6 +160,9 @@ namespace Stac.Extensions.Projection
             }
         }
 
+        /// <summary>
+        /// Gets or sets the shape.
+        /// </summary>
         public int[] Shape
         {
             get
@@ -163,6 +177,9 @@ namespace Stac.Extensions.Projection
             }
         }
 
+        /// <summary>
+        /// Gets or sets the transformation matrix.
+        /// </summary>
         public double[] Transform
         {
             get
@@ -180,6 +197,10 @@ namespace Stac.Extensions.Projection
         /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => this._itemFields;
 
+        /// <summary>
+        ///  Sets the coordinate system by the given coordinate system.
+        /// </summary>
+        /// <param name="coordinateSystem">The coordinate system.</param>
         public void SetCoordinateSystem(CoordinateSystem coordinateSystem)
         {
             if (coordinateSystem.AuthorityCode > 0)
@@ -194,6 +215,10 @@ namespace Stac.Extensions.Projection
             this.Wkt2 = coordinateSystem.WKT;
         }
 
+        /// <summary>
+        /// Sets the coordinate system by the given SRID.
+        /// </summary>
+        /// <param name="srid">The SRID.</param>
         public void SetCoordinateSystem(int srid)
         {
             var cs = SRIDReader.GetCSbyID(srid);
@@ -213,12 +238,5 @@ namespace Stac.Extensions.Projection
             summaryFunctions.Add(EpsgField, new SummaryFunction<int>(this, EpsgField, CreateSummaryValueSet));
             return summaryFunctions;
         }
-    }
-
-    public class CentroidObject
-    {
-        private double Longitude { get; set; }
-
-        private double Latitude { get; set; }
     }
 }

@@ -4,43 +4,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Stac.Extensions.Sar
 {
-    public static class SarStacExtensionExtensions
-    {
-        public static SarStacExtension SarExtension(this StacItem stacItem)
-        {
-            return new SarStacExtension(stacItem);
-        }
-
-        public static SarStacExtension SarExtension(this StacAsset stacAsset)
-        {
-            return new SarStacExtension(stacAsset);
-        }
-
-        public static StacAsset GetAsset(this StacItem stacItem, string polarization)
-        {
-            return stacItem.Assets.Values.FirstOrDefault(a => a.SarExtension().Polarizations.Contains(polarization));
-        }
-
-        public static void Required(
-            this SarStacExtension sarStacExtension,
-            string instrumentMode,
-            SarCommonFrequencyBandName frequencyBandName,
-            string[] polarizations,
-            string productType)
-        {
-            sarStacExtension.InstrumentMode = instrumentMode;
-            sarStacExtension.FrequencyBand = frequencyBandName;
-            sarStacExtension.Polarizations = polarizations;
-            sarStacExtension.ProductType = productType;
-        }
-    }
-
+    /// <summary>
+    /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/sar">SAR extension</seealso>
+    /// </summary>
     public class SarStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/sar/v1.0.0/schema.json";
 
         public const string InstrumentModeField = "sar:instrument_mode";
@@ -56,6 +28,7 @@ namespace Stac.Extensions.Sar
         public const string LooksAzimuthField = "sar:looks_azimuth";
         public const string LooksEquivalentNumberField = "sar:looks_equivalent_number";
         public const string ObservationDirectionField = "sar:observation_direction";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         private readonly IDictionary<string, Type> _itemFields;
 
         internal SarStacExtension(IStacPropertiesContainer stacPropertiesContainer)
@@ -77,6 +50,9 @@ namespace Stac.Extensions.Sar
             this._itemFields.Add(ObservationDirectionField, typeof(string));
         }
 
+        /// <summary>
+        /// Gets or sets the instrument mode
+        /// </summary>
         public string InstrumentMode
         {
             get
@@ -91,6 +67,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the frequency band
+        /// </summary>
         public SarCommonFrequencyBandName FrequencyBand
         {
             get
@@ -105,6 +84,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the center frequency
+        /// </summary>
         public double CenterFrequency
         {
             get
@@ -119,6 +101,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the polarizations
+        /// </summary>
         public string[] Polarizations
         {
             get
@@ -133,6 +118,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the SAR product type
+        /// </summary>
         public string ProductType
         {
             get
@@ -147,6 +135,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the resolution range
+        /// </summary>
         public double ResolutionRange
         {
             get
@@ -161,6 +152,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the resolution azimuth
+        /// </summary>
         public double ResolutionAzimuth
         {
             get
@@ -175,6 +169,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the pixel spacing range
+        /// </summary>
         public double PixelSpacingRange
         {
             get
@@ -189,6 +186,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the pixel spacing azimuth
+        /// </summary>
         public double PixelSpacingAzimuth
         {
             get
@@ -203,6 +203,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the looks range
+        /// </summary>
         public double LooksRange
         {
             get
@@ -217,6 +220,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the looks azimuth
+        /// </summary>
         public double LooksAzimuth
         {
             get
@@ -231,6 +237,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the looks equivalent number
+        /// </summary>
         public double LooksEquivalentNumber
         {
             get
@@ -245,6 +254,9 @@ namespace Stac.Extensions.Sar
             }
         }
 
+        /// <summary>
+        /// Gets or sets the observation direction
+        /// </summary>
         public ObservationDirection? ObservationDirection
         {
             get

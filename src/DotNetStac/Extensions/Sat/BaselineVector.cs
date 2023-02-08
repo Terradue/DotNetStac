@@ -9,7 +9,9 @@ namespace Stac.Extensions.Sat
     /// </summary>
     public struct BaselineVector
     {
-        private readonly double _perpendicular, _parallel, _along;
+        private readonly double _perpendicular;
+        private readonly double _parallel;
+        private readonly double _along;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaselineVector"/> struct.

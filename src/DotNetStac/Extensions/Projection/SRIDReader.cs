@@ -11,7 +11,7 @@ namespace Stac.Extensions.Projection
 {
     internal class SRIDReader
     {
-        private const string filename = @"SRID.csv";
+        private const string Filename = @"SRID.csv";
 
         /// <summary>
         /// Enumerates all SRID's in the SRID.csv file.
@@ -19,7 +19,7 @@ namespace Stac.Extensions.Projection
         /// <returns>Enumerator</returns>
         public static IEnumerable<WKTstring> GetSRIDs()
         {
-            using (StreamReader sr = System.IO.File.OpenText(filename))
+            using (StreamReader sr = System.IO.File.OpenText(Filename))
             {
                 while (!sr.EndOfStream)
                 {

@@ -20,7 +20,8 @@ namespace Stac
     {
         private readonly Uri _base_uri;
         private Uri _href;
-        private string _title, _description;
+        private string _title;
+        private string _description;
         private ContentType _type;
         private Dictionary<string, object> _properties;
         private IStacObject _parentStacObject;

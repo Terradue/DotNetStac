@@ -10,44 +10,17 @@ using Stac.Model;
 namespace Stac.Extensions.Processing
 {
     /// <summary>
-    /// Extension methods for accessing Processing extension
-    /// </summary>
-    public static class ProcessingStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC item
-        /// </summary>
-        public static ProcessingStacExtension ProcessingExtension(this StacItem stacItem)
-        {
-            return new ProcessingStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initialize the major fields of processing extensions
-        /// </summary>
-        public static void Init(
-            this ProcessingStacExtension processingStacExtension,
-            string lineage,
-            string level,
-            string facility = null)
-        {
-            processingStacExtension.Lineage = lineage;
-            processingStacExtension.Level = level;
-            processingStacExtension.Facility = facility;
-        }
-    }
-
-    /// <summary>
     /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/processing">Processing extension</seealso>
     /// </summary>
     public class ProcessingStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        // Extension identifier and schema url
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/processing/v1.0.0/schema.json";
-        private const string LineageField = "processing:lineage";
-        private const string LevelField = "processing:level";
-        private const string FacilityField = "processing:facility";
-        private const string SoftwareField = "processing:software";
+        public const string LineageField = "processing:lineage";
+        public const string LevelField = "processing:level";
+        public const string FacilityField = "processing:facility";
+        public const string SoftwareField = "processing:software";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         private readonly Dictionary<string, Type> _itemFields;
 
         internal ProcessingStacExtension(StacItem stacItem)
@@ -63,9 +36,6 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets or sets lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described NASA ISO.
         /// </summary>
-        /// <value>
-        /// Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described NASA ISO.
-        /// </value>
         public string Lineage
         {
             get
@@ -83,9 +53,6 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets or sets the name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
         /// </summary>
-        /// <value>
-        /// The name commonly used to refer to the processing level to make it easier to search for product level across collections or items.
-        /// </value>
         public string Level
         {
             get
@@ -103,9 +70,6 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets or sets the name of the facility that produced the data.
         /// </summary>
-        /// <value>
-        /// The name of the facility that produced the data.
-        /// </value>
         public string Facility
         {
             get
@@ -123,9 +87,6 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets a dictionary with name/version for key/value describing one or more softwares that produced the data.
         /// </summary>
-        /// <value>
-        /// A dictionary with name/version for key/value describing one or more softwares that produced the data.
-        /// </value>
         public IDictionary<string, string> Software
         {
             get
@@ -149,9 +110,6 @@ namespace Stac.Extensions.Processing
         /// <summary>
         /// Gets potential fields and their types
         /// </summary>
-        /// <value>
-        /// Potential fields and their types
-        /// </value>
         public override IDictionary<string, Type> ItemFields => this._itemFields;
 
         private void UpdateSoftwareField(object sender, NotifyCollectionChangedEventArgs e)

@@ -7,6 +7,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Stac.Extensions.Raster
 {
+    /// <summary>
+    /// Raster sampling
+    /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum RasterSampling
     {
