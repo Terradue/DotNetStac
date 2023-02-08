@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: DatacubeExtensionTests.cs
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mime;
 using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Stac.Extensions.Datacube;
-using Stac.Extensions.Eo;
 using Xunit;
 
 namespace Stac.Test.Extensions
@@ -106,7 +106,7 @@ namespace Stac.Test.Extensions
             item.DatacubeStacExtension().Variables.Add("temp", tempVar);
 
             var colorVar = new DatacubeVariable();
-            colorVar.Dimensions = new string[] { };
+            colorVar.Dimensions = Array.Empty<string>();
             colorVar.Type = DatacubeVariableType.auxiliary;
             colorVar.Values = new string[] { "red", "green", "blue" };
             item.DatacubeStacExtension().Variables.Add("color", colorVar);

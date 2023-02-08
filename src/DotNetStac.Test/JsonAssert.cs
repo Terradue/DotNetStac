@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: JsonAssert.cs
+
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;

@@ -1,6 +1,9 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: RasterStacExtension.cs
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Stac.Extensions.Raster
 {
@@ -9,51 +12,48 @@ namespace Stac.Extensions.Raster
     /// </summary>
     public class RasterStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        /// Extensions identifier and schema url
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/raster/v1.0.0/schema.json";
 
-        private static IDictionary<string, Type> itemFields;
-        private const string BandsField = "raster:bands";
+        public const string BandsField = "raster:bands";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
-        internal RasterStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
+        private readonly IDictionary<string, Type> _itemFields;
+
+        internal RasterStacExtension(StacAsset stacAsset)
+            : base(JsonSchemaUrl, stacAsset)
         {
-            itemFields = new Dictionary<string, Type>();
-            itemFields.Add(BandsField, typeof(RasterBand[]));
+            this._itemFields = new Dictionary<string, Type>();
+            this._itemFields.Add(BandsField, typeof(RasterBand[]));
         }
 
         /// <summary>
-        /// An array of available bands where each object is a Band Object.
+        /// Gets or sets an array of available bands where each object is a Band Object.
         /// </summary>
         public RasterBand[] Bands
         {
-            get { return StacPropertiesContainer.GetProperty<RasterBand[]>(BandsField); }
-            set { StacPropertiesContainer.SetProperty(BandsField, value); DeclareStacExtension(); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<RasterBand[]>(BandsField);
+            }
+
+            set
+            {
+                this.StacPropertiesContainer.SetProperty(BandsField, value);
+                this.DeclareStacExtension();
+            }
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
-        public override IDictionary<string, Type> ItemFields => itemFields;
+        public override IDictionary<string, Type> ItemFields => this._itemFields;
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
             return summaryFunctions;
-        }
-    }
-
-    /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class RasterStacExtensionExtensions
-    {
-
-        /// <summary>
-        /// Initilize a EoStacExtension class from a STAC asset
-        /// </summary>
-        public static RasterStacExtension RasterExtension(this StacAsset stacAsset)
-        {
-            return new RasterStacExtension(stacAsset);
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: Statistics.cs
+
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Stac.Common
@@ -9,63 +13,79 @@ namespace Stac.Common
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class Statistics
     {
-        private IDictionary<string, object> properties;
+        private IDictionary<string, object> _properties;
 
         /// <summary>
-        /// Initialize a new statistics object
+        /// Initializes a new instance of the <see cref="Statistics"/> class.
         /// </summary>
+        /// <param name="minimum">minimum value</param>
+        /// <param name="maximum">maximum value</param>
+        /// <param name="mean">mean value</param>
+        /// <param name="stdev">standard deviation</param>
+        /// <param name="validPercent">valid percentage</param>
         [JsonConstructor]
         public Statistics(double? minimum, double? maximum, double? mean, double? stdev, double? validPercent)
         {
-            Mean = mean;
-            Minimum = minimum;
-            Maximum = maximum;
-            Stdev = stdev;
-            ValidPercent = validPercent;
-            properties = new Dictionary<string, object>();
+            this.Mean = mean;
+            this.Minimum = minimum;
+            this.Maximum = maximum;
+            this.Stdev = stdev;
+            this.ValidPercent = validPercent;
+            this._properties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// mean value
+        /// Gets or sets mean value
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// Mean value
+        /// </value>
         [JsonProperty("mean")]
         public double? Mean { get; set; }
 
         /// <summary>
-        /// minimum value
+        /// Gets or sets minimum value
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// Minimum value
+        /// </value>
         [JsonProperty("minimum")]
         public double? Minimum { get; set; }
 
         /// <summary>
-        /// maximum value
+        /// Gets or sets maximum value
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// Maximum value
+        /// </value>
         [JsonProperty("maximum")]
         public double? Maximum { get; set; }
 
         /// <summary>
-        /// Standard Deviation
+        /// Gets or sets standard Deviation
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// Standard Deviation
+        /// </value>
         [JsonProperty("stdev")]
         public double? Stdev { get; set; }
 
         /// <summary>
-        /// valid percentage
+        /// Gets or sets valid percentage
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// Valid percentage
+        /// </value>
         [JsonProperty("valid_percent")]
         public double? ValidPercent { get; set; }
 
         /// <summary>
-        /// Additional fields
+        /// Gets or sets additional fields
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// Additional fields
+        /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => properties; set => properties = value; }
-
+        public IDictionary<string, object> Properties { get => this._properties; set => this._properties = value; }
     }
 }

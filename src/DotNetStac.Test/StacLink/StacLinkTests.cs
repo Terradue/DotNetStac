@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using GeoJSON.Net;
-using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacLinkTests.cs
+
+using System;
 using Xunit;
 
 namespace Stac.Test.Item
@@ -20,7 +19,7 @@ namespace Stac.Test.Item
             var stacLink = StacLink.CreateItemLink(new Uri("file:///test"), "text/plain");
             stacLink.Title = "test";
             var cloned = new StacLink(stacLink);
-            cloned = stacLink.Clone();
+            cloned = stacLink.Clone() as StacLink;
         }
     }
 }

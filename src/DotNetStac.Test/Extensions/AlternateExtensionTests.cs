@@ -1,5 +1,8 @@
-﻿using System;
-using System.IO;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: AlternateExtensionTests.cs
+
+using System;
 using Newtonsoft.Json;
 using Stac.Extensions.Alternate;
 using Xunit;
@@ -9,7 +12,7 @@ namespace Stac.Test.Extensions
     public class AlternateExtensionTests : TestBase
     {
         [Fact]
-        public async System.Threading.Tasks.Task SetAlternateAsset()
+        public System.Threading.Tasks.Task SetAlternateAsset()
         {
             var simpleJson = GetJson("Extensions", "MinimalSample");
             ValidateJson(simpleJson);
@@ -32,10 +35,11 @@ namespace Stac.Test.Extensions
             JsonAssert.AreEqual(expectedJson, actualJson);
 
             Assert.Equal("s3://bucket/key/srid.csv", simpleitem.Assets["srid"].AlternateExtension().AlternateAssets["s3"].Uri.ToString());
+            return System.Threading.Tasks.Task.CompletedTask;
         }
 
         [Fact]
-        public async System.Threading.Tasks.Task LS9Alternates()
+        public System.Threading.Tasks.Task LS9Alternates()
         {
             var simpleJson = GetJson("Extensions", "LS9Sample");
             ValidateJson(simpleJson);
@@ -43,7 +47,7 @@ namespace Stac.Test.Extensions
             StacItem ls9item = StacConvert.Deserialize<StacItem>(simpleJson);
 
             Assert.Equal("s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2022/088/084/LC09_L2SP_088084_20220405_20220407_02_T2/LC09_L2SP_088084_20220405_20220407_02_T2_thumb_small.jpeg", ls9item.Assets["thumbnail"].AlternateExtension().AlternateAssets["s3"].Uri.ToString());
+            return System.Threading.Tasks.Task.CompletedTask;
         }
-
     }
 }

@@ -1,6 +1,7 @@
-﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacRepositoryCatalogTests.cs
+
 using Xunit;
 
 namespace Stac.Test.Catalog
@@ -10,7 +11,7 @@ namespace Stac.Test.Catalog
         [Fact]
         public void CanDeserializeBaseCatalogExample()
         {
-            var json = httpClient.GetStringAsync($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/catalog.json").GetAwaiter().GetResult();
+            var json = HttpClient.GetStringAsync($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/catalog.json").GetAwaiter().GetResult();
 
             StacCatalog catalog = StacConvert.Deserialize<StacCatalog>(json);
 

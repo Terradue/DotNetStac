@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacCatalog.cs
+
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mime;
@@ -6,7 +10,6 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Semver;
 using Stac.Converters;
-using Stac.Extensions;
 
 namespace Stac
 {
@@ -22,13 +25,7 @@ namespace Stac
         public const string MEDIATYPE = "application/json";
 
         /// <summary>
-        /// Catalog Media-Type Object
-        /// </summary>
-        /// <returns></returns>
-        public readonly static ContentType CATALOG_MEDIATYPE = new ContentType(MEDIATYPE);
-
-        /// <summary>
-        /// Initialize an empty STAC Catalog
+        /// Initializes a new instance of the <see cref="StacCatalog"/> class.
         /// </summary>
         /// <param name="id">required identifier of the catalog</param>
         /// <param name="description">required description of the catalog</param>
@@ -41,14 +38,20 @@ namespace Stac
             this.StacVersion = Versions.StacVersionList.Current;
             this.Description = description;
             if (links == null)
+            {
                 this.Links = new Collection<StacLink>();
+            }
             else
+            {
                 this.Links = new Collection<StacLink>(links.ToList());
-            this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>();
+            }
+
+            this.Summaries = new Dictionary<string, Collection.IStacSummaryItem>();
             this.StacExtensions = new SortedSet<string>();
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacCatalog"/> class.
         /// Initialize a new Stac Catalog from an existing one (clone)
         /// </summary>
         /// <param name="stacCatalog">existing Stac Catalog</param>
@@ -58,38 +61,44 @@ namespace Stac
             this.StacExtensions = new SortedSet<string>(stacCatalog.StacExtensions);
             this.StacVersion = stacCatalog.StacVersion;
             this.Links = new Collection<StacLink>(stacCatalog.Links.ToList());
-            this.Summaries = new Dictionary<string, Stac.Collection.IStacSummaryItem>(stacCatalog.Summaries);
+            this.Summaries = new Dictionary<string, Collection.IStacSummaryItem>(stacCatalog.Summaries);
             this.Properties = new Dictionary<string, object>(stacCatalog.Properties);
         }
 
-        # region IStacObject
-
         /// <summary>
-        /// Identifier for the Catalog.
+        /// Gets identifier for the Catalog.
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// Identifier for the Catalog.
+        /// </value>
         [JsonProperty("id")]
         public string Id { get; internal set; }
 
         /// <summary>
-        /// The STAC version the Catalog implements
+        /// Gets or sets the STAC version the Catalog implements
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// The STAC version the Catalog implements
+        /// </value>
         [JsonProperty("stac_version")]
         [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
 
         /// <summary>
-        /// A list of extension identifiers the Catalog implements
+        /// Gets a list of extension identifiers the Catalog implements
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// A list of extension identifiers the Catalog implements
+        /// </value>
         [JsonProperty("stac_extensions")]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
-        /// A list of references to other documents.
+        /// Gets a list of references to other documents.
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// A list of references to other documents.
+        /// </value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
         public ICollection<StacLink> Links
@@ -97,57 +106,64 @@ namespace Stac
             get; internal set;
         }
 
+        /// <inheritdoc/>
         [JsonIgnore]
-        public ContentType MediaType => CATALOG_MEDIATYPE;
-
-        # endregion IStacObject
+        public ContentType MediaType => new ContentType(MEDIATYPE);
 
         /// <summary>
-        /// STAC type (Catalog)
+        /// Gets sTAC type (Catalog)
         /// </summary>
+        /// <value>
+        /// STAC type (Catalog)
+        /// </value>
         [JsonProperty("type")]
         public string Type => "Catalog";
 
         /// <summary>
-        /// A map of property summaries, either a set of values or statistics such as a range.
+        /// Gets a map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// A map of property summaries, either a set of values or statistics such as a range.
+        /// </value>
         [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
-        public Dictionary<string, Stac.Collection.IStacSummaryItem> Summaries { get; internal set; }
+        public Dictionary<string, Collection.IStacSummaryItem> Summaries { get; internal set; }
 
         /// <summary>
-        /// Catalog Properties
+        /// Gets catalog Properties
         /// </summary>
-        /// <value></value>
+        /// <value>
+        /// Catalog Properties
+        /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
 
+        /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
-
-        [OnDeserialized]
-        internal void OnDeserializedMethod(StreamingContext context)
-        {
-            foreach (StacLink link in Links)
-            {
-                link.Parent = this;
-            }
-            StacExtensions = new SortedSet<string>(StacExtensions);
-        }
 
 #pragma warning disable 1591
         public bool ShouldSerializeSummaries()
         {
             // don't serialize the Manager property if an employee is their own manager
-            return Summaries.Count > 0;
+            return this.Summaries.Count > 0;
         }
 
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager
-            return StacExtensions.Count > 0;
+            return this.StacExtensions.Count > 0;
         }
 
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            foreach (StacLink link in this.Links)
+            {
+                link.Parent = this;
+            }
+
+            this.StacExtensions = new SortedSet<string>(this.StacExtensions);
+        }
     }
 }

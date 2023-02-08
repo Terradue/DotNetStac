@@ -1,7 +1,10 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: AlternateStacExtension.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Stac.Extensions.Storage;
 
 namespace Stac.Extensions.Alternate
 {
@@ -10,83 +13,81 @@ namespace Stac.Extensions.Alternate
     /// </summary>
     public class AlternateStacExtension : StacPropertiesContainerExtension, IStacAssetExtension, IStacExtension
     {
-        /// Extension identifier and schema url
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/alternate-assets/v1.1.0/schema.json";
 
         private const string AlternateField = "alternate";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
-        private static IDictionary<string, Type> assetFields;
+        private readonly IDictionary<string, Type> _assetFields;
 
-        internal AlternateStacExtension(StacAsset stacAsset) : base(JsonSchemaUrl, stacAsset)
+        internal AlternateStacExtension(StacAsset stacAsset)
+            : base(JsonSchemaUrl, stacAsset)
         {
-            assetFields = new Dictionary<string, Type>();
-            assetFields.Add(AlternateField, typeof(AlternateAssetObject[]));
+            this._assetFields = new Dictionary<string, Type>();
+            this._assetFields.Add(AlternateField, typeof(AlternateAssetObject[]));
         }
 
         /// <summary>
-        /// A dictionary of alternate location information for an asset.
+        /// Gets or sets a dictionary of alternate location information for an asset.
         /// </summary>
+        /// <value>
+        /// A dictionary of alternate location information for an asset.
+        /// </value>
         public IDictionary<string, AlternateAssetObject> AlternateAssets
         {
-            get { return StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField); }
+            get
+            {
+                return this.StacPropertiesContainer.GetProperty<Dictionary<string, AlternateAssetObject>>(AlternateField);
+            }
+
             set
             {
                 if (value == null || value.Count() == 0)
-                    StacPropertiesContainer.RemoveProperty(AlternateField);
+                {
+                    this.StacPropertiesContainer.RemoveProperty(AlternateField);
+                }
                 else
                 {
-                    StacPropertiesContainer.SetProperty(AlternateField, value);
-                    DeclareStacExtension();
+                    this.StacPropertiesContainer.SetProperty(AlternateField, value);
+                    this.DeclareStacExtension();
                 }
             }
         }
 
         /// <summary>
-        /// Potential fields and their types
+        /// Gets potential fields and their types
         /// </summary>
-        public override IDictionary<string, Type> ItemFields => assetFields;
+        /// <value>
+        /// Potential fields and their types
+        /// </value>
+        public override IDictionary<string, Type> ItemFields => this._assetFields;
 
-        public StacAsset StacAsset => StacPropertiesContainer as StacAsset;
+        /// <inheritdoc/>
+        public StacAsset StacAsset => this.StacPropertiesContainer as StacAsset;
 
+        /// <inheritdoc/>
         public override IDictionary<string, ISummaryFunction> GetSummaryFunctions()
         {
             Dictionary<string, ISummaryFunction> summaryFunctions = new Dictionary<string, ISummaryFunction>();
             return summaryFunctions;
         }
 
+        /// <summary>
+        /// Adds an alternate asset to the AlternateAssets dictionary
+        /// </summary>
+        /// <param name="key">The key of the alternate asset</param>
+        /// <param name="uri">The uri of the alternate asset</param>
+        /// <param name="title">The title of the alternate asset</param>
+        /// <param name="description">The description of the alternate asset</param>
+        /// <returns>The alternate asset object</returns>
         public AlternateAssetObject AddAlternate(string key, Uri uri, string title = null, string description = null)
         {
-            AlternateAssetObject alternateAssetObject = new AlternateAssetObject(uri.ToString(), StacAsset.ParentStacObject, title, description);
-            var alternateAssets = AlternateAssets ?? new Dictionary<string, AlternateAssetObject>();
+            AlternateAssetObject alternateAssetObject = new AlternateAssetObject(uri.ToString(), this.StacAsset.ParentStacObject, title, description);
+            var alternateAssets = this.AlternateAssets ?? new Dictionary<string, AlternateAssetObject>();
             alternateAssets.Add(key, alternateAssetObject);
-            AlternateAssets = alternateAssets;
+            this.AlternateAssets = alternateAssets;
             return alternateAssetObject;
-        }
-
-
-
-    }
-
-    /// <summary>
-    /// Extension methods for accessing Alternate extension
-    /// </summary>
-    public static class AlternateStacExtensionExtensions
-    {
-
-        /// <summary>
-        /// Initilize a AlternateStacExtension class from a STAC asset
-        /// </summary>
-        public static AlternateStacExtension AlternateExtension(this StacAsset stacAsset)
-        {
-            return new AlternateStacExtension(stacAsset);
-        }
-
-        /// <summary>
-        /// Initilize a AlternateStacExtension class from an alternate asset
-        /// </summary>
-        public static StorageStacExtension StorageExtension(this AlternateAssetObject alternateAssetObject)
-        {
-            return new StorageStacExtension(alternateAssetObject);
         }
     }
 }

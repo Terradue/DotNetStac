@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacSummaryItem.cs
+
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
@@ -13,49 +16,52 @@ namespace Stac.Collection
         /// <summary>
         /// Json Object
         /// </summary>
-        protected readonly JToken summary;
+        private readonly JToken _summary;
 
         /// <summary>
-        /// Initialize a new summary item with a JSON object
+        /// Initializes a new instance of the <see cref="StacSummaryItem"/> class.
         /// </summary>
-        /// <param name="summary"></param>
+        /// <param name="summary">The summary.</param>
         protected StacSummaryItem(JToken summary)
         {
-            this.summary = summary;
+            this._summary = summary;
         }
+
+        /// <summary>
+        /// Gets jToken transformer
+        /// </summary>
+        /// <value>
+        /// JToken transformer
+        /// </value>
+        public JToken AsJToken => this._summary;
 
         /// <summary>
         /// accessor of fields in the object
         /// </summary>
-        /// <value></value>
+        /// <param name="key">key of the field</param>
         public JToken this[object key]
         {
             get
             {
-                return summary[key];
+                return this._summary[key];
             }
         }
 
-        /// <summary>
-        /// JToken transformer
-        /// </summary>
-        public JToken AsJToken => summary;
-
+        /// <inheritdoc/>
         public abstract IEnumerable<object> Enumerate();
 
         /// <summary>
         /// Get Enumerator of object children
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Enumerator of object children</returns>
         public IEnumerator GetEnumerator()
         {
-            return summary.Children().GetEnumerator();
+            return this._summary.Children().GetEnumerator();
         }
 
         IEnumerator<JToken> IEnumerable<JToken>.GetEnumerator()
         {
-            return summary.Children().GetEnumerator();
+            return this._summary.Children().GetEnumerator();
         }
-
     }
 }

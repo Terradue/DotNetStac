@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: EoBandCommonName.cs
+
+using Newtonsoft.Json;
 using Stac.Common;
 
 namespace Stac.Extensions.Eo
@@ -10,6 +13,9 @@ namespace Stac.Extensions.Eo
     [JsonConverter(typeof(TolerantEnumConverter))]
     public enum EoBandCommonName
     {
+#pragma warning disable SA1300 // Element should begin with upper-case letter
+#pragma warning disable SA1602 // EnumerationItemsMustBeDocumented
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         coastal,
         blue,
         green,
@@ -25,6 +31,9 @@ namespace Stac.Extensions.Eo
         swir22,
         lwir,
         lwir11,
-        lwir12
+        lwir12,
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning restore SA1602 // EnumerationItemsMustBeDocumented
+#pragma warning restore SA1300 // Element should begin with upper-case letter
     }
 }
