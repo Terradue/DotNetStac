@@ -119,22 +119,32 @@ namespace Stac
             }
 
             if (t.GetTypeInfo().IsEnum)
+            {
                 return (T)LazyEnumParse(t, @object.ToString());
+            }
+
             return ChangeType<T>(@object);
         }
 
         public static object LazyEnumParse(Type t, string value)
         {
             // First try with the default Enum.Parse
-            try { return Enum.Parse(t, value); }
-            catch { }
+            try
+            {
+                return Enum.Parse(t, value);
+            }
+            catch
+            {
+            }
 
             // Then try each enum value
             foreach (object enumValue in Enum.GetValues(t))
             {
                 string[] possibleValues = enumValue.ToStringByAttributes();
                 if (possibleValues.Contains(value, StringComparer.InvariantCulture))
+                {
                     return Enum.Parse(t, enumValue.ToString());
+                }
             }
 
             throw new ArgumentException($"Could not parse {value} to {t.Name}");
@@ -153,7 +163,10 @@ namespace Stac
                 .GetType()
                 .GetField(value.ToString());
 
-            if (field == null) return values.ToArray();
+            if (field == null)
+            {
+                return values.ToArray();
+            }
 
             var enumMemberAttribute = GetEnumMemberAttribute(field);
             if (enumMemberAttribute != null)
@@ -174,30 +187,6 @@ namespace Stac
             }
 
             return values.ToArray();
-        }
-
-        private static DescriptionAttribute GetDescriptionAttribute(FieldInfo field)
-        {
-            return field
-                .GetCustomAttributes(typeof(DescriptionAttribute), false)
-                .OfType<DescriptionAttribute>()
-                .SingleOrDefault();
-        }
-
-        private static EnumMemberAttribute GetEnumMemberAttribute(FieldInfo field)
-        {
-            return field
-                .GetCustomAttributes(typeof(EnumMemberAttribute), false)
-                .OfType<EnumMemberAttribute>()
-                .SingleOrDefault();
-        }
-
-        private static JsonPropertyAttribute GetJsonPropertyAttribute(FieldInfo field)
-        {
-            return field
-                .GetCustomAttributes(typeof(JsonPropertyAttribute), false)
-                .OfType<JsonPropertyAttribute>()
-                .SingleOrDefault();
         }
 
         /// <summary>
@@ -226,6 +215,30 @@ namespace Stac
             }
 
             return observableCollection;
+        }
+
+        private static DescriptionAttribute GetDescriptionAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(DescriptionAttribute), false)
+                .OfType<DescriptionAttribute>()
+                .SingleOrDefault();
+        }
+
+        private static EnumMemberAttribute GetEnumMemberAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(EnumMemberAttribute), false)
+                .OfType<EnumMemberAttribute>()
+                .SingleOrDefault();
+        }
+
+        private static JsonPropertyAttribute GetJsonPropertyAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(JsonPropertyAttribute), false)
+                .OfType<JsonPropertyAttribute>()
+                .SingleOrDefault();
         }
 
         /// <summary>

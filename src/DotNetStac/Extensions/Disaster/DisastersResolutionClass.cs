@@ -1,4 +1,6 @@
-// Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license. See the LICENSE.md file in the project root for more information.
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: DisastersResolutionClass.cs
 
 namespace Stac.Extensions.Disaster
 {

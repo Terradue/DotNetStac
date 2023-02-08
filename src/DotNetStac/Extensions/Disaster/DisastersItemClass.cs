@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: DisastersItemClass.cs
+
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -38,6 +41,6 @@ namespace Stac.Extensions.Disaster
         /// Regions that are affected by the disaster and identified by the parties involved in the Charter process.
         /// </summary>
         [JsonProperty("area")]
-        Area
+        Area,
     }
 }

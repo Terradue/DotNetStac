@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: DisastersCharterExtensionTests.cs
+
 using System.Linq;
-using System.Net.Mime;
-using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Stac.Collection;
 using Stac.Extensions.Disaster;
 using Xunit;

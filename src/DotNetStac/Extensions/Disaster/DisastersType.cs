@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: DisastersType.cs
+
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Stac.Extensions.Disaster
@@ -10,15 +14,15 @@ namespace Stac.Extensions.Disaster
     public enum DisastersType
     {
         /// <summary>
-        /// Earthquakes occur following the release of energy when tectonic plates move apart. 
-        /// These plates move in currents in the Earth's lithosphere and the edges, 
+        /// Earthquakes occur following the release of energy when tectonic plates move apart.
+        /// These plates move in currents in the Earth's lithosphere and the edges,
         /// which have been mapped to fault lines, sometimes collide.
         /// </summary>
         [JsonProperty("earthquake")]
         Earthquake,
 
         /// <summary>
-        /// Wildfires occur when vegetated areas are set alight and are particularly common during hot and dry periods. 
+        /// Wildfires occur when vegetated areas are set alight and are particularly common during hot and dry periods.
         /// They can occur in forests, grasslands, brush and deserts, and with sufficient wind can rapidly spread.
         /// </summary>
         [JsonProperty("fire")]
@@ -38,8 +42,8 @@ namespace Stac.Extensions.Disaster
 
         /// <summary>
         // Ice on the surface of water or in compacted snow makes for treacherous conditions and can result in injuries if people slip and fall.
-        /// Water sources may freeze, cutting off access for residents to clean water or heat.
-        /// </summary>
+        // Water sources may freeze, cutting off access for residents to clean water or heat.
+        // </summary>
         [JsonProperty("ice")]
         Ice,
 
