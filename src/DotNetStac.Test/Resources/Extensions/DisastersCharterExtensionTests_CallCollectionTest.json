@@ -1,0 +1,234 @@
+{
+  "id": "call-855-acquisitions-calibratedDataset",
+  "stac_version": "1.0.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sar/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+    "https://terradue.github.io/stac-extensions-disaster/v1.0.0/schema.json"
+  ],
+  "links": [],
+  "type": "Collection",
+  "summaries": {
+    "platform": [
+      "sentinel-2a",
+      "saocom-1a",
+      "landsat-8",
+      "worldview-1",
+      "vision-1",
+      "planetscope",
+      "kanopus-v",
+      "kompsat-5",
+      "pleiades-1b",
+      "sentinel-2b",
+      "pleiades-1a",
+      "worldview-2",
+      "worldview-3",
+      "geoeye-1",
+      "gaofen-1",
+      "kompsat-3",
+      "sentinel-1a",
+      "tsx-1",
+      "vrss-2"
+    ],
+    "constellation": [
+      "sentinel-2",
+      "worldview-1",
+      "dmc",
+      "kanopus-v",
+      "pleiades",
+      "worldview-2",
+      "worldview-3",
+      "geoeye-1",
+      "gaofen-1",
+      "kompsat-3",
+      "sentinel-1",
+      "tsx-1"
+    ],
+    "instruments": [
+      "msi",
+      "sao1a",
+      "oli",
+      "tirs",
+      "pan",
+      "s-1",
+      "ps2",
+      "mss-pss",
+      "cosi",
+      "phr-1b",
+      "phr-1a",
+      "psb.sd",
+      "wfv2",
+      "wfv3",
+      "aeiss",
+      "c-sar",
+      "x-sar",
+      "sao1b",
+      "mss"
+    ],
+    "gsd": {
+      "minimum": 0.000005740367384,
+      "maximum": 50
+    },
+    "sat:orbit_state": [
+      "descending",
+      "ascending"
+    ],
+    "sat:absolute_orbit": {
+      "minimum": 69,
+      "maximum": 5294818
+    },
+    "sat:relative_orbit": {
+      "minimum": 17,
+      "maximum": 51821
+    },
+    "sat:platform_international_designator": [
+      "2015-000A",
+      "2012-068A",
+      "2011-076F",
+      "2014-016A",
+      "2019-038D"
+    ],
+    "disaster:resolution_class": [
+      "HR",
+      "VHR",
+      "MR"
+    ],
+    "processing:level": [
+      "L2B"
+    ],
+    "processing:lineage": [
+      "Optical Calibration",
+      "SAR Calibration"
+    ],
+    "proj:epsg": [
+      32601,
+      16101,
+      32701
+    ],
+    "processing:facility": [
+      "Charter ADES"
+    ],
+    "view:off_nadir": {
+      "minimum": 0,
+      "maximum": 45.53632736206055
+    },
+    "view:incidence_angle": {
+      "minimum": 0,
+      "maximum": 51.397804913561565
+    },
+    "sar:instrument_mode": [
+      "SM",
+      "ST",
+      "IW",
+      "HS"
+    ],
+    "sar:frequency_band": [
+      "L",
+      "X",
+      "C"
+    ],
+    "sar:polarizations": [
+      "VV",
+      "VH",
+      "HH",
+      "HV"
+    ],
+    "sar:product_type": [
+      "GTC",
+      "GRD",
+      "EEC",
+      "GEC"
+    ],
+    "sar:observation_direction": [
+      "right",
+      "left"
+    ],
+    "sar:center_frequency": {
+      "minimum": 9.66,
+      "maximum": 9649999344
+    },
+    "sar:pixel_spacing_range": {
+      "minimum": 1.125,
+      "maximum": 9.08240921162708
+    },
+    "sar:pixel_spacing_azimuth": {
+      "minimum": 1.125,
+      "maximum": 9.1985491656046
+    },
+    "sar:looks_equivalent_number": {
+      "minimum": 1,
+      "maximum": 3
+    },
+    "sar:resolution_range": {
+      "minimum": 2.4180666359930525,
+      "maximum": 10
+    },
+    "sar:resolution_azimuth": {
+      "minimum": 2.446691180765021,
+      "maximum": 10
+    },
+    "eo:cloud_cover": {
+      "minimum": 0,
+      "maximum": 37.54
+    },
+    "view:sun_azimuth": {
+      "minimum": 33.11581450155,
+      "maximum": 348.4937
+    },
+    "view:sun_elevation": {
+      "minimum": 20.8557,
+      "maximum": 79.02138750971
+    },
+    "view:azimuth": {
+      "minimum": 8.26242661019,
+      "maximum": 334.102472217
+    },
+    "sar:looks_range": {
+      "minimum": 1,
+      "maximum": 1
+    },
+    "sar:looks_azimuth": {
+      "minimum": 1,
+      "maximum": 1
+    },
+    "sat:anx_datetime": {
+      "minimum": "2022-01-03T16:13:42.770448Z",
+      "maximum": "2022-01-27T16:13:41.834813Z"
+    }
+  },
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -177.757,
+          -22.7535,
+          185.6569443994402,
+          -5.427413062105865
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2011-03-22T06:03:51.979Z",
+          "2022-02-03T02:59:19.024Z"
+        ]
+      ]
+    }
+  },
+  "keywords": [
+    "disaster",
+    "call",
+    "855"
+  ],
+  "description": "Collection of Acquisitions as Calibrated datasets for call 855",
+  "license": "CC-BY-SA",
+  "disaster:class": "acquisition",
+  "disaster:call_ids": [
+    855
+  ]
+}

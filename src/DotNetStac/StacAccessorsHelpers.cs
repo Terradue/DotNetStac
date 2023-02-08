@@ -4,8 +4,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Common;
 
@@ -117,10 +120,79 @@ namespace Stac
 
             if (t.GetTypeInfo().IsEnum)
             {
-                return (T)Enum.Parse(t, @object.ToString());
+                return (T)LazyEnumParse(t, @object.ToString());
             }
 
             return ChangeType<T>(@object);
+        }
+
+        /// <summary>
+        /// Parse an enum value from a string with a fallback to the many attributes that can be used to define an enum value
+        /// </summary>
+        /// <param name="t">the enum type</param>
+        /// <param name="value">the string value</param>
+        /// <returns>the enum value</returns>
+        public static object LazyEnumParse(Type t, string value)
+        {
+            // First try with the default Enum.Parse
+            try
+            {
+                return Enum.Parse(t, value);
+            }
+            catch
+            {
+            }
+
+            // Then try each enum value
+            foreach (object enumValue in Enum.GetValues(t))
+            {
+                string[] possibleValues = enumValue.ToStringByAttributes();
+                if (possibleValues.Contains(value, StringComparer.InvariantCulture))
+                {
+                    return Enum.Parse(t, enumValue.ToString());
+                }
+            }
+
+            throw new ArgumentException($"Could not parse {value} to {t.Name}");
+        }
+
+        /// <summary>
+        /// Get the string value of an enum value
+        /// </summary>
+        /// <param name="value">the enum value</param>
+        /// <returns>the string value</returns>
+        public static string[] ToStringByAttributes(this object value)
+        {
+            List<string> values = new List<string>();
+
+            var field = value
+                .GetType()
+                .GetField(value.ToString());
+
+            if (field == null)
+            {
+                return values.ToArray();
+            }
+
+            var enumMemberAttribute = GetEnumMemberAttribute(field);
+            if (enumMemberAttribute != null)
+            {
+                values.Add(enumMemberAttribute.Value ?? string.Empty);
+            }
+
+            var descriptionAttribute = GetDescriptionAttribute(field);
+            if (descriptionAttribute != null)
+            {
+                values.Add(descriptionAttribute.Description ?? string.Empty);
+            }
+
+            var jsonPropertyAttribute = GetJsonPropertyAttribute(field);
+            if (jsonPropertyAttribute != null)
+            {
+                values.Add(jsonPropertyAttribute.PropertyName ?? string.Empty);
+            }
+
+            return values.ToArray();
         }
 
         /// <summary>
@@ -160,6 +232,12 @@ namespace Stac
         public static T ChangeType<T>(object value)
         {
             var t = typeof(T);
+
+            // if the value is assignable to the type, just return it
+            if (t.IsAssignableFrom(value.GetType()))
+            {
+                return (T)value;
+            }
 
             if (t.IsGenericType && t.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
             {
@@ -293,6 +371,30 @@ namespace Stac
                 collection.Add(item);
                 collection.AddRange(temp.Skip(index));
             }
+        }
+
+        private static DescriptionAttribute GetDescriptionAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(DescriptionAttribute), false)
+                .OfType<DescriptionAttribute>()
+                .SingleOrDefault();
+        }
+
+        private static EnumMemberAttribute GetEnumMemberAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(EnumMemberAttribute), false)
+                .OfType<EnumMemberAttribute>()
+                .SingleOrDefault();
+        }
+
+        private static JsonPropertyAttribute GetJsonPropertyAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(JsonPropertyAttribute), false)
+                .OfType<JsonPropertyAttribute>()
+                .SingleOrDefault();
         }
     }
 }

@@ -1,5 +1,6 @@
 {
     "dotnet-test-explorer.testProjectPath": "**/*Test.@(csproj|vbproj|fsproj)",
+	"coverage-gutters.coverageFileNames": ["TestResults/**/coverage.cobertura.xml"],
     "python.pythonPath": "/bin/python3",
     "psi-header.variables": [
 		["projectCreationYear", "2020"]

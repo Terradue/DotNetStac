@@ -1,0 +1,87 @@
+{
+  "stac_version": "1.0.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/version/v1.0.0/schema.json",
+    "https://terradue.github.io/stac-extensions-disaster/v1.0.0/schema.json"
+  ],
+  "type": "Feature",
+  "id": "act-744",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -174.79535482142856,
+      -20.4567
+    ]
+  },
+  "properties": {
+    "disaster:class": "activation",
+    "updated": "2022-01-21T14:17:02.2390396Z",
+    "title": "[Act-744/Call-855] Volcanic eruption in Tonga and the Pacific",
+    "disaster:activation_id": 744,
+    "disaster:call_ids": [
+      855
+    ],
+    "disaster:types": [
+      "other",
+      "volcano"
+    ],
+    "disaster:regions": [
+      "Tonga"
+    ],
+    "disaster:country": "TON",
+    "disaster:activation_status": "open",
+    "datetime": "2022-01-15T15:35:00Z",
+    "created": "2022-01-15T15:35:00Z",
+    "description": "![](\"https://store.terradue.com/api/cos2/various/icons/other.png\")        \n\n## [Act-744/Call-855] Volcanic eruption in Tonga and the Pacific\n\n**15/01/2022 15:35:00**\n\n[Link on disasterscharter.org](https://disasterscharter.org/web/guest/activations/-/article/ocean-wave-in-tonga-activation-744-)\n\n                \n\n An underwater volcano in the South Pacific erupted violently causing tsunamis to hit Hawaii, Japan, and Tonga's largest island, Tongatapu sending waves flooding into the capital.\n\n\n\n The Hunga-Tonga-Hunga-Ha'apai volcano, about 30 kilometers (18.6 miles) southeast of Tonga's Fonuafo'ou island, first erupted on Friday 14 Janurary and a second time on Saturday 15 January around 5:26 p.m. local time, according to media reports. The eruptions sent a plume of ash, gas and steam 20 kilometers (12.4 miles) into the air, \n\n\n\n Satellite imagery showed a massive ash cloud and shockwaves spreading from the eruption. Ash was falling from the sky in the Tonga capital, Nuku'alofa, Saturday evening and phone connections were down. The eruption was likely the biggest recorded anywhere on the planet in more than 30 years, according to experts.\n\n\n\n **Related News and Resources**\n\n\n\n* [View UNITAR webmap for the Tonga Volcanic eruption](https://experience.arcgis.com/experience/5be5d28e6fe740ae9ea8d940f6ef112b)\n\\t\n* [View EUMETSAT case study on the Hunga Tonga-Hunga Ha'apai eruption](https://www.eumetsat.int/hunga-tonga-hunga-haapai_2022)\n\\t\n* [View ICube-SERTIT pre and post event imagery of the Hunga Tonga-Hunga Ha'apai eruption](https://sertit.unistra.fr/en/news/volcanic-eruption-in-tonga/)\n\n",
+    "version": "28"
+  },
+  "bbox": [
+    -174.79535482142856,
+    -20.4567,
+    -174.79535482142856,
+    -20.4567
+  ],
+  "assets": {
+    "icon": {
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "placemark",
+      "href": "https://store.terradue.com/api/cos2/various/icons/other.png"
+    },
+    "area1": {
+      "type": "application/vnd.google-earth.kml+xml",
+      "roles": [
+        "area",
+        "metadata"
+      ],
+      "title": "Area 1",
+      "href": "https://disasterscharter.org/cos-api/api/kml/cexp/855"
+    }
+  },
+  "links": [
+    {
+      "type": "text/html",
+      "rel": "about",
+      "title": "Disaster Charter Web Page",
+      "href": "https://disasterscharter.org/web/guest/activations/-/article/ocean-wave-in-tonga-activation-744-"
+    },
+    {
+      "type": "text/html",
+      "rel": "area",
+      "title": "AOI1",
+      "href": "area.json"
+    },
+    {
+      "type": "application/geo+json",
+      "rel": "self",
+      "href": "s3://cpe-operations-catalog/activations/act-744/act-744.json"
+    },
+    {
+      "type": "application/json",
+      "rel": "root",
+      "href": "s3://cpe-operations-catalog/catalog.json"
+    }
+  ]
+}
