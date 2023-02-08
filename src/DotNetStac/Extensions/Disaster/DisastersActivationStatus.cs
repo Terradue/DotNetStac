@@ -11,6 +11,7 @@ namespace Stac.Extensions.Disaster
     /// </summary>
     public enum DisastersActivationStatus
     {
+#pragma warning disable SA1602 // Enumeration items should be documented
         /// <summary>
         ///
         /// </summary>
@@ -28,5 +29,6 @@ namespace Stac.Extensions.Disaster
         /// </summary>
         [JsonProperty("archived")]
         Archived,
+#pragma warning restore SA1602 // Enumeration items should be documented
     }
 }

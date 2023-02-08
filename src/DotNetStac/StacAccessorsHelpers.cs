@@ -126,6 +126,12 @@ namespace Stac
             return ChangeType<T>(@object);
         }
 
+        /// <summary>
+        /// Parse an enum value from a string with a fallback to the many attributes that can be used to define an enum value
+        /// </summary>
+        /// <param name="t">the enum type</param>
+        /// <param name="value">the string value</param>
+        /// <returns>the enum value</returns>
         public static object LazyEnumParse(Type t, string value)
         {
             // First try with the default Enum.Parse
@@ -215,30 +221,6 @@ namespace Stac
             }
 
             return observableCollection;
-        }
-
-        private static DescriptionAttribute GetDescriptionAttribute(FieldInfo field)
-        {
-            return field
-                .GetCustomAttributes(typeof(DescriptionAttribute), false)
-                .OfType<DescriptionAttribute>()
-                .SingleOrDefault();
-        }
-
-        private static EnumMemberAttribute GetEnumMemberAttribute(FieldInfo field)
-        {
-            return field
-                .GetCustomAttributes(typeof(EnumMemberAttribute), false)
-                .OfType<EnumMemberAttribute>()
-                .SingleOrDefault();
-        }
-
-        private static JsonPropertyAttribute GetJsonPropertyAttribute(FieldInfo field)
-        {
-            return field
-                .GetCustomAttributes(typeof(JsonPropertyAttribute), false)
-                .OfType<JsonPropertyAttribute>()
-                .SingleOrDefault();
         }
 
         /// <summary>
@@ -383,6 +365,30 @@ namespace Stac
                 collection.Add(item);
                 collection.AddRange(temp.Skip(index));
             }
+        }
+
+        private static DescriptionAttribute GetDescriptionAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(DescriptionAttribute), false)
+                .OfType<DescriptionAttribute>()
+                .SingleOrDefault();
+        }
+
+        private static EnumMemberAttribute GetEnumMemberAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(EnumMemberAttribute), false)
+                .OfType<EnumMemberAttribute>()
+                .SingleOrDefault();
+        }
+
+        private static JsonPropertyAttribute GetJsonPropertyAttribute(FieldInfo field)
+        {
+            return field
+                .GetCustomAttributes(typeof(JsonPropertyAttribute), false)
+                .OfType<JsonPropertyAttribute>()
+                .SingleOrDefault();
         }
     }
 }

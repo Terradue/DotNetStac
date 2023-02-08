@@ -13,6 +13,7 @@ namespace Stac.Extensions.Disaster
     [JsonConverter(typeof(StringEnumConverter))]
     public enum DisastersType
     {
+#pragma warning disable SA1602 // EnumerationItemsMustBeDocumented
         /// <summary>
         /// Earthquakes occur following the release of energy when tectonic plates move apart.
         /// These plates move in currents in the Earth's lithosphere and the edges,
@@ -41,9 +42,9 @@ namespace Stac.Extensions.Disaster
         FloodFlash,
 
         /// <summary>
-        // Ice on the surface of water or in compacted snow makes for treacherous conditions and can result in injuries if people slip and fall.
-        // Water sources may freeze, cutting off access for residents to clean water or heat.
-        // </summary>
+        /// Ice on the surface of water or in compacted snow makes for treacherous conditions and can result in injuries if people slip and fall.
+        /// Water sources may freeze, cutting off access for residents to clean water or heat.
+        /// </summary>
         [JsonProperty("ice")]
         Ice,
 
@@ -100,5 +101,6 @@ namespace Stac.Extensions.Disaster
         /// </summary>
         [JsonProperty("other")]
         Other,
+#pragma warning restore SA1602 // EnumerationItemsMustBeDocumented
     }
 }
