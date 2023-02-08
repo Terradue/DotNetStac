@@ -53,5 +53,5 @@ jobs:
       - name: Install dotnet format
         run: dotnet tool update -g dotnet-format
       - name: Check Format
-        run: dotnet format --verify-no-changes --severity error src/
+        run: dotnet format --verify-no-changes --severity warning src/
     
