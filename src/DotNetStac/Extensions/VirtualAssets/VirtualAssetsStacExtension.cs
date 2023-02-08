@@ -8,37 +8,18 @@ using System.Collections.Generic;
 namespace Stac.Extensions.VirtualAssets
 {
     /// <summary>
-    /// Extension methods for accessing EO extension
-    /// </summary>
-    public static class VirtualAssetsStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a VirtualAssetsStacExtension class from a STAC item
-        /// </summary>
-        public static VirtualAssetsStacExtension EoExtension(this StacItem stacItem)
-        {
-            return new VirtualAssetsStacExtension(stacItem);
-        }
-
-        /// <summary>
-        /// Initilize a VirtualAssetsStacExtension class from a STAC collection
-        /// </summary>
-        public static VirtualAssetsStacExtension EoExtension(this StacCollection stacCollection)
-        {
-            return new VirtualAssetsStacExtension(stacCollection);
-        }
-    }
-
-    /// <summary>
-    /// Helper class to access the fields deined by the <seealso href="https://github.com/stac-extensions/eo">EO extension</seealso>
+    /// Helper class to access the fields deined by the <seealso href="https://github.com/stac-extensions/virtual-assets">virtual assets extension</seealso>
     /// </summary>
     public class VirtualAssetsStacExtension : StacPropertiesContainerExtension, IStacExtension
     {
-        // Extension identifier and schema url
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/virtual-assets/v1.0.0/schema.json";
 
+        public const string VirtualAssetsField = "virtual:assets";
+
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+
         private readonly IDictionary<string, Type> _itemFields;
-        private const string VirtualAssetsField = "virtual:assets";
 
         internal VirtualAssetsStacExtension(IStacObject stacObject)
             : base(JsonSchemaUrl, stacObject)
@@ -50,9 +31,6 @@ namespace Stac.Extensions.VirtualAssets
         /// <summary>
         /// Gets or sets virtual Assets
         /// </summary>
-        /// <value>
-        /// Virtual Assets
-        /// </value>
         public IDictionary<string, VirtualAsset> Assets
         {
             get
@@ -67,12 +45,7 @@ namespace Stac.Extensions.VirtualAssets
             }
         }
 
-        /// <summary>
-        /// Gets potential fields and their types
-        /// </summary>
-        /// <value>
-        /// Potential fields and their types
-        /// </value>
+        /// <inheritdoc/>
         public override IDictionary<string, Type> ItemFields => this._itemFields;
     }
 }

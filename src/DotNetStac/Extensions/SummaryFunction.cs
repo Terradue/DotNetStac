@@ -14,6 +14,7 @@ namespace Stac.Extensions
     /// <summary>
     /// Defines a function that creates a summary item from a collection of items.
     /// </summary>
+    /// <typeparam name="T">The type of the items.</typeparam>
     public class SummaryFunction<T> : ISummaryFunction
     {
         private readonly CreateSummary<T> _summaryFunction;
@@ -21,6 +22,9 @@ namespace Stac.Extensions
         /// <summary>
         /// Initializes a new instance of the <see cref="SummaryFunction{T}"/> class.
         /// </summary>
+        /// <param name="extension">The Stac Extension associated to the summary function.</param>
+        /// <param name="propertyName">The PropertyName of the summary function.</param>
+        /// <param name="summaryFunction">The summary function.</param>
         public SummaryFunction(IStacExtension extension, string propertyName, CreateSummary<T> summaryFunction)
         {
             this.Extension = extension;

@@ -13,21 +13,23 @@ namespace Stac.Extensions.Version
     public static class VersionStacExtensionExtensions
     {
         /// <summary>
-        /// Initilize a EoStacExtension class from a STAC item
+        /// Initilize a VersionStacExtension class from a STAC item
         /// </summary>
         /// <param name="stacItem">The STAC item</param>
+        /// <returns>The VersionStacExtension class</returns>
         public static VersionStacExtension VersionExtension(this StacItem stacItem)
         {
             return new VersionStacExtension(stacItem);
         }
 
         /// <summary>
-        /// Initilize a EoStacExtension class from a STAC collection
+        /// Initilize a VersionStacExtension class from a STAC collection
         /// </summary>
-        /// <param name="stacItem"></param>
-        public static VersionStacExtension VersionExtension(this StacCollection stacItem)
+        /// <param name="stacCollection">The STAC collection</param>
+        /// <returns>The VersionStacExtension class</returns>
+        public static VersionStacExtension VersionExtension(this StacCollection stacCollection)
         {
-            return new VersionStacExtension(stacItem);
+            return new VersionStacExtension(stacCollection);
         }
 
         /// <summary>

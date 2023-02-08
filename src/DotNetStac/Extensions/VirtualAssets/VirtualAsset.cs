@@ -17,6 +17,8 @@ namespace Stac.Extensions.VirtualAssets
         /// <summary>
         /// Initializes a new instance of the <see cref="VirtualAsset"/> class.
         /// </summary>
+        /// <param name="stacObject">The stac object.</param>
+        /// <param name="uris">The uris.</param>
         public VirtualAsset(IStacObject stacObject, IList<Uri> uris)
             : base(stacObject, null)
         {
@@ -26,18 +28,12 @@ namespace Stac.Extensions.VirtualAssets
         /// <summary>
         /// Gets array of URIs to the assets object composing the virtual asset. Relative and absolute URI are both allowed
         /// </summary>
-        /// <value>
-        /// Array of URIs to the assets object composing the virtual asset. Relative and absolute URI are both allowed
-        /// </value>
         [JsonProperty("href")]
         public IList<Uri> Uris { get; private set; }
 
         /// <summary>
         /// Gets or sets do not use
         /// </summary>
-        /// <value>
-        /// Do not use
-        /// </value>
         [JsonIgnore]
         public new Uri Uri
         {
@@ -51,6 +47,7 @@ namespace Stac.Extensions.VirtualAssets
         /// <param name="stacItem">Stac Item to reference the assets from</param>
         /// <param name="assetsKey">keys of the assets to be referenced</param>
         /// <param name="newStacObject">new stac object container of the virtuals assets. If not specified, the stacItem is used</param>
+        /// <returns>Virtual Asset</returns>
         public static VirtualAsset Create(StacItem stacItem, IList<string> assetsKey, IStacObject newStacObject = null)
         {
             IStacObject parentObject = newStacObject ?? stacItem;
@@ -59,5 +56,6 @@ namespace Stac.Extensions.VirtualAssets
 
 #pragma warning disable 1591
         public bool ShouldSerializeUri() => false;
+#pragma warning restore 1591
     }
 }

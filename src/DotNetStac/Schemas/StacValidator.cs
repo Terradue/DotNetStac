@@ -14,6 +14,9 @@ using Stac.Exceptions;
 
 namespace Stac.Schemas
 {
+    /// <summary>
+    /// Stac Validator.
+    /// </summary>
     public class StacValidator
     {
         private readonly StacSchemaResolver _schemaResolver = null;
@@ -23,10 +26,10 @@ namespace Stac.Schemas
         /// <summary>
         /// Initializes a new instance of the <see cref="StacValidator"/> class.
         /// </summary>
-        /// <param name="jSchemaUrlResolver"></param>
-        public StacValidator(JSchemaUrlResolver jSchemaUrlResolver)
+        /// <param name="jsonSchemaUrlResolver">Json schema resolver.</param>
+        public StacValidator(JSchemaUrlResolver jsonSchemaUrlResolver)
         {
-            this._schemaResolver = new StacSchemaResolver(jSchemaUrlResolver);
+            this._schemaResolver = new StacSchemaResolver(jsonSchemaUrlResolver);
             this._stacTypes.Add(typeof(StacItem), "item");
             this._stacTypes.Add(typeof(StacCatalog), "catalog");
             this._stacTypes.Add(typeof(StacCollection), "collection");

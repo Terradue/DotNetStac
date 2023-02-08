@@ -11,8 +11,14 @@ namespace Stac
     /// </summary>
     public interface IStacPropertiesContainer
     {
+        /// <summary>
+        /// Gets the properties.
+        /// </summary>
         IDictionary<string, object> Properties { get; }
 
+        /// <summary>
+        /// Gets the StacObjectContainer.
+        /// </summary>
         IStacObject StacObjectContainer { get; }
     }
 }

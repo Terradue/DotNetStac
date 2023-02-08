@@ -8,6 +8,14 @@ using Newtonsoft.Json.Linq;
 namespace Stac.Collection
 {
     /// <summary>
+    /// Delegate for creating a summary item
+    /// </summary>
+    /// <param name="arg">The argument.</param>
+    /// <typeparam name="T">The type of the argument</typeparam>
+    /// <returns>The summary item</returns>
+    public delegate IStacSummaryItem CreateSummary<T>(IEnumerable<T> arg);
+
+    /// <summary>
     /// Provides the summary item interface for Collections
     /// </summary>
     public interface IStacSummaryItem : IEnumerable<JToken>

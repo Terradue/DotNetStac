@@ -11,34 +11,74 @@ using Stac.Common;
 
 namespace Stac
 {
+    /// <summary>
+    /// Helper class for accessing properties in Stac objects
+    /// </summary>
     public static class StacAccessorsHelpers
     {
+        /// <summary>
+        /// Sets the property.
+        /// </summary>
+        /// <param name="stacObject">The stac object.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public static void SetProperty(this IStacObject stacObject, string key, object value)
         {
             stacObject.Properties.SetProperty(key, value);
         }
 
+        /// <summary>
+        /// Sets the property.
+        /// </summary>
+        /// <param name="stacPropertiesContainer">The stac properties container.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public static void SetProperty(this IStacPropertiesContainer stacPropertiesContainer, string key, object value)
         {
             stacPropertiesContainer.Properties.SetProperty(key, value);
         }
 
+        /// <summary>
+        /// Sets the property.
+        /// </summary>
+        /// <param name="properties">The properties dictionary.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public static void SetProperty(this IDictionary<string, object> properties, string key, object value)
         {
             properties.Remove(key);
             properties.Add(key, value);
         }
 
+        /// <summary>
+        /// Gets the property.
+        /// </summary>
+        /// <param name="propertiesContainer">The stac properties container.</param>
+        /// <param name="key">The key.</param>
+        /// <returns>the property value</returns>
         public static object GetProperty(this IStacPropertiesContainer propertiesContainer, string key)
         {
             return propertiesContainer.Properties.GetProperty(key);
         }
 
+        /// <summary>
+        /// Gets the property.
+        /// </summary>
+        /// <typeparam name="T">the type of the property</typeparam>
+        /// <param name="propertiesContainer"></param>
+        /// <param name="key">The key.</param>
+        /// <returns>the property value</returns>
         public static T GetProperty<T>(this IStacPropertiesContainer propertiesContainer, string key)
         {
             return propertiesContainer.Properties.GetProperty<T>(key);
         }
 
+        /// <summary>
+        /// Gets the property.
+        /// </summary>
+        /// <param name="properties">The properties dictionary.</param>
+        /// <param name="key">The key.</param>
+        /// <returns>the property value</returns>
         public static object GetProperty(this IDictionary<string, object> properties, string key)
         {
             if (!properties.ContainsKey(key))
@@ -49,6 +89,13 @@ namespace Stac
             return properties[key];
         }
 
+        /// <summary>
+        /// Gets the property.
+        /// </summary>
+        /// <typeparam name="T">the type of the property</typeparam>
+        /// <param name="properties">The properties dictionary.</param>
+        /// <param name="key">The key.</param>
+        /// <returns>the property value</returns>
         public static T GetProperty<T>(this IDictionary<string, object> properties, string key)
         {
             var @object = GetProperty(properties, key);
@@ -76,6 +123,13 @@ namespace Stac
             return ChangeType<T>(@object);
         }
 
+        /// <summary>
+        /// Gets the property as an observable collection.
+        /// </summary>
+        /// <typeparam name="T">the type of the property</typeparam>
+        /// <param name="propertiesContainer">The properties container.</param>
+        /// <param name="key">The key.</param>
+        /// <returns>the property collection</returns>
         public static PropertyObservableCollection<T> GetObservableCollectionProperty<T>(this IStacPropertiesContainer propertiesContainer, string key)
         {
             List<T> array = new List<T>();
@@ -97,6 +151,12 @@ namespace Stac
             return observableCollection;
         }
 
+        /// <summary>
+        /// Changes the type.
+        /// </summary>
+        /// <typeparam name="T">the type of the property</typeparam>
+        /// <param name="value">The value.</param>
+        /// <returns>the changed type value</returns>
         public static T ChangeType<T>(object value)
         {
             var t = typeof(T);
@@ -114,21 +174,41 @@ namespace Stac
             return (T)Convert.ChangeType(value, t);
         }
 
+        /// <summary>
+        /// Removes the property.
+        /// </summary>
+        /// <param name="propertiesContainer"></param>
+        /// <param name="key">The key.</param>
         public static void RemoveProperty(this IStacPropertiesContainer propertiesContainer, string key)
         {
             propertiesContainer.Properties.RemoveProperty(key);
         }
 
+        /// <summary>
+        /// Removes the property.
+        /// </summary>
+        /// <param name="properties">The properties dictionary.</param>
+        /// <param name="key">The key.</param>
         public static void RemoveProperty(this IDictionary<string, object> properties, string key)
         {
             properties.Remove(key);
         }
 
+        /// <summary>
+        /// Gets the children links.
+        /// </summary>
+        /// <param name="stacCatalog">The stac parent.</param>
+        /// <returns>the children links</returns>
         public static IEnumerable<StacLink> GetChildrenLinks(this IStacParent stacCatalog)
         {
             return stacCatalog.Links.Where(l => l.RelationshipType == "child");
         }
 
+        /// <summary>
+        /// Gets the item links.
+        /// </summary>
+        /// <param name="stacCatalog">The stac parent.</param>
+        /// <returns>the item links</returns>
         public static IEnumerable<StacLink> GetItemLinks(this IStacParent stacCatalog)
         {
             return stacCatalog.Links.Where(l => l.RelationshipType == "item");
@@ -164,6 +244,12 @@ namespace Stac
             return stacItem.Links.FirstOrDefault(l => l.RelationshipType == "collection");
         }
 
+        /// <summary>
+        /// Adds a range of items to the collection.
+        /// </summary>
+        /// <typeparam name="T">the type of the collection</typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="items">The items.</param>
         public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
             if (collection is List<T> list)
@@ -179,6 +265,13 @@ namespace Stac
             }
         }
 
+        /// <summary>
+        /// Inserts the item at the specified index in the collection.
+        /// </summary>
+        /// <typeparam name="T">the type of the collection</typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="index">The index.</param>
+        /// <param name="item">The item.</param>
         public static void Insert<T>(this ICollection<T> collection, int index, T item)
         {
             if (index < 0 || index > collection.Count)

@@ -15,6 +15,16 @@ namespace Stac.Extensions.View
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/view/v1.0.0/schema.json";
 
+        public const string OffNadirField = "view:off_nadir";
+
+        public const string IncidenceAngleField = "view:incidence_angle";
+
+        public const string AzimuthField = "view:azimuth";
+
+        public const string SunAzimuthField = "view:sun_azimuth";
+
+        public const string SunElevationField = "view:sun_elevation";
+
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         private readonly Dictionary<string, Type> _itemFields;
@@ -33,16 +43,6 @@ namespace Stac.Extensions.View
             this._itemFields.Add(SunAzimuthField, typeof(double));
             this._itemFields.Add(SunElevationField, typeof(double));
         }
-
-        public static string OffNadirField => "view:off_nadir";
-
-        public static string IncidenceAngleField => "view:incidence_angle";
-
-        public static string AzimuthField => "view:azimuth";
-
-        public static string SunAzimuthField => "view:sun_azimuth";
-
-        public static string SunElevationField => "view:sun_elevation";
 
         /// <summary>
         /// Gets or sets the off nadir angle.

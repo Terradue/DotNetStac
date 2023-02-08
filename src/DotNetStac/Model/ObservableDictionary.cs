@@ -39,7 +39,7 @@ namespace Stac.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ObservableDictionary{TKey, TValue}"/> class.
         /// </summary>
-        /// <param name="init"></param>
+        /// <param name="init">The initial dictionary.</param>
         public ObservableDictionary(IDictionary<TKey, TValue> init)
             : this()
         {
@@ -82,8 +82,6 @@ namespace Stac.Model
             set => this.UpdateWithNotification(key, value);
         }
 
-        // ICollection<KeyValuePair<TKey,TValue>> Members
-
         void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
             => this.TryAddWithNotification(item);
 
@@ -101,8 +99,6 @@ namespace Stac.Model
 
         bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
             => this.TryRemoveWithNotification(item.Key, out TValue temp);
-
-        // IEnumerable<KeyValuePair<TKey,TValue>> Members
 
         IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
             => this._dictionary.GetEnumerator();
@@ -234,7 +230,6 @@ namespace Stac.Model
         /// <summary>Attempts to add or update an item in the dictionary, notifying observers of any changes.</summary>
         /// <param name="key">The key of the item to be updated.</param>
         /// <param name="value">The new value to set for the item.</param>
-        /// <returns>Whether the update was successful.</returns>
         private void UpdateWithNotification(TKey key, TValue value)
         {
             this._dictionary[key] = value;

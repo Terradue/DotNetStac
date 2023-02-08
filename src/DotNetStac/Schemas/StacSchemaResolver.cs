@@ -9,25 +9,34 @@ using Newtonsoft.Json.Schema;
 
 namespace Stac.Schemas
 {
+    /// <summary>
+    /// Stac Schema Resolver.
+    /// </summary>
     public class StacSchemaResolver
     {
-        public static string[] CoreTypes = new string[] { "item", "catalog", "collection" };
+        /// <summary>
+        /// Core types.
+        /// </summary>
+        public static readonly string[] CoreTypes = new string[] { "item", "catalog", "collection" };
 
         private static readonly IDictionary<string, Uri> SchemaMap = new Dictionary<string, Uri>();
 
-        private readonly JSchemaResolver _jSchemaResolver;
+        private readonly JSchemaResolver _jsonSchemaResolver;
         private readonly IDictionary<string, JSchema> _schemaCompiled;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StacSchemaResolver"/> class.
         /// </summary>
-        /// <param name="jSchemaResolver"></param>
-        public StacSchemaResolver(JSchemaResolver jSchemaResolver)
+        /// <param name="jsonSchemaResolver">Json schema resolver.</param>
+        public StacSchemaResolver(JSchemaResolver jsonSchemaResolver)
         {
-            this._jSchemaResolver = jSchemaResolver;
+            this._jsonSchemaResolver = jsonSchemaResolver;
             this._schemaCompiled = new Dictionary<string, JSchema>();
         }
 
+        /// <summary>
+        /// Loads the schema from url or shortcut.
+        /// </summary>
         public JSchema LoadSchema(string baseUrl = null, string version = null, string shortcut = null)
         {
             string vversion = string.IsNullOrEmpty(version) ? "unversioned" : "v" + version;
@@ -75,7 +84,7 @@ namespace Stac.Schemas
                 Stream stream = null;
                 try
                 {
-                    stream = this._jSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
+                    stream = this._jsonSchemaResolver.GetSchemaResource(null, new SchemaReference() { BaseUri = schemaUri });
                 }
                 catch (Exception e)
                 {
@@ -83,7 +92,7 @@ namespace Stac.Schemas
                 }
 
                 var sr = new StreamReader(stream);
-                this._schemaCompiled[schemaUri.ToString()] = JSchema.Parse(sr.ReadToEnd(), this._jSchemaResolver);
+                this._schemaCompiled[schemaUri.ToString()] = JSchema.Parse(sr.ReadToEnd(), this._jsonSchemaResolver);
                 return this._schemaCompiled[schemaUri.ToString()];
             }
         }

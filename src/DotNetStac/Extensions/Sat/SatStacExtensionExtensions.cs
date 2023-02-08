@@ -13,6 +13,7 @@ namespace Stac.Extensions.Sat
         /// Gets the SatStacExtension from the StacItem.
         /// </summary>
         /// <param name="stacItem">The StacItem.</param>
+        /// <returns>The SatStacExtension.</returns>
         public static SatStacExtension SatExtension(this StacItem stacItem)
         {
             return new SatStacExtension(stacItem);

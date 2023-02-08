@@ -30,9 +30,6 @@ namespace Stac.Extensions.Sat
         /// Gets the perpendicular component.
         /// </summary>
         /// <returns>The perpendicular component.</returns>
-        /// <value>
-        /// The perpendicular component.
-        /// </value>
         public double Perpendicular
         {
             get { return this._perpendicular; }
@@ -42,9 +39,6 @@ namespace Stac.Extensions.Sat
         /// Gets the parallel component.
         /// </summary>
         /// <returns>The parallel component.</returns>
-        /// <value>
-        /// The parallel component.
-        /// </value>
         public double Parallel
         {
             get { return this._parallel; }
@@ -54,9 +48,6 @@ namespace Stac.Extensions.Sat
         /// Gets the along component.
         /// </summary>
         /// <returns>The along component.</returns>
-        /// <value>
-        /// The along component.
-        /// </value>
         public double Along
         {
             get { return this._along; }

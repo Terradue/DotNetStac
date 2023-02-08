@@ -22,18 +22,20 @@ namespace Stac
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore, MissingMemberHandling = MissingMemberHandling.Ignore, MemberSerialization = MemberSerialization.OptIn)]
     public partial class StacCollection : IStacObject, IStacParent, IStacCatalog, ICloneable
     {
+        /// <summary>
+        /// Media type for STAC Collection
+        /// </summary>
         public const string MEDIATYPE = "application/json";
-        public static readonly ContentType COLLECTION_MEDIATYPE = new ContentType(MEDIATYPE);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StacCollection"/> class.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="description"></param>
-        /// <param name="extent"></param>
-        /// <param name="assets"></param>
-        /// <param name="links"></param>
-        /// <param name="license"></param>
+        /// <param name="id">Identifier of the collection</param>
+        /// <param name="description">Description of the collection</param>
+        /// <param name="extent">Extent of the collection</param>
+        /// <param name="assets">Assets of the collection</param>
+        /// <param name="links">Links of the collection</param>
+        /// <param name="license">License of the collection</param>
         [JsonConstructor]
         public StacCollection(
             string id,
@@ -94,18 +96,12 @@ namespace Stac
         /// <summary>
         /// Gets identifier for the Collection.
         /// </summary>
-        /// <value>
-        /// Identifier for the Collection.
-        /// </value>
         [JsonProperty("id")]
         public string Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the STAC version the Collection implements
         /// </summary>
-        /// <value>
-        /// The STAC version the Collection implements
-        /// </value>
         [JsonProperty("stac_version")]
         [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
@@ -113,18 +109,12 @@ namespace Stac
         /// <summary>
         /// Gets a list of extension identifiers the Collection implements
         /// </summary>
-        /// <value>
-        /// A list of extension identifiers the Collection implements
-        /// </value>
         [JsonProperty("stac_extensions")]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
         /// Gets a list of references to other documents.
         /// </summary>
-        /// <value>
-        /// A list of references to other documents.
-        /// </value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links")]
         public ICollection<StacLink> Links
@@ -134,23 +124,17 @@ namespace Stac
 
         /// <inheritdoc/>
         [JsonIgnore]
-        public ContentType MediaType => COLLECTION_MEDIATYPE;
+        public ContentType MediaType => new ContentType(MEDIATYPE);
 
         /// <summary>
         /// Gets sTAC type (Collection)
         /// </summary>
-        /// <value>
-        /// STAC type (Collection)
-        /// </value>
         [JsonProperty("type")]
         public virtual string Type => "Collection";
 
         /// <summary>
         /// Gets a map of property summaries, either a set of values or statistics such as a range.
         /// </summary>
-        /// <value>
-        /// A map of property summaries, either a set of values or statistics such as a range.
-        /// </value>
         [JsonProperty("summaries")]
         [JsonConverter(typeof(StacSummariesConverter))]
         public Dictionary<string, IStacSummaryItem> Summaries { get; internal set; }
@@ -158,30 +142,24 @@ namespace Stac
         /// <summary>
         /// Gets collection extended data
         /// </summary>
-        /// <value>
-        /// Collection extended data
-        /// </value>
         [JsonExtensionData]
         public IDictionary<string, object> Properties { get; internal set; }
 
         /// <summary>
         /// Gets spatial and temporal extents.
         /// </summary>
-        /// <value>
-        /// Spatial and temporal extents.
-        /// </value>
         [JsonProperty("extent")]
         public StacExtent Extent { get; internal set; }
 
         /// <summary>
         /// Gets list of keywords describing the Collection.
         /// </summary>
-        /// <value>
-        /// List of keywords describing the Collection.
-        /// </value>
         [JsonProperty("keywords", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Collection<string> Keywords { get; internal set; }
 
+        /// <summary>
+        /// Gets the asset objects that are available for this collection.
+        /// </summary>
         [JsonProperty("assets")]
         public IDictionary<string, StacAsset> Assets { get; internal set; }
 
@@ -200,6 +178,7 @@ namespace Stac
         /// <param name="license">License of the collection</param>
         /// <param name="collectionUri">Uri of the collection. If provided, the items Uri and made relative to this one.</param>
         /// <param name="assets">Assets of the collection</param>
+        /// <returns>StacCollection</returns>
         public static StacCollection Create(
             string id,
             string description,
@@ -269,20 +248,23 @@ namespace Stac
             return this.Summaries.Count > 0;
         }
 
-#pragma warning disable 1591
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager
             return this.StacExtensions.Count > 0;
         }
 
-#pragma warning disable 1591
         public bool ShouldSerializeAssets()
         {
             // don't serialize the Manager property if an employee is their own manager
             return this.Assets.Count > 0;
         }
+#pragma warning restore 1591
 
+        /// <summary>
+        /// Update the collection with new items.
+        /// </summary>
+        /// <param name="items">Dictionary of Uri, StacItem. Uri points to the StacItem destination.</param>
         public void Update(IDictionary<Uri, StacItem> items)
         {
             this.Extent.Update(items.Values);

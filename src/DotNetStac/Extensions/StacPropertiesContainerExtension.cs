@@ -66,6 +66,8 @@ namespace Stac.Extensions
         /// Generic method to summarize in a range any ordinal object
         /// </summary>
         /// <param name="arg">ordinal object</param>
+        /// <typeparam name="T">Type of the object</typeparam>
+        /// <returns>Range summary object</returns>
         public static IStacSummaryItem CreateRangeSummaryObject<T>(IEnumerable<T> arg)
         {
             return new StacSummaryRangeObject<object>(arg.Min(), arg.Max());
@@ -74,7 +76,9 @@ namespace Stac.Extensions
         /// <summary>
         /// Generic method to summarize in a value set an array of object
         /// </summary>
-        /// <param name="arg"></param>
+        /// <param name="arg">array of object</param>
+        /// <typeparam name="T">Type of the object</typeparam>
+        /// <returns>Value set summary object</returns>
         public static StacSummaryValueSet<T> CreateSummaryValueSet<T>(IEnumerable<T> arg)
         {
             return new StacSummaryValueSet<T>(arg.Distinct());
@@ -127,12 +131,21 @@ namespace Stac.Extensions
             return summaryFunctions;
         }
 
+        /// <summary>
+        /// Set a property in the container
+        /// </summary>
+        /// <param name="key">Key of the property</param>
+        /// <param name="value">Value of the property</param>
         public void SetProperty(string key, object value)
         {
             this.SetProperty(key, value);
             this.DeclareStacExtension();
         }
 
+        /// <summary>
+        /// Remove a property in the container
+        /// </summary>
+        /// <param name="key">Key of the property</param>
         public void RemoveProperty(string key)
         {
             this.RemoveProperty(key);
@@ -175,5 +188,3 @@ namespace Stac.Extensions
         }
     }
 }
-
-public delegate IStacSummaryItem CreateSummary<T>(IEnumerable<T> arg);

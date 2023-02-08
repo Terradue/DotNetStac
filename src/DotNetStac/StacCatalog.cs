@@ -25,11 +25,6 @@ namespace Stac
         public const string MEDIATYPE = "application/json";
 
         /// <summary>
-        /// Catalog Media-Type Object
-        /// </summary>
-        public static readonly ContentType CATALOG_MEDIATYPE = new ContentType(MEDIATYPE);
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="StacCatalog"/> class.
         /// </summary>
         /// <param name="id">required identifier of the catalog</param>
@@ -113,7 +108,7 @@ namespace Stac
 
         /// <inheritdoc/>
         [JsonIgnore]
-        public ContentType MediaType => CATALOG_MEDIATYPE;
+        public ContentType MediaType => new ContentType(MEDIATYPE);
 
         /// <summary>
         /// Gets sTAC type (Catalog)

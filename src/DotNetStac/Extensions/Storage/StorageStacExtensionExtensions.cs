@@ -10,18 +10,20 @@ namespace Stac.Extensions.Storage
     public static class StorageStacExtensionExtensions
     {
         /// <summary>
-        /// Initilize a StorageStacExtension class from a STAC Asset
+        /// Get StorageStacExtension class from a STAC Asset
         /// </summary>
         /// <param name="stacAsset">The STAC Asset</param>
+        /// <returns>The StorageStacExtension class</returns>
         public static StorageStacExtension StorageExtension(this StacAsset stacAsset)
         {
             return new StorageStacExtension(stacAsset);
         }
 
         /// <summary>
-        /// Initilize a StorageStacExtension class from a STAC Item
+        /// Get StorageStacExtension class from a STAC Item
         /// </summary>
         /// <param name="stacItem">The STAC Item</param>
+        /// <returns>The StorageStacExtension class</returns>
         public static StorageStacExtension StorageExtension(this StacItem stacItem)
         {
             return new StorageStacExtension(stacItem);
