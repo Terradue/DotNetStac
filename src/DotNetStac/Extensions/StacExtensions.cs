@@ -59,6 +59,7 @@ namespace Stac.Extensions
                 ManagedStacExtensionsDic.Add("sat", typeof(Sat.SatStacExtension));
                 ManagedStacExtensionsDic.Add(View.ViewStacExtension.JsonSchemaUrl, typeof(View.ViewStacExtension));
                 ManagedStacExtensionsDic.Add("view", typeof(View.ViewStacExtension));
+                ManagedStacExtensionsDic.Add(Disaster.DisastersCharterStacExtension.JsonSchemaUrl, typeof(Disaster.DisastersCharterStacExtension));
             }
         }
 

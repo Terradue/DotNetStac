@@ -233,6 +233,12 @@ namespace Stac
         {
             var t = typeof(T);
 
+            // if the value is assignable to the type, just return it
+            if (t.IsAssignableFrom(value.GetType()))
+            {
+                return (T)value;
+            }
+
             if (t.IsGenericType && t.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
             {
                 if (value == null)
