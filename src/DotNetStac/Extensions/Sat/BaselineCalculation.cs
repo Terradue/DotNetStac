@@ -127,8 +127,8 @@ namespace Stac.Extensions.Sat
             // double maxError;
             double t = time[2].Subtract(time[0]).TotalSeconds;
 
-            //double tm = SynchronizeVector(t, groundPoint, interpolMaster, out converged, out maxError);
-            //double ts = SynchronizeVector(t, groundPoint, interpolSlave, out converged, out maxError);
+            // double tm = SynchronizeVector(t, groundPoint, interpolMaster, out converged, out maxError);
+            // double ts = SynchronizeVector(t, groundPoint, interpolSlave, out converged, out maxError);
 
             // Define baseline vector:
             double[] b = new double[3]

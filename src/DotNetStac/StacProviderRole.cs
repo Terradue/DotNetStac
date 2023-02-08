@@ -22,7 +22,7 @@ namespace Stac
         // A processor is any provider who processed data to a derived product.
         processor,
 
-        //  The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
+        // The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
         host,
     }
 }

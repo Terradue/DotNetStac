@@ -34,13 +34,19 @@ namespace Stac.Schemas
                 baseUri = new Uri($"https://schemas.stacspec.org/{vversion}/");
             }
             else
+            {
                 baseUri = new Uri(baseUrl);
+            }
 
             Uri schemaUri = null;
             if (shortcut == "item" || shortcut == "catalog" || shortcut == "collection")
+            {
                 schemaUri = new Uri(baseUri, $"{shortcut}-spec/json-schema/{shortcut}.json");
+            }
             else if (shortcut == "item-collection")
+            {
                 return ItemCollection.GenerateJSchema(version);
+            }
             else if (!string.IsNullOrEmpty(shortcut))
             {
                 if (shortcut == "proj")

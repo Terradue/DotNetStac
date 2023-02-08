@@ -87,7 +87,9 @@ namespace Stac.Extensions.Eo
             set
             {
                 if (value == null)
+                {
                     this.StacPropertiesContainer.RemoveProperty(CloudCoverField);
+                }
                 else
                 {
                     this.StacPropertiesContainer.SetProperty(CloudCoverField, value);
@@ -112,7 +114,9 @@ namespace Stac.Extensions.Eo
             set
             {
                 if (value == null || value.Count() == 0)
+                {
                     this.StacPropertiesContainer.RemoveProperty(BandsField);
+                }
                 else
                 {
                     this.StacPropertiesContainer.SetProperty(BandsField, value);

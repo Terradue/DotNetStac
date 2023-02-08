@@ -5,41 +5,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Stac.Extensions.Storage;
 
 namespace Stac.Extensions.Alternate
 {
-    /// <summary>
-    /// Extension methods for accessing Alternate extension
-    /// </summary>
-    public static class AlternateStacExtensionExtensions
-    {
-        /// <summary>
-        /// Initilize a AlternateStacExtension class from a STAC asset
-        /// </summary>
-        public static AlternateStacExtension AlternateExtension(this StacAsset stacAsset)
-        {
-            return new AlternateStacExtension(stacAsset);
-        }
-
-        /// <summary>
-        /// Initilize a AlternateStacExtension class from an alternate asset
-        /// </summary>
-        public static StorageStacExtension StorageExtension(this AlternateAssetObject alternateAssetObject)
-        {
-            return new StorageStacExtension(alternateAssetObject);
-        }
-    }
-
     /// <summary>
     /// Helper class to access the fields defined by the <seealso href="https://github.com/stac-extensions/alternate">Alternate extension</seealso>
     /// </summary>
     public class AlternateStacExtension : StacPropertiesContainerExtension, IStacAssetExtension, IStacExtension
     {
-        // Extension identifier and schema url
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string JsonSchemaUrl = "https://stac-extensions.github.io/alternate-assets/v1.1.0/schema.json";
 
         private const string AlternateField = "alternate";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
         private static IDictionary<string, Type> assetFields;
 
@@ -66,7 +44,9 @@ namespace Stac.Extensions.Alternate
             set
             {
                 if (value == null || value.Count() == 0)
+                {
                     this.StacPropertiesContainer.RemoveProperty(AlternateField);
+                }
                 else
                 {
                     this.StacPropertiesContainer.SetProperty(AlternateField, value);
@@ -93,6 +73,13 @@ namespace Stac.Extensions.Alternate
             return summaryFunctions;
         }
 
+        /// <summary>
+        /// Adds an alternate asset to the AlternateAssets dictionary
+        /// </summary>
+        /// <param name="key">The key of the alternate asset</param>
+        /// <param name="uri">The uri of the alternate asset</param>
+        /// <param name="title">The title of the alternate asset</param>
+        /// <param name="description">The description of the alternate asset</param>
         public AlternateAssetObject AddAlternate(string key, Uri uri, string title = null, string description = null)
         {
             AlternateAssetObject alternateAssetObject = new AlternateAssetObject(uri.ToString(), this.StacAsset.ParentStacObject, title, description);

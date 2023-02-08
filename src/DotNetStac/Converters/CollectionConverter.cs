@@ -11,6 +11,10 @@ using Newtonsoft.Json.Linq;
 namespace Stac.Converters
 {
 #pragma warning disable SA1649 // File name should match first type name
+    /// <summary>
+    /// Converter for Collection
+    /// </summary>
+    /// <typeparam name="T">Type of the collection</typeparam>
     public class CollectionConverter<T> : JsonConverter
     {
         /// <inheritdoc/>

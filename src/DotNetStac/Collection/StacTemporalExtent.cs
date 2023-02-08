@@ -17,8 +17,8 @@ namespace Stac.Collection
         /// <summary>
         /// Initializes a new instance of the <see cref="StacTemporalExtent"/> class.
         /// </summary>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
+        /// <param name="start">Start time</param>
+        /// <param name="end">End time</param>
         [JsonConstructor]
         public StacTemporalExtent(DateTime? start, DateTime? end)
         {
@@ -29,7 +29,7 @@ namespace Stac.Collection
         /// Initializes a new instance of the <see cref="StacTemporalExtent"/> class.
         /// Intialize a new Stac Temporal Extent from an exisiting one (clone)
         /// </summary>
-        /// <param name="temporal"></param>
+        /// <param name="temporal">The temporal extent to clone</param>
         public StacTemporalExtent(StacTemporalExtent temporal)
         {
             this.Interval = (DateTime?[][])temporal.Interval.Clone();
@@ -38,9 +38,7 @@ namespace Stac.Collection
         /// <summary>
         /// Gets or sets potential temporal extents.
         /// </summary>
-        /// <value>
-        /// Potential temporal extents.
-        /// </value>
+        /// <returns>Potential temporal extents.</returns>
         [JsonProperty("interval")]
         public DateTime?[][] Interval { get; set; }
     }

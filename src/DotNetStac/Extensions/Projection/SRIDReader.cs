@@ -27,7 +27,7 @@ namespace Stac.Extensions.Projection
                     int split = line.IndexOf(';');
                     if (split > -1)
                     {
-                        WKTstring wkt = new WKTstring();
+                        WKTstring wkt = default(WKTstring);
                         wkt.WKID = int.Parse(line.Substring(0, split));
                         wkt.WKT = line.Substring(split + 1);
                         yield return wkt;

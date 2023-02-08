@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace Stac.Common
 {
+    /// <summary>
+    /// Utility class for merging JSON documents.
+    /// </summary>
     public class JsonMergeUtils
     {
         /// <summary>
@@ -64,10 +67,11 @@ namespace Stac.Common
         /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="token">Cancellation token.</param>
         /// <param name="writerOptions">Writer options used to write the merge result.</param>
+        /// <returns>The document that represents the merge result.</returns>
         public static async Task<string> MergeAsync(string original, Stream patch, CancellationToken token = default, JsonWriterOptions? writerOptions = null)
         {
             var outputBuffer = new MemoryStream();
-            var jsonDocumentOptions = new JsonDocumentOptions();
+            var jsonDocumentOptions = default(JsonDocumentOptions);
             using (var originalDoc = JsonDocument.Parse(original, jsonDocumentOptions))
             using (var patchDoc = await JsonDocument.ParseAsync(patch, jsonDocumentOptions, token))
             using (var jsonWriter = new Utf8JsonWriter(outputBuffer, writerOptions ?? new JsonWriterOptions { Indented = true }))
@@ -128,7 +132,7 @@ namespace Stac.Common
         /// <returns>The list of null properties.</returns>
         public static async Task<List<string>> ExtractNullPropertiesAsync(Stream patch, CancellationToken token = default)
         {
-            var patchDoc = await JsonDocument.ParseAsync(patch, new JsonDocumentOptions(), token);
+            var patchDoc = await JsonDocument.ParseAsync(patch, default(JsonDocumentOptions), token);
             if (patchDoc.RootElement.ValueKind != JsonValueKind.Object)
             {
                 throw new InvalidOperationException($"The patch JSON document must be an object type. Instead it is {patchDoc.RootElement.ValueKind}.");

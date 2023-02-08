@@ -105,7 +105,9 @@ namespace Stac
                 if (this.Properties.ContainsKey("datetime"))
                 {
                     if (this.Properties["datetime"] is DateTime?)
+                    {
                         return new Itenso.TimePeriod.TimeInterval((DateTime)this.Properties["datetime"]);
+                    }
                     else
                     {
                         try

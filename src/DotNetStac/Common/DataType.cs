@@ -41,7 +41,7 @@ namespace Stac.Common
         // unsigned 64-bit integer
         uint64,
 
-        //  16-bit float
+        // 16-bit float
         float16,
 
         // 32-bit float
@@ -56,7 +56,7 @@ namespace Stac.Common
         // 32-bit complex integer
         cint32,
 
-        //  32-bit complex float
+        // 32-bit complex float
         cfloat32,
 
         // 64-bit complex float

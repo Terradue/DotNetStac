@@ -15,6 +15,7 @@ namespace Stac.Extensions.Version
         /// <summary>
         /// Initilize a EoStacExtension class from a STAC item
         /// </summary>
+        /// <param name="stacItem">The STAC item</param>
         public static VersionStacExtension VersionExtension(this StacItem stacItem)
         {
             return new VersionStacExtension(stacItem);
@@ -23,6 +24,7 @@ namespace Stac.Extensions.Version
         /// <summary>
         /// Initilize a EoStacExtension class from a STAC collection
         /// </summary>
+        /// <param name="stacItem"></param>
         public static VersionStacExtension VersionExtension(this StacCollection stacItem)
         {
             return new VersionStacExtension(stacItem);
