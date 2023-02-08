@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: SemVersionConverter.cs
+
+using System;
 using Newtonsoft.Json;
 using Semver;
 
@@ -8,7 +12,7 @@ namespace Stac
     {
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(SemVersion));
+            return objectType == typeof(SemVersion);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

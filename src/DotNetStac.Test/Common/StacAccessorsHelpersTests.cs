@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacAccessorsHelpersTests.cs
+
+using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
 using Stac.Collection;
 using Stac.Common;
@@ -54,7 +58,7 @@ namespace Stac.Test.Item
 
             item.SetProperty("summary", summaryItemType);
 
-            Assert.NotNull(item.GetProperty<SummaryItemType>("summary"));
+            Assert.NotNull(item.GetProperty<SummaryItemType?>("summary"));
 
             summaryItemType = SummaryItemType.RangeObject;
 

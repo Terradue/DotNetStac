@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: TestBase.cs
+
+using System;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
-using Stac.Extensions;
 using Stac.Schemas;
 
 namespace Stac.Test
@@ -24,9 +21,17 @@ namespace Stac.Test
         .Assembly;
         private static readonly string AssemblyName = ThisAssembly.GetName().Name;
 
-        private static StacValidator stacValidator = new StacValidator(new JSchemaUrlResolver());
+        private static readonly StacValidator StacValidator = new(new JSchemaUrlResolver());
 
-        protected HttpClient httpClient = new HttpClient();
+        private readonly HttpClient _httpClient = new();
+
+        public HttpClient HttpClient
+        {
+            get
+            {
+                return _httpClient;
+            }
+        }
 
         protected TestBase()
         {
@@ -36,10 +41,8 @@ namespace Stac.Test
         {
             get
             {
-                string codeBase = ThisAssembly.CodeBase;
-                UriBuilder uri = new UriBuilder(codeBase);
-                string path = Uri.UnescapeDataString(uri.Path);
-                return Path.GetDirectoryName(path);
+                string codeBase = ThisAssembly.Location;
+                return Path.GetDirectoryName(codeBase);
             }
         }
 
@@ -97,7 +100,7 @@ namespace Stac.Test
 
         public bool ValidateJson(string jsonstr)
         {
-            return stacValidator.ValidateJson(jsonstr);
+            return StacValidator.ValidateJson(jsonstr);
         }
 
     }

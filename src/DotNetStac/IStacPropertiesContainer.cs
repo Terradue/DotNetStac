@@ -1,9 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: IStacPropertiesContainer.cs
+
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using Newtonsoft.Json.Linq;
-using Stac.Extensions;
 
 namespace Stac
 {
@@ -12,9 +11,14 @@ namespace Stac
     /// </summary>
     public interface IStacPropertiesContainer
     {
+        /// <summary>
+        /// Gets the properties.
+        /// </summary>
         IDictionary<string, object> Properties { get; }
 
+        /// <summary>
+        /// Gets the StacObjectContainer.
+        /// </summary>
         IStacObject StacObjectContainer { get; }
-
     }
 }

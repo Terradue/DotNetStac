@@ -1,15 +1,19 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: ObservableDictionary.cs
+
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 
 namespace Stac.Model
 {
+#pragma warning disable SA1649 // File name should match first type name
+
     /// <summary>
     /// Provides a thread-safe dictionary for use with data binding.
     /// </summary>
@@ -24,18 +28,23 @@ namespace Stac.Model
         private readonly ConcurrentDictionary<TKey, TValue> _dictionary;
 
         /// <summary>
-        /// Initializes an instance of the ObservableConcurrentDictionary class.
+        /// Initializes a new instance of the <see cref="ObservableDictionary{TKey, TValue}"/> class.
         /// </summary>
         public ObservableDictionary()
         {
-            _context = AsyncOperationManager.SynchronizationContext;
-            _dictionary = new ConcurrentDictionary<TKey, TValue>();
+            this._context = AsyncOperationManager.SynchronizationContext;
+            this._dictionary = new ConcurrentDictionary<TKey, TValue>();
         }
 
-        public ObservableDictionary(IDictionary<TKey, TValue> init) : this()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObservableDictionary{TKey, TValue}"/> class.
+        /// </summary>
+        /// <param name="init">The initial dictionary.</param>
+        public ObservableDictionary(IDictionary<TKey, TValue> init)
+            : this()
         {
-            _context = AsyncOperationManager.SynchronizationContext;
-            _dictionary = new ConcurrentDictionary<TKey, TValue>(init);
+            this._context = AsyncOperationManager.SynchronizationContext;
+            this._dictionary = new ConcurrentDictionary<TKey, TValue>(init);
         }
 
         /// <summary>Event raised when the collection changes.</summary>
@@ -44,16 +53,88 @@ namespace Stac.Model
         /// <summary>Event raised when a property on the collection changes.</summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        int ICollection<KeyValuePair<TKey, TValue>>.Count
+        {
+            get => this._dictionary.Count;
+        }
+
+        bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly
+        {
+            get => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).IsReadOnly;
+        }
+
+        /// <inheritdoc/>
+        public ICollection<TKey> Keys
+        {
+            get { return this._dictionary.Keys; }
+        }
+
+        /// <inheritdoc/>
+        public ICollection<TValue> Values
+        {
+            get => this._dictionary.Values;
+        }
+
+        /// <inheritdoc/>
+        public TValue this[TKey key]
+        {
+            get => this._dictionary[key];
+            set => this.UpdateWithNotification(key, value);
+        }
+
+        void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
+            => this.TryAddWithNotification(item);
+
+        void ICollection<KeyValuePair<TKey, TValue>>.Clear()
+        {
+            this._dictionary.Clear();
+            this.NotifyObserversOfChange();
+        }
+
+        bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item)
+            => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).Contains(item);
+
+        void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
+            => ((ICollection<KeyValuePair<TKey, TValue>>)this._dictionary).CopyTo(array, arrayIndex);
+
+        bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
+            => this.TryRemoveWithNotification(item.Key, out TValue temp);
+
+        IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
+            => this._dictionary.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+            => this._dictionary.GetEnumerator();
+
+        // IDictionary<TKey,TValue> Members
+
+        /// <inheritdoc/>
+        public void Add(TKey key, TValue value)
+            => this.TryAddWithNotification(key, value);
+
+        /// <inheritdoc/>
+        public bool ContainsKey(TKey key)
+            => this._dictionary.ContainsKey(key);
+
+        /// <inheritdoc/>
+        public bool Remove(TKey key)
+            => this.TryRemoveWithNotification(key, out TValue temp);
+
+        /// <inheritdoc/>
+        public bool TryGetValue(TKey key, out TValue value)
+            => this._dictionary.TryGetValue(key, out value);
+
         /// <summary>
         /// Notifies observers of CollectionChanged or PropertyChanged of an update to the dictionary.
         /// </summary>
         private void NotifyObserversOfChange()
         {
-            var collectionHandler = CollectionChanged;
-            var propertyHandler = PropertyChanged;
+            var collectionHandler = this.CollectionChanged;
+            var propertyHandler = this.PropertyChanged;
             if (collectionHandler != null || propertyHandler != null)
             {
-                _context.Send(s =>
+                this._context.Send(
+                    s =>
                 {
                     collectionHandler?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
                     propertyHandler?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -70,11 +151,12 @@ namespace Stac.Model
         /// <param name="changedItem">The item involved with the change</param>
         private void NotifyObserversOfChange(NotifyCollectionChangedAction actionType, object changedItem)
         {
-            var collectionHandler = CollectionChanged;
-            var propertyHandler = PropertyChanged;
+            var collectionHandler = this.CollectionChanged;
+            var propertyHandler = this.PropertyChanged;
             if (collectionHandler != null || propertyHandler != null)
             {
-                _context.Send(s =>
+                this._context.Send(
+                    s =>
                 {
                     collectionHandler?.Invoke(this, new NotifyCollectionChangedEventArgs(actionType, changedItem));
                     propertyHandler?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -92,11 +174,12 @@ namespace Stac.Model
         /// <param name="index">The position of the item in the collection</param>
         private void NotifyObserversOfChange(NotifyCollectionChangedAction actionType, object item, int index)
         {
-            var collectionHandler = CollectionChanged;
-            var propertyHandler = PropertyChanged;
+            var collectionHandler = this.CollectionChanged;
+            var propertyHandler = this.PropertyChanged;
             if (collectionHandler != null || propertyHandler != null)
             {
-                _context.Send(s =>
+                this._context.Send(
+                    s =>
                 {
                     collectionHandler?.Invoke(this, new NotifyCollectionChangedEventArgs(actionType, item, index));
                     propertyHandler?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -110,7 +193,7 @@ namespace Stac.Model
         /// <param name="item">The item to be added.</param>
         /// <returns>Whether the add was successful.</returns>
         private bool TryAddWithNotification(KeyValuePair<TKey, TValue> item)
-            => TryAddWithNotification(item.Key, item.Value);
+            => this.TryAddWithNotification(item.Key, item.Value);
 
         /// <summary>Attempts to add an item to the dictionary, notifying observers of any changes.</summary>
         /// <param name="key">The key of the item to be added.</param>
@@ -118,9 +201,13 @@ namespace Stac.Model
         /// <returns>Whether the add was successful.</returns>
         private bool TryAddWithNotification(TKey key, TValue value)
         {
-            bool result = _dictionary.TryAdd(key, value);
-            int index = IndexOf(key);
-            if (result) NotifyObserversOfChange(NotifyCollectionChangedAction.Add, value, index);
+            bool result = this._dictionary.TryAdd(key, value);
+            int index = this.IndexOf(key);
+            if (result)
+            {
+                this.NotifyObserversOfChange(NotifyCollectionChangedAction.Add, value, index);
+            }
+
             return result;
         }
 
@@ -130,20 +217,23 @@ namespace Stac.Model
         /// <returns>Whether the removal was successful.</returns>
         private bool TryRemoveWithNotification(TKey key, out TValue value)
         {
-            int index = IndexOf(key);
-            bool result = _dictionary.TryRemove(key, out value);
-            if (result) NotifyObserversOfChange(NotifyCollectionChangedAction.Remove, value, index);
+            int index = this.IndexOf(key);
+            bool result = this._dictionary.TryRemove(key, out value);
+            if (result)
+            {
+                this.NotifyObserversOfChange(NotifyCollectionChangedAction.Remove, value, index);
+            }
+
             return result;
         }
 
         /// <summary>Attempts to add or update an item in the dictionary, notifying observers of any changes.</summary>
         /// <param name="key">The key of the item to be updated.</param>
         /// <param name="value">The new value to set for the item.</param>
-        /// <returns>Whether the update was successful.</returns>
         private void UpdateWithNotification(TKey key, TValue value)
         {
-            _dictionary[key] = value;
-            NotifyObserversOfChange(NotifyCollectionChangedAction.Replace, value);
+            this._dictionary[key] = value;
+            this.NotifyObserversOfChange(NotifyCollectionChangedAction.Replace, value);
         }
 
         /// <summary>
@@ -152,87 +242,21 @@ namespace Stac.Model
         /// </summary>
         private int IndexOf(TKey key)
         {
-            var keys = _dictionary.Keys;
+            var keys = this._dictionary.Keys;
             int index = -1;
             foreach (TKey k in keys)
             {
                 index++;
-                if (k.Equals(key)) return index;
+                if (k.Equals(key))
+                {
+                    return index;
+                }
             }
+
             return -1;
         }
-
-        // ICollection<KeyValuePair<TKey,TValue>> Members
-
-
-        void ICollection<KeyValuePair<TKey, TValue>>.Add(KeyValuePair<TKey, TValue> item)
-            => TryAddWithNotification(item);
-
-        void ICollection<KeyValuePair<TKey, TValue>>.Clear()
-        {
-            _dictionary.Clear();
-            NotifyObserversOfChange();
-        }
-
-        bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item)
-            => ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).Contains(item);
-
-        void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-            => ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).CopyTo(array, arrayIndex);
-
-        int ICollection<KeyValuePair<TKey, TValue>>.Count
-        {
-            get => _dictionary.Count;
-        }
-
-        bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly
-        {
-            get => ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).IsReadOnly;
-        }
-
-        bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item)
-            => TryRemoveWithNotification(item.Key, out TValue temp);
-
-
-        // IEnumerable<KeyValuePair<TKey,TValue>> Members
-
-
-        IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator()
-            => _dictionary.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator()
-            => _dictionary.GetEnumerator();
-
-
-        // IDictionary<TKey,TValue> Members
-
-
-        public void Add(TKey key, TValue value)
-            => TryAddWithNotification(key, value);
-
-        public bool ContainsKey(TKey key)
-            => _dictionary.ContainsKey(key);
-
-        public ICollection<TKey> Keys
-        {
-            get { return _dictionary.Keys; }
-        }
-
-        public bool Remove(TKey key)
-            => TryRemoveWithNotification(key, out TValue temp);
-
-        public bool TryGetValue(TKey key, out TValue value)
-            => _dictionary.TryGetValue(key, out value);
-
-        public ICollection<TValue> Values
-        {
-            get => _dictionary.Values;
-        }
-
-        public TValue this[TKey key]
-        {
-            get => _dictionary[key];
-            set => UpdateWithNotification(key, value);
-        }
     }
+
+#pragma warning restore SA1649 // File name should match first type name
+
 }

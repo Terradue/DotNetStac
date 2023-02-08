@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: VersionExtensionTests.cs
+
+using Newtonsoft.Json;
 using Stac.Extensions.Version;
 using Xunit;
 

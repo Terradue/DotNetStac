@@ -1,101 +1,59 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacValidator.cs
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using Stac.Exceptions;
-using Stac.Extensions.ItemCollections;
-using Stac.Schemas;
 
 namespace Stac.Schemas
 {
+    /// <summary>
+    /// Stac Validator.
+    /// </summary>
     public class StacValidator
     {
-        private StacSchemaResolver schemaResolver = null;
+        private readonly StacSchemaResolver _schemaResolver = null;
 
-        private Dictionary<Type, string> stacTypes = new Dictionary<Type, string>();
+        private readonly Dictionary<Type, string> _stacTypes = new Dictionary<Type, string>();
 
-        public StacValidator(JSchemaUrlResolver jSchemaUrlResolver)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StacValidator"/> class.
+        /// </summary>
+        /// <param name="jsonSchemaUrlResolver">Json schema resolver.</param>
+        public StacValidator(JSchemaUrlResolver jsonSchemaUrlResolver)
         {
-            this.schemaResolver = new StacSchemaResolver(jSchemaUrlResolver);
-            this.stacTypes.Add(typeof(StacItem), "item");
-            this.stacTypes.Add(typeof(StacCatalog), "catalog");
-            this.stacTypes.Add(typeof(StacCollection), "collection");
-            this.stacTypes.Add(typeof(ItemCollection), "item-collection");
+            this._schemaResolver = new StacSchemaResolver(jsonSchemaUrlResolver);
+            this._stacTypes.Add(typeof(StacItem), "item");
+            this._stacTypes.Add(typeof(StacCatalog), "catalog");
+            this._stacTypes.Add(typeof(StacCollection), "collection");
         }
 
         /// <summary>
         /// Validate a json string against its STAC schema specification
         /// </summary>
-        /// <param name="jsonstr"></param>
+        /// <param name="jsonstr">json string</param>
         /// <returns>true when valid</returns>
         public bool ValidateJson(string jsonstr)
         {
             using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
-                DetectDuplicateKeys(reader);
+            {
+                this.DetectDuplicateKeys(reader);
+            }
+
             JObject jobject;
             using (var reader = new JsonTextReader(new StringReader(jsonstr)) { DateTimeZoneHandling = DateTimeZoneHandling.Utc })
+            {
                 jobject = JObject.Load(reader);
-            return ValidateJObject(jobject);
-        }
-
-        private bool DetectDuplicateKeys(JsonReader jobject)
-        {
-            var stack = new Stack<string>();
-            while (jobject.Read())
-            {
-                switch (jobject.TokenType)
-                {
-                    case JsonToken.StartObject:
-                        DetectDuplicateKeys(jobject);
-                        break;
-                    case JsonToken.PropertyName:
-                        var propertyName = jobject.Value.ToString();
-                        if (stack.Contains(propertyName))
-                            throw new InvalidStacDataException($"Duplicate key {propertyName} found in JSON: " + jobject.Path);
-                        stack.Push(propertyName);
-                        break;
-                    case JsonToken.EndObject:
-                        return true;
-                }
             }
-            return true;
-        }
 
-        private bool ValidateJObject(JObject jObject)
-        {
-            Type stacType = Utils.IdentifyStacType(jObject);
-
-            // Get all schema to validate against
-            List<string> schemas = new List<string>() { stacTypes[stacType] };
-            if (jObject.Value<JArray>("stac_extensions") != null)
-                schemas.AddRange(jObject.Value<JArray>("stac_extensions").Select(a => a.Value<string>()));
-
-            foreach (var schema in schemas)
-            {
-                string shortcut = null, baseUrl = null;
-                if (Uri.IsWellFormedUriString(schema, UriKind.Absolute))
-                    baseUrl = schema;
-                else
-                    shortcut = schema;
-
-                if (!jObject.ContainsKey("stac_version"))
-                    throw new InvalidStacDataException("Missing 'stac_version' property");
-
-                var jsonSchema = schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
-                if (jObject.IsValid(jsonSchema, out IList<ValidationError> errorMessages))
-                    continue;
-
-                throw new InvalidStacDataException(schema + ":\n" + string.Join("\n", errorMessages.
-                        Select(e => FormatMessage(e, ""))));
-            }
-            return true;
+            return this.ValidateJObject(jobject);
         }
 
         internal static string FormatMessage(ValidationError validationError, string prefix)
@@ -110,6 +68,7 @@ namespace Stac.Schemas
             {
                 message.AppendFormat("[ROOT]");
             }
+
             if (!string.IsNullOrEmpty(validationError.Path))
             {
                 message.AppendFormat(" Path '{0}'", validationError.Path);
@@ -133,6 +92,74 @@ namespace Stac.Schemas
             }
 
             return message.ToString();
+        }
+
+        private bool DetectDuplicateKeys(JsonReader jobject)
+        {
+            var stack = new Stack<string>();
+            while (jobject.Read())
+            {
+                switch (jobject.TokenType)
+                {
+                    case JsonToken.StartObject:
+                        this.DetectDuplicateKeys(jobject);
+                        break;
+                    case JsonToken.PropertyName:
+                        var propertyName = jobject.Value.ToString();
+                        if (stack.Contains(propertyName))
+                        {
+                            throw new InvalidStacDataException($"Duplicate key {propertyName} found in JSON: " + jobject.Path);
+                        }
+
+                        stack.Push(propertyName);
+                        break;
+                    case JsonToken.EndObject:
+                        return true;
+                }
+            }
+
+            return true;
+        }
+
+        private bool ValidateJObject(JObject jsonObject)
+        {
+            Type stacType = Utils.IdentifyStacType(jsonObject);
+
+            // Get all schema to validate against
+            List<string> schemas = new List<string>() { this._stacTypes[stacType] };
+            if (jsonObject.Value<JArray>("stac_extensions") != null)
+            {
+                schemas.AddRange(jsonObject.Value<JArray>("stac_extensions").Select(a => a.Value<string>()));
+            }
+
+            foreach (var schema in schemas)
+            {
+                string shortcut = null, baseUrl = null;
+                if (Uri.IsWellFormedUriString(schema, UriKind.Absolute))
+                {
+                    baseUrl = schema;
+                }
+                else
+                {
+                    shortcut = schema;
+                }
+
+                if (!jsonObject.ContainsKey("stac_version"))
+                {
+                    throw new InvalidStacDataException("Missing 'stac_version' property");
+                }
+
+                var jsonSchema = this._schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jsonObject["stac_version"].Value<string>());
+                if (jsonObject.IsValid(jsonSchema, out IList<ValidationError> errorMessages))
+                {
+                    continue;
+                }
+
+                throw new InvalidStacDataException(schema + ":\n" + string.Join("\n", errorMessages.
+                        Select(e => FormatMessage(e, string.Empty))));
+            }
+
+            return true;
         }
     }
 }

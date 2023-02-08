@@ -88,7 +88,7 @@ dotnet_naming_rule.constants_must_be_pascal_cased.style                         
 dotnet_naming_rule.constants_must_be_pascal_cased.severity                                            = warning
 
 dotnet_naming_rule.private_static_fields_must_be_camel_cased_and_prefixed_with_s_underscore.symbols   = private_static_field_symbols
-dotnet_naming_rule.private_static_fields_must_be_camel_cased_and_prefixed_with_s_underscore.style     = camel_case_and_prefix_with_s_underscore_style
+dotnet_naming_rule.private_static_fields_must_be_camel_cased_and_prefixed_with_s_underscore.style     = pascal_case_style
 dotnet_naming_rule.private_static_fields_must_be_camel_cased_and_prefixed_with_s_underscore.severity  = warning
 
 dotnet_naming_rule.private_instance_fields_must_be_camel_cased_and_prefixed_with_underscore.symbols   = private_field_symbols
@@ -370,6 +370,7 @@ dotnet_diagnostic.RS0018.severity = warning
 dotnet_diagnostic.RS0010.severity = warning
 
 # Microsoft.CodeAnalysis.CSharp.Features
+# Prefix local calls with this
                                                   # Name:                                         Before:                                             After:
 dotnet_diagnostic.IDE0001.severity = warning      # Simplify names                                System.Version version;                             Version version;
 dotnet_diagnostic.IDE0002.severity = warning      # Simplify (member access)                      System.Version.Equals("1", "2");                    Version.Equals("1", "2");
@@ -396,6 +397,54 @@ dotnet_diagnostic.VSTHRD111.severity = none     # Use ConfigureAwait(true).
 dotnet_diagnostic.VSSDK006.severity = none      # Check whether the result of GetService calls is null
 
 # Microsoft.CodeAnalysis.VisualBasic.CodeStyle/Microsoft.CodeAnalysis.CSharp.CodeStyle
-dotnet_diagnostic.IDE0073.severity = warning      # Enforce file header
-file_header_template = Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license. See the LICENSE.md file in the project root for more information.
+dotnet_diagnostic.IDE0073.severity = warning     # Enforce file header
 
+file_header_template = Copyright (c) by Terradue Srl. All Rights Reserved.\nLicense under the AGPL, Version 3.0.\nFile Name: {fileName}
+
+# Microsoft.CodeAnalysis.CSharp.CodeStyle
+dotnet_diagnostic.SA1005.severity = warning      # Single line comments should begin with single space
+dotnet_diagnostic.SA1028.severity = warning      # Code should not contain trailing whitespace
+dotnet_diagnostic.SA1101.severity = warning      # Prefix local calls with this
+dotnet_diagnostic.SA1107.severity = warning      # Code should not contain multiple statements on one line
+dotnet_diagnostic.SA1111.severity = warning      # Closing parenthesis should be on line of last parameter
+dotnet_diagnostic.SA1115.severity = warning      # Parameter should follow comma
+dotnet_diagnostic.SA1116.severity = warning      # Split parameters should start on line after declaration
+dotnet_diagnostic.SA1119.severity = warning      # Statement must not use unnecessary parenthesis
+dotnet_diagnostic.SA1122.severity = warning      # Use string.Empty for empty strings
+dotnet_diagnostic.SA1124.severity = warning      # Do not use regions
+dotnet_diagnostic.SA1127.severity = warning      # Generic type constraints must be on their own line or share line with previous
+dotnet_diagnostic.SA1128.severity = warning      # Put constructor initializers on their own line
+dotnet_diagnostic.SA1129.severity = warning      # Do not use default value type constructor
+dotnet_diagnostic.SA1132.severity = warning      # Do not combine fields
+dotnet_diagnostic.SA1137.severity = warning      # Elements should have the same indentation
+dotnet_diagnostic.SA1201.severity = warning      # Elements must appear in the correct order
+dotnet_diagnostic.SA1202.severity = warning      # Elements must be ordered by access
+dotnet_diagnostic.SA1204.severity = warning      # Static elements must appear before instance elements
+dotnet_diagnostic.SA1214.severity = warning      # Readonly fields must appear before non-readonly fields
+dotnet_diagnostic.SA1306.severity = none         # Field names must begin with lower-case letter
+dotnet_diagnostic.SA1311.severity = warning      # Static readonly fields must begin with upper-case letter
+dotnet_diagnostic.SA1407.severity = warning      # Arithmetic expressions must declare precedence
+dotnet_diagnostic.SA1412.severity = warning      # Store files as UTF-8 with byte order mark
+dotnet_diagnostic.SA1413.severity = warning      # Use trailing comma in multi-line initializers
+dotnet_diagnostic.SA1500.severity = warning      # Braces for multi-line statements must not share line
+dotnet_diagnostic.SA1501.severity = warning      # Braces must not be omitted
+dotnet_diagnostic.SA1503.severity = warning      # Braces must not be omitted
+dotnet_diagnostic.SA1504.severity = warning      # All accessors must be single-line or multi-line
+dotnet_diagnostic.SA1505.severity = warning      # An opening brace must not be followed by a blank line
+dotnet_diagnostic.SA1506.severity = warning      # Element documentation header must not be preceded by blank line
+dotnet_diagnostic.SA1507.severity = warning      # Code should not contain multiple blank lines in a row
+dotnet_diagnostic.SA1508.severity = warning      # A closing brace must not be preceded by a blank line
+dotnet_diagnostic.SA1513.severity = warning      # Closing brace must be followed by blank line
+dotnet_diagnostic.SA1514.severity = warning      # Element documentation header must be preceded by blank line
+dotnet_diagnostic.SA1515.severity = warning      # Single-line comment must be preceded by blank line
+dotnet_diagnostic.SA1516.severity = warning      # Elements must be separated by blank line
+dotnet_diagnostic.SA1518.severity = warning      # Code should end with a newline
+dotnet_diagnostic.SA1519.severity = warning      # Braces should not be omitted from multi-line child statement
+dotnet_diagnostic.SA1520.severity = warning      # Use braces consistently
+dotnet_diagnostic.SA1623.severity = warning      # Property summary documentation must match accessors
+dotnet_diagnostic.SA1626.severity = warning      # Single-line comments must not use documentation style slashes
+dotnet_diagnostic.SA1636.severity = none         # Disable file header matching
+dotnet_diagnostic.SA1642.severity = warning      # Constructor summary documentation must begin with standard text
+dotnet_diagnostic.SA1649.severity = warning      # File name must match first type name
+dotnet_diagnostic.SA1651.severity = warning      # Do not use placeholders in summaries
+dotnet_diagnostic.SX1309.severity = warning      # Field names should begin with underscore 

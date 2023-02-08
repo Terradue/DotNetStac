@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: ItemTests.cs
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net;
@@ -42,9 +46,9 @@ namespace Stac.Test.Item
 
             Assert.Equal(DateTime.Parse("2016-05-03T13:21:30.040Z").ToUniversalTime(), item.Properties["datetime"]);
 
-            Assert.Contains<StacLink>(item.Links, l => l.RelationshipType == "self" && l.Uri.ToString() == "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json");
+            Assert.Contains(item.Links, l => l.RelationshipType == "self" && l.Uri.ToString() == "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json");
 
-            Assert.Contains<StacLink>(item.Links, l => l.RelationshipType == "collection" && l.Uri.ToString() == "http://cool-sat.com/catalog.json");
+            Assert.Contains(item.Links, l => l.RelationshipType == "collection" && l.Uri.ToString() == "http://cool-sat.com/catalog.json");
 
             Assert.Equal("relative-path/to/analytic.tif", item.Assets["analytic"].Uri.ToString());
             Assert.Equal("4-Band Analytic", item.Assets["analytic"].Title);
@@ -320,7 +324,7 @@ namespace Stac.Test.Item
             Point point = new Point(coordinates[0][0]);
             var extent = StacGeometryHelpers.GetBoundingBox(point);
             Assert.Equal<IPosition>(pextentCheck.First().ToArray(), extent);
-            MultiPoint mpoint = new MultiPoint(Array.ConvertAll<IPosition, Point>(coordinates[0].ToArray(), p => new Point(p)));
+            MultiPoint mpoint = new MultiPoint(Array.ConvertAll(coordinates[0].ToArray(), p => new Point(p)));
             extent = StacGeometryHelpers.GetBoundingBox(mpoint);
             Assert.Equal<IPosition>(extentCheck.First().ToArray(), extent);
             var lineString = new LineString(coordinates[0]);
@@ -373,11 +377,11 @@ namespace Stac.Test.Item
 
             simpleItem.Providers.Add(new StacProvider("ESA", new StacProviderRole[] { StacProviderRole.licensor }));
 
-            Assert.Contains<string, object>("providers", simpleItem.Properties);
+            Assert.Contains("providers", simpleItem.Properties);
 
             simpleItem.Providers.RemoveAt(0);
 
-            Assert.DoesNotContain<string, object>("providers", simpleItem.Properties);
+            Assert.DoesNotContain("providers", simpleItem.Properties);
 
             var newJson = StacConvert.Serialize(simpleItem);
             ValidateJson(newJson);

@@ -1,5 +1,8 @@
-﻿using System;
-using System.Buffers;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: JsonMergeUtils.cs
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,15 +14,17 @@ using System.Threading.Tasks;
 
 namespace Stac.Common
 {
+    /// <summary>
+    /// Utility class for merging JSON documents.
+    /// </summary>
     public class JsonMergeUtils
     {
-
         /// <summary>
         /// Return the result of merging the original JSON document with the JSON Merge patch document
-        /// according to https://tools.ietf.org/html/rfc7386 
+        /// according to https://tools.ietf.org/html/rfc7386
         /// </summary>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
+        /// <param name="original">Original JSON document to merge new content into.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="writerOptions">Writer options used to write the merge result.</param>
         /// <returns>The document that represents the merge result.</returns>
         public static string Merge(string original, string patch, JsonWriterOptions? writerOptions = null)
@@ -30,7 +35,6 @@ namespace Stac.Common
             using (var patchDoc = JsonDocument.Parse(patch))
             using (var jsonWriter = new Utf8JsonWriter(memStream, writerOptions ?? new JsonWriterOptions { Indented = true }))
             {
-
                 var originalKind = originalDoc.RootElement.ValueKind;
                 var patchKind = patchDoc.RootElement.ValueKind;
 
@@ -52,21 +56,22 @@ namespace Stac.Common
                 MergeObjects(jsonWriter, originalDoc.RootElement, patchDoc.RootElement);
             }
 
-
             return Encoding.UTF8.GetString(memStream.ToArray());
         }
 
         /// <summary>
         /// Return the result of merging the original JSON document with the JSON Merge patch document
-        /// according to https://tools.ietf.org/html/rfc7386 
+        /// according to https://tools.ietf.org/html/rfc7386
         /// </summary>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
+        /// <param name="original">Original JSON document to merge new content into.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
+        /// <param name="token">Cancellation token.</param>
         /// <param name="writerOptions">Writer options used to write the merge result.</param>
-        public static async Task<string> MergeAsync(string original, System.IO.Stream patch, CancellationToken token = default, JsonWriterOptions? writerOptions = null)
+        /// <returns>The document that represents the merge result.</returns>
+        public static async Task<string> MergeAsync(string original, Stream patch, CancellationToken token = default, JsonWriterOptions? writerOptions = null)
         {
             var outputBuffer = new MemoryStream();
-            var jsonDocumentOptions = new JsonDocumentOptions();
+            var jsonDocumentOptions = default(JsonDocumentOptions);
             using (var originalDoc = JsonDocument.Parse(original, jsonDocumentOptions))
             using (var patchDoc = await JsonDocument.ParseAsync(patch, jsonDocumentOptions, token))
             using (var jsonWriter = new Utf8JsonWriter(outputBuffer, writerOptions ?? new JsonWriterOptions { Indented = true }))
@@ -100,12 +105,10 @@ namespace Stac.Common
         /// <summary>
         /// Extract property names with a null value.
         /// </summary>
-        /// <remarks>Nested field names are returned joined by "." 
+        /// <remarks>Nested field names are returned joined by "."
         /// Array items are ignored.
         /// </remarks>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
-        /// <param name="writerOptions">Writer options used to write the merge result.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <returns>The list of null properties.</returns>
         public static List<string> ExtractNullProperties(string patch)
         {
@@ -121,17 +124,15 @@ namespace Stac.Common
         /// <summary>
         /// Extract property names with a null value.
         /// </summary>
-        /// <remarks>Nested field names are returned joined by "." 
+        /// <remarks>Nested field names are returned joined by "."
         /// Array items are ignored.
         /// </remarks>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
-        /// <param name="writerOptions">Writer options used to write the merge result.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>The list of null properties.</returns>
-        public static async Task<List<string>> ExtractNullPropertiesAsync(System.IO.Stream patch, CancellationToken token = default)
+        public static async Task<List<string>> ExtractNullPropertiesAsync(Stream patch, CancellationToken token = default)
         {
-            var patchDoc = await JsonDocument.ParseAsync(patch, new JsonDocumentOptions(), token);
+            var patchDoc = await JsonDocument.ParseAsync(patch, default(JsonDocumentOptions), token);
             if (patchDoc.RootElement.ValueKind != JsonValueKind.Object)
             {
                 throw new InvalidOperationException($"The patch JSON document must be an object type. Instead it is {patchDoc.RootElement.ValueKind}.");
@@ -145,8 +146,8 @@ namespace Stac.Common
         /// to serialize and deserialize the model.
         /// </summary>
         /// <typeparam name="T">the model type</typeparam>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
+        /// <param name="original">Original model to merge new content into.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="options">JSON serialization options</param>
         /// <returns>A new model representing the patched instance.</returns>
         public static T MergeModel<T>(T original, string patch, JsonSerializerOptions options = null)
@@ -159,14 +160,13 @@ namespace Stac.Common
         /// Apply the result of a JSON merge patch to the given model, using System.Text.Json serializer
         /// to serialize and deserialize the model.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <typeparam name="T">the model type</typeparam>
-        /// <param name="original"></param>
-        /// <param name="patch"></param>
+        /// <param name="original">Original model to merge new content into.</param>
+        /// <param name="patch">JSON Merge patch document.</param>
         /// <param name="options">JSON serialization options</param>
         /// <param name="token">Cancellation token</param>
         /// <returns>A task that returns a new model representing the patched instance.</returns>
-        public static async Task<T> MergeModelAsync<T>(T original, System.IO.Stream patch, JsonSerializerOptions options = null, CancellationToken token = default)
+        public static async Task<T> MergeModelAsync<T>(T original, Stream patch, JsonSerializerOptions options = null, CancellationToken token = default)
         {
             var originalJson = JsonSerializer.Serialize(original, options);
             return JsonSerializer.Deserialize<T>(await MergeAsync(originalJson, patch, token), options);
@@ -174,7 +174,7 @@ namespace Stac.Common
 
         private static IEnumerable<string> ExtractNullPropertiesFromObject(JsonElement patch)
         {
-            Debug.Assert(patch.ValueKind == JsonValueKind.Object);
+            Debug.Assert(patch.ValueKind == JsonValueKind.Object, "The patch JSON document must be an object type.");
             foreach (var property in patch.EnumerateObject())
             {
                 if (property.Value.ValueKind == JsonValueKind.Null)
@@ -193,8 +193,8 @@ namespace Stac.Common
 
         private static void MergeObjects(Utf8JsonWriter jsonWriter, JsonElement original, JsonElement patch)
         {
-            Debug.Assert(original.ValueKind == JsonValueKind.Object);
-            Debug.Assert(patch.ValueKind == JsonValueKind.Object);
+            Debug.Assert(original.ValueKind == JsonValueKind.Object, "The original JSON document to merge new content into must be an object type.");
+            Debug.Assert(patch.ValueKind == JsonValueKind.Object, "The patch JSON document must be an object type.");
 
             jsonWriter.WriteStartObject();
 

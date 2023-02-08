@@ -1,6 +1,9 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: ContentTypeConverter.cs
+
+using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Net.Mime;
 using Newtonsoft.Json;
@@ -11,7 +14,7 @@ namespace Stac
     {
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(ContentType));
+            return objectType == typeof(ContentType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

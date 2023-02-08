@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using GeoJSON.Net.Geometry;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: PatchHelpersTests.cs
+
 using Newtonsoft.Json;
-using Stac.Collection;
 using Stac.Common;
 using Xunit;
 
@@ -16,7 +17,7 @@ namespace Stac.Test.Item
 
             StacItem patchItem = StacConvert.Deserialize<StacItem>(GetJson("Common", "Patch"));
 
-            StacItem patchedItem = baseItem.Patch<StacItem>(patchItem);
+            StacItem patchedItem = baseItem.Patch(patchItem);
 
             JsonAssert.AreEqual(GetJson("Common", "PatchedItem"), StacConvert.Serialize(patchedItem));
         }
@@ -28,7 +29,7 @@ namespace Stac.Test.Item
 
             Patch patchItem = JsonConvert.DeserializeObject<Patch>(GetJson("Common", "Patch2"));
 
-            StacItem patchedItem = baseItem.Patch<StacItem>(patchItem);
+            StacItem patchedItem = baseItem.Patch(patchItem);
 
             JsonAssert.AreEqual(GetJson("Common", "PatchedItem2"), StacConvert.Serialize(patchedItem));
         }

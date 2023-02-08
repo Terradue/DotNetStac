@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: SRIDReader.cs
+
+using System.Collections.Generic;
 using System.IO;
 using ProjNet.CoordinateSystems;
 using ProjNet.IO.CoordinateSystems;
@@ -7,19 +11,7 @@ namespace Stac.Extensions.Projection
 {
     internal class SRIDReader
     {
-        private const string filename = @"SRID.csv";
-
-        public struct WKTstring
-        {
-            /// <summary>
-            /// Well-known ID
-            /// </summary>
-            public int WKID;
-            /// <summary>
-            /// Well-known Text
-            /// </summary>
-            public string WKT;
-        }
+        private const string Filename = @"SRID.csv";
 
         /// <summary>
         /// Enumerates all SRID's in the SRID.csv file.
@@ -27,7 +19,7 @@ namespace Stac.Extensions.Projection
         /// <returns>Enumerator</returns>
         public static IEnumerable<WKTstring> GetSRIDs()
         {
-            using (StreamReader sr = System.IO.File.OpenText(filename))
+            using (StreamReader sr = System.IO.File.OpenText(Filename))
             {
                 while (!sr.EndOfStream)
                 {
@@ -35,15 +27,17 @@ namespace Stac.Extensions.Projection
                     int split = line.IndexOf(';');
                     if (split > -1)
                     {
-                        WKTstring wkt = new WKTstring();
+                        WKTstring wkt = default(WKTstring);
                         wkt.WKID = int.Parse(line.Substring(0, split));
                         wkt.WKT = line.Substring(split + 1);
                         yield return wkt;
                     }
                 }
+
                 sr.Close();
             }
         }
+
         /// <summary>
         /// Gets a coordinate system from the SRID.csv file
         /// </summary>
@@ -59,7 +53,21 @@ namespace Stac.Extensions.Projection
                     return CoordinateSystemWktReader.Parse(wkt.WKT) as CoordinateSystem;
                 }
             }
+
             return null;
+        }
+
+        public struct WKTstring
+        {
+            /// <summary>
+            /// Well-known ID
+            /// </summary>
+            public int WKID;
+
+            /// <summary>
+            /// Well-known Text
+            /// </summary>
+            public string WKT;
         }
     }
 }

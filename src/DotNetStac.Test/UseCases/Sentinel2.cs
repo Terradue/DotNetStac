@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: Sentinel2.cs
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +13,7 @@ namespace Stac.Test.UseCases
     [TestCaseOrderer("Stac.Test.PriorityOrderer", "DotNetStac.Test")]
     public class Sentinel2 : TestBase
     {
-        private static StacCatalog catalog;
+        private static StacCatalog Catalog;
 
         [Fact, TestPriority(1)]
         public void LoadRootCatalog()
@@ -17,17 +21,17 @@ namespace Stac.Test.UseCases
             var json = GetUseCaseJson("catalog.json");
             ValidateJson(json);
 
-            catalog = StacConvert.Deserialize<StacCatalog>(json);
+            Catalog = StacConvert.Deserialize<StacCatalog>(json);
 
-            Assert.NotNull(catalog);
-            Assert.Equal("sentinel-stac", catalog.Id);
+            Assert.NotNull(Catalog);
+            Assert.Equal("sentinel-stac", Catalog.Id);
 
         }
 
         [Fact, TestPriority(2)]
         public void LoadRootChildren()
         {
-            IEnumerable<IStacObject> children = catalog.GetChildrenLinks()
+            IEnumerable<IStacObject> children = Catalog.GetChildrenLinks()
                 .Select(l =>
                 {
                     Uri childUri = new Uri(GetUseCaseFileUri("catalog.json"), l.Uri.OriginalString);
@@ -36,7 +40,7 @@ namespace Stac.Test.UseCases
                     return StacConvert.Deserialize<IStacObject>(childJson);
                 });
 
-            Assert.Equal(1, children.Count());
+            Assert.Single(children);
 
             Assert.IsAssignableFrom<StacCollection>(children.First());
         }
