@@ -1,5 +1,8 @@
-﻿using System;
-using System.IO;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StorageExtensionTests.cs
+
+using System;
 using Newtonsoft.Json;
 using Stac.Extensions.Alternate;
 using Xunit;
@@ -9,7 +12,7 @@ namespace Stac.Test.Extensions
     public class StorageExtensionTests : TestBase
     {
         [Fact]
-        public async System.Threading.Tasks.Task SetAlternateStorageAsset()
+        public System.Threading.Tasks.Task SetAlternateStorageAsset()
         {
             var simpleJson = GetJson("Extensions", "MinimalSample");
             ValidateJson(simpleJson);
@@ -37,7 +40,7 @@ namespace Stac.Test.Extensions
 
             Assert.Equal("s3://bucket/key/srid.csv", simpleitem.Assets["srid"].AlternateExtension().AlternateAssets["s3"].Uri.ToString());
             Assert.Equal("fr-par", simpleitem.Assets["srid"].AlternateExtension().AlternateAssets["s3"].StorageExtension().Region);
+            return System.Threading.Tasks.Task.CompletedTask;
         }
-
     }
 }

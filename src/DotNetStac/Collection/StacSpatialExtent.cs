@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacSpatialExtent.cs
+
+using System;
 using Newtonsoft.Json;
 
 namespace Stac.Collection
@@ -11,7 +15,7 @@ namespace Stac.Collection
     public class StacSpatialExtent : ICloneable
     {
         /// <summary>
-        /// Initialize a new instance of the <see cref="StacSpatialExtent" /> class with a single extent.
+        /// Initializes a new instance of the <see cref="StacSpatialExtent"/> class.
         /// </summary>
         /// <param name="minX">Minimum X bound</param>
         /// <param name="minY">Minimum Y bound</param>
@@ -20,20 +24,21 @@ namespace Stac.Collection
         [JsonConstructor]
         public StacSpatialExtent(double minX, double minY, double maxX, double maxY)
         {
-            BoundingBoxes = new double[1][] { new double[4] { minX, minY, maxX, maxY } };
+            this.BoundingBoxes = new double[1][] { new double[4] { minX, minY, maxX, maxY } };
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacSpatialExtent"/> class.
         /// Initialize a new Stac Spatial extent from an existing one (clone)
         /// </summary>
-        /// <param name="spatial"></param>
+        /// <param name="spatial">The spatial extent.</param>
         public StacSpatialExtent(StacSpatialExtent spatial)
         {
             this.BoundingBoxes = (double[][])spatial.BoundingBoxes.Clone();
         }
 
         /// <summary>
-        /// Potential spatial extents.
+        /// Gets or sets potential spatial extents.
         /// </summary>
         /// <value>Gets/sets double entry array of coordinates</value>
         [JsonProperty("bbox")]
@@ -42,7 +47,7 @@ namespace Stac.Collection
         /// <summary>
         /// Clone this Extent
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new <see cref="StacSpatialExtent" /> that is a clone of this instance.</returns>
         public object Clone()
         {
             return new StacSpatialExtent(this);

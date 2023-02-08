@@ -12,11 +12,12 @@
     <IncludeSymbols>true</IncludeSymbols>
     <PackageTags>STAC;Terradue;Geo;Json</PackageTags>
     <PackageIcon>stac_logo_128.png</PackageIcon>
-    <Copyright>Copyright (c) 2010-2021 by Terradue</Copyright>
+    <Copyright>Copyright (c) by Terradue Srl. All Rights Reserved.\nLicense under the AGPL, Version 3.0.</Copyright>
     <CodeAnalysisRuleSet>$(ProjectDir)StyleCop.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DebugType>full</DebugType>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <NoWarn>1636;1200;1629;1309</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0"/>

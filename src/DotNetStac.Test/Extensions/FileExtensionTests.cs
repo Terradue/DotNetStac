@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: FileExtensionTests.cs
+
+using System;
 using System.IO;
-using System.Linq;
-using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Stac.Extensions.File;
 using Xunit;
 
@@ -24,7 +24,7 @@ namespace Stac.Test.Extensions
                                                             new Uri("file:///srid.csv"),
                                                             new System.Net.Mime.ContentType("text/csv"),
                                                             "System reference Ids");
-            await stacAsset.FileExtension().SetFileExtensionProperties(new System.IO.FileInfo("SRID.csv"));
+            await stacAsset.FileExtension().SetFileExtensionProperties(new FileInfo("SRID.csv"));
             simpleitem.Assets.Add("srid", stacAsset);
 
             Assert.Equal<ulong>(1536937, stacAsset.FileExtension().Size.Value);

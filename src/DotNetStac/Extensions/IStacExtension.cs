@@ -1,15 +1,25 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: IStacExtension.cs
+
 using System.Collections.Generic;
-using Stac.Collection;
 
 namespace Stac.Extensions
 {
+    /// <summary>
+    /// Interface for Stac extensions
+    /// </summary>
     public interface IStacExtension
     {
+        /// <summary>
+        /// Gets the Stac Extension identifier.
+        /// </summary>
         string Identifier { get; }
 
-        bool IsDeclared { get; }
-
+        /// <summary>
+        /// Gets the Stac Extension summary functions.
+        /// </summary>
+        /// <returns>The Stac Extension summary functions.</returns>
         IDictionary<string, ISummaryFunction> GetSummaryFunctions();
     }
 }

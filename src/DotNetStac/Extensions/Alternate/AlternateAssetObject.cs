@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: AlternateAssetObject.cs
+
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -11,16 +15,15 @@ namespace Stac.Extensions.Alternate
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class AlternateAssetObject : IStacPropertiesContainer
     {
-        private string href;
         private readonly IStacObject _parent;
-        private string title;
+        private string _href;
+        private string _title;
 
-        private string description;
-
-        IDictionary<string, object> properties;
+        private string _description;
+        private IDictionary<string, object> _properties;
 
         /// <summary>
-        /// Initialize a new Band Object
+        /// Initializes a new instance of the <see cref="AlternateAssetObject"/> class.
         /// </summary>
         /// <param name="href">URI to the asset object</param>
         /// <param name="parent">Parent object</param>
@@ -28,51 +31,74 @@ namespace Stac.Extensions.Alternate
         /// <param name="description">A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.</param>
         public AlternateAssetObject(string href, IStacObject parent = null, string title = null, string description = null)
         {
-            this.href = href;
-            _parent = parent;
-            this.title = title;
-            this.description = description;
-            properties = new Dictionary<string, object>();
+            this._href = href;
+            this._parent = parent;
+            this._title = title;
+            this._description = description;
+            this._properties = new Dictionary<string, object>();
         }
 
         /// <summary>
-        /// REQUIRED. URI to the asset object. Relative and absolute URI are both allowed.
+        /// Gets or sets rEQUIRED. URI to the asset object. Relative and absolute URI are both allowed.
         /// </summary>
+        /// <value>
+        /// REQUIRED. URI to the asset object. Relative and absolute URI are both allowed.
+        /// </value>
         [JsonProperty("href")]
         [JsonRequired]
-        public string Href { get => href; set => href = value; }
+        public string Href { get => this._href; set => this._href = value; }
 
         /// <summary>
+        /// Gets or sets the displayed title for clients and users.
+        /// </summary>
+        /// <value>
         /// The displayed title for clients and users.
-        /// </summary>
+        /// </value>
         [JsonProperty("title")]
-        public string Title { get => title; set => title = value; }
+        public string Title { get => this._title; set => this._title = value; }
 
         /// <summary>
+        /// Gets or sets a description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.
+        /// </summary>
+        /// <value>
         /// A description of the Asset providing additional details, such as how it was processed or created. CommonMark 0.29 syntax MAY be used for rich text representation.
-        /// </summary>
+        /// </value>
         [JsonProperty("description")]
-        public string Description { get => description; set => description = value; }
+        public string Description { get => this._description; set => this._description = value; }
 
         /// <summary>
+        /// Gets or sets additional fields
+        /// </summary>
+        /// <value>
         /// Additional fields
-        /// </summary>
-        /// <value></value>
+        /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> Properties { get => properties; set => properties = value; }
+        public IDictionary<string, object> Properties { get => this._properties; set => this._properties = value; }
 
         /// <summary>
+        /// Gets parent Stac Object
+        /// </summary>
+        /// <value>
         /// Parent Stac Object
-        /// </summary>
-        /// <returns></returns>
+        /// </value>
+
+        /// <value>
+        /// Parent Stac Object
+        /// </value>
         [JsonIgnore]
-        public IStacObject StacObjectContainer => _parent;
+        public IStacObject StacObjectContainer => this._parent;
 
         /// <summary>
-        /// Uri
+        /// Gets uri
         /// </summary>
-        /// <returns></returns>
+        /// <value>
+        /// Uri
+        /// </value>
+
+        /// <value>
+        /// Uri
+        /// </value>
         [JsonIgnore]
-        public Uri Uri => new Uri(href);
+        public Uri Uri => new Uri(this._href);
     }
 }

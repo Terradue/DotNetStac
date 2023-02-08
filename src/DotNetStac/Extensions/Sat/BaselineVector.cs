@@ -1,33 +1,56 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: BaselineVector.cs
 
 namespace Stac.Extensions.Sat
 {
-
+    /// <summary>
+    /// Baseline vector
+    /// </summary>
     public struct BaselineVector
     {
-        private double perpendicular, parallel, along;
+        private readonly double _perpendicular;
+        private readonly double _parallel;
+        private readonly double _along;
 
-        public double Perpendicular
-        {
-            get { return perpendicular; }
-        }
-
-        public double Parallel
-        {
-            get { return parallel; }
-        }
-
-        public double Along
-        {
-            get { return along; }
-        }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaselineVector"/> struct.
+        /// </summary>
+        /// <param name="perpendicular">Perpendicular component.</param>
+        /// <param name="parallel">Parallel component.</param>
+        /// <param name="along">Along component.</param>
         public BaselineVector(double perpendicular, double parallel, double along)
         {
-            this.perpendicular = perpendicular;
-            this.parallel = parallel;
-            this.along = along;
+            this._perpendicular = perpendicular;
+            this._parallel = parallel;
+            this._along = along;
+        }
+
+        /// <summary>
+        /// Gets the perpendicular component.
+        /// </summary>
+        /// <returns>The perpendicular component.</returns>
+        public double Perpendicular
+        {
+            get { return this._perpendicular; }
+        }
+
+        /// <summary>
+        /// Gets the parallel component.
+        /// </summary>
+        /// <returns>The parallel component.</returns>
+        public double Parallel
+        {
+            get { return this._parallel; }
+        }
+
+        /// <summary>
+        /// Gets the along component.
+        /// </summary>
+        /// <returns>The along component.</returns>
+        public double Along
+        {
+            get { return this._along; }
         }
     }
-
 }

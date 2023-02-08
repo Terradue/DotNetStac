@@ -1,21 +1,24 @@
-﻿
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: TolerantEnumConverter.cs
+
 using System;
 using System.Linq;
 using Newtonsoft.Json;
 
 namespace Stac.Common
 {
-    class TolerantEnumConverter : JsonConverter
+    internal class TolerantEnumConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            Type type = IsNullableType(objectType) ? Nullable.GetUnderlyingType(objectType) : objectType;
+            Type type = this.IsNullableType(objectType) ? Nullable.GetUnderlyingType(objectType) : objectType;
             return type.IsEnum;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            bool isNullable = IsNullableType(objectType);
+            bool isNullable = this.IsNullableType(objectType);
             Type enumType = isNullable ? Nullable.GetUnderlyingType(objectType) : objectType;
 
             string[] names = Enum.GetNames(enumType);
@@ -70,7 +73,7 @@ namespace Stac.Common
 
         private bool IsNullableType(Type t)
         {
-            return (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>));
+            return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
     }
 }

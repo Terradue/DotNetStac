@@ -1,8 +1,11 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: Utils.cs
+
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Stac.Exceptions;
-using Stac.Extensions.ItemCollections;
 
 namespace Stac
 {
@@ -24,33 +27,29 @@ namespace Stac
         /// <summary>
         /// Identify the STAC object from a JObject
         /// </summary>
-        /// <param name="jObject">JObject</param>
+        /// <param name="jsonObject">JObject</param>
         /// <returns>STAC Type</returns>
-        public static Type IdentifyStacType(JObject jObject)
+        public static Type IdentifyStacType(JObject jsonObject)
         {
-            if (jObject.Value<string>("type") == "Feature")
+            if (jsonObject.Value<string>("type") == "Feature")
             {
                 return typeof(StacItem);
             }
-            else if (jObject.Value<string>("type") == "FeatureCollection")
-            {
-                return typeof(ItemCollection);
-            }
-            else if (jObject.Value<string>("type") == "Collection" || jObject["extent"] != null || jObject["license"] != null)
+            else if (jsonObject.Value<string>("type") == "Collection" || jsonObject["extent"] != null || jsonObject["license"] != null)
             {
                 return typeof(StacCollection);
             }
-            else if (jObject.Value<string>("type") == "Catalog" || jObject["description"] != null)
+            else if (jsonObject.Value<string>("type") == "Catalog" || jsonObject["description"] != null)
             {
                 return typeof(StacCatalog);
             }
-            else if (jObject.ContainsKey("links") && jObject["links"].Type == JTokenType.Array)
+            else if (jsonObject.ContainsKey("links") && jsonObject["links"].Type == JTokenType.Array)
             {
                 return typeof(SimpleLinksCollectionObject);
             }
             else
             {
-                throw new InvalidStacDataException($"{jObject.Value<string>("id")}. Unknown data");
+                throw new InvalidStacDataException($"{jsonObject.Value<string>("id")}. Unknown data");
             }
         }
     }

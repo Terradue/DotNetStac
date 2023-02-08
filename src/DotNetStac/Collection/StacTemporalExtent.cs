@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (c) by Terradue Srl. All Rights Reserved.
+// License under the AGPL, Version 3.0.
+// File Name: StacTemporalExtent.cs
+
+using System;
 using Newtonsoft.Json;
 
 namespace Stac.Collection
@@ -10,32 +14,31 @@ namespace Stac.Collection
     [JsonObject]
     public class StacTemporalExtent
     {
-
-
         /// <summary>
-        /// Initialize a new instance of the <see cref="StacTemporalExtent" /> class with a single extent.
+        /// Initializes a new instance of the <see cref="StacTemporalExtent"/> class.
         /// </summary>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
+        /// <param name="start">Start time</param>
+        /// <param name="end">End time</param>
         [JsonConstructor]
         public StacTemporalExtent(DateTime? start, DateTime? end)
         {
-            Interval = new DateTime?[1][] { new DateTime?[2] { start, end } };
+            this.Interval = new DateTime?[1][] { new DateTime?[2] { start, end } };
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StacTemporalExtent"/> class.
         /// Intialize a new Stac Temporal Extent from an exisiting one (clone)
         /// </summary>
-        /// <param name="temporal"></param>
+        /// <param name="temporal">The temporal extent to clone</param>
         public StacTemporalExtent(StacTemporalExtent temporal)
         {
-            this.Interval = (System.DateTime?[][])temporal.Interval.Clone();
+            this.Interval = (DateTime?[][])temporal.Interval.Clone();
         }
 
         /// <summary>
-        /// Potential temporal extents.
+        /// Gets or sets potential temporal extents.
         /// </summary>
-        /// <value></value>
+        /// <returns>Potential temporal extents.</returns>
         [JsonProperty("interval")]
         public DateTime?[][] Interval { get; set; }
     }
