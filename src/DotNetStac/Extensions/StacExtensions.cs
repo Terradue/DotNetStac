@@ -16,7 +16,7 @@ namespace Stac.Extensions
     public static class StacExtensions
     {
         private static readonly object InitLock = new object();
-        private static Dictionary<string, Type> managedStacExtensions = new Dictionary<string, Type>();
+        private static Dictionary<string, Type> ManagedStacExtensionsDic = new Dictionary<string, Type>();
 
         /// <summary>
         /// Gets dictionary of extensions managed by the library
@@ -28,14 +28,14 @@ namespace Stac.Extensions
         {
             get
             {
-                if (managedStacExtensions.Count == 0)
+                if (ManagedStacExtensionsDic.Count == 0)
                 {
                     InitManagedExtensions();
                 }
 
-                return managedStacExtensions;
+                return ManagedStacExtensionsDic;
             }
-            private set => managedStacExtensions = value;
+            private set => ManagedStacExtensionsDic = value;
         }
 
         /// <summary>
@@ -45,20 +45,20 @@ namespace Stac.Extensions
         {
             lock (InitLock)
             {
-                managedStacExtensions.Clear();
-                managedStacExtensions.Add(Eo.EoStacExtension.JsonSchemaUrl, typeof(Eo.EoStacExtension));
-                managedStacExtensions.Add("eo", typeof(Eo.EoStacExtension));
-                managedStacExtensions.Add(Processing.ProcessingStacExtension.JsonSchemaUrl, typeof(Processing.ProcessingStacExtension));
-                managedStacExtensions.Add("processing", typeof(Processing.ProcessingStacExtension));
-                managedStacExtensions.Add(Projection.ProjectionStacExtension.JsonSchemaUrl, typeof(Projection.ProjectionStacExtension));
-                managedStacExtensions.Add("projection", typeof(Projection.ProjectionStacExtension));
-                managedStacExtensions.Add(Raster.RasterStacExtension.JsonSchemaUrl, typeof(Raster.RasterStacExtension));
-                managedStacExtensions.Add(Sar.SarStacExtension.JsonSchemaUrl, typeof(Sar.SarStacExtension));
-                managedStacExtensions.Add("sar", typeof(Sar.SarStacExtension));
-                managedStacExtensions.Add(Sat.SatStacExtension.JsonSchemaUrl, typeof(Sat.SatStacExtension));
-                managedStacExtensions.Add("sat", typeof(Sat.SatStacExtension));
-                managedStacExtensions.Add(View.ViewStacExtension.JsonSchemaUrl, typeof(View.ViewStacExtension));
-                managedStacExtensions.Add("view", typeof(View.ViewStacExtension));
+                ManagedStacExtensionsDic.Clear();
+                ManagedStacExtensionsDic.Add(Eo.EoStacExtension.JsonSchemaUrl, typeof(Eo.EoStacExtension));
+                ManagedStacExtensionsDic.Add("eo", typeof(Eo.EoStacExtension));
+                ManagedStacExtensionsDic.Add(Processing.ProcessingStacExtension.JsonSchemaUrl, typeof(Processing.ProcessingStacExtension));
+                ManagedStacExtensionsDic.Add("processing", typeof(Processing.ProcessingStacExtension));
+                ManagedStacExtensionsDic.Add(Projection.ProjectionStacExtension.JsonSchemaUrl, typeof(Projection.ProjectionStacExtension));
+                ManagedStacExtensionsDic.Add("projection", typeof(Projection.ProjectionStacExtension));
+                ManagedStacExtensionsDic.Add(Raster.RasterStacExtension.JsonSchemaUrl, typeof(Raster.RasterStacExtension));
+                ManagedStacExtensionsDic.Add(Sar.SarStacExtension.JsonSchemaUrl, typeof(Sar.SarStacExtension));
+                ManagedStacExtensionsDic.Add("sar", typeof(Sar.SarStacExtension));
+                ManagedStacExtensionsDic.Add(Sat.SatStacExtension.JsonSchemaUrl, typeof(Sat.SatStacExtension));
+                ManagedStacExtensionsDic.Add("sat", typeof(Sat.SatStacExtension));
+                ManagedStacExtensionsDic.Add(View.ViewStacExtension.JsonSchemaUrl, typeof(View.ViewStacExtension));
+                ManagedStacExtensionsDic.Add("view", typeof(View.ViewStacExtension));
             }
         }
 
