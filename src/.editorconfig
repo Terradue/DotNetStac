@@ -410,6 +410,7 @@ dotnet_diagnostic.SA1111.severity = warning      # Closing parenthesis should be
 dotnet_diagnostic.SA1115.severity = warning      # Parameter should follow comma
 dotnet_diagnostic.SA1116.severity = warning      # Split parameters should start on line after declaration
 dotnet_diagnostic.SA1119.severity = warning      # Statement must not use unnecessary parenthesis
+dotnet_diagnostic.SA1122.severity = warning      # Use string.Empty for empty strings
 dotnet_diagnostic.SA1124.severity = warning      # Do not use regions
 dotnet_diagnostic.SA1127.severity = warning      # Generic type constraints must be on their own line or share line with previous
 dotnet_diagnostic.SA1128.severity = warning      # Put constructor initializers on their own line

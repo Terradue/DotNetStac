@@ -19,7 +19,7 @@ namespace Stac.Test.Item
             var stacLink = StacLink.CreateItemLink(new Uri("file:///test"), "text/plain");
             stacLink.Title = "test";
             var cloned = new StacLink(stacLink);
-            cloned = stacLink.Clone();
+            cloned = stacLink.Clone() as StacLink;
         }
     }
 }

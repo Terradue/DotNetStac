@@ -65,7 +65,7 @@ namespace Stac
         /// Gets the property.
         /// </summary>
         /// <typeparam name="T">the type of the property</typeparam>
-        /// <param name="propertiesContainer"></param>
+        /// <param name="propertiesContainer">The stac properties container.</param>
         /// <param name="key">The key.</param>
         /// <returns>the property value</returns>
         public static T GetProperty<T>(this IStacPropertiesContainer propertiesContainer, string key)
@@ -177,7 +177,7 @@ namespace Stac
         /// <summary>
         /// Removes the property.
         /// </summary>
-        /// <param name="propertiesContainer"></param>
+        /// <param name="propertiesContainer">The stac properties container.</param>
         /// <param name="key">The key.</param>
         public static void RemoveProperty(this IStacPropertiesContainer propertiesContainer, string key)
         {
@@ -237,7 +237,7 @@ namespace Stac
         /// <summary>
         /// Gets the collection of the Item as a StacLink
         /// </summary>
-        /// <param name="stacItem"></param>
+        /// <param name="stacItem">The stac item.</param>
         /// <returns>a Stac Link</returns>
         public static StacLink GetCollection(this StacItem stacItem)
         {

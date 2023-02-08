@@ -16,8 +16,8 @@ namespace Stac
 #pragma warning disable SA1300 // Element should begin with upper-case letter
 #pragma warning disable SA1602 // EnumerationItemsMustBeDocumented
         /// <summary>
-        // The organization that is licensing the dataset under the license specified in the Collection's <see cref="StacCollection.License" /> field.
-        // </summary>
+        /// The organization that is licensing the dataset under the license specified in the Collection's <see cref="StacCollection.License" /> field.
+        /// </summary>
         licensor,
 
         /// <summary>

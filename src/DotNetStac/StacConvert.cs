@@ -21,6 +21,13 @@ namespace Stac
             Culture = CultureInfo.CreateSpecificCulture("en-US"),
         };
 
+        /// <summary>
+        /// Deserialize a STAC object from a JSON string.
+        /// </summary>
+        /// <typeparam name="T">The type of the STAC object to deserialize.</typeparam>
+        /// <param name="json">The JSON string to deserialize.</param>
+        /// <param name="serializerSettings">The JSON serializer settings to use.</param>
+        /// <returns>The deserialized STAC object.</returns>
         public static T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null)
             where T : IStacObject
         {
@@ -53,6 +60,12 @@ namespace Stac
             }
         }
 
+        /// <summary>
+        /// Serialize a STAC object to a JSON string.
+        /// </summary>
+        /// <param name="stacObject">The STAC object to serialize.</param>
+        /// <param name="serializerSettings">The JSON serializer settings to use.</param>
+        /// <returns>The serialized JSON string.</returns>
         public static string Serialize(IStacObject stacObject, JsonSerializerSettings serializerSettings = null)
         {
             if (serializerSettings == null)
@@ -64,6 +77,12 @@ namespace Stac
             return JsonConvert.SerializeObject(stacObject, serializerSettings);
         }
 
+        /// <summary>
+        /// Deserialize a STAC object from a JSON stream.
+        /// </summary>
+        /// <typeparam name="T">The type of the STAC object to deserialize.</typeparam>
+        /// <param name="stream">The JSON stream to deserialize.</param>
+        /// <returns>The deserialized STAC object.</returns>
         public static T Deserialize<T>(Stream stream)
             where T : IStacObject
         {

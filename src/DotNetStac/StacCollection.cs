@@ -302,9 +302,7 @@ namespace Stac
             return;
         }
 
-        /// <summary>
-        /// Clone this object.
-        /// </summary>
+        /// <inheritdoc/>
         public object Clone()
         {
             return new StacCollection(this);

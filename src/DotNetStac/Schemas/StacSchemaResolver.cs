@@ -37,6 +37,10 @@ namespace Stac.Schemas
         /// <summary>
         /// Loads the schema from url or shortcut.
         /// </summary>
+        /// <param name="baseUrl">Base url.</param>
+        /// <param name="version">Version.</param>
+        /// <param name="shortcut">Shortcut.</param>
+        /// <returns>The schema.</returns>
         public JSchema LoadSchema(string baseUrl = null, string version = null, string shortcut = null)
         {
             string vversion = string.IsNullOrEmpty(version) ? "unversioned" : "v" + version;

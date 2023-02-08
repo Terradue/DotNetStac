@@ -38,7 +38,7 @@ namespace Stac.Schemas
         /// <summary>
         /// Validate a json string against its STAC schema specification
         /// </summary>
-        /// <param name="jsonstr"></param>
+        /// <param name="jsonstr">json string</param>
         /// <returns>true when valid</returns>
         public bool ValidateJson(string jsonstr)
         {
@@ -121,15 +121,15 @@ namespace Stac.Schemas
             return true;
         }
 
-        private bool ValidateJObject(JObject jObject)
+        private bool ValidateJObject(JObject jsonObject)
         {
-            Type stacType = Utils.IdentifyStacType(jObject);
+            Type stacType = Utils.IdentifyStacType(jsonObject);
 
             // Get all schema to validate against
             List<string> schemas = new List<string>() { this._stacTypes[stacType] };
-            if (jObject.Value<JArray>("stac_extensions") != null)
+            if (jsonObject.Value<JArray>("stac_extensions") != null)
             {
-                schemas.AddRange(jObject.Value<JArray>("stac_extensions").Select(a => a.Value<string>()));
+                schemas.AddRange(jsonObject.Value<JArray>("stac_extensions").Select(a => a.Value<string>()));
             }
 
             foreach (var schema in schemas)
@@ -144,19 +144,19 @@ namespace Stac.Schemas
                     shortcut = schema;
                 }
 
-                if (!jObject.ContainsKey("stac_version"))
+                if (!jsonObject.ContainsKey("stac_version"))
                 {
                     throw new InvalidStacDataException("Missing 'stac_version' property");
                 }
 
-                var jsonSchema = this._schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jObject["stac_version"].Value<string>());
-                if (jObject.IsValid(jsonSchema, out IList<ValidationError> errorMessages))
+                var jsonSchema = this._schemaResolver.LoadSchema(baseUrl: baseUrl, shortcut: shortcut, version: jsonObject["stac_version"].Value<string>());
+                if (jsonObject.IsValid(jsonSchema, out IList<ValidationError> errorMessages))
                 {
                     continue;
                 }
 
                 throw new InvalidStacDataException(schema + ":\n" + string.Join("\n", errorMessages.
-                        Select(e => FormatMessage(e, ""))));
+                        Select(e => FormatMessage(e, string.Empty))));
             }
 
             return true;

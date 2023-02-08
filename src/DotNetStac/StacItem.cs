@@ -23,17 +23,19 @@ namespace Stac
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public partial class StacItem : GeoJSON.Net.Feature.Feature, IStacObject, ICloneable
     {
+        /// <summary>
+        /// Item Media-Type string
+        /// </summary>
         public const string MEDIATYPE = "application/geo+json";
-        public static readonly ContentType ITEM_MEDIATYPE = new ContentType(MEDIATYPE);
 
-        private readonly StacItemRootPropertyContainer _Root;
+        private readonly StacItemRootPropertyContainer _root;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StacItem"/> class.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="geometry"></param>
-        /// <param name="properties"></param>
+        /// <param name="id">Identifier of the item</param>
+        /// <param name="geometry">Geometry of the item</param>
+        /// <param name="properties">Properties of the item</param>
         [JsonConstructor]
         public StacItem(
             string id,
@@ -43,7 +45,7 @@ namespace Stac
         {
             Preconditions.CheckNotNull(id, "id");
             this.StacExtensions = new SortedSet<string>();
-            this._Root = new StacItemRootPropertyContainer(this);
+            this._root = new StacItemRootPropertyContainer(this);
             this.StacVersion = Versions.StacVersionList.Current;
             this.Links = new ObservableCollection<StacLink>();
             (this.Links as ObservableCollection<StacLink>).CollectionChanged += this.LinksCollectionChanged;
@@ -53,7 +55,7 @@ namespace Stac
         /// <summary>
         /// Initializes a new instance of the <see cref="StacItem"/> class.
         /// </summary>
-        /// <param name="stacItem"></param>
+        /// <param name="stacItem">A StacItem to copy</param>
         public StacItem(StacItem stacItem)
             : base(
                 Preconditions.CheckNotNull(stacItem, "stacItem").Geometry,
@@ -61,7 +63,7 @@ namespace Stac
                 Preconditions.CheckNotNull(stacItem, "id").Id)
         {
             this.StacExtensions = new SortedSet<string>(stacItem.StacExtensions);
-            this._Root = new StacItemRootPropertyContainer(this);
+            this._root = new StacItemRootPropertyContainer(this);
             this.StacVersion = stacItem.StacVersion;
             this.Links = new ObservableCollection<StacLink>(stacItem.Links.Select(l => new StacLink(l)));
             (this.Links as ObservableCollection<StacLink>).CollectionChanged += this.LinksCollectionChanged;
@@ -75,9 +77,6 @@ namespace Stac
         /// <summary>
         /// Gets or sets the STAC version the Item implements
         /// </summary>
-        /// <value>
-        /// The STAC version the Item implements
-        /// </value>
         [JsonProperty("stac_version", Order = -10)]
         [JsonConverter(typeof(SemVersionConverter))]
         public SemVersion StacVersion { get; set; }
@@ -85,18 +84,12 @@ namespace Stac
         /// <summary>
         /// Gets a list of extension identifiers the Item implements
         /// </summary>
-        /// <value>
-        /// A list of extension identifiers the Item implements
-        /// </value>
         [JsonProperty("stac_extensions", Order = -9)]
         public ICollection<string> StacExtensions { get; private set; }
 
         /// <summary>
-        /// Gets a list of references to other documents.
+        /// Gets a list of references
         /// </summary>
-        /// <value>
-        /// A list of references to other documents.
-        /// </value>
         [JsonConverter(typeof(CollectionConverter<StacLink>))]
         [JsonProperty("links", Order = 5)]
         public ICollection<StacLink> Links
@@ -106,29 +99,31 @@ namespace Stac
 
         /// <inheritdoc/>
         [JsonIgnore]
-        public ContentType MediaType => ITEM_MEDIATYPE;
+        public ContentType MediaType => new ContentType(MEDIATYPE);
 
+        /// <summary>
+        /// Gets the assets of the Item
+        /// </summary>
         [JsonProperty("assets", Order = 4)]
         public IDictionary<string, StacAsset> Assets { get; private set; }
 
         /// <summary>
         /// Gets or sets the id of the STAC Collection this Item references to
         /// </summary>
-        /// <value>gets the collection id</value>
         [JsonProperty("__collection", Required = Required.Default)]
         [JsonIgnore]
         public string Collection
         {
-            get => this._Root.GetProperty<string>("collection");
+            get => this._root.GetProperty<string>("collection");
             set
             {
                 if (value != null)
                 {
-                    this._Root.SetProperty("collection", value);
+                    this._root.SetProperty("collection", value);
                 }
                 else
                 {
-                    this._Root.RemoveProperty("collection");
+                    this._root.RemoveProperty("collection");
                 }
             }
         }
@@ -136,25 +131,22 @@ namespace Stac
         /// <summary>
         /// Gets item root extended data
         /// </summary>
-        /// <value>
-        /// Item root extended data
-        /// </value>
         [JsonExtensionData]
-        public IDictionary<string, object> RootProperties { get => this._Root.Properties; internal set => this._Root.Properties = value; }
+        public IDictionary<string, object> RootProperties { get => this._root.Properties; internal set => this._root.Properties = value; }
 
         /// <inheritdoc/>
         [JsonIgnore]
         public IStacObject StacObjectContainer => this;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public bool ShouldSerializeStacExtensions()
         {
             // don't serialize the Manager property if an employee is their own manager
             return this.StacExtensions.Count > 0;
         }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
-        /// <summary>
-        /// Create a new Stac Item from this existing one
-        /// </summary>
+        /// <inheritdoc/>
         public object Clone()
         {
             return new StacItem(this);

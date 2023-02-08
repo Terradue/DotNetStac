@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace Stac
 {
+    /// <summary>
+    /// A simple implementation of <see cref="ILinksCollectionObject"/> that can be used as a base class for other objects.
+    /// </summary>
     public class SimpleLinksCollectionObject : ILinksCollectionObject
     {
         /// <summary>

@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 
 namespace Stac
 {
+    /// <summary>
+    /// A link to a STAC object
+    /// </summary>
     public class StacObjectLink : StacLink
     {
         private readonly IStacObject _stacObject;
@@ -67,6 +70,9 @@ namespace Stac
             set;
         }
 
+        /// <summary>
+        /// Gets the STAC object
+        /// </summary>
         [JsonIgnore]
         public IStacObject StacObject => this._stacObject;
     }
