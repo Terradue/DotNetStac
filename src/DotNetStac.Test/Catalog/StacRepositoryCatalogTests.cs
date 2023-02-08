@@ -11,7 +11,7 @@ namespace Stac.Test.Catalog
         [Fact]
         public void CanDeserializeBaseCatalogExample()
         {
-            var json = httpClient.GetStringAsync($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/catalog.json").GetAwaiter().GetResult();
+            var json = HttpClient.GetStringAsync($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/catalog.json").GetAwaiter().GetResult();
 
             StacCatalog catalog = StacConvert.Deserialize<StacCatalog>(json);
 

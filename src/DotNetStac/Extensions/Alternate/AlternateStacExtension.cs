@@ -19,13 +19,13 @@ namespace Stac.Extensions.Alternate
         private const string AlternateField = "alternate";
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
-        private static IDictionary<string, Type> assetFields;
+        private readonly IDictionary<string, Type> _assetFields;
 
         internal AlternateStacExtension(StacAsset stacAsset)
             : base(JsonSchemaUrl, stacAsset)
         {
-            assetFields = new Dictionary<string, Type>();
-            assetFields.Add(AlternateField, typeof(AlternateAssetObject[]));
+            this._assetFields = new Dictionary<string, Type>();
+            this._assetFields.Add(AlternateField, typeof(AlternateAssetObject[]));
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Stac.Extensions.Alternate
         /// <value>
         /// Potential fields and their types
         /// </value>
-        public override IDictionary<string, Type> ItemFields => assetFields;
+        public override IDictionary<string, Type> ItemFields => this._assetFields;
 
         /// <inheritdoc/>
         public StacAsset StacAsset => this.StacPropertiesContainer as StacAsset;

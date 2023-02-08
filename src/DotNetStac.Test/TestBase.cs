@@ -21,9 +21,17 @@ namespace Stac.Test
         .Assembly;
         private static readonly string AssemblyName = ThisAssembly.GetName().Name;
 
-        private static readonly StacValidator stacValidator = new(new JSchemaUrlResolver());
+        private static readonly StacValidator StacValidator = new(new JSchemaUrlResolver());
 
-        protected HttpClient httpClient = new();
+        private readonly HttpClient _httpClient = new();
+
+        public HttpClient HttpClient
+        {
+            get
+            {
+                return _httpClient;
+            }
+        }
 
         protected TestBase()
         {
@@ -92,7 +100,7 @@ namespace Stac.Test
 
         public bool ValidateJson(string jsonstr)
         {
-            return stacValidator.ValidateJson(jsonstr);
+            return StacValidator.ValidateJson(jsonstr);
         }
 
     }

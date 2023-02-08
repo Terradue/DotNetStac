@@ -17,6 +17,7 @@ namespace Stac
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <param name="value">The value to check.</param>
         /// <param name="argName">The name of the argument.</param>
+        /// <returns>The value.</returns>
         public static T CheckNotNull<T>(T value, string argName = null)
             where T : class
         {

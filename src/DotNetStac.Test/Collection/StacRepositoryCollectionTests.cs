@@ -15,7 +15,7 @@ namespace Stac.Test.Catalog
         [Fact]
         public void CanDeserializeBaseCollectionExample()
         {
-            var json = httpClient.GetStringAsync($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json").GetAwaiter().GetResult();
+            var json = HttpClient.GetStringAsync($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json").GetAwaiter().GetResult();
 
             ValidateJson(json);
 
@@ -35,7 +35,7 @@ namespace Stac.Test.Catalog
         [Fact]
         public void CanCreateBaseCollectionExample()
         {
-            var expectedJson = httpClient.GetStringAsync($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json").GetAwaiter().GetResult();
+            var expectedJson = HttpClient.GetStringAsync($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/collection.json").GetAwaiter().GetResult();
             //TMP
             expectedJson = expectedJson.Replace("\"proj:epsg\": {\n      \"minimum\": 32659,\n      \"maximum\": 32659\n    }", "\"proj:epsg\":[32659]");
 
@@ -43,14 +43,14 @@ namespace Stac.Test.Catalog
 
             Dictionary<Uri, StacItem> items = new Dictionary<Uri, StacItem>();
             Uri simpleItemUri = new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/simple-item.json");
-            items.Add(simpleItemUri, StacConvert.Deserialize<StacItem>(httpClient.GetStringAsync(simpleItemUri).GetAwaiter().GetResult()));
+            items.Add(simpleItemUri, StacConvert.Deserialize<StacItem>(HttpClient.GetStringAsync(simpleItemUri).GetAwaiter().GetResult()));
             items[simpleItemUri].Title = "Simple Item";
             Uri coreItemUri = new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/core-item.json");
-            string coreItemJson = httpClient.GetStringAsync(coreItemUri).GetAwaiter().GetResult();
+            string coreItemJson = HttpClient.GetStringAsync(coreItemUri).GetAwaiter().GetResult();
             coreItemJson = coreItemJson.Replace("cool_sat2", "cool_sat1");
             items.Add(coreItemUri, StacConvert.Deserialize<StacItem>(coreItemJson));
             Uri extendedItemUri = new Uri($"https://raw.githubusercontent.com/radiantearth/stac-spec/v{Versions.StacVersionList.Current}/examples/extended-item.json");
-            string extendedItemJson = httpClient.GetStringAsync(extendedItemUri).GetAwaiter().GetResult();
+            string extendedItemJson = HttpClient.GetStringAsync(extendedItemUri).GetAwaiter().GetResult();
             extendedItemJson = extendedItemJson.Replace("cool_sensor_v1", "cool_sensor_v2");
             items.Add(extendedItemUri, StacConvert.Deserialize<StacItem>(extendedItemJson));
             StacCollection collection = StacCollection.Create("simple-collection",

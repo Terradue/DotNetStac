@@ -72,6 +72,7 @@
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.CodeStyle" RuleNamespace="Microsoft.CodeAnalysis.CSharp.CodeStyle">
     <Rule Id="IDE0055" Action="Warning" />
+    <Rule Id="IDE1006" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
     <Rule Id="IDE0003" Action="None" />

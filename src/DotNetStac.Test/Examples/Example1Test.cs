@@ -35,7 +35,7 @@ namespace Stac.Test.Example
                 Uri childUri = childLink.Uri;
                 if (!childUri.IsAbsoluteUri)
                     childUri = new Uri(baseUri, childUri.ToString());
-                IStacObject child = StacConvert.Deserialize<IStacObject>(httpClient.GetStringAsync(childUri).GetAwaiter().GetResult());
+                IStacObject child = StacConvert.Deserialize<IStacObject>(HttpClient.GetStringAsync(childUri).GetAwaiter().GetResult());
 
                 Console.Out.WriteLine(prefix + child.Id + ": " + child.Title);
                 if (child is StacCatalog || child is StacCollection)
