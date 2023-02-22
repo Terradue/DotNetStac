@@ -8,7 +8,7 @@ using Stac.Collection;
 using Stac.Common;
 using Xunit;
 
-namespace Stac.Test.Item
+namespace Stac.Test.Common
 {
     public class StacAccessorsHelpersTests : TestBase
     {
@@ -72,6 +72,21 @@ namespace Stac.Test.Item
 
             Assert.Equal(summaryItemType, item.GetProperty<SummaryItemType>("summary"));
 
+        }
+
+        [Fact]
+        public void LazyEnumParseTests()
+        {
+            Enum1 test = Enum1.test;
+            Assert.Equal(test, StacAccessorsHelpers.LazyEnumParse(typeof(Enum1), "test"));
+
+            Enum2 test2 = Enum2.Test;
+            Assert.Equal(test2, StacAccessorsHelpers.LazyEnumParse(typeof(Enum2), "test"));
+
+            Enum3 test3 = Enum3.Cql2Json;
+            Assert.Equal(test3, StacAccessorsHelpers.LazyEnumParse(typeof(Enum3), "cql2-json"));
+
+            Assert.Equal(test3, StacAccessorsHelpers.LazyEnumParse(typeof(Enum3), "Cql2Json"));
         }
     }
 }

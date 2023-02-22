@@ -1,0 +1,408 @@
+{
+  "stac_version": "1.0.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+    "https://terradue.github.io/stac-extensions-disaster/v1.0.0/schema.json"
+  ],
+  "type": "Feature",
+  "id": "PT01S19_668124W174_3455752022011600000000MS00_GG003002001-calibrated",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -174.5324594838,
+          -19.5422657027
+        ],
+        [
+          -174.1591275458,
+          -19.5422657027
+        ],
+        [
+          -174.1591275458,
+          -19.7940509874
+        ],
+        [
+          -174.5324594838,
+          -19.7940509874
+        ],
+        [
+          -174.5324594838,
+          -19.5422657027
+        ]
+      ]
+    ]
+  },
+  "properties": {
+    "datetime": "2022-01-16T21:09:58Z",
+    "start_datetime": "2022-01-16T21:09:58Z",
+    "end_datetime": "2022-01-16T21:09:58Z",
+    "mission": "planetscope",
+    "platform": "planetscope",
+    "instruments": [
+      "psb.sd"
+    ],
+    "sensor_type": "optical",
+    "gsd": 3,
+    "sat:orbit_state": "descending",
+    "sat:absolute_orbit": 5294818,
+    "view:sun_elevation": 53.59301,
+    "view:sun_azimuth": 98.66201,
+    "view:incidence_angle": 5.400846,
+    "view:off_nadir": 4.975902,
+    "proj:epsg": 32701,
+    "processing:level": "L2B",
+    "title": "PLANETSCOPE PSB.SD L3B  2022/01/16 21:09:58",
+    "disaster:class": "acquisition",
+    "updated": "2022-01-18T22:45:52.2778052Z",
+    "created": "2022-01-18T22:24:15.216345Z",
+    "providers": [
+      {
+        "name": "PLANET",
+        "roles": [
+          "licensor"
+        ]
+      }
+    ],
+    "license": "proprietary",
+    "disaster:call_ids": [
+      855
+    ],
+    "disaster:resolution_class": "HR",
+    "cpe:cos2_xml": null,
+    "cpe:cos2_id": "855-PLANET-PlanetScope-urn_ogc_def_EOP_PLANET_PT01S19_668124W174_3455752022011600000000MS00",
+    "description": "Name |Value\n---- |-----\nAgency | **PLANET** \nPlatform | **PLANETSCOPE** \nInstrument | **PSB.SD\nSource processing level | **L3B\nSensing Time | **2022/01/16 21:09:58\nService version | **0.6.52\nCreated | **2022/01/18 22:23:24\nUpdated | **2022/01/18 22:34:06\nCos2 Id | 855-PLANET-PlanetScope-urn_ogc_def_EOP_PLANET_PT01S19_668124W174_3455752022011600000000MS00\n",
+    "version": "4",
+    "processing:lineage": "Optical Calibration",
+    "processing:software": {
+      "opt-calibration-0_6_52": "1.0.0.0"
+    },
+    "processing:facility": "Charter ADES"
+  },
+  "bbox": [
+    -174.5324594838,
+    -19.7940509874,
+    -174.1591275458,
+    -19.5422657027
+  ],
+  "assets": {
+    "blue": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "reflectance"
+      ],
+      "href": "Optical_Calibration/r-blue.tif",
+      "eo:bands": [
+        {
+          "name": "blue",
+          "description": "blue 485nm TOA",
+          "common_name": "blue",
+          "center_wavelength": 0.485,
+          "solar_illumination": 1997.46
+        }
+      ],
+      "raster:bands": [
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 4633,
+            "mean": 723.99212068792,
+            "stddev": 559.49868731633,
+            "valid_percent": 100
+          }
+        }
+      ],
+      "file:size": 104425594
+    },
+    "red": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "reflectance"
+      ],
+      "href": "Optical_Calibration/r-red.tif",
+      "eo:bands": [
+        {
+          "name": "red",
+          "description": "red 630nm TOA",
+          "common_name": "red",
+          "center_wavelength": 0.63,
+          "solar_illumination": 1631.38
+        }
+      ],
+      "raster:bands": [
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 6562,
+            "mean": 296.96476291067,
+            "stddev": 322.91611947882,
+            "valid_percent": 100
+          }
+        }
+      ],
+      "file:size": 101296200
+    },
+    "nir": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "reflectance"
+      ],
+      "href": "Optical_Calibration/r-nir.tif",
+      "eo:bands": [
+        {
+          "name": "nir",
+          "description": "nir 820nm TOA",
+          "common_name": "nir",
+          "center_wavelength": 0.82,
+          "solar_illumination": 1066.31
+        }
+      ],
+      "raster:bands": [
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 7120,
+            "mean": 228.99235208478,
+            "stddev": 380.46452984699,
+            "valid_percent": 100
+          }
+        }
+      ],
+      "file:size": 122120289
+    },
+    "green": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "reflectance"
+      ],
+      "href": "Optical_Calibration/r-green.tif",
+      "eo:bands": [
+        {
+          "name": "green",
+          "description": "green 545nm TOA",
+          "common_name": "green",
+          "center_wavelength": 0.545,
+          "solar_illumination": 1832.09
+        }
+      ],
+      "raster:bands": [
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 5229,
+            "mean": 454.56339701689,
+            "stddev": 398.42656231882,
+            "valid_percent": 100
+          }
+        }
+      ],
+      "file:size": 101195859
+    },
+    "overview-trc": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "composite",
+        "reflectance",
+        "visual"
+      ],
+      "href": "Optical_Calibration/overview-trc.tif",
+      "s_expressions": [
+        "(interp v1 (asarray 0 10000) (asarray 0 1))",
+        "(interp v2 (asarray 0 10000) (asarray 0 1))",
+        "(interp v3 (asarray 0 10000) (asarray 0 1))",
+        "(where (> v3 0) 1 0)"
+      ],
+      "raster:bands": [
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 252,
+            "mean": 18.131946480458,
+            "stddev": 21.005990251111,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 247,
+            "mean": 28.764749350778,
+            "stddev": 26.273450138387,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 242,
+            "mean": 49.442453181922,
+            "stddev": 38.264476846811,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 255,
+            "mean": 167.93554409699,
+            "stddev": 120.91822349663,
+            "valid_percent": 100
+          }
+        }
+      ],
+      "file:size": 90246661
+    },
+    "overview-civ": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "composite",
+        "reflectance",
+        "visual"
+      ],
+      "href": "Optical_Calibration/overview-civ.tif",
+      "s_expressions": [
+        "(interp v1 (asarray 0 10000) (asarray 0 1))",
+        "(interp v2 (asarray 0 10000) (asarray 0 1))",
+        "(interp v3 (asarray 0 10000) (asarray 0 1))",
+        "(where (> v3 0) 1 0)"
+      ],
+      "raster:bands": [
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 253,
+            "mean": 14.436055494472,
+            "stddev": 25.952781507517,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 252,
+            "mean": 18.131946480458,
+            "stddev": 21.005990251111,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 247,
+            "mean": 28.764749350778,
+            "stddev": 26.273450138387,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 3,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 255,
+            "mean": 167.93554409699,
+            "stddev": 120.91822349663,
+            "valid_percent": 100
+          }
+        }
+      ],
+      "file:size": 99330809
+    },
+    "overview-trc-low-res": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "composite",
+        "overview",
+        "reflectance"
+      ],
+      "href": "Optical_Calibration/overview-trc-low-res.tif",
+      "s_expressions": [
+        "(interp v1 (asarray 0 10000) (asarray 0 1))",
+        "(interp v2 (asarray 0 10000) (asarray 0 1))",
+        "(interp v3 (asarray 0 10000) (asarray 0 1))",
+        "(where (> v3 0) 1 0)"
+      ],
+      "raster:bands": [
+        {
+          "spatial_resolution": 38.4580078125,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 252,
+            "mean": 18.133843421936,
+            "stddev": 21.002790055557,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 38.4580078125,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 247,
+            "mean": 28.765296936035,
+            "stddev": 26.268060132432,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 38.4580078125,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 241,
+            "mean": 49.445510864258,
+            "stddev": 38.265852749786,
+            "valid_percent": 100
+          }
+        },
+        {
+          "spatial_resolution": 38.4580078125,
+          "statistics": {
+            "minimum": 0,
+            "maximum": 255,
+            "mean": 167.94296264648,
+            "stddev": 120.91574245058,
+            "valid_percent": 100
+          }
+        }
+      ],
+      "file:size": 4197763
+    }
+  },
+  "links": [
+    {
+      "type": "application/geo+json",
+      "rel": "derived_from",
+      "title": "Source Dataset",
+      "href": "s3://cpe-production-catalog/calls/call-855/datasets/PT01S19_668124W174_3455752022011600000000MS00_GG003002001/PT01S19_668124W174_3455752022011600000000MS00_GG003002001.json"
+    },
+    {
+      "type": "application/geo+json",
+      "rel": "self",
+      "href": "PT01S19_668124W174_3455752022011600000000MS00_GG003002001-calibrated.json"
+    },
+    {
+      "type": "application/json",
+      "rel": "root",
+      "href": "s3://cpe-production-catalog/catalog.json"
+    }
+  ]
+}
