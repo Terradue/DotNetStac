@@ -12,7 +12,7 @@
           "src": ".."
         }
       ],
-      "dest": "api",
+      "dest": "lib",
       "disableGitFeatures": false,
       "disableDefaultFilter": false
     }
@@ -21,8 +21,8 @@
     "content": [
       {
         "files": [
-          "api/**.yml",
-          "api/index.md"
+          "lib/**.yml",
+          "lib/index.md"
         ]
       },
       {
@@ -44,7 +44,7 @@
     "overwrite": [
       {
         "files": [
-          "apidoc/**.md"
+          "libdoc/**.md"
         ],
         "exclude": [
           "obj/**",

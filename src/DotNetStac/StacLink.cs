@@ -67,6 +67,7 @@ namespace Stac
             this.ContentType = source.ContentType;
             this.Parent = source.Parent;
             this.Length = source.Length;
+            this.AdditionalProperties = source.AdditionalProperties;
         }
 
         /// <summary>

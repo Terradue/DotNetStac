@@ -12,9 +12,9 @@
 
 <h3 align="center">
 
-![Build Status](https://github.com/Terradue/DotNetStac/actions/workflows/build.yaml/badge.svg?branch=release/1.7.1)
+![Build Status](https://github.com/Terradue/DotNetStac/actions/workflows/build.yaml/badge.svg?branch=develop)
 [![NuGet](https://img.shields.io/nuget/vpre/DotNetStac)](https://www.nuget.org/packages/DotNetStac/)
-[![codecov](https://codecov.io/gh/Terradue/DotNetStac/branch/release/1.7.1/graph/badge.svg)](https://codecov.io/gh/Terradue/DotNetStac)
+[![codecov](https://codecov.io/gh/Terradue/DotNetStac/branch/develop/graph/badge.svg)](https://codecov.io/gh/Terradue/DotNetStac)
 [![Gitter](https://img.shields.io/gitter/room/SpatioTemporal-Asset-Catalog/Lobby?color=yellow)](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby)
 [![License](https://img.shields.io/badge/license-AGPL3-blue.svg)](LICENSE)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Terradue/DotNetStac/master?filepath=example.ipynb)
