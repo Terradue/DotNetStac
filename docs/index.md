@@ -19,7 +19,7 @@ In a nutshell, the library allows serialization/desrialization of STAC JSON docu
 
 ## Reference API
 
-Looking for the reference API docs, go directly to [https://terradue.github.io/DotNetStac/api/].
+Looking for the reference API docs, go directly to [https://terradue.github.io/DotNetStac/lib/].
 
 ## Getting Started
 
@@ -33,7 +33,7 @@ dotnet add package DotNetStac
 
 ### Deserialization of STAC documents
 
-The (de)serialiation methods are wrapped in methods in [class `StacConvert`](https://terradue.github.io/DotNetStac/api/Stac.StacConvert.html) that is the main entry point from/to JSON/.Net.
+The (de)serialiation methods are wrapped in methods in [class `StacConvert`](https://terradue.github.io/DotNetStac/lib/Stac.StacConvert.html) that is the main entry point from/to JSON/.Net.
 
 Let's start reading a STAC catalog online. Please note that DotNetStac does not provide with data access middleware. You can integrate own data access or you can test the [`Stars` SDK](https://github.com/Terradue/Stars) that provides with integrated functions to manipulate STAC objects and their storage.
 
@@ -63,7 +63,7 @@ Please note the following:
 
 * `GetChildrenLinks` and `GetItemLinks` are the recommanded ways to get the links for navigating through the tree.
 * The previous functions as the rest of the library does not alter the `Uri`s. It is then up to the developer to resolve the relative ones. As in the code, Uri class provides with all the necessary methods to easily join a base Url with a relative one.
-* The `StacConvert.Deserialize<>` methods allows to specify the interfaces to ease the deserialization when the STAC type is unknown: [`IStacObject`](https://terradue.github.io/DotNetStac/api/Stac.IStacObject.html) and [`IStacCatalog`](https://terradue.github.io/DotNetStac/api/Stac.IStacCatalog.html).
+* The `StacConvert.Deserialize<>` methods allows to specify the interfaces to ease the deserialization when the STAC type is unknown: [`IStacObject`](https://terradue.github.io/DotNetStac/lib/Stac.IStacObject.html) and [`IStacCatalog`](https://terradue.github.io/DotNetStac/lib/Stac.IStacCatalog.html).
 
 ```csharp
 using System.Linq;
@@ -281,7 +281,7 @@ using System.Collections.Generic;
 
 #### Collection generation from a set of Items
 
-[`StacCollection` class](https://terradue.github.io/DotNetStac/api/Stac.StacCollection.html) has static methods allowing the automatic generation of a collection from a set of `StacItem`. The following code loads the items of [the examples folder from STAC repository](https://github.com/radiantearth/stac-spec/tree/master/examples) and generates the corresponding collection with
+[`StacCollection` class](https://terradue.github.io/DotNetStac/lib/Stac.StacCollection.html) has static methods allowing the automatic generation of a collection from a set of `StacItem`. The following code loads the items of [the examples folder from STAC repository](https://github.com/radiantearth/stac-spec/tree/master/examples) and generates the corresponding collection with
 - **Spatial and temporal extent** from geometry and time merge of the items
 - **Fields summaries** with stats objects or value sets of the items' fields values
   
