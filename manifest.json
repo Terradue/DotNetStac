@@ -1,0 +1,1693 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "L0ZKdTCJXky/P6vtukZYtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/stac_logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/stac_logo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/stac_logo_128.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/stac_logo_128.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "PU/InJsnLlIM77yTUa9otg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.CreateSummary-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.CreateSummary-1.html",
+          "hash": "ToV8kBIh+xMrrMKze0hwlw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.IStacSummaryItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.IStacSummaryItem.html",
+          "hash": "FK1W8U4CjdEii6r3R7/pbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.StacExtent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.StacExtent.html",
+          "hash": "gMzXpxmuFW3rnfvSwOLe3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.StacSpatialExtent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.StacSpatialExtent.html",
+          "hash": "QGUWerRiikL737IDVP9+Gw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.StacSummaryItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.StacSummaryItem.html",
+          "hash": "AD9KmKmd3NhjjbgaLCIrWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.StacSummaryRangeObject-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.StacSummaryRangeObject-1.html",
+          "hash": "pUTRdprYFCNeaAyxjdHXAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.StacSummaryValueSet-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.StacSummaryValueSet-1.html",
+          "hash": "xEJk8HakohOMIIKcMHOAfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.StacTemporalExtent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.StacTemporalExtent.html",
+          "hash": "C/Ft0+yDPaI6YcZ2ivfY5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.SummaryItemType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.SummaryItemType.html",
+          "hash": "0ZtJVmVOIy2YeTArWUJaQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Collection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Collection.html",
+          "hash": "PzmGBGsH0YbEyWZBKqF6bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Common.DataType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Common.DataType.html",
+          "hash": "jXT1xcDLZqbY4SPApjkDyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Common.JsonMergeUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Common.JsonMergeUtils.html",
+          "hash": "wsxrhf6QHRYI0EOUGRJIcw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Common.Patch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Common.Patch.html",
+          "hash": "yPilXI45VZ+zNIkO08KcYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Common.PatchHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Common.PatchHelpers.html",
+          "hash": "fw9u31qDhAfdrIqk5tNgNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Common.PropertyObservableCollection-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Common.PropertyObservableCollection-1.html",
+          "hash": "0dCkMa+7nY4EdsXVrezYXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Common.Statistics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Common.Statistics.html",
+          "hash": "Chvl+NJw1mVhT5Vbyh9QvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Common.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Common.html",
+          "hash": "p0Tn4ckT9mEJmuw4uRF8pw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Converters.CollectionConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Converters.CollectionConverter-1.html",
+          "hash": "zlILzgIIwDf5o1UVtfHL7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Converters.html",
+          "hash": "UyaV0njaEKWub5G4Qys2Pg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Exceptions.InvalidStacDataException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Exceptions.InvalidStacDataException.html",
+          "hash": "w+/ze+FPWV+X0iDaKy7SoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Exceptions.InvalidStacSchemaException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Exceptions.InvalidStacSchemaException.html",
+          "hash": "55OmQVfOA8ARZQOAZkdX6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Exceptions.html",
+          "hash": "Bbyri3drmdmpbY+w1BvzHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Alternate.AlternateAssetObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Alternate.AlternateAssetObject.html",
+          "hash": "HVxqC81fNLLtXKhefKHN/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Alternate.AlternateStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Alternate.AlternateStacExtension.html",
+          "hash": "QAlHH3905f6pnu50EHmD0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Alternate.AlternateStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Alternate.AlternateStacExtensionExtensions.html",
+          "hash": "UZyW+/GgZm8bZwTvcenw3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Alternate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Alternate.html",
+          "hash": "APUpwD4x2WIhFj0tjG68/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeAxis.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeAxis.html",
+          "hash": "QyUQU78dpR4+NSAs9diZfw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimension.html",
+          "hash": "JbBoxVp2nUIiqLJ2p5KwIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionAdditional.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionAdditional.html",
+          "hash": "YLRyiX1QgPjB2wYVBRQr0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionSpatial.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionSpatial.html",
+          "hash": "L+i5wFfAH6Puv3qkhAGQIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionSpatialHorizontal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionSpatialHorizontal.html",
+          "hash": "yVaRtSl8Ao9nceP48eWIWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionSpatialVertical.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionSpatialVertical.html",
+          "hash": "amuTcugvuHCYUdwwL+O4dw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionTemporal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionTemporal.html",
+          "hash": "Yo0hayqhVMU3At1fboSwvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeDimensionType.html",
+          "hash": "eS77xtwbStgqIhm0XEyJAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeStacExtension.html",
+          "hash": "nerncLbupvCAC9kZtZQgeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeStacExtensionExtensions.html",
+          "hash": "20CH3tYlpuOc2+n7HD8xdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeVariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeVariable.html",
+          "hash": "ahdPvM/UeGelhmPUUmFNuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.DatacubeVariableType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.DatacubeVariableType.html",
+          "hash": "fiquuGJyBZ6K6RaDL/6iKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Datacube.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Datacube.html",
+          "hash": "b9kryO9bb1POx1Pmd696tg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Disaster.DisasterStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Disaster.DisasterStacExtensionExtensions.html",
+          "hash": "PIYzWdtFlkbnZgIdIfcI0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Disaster.DisastersActivationStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Disaster.DisastersActivationStatus.html",
+          "hash": "E8MF0G4cJ+Rm5fJczzklBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Disaster.DisastersCharterStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Disaster.DisastersCharterStacExtension.html",
+          "hash": "VxuNFlCS61HrImMv4pp1vw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Disaster.DisastersItemClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Disaster.DisastersItemClass.html",
+          "hash": "siolFfsSbUb6Qoaey6EbLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Disaster.DisastersResolutionClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Disaster.DisastersResolutionClass.html",
+          "hash": "4yLw1mH7IzYGN4RRv/i4ow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Disaster.DisastersType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Disaster.DisastersType.html",
+          "hash": "nZsuCdSgbkK9tZ9MzhEG2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Disaster.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Disaster.html",
+          "hash": "RR0qyGHMOPV0rbLbhTCx9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Eo.EoBandCommonName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Eo.EoBandCommonName.html",
+          "hash": "7VLKnGPQvTDJ35wIta5whA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Eo.EoBandObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Eo.EoBandObject.html",
+          "hash": "sxA62XKnd2wPDHMOs/Zi7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Eo.EoStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Eo.EoStacExtension.html",
+          "hash": "wPF3O6Big6mqbrx1MivO5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Eo.EoStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Eo.EoStacExtensionExtensions.html",
+          "hash": "7CPnFWhgDBeNNO+nle0rIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Eo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Eo.html",
+          "hash": "kre1UR0R5/Lk1Nr5CAyX9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.File.ByteOrder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.File.ByteOrder.html",
+          "hash": "vPYHYH3FLqAXdhBFLUDGSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.File.FileStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.File.FileStacExtension.html",
+          "hash": "/JeMz6lZVCCnaAoWeYEvvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.File.FileStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.File.FileStacExtensionExtensions.html",
+          "hash": "6VPs3xyjVJKvKCA7fRIU+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.File.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.File.html",
+          "hash": "m+tjAw/fDQvXg2COX/hgcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.IStacAssetExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.IStacAssetExtension.html",
+          "hash": "3FUrLFbab7q5e3KPNOBiTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.IStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.IStacExtension.html",
+          "hash": "qUsVc/x/SjB2ugSFzKuR6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.ISummaryFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.ISummaryFunction.html",
+          "hash": "YAKjFsSR5jj++eTk1hQV7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Processing.ProcessingStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Processing.ProcessingStacExtension.html",
+          "hash": "vnTRrsi7M7MYXs13OhcLiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Processing.ProcessingStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Processing.ProcessingStacExtensionExtensions.html",
+          "hash": "ICBsRBcLda4XxmyFk+7qnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Processing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Processing.html",
+          "hash": "XoAgBd+d9Ymk0m12vy7QWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Projection.CentroidObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Projection.CentroidObject.html",
+          "hash": "6FnyQVw3XrxUT8Ee28/a3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Projection.ProjectionStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Projection.ProjectionStacExtension.html",
+          "hash": "NkpnIq123zYWWW1haxv6Mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Projection.ProjectionStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Projection.ProjectionStacExtensionExtensions.html",
+          "hash": "+uhBCBQqk325n0LmFmrAtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Projection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Projection.html",
+          "hash": "1kEA62Y9sDU8dbTgHL4RUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Raster.RasterBand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Raster.RasterBand.html",
+          "hash": "AowoD8NCouGyxK3vnI23PA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Raster.RasterHistogram.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Raster.RasterHistogram.html",
+          "hash": "WoBcQbQzTx/9qO/UCf51gA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Raster.RasterSampling.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Raster.RasterSampling.html",
+          "hash": "W535YFtX0DR0rwQJqN21SA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Raster.RasterStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Raster.RasterStacExtension.html",
+          "hash": "cC7+aUwS1fgKxYmp0U8w4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Raster.RasterStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Raster.RasterStacExtensionExtensions.html",
+          "hash": "7CS45Si4E2IfrrS53WWoBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Raster.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Raster.html",
+          "hash": "EKSqFJNE1QK92eaGqZ+k0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sar.ObservationDirection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sar.ObservationDirection.html",
+          "hash": "yYrR6u0mV9/wVN2kOseGhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sar.SarCommonFrequencyBandName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sar.SarCommonFrequencyBandName.html",
+          "hash": "EH0PjVzsAq+SNtkpFmEkjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sar.SarStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sar.SarStacExtension.html",
+          "hash": "TweK/t1t1yAIo5JBQPEPhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sar.SarStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sar.SarStacExtensionExtensions.html",
+          "hash": "0eDFunaK63le+733WHYa3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sar.html",
+          "hash": "ijMt60NIt1YEwITeGb0+eQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sat.BaselineCalculation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sat.BaselineCalculation.html",
+          "hash": "X1UWOnzUdX1UIFcdPOktFQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sat.BaselineVector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sat.BaselineVector.html",
+          "hash": "z/S4UE6v8JTFKNWQ24693w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sat.SatOrbitStateVector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sat.SatOrbitStateVector.html",
+          "hash": "ZCE+RNEeEe/pw7i1oM2e8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sat.SatStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sat.SatStacExtension.html",
+          "hash": "2EsHQ050x6FxbEdGm07QBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sat.SatStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sat.SatStacExtensionExtensions.html",
+          "hash": "rp0OfBV1lGQctThJk0Dr8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sat.SatStacExtensionHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sat.SatStacExtensionHelpers.html",
+          "hash": "1rOEN+wl8sv25+MPTEz9CQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Sat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Sat.html",
+          "hash": "O0wmif4yF8RN7MqUhg/IRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.SchemaBasedStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.SchemaBasedStacExtension.html",
+          "hash": "nAR7TR9OqCW17iAZggZqPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.StacExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.StacExtensions.html",
+          "hash": "bAdW+I7orAxag6SbRIaOVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.StacPropertiesContainerExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.StacPropertiesContainerExtension.html",
+          "hash": "P57lHLn6I78KiPC5oFCH7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Storage.StorageStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Storage.StorageStacExtension.html",
+          "hash": "JBC5xACiuZaKmCC9a2haPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Storage.StorageStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Storage.StorageStacExtensionExtensions.html",
+          "hash": "pQ0ciBFx1cSpnxWIKVda+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Storage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Storage.html",
+          "hash": "VvYe0u5vba3gQJ9KUnMtRQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.SummaryFunction-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.SummaryFunction-1.html",
+          "hash": "L8SzhSPpb3BH9qCGxHAOHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Version.VersionStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Version.VersionStacExtension.html",
+          "hash": "mGd1oZHo7TBMkyRpG2fGsw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Version.VersionStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Version.VersionStacExtensionExtensions.html",
+          "hash": "IcuM7FYJ/LiYfozSOm0ERw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.Version.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.Version.html",
+          "hash": "eWs5FJ/rEUNnKVLtg+TztA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.View.ViewStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.View.ViewStacExtension.html",
+          "hash": "aG8jUOBWp4/P660OMEHPgg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.View.ViewStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.View.ViewStacExtensionExtensions.html",
+          "hash": "kErXroqnNcqGGgEHBQkcjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.View.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.View.html",
+          "hash": "Tc4xnaVy93z5K6PBF4SMKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.VirtualAssets.VirtualAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.VirtualAssets.VirtualAsset.html",
+          "hash": "9rxTVx5N6St5b3RY0y8Zow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.VirtualAssets.VirtualAssetsStacExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.VirtualAssets.VirtualAssetsStacExtension.html",
+          "hash": "jkcyD1lSExmGX651tP2Dtw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.VirtualAssets.VirtualAssetsStacExtensionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.VirtualAssets.VirtualAssetsStacExtensionExtensions.html",
+          "hash": "0IT1jeebEvv95LvGSLGYsg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.VirtualAssets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.VirtualAssets.html",
+          "hash": "HgWw5juJeiOOiVrHL/pzVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Extensions.html",
+          "hash": "uL0BdXA1Tn5hA+SQJ1l7aw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.ILinksCollectionObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.ILinksCollectionObject.html",
+          "hash": "ygh/VQLISPf/tsYJiWKERw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.IStacCatalog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.IStacCatalog.html",
+          "hash": "GMI1sqi8msv2PouD4NyKrQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.IStacObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.IStacObject.html",
+          "hash": "rJYYX60+mRhD5aldBw1N5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.IStacParent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.IStacParent.html",
+          "hash": "NDzJkslziXVWygzdQortmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.IStacPropertiesContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.IStacPropertiesContainer.html",
+          "hash": "FzD0qHLKvQZOw3K57p6Z/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Model.ObservableDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Model.ObservableDictionary-2.html",
+          "hash": "XThsLZIU6Bu3o//V2uAisg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Model.html",
+          "hash": "nsBy0e0lb1qMi6HVNwGS8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Preconditions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Preconditions.html",
+          "hash": "60PKZp8V42k5XQlu3umL6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Schemas.StacSchemaResolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Schemas.StacSchemaResolver.html",
+          "hash": "RC+d0Ww+Iwx7FuersgGCWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Schemas.StacValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Schemas.StacValidator.html",
+          "hash": "WkfnS9sSlDOJM49EwskdoA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Schemas.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Schemas.html",
+          "hash": "0dhBP0hUJYToVhlK9K3a2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.SimpleLinksCollectionObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.SimpleLinksCollectionObject.html",
+          "hash": "RIAVvIl0yi/4B3ZwvjTMiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacAccessorsHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacAccessorsHelpers.html",
+          "hash": "WefFno1S8IU0RSbmlkGywg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacAsset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacAsset.html",
+          "hash": "2kEUiAiWO6rfnXaE5fcgyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacCatalog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacCatalog.html",
+          "hash": "OhP7Dmyev3a1IWCnkG8PRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacCollection.html",
+          "hash": "/SEqqVAA9S17elKl7AKkPw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacConvert.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacConvert.html",
+          "hash": "GgrXNW+LI2U5N+ks551pQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacGeometryHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacGeometryHelpers.html",
+          "hash": "EPcsvk0i0TlEJKsXdBM+pA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacItem.html",
+          "hash": "GOu51lAaTys255hli3h4lg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacLink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacLink.html",
+          "hash": "bVcQL6dPPq4Fh0Wv8/EQRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacObjectLink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacObjectLink.html",
+          "hash": "cnb2nhQLNN+g/i/oKBJhkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacProvider.html",
+          "hash": "ZbEM/DOdvVMcwZ59hyz8bg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.StacProviderRole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.StacProviderRole.html",
+          "hash": "b3oLz18nx7YqB1KKm8gYYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Utils.html",
+          "hash": "yZfvokjFTnYBiGv8T9L6yQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Versions.StacVersionList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Versions.StacVersionList.html",
+          "hash": "5rf0kAeaj0+305+Ix4Au9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.Versions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.Versions.html",
+          "hash": "36GI9WDHyjbzuPlzD/Gajg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "lib/Stac.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/Stac.html",
+          "hash": "qBISFtvpZwnFKnGDwa/Wjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "lib/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "lib/index.html",
+          "hash": "JJZPECK6hPAs3kLFuaFNRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "lib/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "lib/toc.html",
+          "hash": "zivhFz5m9Ew+TGCgOLABFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "8OoYEuQXxvZS260lGaT6MQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 128,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

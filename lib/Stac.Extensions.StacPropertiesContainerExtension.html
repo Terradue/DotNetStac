@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class StacPropertiesContainerExtension
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class StacPropertiesContainerExtension
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Stac.Extensions.StacPropertiesContainerExtension">
+  
+  
+  <h1 id="Stac_Extensions_StacPropertiesContainerExtension" data-uid="Stac.Extensions.StacPropertiesContainerExtension" class="text-break">Class StacPropertiesContainerExtension
+  </h1>
+  <div class="markdown level0 summary"><p>Abstract class for a generic extension based on a STAC object that
+implements <a class="xref" href="Stac.IStacPropertiesContainer.html">IStacPropertiesContainer</a>
+This is a base for building an extension based on new fields for an
+object having a properties</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">StacPropertiesContainerExtension</span></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Alternate.AlternateStacExtension.html">AlternateStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Datacube.DatacubeStacExtension.html">DatacubeStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Disaster.DisastersCharterStacExtension.html">DisastersCharterStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Eo.EoStacExtension.html">EoStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.File.FileStacExtension.html">FileStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Processing.ProcessingStacExtension.html">ProcessingStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Projection.ProjectionStacExtension.html">ProjectionStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Raster.RasterStacExtension.html">RasterStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Sar.SarStacExtension.html">SarStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Sat.SatStacExtension.html">SatStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.SchemaBasedStacExtension.html">SchemaBasedStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Storage.StorageStacExtension.html">StorageStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.Version.VersionStacExtension.html">VersionStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.View.ViewStacExtension.html">ViewStacExtension</a></div>
+      <div class="level2"><a class="xref" href="Stac.Extensions.VirtualAssets.VirtualAssetsStacExtension.html">VirtualAssetsStacExtension</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Stac.Extensions.IStacExtension.html">IStacExtension</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Stac.Extensions.html">Stac.Extensions</a></h6>
+  <h6><strong>Assembly</strong>: DotNetStac.dll</h6>
+  <h5 id="Stac_Extensions_StacPropertiesContainerExtension_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class StacPropertiesContainerExtension : object, IStacExtension</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension__ctor_System_String_Stac_IStacPropertiesContainer_.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.%23ctor(System.String%2CStac.IStacPropertiesContainer)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L27">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension__ctor_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.#ctor*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension__ctor_System_String_Stac_IStacPropertiesContainer_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.#ctor(System.String,Stac.IStacPropertiesContainer)">StacPropertiesContainerExtension(String, IStacPropertiesContainer)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Stac.Extensions.StacPropertiesContainerExtension.html">StacPropertiesContainerExtension</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected StacPropertiesContainerExtension(string identifier, IStacPropertiesContainer stacPropertiesContainer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">identifier</span></td>
+        <td><p>Identifier of the extension</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Stac.IStacPropertiesContainer.html">IStacPropertiesContainer</a></td>
+        <td><span class="parametername">stacPropertiesContainer</span></td>
+        <td><p>STAC object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_Identifier.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.Identifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L39">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_Identifier_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.Identifier*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_Identifier" data-uid="Stac.Extensions.StacPropertiesContainerExtension.Identifier">Identifier</h4>
+  <div class="markdown level1 summary"><p>Gets identifier of the extension</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string Identifier { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Identifier of the extension</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_IsDeclared.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.IsDeclared%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L63">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_IsDeclared_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.IsDeclared*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_IsDeclared" data-uid="Stac.Extensions.StacPropertiesContainerExtension.IsDeclared">IsDeclared</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether indicate if the extension is already declared</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDeclared { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Indicate if the extension is already declared</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_ItemFields.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.ItemFields%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L55">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_ItemFields_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.ItemFields*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_ItemFields" data-uid="Stac.Extensions.StacPropertiesContainerExtension.ItemFields">ItemFields</h4>
+  <div class="markdown level1 summary"><p>Gets get the potential fields of the extensions and their type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract IDictionary&lt;string, Type&gt; ItemFields { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">Type</span>&gt;</td>
+        <td><p>Get the potential fields of the extensions and their type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_StacPropertiesContainer.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.StacPropertiesContainer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L47">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_StacPropertiesContainer_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.StacPropertiesContainer*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_StacPropertiesContainer" data-uid="Stac.Extensions.StacPropertiesContainerExtension.StacPropertiesContainer">StacPropertiesContainer</h4>
+  <div class="markdown level1 summary"><p>Gets stac Object extended by the extension</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IStacPropertiesContainer StacPropertiesContainer { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Stac.IStacPropertiesContainer.html">IStacPropertiesContainer</a></td>
+        <td><p>Stac Object extended by the extension</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_CreateRangeSummaryObject__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.CreateRangeSummaryObject%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L71">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_CreateRangeSummaryObject_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.CreateRangeSummaryObject*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_CreateRangeSummaryObject__1_IEnumerable___0__" data-uid="Stac.Extensions.StacPropertiesContainerExtension.CreateRangeSummaryObject``1(IEnumerable{``0})">CreateRangeSummaryObject&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Generic method to summarize in a range any ordinal object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IStacSummaryItem CreateRangeSummaryObject&lt;T&gt;(IEnumerable&lt;T&gt; arg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">arg</span></td>
+        <td><p>ordinal object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Stac.Collection.IStacSummaryItem.html">IStacSummaryItem</a></td>
+        <td><p>Range summary object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type of the object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_CreateSummaryValueSet__1_IEnumerable___0__.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.CreateSummaryValueSet%60%601(IEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L82">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_CreateSummaryValueSet_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.CreateSummaryValueSet*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_CreateSummaryValueSet__1_IEnumerable___0__" data-uid="Stac.Extensions.StacPropertiesContainerExtension.CreateSummaryValueSet``1(IEnumerable{``0})">CreateSummaryValueSet&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Generic method to summarize in a value set an array of object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static StacSummaryValueSet&lt;T&gt; CreateSummaryValueSet&lt;T&gt;(IEnumerable&lt;T&gt; arg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">arg</span></td>
+        <td><p>array of object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Stac.Collection.StacSummaryValueSet-1.html">StacSummaryValueSet</a>&lt;T&gt;</td>
+        <td><p>Value set summary object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type of the object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_DeclareStacExtension.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.DeclareStacExtension%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L161">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_DeclareStacExtension_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.DeclareStacExtension*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_DeclareStacExtension" data-uid="Stac.Extensions.StacPropertiesContainerExtension.DeclareStacExtension">DeclareStacExtension()</h4>
+  <div class="markdown level1 summary"><p>Declares the extension in the STAC object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void DeclareStacExtension()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_GetSummaryFunctions.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.GetSummaryFunctions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L91">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_GetSummaryFunctions_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.GetSummaryFunctions*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_GetSummaryFunctions" data-uid="Stac.Extensions.StacPropertiesContainerExtension.GetSummaryFunctions">GetSummaryFunctions()</h4>
+  <div class="markdown level1 summary"><p>Get he potential summary functions for each field that can be summarized</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IDictionary&lt;string, ISummaryFunction&gt; GetSummaryFunctions()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Stac.Extensions.ISummaryFunction.html">ISummaryFunction</a>&gt;</td>
+        <td><p>Dictionary of summary functions</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_RemoveProperty_System_String_.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.RemoveProperty(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L149">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_RemoveProperty_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.RemoveProperty*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_RemoveProperty_System_String_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.RemoveProperty(System.String)">RemoveProperty(String)</h4>
+  <div class="markdown level1 summary"><p>Remove a property in the container</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveProperty(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key of the property</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_RemoveStacExtension.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.RemoveStacExtension%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L177">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_RemoveStacExtension_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.RemoveStacExtension*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_RemoveStacExtension" data-uid="Stac.Extensions.StacPropertiesContainerExtension.RemoveStacExtension">RemoveStacExtension()</h4>
+  <div class="markdown level1 summary"><p>Remove the extension in the STAC object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RemoveStacExtension()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension_SetProperty_System_String_System_Object_.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension.SetProperty(System.String%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L139">View Source</a>
+  </span>
+  <a id="Stac_Extensions_StacPropertiesContainerExtension_SetProperty_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.SetProperty*"></a>
+  <h4 id="Stac_Extensions_StacPropertiesContainerExtension_SetProperty_System_String_System_Object_" data-uid="Stac.Extensions.StacPropertiesContainerExtension.SetProperty(System.String,System.Object)">SetProperty(String, Object)</h4>
+  <div class="markdown level1 summary"><p>Set a property in the container</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetProperty(string key, object value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key of the property</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value of the property</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Stac.Extensions.IStacExtension.html">IStacExtension</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Stac.StacAccessorsHelpers.html#Stac_StacAccessorsHelpers_ToStringByAttributes_System_Object_">StacAccessorsHelpers.ToStringByAttributes(Object)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Terradue/DotNetStac/new/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/apiSpec/new?filename=Stac_Extensions_StacPropertiesContainerExtension.md&amp;value=---%0Auid%3A%20Stac.Extensions.StacPropertiesContainerExtension%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Terradue/DotNetStac/blob/1ef9b203bdffa4ed1ca6f716e95da6696ca22214/src/DotNetStac/Extensions/StacPropertiesContainerExtension.cs/#L18" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
